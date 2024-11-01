@@ -401,7 +401,7 @@
   "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.localEchoLatencyThreshold": 0,
   "terminal.integrated.localEchoEnabled": "on",
-  "workbench.colorTheme": "Houston",
+  "workbench.colorTheme": "Cobalt2",
   "supermaven.enableFixWithSupermaven": true,
   "workbench.startupEditor": "welcomePage",
   "editor.fontSize": 12

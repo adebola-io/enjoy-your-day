@@ -1,0 +1,14 @@
+.text-base {
+  font-family: 'Albert Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-optical-sizing: auto;
+}
+
+.text-heading {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-size: 3rem;
+  font-weight: 700;
+  composes: text-base;
+}

@@ -1,0 +1,12 @@
+.homeView {
+  display: grid;
+  height: 100dvh;
+  color: white;
+  background: var(--primary-100-600);
+  place-items: center;
+  place-content: center;
+}
+
+.headingText {
+  composes: text-heading-2 from '../../styles/typography.module.scss';
+}

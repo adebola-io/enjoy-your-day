@@ -1,0 +1,20 @@
+{
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5229",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@adbl/dom": "latest",
+    "@adbl/cells": "latest"
+  },
+  "devDependencies": {
+    "vite": "^5.4.8",
+    "typescript": "^5.5.2",
+    "sass": "^1.72.0"
+  }
+}

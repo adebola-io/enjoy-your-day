@@ -1,2 +1,2 @@
-# development
-A setup for spawning up quick, Docker based developer environments.
+# Enjoy Your Day!
+A PWA for generating itineraries for your day.

@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,12 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@adbl/dom": "latest",
+    "@adbl/unfinished": "latest",
     "@adbl/cells": "latest"
   },
   "devDependencies": {
     "vite": "^5.4.8",
-    "typescript": "^5.5.2",
-    "sass": "^1.72.0"
+    "typescript": "^5.5.2"
   }
 }

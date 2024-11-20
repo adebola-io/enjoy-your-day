@@ -1,23 +1,14 @@
 import { defineConfig } from 'vite';
 import path from 'node:path';
 
+import { hmrPlugin } from '@adbl/unfinished/render';
+
 export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './source'),
-    },
-  },
-
-  css: {
-    preprocessorOptions: {
-      scss: {
-         api: 'modern-compiler',
-      },
     }
   },
+  plugins: [hmrPlugin()],
 
-  jsxInject:
-    'import { h as __h, DocumentFragmentPlaceholder as __fragment } from "@adbl/dom"',
-  jsxFactory: '__h',
-  jsxFragment: '__fragment',
 });

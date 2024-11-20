@@ -1,0 +1,115 @@
+.heading-bold {
+  text-transform: none;
+  font-family: Unbounded, sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+}
+.heading-regular {
+  text-transform: none;
+  font-family: Unbounded, sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 300;
+  text-decoration: none;
+}
+.sub-heading-bold {
+  line-height: 48px;
+  text-transform: none;
+  font-family: Unbounded, sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+}
+.sub-heading-regular {
+  text-transform: none;
+  font-family: Unbounded, sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 300;
+  text-decoration: none;
+}
+.title-bold {
+  text-transform: none;
+  font-family: Unbounded, sans-serif;
+  font-size: 29px;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+}
+.title-regular {
+  text-transform: none;
+  font-family: Unbounded, sans-serif;
+  font-size: 29px;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+}
+.base-bold {
+  text-transform: none;
+  font-family: Instrument Sans, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+}
+.base-regular {
+  text-transform: none;
+  font-family: Instrument Sans, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+}
+.small-bold {
+  text-transform: none;
+  font-family: Instrument Sans, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+}
+.small-regular {
+  text-transform: none;
+  font-family: Instrument Sans, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+}
+.eyebrow-bold {
+  line-height: 44px;
+  text-transform: none;
+  font-family: Unbounded, sans-serif;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+}
+.eyebrow-regular {
+  line-height: 44px;
+  text-transform: none;
+  font-family: Unbounded, sans-serif;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 300;
+  text-decoration: none;
+}
+.tiny-bold {
+  text-transform: none;
+  font-family: Instrument Sans, sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+}
+.tiny-regular {
+  text-transform: none;
+  font-family: Instrument Sans, sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+}

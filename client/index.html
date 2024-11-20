@@ -269,7 +269,7 @@
           99.99
         );
 
-        identityAnimation.currentTime = overallPercent * 150;
+        identityAnimation.currentTime = Math.min(overallPercent * 150, 149.999);
 
         // First Illustration Animations
         leftStarEnterAnimation.currentTime = firstAnimationSetCurrentTime;

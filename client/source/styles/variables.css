@@ -105,8 +105,8 @@
   --gradients-minty: linear-gradient(to bottom, #dbffeedb 0%, #94dec794 100%);
 
   /* Dimensions */
-  --start-screen-block-padding-top: 23.474dvh;
-  --start-screen-block-padding-bottom: 8.802dvh;
+  --start-screen-block-padding-top: 15.474dvh;
+  --start-screen-block-padding-bottom: 5.802dvh;
   --start-screen-block-padding: var(--start-screen-block-padding-top)
     var(--start-screen-block-padding-bottom);
   --block-padding: var(--start-screen-block-padding-bottom);

@@ -65,15 +65,15 @@ bun run db:migrate
 
 #### 🔄 Running the Backend
 
-To run the backend, run the following command:
+To run the client, run the following command:
 
-bun run backend
+bun run client
 
 #### 🖥️ Running the Frontend
 
-To run the frontend, run the following command:
+To run the server, run the following command:
 
-bun run frontend
+bun run server
 
 ## 🤝 Contributing
 

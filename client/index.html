@@ -32,6 +32,46 @@
       xmlns="http://www.w3.org/2000/svg"
       inert
     >
+      <rect
+        class="illustration__identity rectangle-backdrop"
+        stroke="white"
+        stroke-width="7"
+        width="40%"
+        height="40%"
+        x="30%"
+        y="30%"
+        rx="50%"
+      />
+      <rect
+        class="illustration__identity container-rectangle"
+        stroke="white"
+        stroke-width="4.14055"
+        fill="var(--space-cadet-500)"
+        width="40%"
+        height="40%"
+        x="30%"
+        y="30%"
+        rx="50%"
+      />
+      <rect
+        class="illustration__identity illustration__line-1"
+        fill="white"
+        width="0"
+        height="6.34%"
+        x="48.5%"
+        y="38.5%"
+        rx="4%"
+      />
+      <rect
+        class="illustration__identity illustration__line-2"
+        fill="white"
+        width="0"
+        height="6.34%"
+        x="48.5%"
+        y="62.5%"
+        rx="4%"
+      />
+
       <!-- one -->
       <path
         class="illustration__left-star"
@@ -61,15 +101,7 @@
         stroke-linecap="round"
       />
 
-      <path
-        data-illustration="list"
-        class="illustration__back-line"
-        d=""
-        stroke="white"
-        stroke-width="7.375"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+      <!-- two -->
       <path
         data-illustration="list"
         d="M35.8682 82.5423L39.5557 86.2298L50.6182 75.1673"
@@ -87,35 +119,11 @@
         stroke-linejoin="round"
       />
 
-      <!-- Smiley face -->
+      <!-- three -->
       <path
         data-illustration="smile"
         d="M90.0266 81.851C91.0041 79.6463 89.4529 77.3004 87.0929 76.8035C84.7329 76.3071 57.92 79.3347 56.6204 81.3665C54.5092 82.5325 53.7131 85.2298 55.2936 87.0517C57.0964 89.1298 59.3032 90.8408 61.7958 92.0722C65.6017 93.9514 69.8911 94.6223 74.089 93.9934C78.2869 93.3651 82.1921 91.4675 85.2805 88.5556C87.303 86.6485 88.9116 84.3659 90.0266 81.851Z"
         fill="white"
-      />
-
-      <rect
-        class="illustration__identity rectangle"
-        stroke="white"
-        stroke-width="4.14055"
-      />
-      <rect
-        class="illustration__identity todo-list__top-line"
-        fill="white"
-        width="0"
-        height="6.34%"
-        x="48.5%"
-        y="38.5%"
-        rx="4%"
-      />
-      <rect
-        class="illustration__identity todo-list__bottom-line"
-        fill="white"
-        width="0"
-        height="6.34%"
-        x="48.5%"
-        y="62.5%"
-        rx="4%"
       />
     </svg>
     <div class="start-screen__slides">
@@ -140,14 +148,12 @@
       </div>
     </div>
     <div class="start-screen__slide-indicator">
-      <span class="start-screen__slide-count"></span>
-      <span class="start-screen__slide-count"></span>
-      <span class="start-screen__slide-count"></span>
+      <span style="--grid-column: 1" class="start-screen__slide-count"></span>
+      <span style="--grid-column: 2" class="start-screen__slide-count"></span>
+      <span style="--grid-column: 3" class="start-screen__slide-count"></span>
     </div>
-    <div class="start-screen__button-row">
-      <button class="start-screen__button" onclick="nextSlide()">Next</button>
-      <button class="start-screen__button">Skip</button>
-    </div>
+
+    <button class="start-screen__button">Install</button>
 
     <script>
       const screenSlide = document.querySelector('.start-screen__slides');
@@ -155,32 +161,22 @@
       const sun = document.querySelector('.illustration__sun');
       const leftStar = document.querySelector('.illustration__left-star');
       const rightStar = document.querySelector('.illustration__right-star');
-      const backLine = document.querySelector('.illustration__back-line');
 
-      const rectangle = document.querySelector(
-        '.rectangle.illustration__identity'
-      );
-      const todoListTopLine = document.querySelector('.todo-list__top-line');
-      const todoListBottomLine = document.querySelector(
-        '.todo-list__bottom-line'
-      );
+      const rectangle = document.querySelector('.container-rectangle');
+      const rectangleBackdrop = document.querySelector('.rectangle-backdrop');
+      const illustrationLine1 = document.querySelector('.illustration__line-1');
+      const illustrationLine2 = document.querySelector('.illustration__line-2');
 
       const animationOptions = {
         duration: 100,
         easing: 'cubic-bezier(.42, 0, .58, 1)',
       };
-      const emptyStart = {};
+      const initial = {};
 
-      const identityAnimation = rectangle.animate(
+      const containerRectangleAnimation = rectangle.animate(
         [
           // Sun circle
-          {
-            width: '40%',
-            height: '40%',
-            x: '30%',
-            y: '30%',
-            rx: '50%',
-          },
+          initial,
           // Todo list Square.
           {
             width: '77.6%',
@@ -204,27 +200,88 @@
         ],
         animationOptions
       );
-      const todoListTopLineAnimation = todoListTopLine.animate(
-        [emptyStart, { width: '26.65%' }],
+      const rectangleBackdropAnimation = rectangleBackdrop.animate(
+        [
+          initial,
+          {
+            width: '77.6%',
+            height: '77.6%',
+            x: '4%',
+            y: '20%',
+            rx: '20%',
+            opacity: '1',
+            rotate: '0deg',
+          },
+          {
+            width: '75.2%',
+            height: '74.3%',
+            strokeWidth: '7.59',
+            rx: '13.8%',
+            x: '10%',
+            y: '27%',
+            rotate: '-8deg',
+            opacity: '0',
+          },
+        ],
         animationOptions
       );
-      const todoListBottomLineAnimation = todoListBottomLine.animate(
-        [emptyStart, { width: '26.65%' }],
+      const todoListTopLineAnimation = illustrationLine1.animate(
+        [
+          initial,
+          {
+            width: '26.65%',
+            x: '48.5%',
+            y: '35.5%',
+            height: '6.34%',
+            rotate: '0deg',
+            rx: '4%',
+          },
+          {
+            width: '6%',
+            x: '30%',
+            y: '47%',
+            height: '12%',
+            rotate: '-9deg',
+            rx: '3%',
+          },
+        ],
+        animationOptions
+      );
+      const todoListBottomLineAnimation = illustrationLine2.animate(
+        [
+          initial,
+          {
+            width: '26.65%',
+            x: '48.5%',
+            y: '62.5%',
+            height: '6.34%',
+            rotate: '0deg',
+            rx: '4%',
+          },
+          {
+            width: '6%',
+            x: '56.25%',
+            height: '12%',
+            y: '47%',
+            rotate: '-9deg',
+            rx: '3%',
+          },
+        ],
         animationOptions
       );
 
       // // First Illustration Animations
       const leftStarEnterAnimation = leftStar.animate(
-        [emptyStart, { translate: '50% 50%' }],
+        [initial, { translate: '50% 50%' }],
         animationOptions
       );
       const rightStarEnterAnimation = rightStar.animate(
-        [emptyStart, { translate: '-50% -50%' }],
+        [initial, { translate: '-50% -50%' }],
         animationOptions
       );
       const sunRotateAnimation = sun.animate(
         [
-          emptyStart,
+          initial,
           {
             translate: '50%',
             rotate: '45deg',
@@ -236,14 +293,11 @@
       );
 
       // Second Illustration Animations
-      const backLineAnimation = backLine.animate(
-        [emptyStart, { translate: '10% -10%' }],
-        { ...animationOptions, direction: 'reverse' }
-      );
 
+      containerRectangleAnimation.pause();
+      rectangleBackdropAnimation.pause();
       leftStarEnterAnimation.pause();
       rightStarEnterAnimation.pause();
-      identityAnimation.pause();
       sunRotateAnimation.pause();
       todoListTopLineAnimation.pause();
       todoListBottomLineAnimation.pause();
@@ -260,6 +314,10 @@
         const secondSlidePercent =
           (scrollLeft - firstSlideBreakpoint) / firstSlideBreakpoint;
 
+        const overallAnimationSetCurrentTime = Math.min(
+          overallPercent * 150,
+          149.999
+        );
         const firstAnimationSetCurrentTime = Math.min(
           firstSlidePercent * 100,
           99.99
@@ -269,17 +327,17 @@
           99.99
         );
 
-        identityAnimation.currentTime = Math.min(overallPercent * 150, 149.999);
+        containerRectangleAnimation.currentTime =
+          overallAnimationSetCurrentTime;
+        rectangleBackdropAnimation.currentTime = overallAnimationSetCurrentTime;
+        todoListTopLineAnimation.currentTime = overallAnimationSetCurrentTime;
+        todoListBottomLineAnimation.currentTime =
+          overallAnimationSetCurrentTime;
 
         // First Illustration Animations
         leftStarEnterAnimation.currentTime = firstAnimationSetCurrentTime;
         rightStarEnterAnimation.currentTime = firstAnimationSetCurrentTime;
         sunRotateAnimation.currentTime = firstAnimationSetCurrentTime;
-        todoListTopLineAnimation.currentTime = firstAnimationSetCurrentTime;
-        todoListBottomLineAnimation.currentTime = firstAnimationSetCurrentTime;
-
-        // Todo list back-line
-        backLineAnimation.currentTime = secondAnimationSetCurrentTime;
 
         const currentSlide = Math.round(overallPercent * 3);
 
@@ -287,12 +345,6 @@
         current = currentSlide + 1;
         document.body.setAttribute('data-current', current);
       });
-
-      function nextSlide() {
-        if (current === 3) return;
-        const nextSlideX = (screenSlide.scrollWidth / 3) * current;
-        screenSlide.scrollTo(nextSlideX, 0);
-      }
     </script>
   </body>
 </html>

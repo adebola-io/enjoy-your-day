@@ -175,12 +175,10 @@ body {
 
   &:nth-child(3) {
     --content-width: 81.11dvw;
-    --content-width-heading: 54.67dvw;
   }
 }
 
 .start-screen__heading {
-  max-width: var(--content-width-heading, var(--content-width));
   text-align: center;
   font: var(--eyebrow-bold);
 }
@@ -222,7 +220,8 @@ body {
   grid-row: 1;
 }
 
-.start-screen__button {
+.start-screen__start-button,
+.start-screen__install-button {
   display: grid;
   width: 88%;
   border: none;
@@ -246,6 +245,19 @@ body {
     outline: 4px solid var(--white);
     color: var(--white);
     background-color: var(--space-cadet-500);
+  }
+}
+
+.start-screen__start-button {
+  display: none;
+}
+
+@media (display-mode: standalone) {
+  .start-screen__install-button {
+    display: none;
+  }
+  .start-screen__start-button {
+    display: grid;
   }
 }
 

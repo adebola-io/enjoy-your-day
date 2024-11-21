@@ -7,4 +7,9 @@
   place-content: center;
   place-items: center;
   padding-block: 18px;
+
+  &:active {
+    filter: brightness(0.9);
+    scale: 0.98;
+  }
 }

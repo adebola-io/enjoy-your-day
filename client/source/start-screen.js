@@ -195,15 +195,26 @@ async function startApp() {
   if ('vibrate' in navigator) {
     navigator.vibrate(35);
   }
-  getStartedButton.textContent = 'Loading...';
+  getStartedButton.classList.add('loading');
+  getStartedButton.childNodes[2].textContent = 'Loading...';
 
-  const module = await import('./main');
-  const main = module.default;
+  let module;
+  const loadModule = async () => {
+    module = await import('./main');
+  };
 
-  if ('startViewTransition' in document) {
-    document.startViewTransition(main);
-  } else main();
-
-  // await module.default();
+  await Promise.all([
+    loadModule(),
+    await new Promise((r) => setTimeout(r, 1000)),
+  ]).then(async () => {
+    if (!module) return;
+    const main = module.default;
+    if ('startViewTransition' in document) {
+      document.startViewTransition(main);
+    } else {
+      main();
+    }
+  });
 }
+
 getStartedButton.addEventListener('click', startApp);

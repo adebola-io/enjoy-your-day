@@ -1,20 +1,14 @@
 ::view-transition-old(start-logo) {
-  object-fit: contain;
-}
-
-::view-transition-new(start-logo) {
-  object-fit: cover;
+  transition-duration: 200ms;
+  translate: -5% -6%;
+  scale: 0.9;
 }
 
 ::view-transition-old(*),
-::view-transition-new(*) {
+::view-transition-new(*),
+::view-transition-group(*) {
   animation-duration: 300ms;
   animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
-}
-
-::view-transition-new(start-heading) {
-  opacity: 0;
-  translate: 0% 0%;
 }
 
 @keyframes twinkle {
@@ -82,5 +76,57 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.hourglass-loader {
+  --base-animation-duration: 3s;
+  width: 1.2rem;
+  animation: loader-spin infinite;
+  animation-duration: var(--base-animation-duration);
+
+  .button__loader__bottom {
+    animation: loader-fill infinite;
+    animation-duration: var(--base-animation-duration);
+    fill: currentColor;
+  }
+
+  .button__loader__top {
+    animation: loader-fill infinite;
+    animation-duration: var(--base-animation-duration);
+    animation-delay: calc(var(--base-animation-duration) / 2);
+    fill: currentColor;
+  }
+}
+
+@keyframes loader-spin {
+  0% {
+    rotate: 0deg;
+  }
+
+  50% {
+    rotate: 180deg;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
+
+@keyframes loader-fill {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

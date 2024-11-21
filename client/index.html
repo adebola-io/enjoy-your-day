@@ -9,8 +9,11 @@
       content="black-translucent"
     />
     <title>Enjoy Your Day</title>
+    <!-- SVG favicon -->
+    <link rel="icon" href="/icons/icon-gray.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Unbounded -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap"
@@ -311,21 +314,9 @@
 
         const overallPercent = scrollLeft / scrollWidth;
         const firstSlidePercent = scrollLeft / firstSlideBreakpoint;
-        const secondSlidePercent =
-          (scrollLeft - firstSlideBreakpoint) / firstSlideBreakpoint;
 
-        const overallAnimationSetCurrentTime = Math.min(
-          overallPercent * 150,
-          149.999
-        );
-        const firstAnimationSetCurrentTime = Math.min(
-          firstSlidePercent * 100,
-          99.99
-        );
-        const secondAnimationSetCurrentTime = Math.min(
-          secondSlidePercent * 100,
-          99.99
-        );
+        const overallAnimationSetCurrentTime = overallPercent * 150;
+        const firstAnimationSetCurrentTime = firstSlidePercent * 100;
 
         containerRectangleAnimation.currentTime =
           overallAnimationSetCurrentTime;

@@ -19,11 +19,12 @@ export default defineConfig({
       },
       manifest: {
         name: 'Enjoy Your Day',
-        short_name: 'EYD',
+        short_name: 'Enjoy Your Day',
         start_url: '/',
         theme_color: '#1b1b3a',
         description:
           'Enjoy Your Day is a simple progressive web application that provides and generates itineraries for your day to make it more enjoyable.',
+        categories: ['productivity', 'utilities', 'social'],
         background_color: '#1b1b3a',
         display: 'standalone',
         orientation: 'portrait',

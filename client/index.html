@@ -11,23 +11,10 @@
     <title>Enjoy Your Day</title>
     <!-- SVG favicon -->
     <link rel="icon" href="/icons/icon-gray.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Unbounded -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap"
-    />
-    <!-- Instrument Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Unbounded:wght@200..900&display=swap"
-      rel="stylesheet"
-    />
+
     <link rel="stylesheet" href="./source/styles/index.css" />
 
-    <!-- Splash Screen -->
+    <!-- Splash Screens -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
@@ -368,9 +355,7 @@
       <span style="--grid-column: 3" class="start-screen__slide-count"></span>
     </div>
 
-    <button onpointerup="installApp()" class="start-screen__button">
-      Install
-    </button>
+    <button onclick="installApp()" class="start-screen__button">Install</button>
 
     <script>
       const screenSlide = document.querySelector('.start-screen__slides');

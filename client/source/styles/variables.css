@@ -113,20 +113,20 @@
   --side-padding: 7.63dvw;
 
   /* Typography */
-  --heading-bold: normal 600 3.125rem 'Unbounded', sans-serif;
-  --heading-regular: normal 300 3.125rem 'Unbounded', sans-serif;
-  --sub-heading-bold: normal 600 2.25rem / 48px 'Unbounded', sans-serif;
-  --sub-heading-regular: normal 300 2.25rem / 48px 'Unbounded', sans-serif;
-  --eyebrow-bold: normal 600 2.125rem / 44px 'Unbounded', sans-serif;
-  --eyebrow-regular: normal 300 2.125rem / 44px 'Unbounded', sans-serif;
-  --title-bold: normal 700 1.812rem 'Unbounded', sans-serif;
-  --title-regular: normal 400 1.812rem 'Unbounded', sans-serif;
-  --base-bold: normal 700 1rem 'Instrument Sans', sans-serif;
-  --base-regular: normal 400 1rem 'Instrument Sans', sans-serif;
-  --small-bold: normal 600 0.75rem 'Instrument Sans', sans-serif;
-  --small-regular: normal 400 0.75rem 'Instrument Sans', sans-serif;
-  --tiny-bold: normal 600 0.6875rem 'Instrument Sans', sans-serif;
-  --tiny-regular: normal 400 0.6875rem 'Instrument Sans', sans-serif;
+  --heading-bold: normal 600 4rem system-ui, sans-serif;
+  --heading-regular: normal 300 4rem system-ui, sans-serif;
+  --sub-heading-bold: normal 600 2.75rem / 48px system-ui, sans-serif;
+  --sub-heading-regular: normal 300 2.75rem / 48px system-ui, sans-serif;
+  --eyebrow-bold: normal 600 2.425rem / 44px system-ui, sans-serif;
+  --eyebrow-regular: normal 300 2.425rem / 44px system-ui, sans-serif;
+  --title-bold: normal 700 1.812rem system-ui, sans-serif;
+  --title-regular: normal 400 1.812rem system-ui, sans-serif;
+  --base-bold: normal 700 1rem system-ui, sans-serif;
+  --base-regular: normal 400 1rem system-ui, sans-serif;
+  --small-bold: normal 600 0.75rem system-ui, sans-serif;
+  --small-regular: normal 400 0.75rem system-ui, sans-serif;
+  --tiny-bold: normal 600 0.6875rem system-ui, sans-serif;
+  --tiny-regular: normal 400 0.6875rem system-ui, sans-serif;
 
   /* Shadows */
   --shadow-outline: 0px 0px 1px 1px #1b1b3a;

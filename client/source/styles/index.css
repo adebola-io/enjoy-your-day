@@ -9,6 +9,10 @@
   font-size: 16px;
 }
 
+* {
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+}
+
 body {
   display: grid;
   max-width: 100dvw;
@@ -68,7 +72,7 @@ body {
   &[data-current='3'] {
     svg {
       --svg-color: #b2b2f5;
-      animation: shake 3s ease-in-out infinite;
+      animation: shake 3s infinite;
       translate: -5%;
       :not([data-illustration='smile'], .illustration__identity) {
         opacity: 0;
@@ -76,7 +80,7 @@ body {
 
       .illustration__line-1,
       .illustration__line-2 {
-        animation: blink 3s ease-in-out infinite;
+        animation: blink 3s infinite;
       }
 
       .illustration__line-1 {
@@ -129,9 +133,16 @@ body {
   user-select: none;
 }
 
+.start-screen__illustration-container {
+  --starting-fade-position-y: 25%;
+  opacity: 0;
+  animation: fade-in-from-bottom 0.5s;
+  animation-fill-mode: both;
+}
+
 .start-screen__illustration {
   --svg-color: white;
-  width: min(31.8dvw, 139px);
+  width: min(40dvw, 150px);
 
   &,
   * {
@@ -157,6 +168,7 @@ body {
 
 .start-screen__slide {
   display: grid;
+  overflow: hidden;
   color: var(--white);
   grid-template-rows: auto auto;
   place-content: center;
@@ -179,19 +191,28 @@ body {
 }
 
 .start-screen__heading {
+  opacity: 0;
+  animation: fade-in-from-bottom 0.25s 0.2s;
   text-align: center;
   font: var(--eyebrow-bold);
+  animation-fill-mode: both;
 }
 
 .start-screen__paragraph {
   max-width: var(--content-width);
+  opacity: 0;
+  animation: fade-in-from-bottom 0.25s 0.3s;
   text-align: center;
   font: var(--base-regular);
+  animation-fill-mode: both;
 }
 
 .start-screen__slide-indicator {
   display: grid;
   align-self: start;
+  opacity: 0;
+  animation: fade-in-from-bottom 0.25s 0.35s;
+  animation-fill-mode: both;
   place-items: center;
   grid: auto / auto auto auto;
   gap: 10px;
@@ -220,13 +241,15 @@ body {
   grid-row: 1;
 }
 
-.start-screen__start-button,
-.start-screen__install-button {
+.start-screen__start-button {
   display: grid;
   width: 88%;
   border: none;
   border-radius: 25px;
+  opacity: 0;
+  animation: fade-in-from-bottom 0.25s 0.45s;
   font: var(--base-bold);
+  animation-fill-mode: both;
   place-content: center;
   place-items: center;
   padding-block: 18px;
@@ -245,19 +268,6 @@ body {
     outline: 4px solid var(--white);
     color: var(--white);
     background-color: var(--space-cadet-500);
-  }
-}
-
-.start-screen__start-button {
-  display: none;
-}
-
-@media (display-mode: standalone) {
-  .start-screen__install-button {
-    display: none;
-  }
-  .start-screen__start-button {
-    display: grid;
   }
 }
 
@@ -315,5 +325,16 @@ body {
   }
   100% {
     translate: 0;
+  }
+}
+
+@keyframes fade-in-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--starting-fade-position-y, 100%));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

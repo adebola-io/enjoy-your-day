@@ -117,12 +117,12 @@
   --heading-regular: normal 300 4rem system-ui, sans-serif;
   --sub-heading-bold: normal 600 2.95rem / 48px system-ui, sans-serif;
   --sub-heading-regular: normal 300 2.95rem / 48px system-ui, sans-serif;
-  --eyebrow-bold: normal 600 2.525rem / 46px system-ui, sans-serif;
-  --eyebrow-regular: normal 300 2.525rem / 46px system-ui, sans-serif;
-  --title-bold: normal 700 1.812rem system-ui, sans-serif;
-  --title-regular: normal 400 1.812rem system-ui, sans-serif;
-  --base-bold: normal 700 1rem system-ui, sans-serif;
-  --base-regular: normal 400 1rem system-ui, sans-serif;
+  --eyebrow-bold: normal 600 2.225rem / 46px system-ui, sans-serif;
+  --eyebrow-regular: normal 300 2.225rem / 46px system-ui, sans-serif;
+  --title-bold: normal 700 1.612rem system-ui, sans-serif;
+  --title-regular: normal 400 1.612rem system-ui, sans-serif;
+  --base-bold: normal 700 0.9rem system-ui, sans-serif;
+  --base-regular: normal 400 0.9rem system-ui, sans-serif;
   --small-bold: normal 600 0.75rem system-ui, sans-serif;
   --small-regular: normal 400 0.75rem system-ui, sans-serif;
   --tiny-bold: normal 600 0.6875rem system-ui, sans-serif;

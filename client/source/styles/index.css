@@ -22,8 +22,11 @@ body {
   gap: 25px;
 
   &[data-current='1'] {
-    svg :not([data-illustration='sun'], .illustration__identity) {
-      opacity: 0;
+    svg {
+      --svg-color: #afe6f9;
+      :not([data-illustration='sun'], .illustration__identity) {
+        opacity: 0;
+      }
     }
 
     .illustration__left-star {
@@ -37,8 +40,16 @@ body {
 
   &[data-current='2'] {
     svg {
+      --svg-color: #c3dcff;
       :not([data-illustration='list'], .illustration__identity) {
         opacity: 0;
+      }
+
+      [data-illustration='list'],
+      .container-rectangle,
+      .illustration__line-1,
+      .illustration__line-2 {
+        animation: bump-up 0.6s 0.3s;
       }
     }
 
@@ -49,6 +60,7 @@ body {
 
   &[data-current='3'] {
     svg {
+      --svg-color: #b2b2f5;
       animation: shake 3s ease-in-out infinite;
       translate: -5%;
       :not([data-illustration='smile'], .illustration__identity) {
@@ -111,6 +123,7 @@ body {
 }
 
 .start-screen__illustration {
+  --svg-color: white;
   width: min(31.8dvw, 126px);
 
   &,
@@ -265,5 +278,17 @@ body {
   }
   15% {
     rotate: 0deg;
+  }
+}
+
+@keyframes bump-up {
+  0% {
+    translate: 0;
+  }
+  70% {
+    translate: 5% -5%;
+  }
+  100% {
+    translate: 0;
   }
 }

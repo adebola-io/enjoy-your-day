@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#383853" />
+    <meta name="theme-color" content="#1b1b3a" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
@@ -156,7 +156,9 @@
       <span style="--grid-column: 3" class="start-screen__slide-count"></span>
     </div>
 
-    <button class="start-screen__button">Install</button>
+    <button onpointerup="installApp()" class="start-screen__button">
+      Install
+    </button>
 
     <script>
       const screenSlide = document.querySelector('.start-screen__slides');
@@ -350,6 +352,12 @@
         current = currentSlide + 1;
         document.body.setAttribute('data-current', current);
       });
+
+      function installApp() {
+        if ('vibrate' in navigator) {
+          navigator.vibrate(50);
+        }
+      }
     </script>
   </body>
 </html>

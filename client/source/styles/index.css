@@ -24,6 +24,7 @@ body {
   &[data-current='1'] {
     svg {
       --svg-color: #afe6f9;
+      scale: 1.3;
       :not([data-illustration='sun'], .illustration__identity) {
         opacity: 0;
       }
@@ -124,7 +125,7 @@ body {
 
 .start-screen__illustration {
   --svg-color: white;
-  width: min(31.8dvw, 126px);
+  width: min(31.8dvw, 139px);
 
   &,
   * {
@@ -217,7 +218,8 @@ body {
 
 .start-screen__button {
   display: grid;
-  width: min(100%, 333px);
+  width: 88%;
+  border: none;
   border-radius: 25px;
   font: var(--base-bold);
   place-content: center;

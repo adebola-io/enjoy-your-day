@@ -150,6 +150,7 @@ body {
 
 .start-screen__slide {
   display: grid;
+  color: var(--white);
   grid-template-rows: auto auto;
   place-content: center;
   place-items: center;
@@ -173,14 +174,12 @@ body {
 
 .start-screen__heading {
   max-width: var(--content-width-heading, var(--content-width));
-  color: var(--white);
   text-align: center;
   font: var(--eyebrow-bold);
 }
 
 .start-screen__paragraph {
   max-width: var(--content-width);
-  color: var(--white);
   text-align: center;
   font: var(--base-regular);
 }

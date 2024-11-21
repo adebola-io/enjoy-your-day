@@ -2,11 +2,19 @@
 import { render } from '@adbl/unfinished/render';
 import { createRouter } from './router';
 
-const router = createRouter();
-router.window = window;
-router.attachWindowListeners();
+export default async function main() {
+  const root = document.createElement('div');
+  root.id = 'app';
+  document.body.appendChild(root);
 
-const root = window.document.getElementById('app');
-if (root !== null) {
-  render(root, router.Outlet(), window)
+  const router = createRouter();
+  router.window = window;
+  router.attachWindowListeners();
+
+  document.querySelector('#start-screen')?.remove();
+
+  if (root !== null) {
+    render(root, router.Outlet(), window);
+    router.navigate('/');
+  }
 }

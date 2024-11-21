@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+const startScreen = document.querySelector('#start-screen');
 const screenSlide = document.querySelector('.start-screen__slides');
 const svg = document.querySelector('.start-screen__illustration');
 const sun = document.querySelector('.illustration__sun');
@@ -187,12 +188,22 @@ screenSlide.addEventListener('scroll', () => {
 
   if (current === currentSlide + 1) return;
   current = currentSlide + 1;
-  document.body.setAttribute('data-current', current);
+  startScreen.setAttribute('data-current', current);
 });
 
-function startApp() {
+async function startApp() {
   if ('vibrate' in navigator) {
     navigator.vibrate(35);
   }
+  getStartedButton.textContent = 'Loading...';
+
+  const module = await import('./main');
+  const main = module.default;
+
+  if ('startViewTransition' in document) {
+    document.startViewTransition(main);
+  } else main();
+
+  // await module.default();
 }
 getStartedButton.addEventListener('click', startApp);

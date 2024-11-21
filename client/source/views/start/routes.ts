@@ -1,9 +1,10 @@
-import { defineRoutes, lazy } from '@adbl/unfinished/router';
+import { defineRoutes } from '@adbl/unfinished/router';
+import Start from '.';
 
 export const startRoutes = defineRoutes([
   {
     name: 'Start View',
     path: '/start',
-    component: lazy(() => import('./index')),
+    component: Start,
   },
 ]);

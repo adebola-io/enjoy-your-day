@@ -12,7 +12,7 @@
     <!-- SVG favicon -->
     <link rel="icon" href="/icons/icon-gray.svg" type="image/svg+xml" />
 
-    <link rel="stylesheet" href="./source/styles/index.css" />
+    <link rel="stylesheet" href="./source/styles/start-screen.css" />
 
     <!-- Splash Screens -->
     <link
@@ -226,139 +226,141 @@
       href="splash_screens/8.3__iPad_Mini_portrait.png"
     />
   </head>
-  <body data-current="1">
-    <div class="start-screen__illustration-container">
-      <svg
-        class="start-screen__illustration"
-        viewBox="0 0 125 126"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        inert
-      >
-        <rect
-          class="illustration__identity rectangle-backdrop"
-          stroke="var(--svg-color)"
-          stroke-width="7"
-          width="40%"
-          height="40%"
-          x="30%"
-          y="30%"
-          rx="50%"
-        />
-        <rect
-          class="illustration__identity container-rectangle"
-          stroke="var(--svg-color)"
-          stroke-width="4.14055"
-          fill="var(--space-cadet-500)"
-          width="40%"
-          height="40%"
-          x="30%"
-          y="30%"
-          rx="50%"
-        />
-        <rect
-          class="illustration__identity illustration__line-1"
-          fill="var(--svg-color)"
-          width="0"
-          height="6.34%"
-          x="48.5%"
-          y="38.5%"
-          rx="4%"
-        />
-        <rect
-          class="illustration__identity illustration__line-2"
-          fill="var(--svg-color)"
-          width="0"
-          height="6.34%"
-          x="48.5%"
-          y="62.5%"
-          rx="4%"
-        />
+  <body>
+    <div data-current="1" id="start-screen">
+      <div class="start-screen__illustration-container">
+        <svg
+          class="start-screen__illustration"
+          viewBox="0 0 125 126"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          inert
+          style="view-transition-name: start-logo"
+        >
+          <rect
+            class="illustration__identity rectangle-backdrop"
+            stroke="var(--svg-color)"
+            stroke-width="7"
+            width="40%"
+            height="40%"
+            x="30%"
+            y="30%"
+            rx="50%"
+          />
+          <rect
+            class="illustration__identity container-rectangle"
+            stroke="var(--svg-color)"
+            stroke-width="4.14055"
+            fill="var(--space-cadet-500)"
+            width="40%"
+            height="40%"
+            x="30%"
+            y="30%"
+            rx="50%"
+          />
+          <rect
+            class="illustration__identity illustration__line-1"
+            fill="var(--svg-color)"
+            width="0"
+            height="6.34%"
+            x="48.5%"
+            y="38.5%"
+            rx="4%"
+          />
+          <rect
+            class="illustration__identity illustration__line-2"
+            fill="var(--svg-color)"
+            width="0"
+            height="6.34%"
+            x="48.5%"
+            y="62.5%"
+            rx="4%"
+          />
 
-        <!-- one -->
-        <path
-          class="illustration__left-star"
-          data-illustration="sun"
-          d="M17.8555 7.78943L19.5003 11.9479C19.6521 12.3318 19.7279 12.5237 19.8442 12.6856C19.9472 12.829 20.0732 12.9547 20.2171 13.0574C20.3794 13.1733 20.5718 13.249 20.9568 13.4004L25.127 15.0405L20.9568 16.6806C20.5718 16.832 20.3794 16.9076 20.2171 17.0236C20.0732 17.1263 19.9472 17.2519 19.8442 17.3954C19.7279 17.5573 19.6521 17.7492 19.5003 18.1331L17.8555 22.2916L16.2108 18.1331C16.059 17.7492 15.9831 17.5573 15.8668 17.3954C15.7638 17.2519 15.6378 17.1263 15.494 17.0236C15.3317 16.9076 15.1392 16.832 14.7542 16.6806L10.584 15.0405L14.7542 13.4004C15.1392 13.249 15.3317 13.1733 15.494 13.0574C15.6378 12.9547 15.7638 12.829 15.8668 12.6856C15.9831 12.5237 16.059 12.3318 16.2108 11.9479L17.8555 7.78943Z"
-          fill="var(--svg-color)"
-        />
-        <path
-          class="illustration__right-star"
-          data-illustration="sun"
-          d="M106.826 97.7027L108.471 101.861C108.623 102.245 108.699 102.437 108.815 102.599C108.918 102.742 109.044 102.868 109.188 102.971C109.35 103.087 109.542 103.162 109.927 103.314L114.098 104.954L109.927 106.594C109.542 106.745 109.35 106.821 109.188 106.937C109.044 107.04 108.918 107.165 108.815 107.309C108.699 107.471 108.623 107.662 108.471 108.046L106.826 112.205L105.181 108.046C105.03 107.662 104.954 107.471 104.837 107.309C104.734 107.165 104.608 107.04 104.465 106.937C104.302 106.821 104.11 106.745 103.725 106.594L99.5546 104.954L103.725 103.314C104.11 103.162 104.302 103.087 104.465 102.971C104.608 102.868 104.734 102.742 104.837 102.599C104.954 102.437 105.03 102.245 105.181 101.861L106.826 97.7027Z"
-          fill="var(--svg-color)"
-        />
-        <path
-          class="illustration__sun"
-          data-illustration="sun"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M43.4225 18.9855C45.0956 18.272 47.0479 19.0829 47.7829 20.7968L49.5576 24.9346C50.2927 26.6485 49.5322 28.6164 47.8591 29.33C46.186 30.0435 44.2337 29.2325 43.4986 27.5186L41.724 23.3808C40.9889 21.6669 41.7494 19.699 43.4225 18.9855ZM18.3059 45.1085C18.9692 43.392 20.8873 42.574 22.5902 43.2813L24.8741 44.2301C26.577 44.9374 27.4197 46.9024 26.7565 48.6189C26.0931 50.3354 24.175 51.1534 22.4721 50.446L20.1882 49.4973C18.4853 48.7899 17.6426 46.825 18.3059 45.1085ZM79.7138 18.9206C81.4166 19.6279 82.2594 21.5929 81.5961 23.3094L80.7066 25.6115C80.0432 27.328 78.125 28.1461 76.4221 27.4388C74.7192 26.7314 73.8765 24.7665 74.5398 23.05L75.4297 20.7477C76.093 19.0312 78.0109 18.2132 79.7138 18.9206ZM19.0775 81.9855C18.3425 80.2716 19.1029 78.3037 20.776 77.5901L24.8153 75.8675C26.4884 75.1539 28.4407 75.9649 29.1758 77.6788C29.9108 79.3927 29.1504 81.3606 27.4773 82.0741L23.438 83.7968C21.7649 84.5104 19.8126 83.6994 19.0775 81.9855ZM95.8242 49.2546C95.0892 47.5407 95.8496 45.5728 97.5227 44.8593L101.562 43.1366C103.235 42.423 105.187 43.234 105.922 44.9479C106.658 46.6618 105.897 48.6297 104.224 49.3433L100.185 51.0659C98.5116 51.7795 96.5593 50.9685 95.8242 49.2546ZM98.2419 78.3138C98.9052 76.5973 100.823 75.7792 102.526 76.4866L104.81 77.4356C106.513 78.143 107.356 80.1077 106.692 81.8242C106.029 83.5407 104.111 84.3586 102.408 83.6513L100.124 82.7028C98.4213 81.9954 97.5786 80.0304 98.2419 78.3138ZM48.5772 99.4962C50.2801 100.204 51.1229 102.169 50.4596 103.885L49.5699 106.187C48.9066 107.904 46.9884 108.722 45.2856 108.014C43.5827 107.307 42.7399 105.342 43.4032 103.625L44.2929 101.323C44.9562 99.6069 46.8743 98.7888 48.5772 99.4962ZM77.1409 97.6034C78.814 96.8899 80.7663 97.7009 81.5014 99.4148L83.276 103.553C84.0111 105.266 83.2506 107.234 81.5775 107.948C79.9044 108.661 77.9521 107.85 77.2171 106.137L75.4424 101.999C74.7073 100.285 75.4678 98.317 77.1409 97.6034Z"
-          fill="var(--svg-color)"
-        />
-        <path
-          data-illustration="sun"
-          d="M46.465 65.8671L46.5238 64.7046C46.9729 55.8294 53.5614 48.4621 62.3523 47.0054V47.0054"
-          stroke="var(--svg-color)"
-          stroke-width="5.81722"
-          stroke-linecap="round"
-        />
+          <!-- one -->
+          <path
+            class="illustration__left-star"
+            data-illustration="sun"
+            d="M17.8555 7.78943L19.5003 11.9479C19.6521 12.3318 19.7279 12.5237 19.8442 12.6856C19.9472 12.829 20.0732 12.9547 20.2171 13.0574C20.3794 13.1733 20.5718 13.249 20.9568 13.4004L25.127 15.0405L20.9568 16.6806C20.5718 16.832 20.3794 16.9076 20.2171 17.0236C20.0732 17.1263 19.9472 17.2519 19.8442 17.3954C19.7279 17.5573 19.6521 17.7492 19.5003 18.1331L17.8555 22.2916L16.2108 18.1331C16.059 17.7492 15.9831 17.5573 15.8668 17.3954C15.7638 17.2519 15.6378 17.1263 15.494 17.0236C15.3317 16.9076 15.1392 16.832 14.7542 16.6806L10.584 15.0405L14.7542 13.4004C15.1392 13.249 15.3317 13.1733 15.494 13.0574C15.6378 12.9547 15.7638 12.829 15.8668 12.6856C15.9831 12.5237 16.059 12.3318 16.2108 11.9479L17.8555 7.78943Z"
+            fill="var(--svg-color)"
+          />
+          <path
+            class="illustration__right-star"
+            data-illustration="sun"
+            d="M106.826 97.7027L108.471 101.861C108.623 102.245 108.699 102.437 108.815 102.599C108.918 102.742 109.044 102.868 109.188 102.971C109.35 103.087 109.542 103.162 109.927 103.314L114.098 104.954L109.927 106.594C109.542 106.745 109.35 106.821 109.188 106.937C109.044 107.04 108.918 107.165 108.815 107.309C108.699 107.471 108.623 107.662 108.471 108.046L106.826 112.205L105.181 108.046C105.03 107.662 104.954 107.471 104.837 107.309C104.734 107.165 104.608 107.04 104.465 106.937C104.302 106.821 104.11 106.745 103.725 106.594L99.5546 104.954L103.725 103.314C104.11 103.162 104.302 103.087 104.465 102.971C104.608 102.868 104.734 102.742 104.837 102.599C104.954 102.437 105.03 102.245 105.181 101.861L106.826 97.7027Z"
+            fill="var(--svg-color)"
+          />
+          <path
+            class="illustration__sun"
+            data-illustration="sun"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M43.4225 18.9855C45.0956 18.272 47.0479 19.0829 47.7829 20.7968L49.5576 24.9346C50.2927 26.6485 49.5322 28.6164 47.8591 29.33C46.186 30.0435 44.2337 29.2325 43.4986 27.5186L41.724 23.3808C40.9889 21.6669 41.7494 19.699 43.4225 18.9855ZM18.3059 45.1085C18.9692 43.392 20.8873 42.574 22.5902 43.2813L24.8741 44.2301C26.577 44.9374 27.4197 46.9024 26.7565 48.6189C26.0931 50.3354 24.175 51.1534 22.4721 50.446L20.1882 49.4973C18.4853 48.7899 17.6426 46.825 18.3059 45.1085ZM79.7138 18.9206C81.4166 19.6279 82.2594 21.5929 81.5961 23.3094L80.7066 25.6115C80.0432 27.328 78.125 28.1461 76.4221 27.4388C74.7192 26.7314 73.8765 24.7665 74.5398 23.05L75.4297 20.7477C76.093 19.0312 78.0109 18.2132 79.7138 18.9206ZM19.0775 81.9855C18.3425 80.2716 19.1029 78.3037 20.776 77.5901L24.8153 75.8675C26.4884 75.1539 28.4407 75.9649 29.1758 77.6788C29.9108 79.3927 29.1504 81.3606 27.4773 82.0741L23.438 83.7968C21.7649 84.5104 19.8126 83.6994 19.0775 81.9855ZM95.8242 49.2546C95.0892 47.5407 95.8496 45.5728 97.5227 44.8593L101.562 43.1366C103.235 42.423 105.187 43.234 105.922 44.9479C106.658 46.6618 105.897 48.6297 104.224 49.3433L100.185 51.0659C98.5116 51.7795 96.5593 50.9685 95.8242 49.2546ZM98.2419 78.3138C98.9052 76.5973 100.823 75.7792 102.526 76.4866L104.81 77.4356C106.513 78.143 107.356 80.1077 106.692 81.8242C106.029 83.5407 104.111 84.3586 102.408 83.6513L100.124 82.7028C98.4213 81.9954 97.5786 80.0304 98.2419 78.3138ZM48.5772 99.4962C50.2801 100.204 51.1229 102.169 50.4596 103.885L49.5699 106.187C48.9066 107.904 46.9884 108.722 45.2856 108.014C43.5827 107.307 42.7399 105.342 43.4032 103.625L44.2929 101.323C44.9562 99.6069 46.8743 98.7888 48.5772 99.4962ZM77.1409 97.6034C78.814 96.8899 80.7663 97.7009 81.5014 99.4148L83.276 103.553C84.0111 105.266 83.2506 107.234 81.5775 107.948C79.9044 108.661 77.9521 107.85 77.2171 106.137L75.4424 101.999C74.7073 100.285 75.4678 98.317 77.1409 97.6034Z"
+            fill="var(--svg-color)"
+          />
+          <path
+            data-illustration="sun"
+            d="M46.465 65.8671L46.5238 64.7046C46.9729 55.8294 53.5614 48.4621 62.3523 47.0054V47.0054"
+            stroke="var(--svg-color)"
+            stroke-width="5.81722"
+            stroke-linecap="round"
+          />
 
-        <!-- two -->
-        <path
-          data-illustration="list"
-          d="M35.8682 82.5423L39.5557 86.2298L50.6182 75.1673"
-          stroke="var(--svg-color)"
-          stroke-width="7.375"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <path
-          data-illustration="list"
-          d="M35.8682 48.1259L39.5557 51.8134L50.6182 40.7509"
-          stroke="var(--svg-color)"
-          stroke-width="7.375"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
+          <!-- two -->
+          <path
+            data-illustration="list"
+            d="M35.8682 82.5423L39.5557 86.2298L50.6182 75.1673"
+            stroke="var(--svg-color)"
+            stroke-width="7.375"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            data-illustration="list"
+            d="M35.8682 48.1259L39.5557 51.8134L50.6182 40.7509"
+            stroke="var(--svg-color)"
+            stroke-width="7.375"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
 
-        <!-- three -->
-        <path
-          data-illustration="smile"
-          d="M90.0266 81.851C91.0041 79.6463 89.4529 77.3004 87.0929 76.8035C84.7329 76.3071 57.92 79.3347 56.6204 81.3665C54.5092 82.5325 53.7131 85.2298 55.2936 87.0517C57.0964 89.1298 59.3032 90.8408 61.7958 92.0722C65.6017 93.9514 69.8911 94.6223 74.089 93.9934C78.2869 93.3651 82.1921 91.4675 85.2805 88.5556C87.303 86.6485 88.9116 84.3659 90.0266 81.851Z"
-          fill="var(--svg-color)"
-        />
-      </svg>
-    </div>
-    <div class="start-screen__slides">
-      <div class="start-screen__slide">
-        <h2 class="start-screen__heading">Start with purpose.</h2>
-        <p class="start-screen__paragraph">
-          Commit to daily goals and set objectives to make the most of your
-          time.
-        </p>
+          <!-- three -->
+          <path
+            data-illustration="smile"
+            d="M90.0266 81.851C91.0041 79.6463 89.4529 77.3004 87.0929 76.8035C84.7329 76.3071 57.92 79.3347 56.6204 81.3665C54.5092 82.5325 53.7131 85.2298 55.2936 87.0517C57.0964 89.1298 59.3032 90.8408 61.7958 92.0722C65.6017 93.9514 69.8911 94.6223 74.089 93.9934C78.2869 93.3651 82.1921 91.4675 85.2805 88.5556C87.303 86.6485 88.9116 84.3659 90.0266 81.851Z"
+            fill="var(--svg-color)"
+          />
+        </svg>
       </div>
-      <div class="start-screen__slide">
-        <h2 class="start-screen__heading">Track your progress.</h2>
-        <p class="start-screen__paragraph">
-          Mark goals as complete, avoid overload, and celebrate every win.
-        </p>
+      <div class="start-screen__slides">
+        <div class="start-screen__slide">
+          <h2 class="start-screen__heading">Start with purpose.</h2>
+          <p class="start-screen__paragraph">
+            Commit to daily goals and set objectives to make the most of your
+            time.
+          </p>
+        </div>
+        <div class="start-screen__slide">
+          <h2 class="start-screen__heading">Track your progress.</h2>
+          <p class="start-screen__paragraph">
+            Mark goals as complete, avoid overload, and celebrate every win.
+          </p>
+        </div>
+        <div class="start-screen__slide">
+          <h2 class="start-screen__heading">Enjoy your day.</h2>
+          <p class="start-screen__paragraph">
+            Organize, reflect, and make each day count. Let's get started!
+          </p>
+        </div>
       </div>
-      <div class="start-screen__slide">
-        <h2 class="start-screen__heading">Enjoy your day.</h2>
-        <p class="start-screen__paragraph">
-          Organize, reflect, and make each day count. Let's get started!
-        </p>
+      <div class="start-screen__slide-indicator">
+        <span style="--grid-column: 1" class="start-screen__slide-count"></span>
+        <span style="--grid-column: 2" class="start-screen__slide-count"></span>
+        <span style="--grid-column: 3" class="start-screen__slide-count"></span>
       </div>
-    </div>
-    <div class="start-screen__slide-indicator">
-      <span style="--grid-column: 1" class="start-screen__slide-count"></span>
-      <span style="--grid-column: 2" class="start-screen__slide-count"></span>
-      <span style="--grid-column: 3" class="start-screen__slide-count"></span>
-    </div>
 
-    <button class="start-screen__start-button">Get Started</button>
-
+      <button class="start-screen__start-button">Get Started</button>
+    </div>
     <script type="module" src="./source/start-screen.js"></script>
   </body>
 </html>

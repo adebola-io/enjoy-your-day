@@ -1,0 +1,10 @@
+.button {
+  display: grid;
+  width: 100%;
+  border: none;
+  border-radius: 25px;
+  font: var(--base-bold);
+  place-content: center;
+  place-items: center;
+  padding-block: 18px;
+}

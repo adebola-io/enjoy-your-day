@@ -1,36 +1,29 @@
 .startView {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(60deg, #f1d9f1, #edeef1, white);
+  display: grid;
+  min-height: 100dvh;
+  gap: 15px;
+  place-items: center;
+  place-content: center;
+  padding-inline: var(--side-padding);
 }
 
-.content {
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.logo {
+  width: min(25dvw, 126px);
 }
 
 .heading {
-  font-size: 3.2em;
-  line-height: 1.1;
-  margin-bottom: 1rem;
+  text-align: center;
+  font: var(--title-bold);
 }
 
-.headingText {
-  display: inline-block;
+.buttonRow {
+  display: grid;
+  width: 100%;
+  grid: auto auto/ auto;
+  gap: 1.76dvh;
+  place-items: center;
 }
 
-.readTheDocs {
-  color: #888;
-}
-
-.paragraph {
-  margin-block-end: 1rem;
-}
-
-.link {
-  color: #646cff;
-  text-decoration: inherit;
+.button {
+  width: 100%;
 }

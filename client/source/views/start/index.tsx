@@ -1,26 +1,35 @@
+import { Button } from '@/components/button';
 import styles from './styles.module.css';
+import { Logo } from '@/components/logo';
 
 export default function Start() {
   return (
-    <div class={styles.startView}>
-      <main class={styles.content}>
-        <h1 class={styles.heading}>
-          <span class={styles.headingText}>frontend.</span>
-        </h1>
-        <p class={styles.paragraph}>You're viewing the Start page.</p>
-        <p class={styles.readTheDocs}>
-          Check out the{' '}
-          <a
-            href="https://github.com/adebola-io/unfinished"
-            target="_blank"
-            rel="noopener noreferrer"
-            class={styles.link}
-          >
-            documentation
-          </a>{' '}
-          to learn more.
-        </p>
-      </main>
-    </div>
+    <main class={styles.startView}>
+      <Logo
+        class={styles.logo}
+        style={{
+          viewTransitionName: 'start-logo',
+        }}
+      />
+      <h1
+        class={styles.heading}
+        style={{
+          viewTransitionName: 'start-heading',
+        }}
+      >
+        Enjoy your day.
+      </h1>
+      <div class={styles.buttonRow}>
+        <Button
+          class={styles.button}
+          style={{
+            viewTransitionName: 'start-button',
+          }}
+        >
+          Continue with Google
+        </Button>
+        <Button class={styles.button}>Continue with GitHub</Button>
+      </div>
+    </main>
   );
 }

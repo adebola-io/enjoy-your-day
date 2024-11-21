@@ -5,6 +5,10 @@
   inherits: false;
 }
 
+:root {
+  font-size: 16px;
+}
+
 body {
   display: grid;
   max-width: 100dvw;
@@ -13,6 +17,7 @@ body {
       var(--start-screen-block-padding-bottom)
   );
   background-color: var(--space-cadet-500);
+  text-rendering: optimizeLegibility;
   padding-block: var(--start-screen-block-padding-top)
     var(--start-screen-block-padding-bottom);
   place-items: center;
@@ -20,6 +25,7 @@ body {
   grid-template-rows: auto 1fr auto auto;
   padding-inline: var(--side-padding);
   gap: 25px;
+  -webkit-font-smoothing: antialiased;
 
   &[data-current='1'] {
     svg {
@@ -224,7 +230,7 @@ body {
   font: var(--base-bold);
   place-content: center;
   place-items: center;
-  padding-block: 17px;
+  padding-block: 18px;
 
   &:active {
     filter: brightness(0.9);
@@ -272,12 +278,18 @@ body {
     rotate: 0deg;
   }
   5% {
-    rotate: -8deg;
+    rotate: -10deg;
   }
   10% {
-    rotate: 8deg;
+    rotate: 10deg;
   }
   15% {
+    rotate: -5deg;
+  }
+  20% {
+    rotate: 5deg;
+  }
+  25% {
     rotate: 0deg;
   }
 }

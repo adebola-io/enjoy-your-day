@@ -123,6 +123,10 @@
   --title-regular: normal 400 1.812rem 'Unbounded', sans-serif;
   --base-bold: normal 700 1rem 'Instrument Sans', sans-serif;
   --base-regular: normal 400 1rem 'Instrument Sans', sans-serif;
+  --small-bold: normal 600 0.75rem 'Instrument Sans', sans-serif;
+  --small-regular: normal 400 0.75rem 'Instrument Sans', sans-serif;
+  --tiny-bold: normal 600 0.6875rem 'Instrument Sans', sans-serif;
+  --tiny-regular: normal 400 0.6875rem 'Instrument Sans', sans-serif;
 
   /* Shadows */
   --shadow-outline: 0px 0px 1px 1px #1b1b3a;

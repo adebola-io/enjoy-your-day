@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1b1b3a" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta
+      name="Cross-Origin-Opener-Policy"
+      content="same-origin-allow-popups"
+    />
     <meta
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
@@ -353,9 +358,21 @@
         </div>
       </div>
       <div class="start-screen__slide-indicator">
-        <span style="--grid-column: 1" class="start-screen__slide-count"></span>
-        <span style="--grid-column: 2" class="start-screen__slide-count"></span>
-        <span style="--grid-column: 3" class="start-screen__slide-count"></span>
+        <span
+          data-index="1"
+          style="--grid-column: 1"
+          class="start-screen__slide-count"
+        ></span>
+        <span
+          data-index="2"
+          style="--grid-column: 2"
+          class="start-screen__slide-count"
+        ></span>
+        <span
+          data-index="3"
+          style="--grid-column: 3"
+          class="start-screen__slide-count"
+        ></span>
       </div>
 
       <button class="start-screen__start-button">

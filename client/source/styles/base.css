@@ -13,11 +13,21 @@ p {
 }
 
 :root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100dvw;
+  height: 100dvh;
   font-size: 16px;
 }
 
+:root,
 body {
-  color: var(--white);
-  background-color: var(--space-cadet-500);
+  overscroll-behavior-y: none;
+}
+
+body {
+  max-width: var(--max-screen-width);
+  height: 100%;
   font: var(--base-regular);
 }

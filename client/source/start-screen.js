@@ -7,12 +7,12 @@ const sun = document.querySelector('.illustration__sun');
 const leftStar = document.querySelector('.illustration__left-star');
 const rightStar = document.querySelector('.illustration__right-star');
 const getStartedButton = document.querySelector('.start-screen__start-button');
-
 const rectangle = document.querySelector('.container-rectangle');
 const rectangleBackdrop = document.querySelector('.rectangle-backdrop');
 const illustrationLine1 = document.querySelector('.illustration__line-1');
 const illustrationLine2 = document.querySelector('.illustration__line-2');
 
+let current = 1;
 const animationOptions = {
   duration: 100,
   easing: 'cubic-bezier(.42, 0, .58, 1)',
@@ -34,7 +34,6 @@ const containerRectangleAnimation = rectangle.animate(
   [
     // Sun circle
     initial,
-    // Todo list Square.
     {
       width: '77.6%',
       height: '77.6%',
@@ -44,7 +43,6 @@ const containerRectangleAnimation = rectangle.animate(
       y: '12%',
       rotate: '0deg',
     },
-    // Smiley face
     {
       width: '75.2%',
       height: '74.3%',
@@ -84,13 +82,18 @@ const rectangleBackdropAnimation = rectangleBackdrop.animate(
 );
 const todoListTopLineAnimation = illustrationLine1.animate(
   [
-    initial,
+    {
+      width: '5.65%',
+      x: '20.5%',
+      opacity: '0',
+    },
     {
       width: '26.65%',
       x: '48.5%',
       y: '35.5%',
       height: '6.34%',
       rotate: '0deg',
+      opacity: '1',
       rx: '4%',
     },
     {
@@ -106,13 +109,18 @@ const todoListTopLineAnimation = illustrationLine1.animate(
 );
 const todoListBottomLineAnimation = illustrationLine2.animate(
   [
-    initial,
+    {
+      width: '5.65%',
+      x: '20.5%',
+      opacity: '0',
+    },
     {
       width: '26.65%',
       x: '48.5%',
       y: '62.5%',
       height: '6.34%',
       rotate: '0deg',
+      opacity: '1',
       rx: '4%',
     },
     {
@@ -158,8 +166,7 @@ fadeAnimationForFirstSlide.pause();
 fadeAnimationForSecondSlide.pause();
 fadeAnimationForThirdSlide.pause();
 
-let current = 1;
-screenSlide.addEventListener('scroll', () => {
+function onSliderScroll() {
   const scrollWidth = screenSlide.scrollWidth;
   const scrollLeft = screenSlide.scrollLeft;
   const firstSlideBreakpoint = scrollWidth / 3;
@@ -189,7 +196,7 @@ screenSlide.addEventListener('scroll', () => {
   if (current === currentSlide + 1) return;
   current = currentSlide + 1;
   startScreen.setAttribute('data-current', current);
-});
+}
 
 async function startApp() {
   if ('vibrate' in navigator) {
@@ -217,4 +224,5 @@ async function startApp() {
   });
 }
 
+screenSlide.addEventListener('scroll', onSliderScroll);
 getStartedButton.addEventListener('click', startApp);

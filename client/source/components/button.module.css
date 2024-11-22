@@ -1,6 +1,6 @@
 .button {
   display: grid;
-  width: 100%;
+  width: min(100%, 800px);
   border: none;
   border-radius: 25px;
   font: var(--base-bold);

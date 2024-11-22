@@ -6,13 +6,15 @@
   flex-direction: column;
   justify-content: center;
   min-height: 100dvh;
+  color: var(--space-cadet-500);
+  background-color: var(--white);
   gap: 15px;
   padding-inline: var(--side-padding);
 }
 
 .logo {
-  width: min(25dvw, 145px);
-  color: #b2b2f5;
+  width: min(25%, 145px);
+  color: var(--space-cadet-500);
   view-transition-name: start-logo;
 }
 
@@ -25,17 +27,22 @@
 }
 
 .buttonRow {
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  grid: auto auto/ auto;
+  grid: auto/ auto auto;
   gap: 15px;
   place-items: center;
 }
 
-.button {
+.card {
   display: grid;
   width: 100%;
+  border: 2px solid var(--space-cadet-500);
+  border-radius: 10px;
   opacity: 0;
+  background-color: transparent;
   animation: fade-in-from-bottom 300ms;
   gap: 5px;
   grid-template-columns: auto auto;

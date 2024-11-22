@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+
 :root {
+  --default-transition-duration: 300ms;
+
   --white: #ffffff;
   --black: #000000;
 
@@ -23,6 +27,7 @@
   --space-cadet-200: #78788aff;
   --space-cadet-300: #55556cff;
   --space-cadet-400: #383853ff;
+  --space-cadet-450: #1f1f45;
   --space-cadet-500: #1b1b3aff;
   --space-cadet-600: #1b1b3aff;
   --space-cadet-700: #14142bff;
@@ -105,6 +110,7 @@
   --gradients-minty: linear-gradient(to bottom, #dbffeedb 0%, #94dec794 100%);
 
   /* Dimensions */
+  --max-screen-width: 900px;
   --start-screen-block-padding-top: 15.474dvh;
   --start-screen-block-padding-bottom: 5.802dvh;
   --start-screen-block-padding: var(--start-screen-block-padding-top)
@@ -113,20 +119,20 @@
   --side-padding: 7.63dvw;
 
   /* Typography */
-  --heading-bold: normal 600 4rem system-ui, sans-serif;
-  --heading-regular: normal 300 4rem system-ui, sans-serif;
-  --sub-heading-bold: normal 600 2.95rem / 48px system-ui, sans-serif;
-  --sub-heading-regular: normal 300 2.95rem / 48px system-ui, sans-serif;
-  --eyebrow-bold: normal 600 2rem / 40px system-ui, sans-serif;
-  --eyebrow-regular: normal 300 2rem / 40px system-ui, sans-serif;
-  --title-bold: normal 700 1.612rem system-ui, sans-serif;
-  --title-regular: normal 400 1.612rem system-ui, sans-serif;
-  --base-bold: normal 700 0.9rem system-ui, sans-serif;
-  --base-regular: normal 400 0.9rem system-ui, sans-serif;
-  --small-bold: normal 600 0.75rem system-ui, sans-serif;
-  --small-regular: normal 400 0.75rem system-ui, sans-serif;
-  --tiny-bold: normal 600 0.6875rem system-ui, sans-serif;
-  --tiny-regular: normal 400 0.6875rem system-ui, sans-serif;
+  --heading-bold: normal 600 4rem 'Parkinsans', sans-serif;
+  --heading-regular: normal 300 4rem 'Parkinsans', sans-serif;
+  --sub-heading-bold: normal 600 2.95rem / 48px 'Parkinsans', sans-serif;
+  --sub-heading-regular: normal 300 2.95rem / 48px 'Parkinsans', sans-serif;
+  --eyebrow-bold: normal 600 2.5rem / 40px 'Parkinsans', sans-serif;
+  --eyebrow-regular: normal 300 2.5rem / 40px 'Parkinsans', sans-serif;
+  --title-bold: normal 700 1.612rem 'Parkinsans', sans-serif;
+  --title-regular: normal 400 1.612rem 'Parkinsans', sans-serif;
+  --base-bold: normal 700 0.9rem 'Parkinsans', sans-serif;
+  --base-regular: normal 400 0.9rem 'Parkinsans', sans-serif;
+  --small-bold: normal 600 0.75rem 'Parkinsans', sans-serif;
+  --small-regular: normal 400 0.75rem 'Parkinsans', sans-serif;
+  --tiny-bold: normal 600 0.6875rem 'Parkinsans', sans-serif;
+  --tiny-regular: normal 400 0.6875rem 'Parkinsans', sans-serif;
 
   /* Shadows */
   --shadow-outline: 0px 0px 1px 1px #1b1b3a;

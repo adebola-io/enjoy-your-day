@@ -198,10 +198,38 @@ function onSliderScroll() {
   startScreen.setAttribute('data-current', current);
 }
 
+// Doesn't work everywhere but anyway
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  deferredPrompt = event;
+});
+
+let isLoading = false;
 async function startApp() {
+  const isInstalled = window.matchMedia('(display-mode: standalone)').matches;
+  if (!isInstalled) {
+    if (!deferredPrompt) {
+      window.alert(
+        'Please add this site to your home screen to use it offline.'
+      );
+      return;
+    }
+    deferredPrompt.prompt();
+    const choice = await deferredPrompt.userChoice;
+    if (choice.outcome !== 'accepted') {
+      window.alert(
+        'Please add this site to your home screen to use it offline.'
+      );
+    }
+    return;
+  }
+
   if ('vibrate' in navigator) {
     navigator.vibrate(35);
   }
+  if (isLoading) return;
+  isLoading = true;
   getStartedButton.classList.add('loading');
   getStartedButton.childNodes[2].textContent = 'Loading...';
 

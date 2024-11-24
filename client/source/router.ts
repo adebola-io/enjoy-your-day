@@ -1,5 +1,5 @@
 import { createWebRouter } from '@adbl/unfinished/router';
-import { startRoutes } from './views/start/routes';
+import { startRoute } from '@/views/start/routes';
 
 export function createRouter() {
   const routes = [
@@ -7,9 +7,7 @@ export function createRouter() {
       name: 'App',
       path: '/',
       redirect: '/start',
-      children: [
-        ...startRoutes,
-      ],
+      children: [startRoute],
     },
   ];
   return createWebRouter({ routes });

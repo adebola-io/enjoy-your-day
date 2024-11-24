@@ -9,8 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@adbl/unfinished": "latest",
-    "@adbl/cells": "latest"
+    "@adbl/cells": "latest",
+    "@adbl/dom-cells": "latest",
+    "@adbl/unfinished": "latest"
   },
   "devDependencies": {
     "typescript": "^5.5.2",

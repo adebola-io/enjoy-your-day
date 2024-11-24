@@ -119,14 +119,14 @@
   --side-padding: 7.63dvw;
 
   /* Typography */
-  --heading-bold: normal 600 4rem 'Parkinsans', sans-serif;
-  --heading-regular: normal 300 4rem 'Parkinsans', sans-serif;
-  --sub-heading-bold: normal 600 2.95rem / 48px 'Parkinsans', sans-serif;
-  --sub-heading-regular: normal 300 2.95rem / 48px 'Parkinsans', sans-serif;
-  --eyebrow-bold: normal 600 2.5rem / 40px 'Parkinsans', sans-serif;
-  --eyebrow-regular: normal 300 2.5rem / 40px 'Parkinsans', sans-serif;
-  --title-bold: normal 700 1.612rem 'Parkinsans', sans-serif;
-  --title-regular: normal 400 1.612rem 'Parkinsans', sans-serif;
+  --heading-bold: normal 600 4.2rem 'Parkinsans', sans-serif;
+  --heading-regular: normal 300 4.2rem 'Parkinsans', sans-serif;
+  --sub-heading-bold: normal 600 3.1rem / 48px 'Parkinsans', sans-serif;
+  --sub-heading-regular: normal 300 3.1rem / 48px 'Parkinsans', sans-serif;
+  --eyebrow-bold: normal 600 2.7rem / 40px 'Parkinsans', sans-serif;
+  --eyebrow-regular: normal 300 2.7rem / 40px 'Parkinsans', sans-serif;
+  --title-bold: normal 700 1.8rem 'Parkinsans', sans-serif;
+  --title-regular: normal 400 1.8rem 'Parkinsans', sans-serif;
   --base-bold: normal 700 0.9rem 'Parkinsans', sans-serif;
   --base-regular: normal 400 0.9rem 'Parkinsans', sans-serif;
   --small-bold: normal 600 0.75rem 'Parkinsans', sans-serif;

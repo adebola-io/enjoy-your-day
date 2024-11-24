@@ -15,6 +15,6 @@ export default async function main() {
 
   if (root !== null) {
     render(root, router.Outlet(), window);
-    router.navigate('/');
+    router.replace('/');
   }
 }

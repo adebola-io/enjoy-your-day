@@ -3,9 +3,9 @@ import type { IconProps } from './props';
 export function WellnessIcon(props: IconProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 63 63"
       fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <g xmlns="http://www.w3.org/2000/svg" clip-path="url(#clip0_152_2085)">
@@ -20,6 +20,7 @@ export function WellnessIcon(props: IconProps) {
       <defs xmlns="http://www.w3.org/2000/svg">
         <clipPath id="clip0_152_2085" xmlns="http://www.w3.org/2000/svg">
           <rect
+            xmlns="http://www.w3.org/2000/svg"
             width="62"
             height="62"
             fill="white"

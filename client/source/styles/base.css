@@ -26,7 +26,15 @@ ul {
 
 :root,
 body {
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
   overscroll-behavior-y: none;
+  /* Platform-specific reset */
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: scrollbar;
+  font-synthesis-weight: none;
 }
 
 body {

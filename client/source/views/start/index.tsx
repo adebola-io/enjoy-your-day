@@ -6,7 +6,7 @@ export default function Start() {
 
   return (
     <main class={styles.startView}>
-      <Outlet keepAlive class={styles.startOutlet} />
+      <Outlet class={styles.startOutlet} />
     </main>
   );
 }

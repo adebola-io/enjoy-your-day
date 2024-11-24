@@ -207,23 +207,23 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
 let isLoading = false;
 async function startApp() {
-  const isInstalled = window.matchMedia('(display-mode: standalone)').matches;
-  if (!isInstalled) {
-    if (!deferredPrompt) {
-      window.alert(
-        'Please add this site to your home screen to use it offline.'
-      );
-      return;
-    }
-    deferredPrompt.prompt();
-    const choice = await deferredPrompt.userChoice;
-    if (choice.outcome !== 'accepted') {
-      window.alert(
-        'Please add this site to your home screen to use it offline.'
-      );
-    }
-    return;
-  }
+  // const isInstalled = window.matchMedia('(display-mode: standalone)').matches;
+  // if (!isInstalled) {
+  //   if (!deferredPrompt) {
+  //     window.alert(
+  //       'Please add this site to your home screen to use it offline.'
+  //     );
+  //     return;
+  //   }
+  //   deferredPrompt.prompt();
+  //   const choice = await deferredPrompt.userChoice;
+  //   if (choice.outcome !== 'accepted') {
+  //     window.alert(
+  //       'Please add this site to your home screen to use it offline.'
+  //     );
+  //   }
+  //   return;
+  // }
 
   if ('vibrate' in navigator) {
     navigator.vibrate(35);

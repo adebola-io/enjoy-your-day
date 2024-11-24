@@ -146,7 +146,7 @@
 
   .start-screen__illustration {
     --svg-color: white;
-    width: min(40%, 150px);
+    width: min(40%, 150px, 27dvw);
 
     &,
     * {

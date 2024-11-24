@@ -10,6 +10,7 @@ export function NameForm() {
 
   const handleNameSubmit = (event: Event) => {
     event.preventDefault();
+    navigator.vibrate?.(10);
     router.navigate('/start/categories');
   };
 

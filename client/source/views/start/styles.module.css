@@ -52,9 +52,9 @@ body:has(.startView) {
   overflow-y: auto;
   align-self: start;
   width: 100%;
-  height: calc(100% - var(--start-screen-block-padding-bottom));
-  padding-block-end: var(--start-screen-block-padding-bottom);
-  grid-template-columns: auto auto;
+  height: calc(100% - calc(var(--start-screen-block-padding-bottom) * 2));
+  padding-block-end: calc(var(--start-screen-block-padding-bottom) * 2);
+  grid-template-columns: calc(50% - 7.5px) calc(50% - 7.5px);
   gap: 15px;
   scrollbar-width: none;
   grid-row: 3;
@@ -66,17 +66,46 @@ body:has(.startView) {
 }
 
 .category {
+  position: relative;
   display: grid;
   border: 4.97px solid;
   border-radius: 13.39px;
-  aspect-ratio: 1;
+  opacity: 0;
+  animation: fade-in-from-bottom var(--default-transition-duration);
+  animation-fill-mode: both;
+}
+
+.categoryButton {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: inherit;
+  background-color: transparent;
+  font: var(--base-bold);
+  padding-block: 5dvh;
   place-content: center;
   place-items: center;
+  gap: 17px;
 }
 
 .categoryIcon {
   width: 64px;
   height: 64px;
+  transition-duration: calc(var(--default-transition-duration) * 0.75);
+
+  .categoryCheckIcon ~ .categoryButton > & {
+    scale: 1.2;
+  }
+}
+
+.categoryCheckIcon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 17%;
+  animation: pop var(--default-transition-duration);
+  aspect-ratio: 1;
 }
 
 .nameFormLogo {
@@ -94,6 +123,7 @@ body:has(.startView) {
   text-align: center;
   font: var(--title-bold);
   animation-fill-mode: both;
+  view-transition-name: onboarding-heading;
 }
 
 .nameFormSubHeading,
@@ -114,8 +144,14 @@ body:has(.startView) {
 }
 
 .categorySubmitButton {
+  position: relative;
   align-self: end;
   margin-block-end: var(--start-screen-block-padding-bottom);
+  transition: opacity var(--default-transition-duration);
   grid-row: 3;
   grid-column: 1;
+
+  &:disabled {
+    opacity: 0;
+  }
 }

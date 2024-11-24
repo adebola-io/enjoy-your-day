@@ -15,6 +15,10 @@ export default async function main() {
 
   if (root !== null) {
     render(root, router.Outlet(), window);
-    router.replace('/');
+    router.replace('/').then(() => {
+      // Setting this in the configuration will interfere with the transitions
+      // from the start screen.
+      router.useViewTransitions = true;
+    });
   }
 }

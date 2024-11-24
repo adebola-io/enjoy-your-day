@@ -119,20 +119,24 @@
   --side-padding: 7.63dvw;
 
   /* Typography */
-  --heading-bold: normal 600 4.2rem 'Parkinsans', sans-serif;
-  --heading-regular: normal 300 4.2rem 'Parkinsans', sans-serif;
-  --sub-heading-bold: normal 600 3.1rem / 48px 'Parkinsans', sans-serif;
-  --sub-heading-regular: normal 300 3.1rem / 48px 'Parkinsans', sans-serif;
-  --eyebrow-bold: normal 600 2.7rem / 40px 'Parkinsans', sans-serif;
-  --eyebrow-regular: normal 300 2.7rem / 40px 'Parkinsans', sans-serif;
-  --title-bold: normal 700 1.8rem 'Parkinsans', sans-serif;
-  --title-regular: normal 400 1.8rem 'Parkinsans', sans-serif;
-  --base-bold: normal 700 0.9rem 'Parkinsans', sans-serif;
-  --base-regular: normal 400 0.9rem 'Parkinsans', sans-serif;
-  --small-bold: normal 600 0.75rem 'Parkinsans', sans-serif;
-  --small-regular: normal 400 0.75rem 'Parkinsans', sans-serif;
-  --tiny-bold: normal 600 0.6875rem 'Parkinsans', sans-serif;
-  --tiny-regular: normal 400 0.6875rem 'Parkinsans', sans-serif;
+  --heading-bold: normal 600 min(4.2rem, 12dvh) / 40px 'Parkinsans', sans-serif;
+  --heading-regular: normal 300 min(4.2rem, 12dvh) / 40px 'Parkinsans',
+    sans-serif;
+  --sub-heading-bold: normal 600 min(3.1rem, 9dvh) / 48px 'Parkinsans',
+    sans-serif;
+  --sub-heading-regular: normal 300 min(3.1rem, 9dvh) / 48px 'Parkinsans',
+    sans-serif;
+  --eyebrow-bold: normal 600 min(2.7rem, 7dvh) / 40px 'Parkinsans', sans-serif;
+  --eyebrow-regular: normal 300 min(2.7rem, 7dvh) / 40px 'Parkinsans',
+    sans-serif;
+  --title-bold: normal 700 min(1.8rem, 5dvh) 'Parkinsans', sans-serif;
+  --title-regular: normal 400 min(1.8rem, 5dvh) 'Parkinsans', sans-serif;
+  --base-bold: normal 700 min(0.9rem, 3dvh) 'Parkinsans', sans-serif;
+  --base-regular: normal 400 min(0.9rem, 3dvh) 'Parkinsans', sans-serif;
+  --small-bold: normal 600 min(0.75rem, 2dvh) 'Parkinsans', sans-serif;
+  --small-regular: normal 400 min(0.75rem, 2dvh) 'Parkinsans', sans-serif;
+  --tiny-bold: normal 600 min(0.6875rem, 1.5dvh) 'Parkinsans', sans-serif;
+  --tiny-regular: normal 400 min(0.6875rem, 1.5dvh) 'Parkinsans', sans-serif;
 
   /* Shadows */
   --shadow-outline: 0px 0px 1px 1px #1b1b3a;

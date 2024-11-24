@@ -9,6 +9,7 @@ import { SelfCareIcon } from '@/components/icons/self-care';
 import { WellnessIcon } from '@/components/icons/wellness';
 import { useLocalStorage } from '@adbl/dom-cells/lib/useLocalStorage';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
+import { Cell } from '@adbl/cells';
 
 /**
  * Reactive reference to the user's name.
@@ -63,3 +64,5 @@ export const categories: Category[] = [
     theme: '#FF91ED',
   },
 ];
+
+export const selectedCategories = Cell.source<string[]>([]);

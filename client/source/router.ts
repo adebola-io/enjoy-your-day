@@ -10,5 +10,5 @@ export function createRouter() {
       children: [startRoute],
     },
   ];
-  return createWebRouter({ routes });
+  return createWebRouter({ routes, stackMode: true });
 }

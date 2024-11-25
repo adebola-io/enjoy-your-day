@@ -12,6 +12,7 @@ export default async function main() {
   router.attachWindowListeners();
 
   document.querySelector('#start-screen')?.remove();
+  document.querySelector('html')?.removeAttribute('data-view');
 
   if (root !== null) {
     render(root, router.Outlet(), window);

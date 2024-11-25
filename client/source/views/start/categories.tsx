@@ -1,23 +1,46 @@
-import styles from './styles.module.css';
+import styles from './start.module.css';
 import { For, If } from '@adbl/unfinished';
-import { categories, Category, name, selectedCategories } from '@/data';
+import {
+  appLoadingState,
+  categories,
+  type Category,
+  name,
+  selectedCategories,
+} from '@/data';
 import { Button } from '@/components/button';
 import { Cell } from '@adbl/cells';
 import { CheckIcon } from '@/components/icons/check';
 import { useRouter } from '@adbl/unfinished/router';
 
 export default async function CategoriesSelection() {
-  const { navigate } = useRouter();
+  const { replace } = useRouter();
+  const formRef = Cell.source<HTMLFormElement | null>(null);
   if (name.value === '') {
-    await navigate('/start/name');
+    await replace('/start/name');
     return;
   }
 
   const continueButtonIsDisabled = Cell.derived(() => {
     return selectedCategories.value.length < 2;
   });
+
+  const loadApp = async () => {
+    if (!formRef.value) return;
+    formRef.value.style.opacity = '0';
+
+    await Promise.all(
+      formRef.value.getAnimations().map((animation) => animation.finished)
+    );
+
+    appLoadingState.value = 'loading';
+    setTimeout(() => {
+      appLoadingState.value = 'finishing';
+      setTimeout(() => replace('/app'), 1000);
+    }, 2000);
+  };
+
   return (
-    <form class={styles.categoryForm}>
+    <form ref={formRef} class={styles.categoryForm}>
       <h1 class={styles.categoryFormHeading}>What are you interested in?</h1>
       <p class={styles.categoryFormSubHeading}>
         Pick at least 2 categories for the goals you want. Let's keep going!
@@ -26,6 +49,8 @@ export default async function CategoriesSelection() {
       <Button
         class={styles.categorySubmitButton}
         disabled={continueButtonIsDisabled}
+        vibrateOnClick
+        onClick={loadApp}
       >
         Continue
       </Button>

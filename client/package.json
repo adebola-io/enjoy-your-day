@@ -11,7 +11,7 @@
   "dependencies": {
     "@adbl/cells": "latest",
     "@adbl/dom-cells": "latest",
-    "@adbl/unfinished": "file:/home/sefunmi/projects/unfinished"
+    "@adbl/unfinished": "latest"
   },
   "devDependencies": {
     "typescript": "^5.5.2",

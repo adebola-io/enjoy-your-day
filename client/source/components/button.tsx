@@ -1,6 +1,7 @@
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import styles from './button.module.css';
 import { Cell } from '@adbl/cells';
+import { type JsxElement, setAttributeFromProps } from '@adbl/unfinished';
 
 type OriginalButtonProps = JSX.IntrinsicElements['button'];
 
@@ -9,31 +10,26 @@ export interface ButtonProps extends OriginalButtonProps {
 }
 
 export function Button(props: ButtonProps) {
-  const buttonRef = Cell.source<HTMLButtonElement | undefined>(undefined);
-  const { vibrateOnClick = false, ...rest } = props;
-
-  const handleClick = (event: MouseEvent) => {
-    if (!buttonRef.value) return;
-    if (vibrateOnClick) {
-      const vibrate = navigator.vibrate;
-      if (vibrate) {
-        vibrate(35);
-      }
-    }
-    if (typeof props.onClick === 'function') {
-      props.onClick.bind(buttonRef.value)(event);
-    }
-  };
-
-  return (
+  const { vibrateOnClick = false, onClick, ...rest } = props;
+  const button = (
     <button
-      {...props}
-      ref={rest.ref}
-      onClick={handleClick}
+      {...rest}
       class={[styles.button, props.class ?? '']}
       type={props.type ?? 'button'}
     >
       {props.children}
     </button>
-  );
+  ) as HTMLButtonElement;
+
+  if (onClick) {
+    setAttributeFromProps(button as unknown as JsxElement, 'onClick', onClick);
+  }
+
+  if (vibrateOnClick) {
+    button.addEventListener('click', () => {
+      navigator.vibrate?.(10);
+    });
+  }
+
+  return button;
 }

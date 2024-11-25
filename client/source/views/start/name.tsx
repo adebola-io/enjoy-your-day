@@ -1,7 +1,7 @@
 import { Input } from '@/components/input';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/button';
-import styles from './styles.module.css';
+import styles from './start.module.css';
 import { useRouter } from '@adbl/unfinished/router';
 import { name } from '@/data';
 

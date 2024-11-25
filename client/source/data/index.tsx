@@ -4,7 +4,7 @@ import { GrowthIcon } from '@/components/icons/growth';
 import { HobbiesIcon } from '@/components/icons/hobbies';
 import { LearningIcon } from '@/components/icons/learning';
 import { ProductivityIcon } from '@/components/icons/productivity';
-import { IconProps } from '@/components/icons/props';
+import type { IconProps } from '@/components/icons/props';
 import { SelfCareIcon } from '@/components/icons/self-care';
 import { WellnessIcon } from '@/components/icons/wellness';
 import { useLocalStorage } from '@adbl/dom-cells/lib/useLocalStorage';
@@ -66,3 +66,6 @@ export const categories: Category[] = [
 ];
 
 export const selectedCategories = Cell.source<string[]>([]);
+export const appLoadingState = Cell.source(
+  'setup' as 'setup' | 'loading' | 'finishing' | 'done'
+);

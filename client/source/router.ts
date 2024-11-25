@@ -1,16 +1,15 @@
-import { createWebRouter } from '@adbl/dom/router';
-import { homeRoutes } from './pages/home/routes';
+import { createWebRouter } from '@adbl/unfinished/router';
+import { startRoute } from '@/views/start/start.routes';
+import { appRoute } from './views/app/app.routes';
 
 export function createRouter() {
   const routes = [
     {
       name: 'App',
       path: '/',
-      redirect: '/home',
-      children: [
-        ...homeRoutes,
-      ],
+      redirect: '/start',
+      children: [startRoute, appRoute],
     },
   ];
-  return createWebRouter({ routes });
+  return createWebRouter({ routes, stackMode: true });
 }

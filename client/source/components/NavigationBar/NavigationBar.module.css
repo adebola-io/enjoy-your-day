@@ -1,0 +1,59 @@
+.container {
+  display: grid;
+  overflow-y: hidden;
+  width: calc(100% - var(--side-padding) * 2);
+  border-top: 3px solid var(--space-cadet-500);
+  padding-block: 1rem;
+  grid-template-columns: repeat(4, auto);
+  place-content: space-around;
+  padding-inline: var(--side-padding);
+}
+
+.item {
+  position: relative;
+  display: grid;
+  color: var(--space-cadet-500);
+  font: var(--tiny-regular);
+  text-decoration: none;
+  grid-template-rows: auto auto;
+  place-items: center;
+  place-content: center;
+  gap: 6px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+
+  &:active::before {
+    opacity: 0.3;
+    scale: 3;
+  }
+
+  &::before {
+    position: absolute;
+    display: block;
+    width: auto;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 0;
+    background-color: var(--space-cadet-500);
+    content: '';
+    transition-duration: calc(var(--default-transition-duration) * 1.25);
+    transition-property: opacity, scale;
+    pointer-events: none;
+    aspect-ratio: 1;
+    scale: 2.2;
+  }
+
+  &[active] {
+    font: var(--tiny-bold);
+  }
+}
+
+@keyframes expand {
+  from {
+    scale: 1;
+  }
+}
+
+.icon {
+  height: 1.5rem;
+}

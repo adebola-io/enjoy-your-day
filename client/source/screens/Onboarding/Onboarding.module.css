@@ -1,8 +1,19 @@
-body:has(.startView) {
+body:has(.onboardingView) {
+  --fade-to-white-delay: 2s;
+  --fade-to-white-duration: calc(var(--default-transition-duration) * 2);
+  color: var(--white);
   background-color: var(--space-cadet-500);
+
+  &:has(.onboardingViewFinalLoader) {
+    color: var(--space-cadet-500);
+    background-color: var(--white);
+    transition-delay: var(--fade-to-white-delay);
+    transition-duration: var(--fade-to-white-duration);
+    transition-property: background-color, color;
+  }
 }
 
-.startView {
+.onboardingView {
   display: grid;
   color: var(--white);
   background-color: var(--space-cadet-500);
@@ -21,38 +32,41 @@ body:has(.startView) {
     height: 100dvh;
   }
 
-  &:has(.startViewFinalLoader) {
+  &:has(.onboardingViewFinalLoader) {
     height: 100dvh;
+    animation: fade-to-white var(--fade-to-white-duration)
+      var(--fade-to-white-delay) both;
     place-items: center;
   }
+}
 
-  &[data-load-state='finishing'] {
+@keyframes fade-to-white {
+  to {
     color: var(--space-cadet-500);
     background-color: var(--white);
-  }
-
-  & > * {
-    grid-row: 1;
-    grid-column: 1;
   }
 }
 
 .backButton {
   display: none;
 
-  @media (display-mode: standalone) {
-    display: grid;
-    align-self: start;
-    width: min-content;
-    margin-top: calc(var(--start-screen-block-padding-bottom) * 0.5);
-    border: none;
-    color: inherit;
-    background-color: transparent;
-    cursor: pointer;
-    font: inherit;
-    place-items: center;
-    grid-template-columns: auto auto;
-    gap: 10px;
+  .onboardingView:has(.categoryForm) & {
+    @media (display-mode: standalone) {
+      display: grid;
+      align-self: start;
+      width: min-content;
+      margin-top: calc(var(--start-screen-block-padding-bottom) * 0.5);
+      border: none;
+      color: inherit;
+      background-color: transparent;
+      cursor: pointer;
+      font: inherit;
+      place-items: center;
+      grid-template-columns: auto auto;
+      gap: 10px;
+      grid-row: 1;
+      grid-column: 1;
+    }
   }
 }
 
@@ -81,8 +95,10 @@ body:has(.startView) {
   gap: 15px;
 
   @media (display-mode: standalone) {
-    height: calc(100dvh - var(--start-screen-block-padding-bottom) * 1.5);
-    padding-block-start: calc(var(--start-screen-block-padding-bottom) * 1.5);
+    height: calc(100dvh - var(--start-screen-block-padding-bottom) * 1.2);
+    padding-block-start: calc(var(--start-screen-block-padding-bottom) * 1.2);
+    grid-row: 1;
+    grid-column: 1;
   }
 }
 
@@ -199,7 +215,7 @@ body:has(.startView) {
   }
 }
 
-.startViewFinalLoader {
+.onboardingViewFinalLoader {
   width: var(--sub-heading-font-size);
   opacity: 0;
   animation: var(--fade-in) var(--default-transition-duration) both,

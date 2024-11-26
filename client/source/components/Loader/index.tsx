@@ -1,4 +1,4 @@
-import type { IconProps } from './icons/props';
+import type { IconProps } from '../icons/props';
 
 export function Loader(props: IconProps) {
   return (

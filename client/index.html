@@ -442,6 +442,10 @@
         overscroll-behavior: none;
       }
 
+      :root[data-view='app'] #start-screen {
+        display: none;
+      }
+
       #start-screen {
         display: grid;
         overflow: hidden;
@@ -730,6 +734,17 @@
         display: none;
       }
     </style>
+
+    <script>
+      const state = window?.localStorage?.getItem('app-loading-state');
+      try {
+        if (JSON.parse(state) === 'done') {
+          document.querySelector('html').setAttribute('data-view', 'app');
+        } else {
+          window.history?.replaceState(null, '', '/');
+        }
+      } catch {}
+    </script>
   </head>
   <body>
     <div data-current="1" id="start-screen">

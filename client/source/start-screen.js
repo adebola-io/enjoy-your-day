@@ -252,5 +252,26 @@ async function startApp() {
   });
 }
 
+async function skipStartScreen() {
+  const state = window?.localStorage?.getItem('app-loading-state');
+  let isDone = false;
+  try {
+    isDone = JSON.parse(state) === 'done';
+  } catch {}
+
+  let module = await import('./main');
+
+  const main = module.default;
+  if ('startViewTransition' in document) {
+    document.startViewTransition(main);
+  } else {
+    main();
+  }
+}
+
+if (document.documentElement.getAttribute('data-view') === 'app') {
+  skipStartScreen();
+}
+
 screenSlide.addEventListener('scroll', onSliderScroll);
 getStartedButton.addEventListener('click', startApp);

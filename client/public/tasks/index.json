@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "title": "Stay Refreshed",
     "description": {
       "short": "Drink 8 glasses of water.",
@@ -11,7 +10,6 @@
     "theme": "#215658"
   },
   {
-    "id": 2,
     "title": "Stretchtastic",
     "description": {
       "short": "Stretch for 15 minutes.",
@@ -22,7 +20,6 @@
     "theme": "#958760"
   },
   {
-    "id": 3,
     "title": "Wherefore Art Thou?",
     "description": {
       "short": "Write a poem.",
@@ -33,7 +30,6 @@
     "theme": "#5C6D6E"
   },
   {
-    "id": 4,
     "title": "Digital Detox",
     "description": {
       "short": "Take a two-hour device break.",

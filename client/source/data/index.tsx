@@ -1,20 +1,23 @@
+import { BarChartIcon } from '@/components/icons/bar-chart';
 import { CreativityIcon } from '@/components/icons/creativity';
 import { FitnessIcon } from '@/components/icons/fitness';
 import { GrowthIcon } from '@/components/icons/growth';
 import { HobbiesIcon } from '@/components/icons/hobbies';
+import { HomeIcon } from '@/components/icons/home';
 import { LearningIcon } from '@/components/icons/learning';
 import { ProductivityIcon } from '@/components/icons/productivity';
 import type { IconProps } from '@/components/icons/props';
 import { SelfCareIcon } from '@/components/icons/self-care';
+import { SettingsIcon } from '@/components/icons/settings';
+import { StackIcon } from '@/components/icons/stack';
 import { WellnessIcon } from '@/components/icons/wellness';
-import { useLocalStorage } from '@adbl/dom-cells/lib/useLocalStorage';
+import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
-import { Cell } from '@adbl/cells';
 
 /**
  * Reactive reference to the user's name.
  */
-export const name = useLocalStorage<string>('username', '');
+export const username = useLocalStorage<string>('username', '');
 
 export type Category = {
   name: string;
@@ -25,47 +28,80 @@ export type Category = {
 export const categories: Category[] = [
   {
     name: 'Wellness',
-    icon: (props) => <WellnessIcon {...props} />,
+    icon: WellnessIcon,
     theme: '#BACBB9',
   },
   {
     name: 'Self-care',
-    icon: (props) => <SelfCareIcon {...props} />,
+    icon: SelfCareIcon,
     theme: '#DBB2CB',
   },
   {
     name: 'Creativity',
-    icon: (props) => <CreativityIcon {...props} />,
+    icon: CreativityIcon,
     theme: '#6BF2DC',
   },
   {
     name: 'Productivity',
-    icon: (props) => <ProductivityIcon {...props} />,
+    icon: ProductivityIcon,
     theme: '#FFD992',
   },
   {
     name: 'Fitness',
-    icon: (props) => <FitnessIcon {...props} />,
+    icon: FitnessIcon,
     theme: '#7288D7',
   },
   {
     name: 'Learning',
-    icon: (props) => <LearningIcon {...props} />,
+    icon: LearningIcon,
     theme: '#FF87A2',
   },
   {
     name: 'Growth',
-    icon: (props) => <GrowthIcon {...props} />,
+    icon: GrowthIcon,
     theme: '#96F396',
   },
   {
     name: 'Hobbies',
-    icon: (props) => <HobbiesIcon {...props} />,
+    icon: HobbiesIcon,
     theme: '#FF91ED',
   },
 ];
 
-export const selectedCategories = Cell.source<string[]>([]);
-export const appLoadingState = Cell.source(
-  'setup' as 'setup' | 'loading' | 'finishing' | 'done'
+export const selectedCategories = useLocalStorage<string[]>(
+  'selected-categories',
+  []
 );
+export const appLoadingState = useLocalStorage(
+  'app-loading-state',
+  'setup' as 'setup' | 'done'
+);
+
+export interface NavigationLink {
+  name: string;
+  path: string;
+  icon: (props: IconProps) => JSX.Template;
+}
+
+export const navigationBarLinks: NavigationLink[] = [
+  {
+    name: 'Home',
+    path: '/app/home',
+    icon: HomeIcon,
+  },
+  {
+    name: 'Goals',
+    path: '/app/goals',
+    icon: StackIcon,
+  },
+  {
+    name: 'Insights',
+    path: '/app/insights',
+    icon: BarChartIcon,
+  },
+  {
+    name: 'Settings',
+    path: '/app/settings',
+    icon: SettingsIcon,
+  },
+];

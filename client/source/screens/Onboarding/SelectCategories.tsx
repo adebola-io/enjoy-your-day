@@ -1,22 +1,21 @@
-import styles from './start.module.css';
+import styles from './Onboarding.module.css';
 import { For, If } from '@adbl/unfinished';
 import {
-  appLoadingState,
   categories,
   type Category,
-  name,
   selectedCategories,
+  username,
 } from '@/data';
-import { Button } from '@/components/button';
+import { Button } from '@/components/Button';
 import { Cell } from '@adbl/cells';
 import { CheckIcon } from '@/components/icons/check';
 import { useRouter } from '@adbl/unfinished/router';
 
-export default async function CategoriesSelection() {
-  const { replace } = useRouter();
+export default async function SelectCategories() {
+  const router = useRouter();
   const formRef = Cell.source<HTMLFormElement | null>(null);
-  if (name.value === '') {
-    await replace('/start/name');
+  if (username.value === '') {
+    await router.replace('/onboarding/name');
     return;
   }
 
@@ -31,12 +30,7 @@ export default async function CategoriesSelection() {
     await Promise.all(
       formRef.value.getAnimations().map((animation) => animation.finished)
     );
-
-    appLoadingState.value = 'loading';
-    setTimeout(() => {
-      appLoadingState.value = 'finishing';
-      setTimeout(() => replace('/app'), 1000);
-    }, 2000);
+    await router.replace('/onboarding/loading');
   };
 
   return (

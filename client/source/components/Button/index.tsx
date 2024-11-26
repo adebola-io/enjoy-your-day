@@ -1,6 +1,5 @@
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
-import styles from './button.module.css';
-import { Cell } from '@adbl/cells';
+import styles from './Button.module.css';
 import { type JsxElement, setAttributeFromProps } from '@adbl/unfinished';
 
 type OriginalButtonProps = JSX.IntrinsicElements['button'];
@@ -14,7 +13,7 @@ export function Button(props: ButtonProps) {
   const button = (
     <button
       {...rest}
-      class={[styles.button, props.class ?? '']}
+      class={[styles.button, props.class]}
       type={props.type ?? 'button'}
     >
       {props.children}

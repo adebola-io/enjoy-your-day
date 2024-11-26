@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@adbl/cells": "latest",
-    "@adbl/dom-cells": "latest",
-    "@adbl/unfinished": "latest"
+    "@adbl/unfinished": "adbl-unfinished-0.0.4.tgz",
+    "@adbl/dom-cells": "adbl-dom-cells-0.0.2.tgz"
   },
   "devDependencies": {
     "typescript": "^5.5.2",

@@ -43,7 +43,7 @@ cd enjoy-your-day
 bun setup
 ```
 
-The last command will run the [setup script](./setup/start.sh) and install the necessary dependencies for both the client and server.
+The last command will run the [setup script](./setup/onboarding.sh) and install the necessary dependencies for both the client and server.
 
 #### 🔧 Environment Variables
 

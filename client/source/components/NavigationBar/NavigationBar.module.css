@@ -45,10 +45,6 @@
     aspect-ratio: 1;
     scale: 2.2;
   }
-
-  &[active] {
-    font: var(--tiny-bold);
-  }
 }
 
 @keyframes expand {
@@ -60,7 +56,32 @@
 .icon {
   height: 1.5rem;
   transition-duration: var(--default-transition-duration);
-  transition-property: translate;
+  transition-property: translate, fill;
+
+  [active] > & {
+    &[data-name='Home'] {
+      fill: currentColor;
+    }
+
+    &[data-name='Goals'] rect {
+      fill: currentColor;
+    }
+
+    &[data-name='Insights'] {
+      fill: currentColor;
+      path,
+      rect {
+        stroke: var(--white);
+      }
+    }
+
+    &[data-name='Settings'] {
+      fill: currentColor;
+      path:last-child {
+        fill: var(--white);
+      }
+    }
+  }
 
   .item:not([active]) & {
     translate: 0% 4px;

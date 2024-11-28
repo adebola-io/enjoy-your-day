@@ -14,9 +14,10 @@ export function NavigationBar() {
 
 function NavigationItem(props: NavigationLink) {
   const router = useRouter();
+
   return (
     <router.Link class={styles.item} href={props.path} onClick={vibrate}>
-      <props.icon class={styles.icon} />
+      <props.icon data-name={props.name} class={styles.icon} />
       {props.name}
     </router.Link>
   );

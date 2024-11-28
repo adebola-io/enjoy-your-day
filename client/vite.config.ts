@@ -1,13 +1,12 @@
 import { defineConfig } from 'vite';
 import path from 'node:path';
 import { VitePWA } from 'vite-plugin-pwa';
-
 import { hmrPlugin } from '@adbl/unfinished/render';
 
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './source'),
+      '#': path.resolve(__dirname, './source'),
     },
   },
   plugins: [

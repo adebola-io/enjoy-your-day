@@ -1,36 +1,35 @@
 import { Loader } from '@/components/Loader';
-import { useRouter } from '@adbl/unfinished/router';
-import { appLoadingState } from '@/data';
 import styles from './Onboarding.module.css';
+import { appLoadingState } from '@/data';
+import { useRouter } from '@adbl/unfinished/router';
 import { setMetaThemeColor } from '@/library';
 
 export default function Loading() {
   const router = useRouter();
 
-  const goToApp = () => {
+  const goToApp = (event: Event) => {
+    const target = event.target as HTMLElement;
+    if (target.tagName !== 'DIV') return;
+
     setTimeout(() => {
       appLoadingState.value = 'done';
-      router.replace('/app');
+      router.replace('/app/user/home');
     }, 2000);
   };
 
-  const changeThemeColor = () => {
+  const changeThemeColor = (event: Event) => {
+    const target = event.target as HTMLElement;
+    if (target.tagName !== 'DIV') return;
     setMetaThemeColor('white');
   };
 
-  const transitionListenerOptions = {
-    once: true,
-  };
-
-  document.body.addEventListener(
-    'transitionstart',
-    changeThemeColor,
-    transitionListenerOptions
+  return (
+    <div
+      onAnimationStart={changeThemeColor}
+      onAnimationEnd={goToApp}
+      class={styles.onboardingViewFinalLoaderContainer}
+    >
+      <Loader class={styles.onboardingViewFinalLoader} />
+    </div>
   );
-  document.body.addEventListener(
-    'transitionend',
-    goToApp,
-    transitionListenerOptions
-  );
-  return <Loader class={styles.onboardingViewFinalLoader} />;
 }

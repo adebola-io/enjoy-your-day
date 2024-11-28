@@ -10,6 +10,7 @@ import { Button } from '@/components/Button';
 import { Cell } from '@adbl/cells';
 import { CheckIcon } from '@/components/icons/check';
 import { useRouter } from '@adbl/unfinished/router';
+import { vibrate } from '@/library';
 
 export default async function SelectCategories() {
   const router = useRouter();
@@ -54,7 +55,7 @@ export default async function SelectCategories() {
 
 function CategoryCard(category: Category, index: Cell<number>) {
   const selectCategory = () => {
-    navigator.vibrate?.(10);
+    vibrate();
     if (selectedCategories.value.includes(category.name)) {
       const index = selectedCategories.value.indexOf(category.name);
       selectedCategories.value.splice(index, 1);

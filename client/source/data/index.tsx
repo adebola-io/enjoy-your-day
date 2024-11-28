@@ -11,6 +11,7 @@ import { SelfCareIcon } from '@/components/icons/self-care';
 import { SettingsIcon } from '@/components/icons/settings';
 import { StackIcon } from '@/components/icons/stack';
 import { WellnessIcon } from '@/components/icons/wellness';
+import { useLiveDate } from '@adbl/dom-cells/useDate';
 import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
@@ -76,6 +77,8 @@ export const appLoadingState = useLocalStorage(
   'app-loading-state',
   'setup' as 'setup' | 'done'
 );
+export const goalsForTheDay = useLocalStorage('goals-for-the-day', []);
+export const liveDate = useLiveDate(1000 * 60 * 5); // updates every 5 minutes.
 
 export interface NavigationLink {
   name: string;
@@ -86,22 +89,22 @@ export interface NavigationLink {
 export const navigationBarLinks: NavigationLink[] = [
   {
     name: 'Home',
-    path: '/app/home',
+    path: '/app/user/home',
     icon: HomeIcon,
   },
   {
     name: 'Goals',
-    path: '/app/goals',
+    path: '/app/user/goals',
     icon: StackIcon,
   },
   {
     name: 'Insights',
-    path: '/app/insights',
+    path: '/app/user/insights',
     icon: BarChartIcon,
   },
   {
     name: 'Settings',
-    path: '/app/settings',
+    path: '/app/user/settings',
     icon: SettingsIcon,
   },
 ];

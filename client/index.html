@@ -43,13 +43,14 @@
     <title>Enjoy Your Day, Everyday.</title>
     <!-- SVG favicon -->
     <link rel="icon" href="/icons/icon-gray.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./source/styles/transitions.css" />
 
     <!-- CSS Variables -->
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
 
       :root {
-        --default-transition-duration: 300ms;
+        --default-transition-duration: 200ms;
 
         --white: #ffffff;
         --black: #000000;
@@ -162,7 +163,7 @@
         );
 
         /* Dimensions */
-        --max-screen-width: 1000px;
+        --max-screen-width: 100dvw;
         --start-screen-block-padding-top: 15.474dvh;
         --start-screen-block-padding-bottom: 5.802dvh;
         --start-screen-block-padding: var(--start-screen-block-padding-top)
@@ -172,23 +173,24 @@
 
         /* Typography */
         --heading-font-size: min(4.2rem, 12dvh);
-        --sub-heading-font-size: min(3.1rem, 9dvh);
+        --sub-heading-font-size: min(3.8rem, 9dvh);
         --eyebrow-font-size: min(2.7rem, 7dvh);
-        --title-font-size: min(1.8rem, 5dvh);
+        --title-font-size: min(1.8rem, 4dvh);
+        --subtitle-font-size: min(1.5rem, 3.5dvh);
         --base-font-size: min(0.9rem, 3dvh);
         --small-font-size: min(0.75rem, 2dvh);
         --tiny-font-size: min(0.6875rem, 1.5dvh);
 
-        --heading-bold: normal 600 var(--heading-font-size) / 40px 'Parkinsans',
+        --heading-bold: normal 600 var(--heading-font-size) / 100px 'Parkinsans',
           sans-serif;
-        --heading-regular: normal 300 var(--heading-font-size) / 40px
+        --heading-regular: normal 300 var(--heading-font-size) / 100px
             'Parkinsans',
           sans-serif;
-        --sub-heading-bold: normal 600 var(--sub-heading-font-size) / 48px
-            'Parkinsans',
+        --sub-heading-bold: normal 600 var(--sub-heading-font-size) /
+            max(min(70px, 10dvh), 40px) 'Parkinsans',
           sans-serif;
-        --sub-heading-regular: normal 300 var(--sub-heading-font-size) / 48px
-            'Parkinsans',
+        --sub-heading-regular: normal 300 var(--sub-heading-font-size) /
+            max(min(70px, 10dvh), 40px) 'Parkinsans',
           sans-serif;
         --eyebrow-bold: normal 600 var(--eyebrow-font-size) / 40px 'Parkinsans',
           sans-serif;
@@ -197,6 +199,10 @@
           sans-serif;
         --title-bold: normal 700 var(--title-font-size) 'Parkinsans', sans-serif;
         --title-regular: normal 400 var(--title-font-size) 'Parkinsans',
+          sans-serif;
+        --subtitle-bold: normal 700 var(--subtitle-font-size) 'Parkinsans',
+          sans-serif;
+        --subtitle-regular: normal 400 var(--subtitle-font-size) 'Parkinsans',
           sans-serif;
         --base-bold: normal 700 var(--base-font-size) 'Parkinsans', sans-serif;
         --base-regular: normal 400 var(--base-font-size) 'Parkinsans',
@@ -220,25 +226,49 @@
         --bump-up: bump-up;
         --fade-in: fade-in;
         --fade-in-from-bottom: fade-in-from-bottom;
+        --fade-stretch-from-bottom: fade-stretch-from-bottom;
         --pop: pop;
         --loader-spin: loader-spin;
         --loader-fill: loader-fill;
+      }
+
+      @media (prefers-reduced-motion) {
+        :root {
+          --default-transition-duration: 0ms;
+        }
       }
     </style>
 
     <!-- CSS Animations -->
     <style>
-      ::view-transition-old(start-logo) {
-        transition-duration: 200ms;
-        translate: -5% -6%;
-        scale: 0.9;
+      @keyframes slide-out-to-left {
+        to {
+          opacity: 0.5;
+          filter: brightness(0.5);
+          translate: -100%;
+        }
       }
 
-      ::view-transition-old(*),
-      ::view-transition-new(*),
-      ::view-transition-group(*) {
-        animation-duration: 300ms;
-        animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+      @keyframes slide-in-from-right {
+        from {
+          opacity: 0.5;
+          translate: 100%;
+        }
+      }
+
+      @keyframes slide-out-to-right {
+        to {
+          opacity: 0.5;
+          filter: brightness(0.5);
+          translate: 100%;
+        }
+      }
+
+      @keyframes slide-in-from-left {
+        from {
+          opacity: 0.5;
+          translate: -100%;
+        }
       }
 
       @keyframes twinkle {
@@ -315,6 +345,19 @@
         }
       }
 
+      @keyframes fade-stretch-from-bottom {
+        0% {
+          opacity: 0;
+          scale: var(--starting-scale, 1 0.9);
+          transform: translateY(var(--starting-fade-position-y, 100%));
+        }
+        100% {
+          opacity: 1;
+          scale: var(--ending-scale, 1 1);
+          transform: translateY(0);
+        }
+      }
+
       .hourglass-loader {
         --base-animation-duration: 3s;
         width: 1.2rem;
@@ -332,6 +375,15 @@
           animation-duration: var(--base-animation-duration);
           animation-delay: calc(var(--base-animation-duration) / 2);
           fill: currentColor;
+        }
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
         }
       }
 
@@ -370,7 +422,26 @@
       @keyframes pop {
         from {
           opacity: 0;
-          scale: 0.5;
+          scale: var(--starting-scale, 0.5);
+        }
+        to {
+          opacity: 1;
+          scale: var(--ending-scale, 1);
+        }
+      }
+
+      @keyframes slide-inline-enter {
+        from {
+          opacity: 0;
+          transform: translateX(50%);
+        }
+      }
+
+      @keyframes slide-inline-exit {
+        to {
+          opacity: 0;
+          transform: translateX(-30%);
+          filter: brightness(0.9);
         }
       }
     </style>
@@ -404,7 +475,6 @@
         justify-content: center;
         width: 100dvw;
         height: 100dvh;
-        font-size: 16px;
       }
 
       :root,
@@ -735,6 +805,43 @@
       }
     </style>
 
+    <!-- Waiting screen Styles -->
+    <style>
+      :root:not([data-view='app']) #waiting-screen {
+        display: none;
+      }
+
+      #waiting-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        place-content: center;
+      }
+
+      #waiting-screen .waiting-screen__icon {
+        width: min(186px, 100%, 25dvh);
+        --starting-scale: 0.07;
+        --ending-scale: 0.5;
+        scale: 0.4;
+        animation: pop calc(var(--default-transition-duration) * 1.5);
+        grid-row: 1;
+        grid-column: 1;
+      }
+
+      #waiting-screen .waiting-screen__loader {
+        width: min(186px, 100%, 25dvh);
+        grid-row: 1;
+        grid-column: 1;
+        animation: pop var(--default-transition-duration),
+          spin calc(var(--default-transition-duration) * 3)
+            var(--default-transition-duration) linear infinite;
+      }
+    </style>
+
     <script>
       const state = window?.localStorage?.getItem('app-loading-state');
       try {
@@ -942,6 +1049,37 @@
         </svg>
         Get Started
       </button>
+    </div>
+    <div id="waiting-screen">
+      <svg
+        class="waiting-screen__loader"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="var(--space-cadet-500)"
+        stroke-width="0.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 12a9 9 0 11-6.219-8.56" />
+      </svg>
+      <svg
+        class="waiting-screen__icon"
+        viewBox="0 0 186 186"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M118.549 106.509C119.837 103.606 117.794 100.516 114.686 99.8616C111.578 99.2079 76.2657 103.195 74.5542 105.871C71.7739 107.407 70.7254 110.959 72.8068 113.358C75.181 116.095 78.0873 118.348 81.37 119.97C86.3823 122.445 92.0313 123.328 97.5598 122.5C103.088 121.673 108.231 119.174 112.299 115.339C114.962 112.827 117.081 109.821 118.549 106.509Z"
+          fill="var(--space-cadet-500)"
+        />
+        <path
+          d="M110.322 69.6249L111.275 76.4077M69.6249 75.3445L70.5782 82.1273M67.4984 158.645L135.327 149.112C150.311 147.007 160.751 133.152 158.645 118.168L149.112 50.3396C147.007 35.3554 133.152 24.9155 118.168 27.0213L50.3396 36.554C35.3554 38.6599 24.9154 52.5142 27.0213 67.4984L36.554 135.327C38.6599 150.311 52.5142 160.751 67.4984 158.645Z"
+          stroke="var(--space-cadet-500)"
+          stroke-width="10"
+          stroke-linecap="round"
+        />
+      </svg>
     </div>
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <script type="module" src="./source/start-screen.js"></script>

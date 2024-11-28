@@ -8,7 +8,6 @@ export const onboardingRoute = defineRoute({
   name: 'Onboarding View',
   path: 'onboarding',
   component: Onboarding,
-  redirect: '/onboarding/enter-name',
   children: [
     {
       name: 'Onboarding - Enter Username',

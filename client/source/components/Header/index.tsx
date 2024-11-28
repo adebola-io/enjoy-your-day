@@ -1,3 +1,10 @@
+import { HamburgerIcon } from '../icons/hamburger';
+import styles from './Header.module.css';
+
 export function Header() {
-  return <header>header</header>;
+  return (
+    <header class={styles.container}>
+      <HamburgerIcon class={styles.sidebarIcon} />
+    </header>
+  );
 }

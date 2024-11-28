@@ -4,3 +4,7 @@ export function setMetaThemeColor(color: string) {
 
   meta.setAttribute('content', color);
 }
+
+export function vibrate() {
+  navigator.vibrate?.(10);
+}

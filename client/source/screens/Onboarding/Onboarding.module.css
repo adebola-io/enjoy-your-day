@@ -1,19 +1,6 @@
-body:has(.onboardingView) {
+.onboardingView {
   --fade-to-white-delay: 2s;
   --fade-to-white-duration: calc(var(--default-transition-duration) * 2);
-  color: var(--white);
-  background-color: var(--space-cadet-500);
-
-  &:has(.onboardingViewFinalLoader) {
-    color: var(--space-cadet-500);
-    background-color: var(--white);
-    transition-delay: var(--fade-to-white-delay);
-    transition-duration: var(--fade-to-white-duration);
-    transition-property: background-color, color;
-  }
-}
-
-.onboardingView {
   display: grid;
   color: var(--white);
   background-color: var(--space-cadet-500);
@@ -32,11 +19,8 @@ body:has(.onboardingView) {
     height: 100dvh;
   }
 
-  &:has(.onboardingViewFinalLoader) {
-    height: 100dvh;
-    animation: fade-to-white var(--fade-to-white-duration)
-      var(--fade-to-white-delay) both;
-    place-items: center;
+  &:has(.onboardingViewFinalLoaderContainer) {
+    padding-inline: 0;
   }
 }
 
@@ -47,33 +31,6 @@ body:has(.onboardingView) {
   }
 }
 
-.backButton {
-  display: none;
-
-  .onboardingView:has(.categoryForm) & {
-    @media (display-mode: standalone) {
-      display: grid;
-      align-self: start;
-      width: min-content;
-      margin-top: calc(var(--start-screen-block-padding-bottom) * 0.5);
-      border: none;
-      color: inherit;
-      background-color: transparent;
-      cursor: pointer;
-      font: inherit;
-      place-items: center;
-      grid-template-columns: auto auto;
-      gap: 10px;
-      grid-row: 1;
-      grid-column: 1;
-    }
-  }
-}
-
-.backButtonIcon {
-  width: calc(var(--base-font-size) * 0.7);
-}
-
 .nameForm {
   display: grid;
   height: 100%;
@@ -81,6 +38,19 @@ body:has(.onboardingView) {
   place-items: center;
   grid-template-rows: 1fr auto auto auto 1fr;
   gap: 15px;
+}
+
+.backButton:is(.backButton) {
+  display: none;
+
+  .onboardingView:has(.categoryForm) & {
+    @media (display-mode: standalone) {
+      display: grid;
+      align-self: start;
+      grid-row: 1;
+      grid-column: 1;
+    }
+  }
 }
 
 .categoryForm {
@@ -213,6 +183,16 @@ body:has(.onboardingView) {
   &:disabled {
     opacity: 0;
   }
+}
+
+.onboardingViewFinalLoaderContainer {
+  display: grid;
+  height: 100dvh;
+  animation: fade-to-white var(--fade-to-white-duration)
+    var(--fade-to-white-delay) both;
+  place-items: center;
+  place-content: center;
+  place-items: center;
 }
 
 .onboardingViewFinalLoader {

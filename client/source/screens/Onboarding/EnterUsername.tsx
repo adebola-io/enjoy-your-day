@@ -4,13 +4,14 @@ import { Button } from '@/components/Button';
 import { useRouter } from '@adbl/unfinished/router';
 import { username } from '@/data';
 import styles from './Onboarding.module.css';
+import { vibrate } from '@/library';
 
 export default function EnterUsername() {
   const router = useRouter();
 
   const handleNameSubmit = (event: Event) => {
     event.preventDefault();
-    navigator.vibrate?.(10);
+    vibrate();
     router.navigate('/onboarding/select-categories');
   };
 

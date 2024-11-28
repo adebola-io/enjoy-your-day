@@ -5,17 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 5229",
-    "build": "vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@adbl/cells": "latest",
-    "@adbl/dom-cells": "latest",
-    "@adbl/unfinished": "latest"
+    "@adbl/cells": "^0.0.10",
+    "@adbl/dom-cells": "^0.0.4",
+    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@0545217"
   },
   "devDependencies": {
-    "typescript": "^5.5.2",
-    "vite": "^5.4.8",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
     "vite-plugin-pwa": "^0.21.0"
   }
 }

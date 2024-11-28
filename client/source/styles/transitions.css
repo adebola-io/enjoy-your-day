@@ -1,0 +1,55 @@
+/* Prelude. */
+::view-transition-old(*),
+::view-transition-new(*),
+::view-transition-group(*) {
+  animation-duration: calc(var(--default-transition-duration) * 2);
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-group(root) {
+  animation: none;
+}
+
+/* Starting Logo Transition from index.html to app. */
+::view-transition-old(start-logo) {
+  transition-duration: var(--default-transition-duration);
+  translate: -5% -6%;
+  scale: 0.9;
+}
+
+/* Screen Transitions. */
+::view-transition-old(app-root-view),
+::view-transition-new(app-root-view),
+::view-transition-group(app-root-view) {
+  animation: none;
+}
+
+:active-view-transition-type(app-root) {
+  &:active-view-transition-type(forwards) {
+    &::view-transition-old(app-root-view) {
+      animation-name: slide-out-to-left;
+    }
+
+    &::view-transition-new(app-root-view) {
+      animation-name: slide-in-from-right;
+    }
+  }
+
+  &:active-view-transition-type(backwards) {
+    &::view-transition-old(app-root-view) {
+      animation-name: slide-out-to-right;
+    }
+
+    &::view-transition-new(app-root-view) {
+      animation-name: slide-in-from-left;
+    }
+  }
+
+  &::view-transition-old(app-root-view),
+  &::view-transition-new(app-root-view) {
+    animation-duration: calc(var(--default-transition-duration) * 1.5);
+    animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+}

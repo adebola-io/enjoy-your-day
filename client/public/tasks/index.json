@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Stay Refreshed",
+    "description": {
+      "short": "Drink 8 glasses of water.",
+      "long": "Hydration isn't just for hot days; it's for your brain, your energy, and your general existence. Fill up a glass, keep it nearby, and take a sip every so often. Before you know it, you'll hit 8 without even thinking about it."
+    },
+    "categories": ["self-care", "wellness", "growth", "fitness"],
+    "tags": ["water", "hydration", "drink"],
+    "theme": "#215658"
+  },
+  {
+    "title": "Stretchtastic",
+    "description": {
+      "short": "Stretch for 15 minutes.",
+      "long": "Your body called—it's begging for some love. Take 15 minutes to stretch out those tight spots. Neck, shoulders, legs—whatever feels like it's been ignored for too long. Don't overthink it; just move."
+    },
+    "categories": ["self-care", "wellness", "growth", "fitness"],
+    "tags": ["stretch", "muscle", "exercise"],
+    "theme": "#958760"
+  },
+  {
+    "title": "Wherefore Art Thou?",
+    "description": {
+      "short": "Write a poem.",
+      "long": "Poetry doesn't have to rhyme or even make sense—just grab a pen (or your notes app) and write a few lines about something on your mind. It could be as random as your breakfast or as deep as the meaning of life. Who’s judging? Nobody."
+    },
+    "categories": ["growth", "creativity"],
+    "tags": ["poem", "writing", "creative", "inspiration"],
+    "theme": "#5C6D6E"
+  },
+  {
+    "title": "Digital Detox",
+    "description": {
+      "short": "Take a two-hour device break.",
+      "long": "Unplugging sounds harder than it is. Put your phone down, shove it in a drawer if you have to, and do something that doesn’t involve a screen. Read a book, stare at the sky, doodle in a notebook—literally anything. Trust me, two hours will fly"
+    },
+    "categories": ["wellness", "self-care", "productivity"],
+    "tags": ["phone", "mobile", "interaction", "social media"],
+    "theme": "#371910"
+  }
+]

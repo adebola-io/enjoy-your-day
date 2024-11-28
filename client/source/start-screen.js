@@ -199,11 +199,11 @@ function onSliderScroll() {
 }
 
 // Doesn't work everywhere but anyway
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (event) => {
-  event.preventDefault();
-  deferredPrompt = event;
-});
+// let deferredPrompt;
+// window.addEventListener('beforeinstallprompt', (event) => {
+//   event.preventDefault();
+//   deferredPrompt = event;
+// });
 
 let isLoading = false;
 async function startApp() {
@@ -226,7 +226,7 @@ async function startApp() {
   // }
 
   if ('vibrate' in navigator) {
-    navigator.vibrate(35);
+    navigator.vibrate(20);
   }
   if (isLoading) return;
   isLoading = true;
@@ -250,6 +250,27 @@ async function startApp() {
       main();
     }
   });
+}
+
+async function skipStartScreen() {
+  const state = window?.localStorage?.getItem('app-loading-state');
+  let isDone = false;
+  try {
+    isDone = JSON.parse(state) === 'done';
+  } catch {}
+
+  let module = await import('./main');
+
+  const resumeApp = module.resumeApp;
+  if ('startViewTransition' in document) {
+    document.startViewTransition(resumeApp);
+  } else {
+    resumeApp();
+  }
+}
+
+if (document.documentElement.getAttribute('data-view') === 'app') {
+  skipStartScreen();
 }
 
 screenSlide.addEventListener('scroll', onSliderScroll);

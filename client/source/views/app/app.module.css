@@ -1,8 +1,0 @@
-.appView {
-  display: grid;
-  height: 100dvh;
-  color: var(--space-cadet-500);
-  background-color: var(--white);
-  place-items: center;
-  place-content: center;
-}

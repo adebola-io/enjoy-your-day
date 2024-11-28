@@ -1,12 +1,12 @@
-import { CupIcon } from '@/components/icons/cup';
+import { CupIcon } from '#/components/icons/cup';
 import styles from './Home.module.css';
-import { SunIcon } from '@/components/icons/sun';
-import { MoonAndStartsIcon } from '@/components/icons/moon-and-starts';
-import type { IconProps } from '@/components/icons/props';
-import { goalsForTheDay } from '@/data';
-import { CalendarIcon } from '@/components/icons/calendar';
-import { Button } from '@/components/Button';
-import { SparkleIcon } from '@/components/icons/sparkle';
+import { SunIcon } from '#/components/icons/sun';
+import { MoonAndStartsIcon } from '#/components/icons/moon-and-starts';
+import type { IconProps } from '#/components/icons/props';
+import { goalsForTheDay } from '#/data';
+import { CalendarIcon } from '#/components/icons/calendar';
+import { Button } from '#/components/Button';
+import { SparkleIcon } from '#/components/icons/sparkle';
 
 export default function Home() {
   // No Goals selected.
@@ -23,6 +23,7 @@ export default function Home() {
           href="/app/auto-select"
           class={styles.autoSelectLink}
           variant="secondary"
+          vibrateOnClick
         >
           <SparkleIcon class={styles.sparkleIcon} />
           Select for me

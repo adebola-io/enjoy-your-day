@@ -1,8 +1,8 @@
-import { Loader } from '@/components/Loader';
+import { Loader } from '#/components/Loader';
 import styles from './Onboarding.module.css';
-import { appLoadingState } from '@/data';
+import { appLoadingState } from '#/data';
 import { useRouter } from '@adbl/unfinished/router';
-import { setMetaThemeColor } from '@/library';
+import { setMetaThemeColor } from '#/library';
 
 export default function Loading() {
   const router = useRouter();

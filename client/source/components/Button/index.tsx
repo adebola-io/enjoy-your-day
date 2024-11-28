@@ -1,16 +1,15 @@
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
-import styles from './Button.module.css';
 import { type JsxElement, setAttributeFromProps } from '@adbl/unfinished';
 import { useRouter, type RouterLinkProps } from '@adbl/unfinished/router';
-import { vibrate } from '@/library';
+import { vibrate } from '#/library';
+import styles from './Button.module.css';
 
-type OriginalButtonProps = JSX.IntrinsicElements['button'] & RouterLinkProps;
-
-export interface ButtonProps extends OriginalButtonProps {
-  vibrateOnClick?: boolean;
-  variant?: JSX.ValueOrCell<'primary' | 'secondary' | 'neutral'>;
-  href?: RouterLinkProps['href'];
-}
+export type ButtonVariant = 'primary' | 'secondary' | 'neutral';
+export type ButtonProps = JSX.IntrinsicElements['button'] &
+  RouterLinkProps & {
+    vibrateOnClick?: boolean;
+    variant?: JSX.ValueOrCell<ButtonVariant>;
+  };
 
 export function Button(props: ButtonProps) {
   const router = useRouter();
@@ -21,7 +20,7 @@ export function Button(props: ButtonProps) {
     ...rest
   } = props;
 
-  let button: HTMLElement;
+  let button: HTMLElement | HTMLElement[];
   if (props.href) {
     button = (
       <router.Link
@@ -32,7 +31,7 @@ export function Button(props: ButtonProps) {
       >
         {props.children}
       </router.Link>
-    ) as HTMLElement;
+    ) as HTMLElement[];
   } else {
     button = (
       <button
@@ -51,7 +50,13 @@ export function Button(props: ButtonProps) {
   }
 
   if (vibrateOnClick) {
-    button.addEventListener('click', vibrate);
+    if (Array.isArray(button)) {
+      for (const element of button) {
+        element.addEventListener('click', vibrate);
+      }
+    } else {
+      button.addEventListener('click', vibrate);
+    }
   }
 
   return button;

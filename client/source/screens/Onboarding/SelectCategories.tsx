@@ -5,12 +5,12 @@ import {
   type Category,
   selectedCategories,
   username,
-} from '@/data';
-import { Button } from '@/components/Button';
+} from '#/data';
+import { Button } from '#/components/Button';
 import { Cell } from '@adbl/cells';
-import { CheckIcon } from '@/components/icons/check';
+import { CheckIcon } from '#/components/icons/check';
 import { useRouter } from '@adbl/unfinished/router';
-import { vibrate } from '@/library';
+import { vibrate } from '#/library';
 
 export default async function SelectCategories() {
   const router = useRouter();

@@ -1,10 +1,10 @@
-import { appLoadingState } from '@/data';
-import { setMetaThemeColor } from '@/library';
+import { appLoadingState } from '#/data';
+import { setMetaThemeColor } from '#/library';
 import { useRouter } from '@adbl/unfinished/router';
 
 import styles from './MainLayout.module.css';
-import { Header } from '@/components/Header';
-import { NavigationBar } from '@/components/NavigationBar';
+import { Header } from '#/components/Header';
+import { NavigationBar } from '#/components/NavigationBar';
 
 export default async function MainLayout() {
   const router = useRouter();

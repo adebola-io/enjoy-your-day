@@ -259,7 +259,7 @@ async function skipStartScreen() {
     isDone = JSON.parse(state) === 'done';
   } catch {}
 
-  let module = await import('./main');
+  const module = await import('./main');
 
   const resumeApp = module.resumeApp;
   if ('startViewTransition' in document) {

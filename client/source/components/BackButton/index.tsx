@@ -1,8 +1,8 @@
-import { vibrate } from '@/library';
+import { vibrate } from '#/library';
 import { useRouter } from '@adbl/unfinished/router';
-import { CaretRightIcon } from '@/components/icons/caret-right';
-import styles from './styles.module.css';
+import { CaretRightIcon } from '#/components/icons/caret-right';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
+import styles from './styles.module.css';
 
 export function BackButton(props: JSX.IntrinsicElements['button']) {
   const router = useRouter();

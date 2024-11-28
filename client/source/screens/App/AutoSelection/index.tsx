@@ -1,6 +1,6 @@
-import { Loader } from '@/components/Loader';
-import { setMetaThemeColor } from '@/library';
-import { BackButton } from '@/components/BackButton';
+import { Loader } from '#/components/Loader';
+import { setMetaThemeColor } from '#/library';
+import { BackButton } from '#/components/BackButton';
 
 import styles from './AutoSelection.module.css';
 

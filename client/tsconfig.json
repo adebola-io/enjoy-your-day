@@ -18,7 +18,7 @@
     "jsxImportSource": "@adbl/unfinished",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./source/*"]
+      "#/*": ["./source/*"]
     },
     "skipLibCheck": true
   },

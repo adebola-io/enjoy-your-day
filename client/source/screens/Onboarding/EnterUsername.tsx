@@ -1,10 +1,10 @@
-import { Input } from '@/components/Input';
-import { Logo } from '@/components/Logo';
-import { Button } from '@/components/Button';
+import { Input } from '#/components/Input';
+import { Logo } from '#/components/Logo';
+import { Button } from '#/components/Button';
 import { useRouter } from '@adbl/unfinished/router';
-import { username } from '@/data';
+import { username } from '#/data';
 import styles from './Onboarding.module.css';
-import { vibrate } from '@/library';
+import { vibrate } from '#/library';
 
 export default function EnterUsername() {
   const router = useRouter();

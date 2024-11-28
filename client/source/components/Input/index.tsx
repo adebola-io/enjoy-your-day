@@ -1,8 +1,8 @@
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
+import type { SourceCell } from '@adbl/cells';
 import styles from './Input.module.css';
-import { SourceCell } from '@adbl/cells';
 
-type InputProps = JSX.IntrinsicElements['input'] & {
+export type InputProps = JSX.IntrinsicElements['input'] & {
   model?: SourceCell<string>;
 };
 export function Input(props: InputProps) {

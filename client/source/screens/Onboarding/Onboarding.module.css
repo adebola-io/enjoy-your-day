@@ -10,8 +10,8 @@
   padding-inline: var(--side-padding);
 
   &:has(.nameForm) {
-    height: calc(100dvh - var(--start-screen-block-padding-bottom));
-    padding-block-end: var(--start-screen-block-padding-bottom);
+    height: calc(100dvh - var(--block-padding));
+    padding-block-end: var(--block-padding);
   }
 
   &:has(.categoryForm) {
@@ -55,8 +55,8 @@
 
 .categoryForm {
   display: grid;
-  height: calc(100dvh - var(--start-screen-block-padding-bottom));
-  padding-block-start: var(--start-screen-block-padding-bottom);
+  height: calc(100dvh - var(--block-padding));
+  padding-block-start: var(--block-padding);
   transition-duration: var(--default-transition-duration);
   transition-property: opacity;
   place-items: center;
@@ -65,8 +65,8 @@
   gap: 15px;
 
   @media (display-mode: standalone) {
-    height: calc(100dvh - var(--start-screen-block-padding-bottom) * 1.2);
-    padding-block-start: calc(var(--start-screen-block-padding-bottom) * 1.2);
+    height: calc(100dvh - var(--block-padding) * 1.2);
+    padding-block-start: calc(var(--block-padding) * 1.2);
     grid-row: 1;
     grid-column: 1;
   }
@@ -77,8 +77,8 @@
   overflow-y: auto;
   align-self: start;
   width: 100%;
-  height: calc(100% - calc(var(--start-screen-block-padding-bottom) * 2));
-  padding-block-end: calc(var(--start-screen-block-padding-bottom) * 2);
+  height: calc(100% - calc(var(--block-padding) * 2));
+  padding-block-end: calc(var(--block-padding) * 2);
   grid-template-columns: calc(50% - 7.5px) calc(50% - 7.5px);
   gap: 15px;
   scrollbar-width: none;
@@ -173,7 +173,7 @@
 .categorySubmitButton {
   position: relative;
   align-self: end;
-  margin-block-end: var(--start-screen-block-padding-bottom);
+  margin-block-end: var(--block-padding);
   color: var(--space-cadet-500);
   background-color: var(--white);
   transition: opacity var(--default-transition-duration);

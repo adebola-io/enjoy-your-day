@@ -1,7 +1,7 @@
 .backButton {
   display: grid;
   width: min-content;
-  margin-top: calc(var(--start-screen-block-padding-bottom) * 0.5);
+  margin-top: calc(var(--block-padding) * 0.5);
   border: none;
   color: inherit;
   background-color: transparent;

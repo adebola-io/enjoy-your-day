@@ -1,5 +1,5 @@
 import { createWebRouter, defineRoutes } from '@adbl/unfinished/router';
-import { onboardingRoute } from '@/screens/Onboarding/Onboarding.routes';
+import { onboardingRoute } from '#/screens/Onboarding/Onboarding.routes';
 import { appRoute } from './screens/App/App.routes';
 
 export function createRouter() {

@@ -31,7 +31,7 @@ export default async function main() {
   document.querySelector('#start-screen')?.remove();
 
   render(root, router.Outlet(), window);
-  router.replace('/onboarding/enter-name').then(() => {
+  return router.replace('/onboarding/enter-name').then(() => {
     document.querySelector('html')?.removeAttribute('data-view');
     // Setting this in the configuration will interfere with the transitions
     // from the start screen.
@@ -49,7 +49,7 @@ export async function resumeApp() {
 
   render(root, router.Outlet(), window);
 
-  router.replace(window.location.pathname).then(() => {
+  return router.replace(window.location.pathname).then(() => {
     document.querySelector('html')?.removeAttribute('data-view');
     document.querySelector('#waiting-screen')?.remove();
     // Setting this in the configuration will interfere with the transitions

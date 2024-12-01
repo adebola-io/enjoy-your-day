@@ -1,3 +1,4 @@
+import { Cell } from '@adbl/cells';
 import { useLiveDate } from '@adbl/dom-cells/useDate';
 import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 
@@ -23,4 +24,15 @@ export const goalsForTheDay = useLocalStorage(
   []
 );
 export const liveDate = useLiveDate(DATE_UPDATE_INTERVAL);
+export const timeOfDay = Cell.derived(() => {
+  const hours = liveDate.value.getHours();
+  if (hours < 12) {
+    return 'morning';
+  }
+  if (hours > 18) {
+    return 'afternoon';
+  }
+  return 'evening';
+});
 export const username = useLocalStorage<string>(LOCALSTORAGE_KEYS.username, '');
+export const backButtonText = Cell.source('Back');

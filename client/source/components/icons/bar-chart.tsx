@@ -1,4 +1,4 @@
-import { IconProps } from './props';
+import type { IconProps } from './props';
 
 export function BarChartIcon(props: IconProps) {
   return (
@@ -6,8 +6,10 @@ export function BarChartIcon(props: IconProps) {
       viewBox="0 0 28 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ scale: '0.97' }}
       {...props}
     >
+      <title>Bar chart icon</title>
       <g xmlns="http://www.w3.org/2000/svg" clip-path="url(#clip0_397_791)">
         <path
           xmlns="http://www.w3.org/2000/svg"

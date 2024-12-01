@@ -10,8 +10,9 @@
   place-items: center;
   grid-template-columns: auto auto;
   gap: 10px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .backButtonIcon {
-  width: calc(var(--base-font-size) * 0.7);
+  width: calc(var(--base-font-size) * 0.65);
 }

@@ -73,14 +73,21 @@
 }
 
 .categoryList {
+  --col-count: 3;
+  --gap: 15px;
+  --free-width-area: calc(100% - (var(--gap) * (var(--col-count) - 1)));
   display: grid;
   overflow-y: auto;
   align-self: start;
   width: 100%;
   height: calc(100% - calc(var(--block-padding) * 2));
   padding-block-end: calc(var(--block-padding) * 2);
-  grid-template-columns: calc(50% - 7.5px) calc(50% - 7.5px);
-  gap: 15px;
+  grid-template-columns: repeat(
+    var(--col-count),
+    calc(var(--free-width-area) / var(--col-count))
+  );
+  grid-template-rows: repeat(13, max-content);
+  gap: var(--gap);
   scrollbar-width: none;
   grid-row: 3;
   grid-column: 1;
@@ -96,8 +103,14 @@
   border: 4.97px solid;
   border-radius: 13.39px;
   opacity: 0;
-  animation: var(--fade-in-from-bottom) var(--default-transition-duration);
+  color: var(--space-cadet-50);
+  animation: var(--pop) var(--default-transition-duration);
+  aspect-ratio: 1;
   animation-fill-mode: both;
+
+  &:has(.categoryCheckIcon) {
+    color: var(--color);
+  }
 }
 
 .categoryButton {
@@ -107,16 +120,15 @@
   border: none;
   color: inherit;
   background-color: transparent;
-  font: var(--base-bold);
-  padding-block: 5dvh;
+  font: var(--small-bold);
   place-content: center;
   place-items: center;
-  gap: 17px;
+  gap: 10px;
 }
 
 .categoryIcon {
-  width: 64px;
-  height: 64px;
+  width: 40px;
+  height: 40px;
   transition-duration: calc(var(--default-transition-duration) * 0.75);
 
   .categoryCheckIcon ~ .categoryButton > & {

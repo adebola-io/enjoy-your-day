@@ -76,3 +76,8 @@
     calc(var(--default-transition-duration) * 0.3) both;
   font: var(--sub-heading-bold);
 }
+
+.initialAnimationFinalState {
+  opacity: 1;
+  animation: none;
+}

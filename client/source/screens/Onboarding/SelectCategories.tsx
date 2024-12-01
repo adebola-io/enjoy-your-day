@@ -21,7 +21,7 @@ export default async function SelectCategories() {
   }
 
   const continueButtonIsDisabled = Cell.derived(() => {
-    return selectedCategories.value.length < 2;
+    return selectedCategories.value.length < 3;
   });
 
   const loadApp = async () => {
@@ -38,7 +38,8 @@ export default async function SelectCategories() {
     <form ref={formRef} class={styles.categoryForm}>
       <h1 class={styles.categoryFormHeading}>What are you interested in?</h1>
       <p class={styles.categoryFormSubHeading}>
-        Pick at least 2 categories for the goals you want. Let's keep going!
+        Pick <i>at least 3</i> categories for the goals you want. Let's keep
+        going!
       </p>
       <ul class={styles.categoryList}>{For(categories, CategoryCard)}</ul>
       <Button
@@ -69,8 +70,8 @@ function CategoryCard(category: Category, index: Cell<number>) {
   });
 
   const categoryStyles = {
-    color: category.theme,
-    animationDelay: `${index.value * 0.05}s`,
+    '--color': category.theme,
+    animationDelay: `${index.value * 0.05 + 0.3}s`,
   };
 
   return (

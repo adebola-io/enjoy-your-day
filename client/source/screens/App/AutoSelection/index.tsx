@@ -4,6 +4,7 @@ import { BackButton } from '#/components/BackButton';
 import styles from './AutoSelection.module.css';
 
 export default function AutoSelection() {
+  console.log('Rendering AutoSelection');
   setMetaThemeColor('#0e0e1f');
   return (
     <div class={styles.autoSelectionView}>
@@ -11,7 +12,7 @@ export default function AutoSelection() {
       <div class={styles.loaderContainer}>
         <Loader class={styles.autoSelectionLoader} />
       </div>
-      <h2 class={styles.heading}>Dreaming up the perfect day for you.</h2>
+      <h2 class={styles.heading}>Crafting the perfect day for you.</h2>
     </div>
   );
 }

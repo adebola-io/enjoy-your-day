@@ -13,6 +13,7 @@
 .item {
   position: relative;
   display: grid;
+  min-width: min(46px, 20dvw);
   color: var(--space-cadet-500);
   transition-duration: var(--default-transition-duration);
   transition-property: font;
@@ -71,7 +72,7 @@
       fill: currentColor;
       path,
       rect {
-        stroke: var(--white);
+        stroke: transparent;
       }
     }
 

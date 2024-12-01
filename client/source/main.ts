@@ -1,8 +1,7 @@
 /// <reference types="vite/client" />
-import { render } from '@adbl/unfinished/render';
 import { createRouter } from './router';
 
-function createRoot() {
+function attachListeners() {
   document.addEventListener(
     'contextmenu',
     (event) => {
@@ -14,15 +13,10 @@ function createRoot() {
     },
     { passive: false }
   );
-
-  const root = document.createElement('div');
-  root.id = 'app';
-  document.body.prepend(root);
-  return root;
 }
 
 export default async function main() {
-  const root = createRoot();
+  attachListeners();
   const router = createRouter();
   router.window = window;
   router.attachWindowListeners();
@@ -30,7 +24,7 @@ export default async function main() {
   document.querySelector('#waiting-screen')?.remove();
   document.querySelector('#start-screen')?.remove();
 
-  render(root, router.Outlet(), window);
+  document.body.prepend(router.Outlet());
   return router.replace('/onboarding/enter-name').then(() => {
     document.querySelector('html')?.removeAttribute('data-view');
     // Setting this in the configuration will interfere with the transitions
@@ -40,14 +34,13 @@ export default async function main() {
 }
 
 export async function resumeApp() {
-  const root = createRoot();
+  attachListeners();
   const router = createRouter();
   router.window = window;
   router.attachWindowListeners();
 
   document.querySelector('#start-screen')?.remove();
-
-  render(root, router.Outlet(), window);
+  document.body.prepend(router.Outlet());
 
   return router.replace(window.location.pathname).then(() => {
     document.querySelector('html')?.removeAttribute('data-view');

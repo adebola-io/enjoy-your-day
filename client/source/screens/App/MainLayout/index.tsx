@@ -7,7 +7,6 @@ import { Header } from '#/components/Header';
 import { NavigationBar } from '#/components/NavigationBar';
 
 export default async function MainLayout() {
-  console.log('Rendering MainLayout');
   const router = useRouter();
   setMetaThemeColor('white');
 
@@ -17,12 +16,10 @@ export default async function MainLayout() {
   }
 
   return (
-    <div class={styles.mainLayoutViewContainer}>
-      <div class={styles.mainLayoutView}>
-        <Header />
-        <router.Outlet />
-        <NavigationBar />
-      </div>
+    <div class={styles.mainLayoutView}>
+      <Header />
+      <router.Outlet keepAlive />
+      <NavigationBar />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import { BackButton } from '#/components/BackButton';
 import styles from './AutoSelection.module.css';
 
 export default function AutoSelection() {
-  console.log('Rendering AutoSelection');
   setMetaThemeColor('#0e0e1f');
   return (
     <div class={styles.autoSelectionView}>

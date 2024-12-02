@@ -15,7 +15,6 @@ ul {
 * {
   user-select: none;
   animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
-  touch-action: manipulation;
 }
 
 :root {
@@ -31,6 +30,7 @@ ul {
 body {
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
   overscroll-behavior-y: none;
   /* Platform-specific reset */
   -webkit-overflow-scrolling: touch;

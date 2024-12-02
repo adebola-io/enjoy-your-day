@@ -1,14 +1,14 @@
 import { defineRoute } from '@adbl/unfinished/router';
-import Home from './Home';
-import Goals from './Goals';
-import Insights from './Insights';
-import Settings from './Settings';
-import MainLayout from '.';
+import Main from '.';
+import Home from './home';
+import Goals from './goals';
+import Insights from './insights';
+import Settings from './settings';
 
-export const mainLayoutRoute = defineRoute({
+export const mainRoute = defineRoute({
   name: 'App - Main Layout',
-  path: 'user',
-  component: MainLayout,
+  path: 'main',
+  component: Main,
   transitionType: 'app-root',
   children: [
     {

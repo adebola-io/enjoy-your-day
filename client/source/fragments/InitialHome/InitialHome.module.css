@@ -63,20 +63,6 @@
   animation: var(--stagger-item-5) both;
 }
 
-.timeIcon {
-  width: 50px;
-  height: 50px;
-  animation: var(--fade-in-from-bottom) var(--default-transition-duration);
-}
-
-.timeGreeting {
-  width: 30%;
-  opacity: 0;
-  animation: var(--fade-in-from-bottom) var(--default-transition-duration)
-    calc(var(--default-transition-duration) * 0.3) both;
-  font: var(--sub-heading-bold);
-}
-
 .initialAnimationFinalState {
   opacity: 1;
   animation: none;

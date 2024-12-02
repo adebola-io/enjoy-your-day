@@ -1,8 +1,8 @@
 import { defineRoute } from '@adbl/unfinished/router';
 import Onboarding from '.';
-import EnterUsername from './EnterUsername';
-import SelectCategories from './SelectCategories';
-import Loading from './Loading';
+import EnterName from './enter-name';
+import SelectCategories from './select-categories';
+import Loading from './loading';
 
 export const onboardingRoute = defineRoute({
   name: 'Onboarding View',
@@ -12,7 +12,7 @@ export const onboardingRoute = defineRoute({
     {
       name: 'Onboarding - Enter Username',
       path: 'enter-name',
-      component: EnterUsername,
+      component: EnterName,
     },
     {
       name: 'Onboarding - Select Categories',

@@ -1,12 +1,12 @@
 import { Input } from '#/components/Input';
 import { Logo } from '#/components/Logo';
 import { Button } from '#/components/Button';
-import { useRouter } from '@adbl/unfinished/router';
 import { username } from '#/data';
-import styles from './Onboarding.module.css';
 import { vibrate } from '#/library';
+import { useRouter } from '@adbl/unfinished/router';
+import styles from './onboarding.module.css';
 
-export default function EnterUsername() {
+export default function EnterName() {
   const router = useRouter();
 
   const handleNameSubmit = (event: Event) => {

@@ -2,7 +2,7 @@
   display: grid;
   width: min(100%, 800px);
   border: none;
-  border-radius: 25px;
+  border-radius: 20px;
   color: inherit;
   font: var(--base-bold);
   text-decoration: none;

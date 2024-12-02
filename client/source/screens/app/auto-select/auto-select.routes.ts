@@ -1,9 +1,9 @@
 import { defineRoute } from '@adbl/unfinished/router';
-import AutoSelection from '.';
+import AutoSelect from '.';
 
-export const autoSelectionRoute = defineRoute({
+export const autoSelectRoute = defineRoute({
   name: 'Auto Selection for Goals',
   path: 'auto-select',
   transitionType: 'app-root',
-  component: AutoSelection,
+  component: AutoSelect,
 });

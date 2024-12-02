@@ -1,13 +1,13 @@
 import { createWebRouter, defineRoutes } from '@adbl/unfinished/router';
-import { onboardingRoute } from '#/screens/Onboarding/Onboarding.routes';
-import { appRoute } from './screens/App/App.routes';
+import { onboardingRoute } from '#/screens/onboarding/onboarding.routes';
+import { appRoute } from '#/screens/app/app.routes';
 
 export function createRouter() {
   const routes = defineRoutes([
     {
       name: 'App',
       path: '/',
-      redirect: '/app/user/home',
+      redirect: '/app/main/home',
       children: [onboardingRoute, appRoute],
     },
   ]);

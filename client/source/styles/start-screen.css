@@ -261,7 +261,7 @@
   display: grid;
   width: calc(100% - var(--side-padding) * 2);
   border: none;
-  border-radius: 25px;
+  border-radius: 20px;
   opacity: 0;
   color: var(--space-cadet-500);
   background-color: var(--white);

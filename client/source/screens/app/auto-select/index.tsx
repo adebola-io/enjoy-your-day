@@ -1,9 +1,9 @@
 import { Loader } from '#/components/Loader';
 import { setMetaThemeColor } from '#/library';
 import { BackButton } from '#/components/BackButton';
-import styles from './AutoSelection.module.css';
+import styles from './auto-select.module.css';
 
-export default function AutoSelection() {
+export default function AutoSelect() {
   setMetaThemeColor('#0e0e1f');
   return (
     <div class={styles.autoSelectionView}>

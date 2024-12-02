@@ -1,4 +1,4 @@
-import styles from './Onboarding.module.css';
+import styles from './onboarding.module.css';
 import { For, If } from '@adbl/unfinished';
 import {
   categories,

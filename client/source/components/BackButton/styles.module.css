@@ -1,7 +1,8 @@
 .backButton {
   display: grid;
-  width: min-content;
-  margin-top: calc(var(--block-padding) * 0.5);
+  width: 40px;
+  height: 40px;
+  margin-top: calc(var(--block-padding) * 0.2);
   border: none;
   color: inherit;
   background-color: transparent;
@@ -15,4 +16,6 @@
 
 .backButtonIcon {
   width: calc(var(--base-font-size) * 0.65);
+  stroke: currentColor;
+  stroke-width: 3px;
 }

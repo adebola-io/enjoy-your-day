@@ -1,0 +1,27 @@
+@import '../../../styles/animations.css';
+
+.mainLayoutView {
+  --starting-fade-position-y: 2.5dvh;
+  --starting-scale: 1 0.99;
+  display: grid;
+  width: 100%;
+  height: 100dvh;
+  color: var(--space-cadet-500);
+  background-color: var(--white);
+  grid-template-rows: auto 1fr auto;
+}
+
+.stretchIntoView {
+  --starting-scale: 1 0.9;
+  opacity: 0;
+  animation: fade-stretch-from-bottom
+    calc(var(--default-transition-duration) * 1.5) both;
+}
+
+.rootViewTransition {
+  /* 
+    The view transition is added after the first load,
+    so that the initial view transition is not visible.
+   */
+  view-transition-name: app-root-view;
+}

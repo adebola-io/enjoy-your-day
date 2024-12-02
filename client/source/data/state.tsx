@@ -35,4 +35,3 @@ export const timeOfDay = Cell.derived(() => {
   return 'evening';
 });
 export const username = useLocalStorage<string>(LOCALSTORAGE_KEYS.username, '');
-export const backButtonText = Cell.source('Back');

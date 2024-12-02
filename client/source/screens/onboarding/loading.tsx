@@ -1,5 +1,5 @@
 import { Loader } from '#/components/Loader';
-import styles from './Onboarding.module.css';
+import styles from './onboarding.module.css';
 import { appLoadingState } from '#/data';
 import { useRouter } from '@adbl/unfinished/router';
 import { setMetaThemeColor } from '#/library';
@@ -13,7 +13,7 @@ export default function Loading() {
 
     setTimeout(() => {
       appLoadingState.value = 'done';
-      router.replace('/app/user/home');
+      router.replace('/app/main/home');
     }, 2000);
   };
 

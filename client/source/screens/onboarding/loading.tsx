@@ -1,8 +1,8 @@
 import { Loader } from '#/components/Loader';
-import styles from './onboarding.module.css';
-import { appLoadingState } from '#/data';
+import { appLoadingState, ONBOARDING_LOADING_DELAY } from '#/data';
 import { useRouter } from '@adbl/unfinished/router';
 import { setMetaThemeColor } from '#/library';
+import styles from './onboarding.module.css';
 
 export default function Loading() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function Loading() {
     setTimeout(() => {
       appLoadingState.value = 'done';
       router.replace('/app/main/home');
-    }, 2000);
+    }, ONBOARDING_LOADING_DELAY);
   };
 
   const changeThemeColor = (event: Event) => {

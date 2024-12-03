@@ -27,10 +27,10 @@ export default async function SelectCategories() {
   const loadApp = async () => {
     if (!formRef.value) return;
     formRef.value.style.opacity = '0';
-
-    await Promise.all(
-      formRef.value.getAnimations().map((animation) => animation.finished)
-    );
+    const animationPromises = formRef.value
+      .getAnimations()
+      .map((animation) => animation.finished);
+    await Promise.all(animationPromises);
     await router.replace('/onboarding/loading');
   };
 

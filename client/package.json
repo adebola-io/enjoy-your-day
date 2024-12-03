@@ -11,7 +11,8 @@
   "dependencies": {
     "@adbl/cells": "^0.0.10",
     "@adbl/dom-cells": "^0.0.4",
-    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@9d4e539"
+    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@750c79b",
+    "dexie": "^4.0.10"
   },
   "devDependencies": {
     "typescript": "^5.7.2",

@@ -5,5 +5,5 @@ export function setMetaThemeColor(color: string) {
 }
 
 export function vibrate() {
-  navigator.vibrate?.(10);
+  navigator.vibrate?.(5);
 }

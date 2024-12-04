@@ -1,4 +1,4 @@
-.container {
+.noGoalsContainer {
   --stagger-item-1: var(--fade-in-from-bottom)
     var(--default-transition-duration);
   --stagger-item-2: var(--fade-in-from-bottom)
@@ -18,14 +18,11 @@
   overflow-y: auto;
   width: calc(100% - var(--side-padding) * 2);
   height: 100%;
-  padding-inline: var(--side-padding);
-  gap: min(15px, 2dvh);
-}
-
-.noGoalsContainer {
   text-align: center;
   place-items: center;
   place-content: center;
+  padding-inline: var(--side-padding);
+  gap: min(15px, 2dvh);
 }
 
 .calendarIcon {

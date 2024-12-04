@@ -1,99 +1,70 @@
-import { Dexie, type EntityTable } from 'dexie';
-type Nullable<T> = T | null;
+export type Nullable<T> = T | null;
+export type Id<T extends Entity> = T['uuid'];
 
-export interface ThemeColor {
-  id: number;
-  value: string;
+export interface Entity {
+  uuid: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export interface IconName {
-  id: number;
-  value: string;
-}
-
-export interface Goal {
-  id: number;
+export interface Goal extends Entity {
   title: string;
   instruction: string;
   description: string;
-  themeColor: ThemeColor;
-  iconName: IconName;
-  categories: Category[];
+  themeColor: string;
+  iconName: string;
+  categories: Array<Id<Category>>;
   isRecommendable: boolean;
-  involvementLevel: 'low' | 'medium' | 'high';
+  involvementLevel: number;
+  weekDayAffinity: Nullable<number>;
   repeatRate: 'daily' | 'weekly' | 'monthly' | 'yearly';
   creator: System | User;
-  updated: Date;
 }
 
-export interface Category {
-  id: number;
+export interface Category extends Entity {
   name: string;
-  iconName: IconName;
-  themeColor: ThemeColor;
-  goals: Goal[];
-  creator: System | User;
-  updated: Date;
+  iconName: string;
+  themeColor: string;
+  goals: Array<Id<Goal>>;
+  creator: Id<System | User>;
 }
 
-export interface Journey {
-  id: number;
+export interface Journey extends Entity {
   description: string;
-  iconName: IconName;
-  themeColors: ThemeColor[];
-  goals: Goal[];
-  updated: Date;
-  creator: System | User;
+  iconName: string;
+  themeColors: string[];
+  goals: Array<Id<Goal>>;
+  creator: Id<System | User>;
 }
 
-export interface GoalSet {
-  id: number;
+export interface GoalState extends Entity {
+  goal: Id<Goal>;
+  state: 'forfeited' | 'completed' | 'scheduled';
+}
+
+export interface GoalSet extends Entity {
   date: Date;
-  user: User;
-  goals: Goal[];
-  forfeitedGoals: Goal[];
-  completedGoals: Goal[];
+  user: Id<User>;
+  goals: Array<Id<GoalState>>;
 }
 
-export interface Badge {
-  id: number;
+export interface Badge extends Entity {
   name: string;
   description: string;
   color: string;
-  updated: Date;
 }
 
-export interface System {
-  id: number;
-  uuid: string;
+export interface System extends Entity {
   isAdministrator: true;
-  updated: Date;
 }
 
-export interface User {
-  id: number;
-  uuid: string;
+export interface User extends Entity {
+  name: string;
   image: Nullable<string>;
   email: Nullable<string>;
   isAdministrator: false;
-  name: string;
-  preferredCategories: Category[];
-  favoriteGoals: Goal[];
-  updated: Date;
-  goalsSets: GoalSet[];
-  badges: Badge[];
+  preferredCategories: Array<Id<Category>>;
+  favoriteGoals: Array<Id<Goal>>;
+  goalsSets: Array<Id<GoalSet>>;
+  badges: Array<Id<Badge>>;
 }
-
-export type Database = Dexie & {
-  goals: EntityTable<Goal, 'id'>;
-  categories: EntityTable<Category, 'id'>;
-  journeys: EntityTable<Journey, 'id'>;
-  users: EntityTable<User, 'id'>;
-  badges: EntityTable<Badge, 'id'>;
-  goalSets: EntityTable<GoalSet, 'id'>;
-};
-
-export const database = new Dexie('enjoyYourDayDB') as Database;
-database.version(1).stores({
-  goals: '++id, instruction, title, category',
-});

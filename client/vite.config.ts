@@ -9,6 +9,9 @@ export default defineConfig({
       '#': path.resolve(__dirname, './source'),
     },
   },
+  optimizeDeps: {
+    exclude: ['@electric-sql/pglite'],
+  },
   plugins: [
     hmrPlugin(),
     VitePWA({

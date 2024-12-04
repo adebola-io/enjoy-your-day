@@ -3,14 +3,14 @@ import { CalendarIcon } from '#/components/icons/calendar';
 import { SparkleIcon } from '#/components/icons/sparkle';
 import styles from './InitialHome.module.css';
 
-export function InitialHome() {
+export default function InitialHome() {
   return (
-    <div class={[styles.container, styles.noGoalsContainer]}>
+    <div class={styles.noGoalsContainer}>
       <CalendarIcon class={styles.calendarIcon} />
-      <h2 class={styles.noGoalsHeading}>What are today's goals?</h2>
+      <h2 class={styles.noGoalsHeading}>What will we do today?</h2>
       <p class={styles.noGoalsText}>
-        Set the tone for a productive day. Choose goals that inspire you, and
-        let's make today interesting!
+        Set the tone for an interesting day. Choose goals that inspire you, and
+        let's make today memorable!
       </p>
       <Button
         href="/app/auto-select"

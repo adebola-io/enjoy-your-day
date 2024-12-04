@@ -1,5 +1,8 @@
 /// <reference types="vite/client" />
 import { createRouter } from './router';
+import { db } from './workers';
+
+console.log(await db.query("SELECT 'Hello World!' AS message;"));
 
 function attachListeners() {
   document.addEventListener(

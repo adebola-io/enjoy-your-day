@@ -1,6 +1,6 @@
 import { goalsForTheDay } from '#/data';
-import { HomeView } from '#/fragments/HomeView';
-import { InitialHome } from '#/fragments/InitialHome';
+import HomeView from '#/fragments/HomeView';
+import InitialHome from '#/fragments/InitialHome';
 import { Cell } from '@adbl/cells';
 import { If } from '@adbl/unfinished';
 

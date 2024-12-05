@@ -45,8 +45,6 @@ export async function initializeDatabase() {
     applyMigrations(handle, migrations);
   }
   databaseInitializeResolver?.();
-
-  console.log('All migrations have been applied.');
 }
 
 export async function createUser(name: string) {

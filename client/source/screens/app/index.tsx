@@ -1,4 +1,4 @@
-import { appLoadingState } from '#/data';
+import { appLoadingState } from '#/data/state';
 import { useRouter } from '@adbl/unfinished/router';
 
 export default async function App() {

@@ -1,13 +1,11 @@
-import { Loader } from '#/components/Loader';
+import { Loader } from '#/components/loader';
 import { setMetaThemeColor } from '#/library';
-import { BackButton } from '#/components/BackButton';
-import { finalTexts, headings } from '#/data';
+import { BackButton } from '#/components/back-button';
+import { finalTexts, headings } from '#/data/headings';
 import { Cell } from '@adbl/cells';
 import styles from './auto-select.module.css';
 
 export default function AutoSelect() {
-  setMetaThemeColor('#0e0e1f');
-
   const headingSet =
     headings[Math.floor(Math.random() * headings.length)].concat(finalTexts);
 
@@ -19,8 +17,14 @@ export default function AutoSelect() {
     headingIndex.value++;
   };
 
+  const setMetaColor = (event: Event) => {
+    const target = event.target as HTMLElement;
+    if (target.tagName !== 'DIV') return;
+    setMetaThemeColor('#0e0e1f');
+  };
+
   return (
-    <div class={styles.autoSelectionView}>
+    <div onAnimationStart={setMetaColor} class={styles.autoSelectionView}>
       <BackButton class={styles.backButton} />
       <Loader class={styles.autoSelectionLoader} />
       <h2 class={styles.heading} onAnimationIteration={changeHeading}>

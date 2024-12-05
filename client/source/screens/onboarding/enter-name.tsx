@@ -1,7 +1,7 @@
-import { Input } from '#/components/Input';
-import { Logo } from '#/components/Logo';
-import { Button } from '#/components/Button';
-import { username } from '#/data';
+import { Input } from '#/components/input';
+import { Logo } from '#/components/logo';
+import { Button } from '#/components/button';
+import { username } from '#/data/state';
 import { vibrate } from '#/library';
 import { useRouter } from '@adbl/unfinished/router';
 import styles from './onboarding.module.css';

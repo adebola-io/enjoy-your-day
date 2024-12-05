@@ -1,10 +1,10 @@
-import { goalsForTheDay } from '#/data';
-import HomeView from '#/fragments/HomeView';
-import InitialHome from '#/fragments/InitialHome';
+import { goalsForTheDay } from '#/data/state';
+import HomeView from '#/fragments/home-view';
+import InitialHome from '#/fragments/home-start-state';
 import { Cell } from '@adbl/cells';
 import { If } from '@adbl/unfinished';
 
-export default function Home() {
+export default async function Home() {
   const hasAssignedGoals = Cell.derived(() => {
     return goalsForTheDay.value.length > 0;
   });

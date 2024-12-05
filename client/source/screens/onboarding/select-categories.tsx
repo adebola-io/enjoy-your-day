@@ -1,12 +1,8 @@
 import styles from './onboarding.module.css';
 import { For, If } from '@adbl/unfinished';
-import {
-  categories,
-  type Category,
-  selectedCategories,
-  username,
-} from '#/data';
-import { Button } from '#/components/Button';
+import { selectedCategories, username } from '#/data/state';
+import { categories, Category } from '#/data';
+import { Button } from '#/components/button';
 import { Cell } from '@adbl/cells';
 import { CheckIcon } from '#/components/icons/check';
 import { useRouter } from '@adbl/unfinished/router';

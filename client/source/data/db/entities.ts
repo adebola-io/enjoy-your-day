@@ -3,36 +3,36 @@ export type Id<T extends Entity> = T['uuid'];
 
 export interface Entity {
   uuid: string;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface Goal extends Entity {
   title: string;
   instruction: string;
   description: string;
-  themeColor: string;
-  iconName: string;
+  theme_color: string;
+  icon_name: string;
   categories: Array<Id<Category>>;
-  isRecommendable: boolean;
-  involvementLevel: number;
-  weekDayAffinity: Nullable<number>;
-  repeatRate: 'daily' | 'weekly' | 'monthly' | 'yearly';
+  is_recommendable: boolean;
+  involvement_level: number;
+  week_day_affinity: Nullable<number>;
+  repeat_rate: 'daily' | 'weekly' | 'monthly' | 'yearly';
   creator: System | User;
 }
 
 export interface Category extends Entity {
   name: string;
-  iconName: string;
-  themeColor: string;
+  icon_name: string;
+  theme_color: string;
   goals: Array<Id<Goal>>;
   creator: Id<System | User>;
 }
 
 export interface Journey extends Entity {
   description: string;
-  iconName: string;
-  themeColors: string[];
+  icon_name: string;
+  theme_colors: string[];
   goals: Array<Id<Goal>>;
   creator: Id<System | User>;
 }
@@ -55,16 +55,27 @@ export interface Badge extends Entity {
 }
 
 export interface System extends Entity {
-  isAdministrator: true;
+  is_administrator: true;
 }
 
 export interface User extends Entity {
   name: string;
   image: Nullable<string>;
   email: Nullable<string>;
-  isAdministrator: false;
-  preferredCategories: Array<Id<Category>>;
-  favoriteGoals: Array<Id<Goal>>;
-  goalsSets: Array<Id<GoalSet>>;
+  is_administrator: false;
+  preferred_categories: Array<Id<Category>>;
+  favorite_goals: Array<Id<Goal>>;
+  goals_sets: Array<Id<GoalSet>>;
   badges: Array<Id<Badge>>;
+}
+
+export interface MigrationObject {
+  name: string;
+  up: string;
+  down: string;
+}
+
+export interface Migration {
+  name: string;
+  date_applied: Date;
 }

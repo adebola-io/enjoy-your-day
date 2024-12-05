@@ -1,5 +1,5 @@
-import { BackButton } from '#/components/BackButton';
-import { appLoadingState } from '#/data';
+import { BackButton } from '#/components/back-button';
+import { appLoadingState } from '#/data/state';
 import { useRouter } from '@adbl/unfinished/router';
 import styles from './onboarding.module.css';
 

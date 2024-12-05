@@ -1,7 +1,7 @@
-import { Button } from '#/components/Button';
+import { Button } from '#/components/button';
 import { CalendarIcon } from '#/components/icons/calendar';
 import { SparkleIcon } from '#/components/icons/sparkle';
-import styles from './InitialHome.module.css';
+import styles from './home-start-state.module.css';
 
 export default function InitialHome() {
   return (

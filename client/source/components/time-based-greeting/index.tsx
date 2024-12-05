@@ -1,4 +1,4 @@
-import { timeOfDay } from '#/data';
+import { timeOfDay } from '#/data/state';
 import { Cell } from '@adbl/cells';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 

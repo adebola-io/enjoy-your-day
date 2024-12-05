@@ -1,5 +1,7 @@
-import { Loader } from '#/components/Loader';
-import { appLoadingState, ONBOARDING_LOADING_DELAY } from '#/data';
+import { Loader } from '#/components/loader';
+import { appLoadingState, username } from '#/data/state';
+import { createUser } from '#/data/db';
+import { ONBOARDING_LOADING_DELAY } from '#/data/constants';
 import { useRouter } from '@adbl/unfinished/router';
 import { setMetaThemeColor } from '#/library';
 import styles from './onboarding.module.css';
@@ -7,14 +9,15 @@ import styles from './onboarding.module.css';
 export default function Loading() {
   const router = useRouter();
 
-  const goToApp = (event: Event) => {
+  const goToApp = async (event: Event) => {
     const target = event.target as HTMLElement;
     if (target.tagName !== 'DIV') return;
 
-    setTimeout(() => {
-      appLoadingState.value = 'done';
-      router.replace('/app/main/home');
-    }, ONBOARDING_LOADING_DELAY);
+    await Promise.all([
+      createUser(username.value),
+      new Promise<void>(onboardingPromiseCallback),
+    ]);
+    router.replace('/app/main/home');
   };
 
   const changeThemeColor = (event: Event) => {
@@ -32,4 +35,11 @@ export default function Loading() {
       <Loader class={styles.onboardingViewFinalLoader} />
     </div>
   );
+}
+
+function onboardingPromiseCallback(resolve: () => void) {
+  setTimeout(() => {
+    appLoadingState.value = 'done';
+    resolve();
+  }, ONBOARDING_LOADING_DELAY);
 }

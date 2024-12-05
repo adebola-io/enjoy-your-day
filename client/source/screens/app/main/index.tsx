@@ -1,5 +1,5 @@
-import { Header } from '#/components/Header';
-import { NavigationBar } from '#/components/NavigationBar';
+import { Header } from '#/components/header';
+import { NavigationBar } from '#/components/navigation-bar';
 import { setMetaThemeColor } from '#/library';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';

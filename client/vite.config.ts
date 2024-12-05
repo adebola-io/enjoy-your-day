@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 import { defineConfig } from 'vite';
 import path from 'node:path';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -12,12 +14,18 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['@electric-sql/pglite'],
   },
+  worker: {
+    format: 'es',
+  },
   plugins: [
     hmrPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: {
         enabled: true,
+      },
+      workbox: {
+        maximumFileSizeToCacheInBytes: 10097152,
       },
       manifest: {
         name: 'Enjoy Your Day',

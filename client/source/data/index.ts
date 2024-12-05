@@ -13,11 +13,6 @@ import { StackIcon } from '#/components/icons/stack';
 import { WellnessIcon } from '#/components/icons/wellness';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
-export * from './state';
-export * from './constants';
-export * from './database';
-export * from './headings';
-
 export type Category = {
   name: string;
   icon: (props: IconProps) => JSX.Template;

@@ -1,34 +1,29 @@
 /// <reference types="vite/client" />
+import { initializeDatabase } from '#/data/db';
 import { createRouter } from './router';
-import { db } from './workers';
 
-console.log(await db.query("SELECT 'Hello World!' AS message;"));
-
-function attachListeners() {
-  document.addEventListener(
-    'contextmenu',
-    (event) => {
-      const target = event.target as Element;
-      if (target.tagName === 'A') {
-        // Prevents long press opening context menu popup on mobile.
-        event.preventDefault();
-      }
-    },
-    { passive: false }
-  );
+function disableContextMenu() {
+  const listener = (event: Event) => {
+    const target = event.target as Element;
+    if (target.tagName === 'A') {
+      // Prevents long press opening context menu popup on mobile.
+      event.preventDefault();
+    }
+  };
+  document.addEventListener('contextmenu', listener, { passive: false });
 }
 
 export default async function main() {
-  attachListeners();
+  disableContextMenu();
+  initializeDatabase();
   const router = createRouter();
   router.window = window;
   router.attachWindowListeners();
 
-  document.querySelector('#waiting-screen')?.remove();
-  document.querySelector('#start-screen')?.remove();
-
   document.body.prepend(router.Outlet());
   return router.replace('/onboarding/enter-name').then(() => {
+    document.querySelector('#waiting-screen')?.remove();
+    document.querySelector('#start-screen')?.remove();
     document.querySelector('html')?.removeAttribute('data-view');
     // Setting this in the configuration will interfere with the transitions
     // from the start screen.
@@ -37,17 +32,17 @@ export default async function main() {
 }
 
 export async function resumeApp() {
-  attachListeners();
+  disableContextMenu();
+  initializeDatabase();
   const router = createRouter();
   router.window = window;
   router.attachWindowListeners();
 
-  document.querySelector('#start-screen')?.remove();
   document.body.prepend(router.Outlet());
-
   return router.replace(window.location.pathname).then(() => {
-    document.querySelector('html')?.removeAttribute('data-view');
     document.querySelector('#waiting-screen')?.remove();
+    document.querySelector('#start-screen')?.remove();
+    document.querySelector('html')?.removeAttribute('data-view');
     // Setting this in the configuration will interfere with the transitions
     // from the html waiting screen.
     router.useViewTransitions = true;

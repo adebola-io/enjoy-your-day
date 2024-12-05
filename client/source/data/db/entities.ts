@@ -10,7 +10,7 @@ export interface Entity {
 export interface Goal extends Entity {
   title: string;
   instruction: string;
-  description: string;
+  info: string;
   theme_color: string;
   icon_name: string;
   categories: Array<Id<Category>>;

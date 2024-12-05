@@ -10,6 +10,9 @@ const pgLiteWorkerURL = import.meta.resolve('./pglite.worker.ts');
 export const handle = new PGliteWorker(
   new Worker(pgLiteWorkerURL, { type: 'module' })
 );
+if (import.meta.env.DEV) {
+  Reflect.set(window, '__databaseHandle', handle);
+}
 
 let databaseInitializeResolver: null | (() => void) = null;
 export const databaseInitializing = new Promise<void>((resolve) => {

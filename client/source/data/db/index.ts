@@ -8,6 +8,7 @@ import {
 let handle: import('@electric-sql/pglite/worker').PGliteWorker;
 let databaseInitializeResolver: null | (() => void) = null;
 
+const pgLiteWorkerURL = import.meta.resolve('./pglite.worker.ts');
 /** Outer anchor to wait for database initialization. */
 export const databaseInitializing = new Promise<void>((resolve) => {
   databaseInitializeResolver = resolve;
@@ -25,7 +26,6 @@ export async function initializeDatabase() {
   // The PGliteWorker is imported dynamically to avoid bundling it with the client.
   // and making it slower to load.
   const pgLiteModule = await import('@electric-sql/pglite/worker');
-  const pgLiteWorkerURL = import.meta.resolve('./pglite.worker.ts');
   handle = new pgLiteModule.PGliteWorker(
     new Worker(pgLiteWorkerURL, { type: 'module' })
   );

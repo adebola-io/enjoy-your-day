@@ -6,7 +6,7 @@
     <h1 align="center">Enjoy Your Day</h1>
 </p>
 
-_Enjoy Your Day_ is a simple, intuitive, offline-supported web application that generates itineraries to make each day a little more interesting.
+_Enjoy Your Day_ is a simple offline-supported web app that generates goals to make each day a little more interesting.
 
 ## 🚀 Deployment
 

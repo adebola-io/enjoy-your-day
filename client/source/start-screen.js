@@ -28,13 +28,7 @@ async function skipStartScreen() {
   } catch {}
 
   const module = await import('./main');
-
-  const resumeApp = module.resumeApp;
-  if ('startViewTransition' in document) {
-    document.startViewTransition(resumeApp);
-  } else {
-    resumeApp();
-  }
+  await module.resumeApp();
 }
 
 function start() {

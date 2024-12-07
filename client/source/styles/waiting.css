@@ -7,10 +7,43 @@
   top: 0;
   left: 0;
   display: grid;
+  overflow: hidden;
   width: 100%;
   height: 100%;
+  color: var(--white);
+  background-color: var(--space-cadet-500);
+  pointer-events: none;
   place-items: center;
   place-content: center;
+}
+
+#waiting-screen.loading .waiting-screen__icon {
+  display: none;
+}
+
+#waiting-screen.loading .waiting-screen__circle {
+  --first-animation-duration: calc(var(--default-transition-duration) * 1.25);
+  --second-animation-duration: var(--default-transition-duration);
+  --starting-scale: 2;
+  --ending-scale: 30;
+  display: block;
+  width: 20%;
+  height: auto;
+  border-radius: 50%;
+  opacity: 0;
+  background-color: currentColor;
+  content: '';
+  animation: condense-in var(--first-animation-duration),
+    expand-forever var(--second-animation-duration) linear
+      var(--first-animation-duration);
+  animation-fill-mode: both;
+  aspect-ratio: 1;
+  grid-row: 1;
+  grid-column: 1;
+}
+
+body:has(#waiting-screen) > div[data-x-outlet] {
+  display: none;
 }
 
 #waiting-screen .waiting-screen__icon {
@@ -26,7 +59,7 @@
 #waiting-screen .waiting-screen__loader {
   width: min(186px, 100%, 25dvh);
   animation: pop var(--default-transition-duration),
-    spin calc(var(--default-transition-duration) * 3)
+    spin calc(var(--default-transition-duration) * 2)
       var(--default-transition-duration) linear infinite;
   grid-row: 1;
   grid-column: 1;

@@ -37,12 +37,20 @@ export async function resumeApp() {
   const router = createRouter();
   router.window = window;
   router.attachWindowListeners();
-
   document.body.prepend(router.Outlet());
-  return router.replace(window.location.pathname).then(() => {
-    document.querySelector('#waiting-screen')?.remove();
-    document.querySelector('#start-screen')?.remove();
-    document.querySelector('html')?.removeAttribute('data-view');
+
+  const waitingScreen = document.querySelector('#waiting-screen');
+  const waitingScreenCircle = document.querySelector('.waiting-screen__circle');
+  const startScreen = document.querySelector('#start-screen');
+  waitingScreen?.classList.add('loading');
+  if (!waitingScreenCircle) return;
+
+  router.replace(window.location.pathname).then(async () => {
+    await Promise.all(
+      waitingScreenCircle.getAnimations().map((animation) => animation.finished)
+    );
+    waitingScreen?.remove();
+    startScreen?.remove();
     // Setting this in the configuration will interfere with the transitions
     // from the html waiting screen.
     router.useViewTransitions = true;

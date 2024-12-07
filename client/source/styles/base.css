@@ -13,6 +13,7 @@ ul {
 }
 
 * {
+  -webkit-user-select: none;
   user-select: none;
   animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
 }
@@ -30,6 +31,7 @@ ul {
 body {
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   touch-action: manipulation;
   overscroll-behavior-y: none;
   /* Platform-specific reset */

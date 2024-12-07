@@ -29,7 +29,7 @@ export default defineConfig({
       },
       manifest: {
         name: 'Enjoy Your Day',
-        short_name: 'Enjoy Your Day',
+        short_name: 'EYD',
         start_url: '/',
         theme_color: '#1b1b3a',
         description:

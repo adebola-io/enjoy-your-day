@@ -156,19 +156,6 @@
   /* Shadows */
   --shadow-outline: 0px 0px 1px 1px #1b1b3a;
   --shadow: 0px 2px 4px #00000040;
-
-  /* Animation Names */
-  /* I cant figure out how to use global animation names inside of CSS modules, so I'm using them as variables */
-  --twinkle: twinkle;
-  --blink: blink;
-  --shake: shake;
-  --bump-up: bump-up;
-  --fade-in: fade-in;
-  --fade-in-from-bottom: fade-in-from-bottom;
-  --fade-stretch-from-bottom: fade-stretch-from-bottom;
-  --pop: pop;
-  --loader-spin: loader-spin;
-  --loader-fill: loader-fill;
 }
 
 @media (prefers-reduced-motion) {

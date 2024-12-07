@@ -28,7 +28,7 @@ async function skipStartScreen() {
   } catch {}
 
   const module = await import('./main');
-  await module.resumeApp();
+  return module.resumeApp();
 }
 
 function start() {

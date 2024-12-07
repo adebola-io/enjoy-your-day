@@ -1,4 +1,5 @@
 import type { Migration } from './entities';
+import pgLiteWorkerURL from './pglite.worker?worker&url';
 import {
   migrations,
   createMigrationsTableQuery,
@@ -8,7 +9,6 @@ import {
 let handle: import('@electric-sql/pglite/worker').PGliteWorker;
 let databaseInitializeResolver: null | (() => void) = null;
 
-const pgLiteWorkerURL = import.meta.resolve('./pglite.worker.ts');
 /** Outer anchor to wait for database initialization. */
 export const databaseInitializing = new Promise<void>((resolve) => {
   databaseInitializeResolver = resolve;

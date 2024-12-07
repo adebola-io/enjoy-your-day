@@ -26,30 +26,317 @@
   animation: none;
 }
 
+:root {
+  /* Animation Names */
+  /* I cant figure out how to use global animation names inside of CSS modules, so I'm using them as variables */
+  --twinkle: twinkle;
+  --blink: blink;
+  --shake: shake;
+  --bump-up: bump-up;
+  --fade-in: fade-in;
+  --fade-out: fade-out;
+  --fade-in-from-bottom: fade-in-from-bottom;
+  --fade-stretch-from-bottom: fade-stretch-from-bottom;
+  --pop: pop;
+  --loader-spin: loader-spin;
+  --loader-fill: loader-fill;
+
+  /* View Transitions */
+  --app-root-exit-forwards: slide-out-to-left;
+  --app-root-enter-forwards: slide-in-from-right;
+  --app-root-enter-backwards: slide-in-from-left;
+  --app-root-exit-backwards: slide-out-to-right;
+  --app-root-view-transition-duration: calc(
+    var(--default-transition-duration) * 1.5
+  );
+
+  @media (orientation: landscape) {
+    --app-root-exit-forwards: condense-out;
+    --app-root-enter-forwards: expand-in;
+    --app-root-enter-backwards: condense-in;
+    --app-root-exit-backwards: shrink-out;
+  }
+}
+
+@keyframes shrink-out {
+  to {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+@keyframes condense-in {
+  from {
+    opacity: 0;
+    scale: var(--starting-scale, 1.4);
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes expand-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+@keyframes expand-forever {
+  to {
+    scale: var(--ending-scale, 200);
+  }
+}
+
+@keyframes condense-out {
+  to {
+    opacity: 0;
+    scale: 1.4;
+  }
+}
+
 :active-view-transition-type(app-root) {
   &:active-view-transition-type(forwards) {
     &::view-transition-old(app-root-view) {
-      animation-name: slide-out-to-left;
+      animation-name: var(--app-root-exit-forwards);
     }
 
     &::view-transition-new(app-root-view) {
-      animation-name: slide-in-from-right;
+      animation-name: var(--app-root-enter-forwards);
     }
   }
 
   &:active-view-transition-type(backwards) {
     &::view-transition-old(app-root-view) {
-      animation-name: slide-out-to-right;
+      animation-name: var(--app-root-exit-backwards);
     }
 
     &::view-transition-new(app-root-view) {
-      animation-name: slide-in-from-left;
+      animation-name: var(--app-root-enter-backwards);
     }
   }
 
   &::view-transition-old(app-root-view),
   &::view-transition-new(app-root-view) {
-    animation-duration: calc(var(--default-transition-duration) * 1.5);
+    animation-duration: var(--app-root-view-transition-duration);
     animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+}
+
+@keyframes slide-out-to-left {
+  to {
+    filter: brightness(0.5);
+    translate: -50%;
+    scale: 0.7 1;
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    translate: 100%;
+  }
+}
+
+@keyframes slide-out-to-right {
+  to {
+    translate: 100%;
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    filter: brightness(0.5);
+    translate: -50%;
+    scale: 0.7 1;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  1% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0% {
+    rotate: 0deg;
+  }
+  5% {
+    rotate: -10deg;
+  }
+  10% {
+    rotate: 10deg;
+  }
+  15% {
+    rotate: -5deg;
+  }
+  20% {
+    rotate: 5deg;
+  }
+  25% {
+    rotate: 0deg;
+  }
+}
+
+@keyframes bump-up {
+  0% {
+    translate: 0;
+  }
+  70% {
+    translate: 5% -5%;
+  }
+  100% {
+    translate: 0;
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--starting-fade-position-y, 100%));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-stretch-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--starting-fade-position-y, 100%));
+    scale: var(--starting-scale, 1 0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    scale: var(--ending-scale, 1 1);
+  }
+}
+
+.hourglass-loader {
+  --base-animation-duration: 3s;
+  width: 1.2rem;
+  animation: loader-spin infinite;
+  animation-duration: var(--base-animation-duration);
+
+  .button__loader__bottom {
+    animation: loader-fill infinite;
+    animation-duration: var(--base-animation-duration);
+    fill: currentColor;
+  }
+
+  .button__loader__top {
+    animation: loader-fill infinite;
+    animation-duration: var(--base-animation-duration);
+    animation-delay: calc(var(--base-animation-duration) / 2);
+    fill: currentColor;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-spin {
+  0% {
+    rotate: 0deg;
+  }
+
+  50% {
+    rotate: 180deg;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
+
+@keyframes loader-fill {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    scale: var(--starting-scale, 0.5);
+  }
+  to {
+    opacity: 1;
+    scale: var(--ending-scale, 1);
+  }
+}
+
+@keyframes slide-inline-enter {
+  from {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+}
+
+@keyframes slide-inline-exit {
+  to {
+    opacity: 0;
+    transform: translateX(-30%);
+    filter: brightness(0.9);
   }
 }

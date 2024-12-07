@@ -8,6 +8,7 @@ export function WellnessIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
+      <title xmlns="http://www.w3.org/2000/svg">Lotus</title>
       <g xmlns="http://www.w3.org/2000/svg" clip-path="url(#clip0_152_2085)">
         <path
           xmlns="http://www.w3.org/2000/svg"

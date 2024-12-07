@@ -11,7 +11,10 @@
   "dependencies": {
     "@adbl/cells": "^0.0.10",
     "@adbl/dom-cells": "^0.0.4",
-    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@0545217"
+    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@750c79b",
+    "@electric-sql/pglite": "^0.2.14",
+    "@types/node": "^22.10.1",
+    "temporal-polyfill": "^0.2.5"
   },
   "devDependencies": {
     "typescript": "^5.7.2",

@@ -1,20 +1,38 @@
-import { IconProps } from './props';
+import type { IconProps } from './props';
 
 export function StackIcon(props: IconProps) {
   return (
     <svg
-      viewBox="0 0 33 28"
+      viewBox="0 0 31 27"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
+      <title>Stack</title>
+      <rect
+        xmlns="http://www.w3.org/2000/svg"
+        width="17.6441"
+        height="17.0472"
+        x="-0.3"
+        y="2.5"
+        rx="4"
+        transform="matrix(0.88729 -0.461211 0.88729 0.461211 0.21875 8.13763) scale(0.9)"
+        stroke="currentColor"
+        stroke-width="2.8"
+      />
       <path
         xmlns="http://www.w3.org/2000/svg"
-        d="M1.66667 14.4755L15.6351 20.9225C16.2896 21.2246 17.0437 21.2246 17.6982 20.9225L31.6667 14.4755M1.6667 19.6679L15.6352 26.1149C16.2897 26.4169 17.0437 26.4169 17.6982 26.1149L31.6667 19.6679M29.2454 6.93497L17.1824 1.36743C16.8552 1.21639 16.4782 1.21639 16.1509 1.36743L4.08789 6.93497C3.13456 7.37497 3.13456 8.72994 4.0879 9.16995L16.1509 14.7375C16.4782 14.8885 16.8552 14.8885 17.1824 14.7375L29.2454 9.16994C30.1988 8.72994 30.1988 7.37497 29.2454 6.93497Z"
+        d="M2.10522 19.2476L15.3641 25.4952L29.6429 19.2476"
         stroke="currentColor"
-        stroke-width="2.46154"
+        stroke-width="2.2"
         stroke-linecap="round"
-        stroke-linejoin="round"
+      />
+      <path
+        xmlns="http://www.w3.org/2000/svg"
+        d="M2.10522 14L15.3641 20.2476L29.6429 14"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
       />
     </svg>
   );

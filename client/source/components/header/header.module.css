@@ -1,0 +1,11 @@
+.container {
+  display: grid;
+  width: calc(100% - var(--side-padding) * 2);
+  padding-block-start: calc(var(--block-padding) * 0.5);
+  place-content: end;
+  padding-inline: var(--side-padding);
+}
+
+.sidebarIcon {
+  height: 50px;
+}

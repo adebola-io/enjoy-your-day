@@ -1,0 +1,215 @@
+.onboardingView {
+  --fade-to-white-delay: 2s;
+  --fade-to-white-duration: calc(var(--default-transition-duration) * 2);
+  display: grid;
+  color: var(--white);
+  background-color: var(--space-cadet-500);
+  transition-duration: calc(var(--default-transition-duration) * 2);
+  transition-property: background-color, color;
+  grid-template-rows: 1fr;
+  padding-inline: var(--side-padding);
+
+  &:has(.nameForm) {
+    height: calc(100dvh - var(--block-padding));
+    padding-block-end: var(--block-padding);
+  }
+
+  &:has(.categoryForm) {
+    overflow: hidden;
+    height: 100dvh;
+  }
+
+  &:has(.onboardingViewFinalLoaderContainer) {
+    padding-inline: 0;
+  }
+}
+
+@keyframes fade-to-white {
+  to {
+    color: var(--space-cadet-500);
+    background-color: var(--white);
+  }
+}
+
+.nameForm {
+  display: grid;
+  height: 100%;
+  max-height: 100%;
+  place-items: center;
+  grid-template-rows: 1fr auto auto auto 1fr;
+  gap: 15px;
+}
+
+.backButton:is(.backButton) {
+  display: none;
+
+  .onboardingView:has(.categoryForm) & {
+    @media (display-mode: standalone) {
+      display: grid;
+      align-self: start;
+      grid-row: 1;
+      grid-column: 1;
+    }
+  }
+}
+
+.categoryForm {
+  display: grid;
+  height: calc(100dvh - var(--block-padding));
+  padding-block-start: var(--block-padding);
+  transition-duration: var(--default-transition-duration);
+  transition-property: opacity;
+  place-items: center;
+  place-content: center;
+  grid-template-rows: auto auto 1fr;
+  gap: 15px;
+
+  @media (display-mode: standalone) {
+    height: calc(100dvh - var(--block-padding) * 1.2);
+    padding-block-start: calc(var(--block-padding) * 1.2);
+    grid-row: 1;
+    grid-column: 1;
+  }
+}
+
+.categoryList {
+  --col-count: 3;
+  --gap: 15px;
+  --free-width-area: calc(100% - (var(--gap) * (var(--col-count) - 1)));
+  display: grid;
+  overflow-y: auto;
+  align-self: start;
+  width: 100%;
+  height: calc(100% - calc(var(--block-padding) * 2));
+  padding-block-end: calc(var(--block-padding) * 2);
+  grid-template-columns: repeat(
+    var(--col-count),
+    calc(var(--free-width-area) / var(--col-count))
+  );
+  grid-template-rows: repeat(13, max-content);
+  gap: var(--gap);
+  scrollbar-width: none;
+  grid-row: 3;
+  grid-column: 1;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.category {
+  position: relative;
+  display: grid;
+  border: 4.97px solid;
+  border-radius: 13.39px;
+  opacity: 0;
+  color: var(--space-cadet-50);
+  animation: var(--pop) var(--default-transition-duration);
+  aspect-ratio: 1;
+  animation-fill-mode: both;
+
+  &:has(.categoryCheckIcon) {
+    color: var(--color);
+  }
+}
+
+.categoryButton {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: inherit;
+  background-color: transparent;
+  font: var(--small-bold);
+  place-content: center;
+  place-items: center;
+  gap: 10px;
+}
+
+.categoryIcon {
+  width: 40px;
+  height: 40px;
+  transition-duration: calc(var(--default-transition-duration) * 0.75);
+
+  .categoryCheckIcon ~ .categoryButton > & {
+    scale: 1.2;
+  }
+}
+
+.categoryCheckIcon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 17%;
+  animation: var(--pop) var(--default-transition-duration);
+  aspect-ratio: 1;
+}
+
+.nameFormLogo {
+  align-self: end;
+  width: min(25%, 145px);
+  color: var(--white);
+  view-transition-name: start-logo;
+}
+
+.nameFormHeading,
+.categoryFormHeading {
+  opacity: 0;
+  animation: var(--fade-in-from-bottom) var(--default-transition-duration)
+    calc(var(--default-transition-duration) * 0.75);
+  text-align: center;
+  font: var(--title-bold);
+  animation-fill-mode: both;
+  view-transition-name: onboarding-heading;
+}
+
+.nameFormSubHeading,
+.categoryFormSubHeading {
+  opacity: 0;
+  animation: var(--fade-in-from-bottom) var(--default-transition-duration)
+    calc(var(--default-transition-duration) * 0.5);
+  text-align: center;
+  animation-fill-mode: both;
+}
+
+.nameFormInput {
+  view-transition-name: start-button;
+}
+
+.nameSubmitButton {
+  align-self: end;
+  color: var(--space-cadet-500);
+  background-color: var(--white);
+}
+
+.categorySubmitButton {
+  position: relative;
+  align-self: end;
+  margin-block-end: var(--block-padding);
+  color: var(--space-cadet-500);
+  background-color: var(--white);
+  transition: opacity var(--default-transition-duration);
+  grid-row: 3;
+  grid-column: 1;
+
+  &:disabled {
+    opacity: 0;
+  }
+}
+
+.onboardingViewFinalLoaderContainer {
+  display: grid;
+  height: 100dvh;
+  animation: fade-to-white var(--fade-to-white-duration)
+    var(--fade-to-white-delay) both;
+  place-items: center;
+  place-content: center;
+  place-items: center;
+}
+
+.onboardingViewFinalLoader {
+  width: var(--sub-heading-font-size);
+  opacity: 0;
+  animation: var(--fade-in) var(--default-transition-duration) both,
+    var(--loader-spin) var(--base-animation-duration) infinite;
+}

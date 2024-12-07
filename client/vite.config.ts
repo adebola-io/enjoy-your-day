@@ -1,14 +1,21 @@
+/// <reference types="node" />
+
 import { defineConfig } from 'vite';
 import path from 'node:path';
 import { VitePWA } from 'vite-plugin-pwa';
-
 import { hmrPlugin } from '@adbl/unfinished/render';
 
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './source'),
+      '#': path.resolve(__dirname, './source'),
     },
+  },
+  optimizeDeps: {
+    exclude: ['@electric-sql/pglite'],
+  },
+  worker: {
+    format: 'es',
   },
   plugins: [
     hmrPlugin(),
@@ -17,9 +24,12 @@ export default defineConfig({
       devOptions: {
         enabled: true,
       },
+      workbox: {
+        maximumFileSizeToCacheInBytes: 10097152,
+      },
       manifest: {
         name: 'Enjoy Your Day',
-        short_name: 'Enjoy Your Day',
+        short_name: 'EYD',
         start_url: '/',
         theme_color: '#1b1b3a',
         description:

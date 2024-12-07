@@ -1,37 +1,30 @@
 /// <reference types="vite/client" />
-import { render } from '@adbl/unfinished/render';
+import { initializeDatabase } from '#/data/db';
 import { createRouter } from './router';
 
-function createRoot() {
-  document.addEventListener(
-    'contextmenu',
-    (event) => {
-      const target = event.target as Element;
-      if (target.tagName === 'A') {
-        // Prevents long press opening context menu popup on mobile.
-        event.preventDefault();
-      }
-    },
-    { passive: false }
-  );
-
-  const root = document.createElement('div');
-  root.id = 'app';
-  document.body.prepend(root);
-  return root;
+function disableContextMenu() {
+  const listener = (event: Event) => {
+    const target = event.target as Element;
+    if (target.tagName === 'A') {
+      // Prevents long press opening context menu popup on mobile.
+      event.preventDefault();
+    }
+  };
+  document.addEventListener('contextmenu', listener, { passive: false });
 }
 
 export default async function main() {
-  const root = createRoot();
+  disableContextMenu();
+  initializeDatabase();
+
   const router = createRouter();
   router.window = window;
   router.attachWindowListeners();
+  document.body.prepend(router.Outlet());
 
-  document.querySelector('#waiting-screen')?.remove();
-  document.querySelector('#start-screen')?.remove();
-
-  render(root, router.Outlet(), window);
-  router.replace('/onboarding/enter-name').then(() => {
+  return router.replace('/onboarding/enter-name').then(() => {
+    document.querySelector('#waiting-screen')?.remove();
+    document.querySelector('#start-screen')?.remove();
     document.querySelector('html')?.removeAttribute('data-view');
     // Setting this in the configuration will interfere with the transitions
     // from the start screen.
@@ -40,20 +33,27 @@ export default async function main() {
 }
 
 export async function resumeApp() {
-  const root = createRoot();
+  disableContextMenu();
+  initializeDatabase();
+
   const router = createRouter();
   router.window = window;
   router.attachWindowListeners();
+  document.body.prepend(router.Outlet());
 
-  document.querySelector('#start-screen')?.remove();
+  const waitingScreen = document.querySelector('#waiting-screen');
+  const circle = document.querySelector('.waiting-screen__circle');
+  const startScreen = document.querySelector('#start-screen');
+  waitingScreen?.classList.add('loading');
+  if (!circle) return;
 
-  render(root, router.Outlet(), window);
-
-  router.replace(window.location.pathname).then(() => {
-    document.querySelector('html')?.removeAttribute('data-view');
-    document.querySelector('#waiting-screen')?.remove();
-    // Setting this in the configuration will interfere with the transitions
-    // from the html waiting screen.
+  return router.replace(window.location.pathname).then(async () => {
+    const animationPromises = circle
+      .getAnimations()
+      .map((animation) => animation.finished);
+    await Promise.all(animationPromises);
+    waitingScreen?.remove();
+    startScreen?.remove();
     router.useViewTransitions = true;
   });
 }

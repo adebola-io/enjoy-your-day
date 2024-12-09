@@ -1,16 +1,20 @@
 .mainLayoutView {
   --starting-fade-position-y: 2.5dvh;
-  --starting-scale: 1 0.99;
+  --starting-scale: 1 0.9;
   display: grid;
   width: 100%;
   height: 100dvh;
   color: var(--space-cadet-500);
   background-color: var(--white);
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
+
+  @media (orientation: landscape) {
+    grid-template-rows: unset;
+    grid-template-columns: auto 1fr;
+  }
 }
 
 .stretchIntoView {
-  --starting-scale: 1 0.9;
   opacity: 0;
   animation: var(--fade-stretch-from-bottom)
     calc(var(--default-transition-duration) * 1.5) both;

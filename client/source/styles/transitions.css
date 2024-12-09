@@ -55,6 +55,9 @@
     --app-root-enter-forwards: expand-in;
     --app-root-enter-backwards: condense-in;
     --app-root-exit-backwards: shrink-out;
+    --app-root-view-transition-duration: calc(
+      var(--default-transition-duration) * 1.2
+    );
   }
 }
 
@@ -71,7 +74,7 @@
     scale: var(--starting-scale, 1.4);
   }
   to {
-    opacity: 1;
+    opacity: var(--ending-opacity, 1);
     scale: 1;
   }
 }
@@ -147,8 +150,8 @@
 @keyframes slide-in-from-left {
   from {
     filter: brightness(0.5);
-    translate: -50%;
-    scale: 0.7 1;
+    translate: -90%;
+    scale: 0.8 1;
   }
 }
 

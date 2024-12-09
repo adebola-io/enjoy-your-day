@@ -1,3 +1,8 @@
+body {
+  transition-duration: var(--app-root-view-transition-duration);
+  transition-property: background;
+}
+
 .autoSelectionView {
   display: grid;
   width: calc(100% * var(--side-padding));
@@ -25,15 +30,7 @@
     background: transparent;
 
     body:has(&) {
-      background: linear-gradient(
-        to bottom right,
-        var(--space-cadet-900),
-        var(--space-cadet-800),
-        var(--space-cadet-700),
-        var(--space-cadet-600),
-        var(--space-cadet-500),
-        var(--space-cadet-450)
-      );
+      background: var(--space-cadet-900);
     }
   }
 }

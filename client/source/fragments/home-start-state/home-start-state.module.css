@@ -39,6 +39,10 @@
 .noGoalsText {
   opacity: 0;
   animation: var(--stagger-item-3) both;
+
+  @media (orientation: landscape) {
+    max-width: 33rem;
+  }
 }
 
 .autoSelectLink {

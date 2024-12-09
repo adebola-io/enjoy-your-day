@@ -11,6 +11,7 @@ worker({
     return new PGlite({
       dataDir: 'idb://enjoy-your-day-db',
       extensions: { uuid_ossp },
+      relaxedDurability: true,
     });
   },
 });

@@ -1,6 +1,7 @@
 .button {
+  --max-button-width: 800px;
   display: grid;
-  width: min(100%, 800px);
+  width: min(100%, var(--max-button-width));
   border: none;
   border-radius: 20px;
   color: inherit;
@@ -31,5 +32,9 @@
   &[data-variant='secondary'] {
     color: var(--white);
     background-color: var(--space-cadet-500);
+  }
+
+  @media (orientation: landscape) {
+    --max-button-width: 400px;
   }
 }

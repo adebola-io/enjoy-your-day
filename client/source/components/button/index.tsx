@@ -11,7 +11,7 @@ export type ButtonProps = JSX.IntrinsicElements['button'] &
     variant?: JSX.ValueOrCell<ButtonVariant>;
   };
 
-export function Button(props: ButtonProps) {
+export function Button(props: ButtonProps): JSX.Template {
   const router = useRouter();
   const {
     vibrateOnClick = false,

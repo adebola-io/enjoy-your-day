@@ -1,13 +1,10 @@
 export type Nullable<T> = T | null;
-export type Id<T extends Entity> = T['uuid'];
+export type Id<T extends Entity> = string;
 
-export interface Entity {
-  uuid: string;
-  created_at: Date;
-  updated_at: Date;
-}
+export interface Entity {}
 
 export interface Goal extends Entity {
+  goal_uuid: string;
   title: string;
   instruction: string;
   info: string;
@@ -18,7 +15,7 @@ export interface Goal extends Entity {
   involvement_level: number;
   week_day_affinity: Nullable<number>;
   repeat_rate: 'daily' | 'weekly' | 'monthly' | 'yearly';
-  creator: System | User;
+  creator: User;
 }
 
 export interface Category extends Entity {
@@ -26,7 +23,7 @@ export interface Category extends Entity {
   icon_name: string;
   theme_color: string;
   goals: Array<Id<Goal>>;
-  creator: Id<System | User>;
+  creator: Id<User>;
 }
 
 export interface Journey extends Entity {
@@ -34,11 +31,11 @@ export interface Journey extends Entity {
   icon_name: string;
   theme_colors: string[];
   goals: Array<Id<Goal>>;
-  creator: Id<System | User>;
+  creator: Id<User>;
 }
 
 export interface GoalState extends Entity {
-  goal: Id<Goal>;
+  goal: Goal;
   state: 'forfeited' | 'completed' | 'scheduled';
 }
 
@@ -54,15 +51,12 @@ export interface Badge extends Entity {
   color: string;
 }
 
-export interface System extends Entity {
-  is_administrator: true;
-}
-
 export interface User extends Entity {
+  user_uuid: string;
   name: string;
   image: Nullable<string>;
   email: Nullable<string>;
-  is_administrator: false;
+  is_administrator: boolean;
   preferred_categories: Array<Id<Category>>;
   favorite_goals: Array<Id<Goal>>;
   goals_sets: Array<Id<GoalSet>>;

@@ -3,6 +3,7 @@ import _001_initial_down from './_001_initial/down.sql?raw';
 
 import type { MigrationObject } from '../entities';
 import type { PGliteWorker } from '@electric-sql/pglite/worker';
+import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 
 export async function applyMigrations(
   db: PGliteWorker,
@@ -30,3 +31,35 @@ export const migrations: MigrationObject[] = [
     down: _001_initial_down,
   },
 ];
+
+export const lastDatabaseMigration = useLocalStorage<string>(
+  'last-db-migration',
+  '___'
+);
+
+export async function runMigrations(dbHandle: PGliteWorker) {
+  let pendingMigrations: MigrationObject[] = [];
+  if (lastDatabaseMigration.value !== '___') {
+    const lastMigrationIndex = migrations.findIndex(
+      (m) => m.name === lastDatabaseMigration.value
+    );
+    if (lastMigrationIndex === -1) {
+      const message = `Migration ${lastDatabaseMigration.value} not found in migrations array. Database may have been corrupted.`;
+      throw new Error(message);
+    }
+    pendingMigrations = migrations.slice(lastMigrationIndex + 1);
+  } else {
+    await dbHandle.exec(createMigrationsTableQuery);
+    pendingMigrations = migrations;
+  }
+
+  applyMigrations(dbHandle, pendingMigrations);
+  const finalMigration = pendingMigrations.at(-1);
+  if (finalMigration) {
+    lastDatabaseMigration.value = finalMigration.name;
+  }
+  console.log(
+    'Migrations successful. The last migration was',
+    `"${lastDatabaseMigration.value}".`
+  );
+}

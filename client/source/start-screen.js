@@ -270,4 +270,4 @@ function start() {
   });
 }
 
-start();
+window.addEventListener('DOMContentLoaded', start, { once: true });

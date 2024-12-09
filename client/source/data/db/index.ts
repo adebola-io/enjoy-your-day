@@ -1,12 +1,9 @@
-import type { Migration } from './entities';
+import type { PGliteWorker } from '@electric-sql/pglite/worker';
 import pgLiteWorkerURL from './pglite.worker?worker&url';
-import {
-  migrations,
-  createMigrationsTableQuery,
-  applyMigrations,
-} from './migrations';
+import { runMigrations } from './migrations';
+import { updateGoals } from './seeders';
 
-let handle: import('@electric-sql/pglite/worker').PGliteWorker;
+let dbHandle: PGliteWorker;
 let databaseInitializeResolver: null | (() => void) = null;
 
 /** Outer anchor to wait for database initialization. */
@@ -16,52 +13,35 @@ export const databaseInitializing = new Promise<void>((resolve) => {
 
 export async function getDatabaseHandle() {
   await databaseInitializing;
-  if (!handle) {
+  if (!dbHandle) {
     throw new Error('Database not initialized. Something went horribly wrong.');
   }
-  return handle;
+  return dbHandle;
 }
 
 export async function initializeDatabase() {
+  console.groupCollapsed(
+    '%cPGlite',
+    'background-color: #c3aa02; color: white; font-weight: bold; padding: 3px 6px; border-radius: 5px',
+    'initializing database'
+  );
+
   // The PGliteWorker is imported dynamically to avoid bundling it with the client.
   // and making it slower to load.
   const pgLiteModule = await import('@electric-sql/pglite/worker');
-  handle = new pgLiteModule.PGliteWorker(
+  dbHandle = new pgLiteModule.PGliteWorker(
     new Worker(pgLiteWorkerURL, { type: 'module' })
   );
 
   if (import.meta.env.DEV) {
-    Reflect.set(window, '__databaseHandle', handle);
+    Reflect.set(window, '__databaseHandle', dbHandle);
   }
 
-  // ------------
-  // MIGRATIONS.
-  // ------------
-  await handle.exec(createMigrationsTableQuery);
-  const lastMigrationAppliedQuery = await handle.query(
-    'SELECT name FROM migrations ORDER BY date_applied DESC LIMIT 1'
-  );
+  await runMigrations(dbHandle);
+  await updateGoals(dbHandle);
 
-  const lastMigration = lastMigrationAppliedQuery.rows[0] as
-    | Migration
-    | undefined;
-
-  if (lastMigration) {
-    const lastMigrationIndex = migrations.findIndex(
-      (m) => m.name === lastMigration.name
-    );
-    if (lastMigrationIndex === -1) {
-      const message = `Migration ${lastMigration.name} not found in migrations array. Database may have been corrupted.`;
-      throw new Error(message);
-    }
-    const pendingMigrations = migrations.slice(lastMigrationIndex + 1);
-    applyMigrations(handle, pendingMigrations);
-  } else {
-    applyMigrations(handle, migrations);
-  }
   databaseInitializeResolver?.();
-
-  console.groupCollapsed('%c[pglite] Migrations applied.', 'color: #00ff00');
+  console.groupEnd();
 }
 
 export async function createUser(name: string) {

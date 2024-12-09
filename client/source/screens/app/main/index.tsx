@@ -1,4 +1,3 @@
-import { Header } from '#/components/header';
 import { NavigationBar } from '#/components/navigation-bar';
 import { setMetaThemeColor } from '#/library';
 import { Cell } from '@adbl/cells';
@@ -17,7 +16,6 @@ export default async function Main() {
 
   return (
     <div class={[styles.mainLayoutView, animationClass]}>
-      <Header />
       <router.Outlet keepAlive onAnimationStart={addViewTransition} />
       <NavigationBar />
     </div>

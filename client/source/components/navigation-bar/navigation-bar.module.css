@@ -6,8 +6,23 @@
   border-top: 3px solid var(--space-cadet-500);
   padding-block: 1rem max(env(safe-area-inset-bottom), 1rem);
   grid-template-columns: repeat(4, auto);
-  place-content: space-around;
+  scrollbar-width: none;
   padding-inline: var(--side-padding);
+
+  @media (orientation: landscape) {
+    --content-height: min(65dvh, 500px);
+    overflow-y: auto;
+    order: -1;
+    width: 5rem;
+    height: var(--content-height);
+    padding-block-end: calc(100dvh - var(--content-height));
+    margin-top: 0;
+    border-inline-end: 3px solid var(--space-cadet-500);
+    border-top: 0;
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: 1fr;
+    padding-inline: 0;
+  }
 }
 
 .item {
@@ -45,6 +60,12 @@
     pointer-events: none;
     aspect-ratio: 1;
     scale: 2.2;
+  }
+
+  @media (orientation: landscape) {
+    &::before {
+      display: none;
+    }
   }
 }
 

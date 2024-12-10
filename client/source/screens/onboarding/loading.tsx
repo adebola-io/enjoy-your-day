@@ -14,7 +14,9 @@ export default function Loading() {
     if (target.tagName !== 'DIV') return;
 
     await Promise.all([
-      createUser(username.value),
+      createUser(username.value).catch((error) => {
+        window.alert(JSON.stringify(error.message || error));
+      }),
       new Promise<void>(onboardingPromiseCallback),
     ]);
     router.replace('/app/main/home');

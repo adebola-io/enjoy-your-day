@@ -1,6 +1,10 @@
-import type { JSX } from '@adbl/unfinished/jsx-runtime';
+import type { IconProps } from '../icons/props';
 
-export function Logo(props: JSX.IntrinsicElements['svg']) {
+interface LogoProps extends IconProps {
+  thick?: boolean;
+}
+
+export function Logo(props: LogoProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +23,7 @@ export function Logo(props: JSX.IntrinsicElements['svg']) {
         xmlns="http://www.w3.org/2000/svg"
         d="M110.322 69.6249L111.275 76.4077M69.6249 75.3445L70.5782 82.1273M67.4984 158.645L135.327 149.112C150.311 147.007 160.751 133.152 158.645 118.168L149.112 50.3396C147.007 35.3554 133.152 24.9155 118.168 27.0213L50.3396 36.554C35.3554 38.6599 24.9154 52.5142 27.0213 67.4984L36.554 135.327C38.6599 150.311 52.5142 160.751 67.4984 158.645Z"
         stroke="currentColor"
-        strokeWidth={10}
+        strokeWidth={props.thick ? 14 : 10}
         stroke-linecap="round"
       />
     </svg>

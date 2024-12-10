@@ -1,6 +1,6 @@
 .input {
   width: min(100%, 800px);
-  padding-inline-start: 10px;
+  padding-inline-start: var(--input-inline-padding);
   border: 4px solid var(--white);
   border-radius: 20px;
   color: inherit;

@@ -4,9 +4,10 @@ import styles from './input.module.css';
 
 export type InputProps = JSX.IntrinsicElements['input'] & {
   model?: SourceCell<string>;
+  icon?: JSX.Element;
 };
 export function Input(props: InputProps) {
-  const { model, ...rest } = props;
+  const { model, icon, ...rest } = props;
   const input = (
     <input
       {...rest}

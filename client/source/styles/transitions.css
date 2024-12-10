@@ -35,6 +35,7 @@
   --bump-up: bump-up;
   --fade-in: fade-in;
   --fade-out: fade-out;
+  --fade-in-from-top: fade-in-from-top;
   --fade-in-from-bottom: fade-in-from-bottom;
   --fade-stretch-from-bottom: fade-stretch-from-bottom;
   --pop: pop;
@@ -230,6 +231,17 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes fade-in-from-top {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--starting-fade-position-y, -100%));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

@@ -18,3 +18,5 @@ export function CaretRightIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default CaretRightIcon;

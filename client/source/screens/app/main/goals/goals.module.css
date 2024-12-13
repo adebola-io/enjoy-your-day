@@ -32,7 +32,7 @@
   top: 0px;
   height: calc(var(--title-font-size) * 1.5);
   opacity: 0;
-  animation: var(--fade-in-from-bottom) var(--default-transition-duration);
+  animation: var(--fade-in-from-bottom) var(--default-duration);
   animation-fill-mode: both;
   margin-inline: var(--side-padding);
   grid-row: 1;
@@ -62,7 +62,7 @@
   opacity: 0;
   color: var(--space-cadet-500);
   background-color: inherit;
-  animation: var(--fade-in-from-bottom) var(--default-transition-duration);
+  animation: var(--fade-in-from-bottom) var(--default-duration);
   grid-row: 2;
   grid-column: 1;
   place-items: center;

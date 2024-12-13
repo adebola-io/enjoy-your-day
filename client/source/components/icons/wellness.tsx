@@ -32,3 +32,5 @@ export function WellnessIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default WellnessIcon;

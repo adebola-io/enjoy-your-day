@@ -8,6 +8,7 @@ export function SunIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
+      <title>Sun</title>
       <path
         xmlns="http://www.w3.org/2000/svg"
         d="M25 33.6274C29.7648 33.6274 33.6274 29.7648 33.6274 25C33.6274 20.2353 29.7648 16.3727 25 16.3727C20.2353 16.3727 16.3727 20.2353 16.3727 25C16.3727 29.7648 20.2353 33.6274 25 33.6274Z"
@@ -45,3 +46,5 @@ export function SunIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default SunIcon;

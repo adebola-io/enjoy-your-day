@@ -37,3 +37,5 @@ export function StackIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default StackIcon;

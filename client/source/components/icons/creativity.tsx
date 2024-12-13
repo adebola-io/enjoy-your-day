@@ -1,4 +1,4 @@
-import { IconProps } from './props';
+import type { IconProps } from './props';
 
 export function CreativityIcon(props: IconProps) {
   return (
@@ -8,6 +8,7 @@ export function CreativityIcon(props: IconProps) {
       fill="none"
       {...props}
     >
+      <title>Creativity Icon</title>
       <path
         xmlns="http://www.w3.org/2000/svg"
         d="M21.1665 17.8881C21.1665 20.0282 19.4317 21.7631 17.2915 21.7631C15.1514 21.7631 13.4165 20.0282 13.4165 17.8881C13.4165 15.748 15.1514 14.0131 17.2915 14.0131C19.4317 14.0131 21.1665 15.748 21.1665 17.8881Z"
@@ -38,3 +39,5 @@ export function CreativityIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default CreativityIcon;

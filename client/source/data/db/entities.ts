@@ -1,5 +1,5 @@
 export type Nullable<T> = T | null;
-export type Id<T extends Entity> = string;
+export type Id<T extends Entity> = T & string;
 
 export interface Entity {}
 

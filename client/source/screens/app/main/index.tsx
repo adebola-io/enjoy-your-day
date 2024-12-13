@@ -2,20 +2,20 @@ import { NavigationBar } from '#/components/navigation-bar';
 import { setMetaThemeColor } from '#/library';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
-import styles from './main.module.css';
+import type { JSX } from '@adbl/unfinished/jsx-runtime';
+import classes from './main.module.css';
 
-export default async function Main() {
+export default function Main(): JSX.Template {
   const router = useRouter();
   setMetaThemeColor('white');
 
-  const animationClass = Cell.derived(() => {
-    return initialLoadComplete.value
-      ? styles.rootViewTransition
-      : styles.stretchIntoView;
-  });
-
   return (
-    <div class={[styles.mainLayoutView, animationClass]}>
+    <div
+      class={[
+        classes.mainLayoutView,
+        { [classes.rootViewTransition]: initialLoadComplete },
+      ]}
+    >
       <router.Outlet keepAlive onAnimationStart={addViewTransition} />
       <NavigationBar />
     </div>

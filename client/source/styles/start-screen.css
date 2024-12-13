@@ -163,7 +163,7 @@
 
 #start-screen .start-screen__illustration,
 #start-screen .start-screen__illustration * {
-  transition-duration: var(--default-transition-duration);
+  transition-duration: var(--default-duration);
 }
 
 #start-screen .start-screen__slides {
@@ -241,7 +241,7 @@
   border-radius: 50%;
   background-color: var(--white);
   content: '';
-  transition-duration: var(--default-transition-duration);
+  transition-duration: var(--default-duration);
   aspect-ratio: 1;
   grid-column: 1;
   grid-row: 1;

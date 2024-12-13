@@ -2,7 +2,7 @@
 ::view-transition-old(*),
 ::view-transition-new(*),
 ::view-transition-group(*) {
-  animation-duration: calc(var(--default-transition-duration) * 2);
+  animation-duration: calc(var(--default-duration) * 2);
   animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
 }
 
@@ -14,7 +14,7 @@
 
 /* Starting Logo Transition from index.html to app. */
 ::view-transition-old(start-logo) {
-  transition-duration: var(--default-transition-duration);
+  transition-duration: var(--default-duration);
   translate: -5% -6%;
   scale: 0.9;
 }
@@ -37,6 +37,7 @@
   --fade-out: fade-out;
   --fade-in-from-top: fade-in-from-top;
   --fade-in-from-bottom: fade-in-from-bottom;
+  --fade-in-from-bottom-stretch: fade-in-from-bottom-stretch;
   --fade-stretch-from-bottom: fade-stretch-from-bottom;
   --pop: pop;
   --loader-spin: loader-spin;
@@ -47,18 +48,14 @@
   --app-root-enter-forwards: slide-in-from-right;
   --app-root-enter-backwards: slide-in-from-left;
   --app-root-exit-backwards: slide-out-to-right;
-  --app-root-view-transition-duration: calc(
-    var(--default-transition-duration) * 1.5
-  );
+  --app-root-view-transition-duration: calc(var(--default-duration) * 1.5);
 
   @media (orientation: landscape) {
     --app-root-exit-forwards: condense-out;
     --app-root-enter-forwards: expand-in;
     --app-root-enter-backwards: condense-in;
     --app-root-exit-backwards: shrink-out;
-    --app-root-view-transition-duration: calc(
-      var(--default-transition-duration) * 1.2
-    );
+    --app-root-view-transition-duration: calc(var(--default-duration) * 1.2);
   }
 }
 

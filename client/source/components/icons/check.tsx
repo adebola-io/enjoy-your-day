@@ -1,4 +1,4 @@
-import { IconProps } from './props';
+import type { IconProps } from './props';
 
 export function CheckIcon(props: IconProps) {
   return (
@@ -8,6 +8,7 @@ export function CheckIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
+      <title>Check Icon</title>
       <rect
         xmlns="http://www.w3.org/2000/svg"
         x="1.5"
@@ -30,3 +31,5 @@ export function CheckIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default CheckIcon;

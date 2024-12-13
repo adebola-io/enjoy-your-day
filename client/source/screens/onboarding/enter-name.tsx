@@ -4,7 +4,7 @@ import { Button } from '#/components/button';
 import { username } from '#/data/state';
 import { vibrate } from '#/library';
 import { useRouter } from '@adbl/unfinished/router';
-import styles from './onboarding.module.css';
+import classes from './onboarding.module.css';
 
 export default function EnterName() {
   const router = useRouter();
@@ -16,14 +16,14 @@ export default function EnterName() {
   };
 
   return (
-    <form class={styles.nameForm} onSubmit={handleNameSubmit}>
-      <Logo class={styles.nameFormLogo} />
-      <h2 class={styles.nameFormHeading}>What's your name?</h2>
-      <p class={styles.nameFormSubHeading}>
+    <form class={classes.nameForm} onSubmit={handleNameSubmit}>
+      <Logo class={classes.nameFormLogo} />
+      <h2 class={classes.nameFormHeading}>What's your name?</h2>
+      <p class={classes.nameFormSubHeading}>
         What should I call you to make this more personal?
       </p>
-      <Input required class={styles.nameFormInput} model={username} />
-      <Button type="submit" class={styles.nameSubmitButton} vibrateOnClick>
+      <Input required class={classes.nameFormInput} model={username} />
+      <Button type="submit" class={classes.nameSubmitButton} vibrateOnClick>
         Continue
       </Button>
     </form>

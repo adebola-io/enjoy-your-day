@@ -2,7 +2,7 @@ import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { type JsxElement, setAttributeFromProps } from '@adbl/unfinished';
 import { useRouter, type RouterLinkProps } from '@adbl/unfinished/router';
 import { vibrate } from '#/library';
-import styles from './Button.module.css';
+import classes from './Button.module.css';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'neutral';
 export type ButtonProps = JSX.IntrinsicElements['button'] &
@@ -27,7 +27,7 @@ export function Button(props: ButtonProps): JSX.Template {
         {...rest}
         href={props.href}
         data-variant={variant}
-        class={[styles.button, props.class]}
+        class={[classes.button, props.class]}
       >
         {props.children}
       </router.Link>
@@ -36,7 +36,7 @@ export function Button(props: ButtonProps): JSX.Template {
     button = (
       <button
         {...rest}
-        class={[styles.button, props.class]}
+        class={[classes.button, props.class]}
         data-variant={variant}
         type={props.type ?? 'button'}
       >

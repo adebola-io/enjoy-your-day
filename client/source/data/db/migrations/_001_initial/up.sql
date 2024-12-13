@@ -127,12 +127,3 @@ CREATE TABLE
         CONSTRAINT fk_user_favorite_goals_user FOREIGN KEY (user_uuid) REFERENCES users (user_uuid) ON DELETE CASCADE ON UPDATE CASCADE,
         CONSTRAINT fk_user_favorite_goals_goal FOREIGN KEY (goal_uuid) REFERENCES goals (goal_uuid) ON DELETE CASCADE ON UPDATE CASCADE
     );
-
--- --------------------
--- SETUP
--- --------------------
--- Creates the system user for goal creation.
-INSERT INTO
-    users (name, is_admin)
-VALUES
-    ('system', true);

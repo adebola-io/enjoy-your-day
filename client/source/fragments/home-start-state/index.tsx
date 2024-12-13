@@ -1,29 +1,29 @@
 import { Button } from '#/components/button';
 import { CalendarIcon } from '#/components/icons/calendar';
 import { SparkleIcon } from '#/components/icons/sparkle';
-import styles from './home-start-state.module.css';
+import classes from './home-start-state.module.css';
 
 export default function InitialHome() {
   return (
-    <div class={styles.noGoalsContainer}>
-      <CalendarIcon class={styles.calendarIcon} />
-      <h2 class={styles.noGoalsHeading}>What will we do today?</h2>
-      <p class={styles.noGoalsText}>
+    <div class={classes.noGoalsContainer}>
+      <CalendarIcon class={classes.calendarIcon} />
+      <h2 class={classes.noGoalsHeading}>What will we do today?</h2>
+      <p class={classes.noGoalsText}>
         Set the tone for an interesting day. Choose goals that inspire you, and
         let's make today memorable!
       </p>
       <Button
         href="/app/auto-select"
-        class={styles.autoSelectLink}
+        class={classes.autoSelectLink}
         variant="secondary"
         vibrateOnClick
       >
-        <SparkleIcon class={styles.sparkleIcon} />
+        <SparkleIcon class={classes.sparkleIcon} />
         Select for me
       </Button>
       <Button
         href="/app/main/goals"
-        class={styles.goalsPageLink}
+        class={classes.goalsPageLink}
         variant="primary"
       >
         Go to Goals

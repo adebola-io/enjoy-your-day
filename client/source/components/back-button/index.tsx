@@ -2,7 +2,7 @@ import { CaretRightIcon } from '#/components/icons/caret-right';
 import { vibrate } from '#/library';
 import { useRouter } from '@adbl/unfinished/router';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
-import styles from './back-button.module.css';
+import classes from './back-button.module.css';
 
 const goBack = () => {
   const router = useRouter();
@@ -16,9 +16,9 @@ export function BackButton(props: JSX.IntrinsicElements['button']) {
       type="button"
       onClick={goBack}
       {...props}
-      class={[styles.backButton, props.class]}
+      class={[classes.backButton, props.class]}
     >
-      <CaretRightIcon class={styles.backButtonIcon} />
+      <CaretRightIcon class={classes.backButtonIcon} />
     </button>
   );
 }

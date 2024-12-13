@@ -1,18 +1,13 @@
 .noGoalsContainer {
-  --stagger-item-1: var(--fade-in-from-bottom)
-    var(--default-transition-duration);
-  --stagger-item-2: var(--fade-in-from-bottom)
-    var(--default-transition-duration)
-    calc(var(--default-transition-duration) * 0.5);
-  --stagger-item-3: var(--fade-in-from-bottom)
-    var(--default-transition-duration)
-    calc(var(--default-transition-duration) * 0.9);
-  --stagger-item-4: var(--fade-in-from-bottom)
-    var(--default-transition-duration)
-    calc(var(--default-transition-duration) * 1.2);
-  --stagger-item-5: var(--fade-in-from-bottom)
-    var(--default-transition-duration)
-    calc(var(--default-transition-duration) * 1.5);
+  --stagger-item-1: var(--fade-in-from-bottom) var(--default-duration);
+  --stagger-item-2: var(--fade-in-from-bottom) var(--default-duration)
+    calc(var(--default-duration) * 0.5);
+  --stagger-item-3: var(--fade-in-from-bottom) var(--default-duration)
+    calc(var(--default-duration) * 0.9);
+  --stagger-item-4: var(--fade-in-from-bottom) var(--default-duration)
+    calc(var(--default-duration) * 1.2);
+  --stagger-item-5: var(--fade-in-from-bottom) var(--default-duration)
+    calc(var(--default-duration) * 1.5);
 
   display: grid;
   overflow-y: auto;

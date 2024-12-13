@@ -47,3 +47,5 @@ export function BarChartIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default BarChartIcon;

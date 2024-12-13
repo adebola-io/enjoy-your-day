@@ -1,4 +1,4 @@
-import { IconProps } from './props';
+import type { IconProps } from './props';
 
 export function FitnessIcon(props: IconProps) {
   return (
@@ -8,6 +8,7 @@ export function FitnessIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
+      <title>Fitness Icon</title>
       <g xmlns="http://www.w3.org/2000/svg" clip-path="url(#clip0_311_99)">
         <path
           xmlns="http://www.w3.org/2000/svg"
@@ -49,3 +50,5 @@ export function FitnessIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default FitnessIcon;

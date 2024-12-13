@@ -1,6 +1,6 @@
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import type { SourceCell } from '@adbl/cells';
-import styles from './input.module.css';
+import classes from './input.module.css';
 
 export type InputProps = JSX.IntrinsicElements['input'] & {
   model?: SourceCell<string>;
@@ -12,7 +12,7 @@ export function Input(props: InputProps) {
     <input
       {...rest}
       onInput={handleInput}
-      class={[styles.input, props.class]}
+      class={[classes.input, props.class]}
     />
   ) as HTMLInputElement;
 

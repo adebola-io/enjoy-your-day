@@ -27,3 +27,5 @@ export function CalendarIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default CalendarIcon;

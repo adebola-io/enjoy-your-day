@@ -22,8 +22,8 @@
 }
 
 #waiting-screen.loading .waiting-screen__circle {
-  --first-animation-duration: calc(var(--default-transition-duration) * 1.25);
-  --second-animation-duration: var(--default-transition-duration);
+  --first-animation-duration: calc(var(--default-duration) * 1.25);
+  --second-animation-duration: var(--default-duration);
   --starting-scale: 2;
   --ending-scale: 30;
   display: block;
@@ -50,7 +50,7 @@ body:has(#waiting-screen) > div[data-x-outlet] {
   --starting-scale: 0.07;
   --ending-scale: 0.5;
   width: min(186px, 100%, 25dvh);
-  animation: pop calc(var(--default-transition-duration) * 1.5);
+  animation: pop calc(var(--default-duration) * 1.5);
   scale: 0.4;
   grid-row: 1;
   grid-column: 1;
@@ -58,9 +58,9 @@ body:has(#waiting-screen) > div[data-x-outlet] {
 
 #waiting-screen .waiting-screen__loader {
   width: min(186px, 100%, 25dvh);
-  animation: pop var(--default-transition-duration),
-    spin calc(var(--default-transition-duration) * 2)
-      var(--default-transition-duration) linear infinite;
+  animation: pop var(--default-duration),
+    spin calc(var(--default-duration) * 2) var(--default-duration) linear
+      infinite;
   grid-row: 1;
   grid-column: 1;
 }

@@ -4,7 +4,7 @@ import { createUser } from '#/data/db';
 import { ONBOARDING_LOADING_DELAY } from '#/data/constants';
 import { useRouter } from '@adbl/unfinished/router';
 import { setMetaThemeColor } from '#/library';
-import styles from './onboarding.module.css';
+import classes from './onboarding.module.css';
 
 export default function Loading() {
   const router = useRouter();
@@ -32,9 +32,9 @@ export default function Loading() {
     <div
       onAnimationStart={changeThemeColor}
       onAnimationEnd={goToApp}
-      class={styles.onboardingViewFinalLoaderContainer}
+      class={classes.onboardingViewFinalLoaderContainer}
     >
-      <Loader class={styles.onboardingViewFinalLoader} />
+      <Loader class={classes.onboardingViewFinalLoader} />
     </div>
   );
 }

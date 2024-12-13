@@ -1,10 +1,10 @@
 .onboardingView {
   --fade-to-white-delay: 2s;
-  --fade-to-white-duration: calc(var(--default-transition-duration) * 2);
+  --fade-to-white-duration: calc(var(--default-duration) * 2);
   display: grid;
   color: var(--white);
   background-color: var(--space-cadet-500);
-  transition-duration: calc(var(--default-transition-duration) * 2);
+  transition-duration: calc(var(--default-duration) * 2);
   transition-property: background-color, color;
   grid-template-rows: 1fr;
   padding-inline: var(--side-padding);
@@ -57,7 +57,7 @@
   display: grid;
   height: calc(100dvh - var(--block-padding));
   padding-block-start: var(--block-padding);
-  transition-duration: var(--default-transition-duration);
+  transition-duration: var(--default-duration);
   transition-property: opacity;
   place-items: center;
   place-content: center;
@@ -104,7 +104,7 @@
   border-radius: 13.39px;
   opacity: 0;
   color: var(--space-cadet-50);
-  animation: var(--pop) var(--default-transition-duration);
+  animation: var(--pop) var(--default-duration);
   aspect-ratio: 1;
   animation-fill-mode: both;
 
@@ -129,7 +129,7 @@
 .categoryIcon {
   width: 40px;
   height: 40px;
-  transition-duration: calc(var(--default-transition-duration) * 0.75);
+  transition-duration: calc(var(--default-duration) * 0.75);
 
   .categoryCheckIcon ~ .categoryButton > & {
     scale: 1.2;
@@ -141,7 +141,7 @@
   top: 5%;
   right: 5%;
   width: 17%;
-  animation: var(--pop) var(--default-transition-duration);
+  animation: var(--pop) var(--default-duration);
   aspect-ratio: 1;
 }
 
@@ -155,8 +155,8 @@
 .nameFormHeading,
 .categoryFormHeading {
   opacity: 0;
-  animation: var(--fade-in-from-bottom) var(--default-transition-duration)
-    calc(var(--default-transition-duration) * 0.75);
+  animation: var(--fade-in-from-bottom) var(--default-duration)
+    calc(var(--default-duration) * 0.75);
   text-align: center;
   font: var(--title-bold);
   animation-fill-mode: both;
@@ -166,8 +166,8 @@
 .nameFormSubHeading,
 .categoryFormSubHeading {
   opacity: 0;
-  animation: var(--fade-in-from-bottom) var(--default-transition-duration)
-    calc(var(--default-transition-duration) * 0.5);
+  animation: var(--fade-in-from-bottom) var(--default-duration)
+    calc(var(--default-duration) * 0.5);
   text-align: center;
   animation-fill-mode: both;
 }
@@ -188,7 +188,7 @@
   margin-block-end: var(--block-padding);
   color: var(--space-cadet-500);
   background-color: var(--white);
-  transition: opacity var(--default-transition-duration);
+  transition: opacity var(--default-duration);
   grid-row: 3;
   grid-column: 1;
 
@@ -210,6 +210,6 @@
 .onboardingViewFinalLoader {
   width: var(--sub-heading-font-size);
   opacity: 0;
-  animation: var(--fade-in) var(--default-transition-duration) both,
+  animation: var(--fade-in) var(--default-duration) both,
     var(--loader-spin) var(--base-animation-duration) infinite;
 }

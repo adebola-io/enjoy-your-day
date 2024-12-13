@@ -1,7 +1,7 @@
 import { BackButton } from '#/components/back-button';
 import { appLoadingState } from '#/data/state';
 import { useRouter } from '@adbl/unfinished/router';
-import styles from './onboarding.module.css';
+import classes from './onboarding.module.css';
 
 export default async function Onboarding() {
   const router = useRouter();
@@ -12,9 +12,9 @@ export default async function Onboarding() {
   }
 
   return (
-    <main class={styles.onboardingView}>
-      <router.Outlet class={styles.startOutlet} />
-      <BackButton class={styles.backButton} />
+    <main class={classes.onboardingView}>
+      <router.Outlet class={classes.startOutlet} />
+      <BackButton class={classes.backButton} />
     </main>
   );
 }

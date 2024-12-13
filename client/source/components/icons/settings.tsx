@@ -29,3 +29,5 @@ export function SettingsIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default SettingsIcon;

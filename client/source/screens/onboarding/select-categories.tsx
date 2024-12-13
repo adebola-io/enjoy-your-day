@@ -1,4 +1,4 @@
-import styles from './onboarding.module.css';
+import classes from './onboarding.module.css';
 import { For, If } from '@adbl/unfinished';
 import { selectedCategories, username } from '#/data/state';
 import { categories, Category } from '#/data';
@@ -31,15 +31,15 @@ export default async function SelectCategories() {
   };
 
   return (
-    <form ref={formRef} class={styles.categoryForm}>
-      <h1 class={styles.categoryFormHeading}>What are you interested in?</h1>
-      <p class={styles.categoryFormSubHeading}>
+    <form ref={formRef} class={classes.categoryForm}>
+      <h1 class={classes.categoryFormHeading}>What are you interested in?</h1>
+      <p class={classes.categoryFormSubHeading}>
         Pick <i>at least 3</i> categories for the goals you want. Let's keep
         going!
       </p>
-      <ul class={styles.categoryList}>{For(categories, CategoryCard)}</ul>
+      <ul class={classes.categoryList}>{For(categories, CategoryCard)}</ul>
       <Button
-        class={styles.categorySubmitButton}
+        class={classes.categorySubmitButton}
         disabled={continueButtonIsDisabled}
         vibrateOnClick
         onClick={loadApp}
@@ -71,16 +71,16 @@ function CategoryCard(category: Category, index: Cell<number>) {
   };
 
   return (
-    <li class={styles.category} style={categoryStyles}>
+    <li class={classes.category} style={categoryStyles}>
       {If(isSelected, () => {
-        return <CheckIcon class={styles.categoryCheckIcon} />;
+        return <CheckIcon class={classes.categoryCheckIcon} />;
       })}
       <button
         type="button"
-        class={styles.categoryButton}
+        class={classes.categoryButton}
         onClick={selectCategory}
       >
-        <category.icon class={styles.categoryIcon} />
+        <category.icon class={classes.categoryIcon} />
         {category.name}
       </button>
     </li>

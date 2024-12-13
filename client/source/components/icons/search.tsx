@@ -19,3 +19,5 @@ export function SearchIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default SearchIcon;

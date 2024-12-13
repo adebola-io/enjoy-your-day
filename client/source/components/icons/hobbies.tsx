@@ -1,4 +1,4 @@
-import { IconProps } from './props';
+import type { IconProps } from './props';
 
 export function HobbiesIcon(props: IconProps) {
   return (
@@ -8,6 +8,7 @@ export function HobbiesIcon(props: IconProps) {
       fill="none"
       {...props}
     >
+      <title>Hobbies Icon</title>
       <g xmlns="http://www.w3.org/2000/svg" clip-path="url(#clip0_311_282)">
         <path
           xmlns="http://www.w3.org/2000/svg"
@@ -34,3 +35,5 @@ export function HobbiesIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default HobbiesIcon;

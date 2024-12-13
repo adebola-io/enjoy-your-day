@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
 
 :root {
-  --default-transition-duration: 200ms;
+  --default-duration: 200ms;
 
   --white: #ffffff;
   --black: #000000;
@@ -138,9 +138,9 @@
   --sub-heading-regular: normal 300 var(--sub-heading-font-size) /
       max(min(70px, 10dvh), 40px) 'Parkinsans',
     sans-serif;
-  --eyebrow-bold: normal 600 var(--eyebrow-font-size) / 40px 'Parkinsans',
+  --eyebrow-bold: normal 600 var(--eyebrow-font-size) / 47px 'Parkinsans',
     sans-serif;
-  --eyebrow-regular: normal 300 var(--eyebrow-font-size) / 40px 'Parkinsans',
+  --eyebrow-regular: normal 300 var(--eyebrow-font-size) / 47px 'Parkinsans',
     sans-serif;
   --title-bold: normal 700 var(--title-font-size) 'Parkinsans', sans-serif;
   --title-regular: normal 400 var(--title-font-size) 'Parkinsans', sans-serif;
@@ -161,6 +161,6 @@
 
 @media (prefers-reduced-motion) {
   :root {
-    --default-transition-duration: 0ms;
+    --default-duration: 0ms;
   }
 }

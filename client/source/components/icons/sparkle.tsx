@@ -31,3 +31,5 @@ export function SparkleIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default SparkleIcon;

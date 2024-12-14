@@ -22,5 +22,6 @@
     },
     "skipLibCheck": true
   },
-  "include": ["source"]
+  "include": ["source"],
+  "exclude": ["../vault"]
 }

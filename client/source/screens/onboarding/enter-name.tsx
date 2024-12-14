@@ -9,14 +9,13 @@ import classes from './onboarding.module.css';
 export default function EnterName() {
   const router = useRouter();
 
-  const handleNameSubmit = (event: Event) => {
-    event.preventDefault();
+  const handleNameSubmit = () => {
     vibrate();
     router.navigate('/onboarding/select-categories');
   };
 
   return (
-    <form class={classes.nameForm} onSubmit={handleNameSubmit}>
+    <form class={classes.nameForm} onSubmit:prevent={handleNameSubmit}>
       <Logo class={classes.nameFormLogo} />
       <h2 class={classes.nameFormHeading}>What's your name?</h2>
       <p class={classes.nameFormSubHeading}>

@@ -28,7 +28,6 @@ The app is a progressive web application. Majority of the functionality lies in 
 - [Bun](https://bun.sh/)
 - [Vite](https://vitejs.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [PGLite](https://github.com/electric-sql/pglite)
 - [CSS Modules](https://github.com/css-modules/css-modules)
 - [unfinished](https://github.com/adebola-io/unfinished), and
 - [cells](https://github.com/adebola-io/cells).

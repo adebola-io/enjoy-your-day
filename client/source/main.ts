@@ -42,18 +42,16 @@ export async function resumeApp() {
   document.body.prepend(router.Outlet());
 
   const waitingScreen = document.querySelector('#waiting-screen');
-  const circle = document.querySelector('.waiting-screen__circle');
-  const startScreen = document.querySelector('#start-screen');
   waitingScreen?.classList.add('loading');
-  if (!circle) return;
 
   return router.replace(window.location.pathname).then(async () => {
-    const animationPromises = circle
-      .getAnimations()
-      .map((animation) => animation.finished);
-    await Promise.all(animationPromises);
+    const circle = waitingScreen?.querySelector('.waiting-screen__circle');
+    if (!circle) return;
+    await Promise.all(
+      circle.getAnimations().map((animation) => animation.finished)
+    );
     waitingScreen?.remove();
-    startScreen?.remove();
+    document.querySelector('#start-screen')?.remove();
     router.useViewTransitions = true;
   });
 }

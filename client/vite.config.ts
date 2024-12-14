@@ -11,22 +11,12 @@ export default defineConfig({
       '#': path.resolve(__dirname, './source'),
     },
   },
-  optimizeDeps: {
-    exclude: ['@electric-sql/pglite'],
-  },
-  worker: {
-    format: 'es',
-  },
   plugins: [
     hmrPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: {
         enabled: true,
-      },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,wasm,webmanifest}'],
-        maximumFileSizeToCacheInBytes: 1024 * 1024 * 9,
       },
       manifest: {
         name: 'Enjoy Your Day',

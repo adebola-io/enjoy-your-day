@@ -4,36 +4,23 @@ import { createUser } from '#/data/db';
 import { ONBOARDING_LOADING_DELAY } from '#/data/constants';
 import { useRouter } from '@adbl/unfinished/router';
 import { setMetaThemeColor } from '#/library/utils';
-import { useObserver } from '#/library/useObserver';
 import classes from './onboarding.module.css';
-import { Cell } from '@adbl/cells';
 
 export default function Loading() {
   const router = useRouter();
-  const observer = useObserver();
-  const container = Cell.source<HTMLDivElement | null>(null);
 
-  const goToApp = async (event: Event) => {
-    const target = event.target as HTMLElement;
-    if (target.tagName !== 'DIV') return;
-
+  const goToApp = async () => {
     await Promise.all([
-      createUser(username.value).catch((error) => {
-        window.alert(JSON.stringify(error.message || error));
-      }),
+      createUser(username.value),
       new Promise<void>(onboardingPromiseCallback),
     ]);
     router.replace('/app/main/home');
   };
 
-  observer.onConnected(container, () => {
-    setMetaThemeColor('white');
-  });
-
   return (
     <div
-      ref={container}
-      onAnimationEnd={goToApp}
+      onAnimationStart:self={() => setMetaThemeColor('white')}
+      onAnimationEnd:self={goToApp}
       class={classes.onboardingViewFinalLoaderContainer}
     >
       <Loader class={classes.onboardingViewFinalLoader} />

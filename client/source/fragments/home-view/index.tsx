@@ -1,6 +1,6 @@
 import { TimeBasedGreeting } from '#/components/time-based-greeting';
 import { TimeBasedIcon } from '#/components/time-based-icon';
-import type { GoalState } from '#/data/db';
+import type { GoalState } from '#/data/entities';
 import type { Cell } from '@adbl/cells';
 import classes from './home-view.module.css';
 

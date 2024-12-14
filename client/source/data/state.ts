@@ -1,7 +1,7 @@
 import { Cell } from '@adbl/cells';
 import { useLiveDate } from '@adbl/dom-cells/useDate';
 import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
-import type { GoalState } from './db';
+import type { GoalState } from '#/data/entities';
 
 export const DATE_UPDATE_INTERVAL = 1000 * 60 * 5; // updates every 5 minutes.
 export const LOCALSTORAGE_KEYS = {

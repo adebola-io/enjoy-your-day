@@ -25,7 +25,8 @@ export default defineConfig({
         enabled: true,
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 10097152,
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,wasm,webmanifest}'],
+        maximumFileSizeToCacheInBytes: 1024 * 1024 * 9,
       },
       manifest: {
         name: 'Enjoy Your Day',

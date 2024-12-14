@@ -12,7 +12,7 @@
   }
 }
 
-.rootViewTransition {
+.loadedMainLayout {
   /* 
     The view transition is added after the first load,
     so that the initial view transition is not visible.

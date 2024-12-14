@@ -1,4 +1,4 @@
-import type { IconProps } from './props';
+import type { IconProps } from '../icons/props';
 import type { IconName } from '#/library/icon-name';
 
 export type DynamicIconProps = IconProps & {
@@ -12,7 +12,7 @@ export type DynamicIconProps = IconProps & {
  * @returns The rendered icon component.
  */
 export async function Icon(props: DynamicIconProps) {
-  const module = await import(`./${props.name}.tsx`);
+  const module = await import(`../icons/${props.name}.tsx`);
   const IconComponent = module.default;
   return (<IconComponent {...props} />) as Node;
 }

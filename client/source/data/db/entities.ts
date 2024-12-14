@@ -1,9 +1,7 @@
 export type Nullable<T> = T | null;
-export type Id<T extends Entity> = T & string;
+export type Id<T> = T & string;
 
-export interface Entity {}
-
-export interface Goal extends Entity {
+export interface Goal {
   goal_uuid: string;
   title: string;
   instruction: string;
@@ -18,7 +16,7 @@ export interface Goal extends Entity {
   creator: User;
 }
 
-export interface Category extends Entity {
+export interface Category {
   name: string;
   icon_name: string;
   theme_color: string;
@@ -26,7 +24,7 @@ export interface Category extends Entity {
   creator: Id<User>;
 }
 
-export interface Journey extends Entity {
+export interface Journey {
   description: string;
   icon_name: string;
   theme_colors: string[];
@@ -34,24 +32,24 @@ export interface Journey extends Entity {
   creator: Id<User>;
 }
 
-export interface GoalState extends Entity {
+export interface GoalState {
   goal: Goal;
   state: 'forfeited' | 'completed' | 'scheduled';
 }
 
-export interface GoalSet extends Entity {
+export interface GoalSet {
   date: Date;
   user: Id<User>;
   goals: Array<Id<GoalState>>;
 }
 
-export interface Badge extends Entity {
+export interface Badge {
   name: string;
   description: string;
   color: string;
 }
 
-export interface User extends Entity {
+export interface User {
   user_uuid: string;
   name: string;
   image: Nullable<string>;

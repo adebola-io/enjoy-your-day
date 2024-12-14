@@ -1,6 +1,7 @@
 import { Cell } from '@adbl/cells';
 import { useLiveDate } from '@adbl/dom-cells/useDate';
 import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
+import type { GoalState } from './db';
 
 export const DATE_UPDATE_INTERVAL = 1000 * 60 * 5; // updates every 5 minutes.
 export const LOCALSTORAGE_KEYS = {
@@ -19,10 +20,7 @@ export const appLoadingState = useLocalStorage<AppSetupState>(
   LOCALSTORAGE_KEYS.appLoadingState,
   'setup'
 );
-export const goalsForTheDay = useLocalStorage(
-  LOCALSTORAGE_KEYS.goalsForTheDay,
-  []
-);
+export const dailyGoals = Cell.source<GoalState[]>([]);
 export const liveDate = useLiveDate(DATE_UPDATE_INTERVAL);
 export const timeOfDay = Cell.derived(() => {
   const hours = liveDate.value.getHours();

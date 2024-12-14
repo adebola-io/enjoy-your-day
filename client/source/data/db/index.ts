@@ -1,9 +1,11 @@
-import type { PGliteWorker } from '@electric-sql/pglite/worker';
+import { PGliteWorker } from '@electric-sql/pglite/worker';
 import pgLiteWorkerURL from './pglite.worker?worker&url';
 import { runMigrations } from './migrations';
 import { updateGoals } from './seeders';
 
-let dbHandle: PGliteWorker;
+const dbHandle = new PGliteWorker(
+  new Worker(pgLiteWorkerURL, { type: 'module' })
+);
 let databaseInitializeResolver: null | (() => void) = null;
 
 /** Outer anchor to wait for database initialization. */
@@ -24,13 +26,6 @@ export async function initializeDatabase() {
     '%cPGlite',
     'background-color: #c3aa02; color: white; font-weight: bold; padding: 3px 6px; border-radius: 5px',
     'initializing database'
-  );
-
-  // The PGliteWorker is imported dynamically to avoid bundling it with the client.
-  // and making it slower to load.
-  const pgLiteModule = await import('@electric-sql/pglite/worker');
-  dbHandle = new pgLiteModule.PGliteWorker(
-    new Worker(pgLiteWorkerURL, { type: 'module' })
   );
 
   if (import.meta.env.DEV) {

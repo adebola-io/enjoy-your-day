@@ -7,20 +7,17 @@
   transition-duration: calc(var(--default-duration) * 2);
   transition-property: background-color, color;
   grid-template-rows: 1fr;
-  padding-inline: var(--side-padding);
 
-  &:has(.nameForm) {
+  &.enteringName {
     height: calc(100dvh - var(--block-padding));
     padding-block-end: var(--block-padding);
+    padding-inline: var(--side-padding);
   }
 
-  &:has(.categoryForm) {
+  &.selectingCategories {
     overflow: hidden;
     height: 100dvh;
-  }
-
-  &:has(.onboardingViewFinalLoaderContainer) {
-    padding-inline: 0;
+    padding-inline: var(--side-padding);
   }
 }
 
@@ -43,7 +40,7 @@
 .backButton:is(.backButton) {
   display: none;
 
-  .onboardingView:has(.categoryForm) & {
+  .onboardingView.selectingCategories & {
     @media (display-mode: standalone) {
       display: grid;
       align-self: start;

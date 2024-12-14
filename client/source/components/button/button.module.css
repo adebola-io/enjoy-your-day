@@ -4,13 +4,12 @@
   width: min(100%, var(--max-button-width));
   border: none;
   border-radius: 20px;
-  color: inherit;
   font: var(--base-bold);
   text-decoration: none;
   place-content: center;
   place-items: center;
   padding-block: min(6dvh, 18px);
-  -webkit-tap-highlight-color: transparent;
+  /* -webkit-tap-highlight-color: transparent; */
   -webkit-touch-callout: none;
 
   &:active {

@@ -3,11 +3,15 @@ import { appLoadingState, username } from '#/data/state';
 import { createUser } from '#/data/db';
 import { ONBOARDING_LOADING_DELAY } from '#/data/constants';
 import { useRouter } from '@adbl/unfinished/router';
-import { setMetaThemeColor } from '#/library';
+import { setMetaThemeColor } from '#/library/utils';
+import { useObserver } from '#/library/useObserver';
 import classes from './onboarding.module.css';
+import { Cell } from '@adbl/cells';
 
 export default function Loading() {
   const router = useRouter();
+  const observer = useObserver();
+  const container = Cell.source<HTMLDivElement | null>(null);
 
   const goToApp = async (event: Event) => {
     const target = event.target as HTMLElement;
@@ -22,15 +26,13 @@ export default function Loading() {
     router.replace('/app/main/home');
   };
 
-  const changeThemeColor = (event: Event) => {
-    const target = event.target as HTMLElement;
-    if (target.tagName !== 'DIV') return;
+  observer.onConnected(container, () => {
     setMetaThemeColor('white');
-  };
+  });
 
   return (
     <div
-      onAnimationStart={changeThemeColor}
+      ref={container}
       onAnimationEnd={goToApp}
       class={classes.onboardingViewFinalLoaderContainer}
     >

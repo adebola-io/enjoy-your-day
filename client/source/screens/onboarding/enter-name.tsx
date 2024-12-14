@@ -2,7 +2,7 @@ import { Input } from '#/components/input';
 import { Logo } from '#/components/logo';
 import { Button } from '#/components/button';
 import { username } from '#/data/state';
-import { vibrate } from '#/library';
+import { vibrate } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './onboarding.module.css';
 

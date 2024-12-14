@@ -2,7 +2,7 @@ import { navigationBarLinks, type NavigationLink } from '#/data';
 import { For } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './navigation-bar.module.css';
-import { vibrate } from '#/library';
+import { vibrate } from '#/library/utils';
 
 export function NavigationBar() {
   return (

@@ -1,5 +1,5 @@
 import { CaretRightIcon } from '#/components/icons/caret-right';
-import { vibrate } from '#/library';
+import { vibrate } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './back-button.module.css';

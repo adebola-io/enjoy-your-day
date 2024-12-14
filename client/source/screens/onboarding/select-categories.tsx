@@ -1,12 +1,12 @@
-import classes from './onboarding.module.css';
 import { For, If } from '@adbl/unfinished';
 import { selectedCategories, username } from '#/data/state';
-import { categories, Category } from '#/data';
+import { categories, type Category } from '#/data';
 import { Button } from '#/components/button';
 import { Cell } from '@adbl/cells';
 import { CheckIcon } from '#/components/icons/check';
 import { useRouter } from '@adbl/unfinished/router';
-import { vibrate } from '#/library';
+import { vibrate } from '#/library/utils';
+import classes from './onboarding.module.css';
 
 export default async function SelectCategories() {
   const router = useRouter();

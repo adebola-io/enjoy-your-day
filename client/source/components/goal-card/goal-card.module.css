@@ -33,16 +33,17 @@
 }
 
 .instruction {
-  font: var(--subtitle-regular);
+  font: var(--base-regular);
+  font-style: italic;
 }
 
 .info {
-  font: var(--small-regular);
+  font: var(--base-regular);
 }
 
 .iconOverlay {
   position: absolute;
-  right: calc(-50% - var(--side-padding));
+  right: calc(-10% - var(--side-padding));
   height: 120%;
   opacity: 0.1;
   pointer-events: none;

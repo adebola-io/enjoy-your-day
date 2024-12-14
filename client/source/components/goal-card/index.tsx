@@ -1,8 +1,8 @@
 import type { Cell } from '@adbl/cells';
 import classes from './goal-card.module.css';
-import { lightenHexColor } from '#/library';
+import { lightenHexColor } from '#/library/utils';
 import type { IconName } from '#/library/icon-name';
-import { Icon } from '../icons/_icon';
+import { Icon } from '#/components/icon';
 
 export interface GoalCardProps {
   index?: Cell<number>;

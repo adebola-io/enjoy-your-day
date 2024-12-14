@@ -1,8 +1,8 @@
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { type JsxElement, setAttributeFromProps } from '@adbl/unfinished';
 import { useRouter, type RouterLinkProps } from '@adbl/unfinished/router';
-import { vibrate } from '#/library';
-import classes from './Button.module.css';
+import { vibrate } from '#/library/utils';
+import classes from './button.module.css';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'neutral';
 export type ButtonProps = JSX.IntrinsicElements['button'] &

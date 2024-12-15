@@ -16,7 +16,7 @@ export default function InitialHome() {
         href="/app/auto-select"
         class={classes.autoSelectLink}
         variant="secondary"
-        vibrateOnClick
+        vibrate
       >
         <SparkleIcon class={classes.sparkleIcon} />
         Select for me

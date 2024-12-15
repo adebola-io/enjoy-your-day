@@ -82,20 +82,26 @@
   }
 }
 
-.continueButton {
+.buttonRow {
   --animation-delay: calc(var(--default-duration) * 3);
-  --gap: 5px;
+  --gap: 10px;
   --starting-fade-position-y: 40%;
   z-index: 1;
+  display: grid;
   align-self: end;
   width: calc(90% - var(--side-padding));
   margin-bottom: var(--block-padding);
   opacity: 0;
   animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 1.2)
     var(--animation-delay) both;
-  filter: drop-shadow(0 0 10px #0000003e);
-  place-content: center;
+  grid-template-columns: auto auto;
+  gap: var(--gap);
   justify-self: center;
   grid-row: 1;
   grid-column: 1;
+}
+
+.btn {
+  filter: drop-shadow(0 0 10px #0000003e);
+  place-content: center;
 }

@@ -12,6 +12,12 @@ export function setMetaThemeColor(color: string) {
     ?.setAttribute('content', color);
 }
 
+export function setAutoSelectionStage(stage: number) {
+  document
+    .querySelector('#autoSelectionView')
+    ?.setAttribute('data-stage', stage.toString());
+}
+
 export function vibrate() {
   navigator.vibrate?.(5);
 }

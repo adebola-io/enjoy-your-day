@@ -2,7 +2,7 @@
 ::view-transition-old(*),
 ::view-transition-new(*),
 ::view-transition-group(*) {
-  animation-duration: calc(var(--default-duration) * 2);
+  animation-duration: var(--view-transition-duration);
   animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
 }
 
@@ -116,6 +116,12 @@
     &::view-transition-new(app-root-view) {
       animation-name: var(--app-root-enter-backwards);
     }
+  }
+
+  /* Disables other view transitions. */
+  &::view-transition-old(*),
+  &::view-transition-new(*) {
+    animation-duration: 0ms;
   }
 
   &::view-transition-old(app-root-view),

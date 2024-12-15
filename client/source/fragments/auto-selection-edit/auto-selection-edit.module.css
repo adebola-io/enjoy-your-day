@@ -1,0 +1,72 @@
+.container {
+  display: grid;
+  overflow-y: auto;
+  align-self: normal;
+  padding-block-start: calc(var(--block-padding) * 2);
+  grid-template-rows: auto auto auto 1fr;
+  grid-row: 1;
+  grid-column: 1;
+  gap: 10px;
+  scrollbar-width: none;
+}
+
+.title {
+  padding-inline: var(--side-padding);
+}
+
+.subtitle {
+  padding-inline: var(--side-padding);
+}
+
+.goalItemList {
+  display: grid;
+  height: 100%;
+  padding-block-end: calc(var(--block-padding) * 3);
+  gap: 10px;
+
+  & > * {
+    transition-timing-function: linear;
+    transition-duration: calc(var(--default-duration) * 0.6);
+    transition-property: translate, scale, opacity;
+    grid-row: 1;
+    grid-column: 1;
+    translate: 0 calc(var(--level) * (100% + 10px));
+
+    &:not(:active, :hover) {
+      transition-delay: calc(var(--level) * var(--default-duration) * 0.35);
+    }
+  }
+}
+
+.addBtnContainer {
+  display: grid;
+}
+
+.addBtn {
+  width: calc(100% - var(--side-padding) * 2);
+  border-radius: 40px;
+  opacity: 0;
+  animation: var(--fade-in-from-bottom) var(--default-duration)
+    var(--view-transition-duration) both;
+  margin-inline: var(--side-padding);
+}
+
+.submitBtn {
+  position: fixed;
+  right: var(--side-padding);
+  bottom: var(--block-padding);
+  display: grid;
+  width: 70px;
+  height: 70px;
+  border: 2.15px solid white;
+  border-radius: 50%;
+  color: white;
+  background-color: var(--space-cadet-500);
+  filter: drop-shadow(2px 4px 6px #00000025);
+  place-items: center;
+  place-content: center;
+}
+
+.submitBtnIcon {
+  width: 40%;
+}

@@ -2,6 +2,7 @@
 
 :root {
   --default-duration: 200ms;
+  --view-transition-duration: calc(var(--default-duration) * 2);
 
   --white: #ffffff;
   --black: #000000;

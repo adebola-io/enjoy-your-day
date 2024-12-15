@@ -7,14 +7,14 @@ import classes from './button.module.css';
 export type ButtonVariant = 'primary' | 'secondary' | 'neutral';
 export type ButtonProps = JSX.IntrinsicElements['button'] &
   RouterLinkProps & {
-    vibrateOnClick?: boolean;
+    vibrate?: boolean;
     variant?: JSX.ValueOrCell<ButtonVariant>;
   };
 
 export function Button(props: ButtonProps): JSX.Template {
   const router = useRouter();
   const {
-    vibrateOnClick = false,
+    vibrate: vibrateOnClick = false,
     variant = 'neutral',
     onClick,
     ...rest

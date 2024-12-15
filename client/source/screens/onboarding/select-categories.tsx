@@ -41,7 +41,7 @@ export default async function SelectCategories() {
       <Button
         class={classes.categorySubmitButton}
         disabled={continueButtonIsDisabled}
-        vibrateOnClick
+        vibrate
         onClick={loadApp}
       >
         Continue

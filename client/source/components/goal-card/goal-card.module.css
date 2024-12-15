@@ -44,7 +44,7 @@
 .iconOverlay {
   position: absolute;
   right: calc(-10% - var(--side-padding));
-  height: 120%;
+  width: 80%;
   opacity: 0.1;
   pointer-events: none;
 }

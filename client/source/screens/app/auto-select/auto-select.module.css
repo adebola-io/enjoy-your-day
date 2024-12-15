@@ -19,12 +19,20 @@ body {
   );
   background-position: 50% 0;
   background-size: 400%;
+  transition-duration: var(--view-transition-duration);
+  transition-property: background;
   animation: background-dance calc(var(--default-duration) * 100) infinite;
-
   view-transition-name: app-root-view;
   padding-inline: var(--side-padding);
   grid-template-rows: auto auto;
   gap: min(15px, 2dvh);
+
+  &[data-stage='2'] {
+    color: var(--space-cadet-500);
+    background: white;
+    animation: unset;
+    grid-template-rows: 1fr;
+  }
 
   &[data-state='success'] {
     place-items: center;

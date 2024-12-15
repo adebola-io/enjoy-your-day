@@ -1,4 +1,4 @@
-import type { Cell } from '@adbl/cells';
+import { Cell } from '@adbl/cells';
 import classes from './goal-card.module.css';
 import { lightenHexColor } from '#/library/utils';
 import type { IconName } from '#/library/icon-name';
@@ -14,13 +14,27 @@ export interface GoalCardProps {
 }
 
 export function GoalCard(props: GoalCardProps) {
+  // I don't want to set the view transition until the animation is finished,
+  // so that transitioning back to the previous view in auto-selection
+  // doesn't cause a flicker.
+  const viewTransitionName = Cell.source<string | undefined>(undefined);
   const styles = {
     '--bg-color': props.color,
     '--index': props.index,
     '--bg-color-light': lightenHexColor(props.color),
+    viewTransitionName,
   };
+
+  const setViewTransition = () => {
+    viewTransitionName.value = `goal-card-${props.index?.value}`;
+  };
+
   return (
-    <li class={classes.card} style={styles}>
+    <li
+      onAnimationEnd--self={setViewTransition}
+      class={classes.card}
+      style={styles}
+    >
       <div class={classes.iconContainer}>
         <Icon name={props.icon} class={classes.icon} inert />
       </div>

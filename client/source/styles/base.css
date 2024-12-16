@@ -16,6 +16,7 @@ ul {
   -webkit-user-select: none;
   user-select: none;
   animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  -webkit-tap-highlight-color: transparent;
 }
 
 :root {

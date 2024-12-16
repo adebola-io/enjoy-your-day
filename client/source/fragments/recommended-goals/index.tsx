@@ -1,39 +1,37 @@
 import { Button } from '#/components/button';
-import { GoalCard, type GoalCardProps } from '#/components/goal-card';
+import { GoalCard } from '#/components/goal-card';
+import type { GoalProps } from '#/data/entities';
 import AutoSelectionEdit from '../auto-selection-edit';
 import { useObserver } from '#/library/useObserver';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { For, Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './recommended-goals.module.css';
-import { setAutoSelectionStage } from '#/library/utils';
+import { initScrollTimeline, setAutoSelectStage } from '#/library/utils';
 
 export interface RecommendedGoalsProps {
-  goals: SourceCell<GoalCardProps[] | null>;
+  goals: SourceCell<GoalProps[] | null>;
 }
+
+type AutoSelectStage = 'start' | 'edit';
 
 export default async function RecommendedGoals(props: RecommendedGoalsProps) {
   if (!props.goals.value) return undefined;
-  const goals = props.goals as SourceCell<GoalCardProps[]>;
+  const goals = props.goals as SourceCell<GoalProps[]>;
   const router = useRouter();
-  const currentRoute = router.getCurrentRoute();
+  const route = router.getCurrentRoute();
   const currentStage = Cell.derived(() => {
-    return Number(currentRoute.value.query.get('stage') ?? 1);
+    return (route.value.query.get('stage') as AutoSelectStage) ?? 'start';
   });
 
-  if (currentStage.value !== 1) {
-    // Ensures that routing always starts on the first stage.
-    return void (await router.replace('/app/auto-select'));
-  }
-
   return Switch(currentStage, {
-    1: () => <GoalCardList goals={goals} />,
-    2: () => <AutoSelectionEdit goals={goals} />,
+    start: () => <GoalCardList goals={goals} />,
+    edit: () => <AutoSelectionEdit goals={goals} />,
   });
 }
 
 interface GoalCardsViewProps {
-  goals: SourceCell<GoalCardProps[]>;
+  goals: SourceCell<GoalProps[]>;
 }
 
 function GoalCardList(props: GoalCardsViewProps) {
@@ -41,20 +39,13 @@ function GoalCardList(props: GoalCardsViewProps) {
   const { goals } = props;
   const observer = useObserver();
   const ulStyles = { '--total': goals.value.length };
+  const confirmDrawerHref = '/app/auto-select?confirm';
+  const editStageHref = '/app/auto-select?stage=edit';
 
   observer.onConnected(ulRef, (ul) => {
-    setAutoSelectionStage(1);
-    // Forces the card scroll go from bottom -> up.
+    setAutoSelectStage(1);
     ul.scrollTop = ul.scrollHeight;
-    // Fallback listener to advance the scroll timeline:
-    if ('ScrollTimeline' in window) return;
-    ul.classList.add(classes.fallback);
-    ul.onscroll = () => {
-      const animation = ul.getAnimations().at(0);
-      const newTime = (ul.scrollTop / ul.scrollHeight) * 100;
-      if (animation) animation.currentTime = newTime;
-    };
-    return () => ul.getAnimations().at(0)?.finish();
+    if (initScrollTimeline(ul)) return () => ul.getAnimations().at(0)?.finish();
   });
 
   return (
@@ -65,14 +56,10 @@ function GoalCardList(props: GoalCardsViewProps) {
         })}
       </ul>
       <div class={classes.buttonRow}>
-        <Button
-          class={classes.btn}
-          href="/app/auto-select?confirm-drawer"
-          vibrate
-        >
+        <Button class={classes.btn} href={confirmDrawerHref} vibrate>
           Perfect
         </Button>
-        <Button class={classes.btn} href="/app/auto-select?stage=2" vibrate>
+        <Button class={classes.btn} href={editStageHref} vibrate>
           Edit
         </Button>
       </div>

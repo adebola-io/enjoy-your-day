@@ -32,11 +32,6 @@
   translate: 0 calc(var(--goal-card-border-radius) * 1.5);
   animation-timeline: scroll(self block);
 
-  &.fallback {
-    animation-duration: 100ms;
-    animation-play-state: paused;
-  }
-
   & > * {
     --shrink: calc((var(--index) / var(--shrink-factor)));
     --brightness: calc(

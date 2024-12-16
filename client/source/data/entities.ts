@@ -1,3 +1,6 @@
+import type { Cell } from '@adbl/cells';
+import type { IconName } from '#/library/icon-name';
+
 export type Nullable<T> = T | null;
 export type Id<T> = T & string;
 
@@ -14,6 +17,15 @@ export interface Goal {
   week_day_affinity: Nullable<number>;
   repeat_rate: 'daily' | 'weekly' | 'monthly' | 'yearly';
   creator: User;
+}
+
+export interface GoalProps {
+  index?: Cell<number>;
+  title: string;
+  instruction: string;
+  info: string;
+  color: string;
+  icon: IconName;
 }
 
 export interface Category {

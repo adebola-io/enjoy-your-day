@@ -1,8 +1,8 @@
 import { BackButton } from '#/components/back-button';
 import { appLoadingState } from '#/data/state';
 import { useRouter } from '@adbl/unfinished/router';
-import classes from './onboarding.module.css';
 import { Cell } from '@adbl/cells';
+import classes from './onboarding.module.css';
 
 export default async function Onboarding() {
   const router = useRouter();

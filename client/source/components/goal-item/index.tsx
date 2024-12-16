@@ -14,7 +14,7 @@ export interface GoalItemProps {
   onRemove?: (
     item: number,
     container: HTMLElement,
-    type: 'swipe' | 'tap'
+    type: 'Swipe' | 'Tap'
   ) => void;
 }
 
@@ -26,24 +26,26 @@ export function GoalItem(props: GoalItemProps) {
     '--level': props.index,
     '--bg-color': props.color,
     viewTransitionName: Cell.derived(() => `goal-card-${props.index.value}`),
+    viewTransitionClass: 'goal-card',
   };
 
   const removeItem = () => {
     if (!containerRef.value) return;
-    props.onRemove?.(props.index.value, containerRef.value, 'tap');
+    props.onRemove?.(props.index.value, containerRef.value, 'Tap');
   };
 
   observer.onConnected(wrapperRef, () => {
-    // Intersection Observer doesn't work on proxies.
+    // Intersection Observer doesn't work on cell values directly
+    // because they are proxies.
     const wrapper = wrapperRef.deproxy();
     const container = containerRef.deproxy();
 
     const callback = ([entry]: IntersectionObserverEntry[]) => {
-      if (!entry.isIntersecting) {
-        props.onRemove?.(props.index.value, container, 'swipe');
+      if (!entry.isIntersecting && container.checkVisibility()) {
+        props.onRemove?.(props.index.value, container, 'Swipe');
       }
     };
-    const intersectOptions = { root: container, threshold: 0.5 };
+    const intersectOptions = { root: container, threshold: 0.55 };
     const intersectObserver = new IntersectionObserver(
       callback,
       intersectOptions
@@ -54,17 +56,19 @@ export function GoalItem(props: GoalItemProps) {
   });
 
   return (
-    <li ref={containerRef} class={classes.container} style={styles}>
+    <li
+      ref={containerRef}
+      class={[classes.container, 'goal-card']}
+      style={styles}
+    >
       <div ref={wrapperRef} class={classes.scrollSnapWrapper}>
-        <div class={classes.iconContainer}>
-          <Icon name={props.icon} class={classes.icon} />
-        </div>
+        <Icon name={props.icon} class={classes.icon} />
         <div class={classes.details}>
           <h2 class={classes.title}>{props.title}</h2>
           <p class={classes.instruction}>{props.instruction}</p>
         </div>
         <button class={classes.cancelBtn} onClick={removeItem}>
-          <XIcon class={classes.icon} />
+          <XIcon class={classes.icon} title="Remove Goal" />
         </button>
       </div>
     </li>

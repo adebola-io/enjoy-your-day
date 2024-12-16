@@ -1,0 +1,14 @@
+.container {
+  display: contents;
+}
+
+.option {
+  display: grid;
+  padding: 10px 20px;
+  border: none;
+  color: inherit;
+  background-color: transparent;
+  font: var(--base-regular);
+  grid-template-columns: 25px 1fr;
+  gap: 10px;
+}

@@ -2,39 +2,57 @@
   display: grid;
   overflow-y: auto;
   align-self: normal;
-  padding-block-start: calc(var(--block-padding) * 2);
+  width: 100%;
+  padding-block-start: calc(var(--block-padding) * 1.5);
   grid-template-rows: auto auto auto 1fr;
   grid-row: 1;
   grid-column: 1;
   gap: 10px;
   scrollbar-width: none;
+
+  &:has(.searchForm) > *:not(.searchForm) {
+    z-index: var(--behind-autocomplete-z-index);
+  }
 }
 
-.title {
-  padding-inline: var(--side-padding);
-}
-
+.title,
 .subtitle {
+  opacity: 0;
+  animation: var(--fade-in) var(--default-duration)
+    calc(var(--view-transition-duration) * 0.75) both;
   padding-inline: var(--side-padding);
+
+  .container:has(.searchForm) > & {
+    display: none;
+  }
 }
 
 .goalItemList {
   display: grid;
-  height: 100%;
   padding-block-end: calc(var(--block-padding) * 3);
+  grid-template-rows: repeat(var(--total), max-content);
   gap: 10px;
 
   & > * {
+    transition-delay: calc(
+      (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.35
+    );
     transition-timing-function: linear;
     transition-duration: calc(var(--default-duration) * 0.6);
     transition-property: translate, scale, opacity;
     grid-row: 1;
     grid-column: 1;
     translate: 0 calc(var(--level) * (100% + 10px));
-
-    &:not(:active, :hover) {
-      transition-delay: calc(var(--level) * var(--default-duration) * 0.35);
+    @supports not (view-timeline-name: goal-card) {
+      transition-duration: var(--view-transition-duration);
     }
+  }
+
+  .container:has(.searchForm) & > * {
+    opacity: 0.1;
+    transition-delay: 0ms;
+    transition-property: opacity;
+    pointer-events: none;
   }
 }
 
@@ -43,12 +61,32 @@
 }
 
 .addBtn {
-  width: calc(100% - var(--side-padding) * 2);
+  display: grid;
+  width: calc(100% - var(--side-padding) * 2 - 15px - 20px);
   border-radius: 40px;
-  opacity: 0;
-  animation: var(--fade-in-from-bottom) var(--default-duration)
-    var(--view-transition-duration) both;
   margin-inline: var(--side-padding);
+  view-transition-name: auto-select-search-form-and-add-button;
+  grid-template-columns: 40px 1fr;
+  padding-inline: 15px 20px;
+  place-items: start;
+  gap: 8px;
+}
+
+.addBtnIcon {
+  width: 18px;
+  background-color: white;
+  justify-self: center;
+  view-transition-name: auto-select-search-form-and-add-button-icon;
+}
+
+.searchInputContainer {
+  border-radius: 40px;
+  background-color: white;
+  view-transition-name: auto-select-search-form-and-add-button;
+
+  svg {
+    view-transition-name: auto-select-search-form-and-add-button-icon;
+  }
 }
 
 .submitBtn {
@@ -62,11 +100,26 @@
   border-radius: 50%;
   color: white;
   background-color: var(--space-cadet-500);
+  transition-duration: calc(var(--view-transition-duration) * 0.5);
+  transition-property: scale;
   filter: drop-shadow(2px 4px 6px #00000025);
   place-items: center;
   place-content: center;
+
+  .container:has(.searchForm) & {
+    scale: 0;
+  }
 }
 
 .submitBtnIcon {
   width: 40%;
+}
+
+.deletingByTap {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.deletingBySwipe > *:first-child {
+  opacity: 0;
 }

@@ -6,20 +6,37 @@ type AsyncRequestAtoms<T, U> = {
   error: Cell<U>;
 };
 
-export function setMetaThemeColor(color: string) {
+export function setMetaTheme(color: string) {
   document
     .querySelector('meta[name="theme-color"]')
     ?.setAttribute('content', color);
 }
 
-export function setAutoSelectionStage(stage: number) {
+export function setAutoSelectStage(stage: number) {
   document
     .querySelector('#autoSelectionView')
     ?.setAttribute('data-stage', stage.toString());
 }
 
+export function initScrollTimeline(
+  element: Element,
+  axis: 'inline' | 'block' = 'block'
+) {
+  if ('ScrollTimeline' in window) return false;
+  element.classList.add('scrollTimelineFallback');
+  element.addEventListener('scroll', () => {
+    const animation = element.getAnimations().at(0);
+    const newTime =
+      axis === 'block'
+        ? (element.scrollTop / element.scrollHeight) * 100
+        : (element.scrollLeft / element.scrollWidth) * 100;
+    if (animation) animation.currentTime = newTime;
+  });
+  return true;
+}
+
 export function vibrate() {
-  navigator.vibrate?.(5);
+  navigator.vibrate?.(3);
 }
 
 export function getResourceState<T, U>(resource: AsyncRequestAtoms<T, U>) {
@@ -70,4 +87,8 @@ export function lightenHexColor(hexCode: string, amount = 0.5) {
     .padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
 
   return newHex;
+}
+
+export function defer(callback: () => void) {
+  setTimeout(callback, 0);
 }

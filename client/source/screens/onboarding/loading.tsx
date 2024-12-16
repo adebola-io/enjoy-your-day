@@ -3,7 +3,7 @@ import { appLoadingState, username } from '#/data/state';
 import { createUser } from '#/data/db';
 import { ONBOARDING_LOADING_DELAY } from '#/data/constants';
 import { useRouter } from '@adbl/unfinished/router';
-import { setMetaThemeColor } from '#/library/utils';
+import { setMetaTheme } from '#/library/utils';
 import classes from './onboarding.module.css';
 
 export default function Loading() {
@@ -19,7 +19,7 @@ export default function Loading() {
 
   return (
     <div
-      onAnimationStart--self={() => setMetaThemeColor('white')}
+      onAnimationStart--self={() => setMetaTheme('white')}
       onAnimationEnd--self={goToApp}
       class={classes.onboardingViewFinalLoaderContainer}
     >

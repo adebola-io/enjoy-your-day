@@ -23,7 +23,6 @@ export function Input(props: InputProps) {
 
   function handleInput(event: Event) {
     callback; // Keeps the callback alive in memory until the input is freed.
-    if (!input.value) return;
     if (model?.value === input.value) return;
 
     if (typeof props.onInput === 'function') {

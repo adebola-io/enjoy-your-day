@@ -1,6 +1,6 @@
-@property --goal-opacity {
+@property --goal-scroll-visibility {
   syntax: '<number>';
-  initial-value: 0;
+  initial-value: 1;
   inherits: true;
 }
 
@@ -8,36 +8,35 @@
 @keyframes scroll-snap-fade {
   /* 0/240 */
   0% {
-    --goal-opacity: 0;
+    --goal-scroll-visibility: 0;
   }
   /* 70/240 */
   29.166667% {
-    --goal-opacity: 0.85;
+    --goal-scroll-visibility: 0.85;
   }
   /* 100/240 */
   41.666667% {
-    --goal-opacity: 1;
+    --goal-scroll-visibility: 1;
   }
   /* 170/240 */
   70.833333% {
-    --goal-opacity: 0.85;
+    --goal-scroll-visibility: 0.85;
   }
   100% {
-    --goal-opacity: 0;
+    --goal-scroll-visibility: 0;
   }
 }
 
 .container {
-  /* Reduces as the goal is swiped away. */
-  --goal-opacity: 0;
+  --goal-scroll-visibility: 1;
   display: grid;
   overflow-x: auto;
-  height: 70px;
+  min-height: 70px;
   animation-name: scroll-snap-fade;
   animation-duration: auto;
   animation-timing-function: linear;
   scrollbar-width: none;
-  grid-template-columns: 70% calc(100% - var(--side-padding) * 2) 70%;
+  grid-template-columns: 70dvw calc(100dvw - var(--side-padding) * 2) 70dvw;
   scroll-snap-type: x mandatory;
   scroll-snap-stop: always;
   animation-timeline: scroll(self inline);
@@ -58,22 +57,22 @@
 .scrollSnapWrapper {
   display: grid;
   border-radius: 20px;
-  opacity: var(--goal-opacity);
+  opacity: var(--goal-scroll-visibility);
   color: white;
   background-color: var(--bg-color);
-  grid-template-columns: auto 1fr auto;
+  transition-duration: var(--default-duration);
+  transition-property: scale, opacity;
+  grid-template-columns: 40px 1fr auto;
   padding-inline: 15px 20px;
   padding-block: 12px;
   gap: 8px;
   place-content: center;
   scroll-snap-align: center;
-}
 
-.iconContainer {
-  display: grid;
-  width: 40px;
-  height: 40px;
-  place-content: center;
+  &:active,
+  &:hover {
+    scale: 0.97;
+  }
 }
 
 .cancelBtn {
@@ -83,6 +82,7 @@
 
 .icon {
   width: 27px;
+  justify-self: center;
 }
 
 .title {

@@ -1,5 +1,5 @@
 import { NavigationBar } from '#/components/navigation-bar';
-import { setMetaThemeColor } from '#/library/utils';
+import { setMetaTheme } from '#/library/utils';
 import { useObserver } from '#/library/useObserver';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
@@ -28,5 +28,5 @@ export default function Main(): JSX.Template {
 const initialLoadComplete = Cell.source(false);
 function initMainContainer() {
   initialLoadComplete.value = true;
-  setMetaThemeColor('white');
+  setMetaTheme('white');
 }

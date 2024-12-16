@@ -1,4 +1,4 @@
-import { GoalCardProps } from '#/components/goal-card';
+import type { GoalProps } from '#/data/entities';
 
 export async function createUser(name: string) {
   name;
@@ -6,9 +6,7 @@ export async function createUser(name: string) {
 
 export async function initializeDatabase() {}
 
-export async function getAutoRecommendations(
-  _: never
-): Promise<GoalCardProps[]> {
+export async function getAutoRecommendations(_: never): Promise<GoalProps[]> {
   return [
     {
       title: 'Hydrate Regularly',

@@ -43,8 +43,10 @@ export async function resumeApp() {
 
   const waitingScreen = document.querySelector('#waiting-screen');
   waitingScreen?.classList.add('loading');
+  const fullCurrentPath =
+    window.location.pathname + window.location.search + window.location.hash;
 
-  return router.replace(window.location.pathname).then(async () => {
+  return router.replace(fullCurrentPath).then(async () => {
     const circle = waitingScreen?.querySelector('.waiting-screen__circle');
     if (!circle) return;
     await Promise.all(

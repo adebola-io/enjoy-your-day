@@ -1,7 +1,7 @@
 import { GoalItem } from '#/components/goal-item';
-import { AutoCompleteGetter, SearchInput } from '#/components/search-input';
+import { SearchInput } from '#/components/search-input';
 import { Button } from '#/components/button';
-import { GoalOption, GoalOptionProps } from '#/components/goal-option';
+import { GoalOption } from '#/components/goal-option';
 import AddIcon from '#/components/icons/add';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
 import { useObserver } from '#/library/useObserver';
@@ -11,6 +11,10 @@ import { Cell, type SourceCell } from '@adbl/cells';
 import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './auto-selection-edit.module.css';
+import {
+  getExampleGoalInstruction,
+  getAutoCompleteSuggestions,
+} from '#/data/db';
 
 export interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[]>;
@@ -93,34 +97,28 @@ function AddButton() {
 }
 
 function SearchForm() {
-  const observer = useObserver();
   const router = useRouter();
-  const formRef = Cell.source<HTMLFormElement | null>(null);
-  const handleDismiss = () => router.navigate('/app/auto-select?stage=edit');
+  const placeholder = Cell.source('');
+  const handleDismiss = () => {
+    router.navigate('/app/auto-select?stage=edit');
+  };
 
-  observer.onConnected(formRef, (form) => form.querySelector('input')?.focus());
+  getExampleGoalInstruction().then((example) => {
+    placeholder.value = `e.g. ${example}`;
+  });
 
   const selectGoal = () => {};
-  const handleAutoComplete: AutoCompleteGetter<GoalOptionProps> = (value) => {
-    if (!value) return [];
-    return [
-      {
-        instruction: 'Hello, world',
-        icon: 'self-care',
-      },
-    ];
-  };
 
   return (
     <SearchInput
-      ref={formRef}
       class={classes.searchForm}
       containerClasses={classes.searchInputContainer}
-      placeholder="e.g. listen to a new album"
-      autoCompleteGetter={handleAutoComplete}
+      placeholder={placeholder}
+      autoCompleteGetter={getAutoCompleteSuggestions}
       autoCompleteTemplate={GoalOption}
       onSubmit--prevent={selectGoal}
       onDismiss={handleDismiss}
+      focused
     />
   );
 }

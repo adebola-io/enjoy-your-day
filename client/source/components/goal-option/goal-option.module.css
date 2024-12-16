@@ -4,11 +4,35 @@
 
 .option {
   display: grid;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border: none;
   color: inherit;
   background-color: transparent;
-  font: var(--base-regular);
-  grid-template-columns: 25px 1fr;
+  grid-template-columns: 25px calc(100% - 35px);
+  grid-template-rows: 25px;
+  place-items: start;
+  place-content: center;
   gap: 10px;
+
+  &:focus {
+    outline: none;
+    background-color: #1944841c;
+  }
+}
+
+.icon {
+  align-self: center;
+  width: 20px;
+  justify-self: center;
+}
+
+.text {
+  display: inline-block;
+  overflow: hidden;
+  width: calc(100%);
+  text-align: start;
+  text-transform: lowercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--base-regular);
 }

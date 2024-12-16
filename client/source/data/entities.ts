@@ -20,6 +20,7 @@ export interface Goal {
 }
 
 export interface GoalProps {
+  uuid: string;
   index?: Cell<number>;
   title: string;
   instruction: string;

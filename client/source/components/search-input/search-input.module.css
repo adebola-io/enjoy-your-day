@@ -33,7 +33,7 @@
   display: grid;
   overflow-y: auto;
   width: calc(100% - var(--side-padding) * 2);
-  height: max(30dvh, 200px);
+  max-height: max(30dvh, 200px);
   border: 4px solid;
   border-radius: 20px;
   color: var(--space-cadet-500);

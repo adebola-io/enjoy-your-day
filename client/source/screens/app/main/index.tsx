@@ -19,7 +19,7 @@ export default function Main(): JSX.Template {
 
   return (
     <div class={containerClassList}>
-      <router.Outlet ref={outlet} keepAlive />
+      <router.Outlet ref={outlet} />
       <NavigationBar />
     </div>
   );

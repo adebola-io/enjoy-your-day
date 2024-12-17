@@ -8,7 +8,7 @@ export interface InlinedIconProps extends IconProps {
   title: string;
 }
 
-export function InlinedIcon(props: InlinedIconProps) {
+export function InlinedIcon(props: InlinedIconProps): JSX.Template {
   const { Icon, color, ...rest } = props;
   const icon = (<Icon {...rest} color={color} />) as [SVGElement];
 

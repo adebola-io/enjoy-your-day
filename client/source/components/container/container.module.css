@@ -1,0 +1,15 @@
+.container {
+  --max-width: 800px;
+  display: grid;
+  border: 4px solid var(--space-cadet-500);
+  border-radius: 20px;
+  color: var(--space-cadet-500);
+  background-color: var(--white);
+  place-content: center;
+  place-items: center;
+  padding-block: min(6dvh, 18px);
+
+  @media (orientation: landscape) {
+    --max-width: 400px;
+  }
+}

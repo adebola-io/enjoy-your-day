@@ -4,6 +4,10 @@
   animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
 }
 
+* {
+  transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root),
 ::view-transition-group(root) {
@@ -22,21 +26,15 @@
   animation: none;
 }
 
-/* Card -> Item Transitions */
-::view-transition-group(.goal-card) {
-  animation-timing-function: ease-out;
-}
-
 /* Add Button -> Search Form Transitions */
-::view-transition-group(auto-select-search-form-and-add-button),
-::view-transition-group(auto-select-search-form-and-add-button-icon) {
+::view-transition-group(auto-select-search-form-and-add-button) {
   animation-duration: calc(var(--view-transition-duration) * 0.35);
   animation-timing-function: ease-in;
-
-  html:has(&)::view-transition-group(.goal-card) {
-    animation-duration: calc(var(--view-transition-duration) * 0.35);
-  }
 }
+/* 
+::view-transition-group(.goal-card) {
+  animation-duration: calc(var(--index) * var(--default-duration));
+} */
 
 /* Fallback for browsers that don't support animation-timeline. Adding this class will require an assumption that the element already has an animation set to scroll(self).  */
 .scrollTimelineFallback {
@@ -60,6 +58,7 @@
   --pop: pop;
   --loader-spin: loader-spin;
   --loader-fill: loader-fill;
+  --expand-in: expand-in;
 
   /* View Transitions */
   --app-root-exit-forwards: slide-out-to-left;

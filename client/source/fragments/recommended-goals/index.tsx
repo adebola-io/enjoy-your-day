@@ -3,7 +3,11 @@ import { GoalCard } from '#/components/goal-card';
 import type { GoalProps } from '#/data/entities';
 import AutoSelectionEdit from '../auto-selection-edit';
 import { useObserver } from '#/library/useObserver';
-import { initScrollTimeline, setAutoSelectStage } from '#/library/utils';
+import {
+  initScrollTimeline,
+  setAutoSelectStage,
+  setMetaTheme,
+} from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { For, Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
@@ -48,12 +52,14 @@ function GoalCardList(props: GoalCardsViewProps) {
   const ulRef = Cell.source<HTMLUListElement | null>(null);
   const { goals } = props;
   const observer = useObserver();
-  const ulStyles = { '--total': goals.value.length };
+  const totalGoals = Cell.derived(() => goals.value.length);
+  const ulStyles = { '--total': totalGoals };
   const confirmDrawerHref = '/app/auto-select?confirm';
   const editStageHref = '/app/auto-select?stage=edit';
 
   observer.onConnected(ulRef, (ul) => {
     setAutoSelectStage(1);
+    setMetaTheme('#0e0e1f');
     ul.scrollTop = ul.scrollHeight;
     if (initScrollTimeline(ul)) return () => ul.getAnimations().at(0)?.finish();
   });

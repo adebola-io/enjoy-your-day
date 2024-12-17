@@ -1,6 +1,6 @@
 import { GoalItem } from '#/components/goal-item';
 import { SearchInput } from '#/components/search-input';
-import { Button } from '#/components/button';
+import { Container } from '#/components/container';
 import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
 import AddIcon from '#/components/icons/add';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
@@ -28,13 +28,32 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   const router = useRouter();
   const route = router.getCurrentRoute();
   const containerRef = Cell.source<HTMLDivElement | null>(null);
+  const headingRef = Cell.source<HTMLHeadingElement | null>(null);
   const ulRef = Cell.source<HTMLUListElement | null>(null);
+  const placeholder = Cell.source('');
   const activeItemIndex = Cell.source(0);
   const searchIsOpen = Cell.derived(() => route.value.query.has('search'));
   const confirmDrawerHref = '/app/auto-select?stage=edit&confirm';
   const ulStyles = {
     '--total': Cell.derived(() => goals.value.length),
     '--active-item-index': Cell.derived(() => String(activeItemIndex.value)),
+  };
+
+  getExampleGoalInstruction().then((example) => {
+    placeholder.value = `e.g. ${example}`;
+  });
+
+  const addGoal = async (goal: GoalOptionProps) => {
+    await closeSearch();
+    props.goals.value.splice(0, 0, goal);
+  };
+
+  const openSearch = () => {
+    if (searchIsOpen.value) return;
+    router.navigate('/app/auto-select?stage=edit&search');
+  };
+  const closeSearch = () => {
+    return router.navigate('/app/auto-select?stage=edit');
   };
 
   const removeGoal = (index: number, item: Element, type: 'Swipe' | 'Tap') => {
@@ -56,16 +75,46 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
 
   return (
     <>
-      <div ref={containerRef} class={classes.container}>
-        <h1 class={classes.title}>Goals for Today</h1>
+      <div
+        ref={containerRef}
+        class={classes.container}
+        data-search={searchIsOpen}
+      >
+        <h1 ref={headingRef} class={classes.title}>
+          Goals for Today
+        </h1>
         <p class={classes.subtitle}>
           You can add new goals or ditch the ones you don't need to keep your
           priorities in check.
         </p>
-        {If(searchIsOpen, {
-          true: () => <SearchForm goals={goals} />,
-          false: AddButton,
-        })}
+        <Container class={classes.addBtn} onClick={openSearch}>
+          {If(searchIsOpen, {
+            true: () => (
+              <SearchInput
+                class={classes.searchForm}
+                containerClasses={classes.searchInputContainer}
+                placeholder={placeholder}
+                autoCompleteGetter={getAutoCompleteSuggestions}
+                AutoCompleteTemplate={GoalOption}
+                onAutoCompleteSelect={addGoal}
+                onSubmit--prevent={closeSearch}
+                onDismiss={closeSearch}
+                focused
+              />
+            ),
+            false: () => (
+              <>
+                <InlinedIcon
+                  Icon={AddIcon}
+                  class={classes.addBtnIcon}
+                  color={CSS_VARS['--space-cadet-500']}
+                  title="Add Icon"
+                />
+                Add a goal
+              </>
+            ),
+          })}
+        </Container>
         <ul
           ref={ulRef}
           class={classes.goalItemList}
@@ -90,55 +139,5 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
         </router.Link>
       </div>
     </>
-  );
-}
-
-function AddButton() {
-  const searchHref = '/app/auto-select?stage=edit&search';
-  return (
-    <Button class={classes.addBtn} href={searchHref} variant="primary" vibrate>
-      <InlinedIcon
-        Icon={AddIcon}
-        class={classes.addBtnIcon}
-        color={CSS_VARS['--space-cadet-500']}
-        title="Add Icon"
-      />
-      Add a goal
-    </Button>
-  );
-}
-
-interface SearchFormProps {
-  goals: SourceCell<GoalProps[]>;
-}
-
-function SearchForm(props: SearchFormProps) {
-  const router = useRouter();
-  const placeholder = Cell.source('');
-  const handleDismiss = () => {
-    return router.navigate('/app/auto-select?stage=edit');
-  };
-
-  getExampleGoalInstruction().then((example) => {
-    placeholder.value = `e.g. ${example}`;
-  });
-
-  const addGoal = async (goal: GoalOptionProps) => {
-    await handleDismiss();
-    props.goals.value.splice(0, 0, goal);
-  };
-
-  return (
-    <SearchInput
-      class={classes.searchForm}
-      containerClasses={classes.searchInputContainer}
-      placeholder={placeholder}
-      autoCompleteGetter={getAutoCompleteSuggestions}
-      AutoCompleteTemplate={GoalOption}
-      onAutoCompleteSelect={addGoal}
-      onSubmit--prevent={handleDismiss}
-      onDismiss={handleDismiss}
-      focused
-    />
   );
 }

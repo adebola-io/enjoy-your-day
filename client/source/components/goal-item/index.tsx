@@ -26,8 +26,6 @@ export function GoalItem(props: GoalItemProps) {
   const styles = {
     '--level': props.index,
     '--bg-color': props.color,
-    viewTransitionName: Cell.derived(() => `goal-card-${props.index.value}`),
-    viewTransitionClass: 'goal-card',
   };
 
   const removeItem = () => {

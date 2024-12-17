@@ -21,12 +21,13 @@ export interface Goal {
 
 export interface GoalProps {
   uuid: string;
-  index?: Cell<number>;
   title: string;
   instruction: string;
   info: string;
   color: string;
   icon: IconName;
+  index?: Cell<number>;
+  total?: Cell<number>;
 }
 
 export interface Category {

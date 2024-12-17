@@ -39,7 +39,6 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
   } = props;
   const observer = useObserver();
   const autoCompleteRef = Cell.source<HTMLElement | null>(null);
-  const inputRef = Cell.source<HTMLInputElement | null>(null);
   const searchValue = Cell.source('');
   const completionOptions = Cell.source<T[]>([]);
   const completionOptionsCount = Cell.derived(() => {
@@ -64,7 +63,9 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
   };
 
   if (focused) {
-    observer.onConnected(inputRef, (input) => input.focus());
+    observer.onConnected(ref, (form) => {
+      form.querySelector('input')?.focus();
+    });
   }
 
   searchValue.listen(async (value) => {
@@ -83,7 +84,6 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
       <div class={[classes.searchInputContainer, containerClasses]}>
         <SearchIcon class={classes.searchIcon} />
         <Input
-          ref={inputRef}
           class={classes.searchBar}
           type="search"
           placeholder={placeholder}

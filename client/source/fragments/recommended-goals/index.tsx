@@ -3,11 +3,11 @@ import { GoalCard } from '#/components/goal-card';
 import type { GoalProps } from '#/data/entities';
 import AutoSelectionEdit from '../auto-selection-edit';
 import { useObserver } from '#/library/useObserver';
+import { initScrollTimeline, setAutoSelectStage } from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { For, Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './recommended-goals.module.css';
-import { initScrollTimeline, setAutoSelectStage } from '#/library/utils';
 
 export interface RecommendedGoalsProps {
   goals: SourceCell<GoalProps[] | null>;
@@ -23,11 +23,21 @@ export default async function RecommendedGoals(props: RecommendedGoalsProps) {
   const currentStage = Cell.derived(() => {
     return (route.value.query.get('stage') as AutoSelectStage) ?? 'start';
   });
-
-  return Switch(currentStage, {
-    start: () => <GoalCardList goals={goals} />,
-    edit: () => <AutoSelectionEdit goals={goals} />,
+  const confirmDrawerIsOpen = Cell.derived(() => {
+    return route.value.query.has('confirm');
   });
+
+  return (
+    <>
+      {Switch(currentStage, {
+        start: () => <GoalCardList goals={goals} />,
+        edit: () => <AutoSelectionEdit goals={goals} />,
+      })}
+      <dialog class={classes.confirmDrawer} open={confirmDrawerIsOpen}>
+        Confirming...
+      </dialog>
+    </>
+  );
 }
 
 interface GoalCardsViewProps {

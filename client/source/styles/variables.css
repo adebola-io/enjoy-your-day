@@ -161,6 +161,7 @@
 
   /* Z-Index */
   --auto-complete-z-index: 10;
+  --floating-button-z-index: 9;
   --behind-autocomplete-z-index: -9;
   &.low-end {
     --default-duration: 0ms;

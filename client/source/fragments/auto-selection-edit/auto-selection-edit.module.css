@@ -91,6 +91,7 @@
 
 .submitBtn {
   position: fixed;
+  z-index: var(--floating-button-z-index);
   right: var(--side-padding);
   bottom: var(--block-padding);
   display: grid;
@@ -105,10 +106,15 @@
   filter: drop-shadow(2px 4px 6px #00000025);
   place-items: center;
   place-content: center;
+  view-transition-name: auto-select-goals-submit-btn;
 
   .container:has(.searchForm) & {
     scale: 0;
   }
+}
+
+::view-transition-group(auto-select-goals-submit-btn) {
+  animation: none;
 }
 
 .submitBtnIcon {

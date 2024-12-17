@@ -100,3 +100,8 @@
   filter: drop-shadow(0 0 10px #0000003e);
   place-content: center;
 }
+
+.confirmDrawer {
+  bottom: 0;
+  width: calc(100% - var(--side-padding) * 2);
+}

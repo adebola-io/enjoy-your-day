@@ -162,10 +162,13 @@
   /* Z-Index */
   --auto-complete-z-index: 10;
   --behind-autocomplete-z-index: -9;
+  &.low-end {
+    --default-duration: 0ms;
+  }
 }
 
 @media (prefers-reduced-motion) {
   :root {
-    --default-duration: 0ms;
+    --default-duration: 0ms !important;
   }
 }

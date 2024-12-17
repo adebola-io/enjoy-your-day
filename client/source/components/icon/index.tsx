@@ -25,12 +25,11 @@ export async function Icon(props: DynamicIconProps) {
   const { name, inline, ...rest } = props;
   const module = await import(`../icons/${name}.tsx`);
   const IconComponent = module.default;
-  const svgNode = (<IconComponent {...props} />) as Node[];
+  const svgNode = (<IconComponent {...props} />) as [SVGElement];
   if (!inline) return svgNode;
 
   // Serializing as an <img> tag.
-  const serializer = new XMLSerializer();
-  const svgString = serializer.serializeToString(svgNode[0]);
+  const svgString = svgNode[0].outerHTML;
   const img = document.createElement('img');
   for (const [key, value] of Object.entries(rest)) {
     setAttributeFromProps(img, key, value);

@@ -35,10 +35,10 @@
 
   & > * {
     transition-delay: calc(
-      (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.35
+      (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.2
     );
     transition-timing-function: linear;
-    transition-duration: calc(var(--default-duration) * 0.6);
+    transition-duration: calc(var(--default-duration) * 0.3);
     transition-property: translate, scale, opacity;
     grid-row: 1;
     grid-column: 1;

@@ -42,6 +42,10 @@
   grid-column: 1;
 }
 
+html.low-end .waiting-screen__loader {
+  display: none;
+}
+
 body:has(#waiting-screen) > unfinished-router-outlet {
   display: none;
 }

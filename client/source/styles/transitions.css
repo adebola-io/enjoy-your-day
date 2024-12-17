@@ -30,11 +30,11 @@
 /* Add Button -> Search Form Transitions */
 ::view-transition-group(auto-select-search-form-and-add-button),
 ::view-transition-group(auto-select-search-form-and-add-button-icon) {
-  animation-duration: calc(var(--view-transition-duration) * 0.5);
+  animation-duration: calc(var(--view-transition-duration) * 0.35);
   animation-timing-function: ease-in;
 
   html:has(&)::view-transition-group(.goal-card) {
-    animation-duration: calc(var(--view-transition-duration) * 0.5);
+    animation-duration: calc(var(--view-transition-duration) * 0.35);
   }
 }
 

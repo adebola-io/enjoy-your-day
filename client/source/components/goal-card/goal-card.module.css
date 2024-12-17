@@ -16,7 +16,8 @@
 
 .icon {
   align-self: center;
-  width: calc(7dvh * 0.6);
+  width: 30px;
+  height: 30px;
   justify-self: start;
 }
 
@@ -38,6 +39,8 @@
   position: absolute;
   right: calc(-10% - var(--side-padding));
   width: 80%;
+  height: auto;
   opacity: 0.1;
   pointer-events: none;
+  aspect-ratio: 1;
 }

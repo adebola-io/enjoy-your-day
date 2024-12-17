@@ -6,6 +6,10 @@ import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { Cell } from '@adbl/cells';
 import classes from './search-input.module.css';
 
+export interface AutoCompleteOption<T> {
+  onSelect?: (value: T) => void;
+}
+
 export type AutoCompleteGetter<T> = (value: string) => T[] | Promise<T[]>;
 
 export type SearchInputProps<T> = JSX.IntrinsicElements['form'] & {
@@ -13,19 +17,23 @@ export type SearchInputProps<T> = JSX.IntrinsicElements['form'] & {
   placeholder?: JSX.ValueOrCell<string>;
   containerClasses?: unknown;
   autoCompleteGetter?: AutoCompleteGetter<T>;
-  autoCompleteTemplate?: (value: T) => JSX.Template;
+  AutoCompleteTemplate?: (value: T) => JSX.Template;
   onDismiss?: () => void;
+  onAutoCompleteSelect?: (value: T) => void;
   focused?: boolean;
 };
 
-export function SearchInput<T>(props: SearchInputProps<T>) {
+export function SearchInput<T extends AutoCompleteOption<T>>(
+  props: SearchInputProps<T>
+) {
   const {
     placeholder,
     focused,
     autoCompleteGetter,
-    autoCompleteTemplate,
+    AutoCompleteTemplate,
     containerClasses,
     onDismiss,
+    onAutoCompleteSelect,
     ref = Cell.source(null),
     ...rest
   } = props;
@@ -83,7 +91,7 @@ export function SearchInput<T>(props: SearchInputProps<T>) {
           onBlur={handleBlur}
         />
       </div>
-      {autoCompleteTemplate
+      {AutoCompleteTemplate
         ? If(hasCompletion, () => {
             return (
               <ul
@@ -93,7 +101,14 @@ export function SearchInput<T>(props: SearchInputProps<T>) {
                 tabIndex={-1}
                 onFocusOut={handleBlur}
               >
-                {For(completionOptions, autoCompleteTemplate)}
+                {For(completionOptions, (props) => {
+                  return (
+                    <AutoCompleteTemplate
+                      {...props}
+                      onSelect={onAutoCompleteSelect}
+                    />
+                  );
+                })}
               </ul>
             );
           })

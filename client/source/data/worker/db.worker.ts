@@ -62,7 +62,7 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
   },
 
   async 'goals.today'() {
-    return testData;
+    return testData.slice(0, 3);
   },
 
   async 'goals.autocomplete'(data) {
@@ -70,7 +70,7 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
     const queryLower = query.toLowerCase();
     const results = [];
 
-    for (const goal of testData) {
+    for (const goal of testData.slice(3)) {
       if (goal.instruction.toLowerCase().includes(queryLower)) {
         results.push(goal);
         if (results.length === 5) break;

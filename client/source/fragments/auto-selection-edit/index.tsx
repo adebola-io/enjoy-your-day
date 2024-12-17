@@ -1,7 +1,7 @@
 import { GoalItem } from '#/components/goal-item';
 import { SearchInput } from '#/components/search-input';
 import { Button } from '#/components/button';
-import { GoalOption } from '#/components/goal-option';
+import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
 import AddIcon from '#/components/icons/add';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
 import { useObserver } from '#/library/useObserver';
@@ -61,7 +61,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
           priorities in check.
         </p>
         {If(searchIsOpen, {
-          true: () => <SearchForm />,
+          true: () => <SearchForm goals={goals} />,
           false: AddButton,
         })}
         <ul
@@ -89,14 +89,26 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
 function AddButton() {
   const searchHref = '/app/auto-select?stage=edit&search';
   return (
-    <Button class={classes.addBtn} href={searchHref} variant="primary" vibrate>
+    <Button
+      class={classes.addBtn}
+      href={searchHref}
+      onBeforeNavigate={() => {
+        console.log('before navigate');
+      }}
+      variant="primary"
+      vibrate
+    >
       <AddIcon class={classes.addBtnIcon} />
       Add a goal
     </Button>
   );
 }
 
-function SearchForm() {
+interface SearchFormProps {
+  goals: SourceCell<GoalProps[]>;
+}
+
+function SearchForm(props: SearchFormProps) {
   const router = useRouter();
   const placeholder = Cell.source('');
   const handleDismiss = () => {
@@ -107,7 +119,10 @@ function SearchForm() {
     placeholder.value = `e.g. ${example}`;
   });
 
-  const selectGoal = () => {};
+  const addGoal = (goal: GoalOptionProps) => {
+    props.goals.value = [goal, ...props.goals.value];
+    handleDismiss();
+  };
 
   return (
     <SearchInput
@@ -115,8 +130,9 @@ function SearchForm() {
       containerClasses={classes.searchInputContainer}
       placeholder={placeholder}
       autoCompleteGetter={getAutoCompleteSuggestions}
-      autoCompleteTemplate={GoalOption}
-      onSubmit--prevent={selectGoal}
+      AutoCompleteTemplate={GoalOption}
+      onAutoCompleteSelect={addGoal}
+      onSubmit--prevent={handleDismiss}
       onDismiss={handleDismiss}
       focused
     />

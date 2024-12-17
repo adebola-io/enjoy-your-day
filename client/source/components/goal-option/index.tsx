@@ -1,16 +1,20 @@
-import { IconName } from '#/library/icon-name';
 import { Icon } from '#/components/icon';
 import classes from './goal-option.module.css';
+import type { AutoCompleteOption } from '../search-input';
+import type { GoalProps } from '#/data/entities';
 
-export interface GoalOptionProps {
-  instruction: string;
-  icon: IconName;
-}
+export interface GoalOptionProps
+  extends AutoCompleteOption<GoalOptionProps>,
+    GoalProps {}
 
 export function GoalOption(props: GoalOptionProps) {
+  const handleSelect = () => {
+    props.onSelect?.(props);
+  };
+
   return (
     <li class={classes.container} onKeyDown={navigateVertically}>
-      <button class={classes.option}>
+      <button type="button" class={classes.option} onClick={handleSelect}>
         <Icon name={props.icon} class={classes.icon} />
         <span class={classes.text}>{props.instruction}</span>
       </button>

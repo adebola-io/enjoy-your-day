@@ -112,16 +112,16 @@ function SearchForm(props: SearchFormProps) {
   const router = useRouter();
   const placeholder = Cell.source('');
   const handleDismiss = () => {
-    router.navigate('/app/auto-select?stage=edit');
+    return router.navigate('/app/auto-select?stage=edit');
   };
 
   getExampleGoalInstruction().then((example) => {
     placeholder.value = `e.g. ${example}`;
   });
 
-  const addGoal = (goal: GoalOptionProps) => {
-    props.goals.value = [goal, ...props.goals.value];
-    handleDismiss();
+  const addGoal = async (goal: GoalOptionProps) => {
+    await handleDismiss();
+    props.goals.value.splice(0, 0, goal);
   };
 
   return (

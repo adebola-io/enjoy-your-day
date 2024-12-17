@@ -1,4 +1,4 @@
-import { IconName } from '#/library/icon-name';
+import type { IconName } from '#/library/icon-name';
 import { useObserver } from '#/library/useObserver';
 import { Cell } from '@adbl/cells';
 import { Icon } from '../icon';
@@ -67,7 +67,7 @@ export function GoalItem(props: GoalItemProps) {
           <h2 class={classes.title}>{props.title}</h2>
           <p class={classes.instruction}>{props.instruction}</p>
         </div>
-        <button class={classes.cancelBtn} onClick={removeItem}>
+        <button type="button" class={classes.cancelBtn} onClick={removeItem}>
           <XIcon class={classes.icon} title="Remove Goal" />
         </button>
       </div>

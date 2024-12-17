@@ -1,5 +1,6 @@
 import { appLoadingState } from '#/data/state';
 import { useRouter } from '@adbl/unfinished/router';
+import classes from './app.module.css';
 
 export default async function App() {
   const router = useRouter();
@@ -8,5 +9,5 @@ export default async function App() {
     return;
   }
 
-  return <router.Outlet />;
+  return <router.Outlet class={classes.appOutlet} />;
 }

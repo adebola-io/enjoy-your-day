@@ -29,13 +29,17 @@ export function GoalCard(props: GoalProps) {
       class={classes.card}
       style={styles}
     >
-      <div class={classes.iconContainer}>
-        <Icon name={props.icon} class={classes.icon} inert />
-      </div>
+      <Icon name={props.icon} class={classes.icon} color="white" inert inline />
       <h2 class={classes.title}>{props.title}</h2>
       <p class={classes.instruction}>{props.instruction}</p>
       <p class={classes.info}>{props.info}</p>
-      <Icon name={props.icon} inert class={classes.iconOverlay} />
+      <Icon
+        name={props.icon}
+        class={classes.overlay}
+        color="white"
+        inert
+        inline
+      />
     </li>
   );
 }

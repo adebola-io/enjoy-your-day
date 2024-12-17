@@ -12,7 +12,7 @@ export function AddIcon(props: IconProps) {
       <path
         xmlns="http://www.w3.org/2000/svg"
         d="M1.5 10.5H18.5M10 2V19"
-        stroke="#383853"
+        stroke="currentColor"
         stroke-width="2.83333"
         stroke-linecap="round"
         stroke-linejoin="round"

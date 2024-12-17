@@ -1,0 +1,16 @@
+.appOutlet {
+  &[data-path='/app/main'] {
+    display: grid;
+    width: 100%;
+    height: 100dvh;
+    color: var(--space-cadet-500);
+    background-color: var(--white);
+    grid-template-rows: 1fr auto;
+    view-transition-name: app-root-view;
+
+    @media (orientation: landscape) {
+      grid-template-rows: unset;
+      grid-template-columns: auto 1fr;
+    }
+  }
+}

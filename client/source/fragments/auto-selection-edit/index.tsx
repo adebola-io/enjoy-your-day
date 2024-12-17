@@ -15,6 +15,8 @@ import {
   getExampleGoalInstruction,
   getAutoCompleteSuggestions,
 } from '#/data/db';
+import { InlinedIcon } from '#/components/inlined-icon';
+import { CSS_VARS } from '#/styles/variables';
 
 export interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[]>;
@@ -28,12 +30,12 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   const containerRef = Cell.source<HTMLDivElement | null>(null);
   const ulRef = Cell.source<HTMLUListElement | null>(null);
   const activeItemIndex = Cell.source(0);
+  const searchIsOpen = Cell.derived(() => route.value.query.has('search'));
   const confirmDrawerHref = '/app/auto-select?stage=edit&confirm';
   const ulStyles = {
     '--total': Cell.derived(() => goals.value.length),
     '--active-item-index': Cell.derived(() => String(activeItemIndex.value)),
   };
-  const searchIsOpen = Cell.derived(() => route.value.query.has('search'));
 
   const removeGoal = (index: number, item: Element, type: 'Swipe' | 'Tap') => {
     activeItemIndex.value = index;
@@ -79,7 +81,12 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
           href={confirmDrawerHref}
           inert={searchIsOpen}
         >
-          <DoubleCheckIcon class={classes.submitBtnIcon} title="Submit Goals" />
+          <InlinedIcon
+            Icon={DoubleCheckIcon}
+            class={classes.submitBtnIcon}
+            title="Submit Goals"
+            color="white"
+          />
         </router.Link>
       </div>
     </>
@@ -89,16 +96,13 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
 function AddButton() {
   const searchHref = '/app/auto-select?stage=edit&search';
   return (
-    <Button
-      class={classes.addBtn}
-      href={searchHref}
-      onBeforeNavigate={() => {
-        console.log('before navigate');
-      }}
-      variant="primary"
-      vibrate
-    >
-      <AddIcon class={classes.addBtnIcon} />
+    <Button class={classes.addBtn} href={searchHref} variant="primary" vibrate>
+      <InlinedIcon
+        Icon={AddIcon}
+        class={classes.addBtnIcon}
+        color={CSS_VARS['--space-cadet-500']}
+        title="Add Icon"
+      />
       Add a goal
     </Button>
   );

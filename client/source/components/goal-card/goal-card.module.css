@@ -7,24 +7,17 @@
   border: var(--goal-card-border-width) solid var(--bg-color-light);
   border-radius: var(--goal-card-border-radius);
   background-color: var(--bg-color);
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: 7dvh auto auto 1fr;
   gap: 0.35rem;
   padding-inline: var(--side-padding);
   container-name: goal-card;
   container-type: inline-size;
 }
 
-.iconContainer {
-  display: grid;
-  align-items: center;
-  justify-content: start;
-  width: auto;
-  height: 7dvh;
-  aspect-ratio: 1;
-}
-
 .icon {
-  width: 60%;
+  align-self: center;
+  width: calc(7dvh * 0.6);
+  justify-self: start;
 }
 
 .title {
@@ -41,7 +34,7 @@
   font: var(--base-regular);
 }
 
-.iconOverlay {
+.overlay {
   position: absolute;
   right: calc(-10% - var(--side-padding));
   width: 80%;

@@ -1,9 +1,18 @@
 import type { IconProps } from '../icons/props';
 import type { IconName } from '#/library/icon-name';
+import { setAttributeFromProps } from '@adbl/unfinished';
 
 export type DynamicIconProps = IconProps & {
   name: IconName;
-};
+} & (
+    | {
+        inline: true;
+        color: string;
+      }
+    | {
+        inline?: false;
+      }
+  );
 
 /**
  * Dynamically imports and renders an icon component based on the provided name.
@@ -12,7 +21,19 @@ export type DynamicIconProps = IconProps & {
  * @returns The rendered icon component.
  */
 export async function Icon(props: DynamicIconProps) {
-  const module = await import(`../icons/${props.name}.tsx`);
+  const { name, inline, ...rest } = props;
+  const module = await import(`../icons/${name}.tsx`);
   const IconComponent = module.default;
-  return (<IconComponent {...props} />) as Node;
+  const svgNode = (<IconComponent {...props} />) as Node[];
+  if (!inline) return svgNode;
+
+  // Serializing as an <img> tag.
+  const serializer = new XMLSerializer();
+  const svgString = serializer.serializeToString(svgNode[0]);
+  const img = document.createElement('img');
+  for (const [key, value] of Object.entries(rest)) {
+    setAttributeFromProps(img, key, value);
+  }
+  img.src = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+  return img;
 }

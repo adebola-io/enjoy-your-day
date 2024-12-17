@@ -12,14 +12,14 @@ export function XIcon(props: IconProps) {
       <path
         xmlns="http://www.w3.org/2000/svg"
         d="M6.00024 6L14.2498 14.2496"
-        stroke="white"
+        stroke="currentColor"
         stroke-width="1.66667"
         stroke-linecap="round"
       />
       <path
         xmlns="http://www.w3.org/2000/svg"
         d="M6.00024 14.2496L14.2498 6"
-        stroke="white"
+        stroke="currentColor"
         stroke-width="1.66667"
         stroke-linecap="round"
       />

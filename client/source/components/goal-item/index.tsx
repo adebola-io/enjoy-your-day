@@ -1,5 +1,6 @@
 import type { IconName } from '#/library/icon-name';
 import { useObserver } from '#/library/useObserver';
+import { InlinedIcon } from '#/components/inlined-icon';
 import { Cell } from '@adbl/cells';
 import { Icon } from '../icon';
 import { XIcon } from '#/components/icons/x';
@@ -45,13 +46,9 @@ export function GoalItem(props: GoalItemProps) {
         props.onRemove?.(props.index.value, container, 'Swipe');
       }
     };
-    const intersectOptions = { root: container, threshold: 0.55 };
-    const intersectObserver = new IntersectionObserver(
-      callback,
-      intersectOptions
-    );
+    const options = { root: container, threshold: 0.55 };
+    const intersectObserver = new IntersectionObserver(callback, options);
     intersectObserver.observe(wrapper);
-
     return () => intersectObserver.disconnect();
   });
 
@@ -62,11 +59,16 @@ export function GoalItem(props: GoalItemProps) {
       style={styles}
     >
       <div ref={wrapperRef} class={classes.scrollSnapWrapper}>
-        <Icon name={props.icon} class={classes.icon} />
+        <Icon name={props.icon} class={classes.icon} color="white" inline />
         <h2 class={classes.title}>{props.title}</h2>
         <p class={classes.instruction}>{props.instruction}</p>
         <button type="button" class={classes.cancelBtn} onClick={removeItem}>
-          <XIcon class={classes.icon} title="Remove Goal" />
+          <InlinedIcon
+            Icon={XIcon}
+            class={classes.icon}
+            color="white"
+            title="Remove Goal"
+          />
         </button>
       </div>
     </li>

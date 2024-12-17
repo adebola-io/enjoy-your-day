@@ -42,7 +42,7 @@
   grid-column: 1;
 }
 
-body:has(#waiting-screen) > div[data-x-outlet] {
+body:has(#waiting-screen) > unfinished-router-outlet {
   display: none;
 }
 

@@ -63,9 +63,11 @@
   transition-duration: var(--default-duration);
   transition-property: scale, opacity;
   grid-template-columns: 40px 1fr auto;
+  grid-template-rows: calc(100% - 30px); /* minus block padding */
   padding-inline: 15px 20px;
   padding-block: 12px;
-  gap: 8px;
+  column-gap: 8px;
+  row-gap: 0px;
   place-content: center;
   scroll-snap-align: center;
 
@@ -82,13 +84,18 @@
 
 .icon {
   width: 27px;
+  margin-top: 10%;
   justify-self: center;
 }
 
 .title {
   font: var(--base-bold);
+  grid-row: 1;
+  grid-column: 2;
 }
 
 .instruction {
   font: var(--small-regular);
+  grid-row: 2;
+  grid-column: 2;
 }

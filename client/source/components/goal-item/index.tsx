@@ -63,10 +63,8 @@ export function GoalItem(props: GoalItemProps) {
     >
       <div ref={wrapperRef} class={classes.scrollSnapWrapper}>
         <Icon name={props.icon} class={classes.icon} />
-        <div class={classes.details}>
-          <h2 class={classes.title}>{props.title}</h2>
-          <p class={classes.instruction}>{props.instruction}</p>
-        </div>
+        <h2 class={classes.title}>{props.title}</h2>
+        <p class={classes.instruction}>{props.instruction}</p>
         <button type="button" class={classes.cancelBtn} onClick={removeItem}>
           <XIcon class={classes.icon} title="Remove Goal" />
         </button>

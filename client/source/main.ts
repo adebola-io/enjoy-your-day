@@ -47,13 +47,18 @@ export async function resumeApp() {
     window.location.pathname + window.location.search + window.location.hash;
 
   return router.replace(fullCurrentPath).then(async () => {
-    const circle = waitingScreen?.querySelector('.waiting-screen__circle');
-    if (!circle) return;
-    await Promise.all(
-      circle.getAnimations().map((animation) => animation.finished)
+    const waitingScreen = document.querySelector('#waiting-screen');
+    const circle = waitingScreen?.querySelector<HTMLElement>(
+      '.waiting-screen__circle'
     );
-    waitingScreen?.remove();
-    document.querySelector('#start-screen')?.remove();
-    router.useViewTransitions = true;
+    if (!circle) return;
+    // Using await Promise.all(animations.map(a => a.finished))
+    // leads to a memory leak in Edge.
+    circle.addEventListener('animationend', (event) => {
+      if (event.animationName !== 'expand-forever') return;
+      waitingScreen?.remove();
+      document.querySelector('#start-screen')?.remove();
+      router.useViewTransitions = true;
+    });
   });
 }

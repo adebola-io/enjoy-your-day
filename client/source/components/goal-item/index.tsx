@@ -59,7 +59,13 @@ export function GoalItem(props: GoalItemProps) {
       style={styles}
     >
       <div ref={wrapperRef} class={classes.scrollSnapWrapper}>
-        <Icon name={props.icon} class={classes.icon} color="white" inline />
+        <Icon
+          name={props.icon}
+          class={classes.icon}
+          color="white"
+          title="Icon related to the goal"
+          inline
+        />
         <h2 class={classes.title}>{props.title}</h2>
         <p class={classes.instruction}>{props.instruction}</p>
         <button type="button" class={classes.cancelBtn} onClick={removeItem}>

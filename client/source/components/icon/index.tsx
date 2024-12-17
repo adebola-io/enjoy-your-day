@@ -8,6 +8,7 @@ export type DynamicIconProps = IconProps & {
     | {
         inline: true;
         color: string;
+        title: string;
       }
     | {
         inline?: false;

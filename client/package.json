@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@adbl/cells": "^0.0.10",
-    "@adbl/dom-cells": "^0.0.4",
-    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@38c703a",
+    "@adbl/cells": "^0.0.11",
+    "@adbl/dom-cells": "^0.0.5",
+    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@962a933",
     "@types/node": "^22.10.1",
     "postcss": "^8.4.49",
     "postcss-nesting": "^13.0.1",

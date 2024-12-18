@@ -3,6 +3,7 @@ import { SearchInput } from '#/components/search-input';
 import { Container } from '#/components/container';
 import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
 import AddIcon from '#/components/icons/add';
+import { InlinedIcon } from '#/components/inlined-icon';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
 import { useObserver } from '#/library/useObserver';
 import { setAutoSelectStage, setMetaTheme, vibrate } from '#/library/utils';
@@ -10,13 +11,12 @@ import type { GoalProps } from '#/data/entities';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
-import classes from './auto-selection-edit.module.css';
 import {
   getExampleGoalInstruction,
   getAutoCompleteSuggestions,
 } from '#/data/db';
-import { InlinedIcon } from '#/components/inlined-icon';
 import { CSS_VARS } from '#/styles/variables';
+import classes from './auto-selection-edit.module.css';
 
 export interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[]>;
@@ -28,38 +28,34 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   const router = useRouter();
   const route = router.getCurrentRoute();
   const containerRef = Cell.source<HTMLDivElement | null>(null);
-  const headingRef = Cell.source<HTMLHeadingElement | null>(null);
   const ulRef = Cell.source<HTMLUListElement | null>(null);
   const placeholder = Cell.source('');
   const activeItemIndex = Cell.source(0);
   const searchIsOpen = Cell.derived(() => route.value.query.has('search'));
-  const confirmDrawerHref = '/app/auto-select?stage=edit&confirm';
+  const baseHref = '/app/auto-select?stage=edit';
+  const searchHref = `${baseHref}&search`;
+  const confirmDrawerHref = `${baseHref}&confirm`;
   const ulStyles = {
     '--total': Cell.derived(() => goals.value.length),
     '--active-item-index': Cell.derived(() => String(activeItemIndex.value)),
   };
 
-  getExampleGoalInstruction().then((example) => {
-    placeholder.value = `e.g. ${example}`;
-  });
+  const openSearch = () => {
+    if (searchIsOpen.value) return;
+    router.navigate(searchHref);
+  };
+  const closeSearch = () => {
+    return router.navigate(baseHref);
+  };
 
   const addGoal = async (goal: GoalOptionProps) => {
     await closeSearch();
     props.goals.value.splice(0, 0, goal);
   };
 
-  const openSearch = () => {
-    if (searchIsOpen.value) return;
-    router.navigate('/app/auto-select?stage=edit&search');
-  };
-  const closeSearch = () => {
-    return router.navigate('/app/auto-select?stage=edit');
-  };
-
-  const removeGoal = (index: number, item: Element, type: 'Swipe' | 'Tap') => {
+  const removeGoal = (index: number, item: Element, mode: 'Swipe' | 'Tap') => {
     activeItemIndex.value = index;
-    item.classList.add(classes[`deletingBy${type}`]);
-
+    item.classList.add(classes[`deletingBy${mode}`]);
     const eventHandler = () => {
       vibrate();
       goals.value.splice(index, 1);
@@ -71,6 +67,10 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   observer.onConnected(containerRef, () => {
     setMetaTheme('white');
     setAutoSelectStage(2);
+
+    getExampleGoalInstruction().then((example) => {
+      placeholder.value = `e.g. ${example}`;
+    });
   });
 
   return (
@@ -78,11 +78,9 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
       <div
         ref={containerRef}
         class={classes.container}
-        data-search={searchIsOpen}
+        data-search-is-open={searchIsOpen}
       >
-        <h1 ref={headingRef} class={classes.title}>
-          Goals for Today
-        </h1>
+        <h1 class={classes.title}>Goals for Today</h1>
         <p class={classes.subtitle}>
           You can add new goals or ditch the ones you don't need to keep your
           priorities in check.

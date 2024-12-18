@@ -3,6 +3,7 @@
 }
 
 .option {
+  position: relative;
   display: grid;
   padding: 10px 22px;
   border: none;
@@ -18,12 +19,20 @@
     outline: none;
     background-color: #1944841c;
   }
+
+  /* Prevents Icon layout shift. */
+  &::before {
+    display: block;
+    width: 20px;
+    content: '';
+  }
 }
 
 .icon {
+  position: absolute;
+  left: 22px;
   align-self: center;
   width: 20px;
-  justify-self: center;
 }
 
 .text {

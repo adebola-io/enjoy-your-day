@@ -59,7 +59,7 @@ export function GoalItem(props: GoalItemProps) {
       <div ref={wrapperRef} class={classes.scrollSnapWrapper}>
         <Icon
           name={props.icon}
-          class={classes.icon}
+          class={[classes.icon, classes.goalIcon]}
           color="white"
           title="Icon related to the goal"
           inline

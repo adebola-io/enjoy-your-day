@@ -55,6 +55,7 @@
 }
 
 .scrollSnapWrapper {
+  position: relative;
   display: grid;
   border-radius: 20px;
   opacity: var(--goal-scroll-visibility);
@@ -75,6 +76,14 @@
   &:hover {
     scale: 0.97;
   }
+
+  &::before {
+    display: block;
+    width: 27px;
+    margin-top: 10%;
+    content: '';
+    justify-self: center;
+  }
 }
 
 .cancelBtn {
@@ -86,6 +95,13 @@
   width: 27px;
   margin-top: 10%;
   justify-self: center;
+}
+
+.goalIcon {
+  position: absolute;
+  top: 35%;
+  left: 18px;
+  margin-top: 0;
 }
 
 .title {

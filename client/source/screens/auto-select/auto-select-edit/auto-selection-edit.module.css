@@ -107,6 +107,13 @@
   }
 }
 
+.autoComplete {
+  /* Container Block paddings + text size + border-widths + gap. */
+  top: calc(min(6dvh, 18px) * 2 + var(--base-font-size) + 8px + 10px);
+  width: 100%;
+  margin-inline: 0px;
+}
+
 .searchForm {
   display: contents;
 }

@@ -91,6 +91,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
               <SearchInput
                 class={classes.searchForm}
                 containerClasses={classes.searchInputContainer}
+                autoCompleteClasses={classes.autoComplete}
                 placeholder={placeholder}
                 autoCompleteGetter={getAutoCompleteSuggestions}
                 AutoCompleteTemplate={GoalOption}

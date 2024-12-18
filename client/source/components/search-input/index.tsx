@@ -16,6 +16,7 @@ export type SearchInputProps<T> = JSX.IntrinsicElements['form'] & {
   ref?: Cell<HTMLFormElement | null>;
   placeholder?: JSX.ValueOrCell<string>;
   containerClasses?: unknown;
+  autoCompleteClasses?: unknown;
   autoCompleteGetter?: AutoCompleteGetter<T>;
   AutoCompleteTemplate?: (value: T) => JSX.Template;
   onDismiss?: () => void;
@@ -96,7 +97,10 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
             return (
               <ul
                 ref={autoCompleteRef}
-                class={classes.autoCompleteDropdown}
+                class={[
+                  classes.autoCompleteDropdown,
+                  props.autoCompleteClasses,
+                ]}
                 style={ulStyles}
                 tabIndex={-1}
                 onFocusOut={handleBlur}

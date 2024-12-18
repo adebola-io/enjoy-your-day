@@ -1,17 +1,7 @@
 /// <reference types="vite/client" />
 import { initializeDatabase } from '#/data/db';
-import { createRouter } from './router';
-
-function disableContextMenu() {
-  const listener = (event: Event) => {
-    const target = event.target as Element;
-    if (target.tagName === 'A') {
-      // Prevents long press opening context menu popup on mobile.
-      event.preventDefault();
-    }
-  };
-  document.addEventListener('contextmenu', listener, { passive: false });
-}
+import { createWebRouter, defineRoutes } from '@adbl/unfinished/router';
+import { appRouteTree, onboardingMiddleware } from './screens/routes';
 
 export default async function main() {
   disableContextMenu();
@@ -26,9 +16,6 @@ export default async function main() {
     document.querySelector('#waiting-screen')?.remove();
     document.querySelector('#start-screen')?.remove();
     document.querySelector('html')?.removeAttribute('data-view');
-    // Setting this in the configuration will interfere with the transitions
-    // from the start screen.
-    router.useViewTransitions = true;
   });
 }
 
@@ -58,7 +45,25 @@ export async function resumeApp() {
       if (event.animationName !== 'expand-forever') return;
       waitingScreen?.remove();
       document.querySelector('#start-screen')?.remove();
-      router.useViewTransitions = true;
     });
   });
+}
+
+function createRouter() {
+  return createWebRouter({
+    stackMode: true,
+    routes: defineRoutes([appRouteTree]),
+    middlewares: [onboardingMiddleware],
+  });
+}
+
+function disableContextMenu() {
+  const listener = (event: Event) => {
+    const target = event.target as Element;
+    if (target.tagName === 'A') {
+      // Prevents long press opening context menu popup on mobile.
+      event.preventDefault();
+    }
+  };
+  document.addEventListener('contextmenu', listener, { passive: false });
 }

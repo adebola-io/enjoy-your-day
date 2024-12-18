@@ -71,22 +71,22 @@ export interface NavigationLink {
 export const navigationBarLinks: NavigationLink[] = [
   {
     name: 'Home',
-    path: '/app/main/home',
+    path: '/home',
     icon: HomeIcon,
   },
   {
     name: 'Goals',
-    path: '/app/main/goals',
+    path: '/goals',
     icon: StackIcon,
   },
   {
     name: 'Insights',
-    path: '/app/main/insights',
+    path: '/insights',
     icon: BarChartIcon,
   },
   {
     name: 'Settings',
-    path: '/app/main/settings',
+    path: '/settings',
     icon: SettingsIcon,
   },
 ];

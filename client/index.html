@@ -298,35 +298,6 @@
       </svg>
       <div class="waiting-screen__circle"></div>
     </div>
-    <!-- <script>
-      // Detect Low-End Devices:
-      function estimateFrameRate() {
-        return new Promise((resolve) => {
-          let frameCount = 0;
-          const startTime = performance.now();
-          const duration = 500; // Run for 500 milliseconds
-          function frameCounter() {
-            frameCount++;
-            if (performance.now() - startTime < duration) {
-              requestAnimationFrame(frameCounter);
-              return;
-            }
-            const fps = frameCount / (duration / 1000);
-            resolve(fps);
-          }
-          requestAnimationFrame(frameCounter);
-        });
-      }
-
-      async function detectLowPerformance() {
-        const fps = await estimateFrameRate();
-        const threshold = 25; // Frames per second below which transitions might be problematic
-        if (fps < threshold) {
-          document.documentElement.classList.add('low-end');
-        }
-      }
-      detectLowPerformance();
-    </script> -->
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <script type="module" src="./source/start-screen.js"></script>
   </body>

@@ -28,11 +28,10 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   const router = useRouter();
   const route = router.getCurrentRoute();
   const containerRef = Cell.source<HTMLDivElement | null>(null);
-  const ulRef = Cell.source<HTMLUListElement | null>(null);
   const placeholder = Cell.source('');
   const activeItemIndex = Cell.source(0);
   const searchIsOpen = Cell.derived(() => route.value.query.has('search'));
-  const baseHref = '/app/auto-select?stage=edit';
+  const baseHref = '/home?auto-select&stage=edit';
   const searchHref = `${baseHref}&search`;
   const confirmDrawerHref = `${baseHref}&confirm`;
   const ulStyles = {
@@ -45,23 +44,21 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
     router.navigate(searchHref);
   };
   const closeSearch = () => {
+    if (!searchIsOpen.value) return;
     return router.navigate(baseHref);
   };
 
   const addGoal = async (goal: GoalOptionProps) => {
     await closeSearch();
+    activeItemIndex.value = 0;
     props.goals.value.splice(0, 0, goal);
   };
 
   const removeGoal = (index: number, item: Element, mode: 'Swipe' | 'Tap') => {
     activeItemIndex.value = index;
     item.classList.add(classes[`deletingBy${mode}`]);
-    const eventHandler = () => {
-      vibrate();
-      goals.value.splice(index, 1);
-    };
-    const options = { once: true, capture: true };
-    item.addEventListener('transitionend', eventHandler, options);
+    vibrate();
+    goals.value.splice(index, 1);
   };
 
   observer.onConnected(containerRef, () => {
@@ -85,7 +82,10 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
           You can add new goals or ditch the ones you don't need to keep your
           priorities in check.
         </p>
-        <Container class={classes.addBtn} onClick={openSearch}>
+        <Container
+          class={classes.buttonAndSearchContainer}
+          onClick={openSearch}
+        >
           {If(searchIsOpen, {
             true: () => (
               <SearchInput
@@ -104,7 +104,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
               <>
                 <InlinedIcon
                   Icon={AddIcon}
-                  class={classes.addBtnIcon}
+                  class={classes.buttonAndSearchContainerIcon}
                   color={CSS_VARS['--space-cadet-500']}
                   title="Add Icon"
                 />
@@ -113,12 +113,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
             ),
           })}
         </Container>
-        <ul
-          ref={ulRef}
-          class={classes.goalItemList}
-          inert={searchIsOpen}
-          style={ulStyles}
-        >
+        <ul class={classes.goalItemList} inert={searchIsOpen} style={ulStyles}>
           {For(goals, (goal, index) => {
             return <GoalItem {...goal} index={index} onRemove={removeGoal} />;
           })}

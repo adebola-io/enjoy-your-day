@@ -20,7 +20,7 @@ export default function InitialHome() {
         let's make today memorable!
       </p>
       <Button
-        href="/app/auto-select"
+        href="/home?auto-select"
         class={classes.autoSelectLink}
         variant="secondary"
         vibrate
@@ -33,11 +33,7 @@ export default function InitialHome() {
         />
         Select for me
       </Button>
-      <Button
-        href="/app/main/goals"
-        class={classes.goalsPageLink}
-        variant="primary"
-      >
+      <Button href="/goals" class={classes.goalsPageLink} variant="primary">
         Go to Goals
       </Button>
     </div>

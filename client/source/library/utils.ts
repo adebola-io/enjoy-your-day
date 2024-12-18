@@ -7,9 +7,11 @@ type AsyncRequestAtoms<T, U> = {
 };
 
 export function setMetaTheme(color: string) {
-  document
-    .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', color);
+  setTimeout(() => {
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', color);
+  }, 0);
 }
 
 export function setAutoSelectStage(stage: number) {
@@ -45,7 +47,9 @@ export function getResourceState<T, U>(resource: AsyncRequestAtoms<T, U>) {
       ? 'pending'
       : resource.error.value
       ? 'error'
-      : 'success';
+      : resource.data.value
+      ? 'success'
+      : 'inert';
   });
 }
 

@@ -4,10 +4,6 @@
   animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-* {
-  transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
-}
-
 ::view-transition-old(root),
 ::view-transition-new(root),
 ::view-transition-group(root) {
@@ -20,21 +16,6 @@
   translate: -5% -6%;
   scale: 0.9;
 }
-
-/* Screen Transitions. */
-::view-transition-group(app-root-view) {
-  animation: none;
-}
-
-/* Add Button -> Search Form Transitions */
-::view-transition-group(auto-select-search-form-and-add-button) {
-  animation-duration: calc(var(--view-transition-duration) * 0.35);
-  animation-timing-function: ease-in;
-}
-/* 
-::view-transition-group(.goal-card) {
-  animation-duration: calc(var(--index) * var(--default-duration));
-} */
 
 /* Fallback for browsers that don't support animation-timeline. Adding this class will require an assumption that the element already has an animation set to scroll(self).  */
 .scrollTimelineFallback {
@@ -59,21 +40,6 @@
   --loader-spin: loader-spin;
   --loader-fill: loader-fill;
   --expand-in: expand-in;
-
-  /* View Transitions */
-  --app-root-exit-forwards: slide-out-to-left;
-  --app-root-enter-forwards: slide-in-from-right;
-  --app-root-enter-backwards: slide-in-from-left;
-  --app-root-exit-backwards: slide-out-to-right;
-  --app-root-view-transition-duration: calc(var(--default-duration) * 1.5);
-
-  @media (orientation: landscape) {
-    --app-root-exit-forwards: condense-out;
-    --app-root-enter-forwards: expand-in;
-    --app-root-enter-backwards: condense-in;
-    --app-root-exit-backwards: shrink-out;
-    --app-root-view-transition-duration: calc(var(--default-duration) * 1.2);
-  }
 }
 
 @keyframes shrink-out {
@@ -111,40 +77,6 @@
   to {
     opacity: 0;
     scale: 1.4;
-  }
-}
-
-:active-view-transition-type(app-root) {
-  &:active-view-transition-type(forwards) {
-    &::view-transition-old(app-root-view) {
-      animation-name: var(--app-root-exit-forwards);
-    }
-
-    &::view-transition-new(app-root-view) {
-      animation-name: var(--app-root-enter-forwards);
-    }
-  }
-
-  &:active-view-transition-type(backwards) {
-    &::view-transition-old(app-root-view) {
-      animation-name: var(--app-root-exit-backwards);
-    }
-
-    &::view-transition-new(app-root-view) {
-      animation-name: var(--app-root-enter-backwards);
-    }
-  }
-
-  /* Disables other view transitions. */
-  &::view-transition-old(*),
-  &::view-transition-new(*) {
-    animation-duration: 0ms;
-  }
-
-  &::view-transition-old(app-root-view),
-  &::view-transition-new(app-root-view) {
-    animation-duration: var(--app-root-view-transition-duration);
-    animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 }
 
@@ -234,8 +166,11 @@
 }
 
 @keyframes fade-in {
+  from {
+    opacity: 0;
+  }
   to {
-    opacity: 1;
+    opacity: var(--final-element-opacity, 1);
   }
 }
 

@@ -1,5 +1,5 @@
 .container {
-  --toggle-search-duration: calc(var(--default-duration) * 1.5);
+  --toggle-search-duration: var(--default-duration);
   display: grid;
   overflow-y: auto;
   align-self: normal;
@@ -13,11 +13,11 @@
 
   &[data-search-is-open] {
     .goalItemList,
-    .addBtn {
+    .buttonAndSearchContainer {
       translate: 0 -6.5em;
     }
 
-    .addBtn {
+    .buttonAndSearchContainer {
       font-weight: normal;
       grid-template-columns: 1fr;
       padding-inline: 0;
@@ -30,9 +30,8 @@
 
     .title,
     .subtitle {
-      opacity: 0;
       pointer-events: none;
-      scale: 0.9;
+      scale: 1 0;
     }
 
     .submitBtn {
@@ -43,10 +42,10 @@
 
 .title,
 .subtitle {
-  --starting-fade-position-y: 20%;
+  --starting-fade-position-y: 50%;
   transition-duration: var(--toggle-search-duration);
   transition-property: opacity, scale;
-  animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 1.25);
+  animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 1.5);
   padding-inline: var(--side-padding);
 }
 
@@ -56,16 +55,16 @@
   padding-block-end: calc(var(--block-padding) * 3);
   transition-duration: var(--toggle-search-duration);
   transition-property: translate, opacity;
-  animation: var(--fade-in-from-top) calc(var(--default-duration) * 1.25);
+  animation: var(--fade-in-from-top) calc(var(--default-duration) * 1.5);
   grid-template-rows: repeat(var(--total), max-content);
   gap: 10px;
 
   & > * {
     transition-delay: calc(
-      (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.2
+      (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.3
     );
     transition-timing-function: linear;
-    transition-duration: calc(var(--default-duration) * 0.5);
+    transition-duration: calc(var(--default-duration) * 1.5);
     transition-property: translate, scale, opacity;
     grid-row: 1;
     grid-column: 1;
@@ -73,11 +72,14 @@
   }
 }
 
-.addBtn {
+.buttonAndSearchContainer {
   --starting-fade-position-y: 20%;
+  z-index: 1;
   display: grid;
   border-radius: 40px;
+  background-color: white;
   transition-duration: var(--toggle-search-duration);
+  transition-property: opacity, translate;
   animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 1.25);
   font-weight: bold;
   margin-inline: var(--side-padding);
@@ -87,9 +89,8 @@
   gap: 8px;
 }
 
-.addBtnIcon {
+.buttonAndSearchContainerIcon {
   width: 18px;
-  background-color: white;
   justify-self: center;
 }
 

@@ -12,27 +12,56 @@
   padding-inline: var(--side-padding);
   container-name: goal-card;
   container-type: inline-size;
+
+  &::before {
+    display: block;
+    width: 100%;
+    content: '';
+  }
 }
 
 .icon {
-  align-self: center;
+  position: absolute;
+  top: calc(var(--side-padding) * 0.5 + 2dvh);
+  left: var(--side-padding);
   width: 30px;
   height: 30px;
-  justify-self: start;
+  animation: var(--fade-in) calc(var(--default-duration) * 2);
 }
 
 .title {
   max-width: 80dvw;
+  opacity: 0;
+  animation-name: var(--fade-in);
+  animation-duration: var(--default-duration);
+  animation-delay: calc(
+    (var(--total) - var(--index)) * var(--default-duration)
+  );
   font: var(--title-bold);
+  animation-fill-mode: both;
 }
 
 .instruction {
+  opacity: 0;
+  animation-name: var(--fade-in);
+  animation-duration: var(--default-duration);
+  animation-delay: calc(
+    (var(--total) - var(--index)) * var(--default-duration)
+  );
   font: var(--base-regular);
   font-style: italic;
+  animation-fill-mode: both;
 }
 
 .info {
+  opacity: 0;
+  animation-name: var(--fade-in);
+  animation-duration: var(--default-duration);
+  animation-delay: calc(
+    (var(--total) - var(--index)) * var(--default-duration)
+  );
   font: var(--base-regular);
+  animation-fill-mode: both;
 }
 
 .overlay {

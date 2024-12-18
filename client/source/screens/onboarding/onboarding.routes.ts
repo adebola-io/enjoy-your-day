@@ -4,7 +4,7 @@ import EnterName from './enter-name';
 import SelectCategories from './select-categories';
 import Loading from './loading';
 
-export const onboardingRoute = defineRoute({
+export const onboardingRouteTree = defineRoute({
   name: 'Onboarding View',
   path: 'onboarding',
   component: Onboarding,

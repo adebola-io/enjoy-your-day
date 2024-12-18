@@ -9,7 +9,7 @@ export default async function Onboarding() {
   const currentRoute = router.getCurrentRoute();
 
   if (appLoadingState.value === 'done') {
-    await router.replace('/app/main/home');
+    await router.replace('/home');
     return;
   }
 

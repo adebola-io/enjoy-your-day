@@ -4,6 +4,7 @@
   width: calc(100% - var(--side-padding) * 2);
   margin-top: auto;
   border-top: 3px solid var(--space-cadet-500);
+  background-color: white;
   padding-block: 1rem max(env(safe-area-inset-bottom), 1rem);
   grid-template-columns: repeat(4, auto);
   scrollbar-width: none;

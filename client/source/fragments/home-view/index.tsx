@@ -9,7 +9,7 @@ interface HomeViewProps {
 }
 
 export default function HomeView(props: HomeViewProps) {
-  console.log(props.dailyGoals);
+  props.dailyGoals;
   return (
     <div class={classes.container}>
       <TimeBasedIcon class={classes.timeIcon} />

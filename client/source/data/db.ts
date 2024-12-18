@@ -7,6 +7,7 @@ export async function createUser(name: string) {
 export async function initializeDatabase() {}
 
 export async function getAutoRecommendations(_: never) {
+  await new Promise((resolve) => setTimeout(resolve, 600));
   const response = await sendToWorker({ type: 'goals.today' });
   return response;
 }

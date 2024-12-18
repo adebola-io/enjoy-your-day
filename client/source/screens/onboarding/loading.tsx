@@ -14,7 +14,7 @@ export default function Loading() {
       createUser(username.value),
       new Promise<void>(onboardingPromiseCallback),
     ]);
-    router.replace('/app/main/home');
+    router.replace('/home');
   };
 
   return (

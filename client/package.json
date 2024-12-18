@@ -11,7 +11,7 @@
   "dependencies": {
     "@adbl/cells": "^0.0.11",
     "@adbl/dom-cells": "^0.0.5",
-    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@962a933",
+    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@29edbad",
     "@types/node": "^22.10.1",
     "postcss": "^8.4.49",
     "postcss-nesting": "^13.0.1",

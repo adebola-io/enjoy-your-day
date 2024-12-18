@@ -1,3 +1,29 @@
+@keyframes background-dance {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 50% 0;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.backButton:is(.backButton) {
+  /* :is() forces specificity override. */
+  display: none;
+
+  @media (display-mode: standalone) {
+    z-index: 1;
+    display: grid;
+    align-self: start;
+    padding-inline-start: var(--block-padding);
+    grid-row: 1;
+    grid-column: 1;
+  }
+}
+
 .autoSelectionLoader {
   align-self: end;
   width: min(90px, 7dvh);

@@ -5,6 +5,8 @@
   align-self: normal;
   width: 100%;
   padding-block-start: calc(var(--block-padding) * 1.5);
+  transition-duration: var(--drawer);
+  transition-property: scale;
   grid-template-rows: auto auto auto 1fr;
   grid-row: 1;
   grid-column: 1;
@@ -31,7 +33,7 @@
     .title,
     .subtitle {
       pointer-events: none;
-      scale: 1 0;
+      scale: 0.5 0;
     }
 
     .submitBtn {

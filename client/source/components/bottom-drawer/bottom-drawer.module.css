@@ -1,0 +1,41 @@
+.drawer {
+  position: fixed;
+  top: 100dvh;
+  width: 88%;
+  max-width: 900px;
+  height: min(500px, 55dvh);
+  max-height: unset;
+  padding: 0;
+  margin: unset;
+  border: none;
+  background-color: transparent;
+  transition-duration: var(--drawer);
+  transition-property: translate;
+  margin-inline: auto;
+  container: drawer inline-size;
+
+  &[open] {
+    translate: 0 calc(-100% - 15px);
+  }
+}
+
+.drawerContent {
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  border: 3px solid;
+  border-radius: 20px;
+  background-color: white;
+  grid-row: 1;
+  grid-column: 1;
+
+  &::before {
+    display: block;
+    width: 58px;
+    height: 10px;
+    margin-top: 4px;
+    border-radius: 13px;
+    background-color: var(--space-cadet-50);
+    content: '';
+    margin-inline: auto;
+  }
+}

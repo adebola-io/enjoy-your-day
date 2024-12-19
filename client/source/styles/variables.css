@@ -3,6 +3,7 @@
 :root {
   --default-duration: 150ms;
   --view-transition-duration: calc(var(--default-duration) * 1.5);
+  --drawer: calc(var(--default-duration) * 1.5);
 
   --white: #ffffff;
   --black: #000000;
@@ -161,6 +162,7 @@
 
   /* Z-Index */
   --auto-complete-z-index: 10;
+  --bottom-drawer-index: 100;
   --floating-button-z-index: 9;
   --behind-autocomplete-z-index: -9;
   &.low-end {

@@ -14,6 +14,14 @@ export function setMetaTheme(color: string) {
   }, 0);
 }
 
+export function getMetaTheme(): string {
+  return (
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.getAttribute('content') ?? 'white'
+  );
+}
+
 export function setAutoSelectStage(stage: number) {
   document
     .querySelector('#autoSelectionView')

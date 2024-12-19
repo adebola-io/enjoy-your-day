@@ -1,16 +1,17 @@
 import { BackButton } from '#/components/back-button';
 import { getAutoRecommendations } from '#/data/db';
-import { GoalProps } from '#/data/entities';
+import type { GoalProps } from '#/data/entities';
 import { finalTexts, headings } from '#/data/headings';
 import { getResourceState, setMetaTheme } from '#/library/utils';
 import { useObserver } from '#/library/useObserver';
 import GoalCardList from './goal-cards-view';
 import AutoSelectEdit from './auto-select-edit';
-import { Cell, SourceCell } from '@adbl/cells';
+import { Cell, type SourceCell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { Loader } from '#/components/loader';
 import classes from './auto-select.module.css';
+import { ConfirmDrawer } from './confirm-drawer';
 
 type AutoSelectStage = 'cardList' | 'edit';
 
@@ -21,9 +22,6 @@ export default function AutoSelect() {
   const currentStage = Cell.derived(() => {
     const stage = route.value.query.get('stage') ?? 'cardList';
     return stage as AutoSelectStage;
-  });
-  const confirmDrawerIsOpen = Cell.derived(() => {
-    return route.value.query.has('confirm');
   });
   const buttonRef = Cell.source<HTMLButtonElement | null>(null);
   const headingIndex = Cell.source(0);
@@ -43,7 +41,7 @@ export default function AutoSelect() {
       </h2>
     </>
   );
-  const Error = () => <div>Error, {resource.error.value?.message}</div>;
+  const ErrorOccurred = () => <div>Error, {resource.error.value?.message}</div>;
   const Success = () => {
     const goals = resource.data as SourceCell<GoalProps[]>;
     return (
@@ -52,9 +50,7 @@ export default function AutoSelect() {
           cardList: () => <GoalCardList goals={goals} />,
           edit: () => <AutoSelectEdit goals={goals} />,
         })}
-        <dialog class={classes.confirmDrawer} open={confirmDrawerIsOpen}>
-          Confirming...
-        </dialog>
+        <ConfirmDrawer />
       </>
     );
   };
@@ -74,7 +70,7 @@ export default function AutoSelect() {
       {Switch(state, {
         inert: () => <></>,
         pending: Pending,
-        error: Error,
+        error: ErrorOccurred,
         success: Success,
       })}
     </>

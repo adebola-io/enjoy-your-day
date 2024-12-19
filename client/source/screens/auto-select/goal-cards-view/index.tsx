@@ -6,8 +6,8 @@ import {
   setMetaTheme,
 } from '#/library/utils';
 import { useObserver } from '#/library/useObserver';
-import { GoalProps } from '#/data/entities';
-import { Cell, SourceCell } from '@adbl/cells';
+import type { GoalProps } from '#/data/entities';
+import { Cell, type SourceCell } from '@adbl/cells';
 import { For } from '@adbl/unfinished';
 import classes from './goals-card-view.module.css';
 

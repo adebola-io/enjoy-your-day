@@ -4,7 +4,7 @@ import classes from './container.module.css';
 
 export type ContainerProps = JSX.IntrinsicElements['div'] & {
   as?: keyof HTMLElementTagNameMap;
-  children?: any;
+  children?: unknown;
 };
 
 export function Container(props: ContainerProps): JSX.Template {

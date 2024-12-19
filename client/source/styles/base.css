@@ -116,6 +116,13 @@ body {
     color: var(--space-cadet-500);
     background: white;
   }
+
+  &[data-dialog-is-open] {
+    & > *:not(dialog) {
+      pointer-events: none;
+      scale: 0.93;
+    }
+  }
 }
 
 #mainOutlet,

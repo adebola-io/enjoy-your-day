@@ -67,7 +67,7 @@ const observer = new DocumentObserver();
  *
  * @example
  * // Mount a callback when a node is connected to the DOM
- * const nodeRef = cell<HTMLDivElement | null>(null);
+ * const nodeRef = Cell.source<HTMLDivElement | null>(null);
  * useObserver().onConnected(nodeRef, (node) => {
  *   console.log('Node connected:', node);
  *   return () => console.log('Node disconnected:', node);

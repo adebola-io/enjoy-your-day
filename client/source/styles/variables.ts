@@ -136,5 +136,6 @@ export const CSS_VARS = {
   '--shadow-outline': '0px 0px 1px 1px #1b1b3a',
   '--shadow': '0px 2px 4px #00000040',
   '--auto-complete-z-index': '10',
+  '--bottom-drawer-index': '100',
   '--behind-autocomplete-z-index': '-9',
 };

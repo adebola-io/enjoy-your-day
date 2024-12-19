@@ -75,7 +75,6 @@
   --animation-delay: calc(var(--default-duration) * 3);
   --gap: 10px;
   --starting-fade-position-y: 40%;
-  z-index: 1;
   display: grid;
   align-self: end;
   width: calc(90% - var(--side-padding));

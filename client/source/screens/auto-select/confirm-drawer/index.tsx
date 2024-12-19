@@ -1,4 +1,5 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
+import { If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { Cell } from '@adbl/cells';
 import classes from './confirm-drawer.module.css';
@@ -6,7 +7,7 @@ import classes from './confirm-drawer.module.css';
 export function ConfirmDrawer() {
   const router = useRouter();
   const route = router.getCurrentRoute();
-  const drawerClosable = Cell.source(false);
+  const drawerClosable = Cell.source(true);
   const confirmDrawerIsOpen = Cell.derived(() => {
     return route.value.query.has('confirm');
   });
@@ -20,13 +21,14 @@ export function ConfirmDrawer() {
   return (
     <BottomDrawer
       class={classes.container}
-      visible={confirmDrawerIsOpen}
+      open={confirmDrawerIsOpen}
       closable={drawerClosable}
       onClose={handleDrawerClose}
-      onClosePrevented={() => console.log('Close prevented')}
       rootContainerSelector="#autoSelectionView"
     >
-      <h2 class={classes.title}>Get Started?</h2>
+      {If(confirmDrawerIsOpen, () => {
+        return <div>Hello</div>;
+      })}
     </BottomDrawer>
   );
 }

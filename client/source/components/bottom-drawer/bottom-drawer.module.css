@@ -1,32 +1,76 @@
 .drawer {
   position: fixed;
-  top: 100dvh;
-  width: 88%;
-  max-width: 900px;
-  height: min(500px, 55dvh);
+  display: grid;
+  overflow-y: auto;
+  width: 100%;
+  max-width: unset;
+  height: 100%;
   max-height: unset;
   padding: 0;
   margin: unset;
   border: none;
   background-color: transparent;
-  transition-duration: var(--drawer);
-  transition-property: translate;
-  margin-inline: auto;
-  container: drawer inline-size;
+  place-items: start;
+  scrollbar-width: none;
+  scroll-snap-type: y mandatory;
 
-  &[open] {
-    translate: 0 calc(-100% - 15px);
+  &:not([data-closable]) {
+    overflow-y: hidden;
+  }
+
+  &:not([open]) {
+    pointer-events: none;
+    &::before {
+      /* Not a real animation. just delays the snap until the drawer is gone. */
+      animation: snap 0ms var(--drawer) both;
+    }
+  }
+
+  &::before {
+    pointer-events: none;
+    scroll-snap-align: none;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::before {
+    display: block;
+    width: 100dvw;
+    height: 100dvh;
+    content: '';
+    pointer-events: none;
+  }
+
+  &[open]::after {
+    display: block;
+    width: 100dvw;
+    height: 15px;
+    content: '';
+    pointer-events: none;
+    scroll-snap-align: end;
+  }
+}
+
+@keyframes snap {
+  to {
+    scroll-snap-align: start;
   }
 }
 
 .drawerContent {
-  width: calc(100% - 6px);
-  height: calc(100% - 6px);
+  width: 93%;
+  max-width: 900px;
+  height: min(600px, 65dvh);
   border: 3px solid;
   border-radius: 20px;
   background-color: white;
-  grid-row: 1;
-  grid-column: 1;
+  transition-duration: var(--drawer);
+  transition-property: translate;
+  container: drawer inline-size;
+  margin-inline: auto;
+  translate: 0 100%;
 
   &::before {
     display: block;
@@ -37,5 +81,9 @@
     background-color: var(--space-cadet-50);
     content: '';
     margin-inline: auto;
+  }
+
+  .drawer[open] & {
+    translate: none;
   }
 }

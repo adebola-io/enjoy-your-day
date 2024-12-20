@@ -18,7 +18,7 @@ export function TimeBasedGreeting(props: JSX.IntrinsicElements['span']) {
   return (
     <span {...props}>
       {greeting}
-      <span style={{ color: CSS_VARS['--space-cadet-300'] }}>.</span>
+      <span style={{ color: CSS_VARS['--space-cadet-200'] }}>.</span>
     </span>
   );
 }

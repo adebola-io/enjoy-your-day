@@ -1,6 +1,54 @@
 .timeIcon {
   width: 50px;
   height: 50px;
+
+  &[data-time-of-day='morning'] {
+    path:not(:last-child) {
+      animation: come-down var(--default-duration * 10) linear infinite;
+    }
+
+    path:last-child {
+      fill: white;
+    }
+  }
+
+  &[data-time-of-day='afternoon'] {
+    animation: var(--fade-in-from-bottom) var(--default-duration),
+      spin calc(var(--default-duration) * 70) linear var(--default-duration)
+        infinite;
+  }
+
+  &[data-time-of-day='evening'] {
+    path:nth-child(2),
+    path:nth-child(3) {
+      animation: var(--twinkle) infinite;
+      animation-duration: calc(var(--default-duration) * 15);
+    }
+    path:nth-child(3) {
+      opacity: 0;
+      animation-delay: calc(var(--default-duration) * 4);
+      animation-fill-mode: both;
+    }
+  }
+}
+
+@keyframes come-down {
+  from {
+    transform: translateY(29%);
+  }
+
+  to {
+    transform: translateY(62%);
+  }
+}
+
+@keyframes spin {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
 }
 
 .timeIcon,
@@ -9,9 +57,15 @@
 .progressBar {
   --starting-fade-position-y: 50%;
   z-index: 2;
-  opacity: 0;
-  animation: var(--fade-in-from-bottom) var(--default-duration) both;
+  animation: var(--fade-in-from-bottom) var(--default-duration);
   margin-inline: var(--side-padding);
+}
+
+.timeGreeting,
+.encouragement,
+.progressBar {
+  opacity: 0;
+  animation-fill-mode: both;
 }
 
 .timeGreeting {

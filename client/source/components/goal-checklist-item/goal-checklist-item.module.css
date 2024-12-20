@@ -1,5 +1,4 @@
 .container {
-  --starting-opacity: 1;
   display: grid;
   grid-template-columns: auto 1fr;
   place-items: center;
@@ -7,16 +6,22 @@
   gap: 15px;
 
   &:has(.checkbox:checked) {
-    opacity: 0.6;
+    filter: opacity(0.7) contrast(0.6) saturate(0.2) brightness(1.8);
   }
 }
 
 .checkbox {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border: 3px solid var(--space-cadet-500);
   border-radius: 50%;
+  transition-duration: var(--default-duration);
+  transition-property: scale;
   appearance: none;
+
+  &:active {
+    scale: 0.8;
+  }
 
   &:checked {
     border-color: white;

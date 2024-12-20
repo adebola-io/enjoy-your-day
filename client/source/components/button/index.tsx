@@ -56,10 +56,10 @@ export function Button(props: ButtonProps): JSX.Template {
   if (vibrateOnClick) {
     if (Array.isArray(button)) {
       for (const element of button) {
-        element.addEventListener('click', vibrate);
+        element.addEventListener('click', () => vibrate());
       }
     } else {
-      button.addEventListener('click', vibrate);
+      button.addEventListener('click', () => vibrate());
     }
   }
 

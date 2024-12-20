@@ -45,8 +45,8 @@ export function initScrollTimeline(
   return true;
 }
 
-export function vibrate() {
-  navigator.vibrate?.(3);
+export function vibrate(pattern?: VibratePattern) {
+  navigator.vibrate?.(pattern ?? 3);
 }
 
 export const NoOp = () => <></>;

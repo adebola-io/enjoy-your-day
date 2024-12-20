@@ -123,7 +123,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
           class={classes.submitBtn}
           href={confirmDrawerHref}
           inert={searchIsOpen}
-          onClick={vibrate}
+          onClick={() => vibrate()}
         >
           <InlinedIcon
             Icon={DoubleCheckIcon}

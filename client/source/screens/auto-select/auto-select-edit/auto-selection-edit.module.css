@@ -61,6 +61,14 @@
   grid-template-rows: repeat(var(--total), max-content);
   gap: 10px;
 
+  &::after {
+    display: block;
+    content: '';
+    translate: 0 calc(var(--total) * (100% + 10px));
+    grid-row: 1;
+    grid-column: 1;
+  }
+
   & > * {
     transition-delay: calc(
       (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.3

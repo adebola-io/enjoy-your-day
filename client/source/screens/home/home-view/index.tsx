@@ -4,7 +4,6 @@ import { TimeBasedIcon } from '#/components/time-based-icon';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
 import { Cell } from '@adbl/cells';
 import { dailyGoals, timeOfDay } from '#/data/state';
-import { CSS_VARS } from '#/styles/variables';
 import { For } from '@adbl/unfinished';
 import classes from './home-view.module.css';
 
@@ -36,15 +35,17 @@ export default function HomeView() {
   });
 
   const progressColor = Cell.derived(() => {
-    if (timeOfDay.value === 'evening' && percentage.value < 80) return 'red';
-    if (percentage.value > 80) return 'green';
-    if (percentage.value > 60) return 'yellow';
-    return CSS_VARS['--space-cadet-500'];
+    if (timeOfDay.value === 'evening' && percentage.value < 60)
+      return '#9f2f2f';
+    if (percentage.value > 90) return 'var(--fern-green-400)';
+    if (percentage.value > 80) return 'var(--fern-green-600)';
+    if (percentage.value > 60) return '#0e473f';
+    return 'var(--space-cadet-500)';
   });
 
   return (
     <>
-      <TimeBasedIcon class={classes.timeIcon} />
+      <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
       <TimeBasedGreeting class={classes.timeGreeting} />
       <div class={classes.stickyArea}>
         <p class={classes.encouragement}>

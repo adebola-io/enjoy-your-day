@@ -200,6 +200,16 @@
   }
 }
 
+@keyframes from-top {
+  0% {
+    transform: translateY(var(--starting-fade-position-y, -100%));
+    filter: none;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 @keyframes fade-in-from-bottom {
   0% {
     opacity: 0;

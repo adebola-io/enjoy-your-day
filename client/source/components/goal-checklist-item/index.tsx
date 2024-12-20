@@ -2,6 +2,7 @@ import type { GoalState } from '#/data/entities';
 import type { Cell, SourceCell } from '@adbl/cells';
 import { GoalItem } from '../goal-item';
 import classes from './goal-checklist-item.module.css';
+import { vibrate } from '#/library/utils';
 
 export interface GoalChecklistItemProps {
   goalState: GoalState;
@@ -14,12 +15,13 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
   const containerStyles = { '--i': index };
   const initialCheckState = goalState.state === 'completed';
   const changeGoalState = function (this: HTMLInputElement) {
+    vibrate(10);
     listChanged.value = true;
     goalState.state = this.checked ? 'completed' : 'scheduled'; // dailyGoals array is already deeply reactive.
   };
   const removeInitialAnimation = function (this: HTMLDivElement) {
     this.style.animation =
-      'var(--fade-in-from-top) calc(var(--default-duration) * 3 * var(--list-changed))';
+      'from-top calc(var(--default-duration) * 3 * var(--list-changed))';
   };
 
   return (

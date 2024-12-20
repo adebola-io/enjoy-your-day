@@ -14,9 +14,8 @@ async function startApp() {
     const main = module.default;
     if ('startViewTransition' in document) {
       return document.startViewTransition(main).finished;
-    } else {
-      return main();
     }
+    return main();
   });
 }
 

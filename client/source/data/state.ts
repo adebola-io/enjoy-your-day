@@ -27,12 +27,8 @@ export const dailyGoals = useLocalStorage<GoalState[]>(
 export const liveDate = useLiveDate(DATE_UPDATE_INTERVAL);
 export const timeOfDay = Cell.derived(() => {
   const hours = liveDate.value.getHours();
-  if (hours < 12) {
-    return 'morning';
-  }
-  if (hours < 18) {
-    return 'afternoon';
-  }
+  if (hours < 12) return 'morning';
+  if (hours < 18) return 'afternoon';
   return 'evening';
 });
 export const username = useLocalStorage<string>(LOCALSTORAGE_KEYS.username, '');

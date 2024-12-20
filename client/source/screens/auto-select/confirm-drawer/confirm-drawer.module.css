@@ -28,8 +28,70 @@
 }
 
 .padlock {
+  --animation-duration: calc(var(--default-duration) * 2);
+  --animation-delay: calc(var(--drawer) * 0.5);
   width: min(15dvh, 200px);
   margin-bottom: 2dvh;
+  animation: padlock-shake calc(var(--animation-duration) * 1.5)
+    var(--animation-delay);
+  rotate: 20deg;
+  animation-fill-mode: both;
+
+  dialog:not([open]) :is(&, & > *) {
+    animation: none;
+    animation-fill-mode: unset;
+  }
+
+  [data-lock] {
+    transform: translate(2%, 8%);
+    animation: padlock-lock var(--animation-duration) var(--animation-delay);
+    animation-fill-mode: both;
+  }
+
+  [data-lock-rod] {
+    transform: translate(-2%, -7%);
+    animation: padlock-lock-rod var(--animation-duration) var(--animation-delay);
+    animation-fill-mode: both;
+  }
+}
+
+@keyframes padlock-shake {
+  60% {
+    rotate: -15deg;
+  }
+  to {
+    rotate: 0deg;
+  }
+}
+
+@keyframes padlock-lock {
+  from {
+    transform: translate(2%, 8%);
+  }
+
+  50% {
+    color: inherit;
+  }
+  80% {
+    transform: translate(-0.5%, -3%);
+    fill: var(--space-cadet-300);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes padlock-lock-rod {
+  50% {
+    color: inherit;
+  }
+  80% {
+    fill: var(--space-cadet-300);
+  }
+  to {
+    transform: none;
+  }
 }
 
 .heading {

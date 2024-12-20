@@ -32,3 +32,11 @@
 .progressBar {
   animation-delay: calc(var(--default-duration) * 1.5);
 }
+
+.goals {
+  display: grid;
+  padding-block: 15px;
+  place-content: start;
+  gap: 9px;
+  grid-template-columns: 100%;
+}

@@ -61,6 +61,12 @@ body {
   display: grid;
   background-color: white;
 
+  &[data-path='/home'][data-goals-loaded] {
+    overflow-y: auto;
+    place-content: start;
+    grid-template-rows: auto 1fr;
+  }
+
   &[data-path='/goals'] {
     overflow-y: auto;
     height: calc(100% - var(--block-padding));

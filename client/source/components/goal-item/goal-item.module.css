@@ -30,27 +30,31 @@
 .container {
   --goal-scroll-visibility: 1;
   display: grid;
-  overflow-x: auto;
+  width: 100%;
   min-height: 70px;
-  animation-name: scroll-snap-fade;
-  animation-duration: auto;
-  animation-timing-function: linear;
-  scrollbar-width: none;
-  grid-template-columns: 70dvw calc(100dvw - var(--side-padding) * 2) 70dvw;
-  scroll-snap-type: x mandatory;
-  scroll-snap-stop: always;
-  animation-timeline: scroll(self inline);
+
+  &[data-cancelable] {
+    overflow-x: auto;
+    animation-name: scroll-snap-fade;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    grid-template-columns: 70dvw calc(100dvw - var(--side-padding) * 2) 70dvw;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    scrollbar-width: none;
+    animation-timeline: scroll(self inline);
+
+    &::after,
+    &::before {
+      display: block;
+      width: 100%;
+      height: 100%;
+      content: '';
+    }
+  }
 
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  &::after,
-  &::before {
-    display: block;
-    width: 100%;
-    height: 100%;
-    content: '';
   }
 }
 

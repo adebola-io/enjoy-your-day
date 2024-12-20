@@ -1,6 +1,6 @@
 import { NavigationBar } from '#/components/navigation-bar';
 import AutoSelect from './auto-select';
-import { appLoadingState } from '#/data/state';
+import { appLoadingState, dailyGoals } from '#/data/state';
 import { Cell } from '@adbl/cells';
 import { setMetaTheme } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
@@ -25,11 +25,16 @@ export default async function App() {
     return route.value.query.has('auto-select');
   });
 
+  const dailyGoalsLoaded = Cell.derived(() => {
+    return dailyGoals.value.length > 0;
+  });
+
   return (
     <>
       <router.Outlet
         id="mainOutlet"
         data-auto-select-is-open={autoSelectionIsOpen}
+        data-goals-loaded={dailyGoalsLoaded}
         inert={autoSelectionIsOpen}
       />
       {If(appIsLoaded, NavigationBar)}

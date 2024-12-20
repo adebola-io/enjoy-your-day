@@ -5,14 +5,22 @@ import { Cell } from '@adbl/cells';
 import classes from './home-view.module.css';
 import { dailyGoals, timeOfDay } from '#/data/state';
 import { CSS_VARS } from '#/styles/variables';
+import { For } from '@adbl/unfinished';
+import { GoalChecklistItem } from '#/components/goal-checklist-item';
 
 export default function HomeView() {
+  const scheduledGoals = Cell.derived(() => {
+    return dailyGoals.value.filter(
+      (goalState) => goalState.state === 'scheduled'
+    );
+  });
+
   const percentage = Cell.derived(() => {
-    const total = dailyGoals.value.length;
-    const scheduled = dailyGoals.value.filter(
-      (goalState) => goalState.state !== 'scheduled'
-    ).length;
-    return (scheduled / total) * 100;
+    return (
+      ((dailyGoals.value.length - scheduledGoals.value.length) /
+        dailyGoals.value.length) *
+      100
+    );
   });
 
   const progressColor = Cell.derived(() => {
@@ -44,6 +52,11 @@ export default function HomeView() {
           color={progressColor}
         />
       </div>
+      <form class={classes.goals} onSubmit--prevent={() => {}}>
+        {For(scheduledGoals, (state, index) => {
+          return <GoalChecklistItem goalState={state} index={index} />;
+        })}
+      </form>
     </>
   );
 }

@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  place-items: center;
+  padding-inline: var(--side-padding);
+  gap: 15px;
+}
+
+.checkbox {
+  all: unset;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--space-cadet-500);
+  border-radius: 50%;
+  -webkit-user-select: none;
+  user-select: none;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  -webkit-tap-highlight-color: transparent;
+
+  &:checked {
+    background-color: var(--space-cadet-500);
+  }
+}

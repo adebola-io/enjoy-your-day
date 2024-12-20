@@ -13,7 +13,7 @@ export function PadLockIcon(props: IconProps) {
       <mask
         xmlns="http://www.w3.org/2000/svg"
         id="path-1-inside-1_575_4274"
-        fill="white"
+        style={{ fill: 'white' }}
       >
         <path
           xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ export function PadLockIcon(props: IconProps) {
         xmlns="http://www.w3.org/2000/svg"
         d="M50.5 93.5C26.4756 93.5 7 74.0244 7 50H-6C-6 81.2041 19.2959 106.5 50.5 106.5V93.5ZM94 50C94 74.0244 74.5244 93.5 50.5 93.5V106.5C81.7041 106.5 107 81.2041 107 50H94ZM50.5 6.5C74.5244 6.5 94 25.9756 94 50H107C107 18.7959 81.7041 -6.5 50.5 -6.5V6.5ZM50.5 -6.5C19.2959 -6.5 -6 18.7959 -6 50H7C7 25.9756 26.4756 6.5 50.5 6.5V-6.5Z"
         fill="#1B1B3A"
-        mask="url(#path-1-inside-1_575_4274)"
+        style={{ mask: 'url(#path-1-inside-1_575_4274)' }}
       />
       <path
         xmlns="http://www.w3.org/2000/svg"

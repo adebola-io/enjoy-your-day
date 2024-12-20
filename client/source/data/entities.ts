@@ -47,7 +47,7 @@ export interface Journey {
 }
 
 export interface GoalState {
-  goal: Goal;
+  goal: GoalProps;
   state: 'forfeited' | 'completed' | 'scheduled';
 }
 

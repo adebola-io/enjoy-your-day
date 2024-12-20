@@ -13,6 +13,7 @@ const goBack = () => {
 export function BackButton(props: JSX.IntrinsicElements['button']) {
   return (
     <button
+      id="backButton"
       type="button"
       onClick={goBack}
       {...props}

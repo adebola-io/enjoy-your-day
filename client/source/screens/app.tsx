@@ -5,15 +5,21 @@ import { Cell } from '@adbl/cells';
 import { setMetaTheme } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import { If } from '@adbl/unfinished';
+import { CSS_VARS } from '#/styles/variables';
 
 export default async function App() {
   const router = useRouter();
   const route = router.getCurrentRoute();
-  setMetaTheme('white');
 
   const appIsLoaded = Cell.derived(() => {
     return appLoadingState.value === 'done';
   });
+
+  if (appIsLoaded.value) {
+    setMetaTheme('#ffffff');
+  } else {
+    setMetaTheme(CSS_VARS['--space-cadet-500']);
+  }
 
   const autoSelectionIsOpen = Cell.derived(() => {
     return route.value.query.has('auto-select');

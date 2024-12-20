@@ -20,14 +20,18 @@ export const appLoadingState = useLocalStorage<AppSetupState>(
   LOCALSTORAGE_KEYS.appLoadingState,
   'setup'
 );
-export const dailyGoals = Cell.source<GoalState[]>([]);
+export const dailyGoals = useLocalStorage<GoalState[]>(
+  LOCALSTORAGE_KEYS.goalsForTheDay,
+  []
+);
 export const liveDate = useLiveDate(DATE_UPDATE_INTERVAL);
 export const timeOfDay = Cell.derived(() => {
   const hours = liveDate.value.getHours();
+  console.log(hours);
   if (hours < 12) {
     return 'morning';
   }
-  if (hours > 18) {
+  if (hours < 18) {
     return 'afternoon';
   }
   return 'evening';

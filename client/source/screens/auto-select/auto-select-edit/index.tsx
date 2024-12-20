@@ -62,7 +62,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   };
 
   observer.onConnected(containerRef, () => {
-    setMetaTheme('white');
+    setMetaTheme('#ffffff');
     setAutoSelectStage(2);
 
     getExampleGoalInstruction().then((example) => {
@@ -123,6 +123,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
           class={classes.submitBtn}
           href={confirmDrawerHref}
           inert={searchIsOpen}
+          onClick={vibrate}
         >
           <InlinedIcon
             Icon={DoubleCheckIcon}

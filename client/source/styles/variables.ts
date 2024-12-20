@@ -1,6 +1,7 @@
 export const CSS_VARS = {
   '--default-duration': '150ms',
   '--view-transition-duration': 'calc(var(--default-duration) * 1.5)',
+  '--drawer': 'calc(var(--default-duration) * 2)',
   '--white': '#ffffff',
   '--black': '#000000',
   '--primary-600': '#007480ff',

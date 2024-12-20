@@ -9,6 +9,7 @@
   padding: 0;
   margin: unset;
   border: none;
+  color: var(--space-cadet-500);
   background-color: transparent;
   place-items: start;
   scrollbar-width: none;
@@ -46,10 +47,14 @@
   &[open]::after {
     display: block;
     width: 100dvw;
-    height: 15px;
+    height: 0.05px;
     content: '';
     pointer-events: none;
     scroll-snap-align: end;
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -60,23 +65,24 @@
 }
 
 .drawerContent {
-  width: 93%;
-  max-width: 900px;
-  height: min(600px, 65dvh);
-  border: 3px solid;
-  border-radius: 20px;
+  --border-radius: min(10dvw, 90px);
+  width: 100%;
+  height: min(600px, 55dvh);
+  border-radius: min(5dvw, 40px) min(5dvw, 40px) 0px 0px;
+  opacity: 0.5;
   background-color: white;
   transition-duration: var(--drawer);
-  transition-property: translate;
+  transition-property: translate, opacity;
   container: drawer inline-size;
   margin-inline: auto;
-  translate: 0 100%;
+  translate: 0 var(--drawer-closed-position-y, 100%);
 
   &::before {
+    position: absolute;
+    top: calc(var(--block-padding) * 0.15);
     display: block;
     width: 58px;
     height: 10px;
-    margin-top: 4px;
     border-radius: 13px;
     background-color: var(--space-cadet-50);
     content: '';
@@ -84,6 +90,7 @@
   }
 
   .drawer[open] & {
-    translate: none;
+    opacity: 1;
+    translate: 0 var(--drawer-open-position-y, 0);
   }
 }

@@ -18,7 +18,7 @@ export function getMetaTheme(): string {
   return (
     document
       .querySelector('meta[name="theme-color"]')
-      ?.getAttribute('content') ?? 'white'
+      ?.getAttribute('content') ?? '#ffffff'
   );
 }
 
@@ -103,4 +103,28 @@ export function lightenHexColor(hexCode: string, amount = 0.5) {
 
 export function defer(callback: () => void) {
   setTimeout(callback, 0);
+}
+
+export function overlayBlack(hexColor: string) {
+  // 1. Convert hex to RGB
+  let r = Number.parseInt(hexColor.substring(1, 3), 16);
+  let g = Number.parseInt(hexColor.substring(3, 5), 16);
+  let b = Number.parseInt(hexColor.substring(5, 7), 16);
+
+  // 2. Overlay calculation (using alpha blending)
+  const alpha = 0.3; // Alpha of the black overlay
+  const blackR = 0;
+  const blackG = 0;
+  const blackB = 0;
+
+  r = (1 - alpha) * r + alpha * blackR;
+  g = (1 - alpha) * g + alpha * blackG;
+  b = (1 - alpha) * b + alpha * blackB;
+
+  // 3. Convert back to hex
+  const newR = Math.round(r).toString(16).padStart(2, '0');
+  const newG = Math.round(g).toString(16).padStart(2, '0');
+  const newB = Math.round(b).toString(16).padStart(2, '0');
+
+  return `#${newR}${newG}${newB}`;
 }

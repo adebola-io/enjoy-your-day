@@ -19,7 +19,7 @@ export default function Loading() {
 
   return (
     <div
-      onAnimationStart--self={() => setMetaTheme('white')}
+      onAnimationStart--self={() => setMetaTheme('#ffffff')}
       onAnimationEnd--self={goToApp}
       class={classes.onboardingViewFinalLoaderContainer}
     >

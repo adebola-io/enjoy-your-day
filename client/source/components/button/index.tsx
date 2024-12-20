@@ -9,6 +9,7 @@ export type ButtonProps = JSX.IntrinsicElements['button'] &
   RouterLinkProps & {
     vibrate?: boolean;
     variant?: JSX.ValueOrCell<ButtonVariant>;
+    rounded?: boolean;
   };
 
 export function Button(props: ButtonProps): JSX.Template {
@@ -17,6 +18,7 @@ export function Button(props: ButtonProps): JSX.Template {
     vibrate: vibrateOnClick = false,
     variant = 'neutral',
     onClick,
+    rounded,
     ...rest
   } = props;
 
@@ -27,6 +29,7 @@ export function Button(props: ButtonProps): JSX.Template {
         {...rest}
         href={props.href}
         data-variant={variant}
+        data-rounded={rounded}
         class={[classes.button, props.class]}
       >
         {props.children}
@@ -38,6 +41,7 @@ export function Button(props: ButtonProps): JSX.Template {
         {...rest}
         class={[classes.button, props.class]}
         data-variant={variant}
+        data-rounded={rounded}
         type={props.type ?? 'button'}
       >
         {props.children}

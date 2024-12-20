@@ -112,15 +112,31 @@ body {
   translate: 100%;
   gap: min(15px, 2dvh);
 
+  &[data-auto-select-is-open] {
+    translate: 0;
+  }
+
   &[data-stage='2'] {
     color: var(--space-cadet-500);
     background: white;
   }
 
+  &[data-stage='3'] {
+    color: var(--space-cadet-500);
+    background: white;
+    translate: 100%;
+  }
+
   &[data-dialog-is-open] {
-    & > *:not(dialog) {
+    &:has([data-dialog-state='pending']) {
+      & > *:not(dialog, #backButton) {
+        scale: 0.95;
+      }
+    }
+
+    & > *:not(dialog, #backButton) {
       pointer-events: none;
-      scale: 0.93;
+      scale: 0.87;
     }
   }
 }
@@ -135,13 +151,15 @@ body {
     translate: -40% 0;
     scale: 0.4 0.9;
   }
+
+  body:has(#autoSelectionView[data-stage='3']) & {
+    /* filter: brightness(0.65); */
+    translate: none;
+    scale: 1;
+  }
 }
 
 #autoSelectionView {
   transition-duration: calc(var(--default-duration) * 1.25);
   transition-property: translate;
-
-  &[data-auto-select-is-open] {
-    translate: 0;
-  }
 }

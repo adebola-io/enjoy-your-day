@@ -1,8 +1,54 @@
 .container {
+  --drawer-open-position-y: 0;
+  position: relative;
   display: grid;
+  width: calc(100% - var(--side-padding) * 2);
+  height: 35dvh;
+  min-height: 300px;
+  text-align: center;
+  padding-inline: var(--side-padding);
+  padding-block: var(--block-padding);
   place-items: center;
+  place-content: start;
+
+  & > *:first-child {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  &[data-dialog-state='pending'] {
+    --drawer-open-position-y: 20%;
+    place-content: center;
+    gap: 12px;
+
+    & > * {
+      translate: 0 min(100px, -4dvh);
+    }
+  }
 }
 
-.title {
+.padlock {
+  width: min(15dvh, 200px);
+  margin-bottom: 2dvh;
+}
+
+.heading {
+  margin-bottom: 1dvh;
+}
+
+.text {
+  width: 80%;
+  margin-bottom: max(30px, 4dvh);
+  text-wrap: pretty;
+}
+
+.loader {
+  width: auto;
+  height: min(60px, 12dvh);
+  aspect-ratio: 1;
+}
+
+.loadingText {
   text-align: center;
+  font: var(--base-bold);
 }

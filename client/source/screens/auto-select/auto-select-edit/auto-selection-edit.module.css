@@ -126,8 +126,8 @@
   right: var(--side-padding);
   bottom: var(--block-padding);
   display: grid;
-  width: 70px;
-  height: 70px;
+  width: auto;
+  height: min(20.63vw, 80px);
   border: 2.15px solid white;
   border-radius: 50%;
   color: white;
@@ -135,12 +135,17 @@
   transition-duration: var(--toggle-search-duration);
   transition-property: scale;
   filter: drop-shadow(2px 4px 6px #00000025);
+  aspect-ratio: 1;
   place-items: center;
   place-content: center;
+
+  &:active {
+    scale: 0.8;
+  }
 }
 
 .submitBtnIcon {
-  width: 40%;
+  width: calc(min(20.63vw, 80px) * 0.5);
 }
 
 .deletingByTap {

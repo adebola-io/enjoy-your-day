@@ -2,7 +2,11 @@ import { BackButton } from '#/components/back-button';
 import { getAutoRecommendations } from '#/data/db';
 import type { GoalProps } from '#/data/entities';
 import { finalTexts, headings } from '#/data/headings';
-import { getResourceState, setMetaTheme } from '#/library/utils';
+import {
+  getResourceState,
+  setAutoSelectStage,
+  setMetaTheme,
+} from '#/library/utils';
 import { useObserver } from '#/library/useObserver';
 import GoalCardList from './goal-cards-view';
 import AutoSelectEdit from './auto-select-edit';
@@ -50,17 +54,18 @@ export default function AutoSelect() {
           cardList: () => <GoalCardList goals={goals} />,
           edit: () => <AutoSelectEdit goals={goals} />,
         })}
-        <ConfirmDrawer />
+        <ConfirmDrawer goals={goals} />
       </>
     );
   };
 
   observer.onConnected(buttonRef, () => {
     setMetaTheme('#0e0e1f');
+    setAutoSelectStage(1);
     resource.run();
 
     return () => {
-      setMetaTheme('white');
+      setMetaTheme('#ffffff');
     };
   });
 

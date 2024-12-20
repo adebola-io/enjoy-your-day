@@ -6,11 +6,11 @@ export function TimeBasedGreeting(props: JSX.IntrinsicElements['span']) {
   const greeting = Cell.derived(() => {
     switch (timeOfDay.value) {
       case 'morning':
-        return 'Good morning';
+        return 'Good morning.';
       case 'afternoon':
-        return 'Good afternoon';
+        return 'Good afternoon.';
       case 'evening':
-        return 'Good evening';
+        return 'Good evening.';
     }
   });
 

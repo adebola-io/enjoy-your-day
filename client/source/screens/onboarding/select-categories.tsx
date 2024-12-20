@@ -12,7 +12,7 @@ export default async function SelectCategories() {
   const router = useRouter();
   const formRef = Cell.source<HTMLFormElement | null>(null);
   if (username.value === '') {
-    await router.replace('/onboarding/name');
+    await router.replace('/onboarding/enter-name');
     return;
   }
 

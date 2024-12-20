@@ -33,6 +33,10 @@
     background-color: var(--space-cadet-500);
   }
 
+  &[data-rounded] {
+    border-radius: 40px;
+  }
+
   @media (orientation: landscape) {
     --max-button-width: 400px;
   }

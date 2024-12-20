@@ -1,5 +1,6 @@
 import type { JSX } from '@adbl/unfinished/jsx-dev-runtime';
 import { useObserver } from '#/library/useObserver';
+import { getMetaTheme, overlayBlack, setMetaTheme } from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { type RouteChangeEvent, useRouter } from '@adbl/unfinished/router';
 import classes from './bottom-drawer.module.css';
@@ -26,6 +27,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
   } = props;
   const observer = useObserver();
   const router = useRouter();
+  let formerMetaTheme = getMetaTheme();
 
   const isOpen = Cell.derived(() => {
     return Cell.isCell(open) ? open.value : Boolean(open);
@@ -38,8 +40,14 @@ export function BottomDrawer(props: BottomDrawerProps) {
     const dialog = ref.value;
     if (!dialog || !dialog.isConnected) return;
     const shouldOpen = isOpen && !dialog.open;
-    if (shouldOpen) dialog.showModal();
-    else dialog.close();
+    if (shouldOpen) {
+      formerMetaTheme = getMetaTheme();
+      dialog.showModal();
+      setMetaTheme(overlayBlack(formerMetaTheme));
+    } else {
+      dialog.close();
+      setMetaTheme(formerMetaTheme);
+    }
     document
       .querySelector(rootContainerSelector)
       ?.toggleAttribute('data-dialog-is-open', isOpen);
@@ -90,6 +98,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
     toggle(isOpen.value);
 
     return () => {
+      setMetaTheme(formerMetaTheme);
       router.removeEventListener('routechange', handleRouteChange);
       intersectObserver.disconnect();
     };
@@ -105,7 +114,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
       onCancel={handleCancel}
       onClose={onClose}
     >
-      <div {...rest} class={classes.drawerContent}>
+      <div {...rest} class={[classes.drawerContent, props.class]}>
         {props.children}
       </div>
     </dialog>

@@ -64,11 +64,11 @@
   transition-duration: var(--default-duration);
   transition-property: scale, opacity;
   grid-template-columns: 40px 1fr auto;
-  grid-template-rows: calc(100% - 30px); /* minus block padding */
+  grid-template-rows: 0.5 1fr;
   padding-inline: 15px 20px;
   padding-block: 12px;
   column-gap: 8px;
-  row-gap: 0px;
+  row-gap: 2px;
   place-content: center;
   scroll-snap-align: center;
 
@@ -87,13 +87,15 @@
 }
 
 .cancelBtn {
+  position: absolute;
+  right: 15px;
+  align-self: center;
   border: none;
   background: transparent;
 }
 
 .icon {
   width: 27px;
-  margin-top: 10%;
   justify-self: center;
 }
 
@@ -105,12 +107,14 @@
 }
 
 .title {
+  align-self: end;
   font: var(--base-bold);
   grid-row: 1;
   grid-column: 2;
 }
 
 .instruction {
+  align-self: start;
   font: var(--small-regular);
   grid-row: 2;
   grid-column: 2;

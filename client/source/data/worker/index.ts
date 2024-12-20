@@ -19,7 +19,7 @@ dbWorker.addEventListener('message', (event) => {
   messageIdToPromiseHandlerMap.delete(id);
 });
 
-export async function sendToWorker<T extends WorkerProtocol.Requests.Request>(
+export async function toWorker<T extends WorkerProtocol.Requests.Request>(
   message: T
 ): Promise<WorkerProtocol.Response<T>> {
   return new Promise((resolve, reject) => {
@@ -30,5 +30,5 @@ export async function sendToWorker<T extends WorkerProtocol.Requests.Request>(
 }
 
 export async function echo<T>(value: T): Promise<T> {
-  return await sendToWorker({ type: 'echo', value });
+  return await toWorker({ type: 'echo', value });
 }

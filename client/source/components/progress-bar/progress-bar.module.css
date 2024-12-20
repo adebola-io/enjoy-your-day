@@ -6,13 +6,15 @@
   position: relative;
   display: grid;
   overflow: hidden;
-  width: 100%;
   height: 25px;
   min-height: 10px;
   max-height: 6dvh;
-  border: 3px solid var(--progress-color);
+  border: 3px solid;
+  border-color: var(--progress-color);
   border-radius: 13px;
   background-color: white;
+  transition-duration: calc(var(--default-duration) * 2);
+  transition-property: border-color;
   grid-template-columns: 100%;
   grid-template-rows: 100%;
 
@@ -23,7 +25,7 @@
     background-color: var(--progress-color);
     content: '';
     transition-duration: calc(var(--default-duration) * 2);
-    transition-property: scale, translate;
+    transition-property: scale, translate, background-color;
     scale: calc(var(--progress-percent) * 0.0100938) 1;
     translate: calc(((var(--progress-percent) - 100) / 2) * 1%);
     grid-row: 1;

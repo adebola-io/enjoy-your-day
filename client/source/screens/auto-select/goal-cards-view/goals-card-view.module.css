@@ -7,8 +7,6 @@
 .goalCards {
   /* Reducing the constant will make the cards at the back of the stack darker. */
   --dim-factor: calc(var(--total) * 2);
-  /* Reducing the constant will make the cards at the back of the stack smaller. */
-  --shrink-factor: calc(var(--total) * 10);
   --goal-card-border-radius: 5dvh;
   --goal-card-height: calc(60dvh - (var(--side-padding) * 0.5));
   --goal-card-border-width: 4px;
@@ -35,7 +33,6 @@
   animation-timeline: scroll(self block);
 
   & > * {
-    --shrink: calc(((var(--total) - var(--index)) / var(--shrink-factor)));
     --brightness: calc(
       1 - ((var(--total) - var(--index)) / var(--dim-factor)) + var(--knob) *
         0.3
@@ -52,12 +49,15 @@
     );
     filter: drop-shadow(0 0 10px #00000080) brightness(var(--brightness));
     translate: 0 calc(var(--index) * 7.5dvh);
-    scale: calc(1 - var(--shrink));
     animation-fill-mode: both;
 
     @supports not (animation-timeline: scroll(self block)) {
       transition-duration: var(--animation-duration);
       transition-property: filter;
+    }
+
+    @supports (animation-timeline: scroll(self block)) {
+      translate: 0 calc(var(--index) * 7.5dvh + (var(--knob) * 15vh));
     }
   }
 }

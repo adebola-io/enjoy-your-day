@@ -49,6 +49,8 @@ export function vibrate() {
   navigator.vibrate?.(3);
 }
 
+export const NoOp = () => <></>;
+
 export function getResourceState<T, U>(resource: AsyncRequestAtoms<T, U>) {
   return Cell.derived(() => {
     return resource.pending.value

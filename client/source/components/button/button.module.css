@@ -6,11 +6,10 @@
   border-radius: 20px;
   font: var(--base-bold);
   text-decoration: none;
+  -webkit-touch-callout: none;
   place-content: center;
   place-items: center;
   padding-block: min(6dvh, 18px);
-  /* -webkit-tap-highlight-color: transparent; */
-  -webkit-touch-callout: none;
 
   &:active {
     filter: brightness(0.9);

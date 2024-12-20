@@ -6,7 +6,7 @@ import { Cell, type SourceCell } from '@adbl/cells';
 import classes from './confirm-drawer.module.css';
 import { Button } from '#/components/button';
 import type { GoalProps } from '#/data/entities';
-import { getResourceState } from '#/library/utils';
+import { getResourceState, NoOp } from '#/library/utils';
 import { Loader } from '#/components/loader';
 import { dailyGoals } from '#/data/state';
 
@@ -74,15 +74,13 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
     );
   };
 
-  const NoOp = () => <></>;
-
   return (
     <BottomDrawer
       class={classes.container}
       open={drawerIsOpen}
       closable={drawerClosable}
       onClose={handleDrawerClose}
-      rootContainerSelector="#autoSelectionView"
+      root="#autoSelectionView"
       data-dialog-state={state}
     >
       {Switch(state, {

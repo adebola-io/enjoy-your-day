@@ -12,14 +12,14 @@ interface BottomDrawerProps extends DialogProps {
   closable?: JSX.ValueOrCell<boolean>;
   onClose?: () => void;
   onClosePrevented?: () => void;
-  rootContainerSelector?: string;
+  root?: string;
 }
 
 export function BottomDrawer(props: BottomDrawerProps) {
   const {
-    rootContainerSelector = 'body',
-    ref = Cell.source<HTMLDialogElement | null>(null),
     open,
+    root = 'body',
+    ref = Cell.source<HTMLDialogElement | null>(null),
     closable = Cell.source(true),
     onClose,
     onClosePrevented,
@@ -29,17 +29,19 @@ export function BottomDrawer(props: BottomDrawerProps) {
   const router = useRouter();
   let formerMetaTheme = getMetaTheme();
 
-  const isOpen = Cell.derived(() => {
-    return Cell.isCell(open) ? open.value : Boolean(open);
-  });
-  const isClosable = Cell.derived(() => {
-    return Cell.isCell(closable) ? closable.value : Boolean(closable);
-  });
+  const isOpen = Cell.derived(() =>
+    Cell.isCell(open) ? open.value : Boolean(open)
+  );
+  const isClosable = Cell.derived(() =>
+    Cell.isCell(closable) ? closable.value : Boolean(closable)
+  );
 
   const toggle = (isOpen: boolean) => {
     const dialog = ref.value;
     if (!dialog || !dialog.isConnected) return;
     const shouldOpen = isOpen && !dialog.open;
+    const rootElement = document.querySelector<HTMLElement>(root);
+    if (rootElement) rootElement.dataset.dialogIsOpen = String(isOpen);
     if (shouldOpen) {
       formerMetaTheme = getMetaTheme();
       dialog.showModal();
@@ -48,9 +50,6 @@ export function BottomDrawer(props: BottomDrawerProps) {
       dialog.close();
       setMetaTheme(formerMetaTheme);
     }
-    document
-      .querySelector(rootContainerSelector)
-      ?.toggleAttribute('data-dialog-is-open', isOpen);
   };
 
   const handleRouteChange = (event: RouteChangeEvent) => {
@@ -82,18 +81,15 @@ export function BottomDrawer(props: BottomDrawerProps) {
     // because they are proxies.
     const dialog = ref.deproxy();
     const div = dialog.firstElementChild as HTMLDivElement;
-
     const callback = ([{ isIntersecting }]: IntersectionObserverEntry[]) => {
       const canClose = !isIntersecting && isOpen.value && isClosable.value;
-      if (canClose) {
-        if (onClose) onClose();
-        else toggle(false);
-      }
+      if (!canClose) return;
+      if (onClose) onClose();
+      else toggle(false);
     };
     const options = { root: dialog, threshold: 0.3 };
     const intersectObserver = new IntersectionObserver(callback, options);
     intersectObserver.observe(div);
-
     router.addEventListener('routechange', handleRouteChange);
     toggle(isOpen.value);
 

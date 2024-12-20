@@ -1,4 +1,4 @@
-import { GoalProps } from '../entities';
+import type { GoalProps } from '../entities';
 
 export namespace WorkerProtocol {
   export namespace Requests {
@@ -14,7 +14,7 @@ export namespace WorkerProtocol {
     };
     export type GetExampleSearchGoalInstruction = {
       type: 'goals.search-example';
-      alreadySelected: string[];
+      selected: string[];
     };
     export type GetAutoCompleteSuggestions = {
       type: 'goals.autocomplete';
@@ -61,6 +61,8 @@ export namespace WorkerProtocol {
 }
 
 export interface PromiseHandler {
+  // biome-ignore lint/complexity/noBannedTypes: <explanation>
   resolve: Function;
+  // biome-ignore lint/complexity/noBannedTypes: <explanation>
   reject: Function;
 }

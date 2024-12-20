@@ -62,9 +62,13 @@ body {
   background-color: white;
 
   &[data-path='/home'][data-goals-loaded] {
+    overflow-x: hidden;
     overflow-y: auto;
+    padding-block-start: calc(var(--block-padding) * 1.5);
     place-content: start;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-columns: 100%;
+    gap: min(15px, 2dvh);
   }
 
   &[data-path='/goals'] {
@@ -133,7 +137,7 @@ body {
     translate: 100%;
   }
 
-  &[data-dialog-is-open] {
+  &[data-dialog-is-open='true'] {
     &:has([data-dialog-state='pending']) {
       & > *:not(dialog, #backButton) {
         scale: 0.95;

@@ -1,12 +1,3 @@
-.headingText {
-  display: grid;
-  width: calc(100% - var(--side-padding) * 2);
-  height: fit-content;
-  padding-top: calc(var(--block-padding) * 1.5);
-  padding-inline: var(--side-padding);
-  gap: min(15px, 2dvh);
-}
-
 .timeIcon {
   width: 50px;
   height: 50px;
@@ -16,13 +7,45 @@
 .timeGreeting,
 .encouragement,
 .progressBar {
+  --starting-fade-position-y: 50%;
+  z-index: 2;
   opacity: 0;
   animation: var(--fade-in-from-bottom) var(--default-duration) both;
+  margin-inline: var(--side-padding);
 }
 
 .timeGreeting {
   animation-delay: calc(var(--default-duration) * 0.5);
   font: var(--eyebrow-bold);
+}
+
+.stickyArea {
+  position: sticky;
+  z-index: 1;
+  top: calc(var(--block-padding) * -0.5);
+  display: grid;
+  background-color: white;
+  gap: min(15px, 2dvh);
+
+  &::before {
+    position: absolute;
+    top: calc(var(--block-padding) * -1.5);
+    display: block;
+    width: 100%;
+    height: calc(var(--block-padding) * 1.5);
+    background-color: white;
+    content: '';
+  }
+
+  &::after {
+    position: absolute;
+    bottom: calc(min(15px, 2dvh) * -1);
+    display: block;
+    width: 100%;
+    height: min(15px, 2dvh);
+    background: white;
+    content: '';
+  }
 }
 
 .encouragement {
@@ -35,8 +58,33 @@
 
 .goals {
   display: grid;
+  animation: var(--fade-in) calc(var(--default-duration) * 2);
   padding-block: 15px;
   place-content: start;
   gap: 9px;
   grid-template-columns: 100%;
+
+  &::after {
+    display: block;
+    content: '';
+    translate: 0 calc(var(--total) * (100% + 10px));
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  & > * {
+    transition-duration: calc((var(--default-duration) * 1.5));
+    transition-property: translate, scale;
+    animation-name: slide-in;
+    animation-duration: calc((var(--default-duration) * 2) + (var(--i) * 40ms));
+    grid-row: 1;
+    grid-column: 1;
+    translate: 0 calc(var(--i) * (100% + 10px));
+  }
+}
+
+@keyframes slide-in {
+  from {
+    translate: 17dvh calc(var(--i) * (100% + 10px));
+  }
 }

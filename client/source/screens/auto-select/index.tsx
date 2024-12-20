@@ -4,6 +4,7 @@ import type { GoalProps } from '#/data/entities';
 import { finalTexts, headings } from '#/data/headings';
 import {
   getResourceState,
+  NoOp,
   setAutoSelectStage,
   setMetaTheme,
 } from '#/library/utils';
@@ -63,17 +64,14 @@ export default function AutoSelect() {
     setMetaTheme('#0e0e1f');
     setAutoSelectStage(1);
     resource.run();
-
-    return () => {
-      setMetaTheme('#ffffff');
-    };
+    return () => setMetaTheme('#ffffff');
   });
 
   return (
     <>
       <BackButton ref={buttonRef} class={classes.backButton} />
       {Switch(state, {
-        inert: () => <></>,
+        inert: NoOp,
         pending: Pending,
         error: ErrorOccurred,
         success: Success,

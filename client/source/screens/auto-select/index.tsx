@@ -8,7 +8,7 @@ import {
   setAutoSelectStage,
   setMetaTheme,
 } from '#/library/utils';
-import { useObserver } from '#/library/useObserver';
+import { useObserver } from '@adbl/unfinished';
 import GoalCardList from './goal-cards-view';
 import AutoSelectEdit from './auto-select-edit';
 import { Cell, type SourceCell } from '@adbl/cells';

@@ -6,8 +6,8 @@ import {
   goalsCompleted,
   shouldShowCompletionScreen,
 } from '#/data/state';
-import { Cell } from '@adbl/cells';
 import { setMetaTheme } from '#/library/utils';
+import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { If } from '@adbl/unfinished';
 import { CSS_VARS } from '#/styles/variables';
@@ -19,6 +19,12 @@ export default async function App() {
   const appIsLoaded = Cell.derived(() => {
     return appLoadingState.value === 'done';
   });
+  const autoSelectIsOpen = Cell.derived(() => {
+    return route.value.query.has('auto-select');
+  });
+  const dailyGoalsLoaded = Cell.derived(() => {
+    return dailyGoals.value.length > 0;
+  });
 
   if (appIsLoaded.value) {
     setMetaTheme('#ffffff');
@@ -26,30 +32,19 @@ export default async function App() {
     setMetaTheme(CSS_VARS['--space-cadet-500']);
   }
 
-  const autoSelectionIsOpen = Cell.derived(() => {
-    return route.value.query.has('auto-select');
-  });
-
-  const dailyGoalsLoaded = Cell.derived(() => {
-    return dailyGoals.value.length > 0;
-  });
-
   return (
     <>
       <router.Outlet
         id="mainOutlet"
-        data-auto-select-is-open={autoSelectionIsOpen}
+        data-auto-select-is-open={autoSelectIsOpen}
         data-goals-loaded={dailyGoalsLoaded}
         data-goals-completed={goalsCompleted}
         data-showing-completed-screen={shouldShowCompletionScreen}
-        inert={autoSelectionIsOpen}
+        inert={autoSelectIsOpen}
       />
       {If(appIsLoaded, NavigationBar)}
-      <div
-        id="autoSelectionView"
-        data-auto-select-is-open={autoSelectionIsOpen}
-      >
-        {If(autoSelectionIsOpen, AutoSelect)}
+      <div id="autoSelectionView" data-auto-select-is-open={autoSelectIsOpen}>
+        {If(autoSelectIsOpen, AutoSelect)}
       </div>
     </>
   );

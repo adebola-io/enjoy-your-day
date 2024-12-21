@@ -9,7 +9,7 @@
   padding-inline: var(--side-padding);
   padding-block: var(--block-padding);
   place-items: center;
-  place-content: start;
+  place-content: center;
 
   & > *:first-child {
     grid-row: 1;
@@ -32,20 +32,18 @@
   --animation-delay: calc(var(--drawer) * 0.75);
   width: min(15dvh, 200px);
   margin-bottom: 2dvh;
+  rotate: 11deg;
 
   dialog:not([open]) :is(&, & > *) {
     animation: none;
-    animation-fill-mode: unset;
   }
 
   [data-lock] {
-    transform: translate(7%, 17%);
     animation: padlock-lock var(--animation-duration) var(--animation-delay);
     animation-fill-mode: both;
   }
 
   [data-lock-rod] {
-    transform: translate(-2%, -7%);
     animation: padlock-lock-rod var(--animation-duration) var(--animation-delay);
     animation-fill-mode: both;
   }
@@ -53,7 +51,7 @@
 
 @keyframes padlock-lock {
   from {
-    transform: translate(7%, 17%);
+    transform: translate(3%, 5%);
   }
 
   80% {
@@ -66,6 +64,10 @@
 }
 
 @keyframes padlock-lock-rod {
+  from {
+    transform: translate(-2%, -5%);
+  }
+
   50% {
     color: inherit;
   }

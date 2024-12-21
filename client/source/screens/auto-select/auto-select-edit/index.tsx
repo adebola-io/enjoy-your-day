@@ -5,11 +5,10 @@ import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
 import AddIcon from '#/components/icons/add';
 import { InlinedIcon } from '#/components/inlined-icon';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
-import { useObserver } from '#/library/useObserver';
 import { setAutoSelectStage, setMetaTheme, vibrate } from '#/library/utils';
 import type { GoalProps } from '#/data/entities';
 import { Cell, type SourceCell } from '@adbl/cells';
-import { For, If } from '@adbl/unfinished';
+import { For, If, useObserver } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import {
   getExampleGoalInstruction,
@@ -40,16 +39,14 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   };
 
   const openSearch = () => {
-    if (searchIsOpen.value) return;
-    router.navigate(searchHref);
+    if (!searchIsOpen.value) router.navigate(searchHref);
   };
   const closeSearch = () => {
-    if (!searchIsOpen.value) return;
-    return router.navigate(baseHref);
+    if (searchIsOpen.value) router.navigate(baseHref);
   };
 
   const addGoal = async (goal: GoalOptionProps) => {
-    await closeSearch();
+    closeSearch();
     activeItemIndex.value = 0;
     props.goals.value.splice(0, 0, goal);
   };

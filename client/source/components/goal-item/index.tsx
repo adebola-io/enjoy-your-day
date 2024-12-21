@@ -1,5 +1,5 @@
 import type { IconName } from '#/library/icon-name';
-import { useObserver } from '#/library/useObserver';
+import { useObserver } from '@adbl/unfinished';
 import { InlinedIcon } from '#/components/inlined-icon';
 import { JSX } from '@adbl/unfinished/jsx-runtime';
 import { If } from '@adbl/unfinished';

@@ -1,6 +1,6 @@
 import SearchIcon from '#/components/icons/search';
 import { Input } from '#/components/input';
-import { useObserver } from '#/library/useObserver';
+import { useObserver } from '@adbl/unfinished';
 import { For, If } from '@adbl/unfinished';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { Cell } from '@adbl/cells';

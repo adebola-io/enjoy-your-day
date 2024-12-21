@@ -5,7 +5,7 @@ import {
   setAutoSelectStage,
   setMetaTheme,
 } from '#/library/utils';
-import { useObserver } from '#/library/useObserver';
+import { useObserver } from '@adbl/unfinished';
 import type { GoalProps } from '#/data/entities';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { For } from '@adbl/unfinished';

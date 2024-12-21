@@ -1,5 +1,5 @@
 import type { JSX } from '@adbl/unfinished/jsx-dev-runtime';
-import { useObserver } from '#/library/useObserver';
+import { useObserver } from '@adbl/unfinished';
 import { getMetaTheme, overlayBlack, setMetaTheme } from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { type RouteChangeEvent, useRouter } from '@adbl/unfinished/router';

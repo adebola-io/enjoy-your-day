@@ -1,6 +1,7 @@
 import type { IconName } from '#/library/icon-name';
 import { useObserver } from '#/library/useObserver';
 import { InlinedIcon } from '#/components/inlined-icon';
+import { JSX } from '@adbl/unfinished/jsx-runtime';
 import { If } from '@adbl/unfinished';
 import { Cell } from '@adbl/cells';
 import { Icon } from '../icon';
@@ -13,6 +14,8 @@ export interface GoalItemProps {
   index?: Cell<number>;
   color: string;
   instruction: string;
+  listItem?: boolean;
+  labelFor?: JSX.ValueOrCell<string>;
   onRemove?: (
     item: number,
     container: HTMLElement,
@@ -25,11 +28,8 @@ export function GoalItem(props: GoalItemProps) {
   const containerRef = Cell.source<HTMLElement | null>(null);
   const wrapperRef = Cell.source<HTMLElement | null>(null);
   const observer = useObserver();
-  const { cancelable = true } = props;
-  const styles = {
-    '--level': props.index,
-    '--bg-color': props.color,
-  };
+  const { cancelable = true, listItem = true, labelFor } = props;
+  const styles = { '--level': props.index, '--bg-color': props.color };
 
   const removeItem = () => {
     if (!containerRef.value || !props.index) return;
@@ -53,34 +53,55 @@ export function GoalItem(props: GoalItemProps) {
     return () => intersectObserver.disconnect();
   });
 
+  const containProps = {
+    ref: containerRef,
+    class: [classes.container, 'goal-card'],
+    style: styles,
+    'data-cancelable': cancelable,
+  };
+
+  const Content = () => (
+    <div ref={wrapperRef} class={classes.scrollSnapWrapper}>
+      <Icon
+        name={props.icon}
+        class={[classes.icon, classes.goalIcon]}
+        color="white"
+        title="Icon related to the goal"
+        inline
+      />
+      <h2 class={classes.title}>{props.title}</h2>
+      <p class={classes.instruction}>{props.instruction}</p>
+      {If(cancelable, () => (
+        <button type="button" class={classes.cancelBtn} onClick={removeItem}>
+          <InlinedIcon
+            Icon={XIcon}
+            class={classes.icon}
+            color="white"
+            title="Remove Goal"
+          />
+        </button>
+      ))}
+    </div>
+  );
+
+  if (listItem) {
+    return (
+      <li {...containProps}>
+        <Content />
+      </li>
+    );
+  }
+  if (labelFor) {
+    return (
+      <label {...containProps} for={labelFor}>
+        <Content />
+      </label>
+    );
+  }
+
   return (
-    <li
-      ref={containerRef}
-      class={[classes.container, 'goal-card']}
-      style={styles}
-      data-cancelable={cancelable}
-    >
-      <div ref={wrapperRef} class={classes.scrollSnapWrapper}>
-        <Icon
-          name={props.icon}
-          class={[classes.icon, classes.goalIcon]}
-          color="white"
-          title="Icon related to the goal"
-          inline
-        />
-        <h2 class={classes.title}>{props.title}</h2>
-        <p class={classes.instruction}>{props.instruction}</p>
-        {If(cancelable, () => (
-          <button type="button" class={classes.cancelBtn} onClick={removeItem}>
-            <InlinedIcon
-              Icon={XIcon}
-              class={classes.icon}
-              color="white"
-              title="Remove Goal"
-            />
-          </button>
-        ))}
-      </div>
-    </li>
+    <div {...containProps}>
+      <Content />
+    </div>
   );
 }

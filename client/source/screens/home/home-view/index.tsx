@@ -3,12 +3,18 @@ import { TimeBasedGreeting } from '#/components/time-based-greeting';
 import { TimeBasedIcon } from '#/components/time-based-icon';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
 import { Cell } from '@adbl/cells';
-import { dailyGoals, timeOfDay } from '#/data/state';
+import {
+  dailyGoals,
+  goalsCompleted,
+  shouldShowCompletionScreen,
+  timeOfDay,
+} from '#/data/state';
 import { For } from '@adbl/unfinished';
 import classes from './home-view.module.css';
 
 export default function HomeView() {
   const listChanged = Cell.source(false);
+  const stickyAreaRef = Cell.source<HTMLElement | null>(null);
   const numberOfScheduledGoals = Cell.derived(() => {
     return dailyGoals.value.filter((s) => s.state === 'scheduled').length;
   });
@@ -43,11 +49,36 @@ export default function HomeView() {
     return 'var(--space-cadet-500)';
   });
 
+  const handleGoalChecked = () => {
+    if (!goalsCompleted.value) return;
+    const stickyArea = stickyAreaRef.value;
+    if (!stickyArea) return;
+    stickyArea.ontransitionend = (event) => {
+      if (event.target !== event.currentTarget) return;
+      shouldShowCompletionScreen.value = true;
+      stickyArea.ontransitionend = null;
+    };
+  };
+
   return (
     <>
-      <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
-      <TimeBasedGreeting class={classes.timeGreeting} />
-      <div class={classes.stickyArea}>
+      <TimeBasedIcon
+        class={classes.timeIcon}
+        data-time-of-day={timeOfDay}
+        data-element-set="home"
+        inert={goalsCompleted}
+      />
+      <TimeBasedGreeting
+        class={classes.timeGreeting}
+        data-element-set="home"
+        inert={goalsCompleted}
+      />
+      <div
+        ref={stickyAreaRef}
+        class={classes.stickyArea}
+        data-element-set="home"
+        inert={goalsCompleted}
+      >
         <p class={classes.encouragement}>
           There are only 5 goals left for today. Don't give up, you're almost
           there!
@@ -58,13 +89,19 @@ export default function HomeView() {
           color={progressColor}
         />
       </div>
-      <form class={classes.goals} style={formStyles}>
+      <form
+        class={classes.goals}
+        style={formStyles}
+        data-element-set="home"
+        inert={goalsCompleted}
+      >
         {For(goals, (state, index) => {
           return (
             <GoalChecklistItem
               goalState={state}
               index={index}
               listChanged={listChanged}
+              onCheck={handleGoalChecked}
             />
           );
         })}

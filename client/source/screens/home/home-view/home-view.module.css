@@ -3,8 +3,10 @@
   height: 50px;
 
   &[data-time-of-day='morning'] {
+    --svg-mask-color: white;
+
     path:not(:last-child) {
-      animation: come-down var(--default-duration * 10) linear infinite;
+      animation: dance calc(var(--default-duration) * 10) linear infinite;
     }
 
     path:last-child {
@@ -32,7 +34,7 @@
   }
 }
 
-@keyframes come-down {
+@keyframes dance {
   from {
     transform: translateY(29%);
   }

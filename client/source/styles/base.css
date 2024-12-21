@@ -62,13 +62,25 @@ body {
   background-color: white;
 
   &[data-path='/home'][data-goals-loaded] {
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding-block-start: calc(var(--block-padding) * 1.5);
-    place-content: start;
-    grid-template-rows: auto auto auto 1fr;
-    grid-template-columns: 100%;
-    gap: min(15px, 2dvh);
+    &:not([data-showing-completed-screen]) {
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding-block-start: calc(var(--block-padding) * 1.5);
+      place-content: start;
+      grid-template-rows: auto auto auto 1fr;
+      grid-template-columns: 100%;
+      gap: min(15px, 2dvh);
+    }
+
+    &[data-goals-completed] {
+      [data-element-set='home'] {
+        opacity: 0;
+        transition: opacity calc(var(--default-duration) * 6);
+        animation: none;
+        pointer-events: none;
+        animation-fill-mode: unset;
+      }
+    }
   }
 
   &[data-path='/goals'] {

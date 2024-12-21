@@ -40,6 +40,7 @@
   --loader-spin: loader-spin;
   --loader-fill: loader-fill;
   --expand-in: expand-in;
+  --hide: hide;
 }
 
 @keyframes shrink-out {

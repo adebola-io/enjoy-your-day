@@ -24,6 +24,13 @@ export const dailyGoals = useLocalStorage<GoalState[]>(
   LOCALSTORAGE_KEYS.goalsForTheDay,
   []
 );
+export const goalsCompleted = Cell.derived(() => {
+  return (
+    dailyGoals.value.length > 0 &&
+    dailyGoals.value.every((s) => s.state === 'completed')
+  );
+});
+export const shouldShowCompletionScreen = Cell.source(goalsCompleted.value);
 export const liveDate = useLiveDate(DATE_UPDATE_INTERVAL);
 export const timeOfDay = Cell.derived(() => {
   const hours = liveDate.value.getHours();

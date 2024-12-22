@@ -14,6 +14,7 @@
   place-items: start;
   scrollbar-width: none;
   scroll-snap-type: y mandatory;
+  overscroll-behavior: none;
 
   &:not([data-closable]) {
     overflow-y: hidden;
@@ -47,7 +48,7 @@
   &[open]::after {
     display: block;
     width: 100dvw;
-    height: 0.05px;
+    height: 0px;
     content: '';
     pointer-events: none;
     scroll-snap-align: end;
@@ -65,11 +66,11 @@
 }
 
 .drawerContent {
-  --border-radius: min(10dvw, 90px);
+  --drawer-visible-height: min(600px, 55dvh);
   position: relative;
   width: 100%;
-  height: min(600px, 55dvh);
-  border-radius: min(5dvw, 40px) min(5dvw, 40px) 0px 0px;
+  height: var(--drawer-visible-height);
+  border-radius: min(8dvw, 40px) min(8dvw, 40px) 0px 0px;
   opacity: 0.5;
   background-color: white;
   transition-duration: var(--drawer);

@@ -12,16 +12,15 @@
     "@adbl/cells": "^0.0.11",
     "@adbl/dom-cells": "^0.0.5",
     "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@2439e2b",
-    "@types/canvas-confetti": "^1.9.0",
-    "@types/node": "^22.10.1",
     "canvas-confetti": "^1.9.3",
     "postcss": "^8.4.49",
-    "postcss-nesting": "^13.0.1",
-    "temporal-polyfill": "^0.2.5"
+    "postcss-nesting": "^13.0.1"
   },
   "devDependencies": {
     "typescript": "^5.7.2",
     "vite": "^5.4.11",
-    "vite-plugin-pwa": "^0.21.0"
+    "vite-plugin-pwa": "^0.21.0",
+    "@types/node": "^22.10.1",
+    "@types/canvas-confetti": "^1.9.0"
   }
 }

@@ -5,7 +5,6 @@ import {
 } from '@adbl/unfinished/router';
 import App from './app';
 import Home from './home';
-import Goals from './goals';
 import Insights from './insights';
 import Settings from './settings';
 import { onboardingRouteTree } from './onboarding/onboarding.routes';
@@ -22,11 +21,6 @@ export const appRouteTree = defineRoute({
       name: 'App - Home',
       path: 'home',
       component: Home,
-    },
-    {
-      name: 'App - Goals',
-      path: 'goals',
-      component: Goals,
     },
     {
       name: 'App - Insights',

@@ -75,11 +75,6 @@ export const navigationBarLinks: NavigationLink[] = [
     icon: HomeIcon,
   },
   {
-    name: 'Goals',
-    path: '/goals',
-    icon: StackIcon,
-  },
-  {
     name: 'Insights',
     path: '/insights',
     icon: BarChartIcon,

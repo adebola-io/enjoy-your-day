@@ -32,15 +32,7 @@ export default function InitialHome() {
           color="white"
           title="Sparkle Icon"
         />
-        Select for me
-      </Button>
-      <Button
-        href="/goals"
-        class={classes.goalsPageLink}
-        variant="primary"
-        rounded
-      >
-        Go to Goals
+        Get Started
       </Button>
     </div>
   );

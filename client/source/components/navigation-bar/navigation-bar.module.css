@@ -6,9 +6,10 @@
   border-top: 3px solid var(--space-cadet-500);
   background-color: white;
   padding-block: 1rem max(env(safe-area-inset-bottom), 1rem);
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(3, auto);
   scrollbar-width: none;
   padding-inline: var(--side-padding);
+  place-content: space-around;
 
   @media (orientation: landscape) {
     --content-height: min(65dvh, 500px);
@@ -83,10 +84,6 @@
 
   [active] > & {
     &[data-name='Home'] {
-      fill: currentColor;
-    }
-
-    &[data-name='Goals'] rect {
       fill: currentColor;
     }
 

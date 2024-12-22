@@ -66,6 +66,7 @@
 
 .drawerContent {
   --border-radius: min(10dvw, 90px);
+  position: relative;
   width: 100%;
   height: min(600px, 55dvh);
   border-radius: min(5dvw, 40px) min(5dvw, 40px) 0px 0px;
@@ -80,13 +81,14 @@
   &::before {
     position: absolute;
     top: calc(var(--block-padding) * 0.15);
+    left: calc(50% - 58px * 0.5);
     display: block;
     width: 58px;
     height: 10px;
     border-radius: 13px;
     background-color: var(--space-cadet-50);
     content: '';
-    margin-inline: auto;
+    justify-self: center;
   }
 
   .drawer[open] & {

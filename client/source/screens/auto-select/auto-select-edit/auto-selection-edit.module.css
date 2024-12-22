@@ -84,7 +84,9 @@
 
 .buttonAndSearchContainer {
   --starting-fade-position-y: 20%;
+  position: sticky;
   z-index: 1;
+  top: 0;
   display: grid;
   border-radius: 40px;
   background-color: white;

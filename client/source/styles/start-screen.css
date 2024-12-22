@@ -31,6 +31,12 @@
   -webkit-font-smoothing: antialiased;
 }
 
+@media (max-height: 450px) {
+  #start-screen .start-screen__illustration {
+    display: none;
+  }
+}
+
 #start-screen[data-current='1'] .start-screen__illustration {
   scale: 1.3;
 }

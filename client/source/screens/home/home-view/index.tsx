@@ -2,13 +2,14 @@ import { ProgressBar } from '#/components/progress-bar';
 import { TimeBasedGreeting } from '#/components/time-based-greeting';
 import { TimeBasedIcon } from '#/components/time-based-icon';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
-import { Cell } from '@adbl/cells';
 import {
   dailyGoals,
   goalsCompleted,
   shouldShowCompletionScreen,
   timeOfDay,
 } from '#/data/state';
+import { vibrate } from '#/library/utils';
+import { Cell } from '@adbl/cells';
 import { For } from '@adbl/unfinished';
 import classes from './home-view.module.css';
 
@@ -51,6 +52,7 @@ export default function HomeView() {
 
   const handleGoalChecked = () => {
     if (!goalsCompleted.value) return;
+    vibrate([100, 75, 50, 75, 100]);
     const stickyArea = stickyAreaRef.value;
     if (!stickyArea) return;
     stickyArea.ontransitionend = (event) => {

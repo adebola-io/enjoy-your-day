@@ -1,6 +1,6 @@
 import type { IconProps } from './props';
 
-export function MoonAndStartsIcon(props: IconProps) {
+export function MoonAndStarsIcon(props: IconProps) {
   return (
     <svg
       viewBox="0 0 50 50"
@@ -30,4 +30,4 @@ export function MoonAndStartsIcon(props: IconProps) {
   );
 }
 
-export default MoonAndStartsIcon;
+export default MoonAndStarsIcon;

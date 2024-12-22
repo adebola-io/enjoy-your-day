@@ -7,7 +7,7 @@ import classes from './home-start-state.module.css';
 
 export default function InitialHome() {
   return (
-    <div class={classes.noGoalsContainer}>
+    <div class={classes.noGoalsContainer} data-stagger-children>
       <InlinedIcon
         Icon={CalendarIcon}
         class={classes.calendarIcon}
@@ -24,6 +24,7 @@ export default function InitialHome() {
         class={classes.autoSelectLink}
         variant="secondary"
         vibrate
+        rounded
       >
         <InlinedIcon
           Icon={SparkleIcon}
@@ -33,7 +34,12 @@ export default function InitialHome() {
         />
         Select for me
       </Button>
-      <Button href="/goals" class={classes.goalsPageLink} variant="primary">
+      <Button
+        href="/goals"
+        class={classes.goalsPageLink}
+        variant="primary"
+        rounded
+      >
         Go to Goals
       </Button>
     </div>

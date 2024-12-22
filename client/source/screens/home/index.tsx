@@ -1,8 +1,8 @@
 import HomeView from '#/screens/home/home-view';
 import InitialHome from '#/screens/home/home-start-state';
 import { If } from '@adbl/unfinished';
-import { dailyGoals, shouldShowCompletionScreen } from '#/data/state';
 import { Cell } from '@adbl/cells';
+import { dailyGoals, shouldShowCompletionScreen } from '#/data/state';
 import { GoalsCompleted } from './goals-completed';
 
 export default async function Home() {

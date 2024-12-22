@@ -63,7 +63,8 @@ export default function AutoSelect() {
   observer.onConnected(buttonRef, () => {
     setMetaTheme('#0e0e1f');
     setAutoSelectStage(1);
-    resource.run();
+    if (currentStage.value === 'cardList') resource.run();
+    else resource.data.value = [];
     return () => setMetaTheme('#ffffff');
   });
 

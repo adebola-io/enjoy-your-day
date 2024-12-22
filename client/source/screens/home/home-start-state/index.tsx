@@ -14,7 +14,7 @@ export default function InitialHome() {
         color={CSS_VARS['--space-cadet-500']}
         title="Calendar Icon"
       />
-      <h2 class={classes.noGoalsHeading}>What will we do today?</h2>
+      <h2 class={classes.noGoalsHeading}>What should we do today?</h2>
       <p class={classes.noGoalsText}>
         Set the tone for an interesting day. Choose goals that inspire you, and
         let's make today memorable!
@@ -32,7 +32,10 @@ export default function InitialHome() {
           color="white"
           title="Sparkle Icon"
         />
-        Get Started
+        Select for me
+      </Button>
+      <Button href="/home?auto-select&stage=edit" variant="primary" rounded>
+        Create a plan
       </Button>
     </div>
   );

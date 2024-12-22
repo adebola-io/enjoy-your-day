@@ -30,6 +30,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   const placeholder = Cell.source('');
   const activeItemIndex = Cell.source(0);
   const searchIsOpen = Cell.derived(() => route.value.query.has('search'));
+  const noGoalsAdded = Cell.derived(() => goals.value.length === 0);
   const baseHref = '/home?auto-select&stage=edit';
   const searchHref = `${baseHref}&search`;
   const confirmDrawerHref = `${baseHref}&confirm`;
@@ -72,12 +73,13 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
       <div
         ref={containerRef}
         class={classes.container}
+        data-no-goals-added={noGoalsAdded}
         data-search-is-open={searchIsOpen}
       >
         <h1 class={classes.title}>Goals for Today</h1>
         <p class={classes.subtitle}>
-          You can add new goals or ditch the ones you don't need to keep your
-          priorities in check.
+          Shape a day that works best for you by adding goals and adjusting
+          priorities.
         </p>
         <Container
           class={classes.buttonAndSearchContainer}

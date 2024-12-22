@@ -35,7 +35,10 @@
       pointer-events: none;
       scale: 0.5 0;
     }
+  }
 
+  &[data-no-goals-added],
+  &[data-search-is-open] {
     .submitBtn {
       scale: 0;
     }
@@ -84,9 +87,7 @@
 
 .buttonAndSearchContainer {
   --starting-fade-position-y: 20%;
-  position: sticky;
   z-index: 1;
-  top: 0;
   display: grid;
   border-radius: 40px;
   background-color: white;

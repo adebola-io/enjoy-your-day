@@ -28,7 +28,12 @@ export default function GoalCardList(props: GoalCardsViewProps) {
     setAutoSelectStage(1);
     setMetaTheme('#0e0e1f');
     ul.scrollTop = ul.scrollHeight;
-    if (initScrollTimeline(ul)) return () => ul.getAnimations().at(0)?.finish();
+    const scrollTimelinePolyfilled = initScrollTimeline(ul);
+    return () => {
+      if (scrollTimelinePolyfilled) {
+        ul.getAnimations().at(0)?.finish();
+      }
+    };
   });
 
   return (

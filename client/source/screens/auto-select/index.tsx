@@ -60,10 +60,10 @@ export default function AutoSelect() {
     );
   };
 
-  observer.onConnected(buttonRef, () => {
+  observer.onConnected(buttonRef, async () => {
     setMetaTheme('#0e0e1f');
     setAutoSelectStage(1);
-    if (currentStage.value === 'cardList') resource.run();
+    if (currentStage.value === 'cardList') await resource.run();
     else resource.data.value = [];
     return () => setMetaTheme('#ffffff');
   });

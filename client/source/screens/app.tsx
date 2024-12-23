@@ -1,11 +1,6 @@
 import { NavigationBar } from '#/components/navigation-bar';
 import AutoSelect from './auto-select';
-import {
-  appLoadingState,
-  dailyGoals,
-  goalsCompleted,
-  shouldShowCompletionScreen,
-} from '#/data/state';
+import { appLoadingState, dailyGoals } from '#/data/state';
 import { setMetaTheme } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
@@ -38,8 +33,6 @@ export default async function App() {
         id="mainOutlet"
         data-auto-select-is-open={autoSelectIsOpen}
         data-goals-loaded={dailyGoalsLoaded}
-        data-goals-completed={goalsCompleted}
-        data-showing-completed-screen={shouldShowCompletionScreen}
         inert={autoSelectIsOpen}
       />
       {If(appIsLoaded, NavigationBar)}

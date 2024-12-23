@@ -5,7 +5,9 @@ import { appRouteTree, onboardingMiddleware } from './screens/routes';
 
 export default async function main() {
   disableContextMenu();
-  initializeDatabase();
+  initializeDatabase().then(() => {
+    console.log('Database initialized!');
+  });
 
   const router = createRouter();
   router.window = window;
@@ -21,7 +23,9 @@ export default async function main() {
 
 export async function resumeApp() {
   disableContextMenu();
-  initializeDatabase();
+  initializeDatabase().then(async () => {
+    console.log('Database initialized!');
+  });
 
   const router = createRouter();
   router.window = window;

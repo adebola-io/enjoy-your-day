@@ -256,19 +256,22 @@
 }
 
 [data-stagger-children] {
-  --stagger-item-1: var(--fade-in-from-bottom) var(--default-duration);
+  --initial-delay: 0ms;
+  --stagger-item-1: var(--fade-in-from-bottom) var(--default-duration)
+    var(--initial-delay);
   --stagger-item-2: var(--fade-in-from-bottom) var(--default-duration)
-    calc(var(--default-duration) * 0.5);
+    calc(var(--initial-delay) + var(--default-duration) * 0.5);
   --stagger-item-3: var(--fade-in-from-bottom) var(--default-duration)
-    calc(var(--default-duration) * 0.9);
+    calc(var(--initial-delay) + var(--default-duration) * 0.9);
   --stagger-item-4: var(--fade-in-from-bottom) var(--default-duration)
-    calc(var(--default-duration) * 1.2);
+    calc(var(--initial-delay) + var(--default-duration) * 1.2);
   --stagger-item-5: var(--fade-in-from-bottom) var(--default-duration)
-    calc(var(--default-duration) * 1.5);
+    calc(var(--initial-delay) + var(--default-duration) * 1.5);
 
   & > * {
     &:first-child {
-      animation: var(--stagger-item-1);
+      opacity: 0;
+      animation: var(--stagger-item-1) both;
     }
 
     &:nth-child(2) {

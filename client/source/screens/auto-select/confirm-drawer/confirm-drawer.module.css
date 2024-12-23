@@ -4,9 +4,10 @@
   position: relative;
   display: grid;
   width: calc(100% - var(--side-padding) * 2);
+  padding-block-start: var(--block-padding);
+  padding-block-end: calc(var(--block-padding) * 0.3);
   text-align: center;
   padding-inline: var(--side-padding);
-  padding-block: var(--block-padding);
   place-items: center;
   place-content: center;
 
@@ -27,34 +28,55 @@
 }
 
 .padlock {
-  --animation-duration: calc(var(--default-duration) * 2);
+  --animation-duration: calc(var(--default-duration) * 2.1);
   --animation-delay: calc(var(--drawer) * 0.75);
-  width: min(15dvh, 200px);
+  width: auto;
+  height: min(15dvh, 300px);
   margin-bottom: 2dvh;
-  rotate: 11deg;
+  aspect-ratio: 1;
+  rotate: -15deg;
 
   dialog:not([open]) :is(&, & > *) {
     animation: none;
   }
 
   [data-lock] {
-    animation: padlock-lock var(--animation-duration) var(--animation-delay);
+    animation: padlock-lock var(--animation-duration)
+      calc(var(--animation-delay) * 2);
     animation-fill-mode: both;
   }
 
   [data-lock-rod] {
-    animation: padlock-lock-rod var(--animation-duration) var(--animation-delay);
+    animation: padlock-lock-rod var(--animation-duration)
+      calc(var(--animation-delay) * 2);
+    stroke-linecap: butt;
+    animation-fill-mode: both;
+  }
+
+  [data-circle] {
+    animation: padlock-circle calc(var(--animation-duration) * 2.5)
+      var(--animation-delay) linear;
+    stroke-dasharray: 1000;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    animation-fill-mode: both;
+  }
+
+  [data-stroke] {
+    animation: padlock-stroke var(--animation-duration) var(--animation-delay);
     animation-fill-mode: both;
   }
 }
 
 @keyframes padlock-lock {
   from {
-    transform: translate(3%, 5%);
+    opacity: 0;
+    transform: translate(0%, 10%);
   }
 
-  80% {
-    transform: translate(-0.5%, -3%);
+  65% {
+    opacity: 1;
+    transform: translate(0, -3%);
   }
 
   to {
@@ -64,7 +86,8 @@
 
 @keyframes padlock-lock-rod {
   from {
-    transform: translate(-2%, -5%);
+    opacity: 0;
+    transform: translate(0, -5%);
   }
 
   50% {
@@ -73,6 +96,28 @@
 
   to {
     transform: none;
+  }
+}
+
+@keyframes padlock-circle {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes padlock-stroke {
+  from {
+    opacity: 0;
+    translate: 20% 20%;
+  }
+  60% {
+    translate: none;
+  }
+  to {
+    opacity: 1;
   }
 }
 

@@ -2,18 +2,16 @@ import { ProgressBar } from '#/components/progress-bar';
 import { TimeBasedGreeting } from '#/components/time-based-greeting';
 import { TimeBasedIcon } from '#/components/time-based-icon';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
-import {
-  dailyGoals,
-  goalsCompleted,
-  shouldShowCompletionScreen,
-  timeOfDay,
-} from '#/data/state';
+import { dailyGoals, goalsCompleted, timeOfDay } from '#/data/state';
+import { GoalsCompletedDrawer } from './goals-completed';
 import { vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { For } from '@adbl/unfinished';
+import { useRouter } from '@adbl/unfinished/router';
 import classes from './home-view.module.css';
 
 export default function HomeView() {
+  const router = useRouter();
   const listChanged = Cell.source(false);
   const stickyAreaRef = Cell.source<HTMLElement | null>(null);
   const numberOfScheduledGoals = Cell.derived(() => {
@@ -53,61 +51,39 @@ export default function HomeView() {
   const handleGoalChecked = () => {
     if (!goalsCompleted.value) return;
     vibrate([100, 75, 50, 75, 100]);
-    const stickyArea = stickyAreaRef.value;
-    if (!stickyArea) return;
-    stickyArea.ontransitionend = (event) => {
-      if (event.target !== event.currentTarget) return;
-      shouldShowCompletionScreen.value = true;
-      stickyArea.ontransitionend = null;
-    };
+    router.navigate('/home?goals-completed');
   };
 
   return (
     <>
-      <TimeBasedIcon
-        class={classes.timeIcon}
-        data-time-of-day={timeOfDay}
-        data-element-set="home"
-        inert={goalsCompleted}
-      />
-      <TimeBasedGreeting
-        class={classes.timeGreeting}
-        data-element-set="home"
-        inert={goalsCompleted}
-      />
-      <div
-        ref={stickyAreaRef}
-        class={classes.stickyArea}
-        data-element-set="home"
-        inert={goalsCompleted}
-      >
-        <p class={classes.encouragement}>
-          There are only 5 goals left for today. Don't give up, you're almost
-          there!
-        </p>
-        <ProgressBar
-          class={classes.progressBar}
-          percent={percentage}
-          color={progressColor}
-        />
+      <div class={classes.container}>
+        <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
+        <TimeBasedGreeting class={classes.timeGreeting} />
+        <div ref={stickyAreaRef} class={classes.stickyArea}>
+          <p class={classes.encouragement}>
+            There are only 5 goals left for today. Don't give up, you're almost
+            there!
+          </p>
+          <ProgressBar
+            class={classes.progressBar}
+            percent={percentage}
+            color={progressColor}
+          />
+        </div>
+        <form class={classes.goals} style={formStyles}>
+          {For(goals, (state, index) => {
+            return (
+              <GoalChecklistItem
+                goalState={state}
+                index={index}
+                listChanged={listChanged}
+                onCheck={handleGoalChecked}
+              />
+            );
+          })}
+        </form>
       </div>
-      <form
-        class={classes.goals}
-        style={formStyles}
-        data-element-set="home"
-        inert={goalsCompleted}
-      >
-        {For(goals, (state, index) => {
-          return (
-            <GoalChecklistItem
-              goalState={state}
-              index={index}
-              listChanged={listChanged}
-              onCheck={handleGoalChecked}
-            />
-          );
-        })}
-      </form>
+      <GoalsCompletedDrawer />
     </>
   );
 }

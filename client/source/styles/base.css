@@ -61,25 +61,9 @@ body {
   display: grid;
   background-color: white;
 
-  &[data-path='/home'][data-goals-loaded] {
-    &:not([data-showing-completed-screen]) {
-      overflow-x: hidden;
-      overflow-y: auto;
-      padding-block-start: calc(var(--block-padding) * 1.5);
-      place-content: start;
-      grid-template-rows: auto auto auto 1fr;
-      grid-template-columns: 100%;
-      gap: min(15px, 2dvh);
-    }
-
-    &[data-goals-completed] {
-      [data-element-set='home'] {
-        opacity: 0;
-        transition: opacity calc(var(--default-duration) * 6);
-        animation: none;
-        pointer-events: none;
-        animation-fill-mode: unset;
-      }
+  &[data-dialog-is-open] {
+    & > :not(dialog) {
+      scale: 0.9;
     }
   }
 }
@@ -121,7 +105,7 @@ body {
     translate: 100%;
   }
 
-  &[data-dialog-is-open='true'] {
+  &[data-dialog-is-open] {
     &:has([data-dialog-state='pending']) {
       & > *:not(dialog, #backButton) {
         scale: 0.95;

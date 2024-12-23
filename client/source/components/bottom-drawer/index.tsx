@@ -41,19 +41,19 @@ export function BottomDrawer(props: BottomDrawerProps) {
     if (!dialog || !dialog.isConnected) return;
     const shouldOpen = isOpen && !dialog.open;
     const rootElement = document.querySelector<HTMLElement>(root);
-    if (rootElement) rootElement.dataset.dialogIsOpen = String(isOpen);
+    if (rootElement) rootElement.toggleAttribute('data-dialog-is-open', isOpen);
     if (shouldOpen) {
       formerMetaTheme = getMetaTheme();
       dialog.showModal();
       setMetaTheme(overlayBlack(formerMetaTheme));
-    } else {
+    } else if (dialog.open) {
       dialog.close();
       setMetaTheme(formerMetaTheme);
     }
   };
 
   const handleRouteChange = (event: RouteChangeEvent) => {
-    if (!isOpen.value || isClosable.value) return;
+    if (!isOpen.value || isClosable.value || !ref.value?.open) return;
     event.preventDefault();
     onClosePrevented?.();
     window.history.pushState(null, '', event.detail.from);
@@ -64,8 +64,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
       onClosePrevented?.();
       return;
     }
-    if (onClose) onClose();
-    else toggle(false);
+    toggle(false);
   };
 
   const handleCancel = (event: Event) => {
@@ -82,10 +81,13 @@ export function BottomDrawer(props: BottomDrawerProps) {
     const dialog = ref.deproxy();
     const div = dialog.firstElementChild as HTMLDivElement;
     const callback = ([{ isIntersecting }]: IntersectionObserverEntry[]) => {
-      const canClose = !isIntersecting && isOpen.value && isClosable.value;
+      const canClose =
+        !isIntersecting &&
+        isOpen.value &&
+        isClosable.value &&
+        dialog.checkVisibility();
       if (!canClose) return;
-      if (onClose) onClose();
-      else toggle(false);
+      toggle(false);
     };
     const options = { root: dialog, threshold: 0.3 };
     const intersectObserver = new IntersectionObserver(callback, options);

@@ -1,20 +1,17 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
 import { PadLockIcon } from '#/components/icons/padlock';
-import { Switch } from '@adbl/unfinished';
-import { useRouter } from '@adbl/unfinished/router';
-import { Cell, type SourceCell } from '@adbl/cells';
-import classes from './confirm-drawer.module.css';
+import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
+import { dailyGoals } from '#/data/state';
 import type { GoalProps } from '#/data/entities';
 import { getResourceState, NoOp } from '#/library/utils';
-import { Loader } from '#/components/loader';
-import { dailyGoals } from '#/data/state';
+import { Cell, type SourceCell } from '@adbl/cells';
+import { Switch } from '@adbl/unfinished';
+import { useRouter } from '@adbl/unfinished/router';
+import classes from './confirm-drawer.module.css';
 
 function transformToGoalState(goal: GoalProps) {
-  return {
-    state: 'scheduled' as const,
-    goal,
-  };
+  return { goal, state: 'scheduled' as const };
 }
 
 async function saveGoalsForToday(goals: GoalProps[]) {
@@ -39,6 +36,7 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
   const drawerClosable = Cell.derived(() => !resource.pending.value);
 
   const handleDrawerClose = async () => {
+    if (!drawerIsOpen.value) return;
     const searchParams = new URLSearchParams(route.value.query);
     searchParams.delete('confirm');
     await router.navigate(`/home?${searchParams}`);

@@ -15,7 +15,7 @@ function transformToGoalState(goal: GoalProps) {
 }
 
 async function saveGoalsForToday(goals: GoalProps[]) {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 15000));
   dailyGoals.value = goals.map(transformToGoalState);
   return true;
 }
@@ -34,6 +34,11 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
   const resource = Cell.async(saveGoalsForToday);
   const state = getResourceState(resource);
   const drawerClosable = Cell.derived(() => !resource.pending.value);
+  const shouldStaggerChildren = Cell.derived(() => {
+    const resourceIsPending = resource.pending.value;
+    const drawerOpen = drawerIsOpen.value;
+    return drawerOpen && !resourceIsPending;
+  });
 
   const handleDrawerClose = async () => {
     if (!drawerIsOpen.value) return;
@@ -80,6 +85,7 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
       onClose={handleDrawerClose}
       root="#autoSelectionView"
       data-dialog-state={state}
+      data-stagger-children={shouldStaggerChildren}
     >
       {Switch(state, {
         inert: Prompt,

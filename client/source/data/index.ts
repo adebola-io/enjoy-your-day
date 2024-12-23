@@ -6,10 +6,9 @@ import { HobbiesIcon } from '#/components/icons/hobbies';
 import { HomeIcon } from '#/components/icons/home';
 import { LearningIcon } from '#/components/icons/learning';
 import { ProductivityIcon } from '#/components/icons/productivity';
+import { ProfileIcon } from '#/components/icons/profile';
 import type { IconProps } from '#/components/icons/props';
 import { SelfCareIcon } from '#/components/icons/self-care';
-import { SettingsIcon } from '#/components/icons/settings';
-import { StackIcon } from '#/components/icons/stack';
 import { WellnessIcon } from '#/components/icons/wellness';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
@@ -80,8 +79,8 @@ export const navigationBarLinks: NavigationLink[] = [
     icon: BarChartIcon,
   },
   {
-    name: 'Settings',
-    path: '/settings',
-    icon: SettingsIcon,
+    name: 'Profile',
+    path: '/profile',
+    icon: ProfileIcon,
   },
 ];

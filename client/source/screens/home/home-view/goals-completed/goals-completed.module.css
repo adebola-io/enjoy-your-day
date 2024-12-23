@@ -1,5 +1,5 @@
 .container {
-  --initial-delay: calc(var(--drawer) * 0.8);
+  --initial-stagger-delay: calc(var(--drawer) * 0.8);
   --drawer-visible-height: max(400px, 65dvh);
   display: grid;
   width: calc(100% - (var(--side-padding) * 2));

@@ -14,9 +14,17 @@
   scrollbar-width: none;
 
   &[data-search-is-open] {
-    .goalItemList,
-    .buttonAndSearchContainer {
-      translate: 0 -6.5em;
+    &:not([data-no-goals-added]) {
+      .goalItemList,
+      .buttonAndSearchContainer {
+        translate: 0 -6.5em;
+      }
+
+      .title,
+      .subtitle {
+        pointer-events: none;
+        scale: 0.5 0;
+      }
     }
 
     .buttonAndSearchContainer {
@@ -28,12 +36,6 @@
     .goalItemList {
       opacity: 0.1;
       pointer-events: none;
-    }
-
-    .title,
-    .subtitle {
-      pointer-events: none;
-      scale: 0.5 0;
     }
   }
 
@@ -87,6 +89,7 @@
 
 .buttonAndSearchContainer {
   --starting-fade-position-y: 20%;
+  position: relative;
   z-index: 1;
   display: grid;
   border-radius: 40px;

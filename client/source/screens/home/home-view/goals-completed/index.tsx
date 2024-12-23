@@ -18,9 +18,9 @@ export function GoalsCompletedDrawer() {
   isOpen.listen((isOpen) => {
     if (!isOpen) return;
     confetti({
-      particleCount: 300,
+      particleCount: 210,
       gravity: 0.8,
-      spread: 90,
+      spread: 100,
       origin: { y: 0.6 },
       disableForReducedMotion: true,
       colors: [CSS_VARS['--space-cadet-500'], CSS_VARS['--space-cadet-200']],

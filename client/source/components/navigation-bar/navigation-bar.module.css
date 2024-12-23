@@ -77,28 +77,124 @@
   }
 }
 
+@keyframes open-home {
+  from {
+    scale: 1 1;
+    translate: none;
+  }
+  to {
+    scale: 1 0;
+    translate: 0 30%;
+  }
+}
+
+@keyframes grow-bar {
+  0% {
+    scale: 1;
+    translate: none;
+  }
+  40% {
+    scale: var(--scale, 1);
+    translate: var(--translate, none);
+  }
+  to {
+    scale: 1 1;
+    translate: none;
+  }
+}
+
+@keyframes animate-head {
+  40% {
+    translate: 0% -10%;
+  }
+
+  65% {
+    translate: 0% 13%;
+  }
+}
+
+@keyframes animate-body {
+  0% {
+    translate: 0 20%;
+  }
+}
+
 .icon {
   height: 1.5rem;
   transition-duration: var(--default-duration);
   transition-property: translate, fill;
 
+  &[data-name='Home'] {
+    rect {
+      display: none;
+      width: 60%;
+      height: 53%;
+      fill: currentColor;
+      x: 21%;
+      y: 45%;
+    }
+  }
+
   [active] > & {
     &[data-name='Home'] {
       fill: currentColor;
+
+      rect {
+        display: initial;
+        animation: open-home calc(var(--default-duration) * 3)
+          calc(var(--default-duration) * 0.5);
+        animation-fill-mode: both;
+      }
     }
 
     &[data-name='Insights'] {
       fill: currentColor;
-      path,
+
       rect {
-        stroke: transparent;
+        transition-duration: var(--default-duration);
+        stroke: white;
+        stroke-width: 1;
+
+        &[data-bar-1] {
+          --scale: 1 0.7;
+          --translate: 0 28%;
+          animation: grow-bar calc(var(--default-duration) * 7)
+            calc(var(--default-duration) * 0.5);
+          animation-fill-mode: forwards;
+        }
+
+        &[data-bar-2] {
+          --scale: 1 0.6;
+          --translate: 0 37%;
+          animation: grow-bar calc(var(--default-duration) * 3)
+            calc(var(--default-duration) * 0.75);
+          animation-fill-mode: forwards;
+        }
+
+        &[data-bar-3] {
+          --scale: 1 0.5;
+          --translate: 0 47%;
+          animation: grow-bar calc(var(--default-duration) * 3)
+            calc(var(--default-duration) * 1.2);
+          animation-fill-mode: forwards;
+        }
       }
     }
 
-    &[data-name='Settings'] {
-      fill: currentColor;
-      path:last-child {
-        fill: var(--white);
+    &[data-name='Profile'] {
+      overflow: visible;
+
+      path {
+        fill: currentColor;
+      }
+
+      [data-head] {
+        animation: animate-head calc(var(--default-duration) * 4);
+      }
+
+      [data-body] {
+        animation: animate-body calc(var(--default-duration) * 4)
+          calc(var(--default-duration) * 2.5);
       }
     }
   }

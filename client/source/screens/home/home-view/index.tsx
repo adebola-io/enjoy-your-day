@@ -55,35 +55,33 @@ export default function HomeView() {
   };
 
   return (
-    <>
-      <div class={classes.container}>
-        <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
-        <TimeBasedGreeting class={classes.timeGreeting} />
-        <div ref={stickyAreaRef} class={classes.stickyArea}>
-          <p class={classes.encouragement}>
-            There are only 5 goals left for today. Don't give up, you're almost
-            there!
-          </p>
-          <ProgressBar
-            class={classes.progressBar}
-            percent={percentage}
-            color={progressColor}
-          />
-        </div>
-        <form class={classes.goals} style={formStyles}>
-          {For(goals, (state, index) => {
-            return (
-              <GoalChecklistItem
-                goalState={state}
-                index={index}
-                listChanged={listChanged}
-                onCheck={handleGoalChecked}
-              />
-            );
-          })}
-        </form>
+    <div class={classes.container}>
+      <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
+      <TimeBasedGreeting class={classes.timeGreeting} />
+      <div ref={stickyAreaRef} class={classes.stickyArea}>
+        <p class={classes.encouragement}>
+          There are only 5 goals left for today. Don't give up, you're almost
+          there!
+        </p>
+        <ProgressBar
+          class={classes.progressBar}
+          percent={percentage}
+          color={progressColor}
+        />
       </div>
+      <form class={classes.goals} style={formStyles}>
+        {For(goals, (state, index) => {
+          return (
+            <GoalChecklistItem
+              goalState={state}
+              index={index}
+              listChanged={listChanged}
+              onCheck={handleGoalChecked}
+            />
+          );
+        })}
+      </form>
       <GoalsCompletedDrawer />
-    </>
+    </div>
   );
 }

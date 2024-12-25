@@ -126,13 +126,38 @@
   animation-delay: calc(var(--default-duration) * 1.5);
 }
 
+.goalsCompletedBadge {
+  display: grid;
+  height: min(15px, 2dvh);
+  border: 3px solid;
+  border-radius: 35px;
+  color: var(--fern-green-700);
+  animation: var(--fade-in-from-top) calc(var(--default-duration) * 2);
+  font: var(--small-bold);
+  grid-row: 4;
+  grid-column: 1;
+  grid-template-columns: auto auto;
+  place-items: center;
+  place-content: center;
+  gap: 5px;
+  padding-block: 10px;
+  margin-inline: var(--side-padding);
+}
+
+.trophyIcon {
+  width: 15px;
+}
+
 .goals {
   display: grid;
+  transition-duration: var(--default-duration);
+  transition-property: translate;
   animation: var(--fade-in) calc(var(--default-duration) * 2);
-  padding-block: 15px;
   place-content: start;
   gap: 9px;
   grid-template-columns: 100%;
+  grid-row: 4;
+  grid-column: 1;
 
   &::after {
     display: block;
@@ -150,6 +175,10 @@
     grid-row: 1;
     grid-column: 1;
     translate: 0 calc(var(--i) * (100% + 10px));
+  }
+
+  [data-goals-completed] & {
+    translate: 0 calc(var(--base-font-size) + 20px + min(15px, 2dvh));
   }
 }
 

@@ -6,7 +6,7 @@
   gap: 15px;
 
   &:has(.checkbox:checked) {
-    filter: opacity(0.7) contrast(0.6) saturate(0.2) brightness(1.8);
+    filter: opacity(0.6);
   }
 }
 

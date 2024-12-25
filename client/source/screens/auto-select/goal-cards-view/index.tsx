@@ -10,6 +10,10 @@ import type { GoalProps } from '#/data/entities';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { For } from '@adbl/unfinished';
 import classes from './goals-card-view.module.css';
+import { InlinedIcon } from '#/components/inlined-icon';
+import { DoubleCheckIcon } from '#/components/icons/double-check';
+import { CSS_VARS } from '#/styles/variables';
+import { PencilIcon } from '#/components/icons/pencil';
 
 interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[]>;
@@ -45,9 +49,21 @@ export default function GoalCardList(props: GoalCardsViewProps) {
       </ul>
       <div class={classes.buttonRow}>
         <Button class={classes.btn} href={confirmDrawerHref} vibrate>
+          <InlinedIcon
+            Icon={DoubleCheckIcon}
+            class={classes.btnIcon}
+            title="Submit Goals"
+            color={CSS_VARS['--space-cadet-500']}
+          />
           Perfect
         </Button>
         <Button class={classes.btn} href={editStageHref} vibrate>
+          <InlinedIcon
+            Icon={PencilIcon}
+            class={classes.btnIcon}
+            title="Edit Goals"
+            color={CSS_VARS['--space-cadet-500']}
+          />
           Edit
         </Button>
       </div>

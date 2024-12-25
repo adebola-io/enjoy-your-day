@@ -1,8 +1,8 @@
 import type { GoalState } from '#/data/entities';
 import { Cell, SourceCell } from '@adbl/cells';
 import { GoalItem } from '../goal-item';
-import classes from './goal-checklist-item.module.css';
 import { vibrate } from '#/library/utils';
+import classes from './goal-checklist-item.module.css';
 
 export interface GoalChecklistItemProps {
   goalState: GoalState;

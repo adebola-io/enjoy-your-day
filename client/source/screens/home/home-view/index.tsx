@@ -1,13 +1,16 @@
 import { ProgressBar } from '#/components/progress-bar';
 import { TimeBasedGreeting } from '#/components/time-based-greeting';
 import { TimeBasedIcon } from '#/components/time-based-icon';
+import { TrophyIcon } from '#/components/icons/trophy';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
 import { dailyGoals, goalsCompleted, timeOfDay } from '#/data/state';
 import { GoalsCompletedDrawer } from './goals-completed';
 import { vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
-import { For } from '@adbl/unfinished';
+import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
+import { InlinedIcon } from '#/components/inlined-icon';
+import { CSS_VARS } from '#/styles/variables';
 import classes from './home-view.module.css';
 
 export default function HomeView() {
@@ -51,11 +54,11 @@ export default function HomeView() {
   const handleGoalChecked = () => {
     if (!goalsCompleted.value) return;
     vibrate([100, 75, 50, 75, 100]);
-    router.navigate('/home?goals-completed');
+    setTimeout(() => router.navigate('/home?goals-completed'), 400);
   };
 
   return (
-    <div class={classes.container}>
+    <div class={classes.container} data-goals-completed={goalsCompleted}>
       <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
       <TimeBasedGreeting class={classes.timeGreeting} />
       <div ref={stickyAreaRef} class={classes.stickyArea}>
@@ -69,6 +72,19 @@ export default function HomeView() {
           color={progressColor}
         />
       </div>
+      {If(goalsCompleted, () => {
+        return (
+          <div class={classes.goalsCompletedBadge}>
+            <InlinedIcon
+              Icon={TrophyIcon}
+              class={classes.trophyIcon}
+              color={CSS_VARS['--fern-green-700']}
+              title="Trophy Icon"
+            />
+            Goals completed!
+          </div>
+        );
+      })}
       <form class={classes.goals} style={formStyles}>
         {For(goals, (state, index) => {
           return (

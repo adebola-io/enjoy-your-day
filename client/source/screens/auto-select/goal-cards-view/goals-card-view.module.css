@@ -49,7 +49,8 @@
     );
     filter: drop-shadow(0 0 10px #00000080) brightness(var(--brightness));
     translate: 0 calc(var(--index) * 7.5dvh);
-    animation-fill-mode: both;
+    scale: calc(1 - ((var(--total) - var(--index)) / var(--total) * 0.09));
+    animation-fill-mode: forwards;
 
     @supports not (animation-timeline: scroll(self block)) {
       transition-duration: var(--animation-duration);
@@ -93,11 +94,12 @@
 }
 
 .btn {
+  display: grid;
   filter: drop-shadow(0 0 10px #0000003e);
-  place-content: center;
+  grid-auto-flow: column;
+  gap: 6px;
 }
 
-.confirmDrawer {
-  bottom: 0;
-  width: calc(100% - var(--side-padding) * 2);
+.btnIcon {
+  width: calc(var(--base-font-size) * 1.2);
 }

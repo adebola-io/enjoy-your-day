@@ -6,7 +6,7 @@ import {
 import App from './app';
 import Home from './home';
 import Insights from './insights';
-import Profile from './profile';
+import Settings from './settings';
 import { onboardingRouteTree } from './onboarding/onboarding.routes';
 import { appLoadingState } from '#/data/state';
 
@@ -28,9 +28,9 @@ export const appRouteTree = defineRoute({
       component: Insights,
     },
     {
-      name: 'App - Profile',
-      path: 'profile',
-      component: Profile,
+      name: 'App - Settings',
+      path: 'settings',
+      component: Settings,
     },
   ],
 });

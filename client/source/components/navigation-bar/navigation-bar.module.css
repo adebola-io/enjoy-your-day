@@ -1,10 +1,12 @@
 .container {
+  --starting-fade-position-y: 150%;
   display: grid;
   overflow-y: hidden;
   width: calc(100% - var(--side-padding) * 2);
   margin-top: auto;
   border-top: 3px solid var(--space-cadet-500);
   background-color: white;
+  animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 2);
   padding-block: 1rem max(env(safe-area-inset-bottom), 1rem);
   grid-template-columns: repeat(3, auto);
   scrollbar-width: none;
@@ -114,7 +116,10 @@
 }
 
 @keyframes animate-body {
-  0% {
+  40% {
+    translate: 0% -10%;
+  }
+  60% {
     translate: 0 20%;
   }
 }
@@ -141,7 +146,7 @@
 
       rect {
         display: initial;
-        animation: open-home calc(var(--default-duration) * 3)
+        animation: open-home calc(var(--default-duration) * 6)
           calc(var(--default-duration) * 0.5);
         animation-fill-mode: both;
       }
@@ -181,7 +186,7 @@
       }
     }
 
-    &[data-name='Profile'] {
+    &[data-name='Settings'] {
       overflow: visible;
 
       path {
@@ -193,8 +198,7 @@
       }
 
       [data-body] {
-        animation: animate-body calc(var(--default-duration) * 4)
-          calc(var(--default-duration) * 2.5);
+        animation: animate-body calc(var(--default-duration) * 5);
       }
     }
   }

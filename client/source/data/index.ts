@@ -79,8 +79,8 @@ export const navigationBarLinks: NavigationLink[] = [
     icon: BarChartIcon,
   },
   {
-    name: 'Profile',
-    path: '/profile',
+    name: 'Settings',
+    path: '/settings',
     icon: ProfileIcon,
   },
 ];

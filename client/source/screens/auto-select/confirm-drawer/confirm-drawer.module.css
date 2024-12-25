@@ -49,13 +49,13 @@
 
   [data-lock] {
     animation: padlock-lock var(--animation-duration)
-      calc(var(--animation-delay) * 2);
+      calc(var(--animation-delay) * 2.3);
     animation-fill-mode: both;
   }
 
   [data-lock-rod] {
     animation: padlock-lock-rod var(--animation-duration)
-      calc(var(--animation-delay) * 2);
+      calc(var(--animation-delay) * 2.3);
     stroke-linecap: butt;
     animation-fill-mode: both;
   }

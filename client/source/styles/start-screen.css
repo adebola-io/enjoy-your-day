@@ -216,7 +216,6 @@
   opacity: 0;
   animation: fade-in-from-bottom 0.25s 0.2s;
   text-align: center;
-  font: var(--eyebrow-bold);
   animation-fill-mode: both;
 }
 

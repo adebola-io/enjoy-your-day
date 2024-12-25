@@ -23,7 +23,7 @@
 
 #waiting-screen.loading .waiting-screen__circle {
   --first-animation-duration: calc(var(--default-duration) * 1.25);
-  --second-animation-duration: var(--default-duration);
+  --second-animation-duration: calc(var(--default-duration) * 1.3);
   --starting-scale: 2;
   --ending-scale: 30;
   display: block;

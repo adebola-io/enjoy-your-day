@@ -10,6 +10,13 @@ import { WellnessIcon } from '#/components/icons/wellness';
 import { ArtsIcon } from '#/components/icons/arts';
 import { MusicIcon } from '#/components/icons/music';
 import { LiteratureIcon } from '#/components/icons/literature';
+import { DigitalDesignIcon } from '#/components/icons/digital-design';
+import { NatureIcon } from '#/components/icons/nature';
+import { SocialConnectionIcon } from '#/components/icons/social-connection';
+import { GlobeIcon } from '#/components/icons/globe';
+import { BriefcaseIcon } from '#/components/icons/briefcase';
+import { HomeCareIcon } from '#/components/icons/home-care';
+import { HangerIcon } from '#/components/icons/hanger';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
 export type Category = {
@@ -49,41 +56,41 @@ export const categories: Category[] = [
     icon: LiteratureIcon,
     theme: '#FF87A2',
   },
-  // {
-  //   name: 'Digital Design',
-  //   icon: DigitalDesignIcon,
-  //   theme: '#96F396',
-  // },
-  // {
-  //   name: 'Nature',
-  //   icon: NatureIcon,
-  //   theme: '#FF91ED',
-  // },
-  // {
-  //   name: 'Social Connection',
-  //   icon: SocialConnectionIcon,
-  //   theme: '#BACBB9',
-  // },
-  // {
-  //   name: 'Culture',
-  //   icon: CultureIcon,
-  //   theme: '#DBB2CB',
-  // },
-  // {
-  //   name: 'Profession',
-  //   icon: ProfessionIcon,
-  //   theme: '#6BF2DC',
-  // },
-  // {
-  //   name: 'Home Care',
-  //   icon: HomeCareIcon,
-  //   theme: '#FFD992',
-  // },
-  // {
-  //   name: 'Style',
-  //   icon: StyleIcon,
-  //   theme: '#7288D7',
-  // },
+  {
+    name: 'Digital Design',
+    icon: DigitalDesignIcon,
+    theme: '#96F396',
+  },
+  {
+    name: 'Nature',
+    icon: NatureIcon,
+    theme: '#FF91ED',
+  },
+  {
+    name: 'Social Connection',
+    icon: SocialConnectionIcon,
+    theme: '#BACBB9',
+  },
+  {
+    name: 'Culture',
+    icon: GlobeIcon,
+    theme: '#DBB2CB',
+  },
+  {
+    name: 'Profession',
+    icon: BriefcaseIcon,
+    theme: '#6BF2DC',
+  },
+  {
+    name: 'Home Care',
+    icon: HomeCareIcon,
+    theme: '#FFD992',
+  },
+  {
+    name: 'Style',
+    icon: HangerIcon,
+    theme: '#7288D7',
+  },
   // {
   //   name: 'Finance',
   //   icon: FinanceIcon,

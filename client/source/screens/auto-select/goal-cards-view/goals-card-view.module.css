@@ -21,6 +21,7 @@
   transition-property: scale;
   animation-name: turn-scroll-knob;
   animation-duration: auto;
+  animation-timeline: scroll(self block);
   scrollbar-width: none;
   overscroll-behavior-y: auto;
   scroll-snap-align: start;
@@ -30,7 +31,6 @@
   grid-row: 1;
   grid-column: 1;
   translate: 0 calc(var(--goal-card-border-radius) * 1.5);
-  animation-timeline: scroll(self block);
 
   & > * {
     --brightness: calc(

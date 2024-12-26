@@ -74,7 +74,10 @@ export default function HomeView() {
       </div>
       {If(goalsCompleted, () => {
         return (
-          <div class={classes.goalsCompletedBadge}>
+          <router.Link
+            class={classes.goalsCompletedBadge}
+            href="/home?goals-completed"
+          >
             <InlinedIcon
               Icon={TrophyIcon}
               class={classes.trophyIcon}
@@ -82,7 +85,7 @@ export default function HomeView() {
               title="Trophy Icon"
             />
             Goals completed!
-          </div>
+          </router.Link>
         );
       })}
       <form class={classes.goals} style={formStyles}>

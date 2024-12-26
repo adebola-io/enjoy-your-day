@@ -61,7 +61,9 @@
   }
 
   [data-circle] {
-    animation: padlock-circle calc(var(--animation-duration) * 2.5)
+    transform: rotate(-90deg);
+    transform-origin: center;
+    animation: padlock-circle calc(var(--animation-duration) * 3)
       var(--animation-delay) linear;
     stroke-dasharray: 1000;
     stroke-linecap: round;

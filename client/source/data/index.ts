@@ -1,15 +1,15 @@
 import { BarChartIcon } from '#/components/icons/bar-chart';
-import { CreativityIcon } from '#/components/icons/creativity';
+import { CookingIcon } from '#/components/icons/cooking';
 import { FitnessIcon } from '#/components/icons/fitness';
-import { GrowthIcon } from '#/components/icons/growth';
-import { HobbiesIcon } from '#/components/icons/hobbies';
 import { HomeIcon } from '#/components/icons/home';
-import { LearningIcon } from '#/components/icons/learning';
+import { MentalHealthIcon } from '#/components/icons/mental-health';
 import { ProductivityIcon } from '#/components/icons/productivity';
 import { ProfileIcon } from '#/components/icons/profile';
 import type { IconProps } from '#/components/icons/props';
-import { SelfCareIcon } from '#/components/icons/self-care';
 import { WellnessIcon } from '#/components/icons/wellness';
+import { ArtsIcon } from '#/components/icons/arts';
+import { MusicIcon } from '#/components/icons/music';
+import { LiteratureIcon } from '#/components/icons/literature';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
 export type Category = {
@@ -25,40 +25,170 @@ export const categories: Category[] = [
     theme: '#BACBB9',
   },
   {
-    name: 'Self-care',
-    icon: SelfCareIcon,
+    name: 'Mental Health',
+    icon: MentalHealthIcon,
     theme: '#DBB2CB',
   },
   {
-    name: 'Creativity',
-    icon: CreativityIcon,
+    name: 'Cooking',
+    icon: CookingIcon,
     theme: '#6BF2DC',
+  },
+  {
+    name: 'Arts',
+    icon: ArtsIcon,
+    theme: '#FFD992',
+  },
+  {
+    name: 'Music',
+    icon: MusicIcon,
+    theme: '#7288D7',
+  },
+  {
+    name: 'Literature',
+    icon: LiteratureIcon,
+    theme: '#FF87A2',
+  },
+  // {
+  //   name: 'Digital Design',
+  //   icon: DigitalDesignIcon,
+  //   theme: '#96F396',
+  // },
+  // {
+  //   name: 'Nature',
+  //   icon: NatureIcon,
+  //   theme: '#FF91ED',
+  // },
+  // {
+  //   name: 'Social Connection',
+  //   icon: SocialConnectionIcon,
+  //   theme: '#BACBB9',
+  // },
+  // {
+  //   name: 'Culture',
+  //   icon: CultureIcon,
+  //   theme: '#DBB2CB',
+  // },
+  // {
+  //   name: 'Profession',
+  //   icon: ProfessionIcon,
+  //   theme: '#6BF2DC',
+  // },
+  // {
+  //   name: 'Home Care',
+  //   icon: HomeCareIcon,
+  //   theme: '#FFD992',
+  // },
+  // {
+  //   name: 'Style',
+  //   icon: StyleIcon,
+  //   theme: '#7288D7',
+  // },
+  // {
+  //   name: 'Finance',
+  //   icon: FinanceIcon,
+  //   theme: '#FF87A2',
+  // },
+  // {
+  //   name: 'Fun',
+  //   icon: FunIcon,
+  //   theme: '#96F396',
+  // },
+  // {
+  //   name: 'Photography',
+  //   icon: PhotographyIcon,
+  //   theme: '#FF91ED',
+  // },
+  // {
+  //   name: 'Games',
+  //   icon: GamesIcon,
+  //   theme: '#BACBB9',
+  // },
+  // {
+  //   name: 'Sports',
+  //   icon: SportsIcon,
+  //   theme: '#DBB2CB',
+  // },
+  // {
+  //   name: 'Volunteering',
+  //   icon: VolunteeringIcon,
+  //   theme: '#6BF2DC',
+  // },
+  // {
+  //   name: 'Science',
+  //   icon: ScienceIcon,
+  //   theme: '#FFD992',
+  // },
+  // {
+  //   name: 'Technology',
+  //   icon: TechnologyIcon,
+  //   theme: '#7288D7',
+  // },
+  // {
+  //   name: 'Crafts',
+  //   icon: CraftsIcon,
+  //   theme: '#FF87A2',
+  // },
+  // {
+  //   name: 'Mindfulness',
+  //   icon: MindfulnessIcon,
+  //   theme: '#96F396',
+  // },
+  // {
+  //   name: 'Adventure',
+  //   icon: AdventureIcon,
+  //   theme: '#FF91ED',
+  // },
+  // {
+  //   name: 'Pets',
+  //   icon: PetsIcon,
+  //   theme: '#BACBB9',
+  // },
+  // {
+  //   name: 'Green Living',
+  //   icon: GreenLivingIcon,
+  //   theme: '#DBB2CB',
+  // },
+  // {
+  //   name: 'Philosophy',
+  //   icon: PhilosophyIcon,
+  //   theme: '#6BF2DC',
+  // },
+  // {
+  //   name: 'Film',
+  //   icon: FilmIcon,
+  //   theme: '#FFD992',
+  // },
+  // {
+  //   name: 'Urban Exploration',
+  //   icon: UrbanExplorationIcon,
+  //   theme: '#7288D7',
+  // },
+  // {
+  //   name: 'Storytelling',
+  //   icon: StorytellingIcon,
+  //   theme: '#FF87A2',
+  // },
+  {
+    name: 'Fitness',
+    icon: FitnessIcon,
+    theme: '#96F396',
   },
   {
     name: 'Productivity',
     icon: ProductivityIcon,
-    theme: '#FFD992',
-  },
-  {
-    name: 'Fitness',
-    icon: FitnessIcon,
-    theme: '#7288D7',
-  },
-  {
-    name: 'Learning',
-    icon: LearningIcon,
-    theme: '#FF87A2',
-  },
-  {
-    name: 'Growth',
-    icon: GrowthIcon,
-    theme: '#96F396',
-  },
-  {
-    name: 'Hobbies',
-    icon: HobbiesIcon,
     theme: '#FF91ED',
   },
+  // {
+  //   name: 'Romance',
+  //   icon: RomanceIcon,
+  //   theme: '#BACBB9',
+  // },
+  // {
+  //   name: 'Travel',
+  //   icon: TravelIcon,
+  //   theme: '#DBB2CB',
+  // },
 ];
 
 export interface NavigationLink {

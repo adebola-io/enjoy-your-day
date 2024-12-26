@@ -134,13 +134,14 @@
   color: var(--fern-green-700);
   animation: var(--fade-in-from-top) calc(var(--default-duration) * 2);
   font: var(--small-bold);
+  text-decoration: none;
   grid-row: 4;
   grid-column: 1;
   grid-template-columns: auto auto;
   place-items: center;
   place-content: center;
   gap: 5px;
-  padding-block: 10px;
+  padding-block: 15px;
   margin-inline: var(--side-padding);
 }
 
@@ -178,7 +179,7 @@
   }
 
   [data-goals-completed] & {
-    translate: 0 calc(var(--base-font-size) + 20px + min(15px, 2dvh));
+    translate: 0 calc(var(--base-font-size) + 30px + min(15px, 2dvh));
   }
 }
 

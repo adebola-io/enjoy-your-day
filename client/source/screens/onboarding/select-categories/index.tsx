@@ -6,7 +6,7 @@ import { Cell } from '@adbl/cells';
 import { CheckIcon } from '#/components/icons/check';
 import { useRouter } from '@adbl/unfinished/router';
 import { vibrate } from '#/library/utils';
-import classes from './onboarding.module.css';
+import classes from './select-categories.module.css';
 
 export default async function SelectCategories() {
   const router = useRouter();

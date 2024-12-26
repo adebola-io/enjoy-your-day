@@ -1,9 +1,8 @@
-import { For, If } from '@adbl/unfinished';
+import { For } from '@adbl/unfinished';
 import { selectedCategories, username } from '#/data/state';
 import { categories, type Category } from '#/data';
 import { Button } from '#/components/button';
 import { Cell } from '@adbl/cells';
-import { CheckIcon } from '#/components/icons/check';
 import { useRouter } from '@adbl/unfinished/router';
 import { vibrate } from '#/library/utils';
 import classes from './select-categories.module.css';
@@ -51,14 +50,14 @@ export default async function SelectCategories() {
 }
 
 function CategoryCard(category: Category, index: Cell<number>) {
-  const selectCategory = () => {
+  const selectCategory = function (this: HTMLInputElement) {
     vibrate();
-    if (selectedCategories.value.includes(category.name)) {
-      const index = selectedCategories.value.indexOf(category.name);
-      selectedCategories.value.splice(index, 1);
+    if (this.checked) {
+      selectedCategories.value.push(category.name);
       return;
     }
-    selectedCategories.value.push(category.name);
+    const index = selectedCategories.value.indexOf(category.name);
+    selectedCategories.value.splice(index, 1);
   };
 
   const isSelected = Cell.derived(() => {
@@ -66,23 +65,23 @@ function CategoryCard(category: Category, index: Cell<number>) {
   });
 
   const categoryStyles = {
-    '--color': category.theme,
+    '--category-color': category.theme,
     animationDelay: `${index.value * 0.05 + 0.3}s`,
   };
 
   return (
-    <li class={classes.category} style={categoryStyles}>
-      {If(isSelected, () => {
-        return <CheckIcon class={classes.categoryCheckIcon} />;
-      })}
-      <button
-        type="button"
-        class={classes.categoryButton}
-        onClick={selectCategory}
-      >
-        <category.icon class={classes.categoryIcon} />
-        {category.name}
-      </button>
-    </li>
+    <label
+      class={classes.category}
+      style={categoryStyles}
+      data-is-selected={isSelected}
+    >
+      <input
+        type="checkbox"
+        onChange={selectCategory}
+        checked={isSelected.value}
+      />
+      <category.icon class={classes.categoryIcon} />
+      {category.name}
+    </label>
   );
 }

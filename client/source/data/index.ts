@@ -17,6 +17,9 @@ import { GlobeIcon } from '#/components/icons/globe';
 import { BriefcaseIcon } from '#/components/icons/briefcase';
 import { HomeCareIcon } from '#/components/icons/home-care';
 import { HangerIcon } from '#/components/icons/hanger';
+import { PiggybankIcon } from '#/components/icons/piggybank';
+import { DancingIcon } from '#/components/icons/dancing';
+import { CameraIcon } from '#/components/icons/camera';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
 export type Category = {
@@ -91,21 +94,21 @@ export const categories: Category[] = [
     icon: HangerIcon,
     theme: '#7288D7',
   },
-  // {
-  //   name: 'Finance',
-  //   icon: FinanceIcon,
-  //   theme: '#FF87A2',
-  // },
-  // {
-  //   name: 'Fun',
-  //   icon: FunIcon,
-  //   theme: '#96F396',
-  // },
-  // {
-  //   name: 'Photography',
-  //   icon: PhotographyIcon,
-  //   theme: '#FF91ED',
-  // },
+  {
+    name: 'Finance',
+    icon: PiggybankIcon,
+    theme: '#FF87A2',
+  },
+  {
+    name: 'Fun',
+    icon: DancingIcon,
+    theme: '#96F396',
+  },
+  {
+    name: 'Photography',
+    icon: CameraIcon,
+    theme: '#FF91ED',
+  },
   // {
   //   name: 'Games',
   //   icon: GamesIcon,

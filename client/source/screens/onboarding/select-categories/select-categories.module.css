@@ -18,17 +18,13 @@
   overflow-y: auto;
   flex-wrap: wrap;
   height: min-content;
-  gap: 10px;
+  gap: 8px;
   grid-area: 3 / 1;
   scrollbar-width: none;
 
   &::-webkit-scrollbar {
     display: none;
   }
-}
-
-.category {
-  list-style: none;
 }
 
 .categorySubmitButton {
@@ -38,19 +34,27 @@
   grid-area: 3 / 1;
 }
 
-.categoryButton {
+.category {
   display: grid;
   border: 3px solid;
   border-radius: 20px;
   color: inherit;
   background-color: transparent;
   font: inherit;
-  padding-inline: 14px;
+  padding-inline: 12px;
   padding-block: 8px;
   grid-template-columns: auto auto;
   place-content: center;
   place-items: center;
   gap: 5px;
+
+  input {
+    appearance: none;
+  }
+
+  &[data-is-selected] {
+    color: var(--category-color);
+  }
 }
 
 .categoryIcon {
@@ -58,4 +62,5 @@
   height: min(18px, 2dvh);
   color: inherit;
   aspect-ratio: 1;
+  grid-area: 1 / 1;
 }

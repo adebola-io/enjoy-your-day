@@ -3,13 +3,13 @@ import { TimeBasedGreeting } from '#/components/time-based-greeting';
 import { TimeBasedIcon } from '#/components/time-based-icon';
 import { TrophyIcon } from '#/components/icons/trophy';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
+import { InlinedIcon } from '#/components/inlined-icon';
 import { dailyGoals, goalsCompleted, timeOfDay } from '#/data/state';
 import { GoalsCompletedDrawer } from './goals-completed';
 import { vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
-import { InlinedIcon } from '#/components/inlined-icon';
 import { CSS_VARS } from '#/styles/variables';
 import classes from './home-view.module.css';
 

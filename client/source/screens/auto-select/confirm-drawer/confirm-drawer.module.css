@@ -61,7 +61,6 @@
   }
 
   [data-circle] {
-    transform: rotate(-90deg);
     transform-origin: center;
     animation: padlock-circle calc(var(--animation-duration) * 3)
       var(--animation-delay) linear;
@@ -105,9 +104,11 @@
 
 @keyframes padlock-circle {
   from {
+    transform: rotate(-90deg);
     stroke-dashoffset: 1000;
   }
   to {
+    transform: rotate(90deg);
     stroke-dashoffset: 0;
   }
 }

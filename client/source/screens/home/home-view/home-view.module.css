@@ -35,12 +35,12 @@
   }
 
   &[data-time-of-day='evening'] {
-    path:nth-child(2),
-    path:nth-child(3) {
+    path:nth-child(1),
+    path:nth-child(2) {
       animation: var(--twinkle) infinite;
       animation-duration: calc(var(--default-duration) * 15);
     }
-    path:nth-child(3) {
+    path:nth-child(2) {
       opacity: 0;
       animation-delay: calc(var(--default-duration) * 4);
       animation-fill-mode: both;

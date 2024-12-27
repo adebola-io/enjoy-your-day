@@ -18,3 +18,5 @@ export function DigitalDesignIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default DigitalDesignIcon;

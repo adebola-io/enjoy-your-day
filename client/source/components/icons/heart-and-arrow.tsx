@@ -33,3 +33,5 @@ export function HeartAndArrowIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default HeartAndArrowIcon;

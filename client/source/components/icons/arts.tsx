@@ -18,3 +18,5 @@ export function ArtsIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default ArtsIcon;

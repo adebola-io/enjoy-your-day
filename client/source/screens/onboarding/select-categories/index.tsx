@@ -1,6 +1,6 @@
 import { For } from '@adbl/unfinished';
 import { selectedCategories, username } from '#/data/state';
-import { categories, type Category } from '#/data';
+import { categories, type Category } from '#/data/categories';
 import { Button } from '#/components/button';
 import { InlinedIcon } from '#/components/inlined-icon';
 import { Cell } from '@adbl/cells';

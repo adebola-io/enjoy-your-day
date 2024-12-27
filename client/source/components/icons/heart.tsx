@@ -18,3 +18,5 @@ export function HeartIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default HeartIcon;

@@ -23,3 +23,5 @@ export function PiggyBankIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default PiggyBankIcon;

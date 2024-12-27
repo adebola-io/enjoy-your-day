@@ -88,3 +88,5 @@ export function ConfettiIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default ConfettiIcon;

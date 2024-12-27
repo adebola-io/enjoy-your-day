@@ -18,3 +18,5 @@ export function SocialConnectionIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default SocialConnectionIcon;

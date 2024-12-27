@@ -18,3 +18,5 @@ export function DoubleCheckIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default DoubleCheckIcon;

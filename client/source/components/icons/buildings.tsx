@@ -16,3 +16,5 @@ export function BuildingsIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default BuildingsIcon;

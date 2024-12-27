@@ -16,3 +16,5 @@ export function NatureIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default NatureIcon;

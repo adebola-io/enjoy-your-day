@@ -21,3 +21,5 @@ export function HomeCareIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default HomeCareIcon;

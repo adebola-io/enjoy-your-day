@@ -19,3 +19,5 @@ export function TrophyIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default TrophyIcon;

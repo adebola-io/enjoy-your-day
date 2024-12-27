@@ -17,3 +17,5 @@ export function ClapperboardIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default ClapperboardIcon;

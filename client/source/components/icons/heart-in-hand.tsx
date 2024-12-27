@@ -21,3 +21,5 @@ export function HeartInHandIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default HeartInHandIcon;

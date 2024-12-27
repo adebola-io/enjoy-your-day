@@ -16,3 +16,5 @@ export function ScissorsIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default ScissorsIcon;

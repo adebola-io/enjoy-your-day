@@ -30,3 +30,5 @@ export function CookingIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default CookingIcon;

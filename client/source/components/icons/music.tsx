@@ -19,3 +19,5 @@ export function MusicIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default MusicIcon;

@@ -16,3 +16,5 @@ export function DancingIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default DancingIcon;

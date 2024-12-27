@@ -18,3 +18,5 @@ export function PencilIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default PencilIcon;

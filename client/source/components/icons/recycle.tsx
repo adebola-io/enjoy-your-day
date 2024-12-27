@@ -31,3 +31,5 @@ export function RecycleIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default RecycleIcon;

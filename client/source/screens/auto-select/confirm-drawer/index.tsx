@@ -15,7 +15,7 @@ function transformToGoalState(goal: GoalProps) {
 }
 
 async function saveGoalsForToday(goals: GoalProps[]) {
-  await new Promise((resolve) => setTimeout(resolve, 15000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   dailyGoals.value = goals.map(transformToGoalState);
   return true;
 }

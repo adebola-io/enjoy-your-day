@@ -51,3 +51,5 @@ export function PawIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default PawIcon;

@@ -17,3 +17,5 @@ export function GlobeIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default GlobeIcon;

@@ -81,3 +81,5 @@ export function MicrochipIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default MicrochipIcon;

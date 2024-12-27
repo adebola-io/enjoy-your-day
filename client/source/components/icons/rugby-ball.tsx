@@ -29,3 +29,5 @@ export function RugbyBallIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default RugbyBallIcon;

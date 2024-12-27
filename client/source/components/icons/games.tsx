@@ -18,3 +18,5 @@ export function GamesIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default GamesIcon;

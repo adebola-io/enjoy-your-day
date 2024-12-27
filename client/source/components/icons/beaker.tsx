@@ -18,3 +18,5 @@ export function BeakerIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default BeakerIcon;

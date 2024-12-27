@@ -41,3 +41,5 @@ export function CameraIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default CameraIcon;

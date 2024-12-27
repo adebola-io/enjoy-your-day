@@ -36,3 +36,5 @@ export function PadLockIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default PadLockIcon;

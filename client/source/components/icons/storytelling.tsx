@@ -18,3 +18,5 @@ export function StorytellingIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default StorytellingIcon;

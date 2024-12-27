@@ -16,3 +16,5 @@ export function MentalHealthIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default MentalHealthIcon;

@@ -16,3 +16,5 @@ export function AirplaneIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default AirplaneIcon;

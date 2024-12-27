@@ -18,3 +18,5 @@ export function HangerIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default HangerIcon;

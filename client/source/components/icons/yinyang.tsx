@@ -21,3 +21,5 @@ export function YinYangIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default YinYangIcon;

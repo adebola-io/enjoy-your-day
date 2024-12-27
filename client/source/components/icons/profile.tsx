@@ -25,3 +25,5 @@ export function ProfileIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default ProfileIcon;

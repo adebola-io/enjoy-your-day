@@ -16,3 +16,5 @@ export function CompassIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default CompassIcon;

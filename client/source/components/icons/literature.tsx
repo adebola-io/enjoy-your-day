@@ -21,3 +21,5 @@ export function LiteratureIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default LiteratureIcon;

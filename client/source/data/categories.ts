@@ -1,10 +1,7 @@
-import { BarChartIcon } from '#/components/icons/bar-chart';
 import { CookingIcon } from '#/components/icons/cooking';
 import { FitnessIcon } from '#/components/icons/fitness';
-import { HomeIcon } from '#/components/icons/home';
 import { MentalHealthIcon } from '#/components/icons/mental-health';
 import { ProductivityIcon } from '#/components/icons/productivity';
-import { ProfileIcon } from '#/components/icons/profile';
 import { LotusIcon } from '#/components/icons/lotus';
 import { ArtsIcon } from '#/components/icons/arts';
 import { MusicIcon } from '#/components/icons/music';

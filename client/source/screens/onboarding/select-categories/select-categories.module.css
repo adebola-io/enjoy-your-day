@@ -1,8 +1,8 @@
 .categoryForm {
   display: grid;
   width: 100%;
-  height: calc(100dvh - var(--block-padding) * 2);
-  padding-block: var(--block-padding);
+  height: calc(100dvh - var(--block-padding));
+  padding-block-start: var(--block-padding);
   grid-template: auto auto 1fr / 100%;
   gap: min(15px, 2dvh);
   grid-area: 1 / 1;
@@ -10,23 +10,29 @@
 
 .categoryFormHeading,
 .categoryFormSubHeading {
-  animation: var(--fade-in-from-bottom) var(--default-duration);
+  animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 2);
   text-align: center;
 }
 
 .categoryListContainer {
+  display: grid;
+  overflow-x: visible;
   overflow-y: auto;
   grid-area: 3 / 1;
   scrollbar-width: none;
+
+  @media (orientation: landscape) {
+    place-content: center;
+  }
 }
 
 .categoryList {
-  display: flex;
+  display: flex; /* ... */
   flex-wrap: wrap;
   justify-content: space-between;
   height: min-content;
+  padding: 2px;
   padding-block-end: calc(var(--block-padding) * 3);
-
   gap: 8px;
 
   &::-webkit-scrollbar {
@@ -36,7 +42,9 @@
 
 .categorySubmitButton {
   align-self: end;
+  margin-block-end: var(--block-padding);
   transition: opacity var(--default-duration);
+  isolation: isolate;
   justify-self: center;
   grid-area: 3 / 1;
 
@@ -48,28 +56,44 @@
 .category {
   display: grid;
   flex: 1;
+  margin-bottom: min(10px, 1.5dvh);
   border: 3px solid;
-  border-radius: 20px;
+  border-radius: 25px;
   opacity: 0;
   color: inherit;
-  background-color: transparent;
-  transition: color var(--default-duration);
-  animation: var(--pop) var(--default-duration) forwards;
+  transition-duration: calc(var(--default-duration) * 1.5);
+  transition-property: color, background-color, border-color, outline-color,
+    scale;
+  animation: var(--pop) calc(var(--default-duration) * 2) forwards;
   white-space: nowrap;
   font: inherit;
   padding-inline: 12px;
-  padding-block: 8px;
+  padding-block: min(15px, 3dvh);
   grid-template-columns: min(18px, 2dvh) auto 0;
   place-content: center;
   place-items: center;
-  gap: 5px;
+  gap: 10px;
+
+  &:active {
+    scale: 0.8;
+  }
 
   &:last-child {
     flex: unset;
   }
 
   &[data-is-selected] {
-    color: var(--category-color);
+    --ending-scale: 0.97;
+    border-color: black;
+    outline: 2px solid;
+    outline-color: var(--category-color);
+    color: black;
+    background-color: var(--category-color);
+
+    .categoryIcon {
+      animation: var(--pop) calc(var(--default-duration) * 2.5);
+      filter: invert(1);
+    }
   }
 
   input {
@@ -79,9 +103,12 @@
 }
 
 .categoryIcon {
+  --starting-scale: 0.1;
   width: auto;
-  height: min(18px, 2dvh);
+  height: min(25px, 4dvh);
   color: inherit;
+  transition-duration: inherit;
+  transition-property: filter;
   aspect-ratio: 1;
   grid-area: 1 / 1;
 }

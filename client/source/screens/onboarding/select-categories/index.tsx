@@ -2,6 +2,7 @@ import { For } from '@adbl/unfinished';
 import { selectedCategories, username } from '#/data/state';
 import { categories, type Category } from '#/data';
 import { Button } from '#/components/button';
+import { InlinedIcon } from '#/components/inlined-icon';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { vibrate } from '#/library/utils';
@@ -68,7 +69,7 @@ function CategoryCard(category: Category, index: Cell<number>) {
 
   const categoryStyles = {
     '--category-color': category.theme,
-    animationDelay: `${index.value * 0.015 + 0.2}s`,
+    animationDelay: `${index.value * 0.02 + 0.1}s`,
   };
 
   return (
@@ -82,7 +83,12 @@ function CategoryCard(category: Category, index: Cell<number>) {
         onChange={selectCategory}
         checked={isSelected.value}
       />
-      <category.icon class={classes.categoryIcon} />
+      <InlinedIcon
+        Icon={category.icon}
+        class={classes.categoryIcon}
+        title="Illustrative Icon"
+        color="white"
+      />
       {category.name}
     </label>
   );

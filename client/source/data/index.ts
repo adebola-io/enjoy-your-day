@@ -47,7 +47,7 @@ export const categories: Category[] = [
   {
     name: 'Wellness',
     icon: HeartIcon,
-    theme: '#BACBB9',
+    theme: '#b9f5b6',
   },
   {
     name: 'Arts',
@@ -57,12 +57,12 @@ export const categories: Category[] = [
   {
     name: 'Mental Health',
     icon: MentalHealthIcon,
-    theme: '#DBB2CB',
+    theme: '#e9a9d0',
   },
   {
     name: 'Productivity',
     icon: ProductivityIcon,
-    theme: '#FF91ED',
+    theme: '#91f2ff',
   },
   {
     name: 'Cooking',
@@ -127,7 +127,7 @@ export const categories: Category[] = [
   {
     name: 'Social Connection',
     icon: SocialConnectionIcon,
-    theme: '#BACBB9',
+    theme: '#94e4d6',
   },
   {
     name: 'Photography',
@@ -207,7 +207,7 @@ export const categories: Category[] = [
   {
     name: 'Romance',
     icon: HeartAndArrowIcon,
-    theme: '#BACBB9',
+    theme: '#fd5fb7',
   },
   {
     name: 'Travel',

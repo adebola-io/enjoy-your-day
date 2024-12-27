@@ -98,6 +98,6 @@
 .onboardingViewFinalLoader {
   width: var(--sub-heading-font-size);
   opacity: 0;
-  animation: var(--fade-in) var(--default-duration) both,
+  animation: var(--pop) var(--default-duration) both,
     var(--loader-spin) var(--base-animation-duration) infinite;
 }

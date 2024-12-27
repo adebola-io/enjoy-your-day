@@ -8,7 +8,6 @@ export function HamburgerIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <title>Hamburger Icon</title>
       <g xmlns="http://www.w3.org/2000/svg" clip-path="url(#clip0_200_474)">
         <path
           xmlns="http://www.w3.org/2000/svg"

@@ -36,7 +36,9 @@ export default async function SelectCategories() {
         Pick <i>at least 3</i> categories for the goals you want. Let's keep
         going!
       </p>
-      <ul class={classes.categoryList}>{For(categories, CategoryCard)}</ul>
+      <div class={classes.categoryListContainer}>
+        <div class={classes.categoryList}>{For(categories, CategoryCard)}</div>
+      </div>
       <Button
         class={classes.categorySubmitButton}
         disabled={continueButtonIsDisabled}
@@ -66,7 +68,7 @@ function CategoryCard(category: Category, index: Cell<number>) {
 
   const categoryStyles = {
     '--category-color': category.theme,
-    animationDelay: `${index.value * 0.05 + 0.3}s`,
+    animationDelay: `${index.value * 0.015 + 0.2}s`,
   };
 
   return (

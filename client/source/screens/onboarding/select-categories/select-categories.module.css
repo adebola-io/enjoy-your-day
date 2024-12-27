@@ -1,26 +1,33 @@
 .categoryForm {
   display: grid;
   width: 100%;
-  height: calc(100dvh - var(--block-padding));
-  padding-block-start: var(--block-padding);
+  height: calc(100dvh - var(--block-padding) * 2);
+  padding-block: var(--block-padding);
   grid-template: auto auto 1fr / 100%;
   gap: min(15px, 2dvh);
+  grid-area: 1 / 1;
 }
 
 .categoryFormHeading,
 .categoryFormSubHeading {
+  animation: var(--fade-in-from-bottom) var(--default-duration);
   text-align: center;
+}
+
+.categoryListContainer {
+  overflow-y: auto;
+  grid-area: 3 / 1;
+  scrollbar-width: none;
 }
 
 .categoryList {
   display: flex;
-  overflow-x: hidden;
-  overflow-y: auto;
   flex-wrap: wrap;
+  justify-content: space-between;
   height: min-content;
+  padding-block-end: calc(var(--block-padding) * 3);
+
   gap: 8px;
-  grid-area: 3 / 1;
-  scrollbar-width: none;
 
   &::-webkit-scrollbar {
     display: none;
@@ -29,31 +36,45 @@
 
 .categorySubmitButton {
   align-self: end;
-  margin-block-end: var(--block-padding);
+  transition: opacity var(--default-duration);
   justify-self: center;
   grid-area: 3 / 1;
+
+  &:disabled {
+    opacity: 0;
+  }
 }
 
 .category {
   display: grid;
+  flex: 1;
   border: 3px solid;
   border-radius: 20px;
+  opacity: 0;
   color: inherit;
   background-color: transparent;
+  transition: color var(--default-duration);
+  animation: var(--pop) var(--default-duration) forwards;
+  white-space: nowrap;
   font: inherit;
   padding-inline: 12px;
   padding-block: 8px;
-  grid-template-columns: auto auto;
+  grid-template-columns: min(18px, 2dvh) auto 0;
   place-content: center;
   place-items: center;
   gap: 5px;
 
-  input {
-    appearance: none;
+  &:last-child {
+    flex: unset;
   }
 
   &[data-is-selected] {
     color: var(--category-color);
+  }
+
+  input {
+    appearance: none;
+    grid-area: 1 / 3;
   }
 }
 

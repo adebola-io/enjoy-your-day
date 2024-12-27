@@ -8,7 +8,6 @@ export function StackIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <title>Stack</title>
       <rect
         xmlns="http://www.w3.org/2000/svg"
         width="17.6441"

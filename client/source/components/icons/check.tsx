@@ -8,7 +8,6 @@ export function CheckIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <title>Check Icon</title>
       <rect
         xmlns="http://www.w3.org/2000/svg"
         x="1.5"
@@ -18,7 +17,6 @@ export function CheckIcon(props: IconProps) {
         rx="13"
         stroke="currentColor"
         stroke-width="3"
-        transform=""
       />
       <path
         xmlns="http://www.w3.org/2000/svg"

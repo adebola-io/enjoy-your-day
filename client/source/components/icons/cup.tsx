@@ -8,7 +8,6 @@ export function CupIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <title>Cup Icon with steam lines</title>
       <path
         xmlns="http://www.w3.org/2000/svg"
         class="cup-steam-line cup-steam-line-1"

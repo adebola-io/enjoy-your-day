@@ -3,8 +3,6 @@ import type { IconProps } from './props';
 export function ArtsIcon(props: IconProps) {
   return (
     <svg
-      width="50"
-      height="38"
       viewBox="0 0 50 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

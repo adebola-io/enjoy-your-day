@@ -8,7 +8,6 @@ export function XIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <title>Cancel</title>
       <path
         xmlns="http://www.w3.org/2000/svg"
         d="M6.00024 6L14.2498 14.2496"

@@ -3,14 +3,11 @@ import type { IconProps } from './props';
 export function PadLockIcon(props: IconProps) {
   return (
     <svg
-      width="100"
-      height="100"
       viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <title xmlns="http://www.w3.org/2000/svg">{props.title}</title>
       <circle
         xmlns="http://www.w3.org/2000/svg"
         cx="50"

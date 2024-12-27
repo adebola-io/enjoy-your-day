@@ -1,4 +1,4 @@
-import { IconProps } from './props';
+import type { IconProps } from './props';
 
 export function PencilIcon(props: IconProps) {
   return (

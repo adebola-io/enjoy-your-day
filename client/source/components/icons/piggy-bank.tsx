@@ -1,6 +1,6 @@
 import type { IconProps } from './props';
 
-export function PiggybankIcon(props: IconProps) {
+export function PiggyBankIcon(props: IconProps) {
   return (
     <svg
       viewBox="0 0 65 51"

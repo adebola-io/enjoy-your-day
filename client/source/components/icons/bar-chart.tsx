@@ -10,7 +10,6 @@ export function BarChartIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <title>{props.title}</title>
       <rect
         xmlns="http://www.w3.org/2000/svg"
         x="1"

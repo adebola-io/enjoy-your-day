@@ -1,6 +1,6 @@
 import type { IconProps } from './props';
 
-export function CupIcon(props: IconProps) {
+export function CoffeeCupIcon(props: IconProps) {
   return (
     <svg
       viewBox="0 0 550 550"
@@ -43,4 +43,4 @@ export function CupIcon(props: IconProps) {
   );
 }
 
-export default CupIcon;
+export default CoffeeCupIcon;

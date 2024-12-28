@@ -14,6 +14,11 @@ export function setMetaTheme(color: string) {
   }, 0);
 }
 
+/**
+ * Retrieves the content of the meta tag with the name "theme-color".
+ *
+ * @returns {string} The content of the meta tag if it exists, otherwise returns '#ffffff'.
+ */
 export function getMetaTheme(): string {
   return (
     document

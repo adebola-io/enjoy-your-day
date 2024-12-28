@@ -50,21 +50,21 @@
   [data-lock] {
     animation: padlock-lock var(--animation-duration)
       calc(var(--animation-delay) * 2.3);
-    animation-fill-mode: both;
+    animation-fill-mode: backwards;
   }
 
   [data-lock-rod] {
     animation: padlock-lock-rod var(--animation-duration)
       calc(var(--animation-delay) * 2.3);
     stroke-linecap: butt;
-    animation-fill-mode: both;
+    animation-fill-mode: backwards;
   }
 
   [data-circle] {
     transform-origin: center;
-    animation: padlock-circle calc(var(--animation-duration) * 3)
+    animation: padlock-circle calc(var(--animation-duration) * 2.5)
       var(--animation-delay) linear;
-    stroke-dasharray: 1000;
+    stroke-dasharray: 600;
     stroke-linecap: round;
     stroke-linejoin: round;
     animation-fill-mode: both;
@@ -98,14 +98,14 @@
   }
 
   to {
-    transform: none;
+    transform: unset;
   }
 }
 
 @keyframes padlock-circle {
   from {
     transform: rotate(-90deg);
-    stroke-dashoffset: 1000;
+    stroke-dashoffset: 600;
   }
   to {
     transform: rotate(90deg);

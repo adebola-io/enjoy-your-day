@@ -55,16 +55,15 @@
 
 .category {
   display: grid;
-  flex: 1;
+  flex: auto;
   margin-bottom: min(10px, 1.5dvh);
   border: 3px solid;
   border-radius: 25px;
-  opacity: 0;
   color: inherit;
   transition-duration: calc(var(--default-duration) * 1.5);
   transition-property: color, background-color, border-color, outline-color,
     scale;
-  animation: var(--pop) calc(var(--default-duration) * 2) forwards;
+  animation: var(--pop) calc(var(--default-duration) * 2) backwards;
   white-space: nowrap;
   font: inherit;
   padding-inline: 12px;
@@ -83,9 +82,8 @@
   }
 
   &[data-is-selected] {
-    --ending-scale: 0.97;
     border-color: black;
-    outline: 2px solid;
+    outline: 2.5px solid;
     outline-color: var(--category-color);
     color: black;
     background-color: var(--category-color);

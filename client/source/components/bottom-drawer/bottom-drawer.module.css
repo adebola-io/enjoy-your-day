@@ -1,6 +1,7 @@
 .drawer {
   position: fixed;
   display: grid;
+  overflow: hidden;
   overflow-y: auto;
   width: 100%;
   max-width: unset;

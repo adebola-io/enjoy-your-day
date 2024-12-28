@@ -18,7 +18,7 @@ export function GoalsCompletedDrawer() {
   isOpen.listen((isOpen) => {
     if (!isOpen) return;
     confetti({
-      particleCount: 210,
+      particleCount: 100,
       gravity: 0.8,
       spread: 100,
       origin: { y: 0.6 },

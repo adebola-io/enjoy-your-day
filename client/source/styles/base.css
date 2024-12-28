@@ -20,7 +20,7 @@ ul {
 }
 
 :root {
-  position: fixed;
+  overflow: hidden;
   width: 100dvw;
   height: 100dvh;
 }

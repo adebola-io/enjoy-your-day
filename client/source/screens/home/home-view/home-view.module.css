@@ -41,9 +41,8 @@
       animation-duration: calc(var(--default-duration) * 15);
     }
     path:nth-child(2) {
-      opacity: 0;
       animation-delay: calc(var(--default-duration) * 4);
-      animation-fill-mode: both;
+      animation-fill-mode: backwards;
     }
   }
 }
@@ -80,8 +79,7 @@
 .timeGreeting,
 .encouragement,
 .progressBar {
-  opacity: 0;
-  animation-fill-mode: both;
+  animation-fill-mode: backwards;
 }
 
 .timeGreeting {
@@ -131,7 +129,7 @@
   height: min(15px, 2dvh);
   border: 3px solid;
   border-radius: 35px;
-  color: var(--fern-green-700);
+  color: var(--space-cadet-500);
   animation: var(--fade-in-from-top) calc(var(--default-duration) * 2);
   font: var(--small-bold);
   text-decoration: none;

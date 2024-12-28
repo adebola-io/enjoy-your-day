@@ -31,18 +31,16 @@
 
 .title {
   max-width: 80dvw;
-  opacity: 0;
   animation-name: var(--fade-in);
   animation-duration: var(--default-duration);
   animation-delay: calc(
     (var(--total) - var(--index)) * var(--default-duration)
   );
   font: var(--title-bold);
-  animation-fill-mode: both;
+  animation-fill-mode: backwards;
 }
 
 .instruction {
-  opacity: 0;
   animation-name: var(--fade-in);
   animation-duration: var(--default-duration);
   animation-delay: calc(
@@ -50,18 +48,17 @@
   );
   font: var(--base-regular);
   font-style: italic;
-  animation-fill-mode: both;
+  animation-fill-mode: backwards;
 }
 
 .info {
-  opacity: 0;
   animation-name: var(--fade-in);
   animation-duration: var(--default-duration);
   animation-delay: calc(
     (var(--total) - var(--index)) * var(--default-duration)
   );
   font: var(--base-regular);
-  animation-fill-mode: both;
+  animation-fill-mode: backwards;
 }
 
 .overlay {

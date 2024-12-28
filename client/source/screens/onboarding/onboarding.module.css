@@ -58,21 +58,19 @@
 }
 
 .nameFormHeading {
-  opacity: 0;
   animation: var(--fade-in-from-bottom) var(--default-duration)
     calc(var(--default-duration) * 0.75);
   text-align: center;
   font: var(--title-bold);
-  animation-fill-mode: both;
+  animation-fill-mode: backwards;
   view-transition-name: onboarding-heading;
 }
 
 .nameFormSubHeading {
-  opacity: 0;
   animation: var(--fade-in-from-bottom) var(--default-duration)
     calc(var(--default-duration) * 0.5);
   text-align: center;
-  animation-fill-mode: both;
+  animation-fill-mode: backwards;
 }
 
 .nameFormInput {
@@ -89,7 +87,7 @@
   display: grid;
   height: 100dvh;
   animation: fade-to-white var(--fade-to-white-duration)
-    var(--fade-to-white-delay) both;
+    var(--fade-to-white-delay) forwards;
   place-items: center;
   place-content: center;
   place-items: center;
@@ -98,6 +96,6 @@
 .onboardingViewFinalLoader {
   width: var(--sub-heading-font-size);
   opacity: 0;
-  animation: var(--pop) var(--default-duration) both,
+  animation: var(--pop) var(--default-duration) backwards,
     var(--loader-spin) var(--base-animation-duration) infinite;
 }

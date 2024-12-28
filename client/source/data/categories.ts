@@ -69,7 +69,7 @@ export const categories: Category[] = [
   {
     name: 'Music',
     icon: MusicIcon,
-    theme: '#7288D7',
+    theme: '#a3b7ff',
   },
   {
     name: 'Literature',
@@ -104,7 +104,7 @@ export const categories: Category[] = [
   {
     name: 'Style',
     icon: HangerIcon,
-    theme: '#7288D7',
+    theme: '#b2e9f9',
   },
   {
     name: 'Finance',

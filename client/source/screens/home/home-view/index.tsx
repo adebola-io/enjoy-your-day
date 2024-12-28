@@ -45,7 +45,7 @@ export default function HomeView() {
   const progressColor = Cell.derived(() => {
     if (timeOfDay.value === 'evening' && percentage.value < 60)
       return '#9f2f2f';
-    if (percentage.value > 90) return 'var(--fern-green-400)';
+    if (percentage.value > 90) return '#38a438';
     if (percentage.value > 80) return 'var(--fern-green-600)';
     if (percentage.value > 60) return '#0e473f';
     return 'var(--space-cadet-500)';
@@ -81,7 +81,7 @@ export default function HomeView() {
             <InlinedIcon
               Icon={TrophyIcon}
               class={classes.trophyIcon}
-              color={CSS_VARS['--fern-green-700']}
+              color={CSS_VARS['--space-cadet-500']}
               title="Trophy Icon"
             />
             Goals completed!

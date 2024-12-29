@@ -16,3 +16,5 @@ export function LoveLetterIcon(props: IconProps) {
     </svg>
   );
 }
+
+export default LoveLetterIcon;

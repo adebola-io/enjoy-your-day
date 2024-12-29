@@ -30,7 +30,7 @@ export function PaperPlaneIcon(props: IconProps) {
             xmlns="http://www.w3.org/2000/svg"
             d="M34.3753 18.75L20.3128 34.375V48.4375L25.0003 42.1875M48.4378 1.5625L1.56274 26.5625L39.0628 42.1875L48.4378 1.5625Z"
             stroke="currentColor"
-            stroke-width="3.125"
+            stroke-width="5"
             stroke-linecap="round"
             stroke-linejoin="round"
           />

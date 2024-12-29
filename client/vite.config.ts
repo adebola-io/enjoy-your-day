@@ -11,6 +11,9 @@ export default defineConfig({
       '#': path.resolve(__dirname, './source'),
     },
   },
+  worker: {
+    format: 'es',
+  },
   plugins: [
     hmrPlugin(),
     VitePWA({
@@ -18,6 +21,7 @@ export default defineConfig({
       devOptions: {
         enabled: true,
       },
+
       manifest: {
         name: 'Enjoy Your Day',
         short_name: 'EYD',

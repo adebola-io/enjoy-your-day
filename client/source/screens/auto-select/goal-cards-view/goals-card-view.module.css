@@ -5,12 +5,9 @@
 }
 
 .goalCards {
-  /* Reducing the constant will make the cards at the back of the stack darker. */
-  --dim-factor: calc(var(--total) * 2);
   --goal-card-border-radius: 5dvh;
   --goal-card-height: calc(60dvh - (var(--side-padding) * 0.5));
   --goal-card-border-width: 4px;
-  --knob: 0;
 
   display: grid;
   overflow-x: hidden;
@@ -19,9 +16,6 @@
   height: 100%;
   transition-duration: var(--drawer);
   transition-property: scale;
-  animation-name: turn-scroll-knob;
-  animation-duration: auto;
-  animation-timeline: scroll(self block);
   scrollbar-width: none;
   overscroll-behavior-y: auto;
   scroll-snap-align: start;
@@ -33,41 +27,15 @@
   translate: 0 calc(var(--goal-card-border-radius) * 1.5);
 
   & > * {
-    --brightness: calc(
-      1 - ((var(--total) - var(--index)) / var(--dim-factor)) + var(--knob) *
-        0.3
-    );
-
     position: sticky;
-    top: 0;
-    margin-block-end: -12dvh;
+    top: calc((var(--index) + 1) * var(--goal-card-height) * 0.1);
+    margin-block-end: -20dvh;
     animation-name: var(--fade-in);
     animation-duration: calc(var(--default-duration) * 2);
     animation-delay: calc(
       (var(--total) - var(--index)) * var(--default-duration) * 0.35
     );
-    filter: drop-shadow(0 0 10px #00000080) brightness(var(--brightness));
-    translate: 0 calc(var(--index) * 7.5dvh);
-    scale: calc(1 - ((var(--total) - var(--index)) / var(--total) * 0.09));
     animation-fill-mode: backwards;
-
-    @supports not (animation-timeline: scroll(self block)) {
-      transition-duration: var(--animation-duration);
-      transition-property: filter;
-    }
-
-    @supports (animation-timeline: scroll(self block)) {
-      translate: 0 calc(var(--index) * 7.5dvh + (var(--knob) * 15vh));
-    }
-  }
-}
-
-@keyframes turn-scroll-knob {
-  from {
-    --knob: 1;
-  }
-  to {
-    --knob: 0;
   }
 }
 

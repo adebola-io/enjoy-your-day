@@ -62,8 +62,8 @@
 
   [data-circle] {
     transform-origin: center;
-    animation: padlock-circle calc(var(--animation-duration) * 2.5)
-      var(--animation-delay) linear;
+    animation: padlock-circle var(--animation-duration) var(--animation-delay)
+      linear;
     stroke-dasharray: 600;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -109,7 +109,7 @@
   }
   to {
     transform: rotate(90deg);
-    stroke-dashoffset: 0;
+    stroke-dashoffset: 300;
   }
 }
 

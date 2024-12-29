@@ -90,6 +90,7 @@
 .buttonAndSearchContainer {
   --starting-fade-position-y: 20%;
   position: relative;
+  z-index: 1;
   display: grid;
   border-radius: 40px;
   background-color: white;

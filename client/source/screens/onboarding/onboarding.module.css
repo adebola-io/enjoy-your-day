@@ -95,7 +95,6 @@
 
 .onboardingViewFinalLoader {
   width: var(--sub-heading-font-size);
-  opacity: 0;
   animation: var(--pop) var(--default-duration) backwards,
     var(--loader-spin) var(--base-animation-duration) infinite;
 }

@@ -2,7 +2,7 @@ import { GoalItem } from '#/components/goal-item';
 import { SearchInput } from '#/components/search-input';
 import { Container } from '#/components/container';
 import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
-import AddIcon from '#/components/icons/add';
+import { AddIcon } from '#/components/icons/add';
 import { InlinedIcon } from '#/components/inlined-icon';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
 import { setAutoSelectStage, setMetaTheme, vibrate } from '#/library/utils';
@@ -31,6 +31,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   const activeItemIndex = Cell.source(0);
   const searchIsOpen = Cell.derived(() => route.value.query.has('search'));
   const noGoalsAdded = Cell.derived(() => goals.value.length === 0);
+  const goalUuids = Cell.derived(() => goals.value.map((g) => g.uuid));
   const baseHref = '/home?auto-select&stage=edit';
   const searchHref = `${baseHref}&search`;
   const confirmDrawerHref = `${baseHref}&confirm`;
@@ -63,10 +64,14 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
     setMetaTheme('#ffffff');
     setAutoSelectStage(2);
 
-    getExampleGoalInstruction().then((example) => {
+    getExampleGoalInstruction(goalUuids.value).then((example) => {
       placeholder.value = `e.g. ${example}`;
     });
   });
+
+  const autoComplete = (query: string) => {
+    return getAutoCompleteSuggestions(query, goalUuids.value);
+  };
 
   return (
     <>
@@ -92,7 +97,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
                 containerClasses={classes.searchInputContainer}
                 autoCompleteClasses={classes.autoComplete}
                 placeholder={placeholder}
-                autoCompleteGetter={getAutoCompleteSuggestions}
+                autoCompleteGetter={autoComplete}
                 AutoCompleteTemplate={GoalOption}
                 onAutoCompleteSelect={addGoal}
                 onSubmit--prevent={closeSearch}

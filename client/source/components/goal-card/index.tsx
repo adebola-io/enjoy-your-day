@@ -17,6 +17,7 @@ export function GoalCard(props: GoalProps) {
         name={props.icon}
         class={classes.icon}
         color="white"
+        secondaryColor={props.color}
         title="Icon related to the goal"
         inert
         inline
@@ -29,6 +30,7 @@ export function GoalCard(props: GoalProps) {
         class={classes.overlay}
         color="white"
         title="Icon overlay for the goal"
+        secondaryColor={props.color}
         inert
         inline
       />

@@ -66,6 +66,7 @@ export function GoalItem(props: GoalItemProps) {
         name={props.icon}
         class={[classes.icon, classes.goalIcon]}
         color="white"
+        secondaryColor={props.color}
         title="Icon related to the goal"
         inline
       />
@@ -77,6 +78,7 @@ export function GoalItem(props: GoalItemProps) {
             Icon={XIcon}
             class={classes.icon}
             color="white"
+            secondaryColor={props.color}
             title="Remove Goal"
           />
         </button>

@@ -28,6 +28,13 @@ export interface GoalProps {
   icon: IconName;
   index?: Cell<number>;
   total?: Cell<number>;
+  categories: Array<string>;
+}
+
+export interface GoalListingUpdate {
+  addedGoalObjects: Array<GoalProps>;
+  removedGoalUuids: Array<string>;
+  updatedGoals: Array<Partial<GoalProps> & { uuid: string }>;
 }
 
 export interface Category {

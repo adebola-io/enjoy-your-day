@@ -5,9 +5,13 @@ import { appRouteTree, onboardingMiddleware } from './screens/routes';
 
 export default async function main() {
   disableContextMenu();
-  initializeDatabase().then(() => {
-    console.log('Database initialized!');
-  });
+  initializeDatabase()
+    .then(() => {
+      console.log('Database initialized!');
+    })
+    .catch((error) => {
+      console.error('Error initializing database', error);
+    });
 
   const router = createRouter();
   router.window = window;
@@ -23,9 +27,13 @@ export default async function main() {
 
 export async function resumeApp() {
   disableContextMenu();
-  initializeDatabase().then(async () => {
-    console.log('Database initialized!');
-  });
+  initializeDatabase()
+    .then(async () => {
+      console.log('Database initialized!');
+    })
+    .catch((error) => {
+      console.error('Error initializing database', error);
+    });
 
   const router = createRouter();
   router.window = window;

@@ -1,3 +1,4 @@
+import type { SendableCategory } from '../categories';
 import type { GoalProps } from '../entities';
 
 export namespace WorkerProtocol {
@@ -19,13 +20,21 @@ export namespace WorkerProtocol {
     export type GetAutoCompleteSuggestions = {
       type: 'goals.autocomplete';
       query: string;
+      addedUuids: string[];
+    };
+    export type UpdateGoals = {
+      type: 'goals.update';
+      lastLoadedChunk: number;
+      latestChunk: number;
+      categoryList: Array<SendableCategory>;
     };
     export type Request =
       | Echo<unknown>
       | GetRecommendedGoals
       | Ping
       | GetExampleSearchGoalInstruction
-      | GetAutoCompleteSuggestions;
+      | GetAutoCompleteSuggestions
+      | UpdateGoals;
   }
 
   export type Response<T extends Requests.Request> = T extends Requests.Ping
@@ -38,6 +47,8 @@ export namespace WorkerProtocol {
     ? string
     : T extends Requests.GetAutoCompleteSuggestions
     ? GoalProps[]
+    : T extends Requests.UpdateGoals
+    ? boolean | null
     : unknown;
 
   export interface Message<T extends Requests.Request | unknown = unknown> {

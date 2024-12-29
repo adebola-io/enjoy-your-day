@@ -19,6 +19,13 @@ dbWorker.addEventListener('message', (event) => {
   messageIdToPromiseHandlerMap.delete(id);
 });
 
+/**
+ * Sends a message to a web worker and returns a promise that resolves with the worker's response.
+ *
+ * @template T - The type of the request message that extends WorkerProtocol.Requests.Request.
+ * @param {T} message - The message to be sent to the worker.
+ * @returns {Promise<WorkerProtocol.Response<T>>} A promise that resolves with the worker's response.
+ */
 export async function toWorker<T extends WorkerProtocol.Requests.Request>(
   message: T
 ): Promise<WorkerProtocol.Response<T>> {

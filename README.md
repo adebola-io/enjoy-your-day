@@ -1,23 +1,24 @@
+> **THIS PROJECT IS 30% COMPLETE.**
+
 <p align="center">
     <img src="assets/icon-gray.svg" width="128" height="128" alt="Icon of Enjoy Your Day, a square white outline with dot-circled eyes and a smiley face, slightly tilted to the right.">
 </p>
 
 <p align="center">
-    <h1 align="center">Enjoy Your Day</h1>
+    <h1 align="center">Enjoy Your Day, Everyday.</h1>
 </p>
 
-_Enjoy Your Day_ is a simple offline-supported web app that generates goals to make each day a little more interesting.
-
+_Enjoy Your Day_ is a simple offline web app for tracking daily goals. It is a proof-of-concept app for [@adbl/unfinished](https://github.com/adebola-io/unfinished), a lightweight web framework.
 ## 🚀 Deployment
 
-The application is deployed on [enjoyyourday.live](https://enjoyyourday.live).
+The stage application is deployed on [dev.enjoyyourday.live/](https://dev.enjoyyourday.live/).
 
 ## ✨ Features
 
 - 📝 Simple and intuitive interface.
 - 📈 Personalized set for each day.
 - 📊 Tracks your progress and provides recommendations.
-- 📦 Easy to use and customizable
+- 📦 Easy to use and customizable.
 
 ## 🏁 Getting Started
 
@@ -34,7 +35,7 @@ The app is a progressive web application. Majority of the functionality lies in 
 
 ### 🎨 Design
 
-The working UI design is available on Figma [here](https://www.figma.com/design/ANBzTQord4FWzzxzsMzz61/Enjoy-Your-Day?node-id=16-52&t=NpdQhq0snsail8Y7-1).
+The draft UI design is available on Figma [here](https://www.figma.com/design/ANBzTQord4FWzzxzsMzz61/Enjoy-Your-Day?node-id=16-52&t=NpdQhq0snsail8Y7-1). 
 
 ### 📥 Installation
 
@@ -43,17 +44,15 @@ To get started, you need to clone the repository and install the dependencies.
 ```sh
 git clone https://github.com/adebola-io/enjoy-your-day.git
 
-cd enjoy-your-day
+cd enjoy-your-day/client
 
-bun setup
+bun install
 ```
 
-The last command will run the [setup script](./setup/onboarding.sh) and install the necessary dependencies for both the client and server.
-
-To run the client, run the following command:
+To run the client, run the following command in the client folder:
 
 ```sh
-bun run client
+bun run dev
 ```
 
 ## 🤝 Contributing

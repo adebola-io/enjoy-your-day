@@ -41,7 +41,12 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   };
 
   const openSearch = () => {
-    if (!searchIsOpen.value) router.navigate(searchHref);
+    if (!searchIsOpen.value) {
+      getExampleGoalInstruction(goalUuids.value).then((example) => {
+        placeholder.value = `e.g. ${example}`;
+      });
+      router.navigate(searchHref);
+    }
   };
   const closeSearch = () => {
     if (searchIsOpen.value) router.navigate(baseHref);

@@ -30,10 +30,9 @@
 
 .nameForm {
   display: grid;
-  height: 100%;
-  max-height: 100%;
+  padding-block-start: calc(var(--block-padding) * 1.5);
   place-items: center;
-  grid-template-rows: 1fr auto auto auto 1fr;
+  grid-template-rows: auto auto auto auto 1fr;
   gap: 15px;
 }
 

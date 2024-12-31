@@ -53,9 +53,12 @@ export interface Journey {
   creator: Id<User>;
 }
 
+type DateString = string;
+
 export interface GoalState {
   goal: GoalProps;
   state: 'forfeited' | 'completed' | 'scheduled';
+  updatedAt: DateString | null;
 }
 
 export interface GoalSet {

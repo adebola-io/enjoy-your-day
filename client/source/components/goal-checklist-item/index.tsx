@@ -1,8 +1,9 @@
 import type { GoalState } from '#/data/entities';
-import { Cell, SourceCell } from '@adbl/cells';
+import { Cell, type SourceCell } from '@adbl/cells';
 import { GoalItem } from '../goal-item';
 import { vibrate } from '#/library/utils';
 import classes from './goal-checklist-item.module.css';
+import { Temporal } from 'temporal-polyfill';
 
 export interface GoalChecklistItemProps {
   goalState: GoalState;
@@ -20,7 +21,12 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
     vibrate(10);
     listChanged.value = true;
     goalState.state = this.checked ? 'completed' : 'scheduled'; // dailyGoals array is already deeply reactive.
-    if (this.checked) props.onCheck?.();
+    if (this.checked) {
+      props.onCheck?.();
+      goalState.updatedAt = Temporal.Now.plainDateISO().toString();
+    } else {
+      goalState.updatedAt = null;
+    }
   };
   const removeInitialAnimation = function (this: HTMLDivElement) {
     this.style.animation =

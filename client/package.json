@@ -14,7 +14,8 @@
     "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@52fefd4",
     "canvas-confetti": "^1.9.3",
     "postcss": "^8.4.49",
-    "postcss-nesting": "^13.0.1"
+    "postcss-nesting": "^13.0.1",
+    "temporal-polyfill": "^0.2.5"
   },
   "devDependencies": {
     "typescript": "^5.7.2",

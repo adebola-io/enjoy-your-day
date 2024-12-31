@@ -1,5 +1,5 @@
 import type { SendableCategory } from '../categories';
-import type { GoalProps } from '../entities';
+import type { GoalProps, GoalState } from '../entities';
 
 export namespace WorkerProtocol {
   export namespace Requests {
@@ -28,13 +28,19 @@ export namespace WorkerProtocol {
       latestChunk: number;
       categoryList: Array<SendableCategory>;
     };
+    export type RecordGoalState = {
+      type: 'goals.record';
+      goalStates: GoalState[];
+      date: string;
+    };
     export type Request =
       | Echo<unknown>
       | GetRecommendedGoals
       | Ping
       | GetExampleSearchGoalInstruction
       | GetAutoCompleteSuggestions
-      | UpdateGoals;
+      | UpdateGoals
+      | RecordGoalState;
   }
 
   export type Response<T extends Requests.Request> = T extends Requests.Ping
@@ -48,6 +54,8 @@ export namespace WorkerProtocol {
     : T extends Requests.GetAutoCompleteSuggestions
     ? GoalProps[]
     : T extends Requests.UpdateGoals
+    ? boolean | null
+    : T extends Requests.RecordGoalState
     ? boolean | null
     : unknown;
 

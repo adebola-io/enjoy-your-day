@@ -112,16 +112,20 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
     const reloader = getNewData(lastLoadedChunk, latestChunk, categoryList);
     try {
       for await (const update of reloader) {
-        // Update IndexedDB here.
+        // TODO: Update IndexedDB here.
         goals.push(...update.addedGoalObjects);
       }
-      console.log('Goals updated successfully', goals);
       return true;
     } catch (error) {
       console.error('Error updating goals', error);
       console.error(error);
       return false;
     }
+  },
+
+  async 'goals.record'() {
+    // TODO: Update IndexedDB here.
+    return true;
   },
 };
 

@@ -2,21 +2,23 @@ import { BottomDrawer } from '#/components/bottom-drawer';
 import { PadLockIcon } from '#/components/icons/padlock';
 import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
-import { dailyGoals } from '#/data/state';
-import type { GoalProps } from '#/data/entities';
+import { dailyGoals, dailyGoalsDateStamp } from '#/data/state';
+import type { GoalProps, GoalState } from '#/data/entities';
 import { getResourceState, NoOp } from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
+import { Temporal } from 'temporal-polyfill';
 import classes from './confirm-drawer.module.css';
 
-function transformToGoalState(goal: GoalProps) {
-  return { goal, state: 'scheduled' as const };
+function transformToGoalState(goal: GoalProps): GoalState {
+  return { goal, state: 'scheduled', updatedAt: null };
 }
 
 async function saveGoalsForToday(goals: GoalProps[]) {
   await new Promise((resolve) => setTimeout(resolve, 2000));
   dailyGoals.value = goals.map(transformToGoalState);
+  dailyGoalsDateStamp.value = Temporal.Now.plainDateISO().toString();
   return true;
 }
 

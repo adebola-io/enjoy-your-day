@@ -76,8 +76,7 @@
   place-content: center;
   scroll-snap-align: center;
 
-  &:active,
-  &:hover {
+  &:active {
     scale: 0.97;
   }
 

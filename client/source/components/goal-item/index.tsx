@@ -1,7 +1,7 @@
 import type { IconName } from '#/library/icon-name';
 import { useObserver } from '@adbl/unfinished';
 import { InlinedIcon } from '#/components/inlined-icon';
-import { JSX } from '@adbl/unfinished/jsx-runtime';
+import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { If } from '@adbl/unfinished';
 import { Cell } from '@adbl/cells';
 import { Icon } from '../icon';

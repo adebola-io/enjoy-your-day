@@ -1,0 +1,340 @@
+{
+  "$schema": "./schema.json",
+  "chunk": 11,
+  "goals": {
+    "added": [
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Lost Signal",
+        "instruction": "Continue a TV show you forgot about.",
+        "info": "Revisit a forgotten form of entertainment and potentially rediscover a captivating story by continuing a TV show you stopped watching. This can provide a sense of rediscovery, allowing you to reconnect with characters and storylines you once enjoyed, and potentially find a renewed appreciation for the series.",
+        "icon": "film-strip",
+        "color": "#444e86",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Film,Fun"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Soundtrack",
+        "instruction": "Create a theme song for your life.",
+        "info": "Reflect on your personal journey and express your identity through music by creating a theme song for your life. This allows you to consider the defining moments, emotions, and experiences that have shaped you, translating them into a musical composition that captures the essence of your individual story.",
+        "icon": "music",
+        "color": "#00600f",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Music,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "A New Look",
+        "instruction": "Dye your hair",
+        "info": "Embrace a bold change and express your personality by dyeing your hair a new color. This can be a fun and transformative experience, allowing you to experiment with your appearance, boost your confidence, and make a statement with a fresh and vibrant look.",
+        "icon": "comb-and-scissors",
+        "color": "#a90e57",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Style,Self-Care"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Plate Tectonics",
+        "instruction": "Do the dishes.",
+        "info": "Maintain a clean and functional kitchen by doing the dishes. This essential chore ensures a hygienic environment for food preparation and consumption, contributing to the overall order and well-being of your household.",
+        "icon": "home-care",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Home Care,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Threadbare",
+        "instruction": "Buy a sweater.",
+        "info": "Enhance your wardrobe and prepare for cooler weather by purchasing a new sweater. This allows you to add a stylish and comfortable garment to your collection, providing warmth and expressing your personal style.",
+        "icon": "t-shirt",
+        "color": "#5c006a",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Style,Self-Care"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Replay",
+        "instruction": "Find a video you liked last year.",
+        "info": "Revisit a source of past enjoyment and potentially rediscover a hidden gem by finding a video you liked last year. This can evoke positive memories, provide a sense of nostalgia, and remind you of content that resonated with you in the past.",
+        "icon": "film-strip",
+        "color": "#53086f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Fun,Film"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Feeling Form",
+        "instruction": "Draw your mood as an abstract image.",
+        "info": "Explore your inner emotional landscape through art by drawing your current mood as an abstract image. This allows for non-verbal expression of feelings, providing a creative outlet for processing emotions and potentially gaining insights into your current state of mind through the colors, shapes, and forms you choose to depict.",
+        "icon": "palette",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Arts,Mental Health"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Hidden Depths",
+        "instruction": "Clean an untouched spot in your home.",
+        "info": "Improve your living environment and tackle a neglected area by cleaning a spot in your home you usually ignore. This can lead to a greater sense of order and cleanliness, potentially revealing hidden dirt or clutter and contributing to a more pleasant and hygienic living space.",
+        "icon": "home-care",
+        "color": "#801d02",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Home Care,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Tetris",
+        "instruction": "Rearrange your furniture.",
+        "info": "Refresh your living space and create a new dynamic by rearranging your furniture. This allows you to experiment with different layouts, improve the flow of your rooms, and potentially discover new ways to optimize your space for functionality and aesthetics.",
+        "icon": "home",
+        "color": "#05688f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Home Care,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Vertigo",
+        "instruction": "Take a photo at an unusual angle.",
+        "info": "Challenge your photographic perspective and capture unique images by taking photos from unusual angles. This encourages you to see everyday objects and scenes in a new light, developing your artistic eye and potentially creating visually striking and unconventional photographs.",
+        "icon": "camera",
+        "color": "#253a54",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Photography,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Feast Mode",
+        "instruction": "Buy pet food.",
+        "info": "Ensure the well-being of your furry, feathered, or scaled companions by purchasing pet food. This act of responsibility provides your pets with the necessary nutrition to thrive, demonstrating your care and commitment to their health and happiness.",
+        "icon": "paw",
+        "color": "#444e86",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Pets,Home Care"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Auto-renewal",
+        "instruction": "Wash a car.",
+        "info": "Maintain the appearance and cleanliness of your vehicle by washing it. This removes dirt, grime, and other contaminants, protecting the car's finish and potentially increasing its resale value, while also providing a sense of accomplishment as you restore its shine.",
+        "icon": "car",
+        "color": "#2d0a62",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Home Care,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "How Was It?",
+        "instruction": "Ask someone about their day.",
+        "info": "Strengthen your relationships and show genuine interest in others by asking someone about their day. This simple act of connection allows for meaningful conversation, provides an opportunity for others to share their experiences, and fosters a sense of empathy and understanding.",
+        "icon": "social-connection",
+        "color": "#003f5c",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "A Passing Glance",
+        "instruction": "Make up a story about a stranger.",
+        "info": "Unleash your imagination and hone your storytelling skills by making up a story about a stranger you observe. This allows you to create fictional narratives based on fleeting impressions, potentially leading to humorous, dramatic, or thought-provoking tales that reflect your creativity and ability to weave stories from everyday encounters.",
+        "icon": "storytelling",
+        "color": "#5c006a",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Storytelling,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Leap",
+        "instruction": "Send a text message to your crush.",
+        "info": "Take a chance and express your interest by sending a text message to your crush. This can be a nerve-wracking but potentially rewarding act, opening the door to a possible connection and allowing you to overcome your apprehension and communicate your feelings.",
+        "icon": "heart",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Social Connection,Self-Care"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Now, Forever",
+        "instruction": "Write about a world without time.",
+        "info": "Explore a mind-bending concept and challenge your understanding of reality by writing about a world without time. This allows you to delve into philosophical and speculative fiction, considering the implications for existence, causality, and the nature of experience in a timeless realm, expanding your imagination and creative writing abilities.",
+        "icon": "book",
+        "color": "#5d6835",
+        "recommendability": 4,
+        "involvement": 3,
+        "categories": "Literature,Philosophy"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Homebrew Tech",
+        "instruction": "Invent a smart home device.",
+        "info": "Unleash your inner inventor and envision the future of domestic technology by inventing a smart home device and sketching its interface. This allows you to explore innovative solutions for everyday tasks, consider user experience in design, and potentially inspire real-world technological advancements.",
+        "icon": "microchip",
+        "color": "#444e86",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Technology,Digital Design"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Retrograde",
+        "instruction": "Create a post that would have gone viral years ago.",
+        "info": "Reflect on the ever-changing landscape of internet trends by creating a post that would have been popular three years ago. This provides a humorous and insightful look at how quickly online culture evolves, potentially sparking nostalgia for past memes and viral phenomena while also highlighting the ephemeral nature of internet fame.",
+        "icon": "share",
+        "color": "#004d40",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Technology,Fun"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Rewind",
+        "instruction": "Listen to a hit song from last decade.",
+        "info": "Take a musical trip down memory lane by listening to a hit song from the last decade. This can evoke nostalgia, remind you of past experiences and emotions associated with that period, and provide a soundtrack for reminiscing about the music that shaped a previous era in your life.",
+        "icon": "vinyl",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Music,Fun"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Soundly Dressed",
+        "instruction": "Create an outfit from an album.",
+        "info": "Blend your love for music and fashion by creating an outfit inspired by an album you love. This allows you to express your personal style through clothing, drawing inspiration from the album's artwork, themes, and overall aesthetic, resulting in a unique and meaningful ensemble that reflects your musical tastes.",
+        "icon": "t-shirt",
+        "color": "#5d6835",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Style,Music"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Sole Mates",
+        "instruction": "Wear mismatched socks and shoes.",
+        "info": "Embrace a playful and unconventional fashion choice by wearing mismatched socks and shoes. This allows you to express your individuality, add a touch of whimsy to your outfit, and potentially spark conversations with your unique and eye-catching footwear combination.",
+        "icon": "heels",
+        "color": "#5d6835",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Style,Fun"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Thread Lightly",
+        "instruction": "Plan a fictional characters' outfit.",
+        "info": "Unleash your inner costume designer and explore the world of character development by planning an outfit for a fictional character. This allows you to consider the character's personality, background, and the setting of their story, translating these elements into a visually representative and appropriate ensemble.",
+        "icon": "hanger",
+        "color": "#a90e57",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Style,Storytelling"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Right Path",
+        "instruction": "Take only right turns for an hour on a walk.",
+        "info": "Embark on an unplanned urban adventure by going on a walk and only taking right turns for an hour. This introduces an element of chance and exploration into your routine, potentially leading you to discover new areas of your city or neighborhood while also providing a unique and unpredictable walking experience.",
+        "icon": "road",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Adventure,Urban Exploration"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Face-Off",
+        "instruction": "Stand up to someone who hurt you.",
+        "info": "Reclaim your power and foster personal growth by standing up to someone who has hurt you. This can be a challenging but empowering act, allowing you to assert your boundaries, express your feelings, and potentially find closure or resolution in a difficult interpersonal situation.",
+        "icon": "heart",
+        "color": "#003f5c",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Mental Health,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Quintessentially",
+        "instruction": "Invent a five-word language.",
+        "info": "Challenge your linguistic creativity and explore the power of concise communication by inventing a language with only five words. This forces you to think critically about the essential elements of language, consider how meaning can be conveyed with limited vocabulary, and potentially develop a unique and intriguing form of expression.",
+        "icon": "language",
+        "color": "#05688f",
+        "recommendability": 4,
+        "involvement": 3,
+        "categories": "Learning,Culture"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Dear Diary",
+        "instruction": "Write a diary entry.",
+        "info": "Reflect on your day, process your emotions, and document your experiences by writing a diary entry. This provides a private outlet for self-expression, allows you to track your personal growth over time, and creates a record of your thoughts and feelings that you can revisit in the future.",
+        "icon": "book",
+        "color": "#004d40",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Literature,Mental Health"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Backtrack",
+        "instruction": "Listen to a song backwards.",
+        "info": "Explore the hidden sounds and potential for unexpected discoveries by listening to a song backwards. This can be a fun and intriguing auditory experiment, revealing hidden messages, revealing the underlying structure of the music in a new way, and potentially sparking your curiosity about the process of audio recording and manipulation.",
+        "icon": "rewind",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Music,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Pocket Full of Dreams",
+        "instruction": "Sew a pocket into your trousers.",
+        "info": "Enhance your clothing's functionality by adding a pocket. This practical sewing project provides extra storage and can be customized to fit your needs.",
+        "icon": "t-shirt",
+        "color": "#53086f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Crafts,Style"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Scarlet Letter",
+        "instruction": "Buy a red shirt.",
+        "info": "Add a vibrant piece to your wardrobe with a red shirt. A bold color choice can boost your mood and make a fashion statement.",
+        "icon": "t-shirt",
+        "color": "#b93200",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Style,Self-Care"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Drawn to Tap",
+        "instruction": "Create a new emoji.",
+        "info": "Design a new emoji, contributing to the ever-evolving digital language. Express yourself visually in a format used globally.",
+        "icon": "smiley-face",
+        "color": "#05688f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Digital Design,Technology"
+      }
+    ],
+    "removed": [],
+    "updated": []
+  }
+}

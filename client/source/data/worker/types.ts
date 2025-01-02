@@ -12,10 +12,12 @@ export namespace WorkerProtocol {
     };
     export type GetRecommendedGoals = {
       type: 'goals.today';
+      categories: string[];
     };
     export type GetExampleSearchGoalInstruction = {
       type: 'goals.search-example';
       selected: string[];
+      categories: string[];
     };
     export type GetAutoCompleteSuggestions = {
       type: 'goals.autocomplete';

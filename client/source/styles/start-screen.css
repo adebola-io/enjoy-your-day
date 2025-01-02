@@ -164,7 +164,7 @@
 
 #start-screen .start-screen__illustration {
   --svg-color: white;
-  width: min(40%, 150px, 27dvw, 20dvh);
+  width: min(40%, 200px, 35dvw, 20dvh);
 }
 
 #start-screen .start-screen__illustration,
@@ -218,6 +218,10 @@
   text-align: center;
   font: var(--title-bold);
   animation-fill-mode: both;
+}
+
+#start-screen .start-screen__slide:nth-child(3) .start-screen__heading {
+  view-transition-name: onboarding-heading;
 }
 
 #start-screen .start-screen__paragraph {
@@ -279,7 +283,6 @@
   place-content: center;
   place-items: center;
   padding-block: 18px;
-  view-transition-name: start-button;
 }
 
 #start-screen .start-screen__start-button:active {

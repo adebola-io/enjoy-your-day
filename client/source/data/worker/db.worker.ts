@@ -64,15 +64,18 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
     return data.message;
   },
 
-  async 'goals.today'() {
+  async 'goals.today'(data) {
     const todaysGoals: GoalProps[] = [];
     let i = 0;
+    const goalsInCategories = goals.filter((g) =>
+      data.message.categories.some((c) => g.categories.includes(c))
+    );
     while (i++ < 6) {
-      let index = Math.floor(Math.random() * goals.length);
-      while (todaysGoals.includes(goals[index])) {
-        index = Math.floor(Math.random() * goals.length);
+      let index = Math.floor(Math.random() * goalsInCategories.length);
+      while (todaysGoals.includes(goalsInCategories[index])) {
+        index = Math.floor(Math.random() * goalsInCategories.length);
       }
-      todaysGoals.push(goals[index]);
+      todaysGoals.push(goalsInCategories[index]);
     }
     return todaysGoals;
   },
@@ -94,15 +97,21 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
   },
 
   async 'goals.search-example'(data) {
-    const { selected } = data.message;
+    const { selected, categories } = data.message;
+    const categoryGoals = goals.filter((g) =>
+      categories.some((c) => g.categories.includes(c))
+    );
     // todo: ignore already recommended goals.
-    let example = Math.floor(Math.random() * goals.length);
+    let example = Math.floor(Math.random() * categoryGoals.length);
     let i = 0;
-    while (selected.includes(goals[example].uuid) && i < goals.length) {
-      example = Math.floor(Math.random() * goals.length);
+    while (
+      selected.includes(categoryGoals[example].uuid) &&
+      i < categoryGoals.length
+    ) {
+      example = Math.floor(Math.random() * categoryGoals.length);
       i++;
     }
-    return goals[example].instruction.toLowerCase();
+    return categoryGoals[example].instruction.toLowerCase();
   },
 
   async 'goals.update'(data) {
@@ -113,7 +122,9 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
     try {
       for await (const update of reloader) {
         // TODO: Update IndexedDB here.
-        goals.push(...update.addedGoalObjects);
+        const newGoals = update.addedGoalObjects;
+        goals.push(...newGoals);
+        console.log(newGoals);
       }
       return true;
     } catch (error) {

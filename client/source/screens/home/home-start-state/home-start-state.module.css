@@ -24,7 +24,7 @@
   }
 }
 
-.autoSelectLink {
+.button {
   display: grid;
   gap: calc(var(--base-font-size) * 0.5);
   grid-template-columns: auto auto;

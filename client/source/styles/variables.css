@@ -122,9 +122,9 @@
 
   /* Typography */
   --heading-font-size: min(4.2rem, 12dvh);
-  --sub-heading-font-size: min(3.8rem, 9dvh);
-  --eyebrow-font-size: min(2.7rem, 7dvh);
-  --title-font-size: min(1.8rem, 4dvh);
+  --sub-heading-font-size: min(3.8rem, 10dvh);
+  --eyebrow-font-size: min(2.7rem, 9dvh);
+  --title-font-size: min(2rem, 9dvh);
   --subtitle-font-size: min(1.5rem, 3.5dvh);
   --base-font-size: min(0.9rem, 3dvh);
   --small-font-size: min(0.75rem, 2dvh);

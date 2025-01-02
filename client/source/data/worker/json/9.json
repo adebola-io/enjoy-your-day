@@ -1,0 +1,340 @@
+{
+  "$schema": "./schema.json",
+  "chunk": 9,
+  "goals": {
+    "added": [
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Just Dance",
+        "instruction": "Attend a concert.",
+        "info": "Immerse yourself in the energy of live music by attending a concert. This allows you to experience your favorite artists or discover new ones, connect with other fans, and enjoy the unique atmosphere of a live performance.",
+        "icon": "music",
+        "color": "#004d40",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Music,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Passerby",
+        "instruction": "Enter a random building's lobby.",
+        "info": "Embrace the unexpected and satisfy your curiosity by entering a random building's lobby. This can be a fun and harmless way to explore your surroundings, observe different architectural styles, and potentially discover hidden gems within your city.",
+        "icon": "buildings",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Urban Exploration,Adventure"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "...",
+        "instruction": "Do whatever you want.",
+        "info": "Embrace spontaneity and personal freedom by doing whatever you want. This allows you to follow your desires, pursue your interests, and create your own unique experiences, reminding you of the importance of autonomy and self-direction in life.",
+        "icon": "sparkle",
+        "color": "#253a54",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Fun,Self-Care"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Rebounds",
+        "instruction": "Practice dribbling a basketball.",
+        "info": "Improve your basketball skills and hand-eye coordination by practicing dribbling. This can be a fun and engaging form of exercise, allowing you to develop your ball-handling abilities while enjoying the rhythmic movement of the sport.",
+        "icon": "basketball",
+        "color": "#444e86",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Sports,Fitness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Dory's Doctine",
+        "instruction": "Swim a lap.",
+        "info": "Engage in a refreshing and invigorating full-body workout by swimming a lap. This low-impact exercise improves cardiovascular health, builds strength and endurance, and provides a sense of weightlessness and relaxation in the water.",
+        "icon": "waves",
+        "color": "#003f5c",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Fitness,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Sisyphus Had It Worse",
+        "instruction": "Go rock climbing.",
+        "info": "Challenge yourself physically and mentally by going rock climbing. This exhilarating activity builds strength, endurance, and problem-solving skills, while also providing a unique perspective on your surroundings and a sense of accomplishment as you reach new heights.",
+        "icon": "mountain",
+        "color": "#5c006a",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Adventure,Fitness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Defying Gravity",
+        "instruction": "Go skydiving.",
+        "info": "Experience the ultimate adrenaline rush and a unique perspective on the world by going skydiving. This thrilling activity allows you to conquer your fears, embrace the feeling of freefall, and enjoy breathtaking views from an unparalleled vantage point.",
+        "icon": "plunge",
+        "color": "#05688f",
+        "recommendability": 5,
+        "involvement": 3,
+        "categories": "Adventure,Fitness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Yo-yo",
+        "instruction": "Go bungee jumping.",
+        "info": "Take a leap of faith and experience the exhilaration of bungee jumping. This adrenaline-pumping activity allows you to conquer your fears, embrace the sensation of falling, and enjoy a unique and unforgettable experience.",
+        "icon": "plunge",
+        "color": "#5d6835",
+        "recommendability": 5,
+        "involvement": 3,
+        "categories": "Adventure,Fitness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Big Lebowl-ski",
+        "instruction": "Go bowling.",
+        "info": "Enjoy a fun and social activity by going bowling. This classic pastime is a great way to unwind, connect with friends or family, and engage in some friendly competition while improving your aim and coordination.",
+        "icon": "games",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Fun,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Kick Push",
+        "instruction": "Buy a skateboard.",
+        "info": "Embrace the world of skateboarding by purchasing a board. This opens the door to learning new tricks, exploring your city in a different way, and joining a vibrant subculture centered around this dynamic and expressive activity.",
+        "icon": "hobbies",
+        "color": "#004d40",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Sports,Fun"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Center Strength",
+        "instruction": "Do a core workout.",
+        "info": "Strengthen your core muscles with a targeted workout. This improves stability, balance, and posture, while also contributing to overall fitness and reducing the risk of injury in other activities.",
+        "icon": "person-stretching",
+        "color": "#b93200",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Fitness,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Highway to Insight",
+        "instruction": "Listen to a podcast about driving.",
+        "info": "Expand your knowledge and appreciation of driving by listening to a podcast on the subject. This can cover a range of topics, from road safety and car maintenance to the history of automobiles and the future of transportation, providing an engaging and informative way to learn more about this ubiquitous activity.",
+        "icon": "car",
+        "color": "#53086f",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Technology,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Tralalalaleeday",
+        "instruction": "Jump rope for 30 seconds.",
+        "info": "Engage in a quick and effective cardio workout by jumping rope for 30 seconds. This simple exercise improves cardiovascular health, coordination, and agility, while also being a fun and accessible way to get your heart pumping.",
+        "icon": "fitness",
+        "color": "#2d0a62",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Fitness,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Good Boys",
+        "instruction": "Play fetch with a dog.",
+        "info": "Bond with a canine companion and enjoy some outdoor fun by playing fetch. This interactive activity provides exercise for both you and the dog, strengthens your connection, and brings joy to both parties involved.",
+        "icon": "dog",
+        "color": "#5d6835",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Pets,Fun"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Missing Piece",
+        "instruction": "Finish a jigsaw puzzle.",
+        "info": "Engage in a relaxing and rewarding activity by completing a jigsaw puzzle. This improves spatial reasoning, problem-solving skills, and patience, while also providing a sense of accomplishment as you piece together the final image.",
+        "icon": "hobbies",
+        "color": "#801d02",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Fun,Mental Health"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Reset & Refresh",
+        "instruction": "Clean your toilet.",
+        "info": "Maintain a hygienic and pleasant bathroom environment by cleaning your toilet. This essential chore contributes to a healthier home and ensures a more comfortable experience for you and your guests.",
+        "icon": "home-care",
+        "color": "#003f5c",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Home Care,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Loop of Screams",
+        "instruction": "Go on a rollercoaster.",
+        "info": "Experience the thrill and excitement of a rollercoaster ride. This adrenaline-pumping activity provides a rush of endorphins, a sense of exhilaration, and a fun way to conquer your fears and enjoy the ups and downs of this classic amusement park attraction.",
+        "icon": "plunge",
+        "color": "#a90e57",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Fun,Adventure"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Day’s Goodbye",
+        "instruction": "Watch the sunset.",
+        "info": "Take a moment to appreciate the beauty of nature by watching the sunset. This allows you to witness the vibrant colors and changing light as the day transitions into night, providing a calming and reflective experience.",
+        "icon": "sun",
+        "color": "#2f2f2f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Nature,Mindfulness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Cast & Wait",
+        "instruction": "Go fishing.",
+        "info": "Enjoy a relaxing and potentially rewarding outdoor activity by going fishing. This allows you to connect with nature, practice patience, and experience the thrill of the catch, while also providing an opportunity to enjoy the tranquility of a lake, river, or ocean.",
+        "icon": "fish",
+        "color": "#801d02",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Nature,Fun"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "That Washed Away",
+        "instruction": "Build a sandcastle.",
+        "info": "Unleash your creativity and enjoy some beachside fun by building a sandcastle. This allows for imaginative construction, provides a tactile connection to the environment, and results in a temporary work of art that can be admired by fellow beachgoers.",
+        "icon": "hut",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Fun,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Hollow Grounds",
+        "instruction": "Visit a cave or cavern.",
+        "info": "Embark on an underground adventure by visiting a cave or cavern. This allows you to explore unique geological formations, learn about the history and science of these subterranean environments, and experience the awe-inspiring beauty of the natural world hidden beneath the surface.",
+        "icon": "mountain",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Nature,Adventure"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Bug Shot",
+        "instruction": "Take a photo of an insect.",
+        "info": "Capture the intricate details and beauty of insects by taking a close-up photograph. This encourages you to observe these often-overlooked creatures, appreciate their unique features, and develop your photography skills while documenting the biodiversity around you.",
+        "icon": "camera",
+        "color": "#3e2723",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Photography,Nature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Rock Solid",
+        "instruction": "Collect and identify six rocks.",
+        "info": "Explore the world of geology by collecting and identifying different types of rocks. This hands-on activity allows you to learn about the formation and characteristics of various rocks, fostering an appreciation for the Earth's natural history and potentially sparking an interest in geology or mineralogy.",
+        "icon": "nature",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Nature,Science"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Slow and Steady",
+        "instruction": "Find a snail.",
+        "info": "Take a moment to appreciate the smaller creatures in your environment by finding a snail. This encourages you to slow down, observe your surroundings more closely, and appreciate the often-overlooked beauty and diversity of life, even in the smallest of forms.",
+        "icon": "nature",
+        "color": "#00600f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Nature,Mindfulness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Spore-radic",
+        "instruction": "Take a photo of a mushroom.",
+        "info": "Capture the unique beauty and diversity of fungi by taking a photograph of a mushroom. This allows you to appreciate their often-overlooked forms and colors, potentially sparking an interest in mycology and the fascinating world of these organisms.",
+        "icon": "photo",
+        "color": "#2f384f",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Photography,Nature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Branch by Branch",
+        "instruction": "Climb a tree (safely).",
+        "info": "Reconnect with your childhood sense of adventure and enjoy a unique perspective by climbing a tree (safely). This provides a physical challenge, allows you to connect with nature, and offers a different vantage point from which to view your surroundings.",
+        "icon": "tree",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Adventure,Nature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Wings & Wonder",
+        "instruction": "Learn the life cycle of butterflies.",
+        "info": "Expand your knowledge of the natural world by learning about the life cycle of butterflies. This fascinating process, known as metamorphosis, showcases the incredible transformations that occur in nature, providing insights into the interconnectedness of life and the wonders of biological development.",
+        "icon": "two-leaves",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Nature,Science"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Branch Out Loud",
+        "instruction": "Sketch a tree in detail.",
+        "info": "Hone your observational and artistic skills by sketching a tree in detail. This allows you to appreciate the intricate structure of trees, from the texture of the bark to the branching patterns of the limbs, capturing the beauty and complexity of these natural forms on paper.",
+        "icon": "pencil",
+        "color": "#53086f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Arts,Nature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Dotted Growth",
+        "instruction": "Draw a tree with only dots.",
+        "info": "Explore a unique artistic technique by drawing a tree using only dots. This pointillism-inspired approach challenges you to create form and shading through the density and placement of dots, resulting in a visually interesting and textured representation of a tree.",
+        "icon": "pencil",
+        "color": "#253a54",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Arts,Digital Design"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Sky Watcher’s Guide",
+        "instruction": "Learn to identify clouds.",
+        "info": "Enhance your understanding of weather patterns and atmospheric conditions by learning to identify different types of clouds. This allows you to appreciate the beauty and diversity of cloud formations, while also providing insights into upcoming weather changes based on the clouds you observe.",
+        "icon": "cloud",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Nature,Learning"
+      }
+    ],
+    "removed": [],
+    "updated": []
+  }
+}

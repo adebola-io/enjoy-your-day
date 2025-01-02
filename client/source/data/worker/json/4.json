@@ -1,0 +1,340 @@
+{
+  "$schema": "./schema.json",
+  "chunk": 4,
+  "goals": {
+    "added": [
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Leaf It To You",
+        "instruction": "Sketch a plant in your house.",
+        "info": "Take a moment to appreciate the greenery around you by sketching a houseplant. This activity encourages observation, allowing you to capture the intricate details and beauty of nature within your own home.",
+        "icon": "two-leaves",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Arts,Nature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Brewing Art",
+        "instruction": "Paint with coffee or tea.",
+        "info": "Experiment with unconventional art supplies by painting with coffee or tea. This creates unique textures and sepia tones, offering a different artistic experience and resulting in artwork with a distinctive, natural aesthetic.",
+        "icon": "palette",
+        "color": "#5d6835",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Arts,Crafts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Act One, Scene One",
+        "instruction": "Write a script for a short play.",
+        "info": "Unleash your inner playwright by crafting a script for a short play. This involves developing characters, dialogue, and a storyline, providing a creative outlet for exploring human interactions and dramatic expression.",
+        "icon": "theater",
+        "color": "#444e86",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Literature,Storytelling"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Had I Known",
+        "instruction": "Make a list of life lessons.",
+        "info": "Reflect on your journey by compiling a list of life lessons. This introspective exercise allows you to distill wisdom from past experiences, creating a personal guide for navigating future challenges and decisions.",
+        "icon": "book",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Mental Health,Mindfulness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Hope Anchors",
+        "instruction": "Write a letter of encouragement.",
+        "info": "Offer support and inspiration by writing a letter of encouragement. This act of kindness can uplift someone's spirits, providing them with motivation and a reminder that they are valued and appreciated.",
+        "icon": "love-letter",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Social Connection,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Roots Run Deep",
+        "instruction": "Identify a tree in your area.",
+        "info": "Connect with your local environment by identifying a tree in your area. This enhances your knowledge of local flora, fostering an appreciation for the natural world and potentially sparking an interest in botany or environmentalism.",
+        "icon": "tree",
+        "color": "#a90e57",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Nature,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Babel's Rooftop",
+        "instruction": "Write a paragraph in a different language.",
+        "info": "Challenge your linguistic abilities by writing a paragraph in a different language. This expands your communication skills, offering a glimpse into another culture and potentially igniting a passion for language learning.",
+        "icon": "language",
+        "color": "#05688f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Culture,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Hook. Loop. Stitch",
+        "instruction": "Knit or crochet something small.",
+        "info": "Engage in the rhythmic craft of knitting or crocheting. This meditative activity hones fine motor skills, producing a tangible creation while offering a sense of calm and accomplishment.",
+        "icon": "scissors",
+        "color": "#3e2723",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Crafts,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Red Curtains",
+        "instruction": "Watch a classic film.",
+        "info": "Immerse yourself in cinematic history by watching a classic film. This provides insight into different eras of filmmaking, exposing you to diverse storytelling techniques and potentially inspiring your own creative endeavors.",
+        "icon": "film-roll",
+        "color": "#9a0007",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Film,Culture"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Pulse Check",
+        "instruction": "Make a list of positive habits.",
+        "info": "Cultivate self-improvement by listing positive habits. This encourages a mindful approach to daily life, helping you focus on behaviors that contribute to your well-being and personal growth.",
+        "icon": "heart",
+        "color": "#004d40",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Mental Health,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Luna Maria",
+        "instruction": "Take a night photo of the moon.",
+        "info": "Capture the celestial beauty of the moon with a night photograph. This activity connects you to the cosmos, encouraging you to observe the night sky and appreciate the natural wonders beyond our planet.",
+        "icon": "moon-and-starts",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Photography,Nature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Scales and Whispers",
+        "instruction": "Research a mythical creature.",
+        "info": "Delve into the realm of mythology by researching a mythical creature. This sparks imagination and expands your knowledge of folklore, providing insight into the diverse ways cultures have explained the world around them.",
+        "icon": "owl",
+        "color": "#b93200",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Culture,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Drawer Zero",
+        "instruction": "Organize a drawer in your home.",
+        "info": "Achieve a sense of order by organizing a drawer. This small act of tidying can improve your home environment, reduce stress, and make it easier to find what you need.",
+        "icon": "home-care",
+        "color": "#53086f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Home Care,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "How Truth Tastes",
+        "instruction": "Write a review of a local restaurant.",
+        "info": "Share your culinary experiences by writing a review of a local restaurant. This supports local businesses, provides helpful information to other diners, and hones your ability to articulate your opinions about food and service.",
+        "icon": "restaurant-menu",
+        "color": "#5c006a",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Cooking,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Beyond the Margins",
+        "instruction": "Create a personal manifesto.",
+        "info": "Define your values and beliefs by creating a personal manifesto. This reflective exercise helps clarify your principles, providing a framework for decision-making and a stronger sense of self.",
+        "icon": "book",
+        "color": "#2f2f2f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Mental Health,Mindfulness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Atlas Daydreamed",
+        "instruction": "Plan a hypothetical trip.",
+        "info": "Indulge your wanderlust by planning a hypothetical trip. This allows for creative exploration of different destinations, cultures, and activities, providing a fun escape and potentially inspiring future travel plans.",
+        "icon": "airplane",
+        "color": "#801d02",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Travel,Culture"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "On Curiosities",
+        "instruction": "Write an essay on a favorite topic.",
+        "info": "Deepen your understanding of a subject you're passionate about by writing an essay. This allows for focused exploration, intellectual stimulation, and the development of your ability to articulate complex ideas.",
+        "icon": "quill",
+        "color": "#2f384f",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Literature,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Tomorrow Buried",
+        "instruction": "Make a time capsule.",
+        "info": "Preserve a slice of the present for the future by creating a time capsule. This involves selecting items that represent your current life, offering a unique connection to the past for your future self or others who may discover it.",
+        "icon": "clock-check",
+        "color": "#00600f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Fun,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Metropo Lisa",
+        "instruction": "Sketch a city skyline.",
+        "info": "Capture the urban landscape by sketching a city skyline. This artistic endeavor encourages observation of architectural details, allowing you to appreciate the unique character of a city through your own creative interpretation.",
+        "icon": "buildings",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Arts,Urban Exploration"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "On This Day",
+        "instruction": "Write a fictional journal entry.",
+        "info": "Step into another's shoes by writing a fictional journal entry. This creative writing exercise allows you to explore different perspectives, emotions, and experiences, enhancing your ability to empathize and develop compelling narratives.",
+        "icon": "book",
+        "color": "#253a54",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Literature,Storytelling"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Frame By Frame",
+        "instruction": "Create a simple animation.",
+        "info": "Bring your drawings to life by creating a simple animation. This introduces you to the basics of animation, allowing you to experiment with movement and storytelling through a sequence of images.",
+        "icon": "film-strip",
+        "color": "#5c006a",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Digital Design,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Blissful Bites",
+        "instruction": "Make a recipe card for a dish you love.",
+        "info": "Preserve your culinary expertise by creating a recipe card for a beloved dish. This ensures you can recreate the dish accurately and share it with others, while also documenting your personal culinary traditions.",
+        "icon": "cooking",
+        "color": "#53086f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Cooking,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Memento",
+        "instruction": "Paint a rock and hide it outside.",
+        "info": "Spread a little joy by painting a rock and hiding it outdoors. This small act of creativity can brighten someone's day when they unexpectedly discover your hidden artwork, fostering a sense of community and playful interaction.",
+        "icon": "nature",
+        "color": "#9a0007",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Arts,Fun"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Bury the Hatchet",
+        "instruction": "Write an apology letter.",
+        "info": "Take a step towards reconciliation by writing an apology letter. This allows for thoughtful expression of remorse, potentially mending relationships and offering a path towards forgiveness and healing.",
+        "icon": "love-letter",
+        "color": "#444e86",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Social Connection,Mental Health"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Eureka!",
+        "instruction": "Learn about a scientific breakthrough.",
+        "info": "Expand your knowledge of scientific advancements by researching a breakthrough. This satisfies curiosity, provides insight into the process of scientific discovery, and highlights the impact of innovation on our lives.",
+        "icon": "beaker",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Science,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Spotless Portal",
+        "instruction": "Clean your phone’s screen.",
+        "info": "Enhance your digital hygiene by cleaning your phone's screen. This simple act improves visibility and removes germs, contributing to a more pleasant and healthy interaction with your device.",
+        "icon": "mobile-device",
+        "color": "#003f5c",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Home Care,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Long Story Short",
+        "instruction": "Write a plot summary for a book.",
+        "info": "Condense a narrative by writing a plot summary for a book. This tests your comprehension and ability to distill a story down to its essential elements, while also providing a useful tool for recalling the plot or recommending the book to others.",
+        "icon": "book",
+        "color": "#00600f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Literature,Storytelling"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Michelangelo's Kitchen",
+        "instruction": "Make a sculpture from household items.",
+        "info": "Unleash your inner sculptor by creating a sculpture from household items. This encourages creative repurposing of everyday objects, resulting in a unique piece of art that reflects your ingenuity and resourcefulness.",
+        "icon": "arts",
+        "color": "#016760",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Arts,Crafts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Core Compass",
+        "instruction": "List your top five values.",
+        "info": "Identify your guiding principles by listing your top five values. This introspective exercise promotes self-awareness, helping you align your actions with your beliefs and make decisions that are in accordance with what truly matters to you.",
+        "icon": "compass",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Mindfulness,Mental Health"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Up in the Air",
+        "instruction": "Learn to juggle.",
+        "info": "Challenge your coordination and focus by learning to juggle. This classic skill is not only entertaining but also enhances dexterity, concentration, and rhythm, offering a fun and engaging way to improve hand-eye coordination.",
+        "icon": "hobbies",
+        "color": "#2f384f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Fun,Fitness"
+      }
+    ],
+    "removed": [],
+    "updated": []
+  }
+}

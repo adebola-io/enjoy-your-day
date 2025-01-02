@@ -1,0 +1,340 @@
+{
+  "$schema": "./schema.json",
+  "chunk": 5,
+  "goals": {
+    "added": [
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Sweet Serendipity",
+        "instruction": "Try a new dessert recipe.",
+        "info": "Indulge your sweet tooth and culinary curiosity by trying a new dessert recipe. This can introduce you to exciting flavors and techniques, resulting in a delicious treat and a sense of accomplishment in the kitchen.",
+        "icon": "cake-with-candle",
+        "color": "#5d6835",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Cooking,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Tips from Me",
+        "instruction": "Write a blog post.",
+        "info": "Share your knowledge, experiences, or opinions with the world by writing a blog post. This is a platform for self-expression, allowing you to connect with others, hone your writing skills, and potentially establish yourself as an authority on a particular topic.",
+        "icon": "newspaper",
+        "color": "#003f5c",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Literature,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Cloud Nine",
+        "instruction": "Make a word cloud of positive words.",
+        "info": "Create a visual representation of positivity by making a word cloud of uplifting terms. This can serve as a source of inspiration and motivation, reminding you of the power of positive language and its ability to shape your mindset.",
+        "icon": "cloud",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Mental Health,Digital Design"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Masqueraders",
+        "instruction": "Plan a themed party.",
+        "info": "Unleash your creativity and social spirit by planning a themed party. This involves coordinating decorations, food, and activities around a central concept, offering a unique and memorable experience for you and your guests.",
+        "icon": "costume-mask",
+        "color": "#253a54",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Fun,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Mirror, Mirror",
+        "instruction": "Sketch a portrait of someone.",
+        "info": "Capture the likeness and essence of a person by sketching their portrait. This artistic endeavor encourages observation of facial features and expressions, allowing you to translate a person's character onto paper.",
+        "icon": "mirror",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Arts,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Lend Your Tongues",
+        "instruction": "Read a new poem aloud.",
+        "info": "Experience the rhythm and flow of poetry by reading a new poem aloud. This allows you to appreciate the musicality of language and engage with the poem on a deeper level, potentially uncovering new layers of meaning through vocal expression.",
+        "icon": "microphone",
+        "color": "#a90e57",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Literature,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Digital Clarity",
+        "instruction": "Organize your desktop files.",
+        "info": "Enhance your digital workspace by organizing your desktop files. This improves efficiency, reduces clutter, and creates a more visually appealing and productive environment for your computer-based tasks.",
+        "icon": "productivity",
+        "color": "#004d40",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Productivity,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Edenseed",
+        "instruction": "Build a small garden bed.",
+        "info": "Cultivate your green thumb by building a small garden bed. This connects you with nature, allowing you to grow your own plants, flowers, or vegetables, and enjoy the satisfaction of nurturing life from seed to harvest.",
+        "icon": "growth",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 3,
+        "categories": "Nature,Green Living"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "This Just In",
+        "instruction": "Write an imaginary news headline.",
+        "info": "Tap into your creativity and sense of humor by writing an imaginary news headline. This playful exercise can be a form of social commentary or simply a fun way to explore the power of words to capture attention and spark curiosity.",
+        "icon": "newspaper",
+        "color": "#801d02",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Storytelling,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Dusty Footprints",
+        "instruction": "Explore an old building.",
+        "info": "Embark on a historical adventure by exploring an old building. This allows you to connect with the past, uncover architectural details, and imagine the lives of those who inhabited the space before you, offering a tangible link to history.",
+        "icon": "buildings",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Urban Exploration,Culture"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Weird Al-chemy",
+        "instruction": "Create a parody song.",
+        "info": "Unleash your inner comedian by creating a parody song. This involves rewriting the lyrics of a familiar tune with humorous or satirical content, providing a fun and creative outlet for musical and comedic expression.",
+        "icon": "microphone",
+        "color": "#444e86",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Music,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Roll Play",
+        "instruction": "Invent a board game concept.",
+        "info": "Engage your strategic and creative mind by inventing a board game concept. This involves developing rules, mechanics, and a theme, offering a challenging and rewarding exercise in game design and potentially leading to a new form of entertainment for you and others.",
+        "icon": "games",
+        "color": "#5c006a",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Games,Digital Design"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Corporate Everest",
+        "instruction": "Create a vision for your dream job.",
+        "info": "Define your professional aspirations by creating a vision for your dream job. This clarifies your career goals, helps you identify the skills and experience needed, and provides motivation to pursue your ideal professional path.",
+        "icon": "briefcase",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Profession,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Cozy and Clean",
+        "instruction": "Sketch a design for a room.",
+        "info": "Unleash your inner interior designer by sketching a design for a room. This allows you to experiment with different layouts, furniture, and decor, creating a visual representation of your ideal living space and potentially inspiring real-life home improvements.",
+        "icon": "home",
+        "color": "#004d40",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Home Care,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Paper Wings",
+        "instruction": "Learn to fold an origami crane.",
+        "info": "Discover the art of paper folding by learning to make an origami crane. This intricate craft enhances fine motor skills and patience, resulting in a beautiful and symbolic paper sculpture.",
+        "icon": "paper-plane",
+        "color": "#016760",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Crafts,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Deep Appreciation",
+        "instruction": "Write a letter of thanks.",
+        "info": "Express your gratitude by writing a letter of thanks. This heartfelt gesture strengthens relationships, acknowledges the positive impact someone has had on your life, and fosters a sense of appreciation and connection.",
+        "icon": "love-letter",
+        "color": "#53086f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Social Connection,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Lights, Camera...",
+        "instruction": "Make a short video clip.",
+        "info": "Unleash your inner filmmaker by creating a short video clip. This allows for creative storytelling, experimentation with visual effects, and the development of basic video editing skills.",
+        "icon": "film-strip",
+        "color": "#801d02",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Film,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Sunny Side At Midnight",
+        "instruction": "Cook a breakfast for dinner.",
+        "info": "Embrace the unconventional by cooking breakfast for dinner. This playful twist on mealtime can be a fun and satisfying way to enjoy your favorite breakfast foods at any hour, adding a bit of whimsy to your culinary routine.",
+        "icon": "cooking",
+        "color": "#444e86",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Cooking,Fun"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "In Three Breaths",
+        "instruction": "Write a nature-inspired haiku.",
+        "info": "Capture the essence of nature in a concise and evocative haiku. This poetic form encourages observation of the natural world, distilling your impressions into a few carefully chosen words that reflect the beauty and tranquility of your surroundings.",
+        "icon": "quill",
+        "color": "#2d0a62",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Nature,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Time-Linked Kindred",
+        "instruction": "Create a family tree.",
+        "info": "Trace your lineage by creating a family tree. This genealogical endeavor connects you to your ancestors, uncovering your family history and potentially revealing fascinating stories and connections across generations.",
+        "icon": "profile",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Social Connection,Culture"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Silver Secondhand",
+        "instruction": "Photograph a reflection.",
+        "info": "Explore the world of reflections by capturing them in a photograph. This encourages you to see your surroundings in a new light, finding beauty in the interplay of light and mirrored images, and developing your photographic eye for unique compositions.",
+        "icon": "camera",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Photography,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Under Your Own Sky",
+        "instruction": "List five things you love about yourself.",
+        "info": "Cultivate self-love by listing five things you appreciate about yourself. This positive exercise builds self-esteem, encourages you to recognize your strengths and unique qualities, and fosters a more positive self-image.",
+        "icon": "heart",
+        "color": "#5d6835",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Mental Health,Mindfulness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Kickstart",
+        "instruction": "Try a martial arts move.",
+        "info": "Explore the world of martial arts by trying a basic move. This introduces you to a new form of physical activity, potentially sparking an interest in self-defense, discipline, and the philosophy behind these ancient practices.",
+        "icon": "fitness",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Fitness,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Canvas for Change",
+        "instruction": "Design a poster for a cause.",
+        "info": "Use your artistic talents to support a cause you care about by designing a poster. This allows for creative expression while raising awareness and potentially inspiring others to take action, making a positive impact through visual communication.",
+        "icon": "digital-design",
+        "color": "#5c006a",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Arts,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Tabula Rasa",
+        "instruction": "Make a list of new hobbies to try.",
+        "info": "Expand your horizons by creating a list of new hobbies to explore. This can lead to the discovery of hidden talents, new passions, and enriching experiences that add variety and excitement to your life.",
+        "icon": "hobbies",
+        "color": "#013c3b",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Learning,Fun"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Rest In Pages",
+        "instruction": "Write a fictional obituary.",
+        "info": "Explore the concept of mortality and legacy through a creative lens by writing a fictional obituary. This allows you to imagine a life fully lived, highlighting accomplishments, relationships, and the impact a person might have on the world.",
+        "icon": "tombstone",
+        "color": "#004d40",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Literature,Storytelling"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Thyme and Treasure",
+        "instruction": "Make a small herb garden.",
+        "info": "Cultivate fresh flavors by creating a small herb garden. This provides you with readily available ingredients for cooking, enhances your connection to nature, and allows you to enjoy the satisfaction of growing your own herbs.",
+        "icon": "two-leaves",
+        "color": "#00600f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Cooking,Green Living"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Yellow Brick Road",
+        "instruction": "Take a scenic drive.",
+        "info": "Embark on a journey of discovery by taking a scenic drive. This allows you to explore new landscapes, enjoy the beauty of your surroundings, and experience the freedom of the open road, providing a refreshing break from routine.",
+        "icon": "car",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Adventure,Travel"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "X Marks the Spot",
+        "instruction": "Draw a treasure map.",
+        "info": "Unleash your inner adventurer by drawing a treasure map. This playful activity sparks imagination, allowing you to create a fictional world of hidden riches and exciting quests, and potentially inspiring a real-life treasure hunt with friends or family.",
+        "icon": "map-pin",
+        "color": "#53086f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Fun,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Pay It Forward",
+        "instruction": "Make a donation to a cause.",
+        "info": "Contribute to a cause you believe in by making a donation. This act of generosity supports organizations working to make a positive impact, allowing you to be a part of something larger than yourself and contribute to meaningful change.",
+        "icon": "heart-in-hand",
+        "color": "#3e2723",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Volunteering,Social Connection"
+      }
+    ],
+    "removed": [],
+    "updated": []
+  }
+}

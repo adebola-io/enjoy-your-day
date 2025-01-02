@@ -30,7 +30,7 @@
 
 .nameForm {
   display: grid;
-  padding-block-start: calc(var(--block-padding) * 1.5);
+  padding-block-start: calc(var(--block-padding) * 2);
   place-items: center;
   grid-template-rows: auto auto auto auto 1fr;
   gap: 15px;
@@ -70,10 +70,6 @@
     calc(var(--default-duration) * 0.5);
   text-align: center;
   animation-fill-mode: backwards;
-}
-
-.nameFormInput {
-  view-transition-name: start-button;
 }
 
 .nameSubmitButton {

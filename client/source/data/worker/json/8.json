@@ -1,0 +1,340 @@
+{
+  "$schema": "./schema.json",
+  "chunk": 8,
+  "goals": {
+    "added": [
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Catcaller",
+        "instruction": "Learn to whistle with fingers.",
+        "info": "Master the art of finger whistling. This unique skill can be a fun party trick, a useful way to get someone's attention, or simply a satisfying personal accomplishment.",
+        "icon": "microphone",
+        "color": "#9a0007",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Fun,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Push & Pull",
+        "instruction": "Go to the gym.",
+        "info": "Invest in your physical health by going to the gym. Regular exercise improves strength, endurance, and overall well-being, providing both physical and mental benefits.",
+        "icon": "fitness",
+        "color": "#004d40",
+        "recommendability": 1,
+        "involvement": 2,
+        "categories": "Fitness,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Retail Therapy",
+        "instruction": "Go to the mall.",
+        "info": "Engage in some retail therapy by visiting the mall. This can be a fun social activity, a way to update your wardrobe, or simply a chance to browse and enjoy the atmosphere of a bustling shopping center.",
+        "icon": "cart",
+        "color": "#a90e57",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Fun,Style"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Cycle of Fresh Start",
+        "instruction": "Do the laundry.",
+        "info": "Maintain a clean and organized wardrobe by doing laundry. This essential chore ensures you have fresh clothes to wear, contributing to your comfort and hygiene.",
+        "icon": "hanger",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Home Care,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Suds in Motion",
+        "instruction": "Mop a part of your home.",
+        "info": "Contribute to a clean and healthy living environment by mopping a part of your home. This removes dirt and grime, improving the appearance and hygiene of your floors.",
+        "icon": "home-care",
+        "color": "#2d0a62",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Home Care,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Soap and Serenity",
+        "instruction": "Take a bubble bath.",
+        "info": "Indulge in a relaxing and luxurious bubble bath. This allows for a moment of self-care, providing a soothing escape from the stresses of daily life while cleansing and refreshing your body.",
+        "icon": "self-care",
+        "color": "#5c006a",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Self-Care,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Twinkle Twinkle",
+        "instruction": "Learn a nursery rhyme you didn't know.",
+        "info": "Expand your repertoire of children's songs by learning a new nursery rhyme. This can be a fun way to connect with your inner child, learn about traditional rhymes, and potentially share them with children in your life.",
+        "icon": "book",
+        "color": "#53086f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Learning,Music"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Click & Watch",
+        "instruction": "Watch a reaction video.",
+        "info": "Explore the world of online entertainment by watching a reaction video. This can be a fun and engaging way to experience content vicariously, seeing how others respond to various forms of media, and potentially discovering new things to enjoy.",
+        "icon": "film-strip",
+        "color": "#801d02",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Fun,Film"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Smooth Moves",
+        "instruction": "Learn a new dance routine.",
+        "info": "Challenge yourself physically and creatively by learning a new dance routine. This improves coordination, rhythm, and memory, while also providing a fun and expressive form of exercise.",
+        "icon": "dancing",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Fitness,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Hidden Message",
+        "instruction": "Write with invisible ink.",
+        "info": "Embrace your inner spy by writing with invisible ink. This allows for secret communication, adding an element of mystery and intrigue to your messages, and providing a fun way to experiment with basic chemistry.",
+        "icon": "padlock",
+        "color": "#b93200",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Fun,Crafts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Key to Secrets",
+        "instruction": "Learn to pick locks.",
+        "info": "Develop a unique and potentially useful skill by learning to pick locks. This can be a fascinating exploration of mechanical engineering, challenging your dexterity and problem-solving abilities, while also providing a sense of accomplishment when you successfully open a lock.",
+        "icon": "padlock",
+        "color": "#444e86",
+        "recommendability": 4,
+        "involvement": 3,
+        "categories": "Technology,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Suntimer",
+        "instruction": "Build a sundial.",
+        "info": "Connect with the ancient art of timekeeping by building a sundial. This hands-on project allows you to explore the relationship between the sun's movement and the passage of time, creating a functional and aesthetically pleasing device that reflects the history of time measurement.",
+        "icon": "sun",
+        "color": "#016760",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Nature,Science"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Billie Jean",
+        "instruction": "Learn to moonwalk.",
+        "info": "Master the iconic dance move, the moonwalk. This challenges your coordination and balance, allowing you to emulate a legendary dance style while providing a fun and impressive skill to showcase.",
+        "icon": "dancing",
+        "color": "#5d6835",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Fun,Fitness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Tune In, Zone Out",
+        "instruction": "Listen to a new music album.",
+        "info": "Expand your musical horizons by listening to a new album. This allows you to discover new artists, genres, and sounds, potentially finding new favorites and broadening your appreciation for music.",
+        "icon": "music",
+        "color": "#004d40",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Music,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Artifactory",
+        "instruction": "Visit an art museum.",
+        "info": "Immerse yourself in the world of art by visiting a museum. This provides exposure to diverse artistic styles, historical periods, and cultural expressions, enriching your understanding and appreciation of human creativity.",
+        "icon": "arts",
+        "color": "#05688f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Culture,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Existential Entry",
+        "instruction": "Learn a new philosophical concept.",
+        "info": "Expand your intellectual horizons by exploring a new philosophical concept. This challenges your thinking, encourages you to question your assumptions, and provides new perspectives on life, the universe, and everything.",
+        "icon": "brain",
+        "color": "#444e86",
+        "recommendability": 4,
+        "involvement": 2,
+        "categories": "Philosophy,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Plan Ahead",
+        "instruction": "Create a budget for next month.",
+        "info": "Take control of your finances by creating a budget for the upcoming month. This allows you to track your income and expenses, plan for future purchases, and work towards your financial goals with greater awareness and intention.",
+        "icon": "piggy-bank",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Shear Bliss",
+        "instruction": "Get a haircut.",
+        "info": "Refresh your look and boost your confidence with a new haircut. This can be a transformative experience, allowing you to experiment with different styles and express your personality through your appearance.",
+        "icon": "comb-and-scissors",
+        "color": "#003f5c",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Style,Self-Care"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Long Time No See",
+        "instruction": "Catch up with an old friend.",
+        "info": "Reconnect with someone from your past by catching up with an old friend. This can be a rewarding experience, rekindling a valued relationship, reminiscing about shared memories, and potentially forging new connections.",
+        "icon": "social-connection",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Closet and Karma",
+        "instruction": "Donate your unused clothes.",
+        "info": "Declutter your closet and contribute to a good cause by donating your unused clothes. This frees up space in your home, provides clothing to those in need, and promotes a more sustainable approach to fashion.",
+        "icon": "t-shirt",
+        "color": "#b93200",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Style,Volunteering"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Into the Unknown",
+        "instruction": "Buy a telescope.",
+        "info": "Embark on a celestial adventure by purchasing a telescope. This allows you to explore the wonders of the night sky, observe planets, stars, and other celestial bodies, and deepen your understanding of the vast universe beyond our planet.",
+        "icon": "telescope",
+        "color": "#3e2723",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Science,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Loop the Loop",
+        "instruction": "Learn a new knitting stitch.",
+        "info": "Expand your knitting repertoire by learning a new stitch. This enhances your crafting skills, allows you to create more intricate and varied textures in your projects, and provides a relaxing and productive way to engage with yarn.",
+        "icon": "scissors",
+        "color": "#253a54",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Crafts,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "One Move Ahead",
+        "instruction": "Win a chess game.",
+        "info": "Challenge your strategic thinking and achieve victory in a game of chess. This develops your ability to plan ahead, anticipate your opponent's moves, and adapt to changing circumstances, providing a stimulating mental exercise and a sense of accomplishment.",
+        "icon": "pawn",
+        "color": "#004d40",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Games,Mental Health"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Night We Met",
+        "instruction": "Recreate your first date.",
+        "info": "Rekindle the romance and reminisce about your early days together by recreating your first date. This can be a fun and meaningful way to reconnect with your partner, celebrate your relationship, and create new memories.",
+        "icon": "heart-and-arrow",
+        "color": "#3e2723",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Romance,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Table for Two",
+        "instruction": "Visit a new restaurant with your partner.",
+        "info": "Explore new culinary horizons and enjoy a shared experience by visiting a new restaurant with your partner. This allows you to discover new flavors, support local businesses, and create a memorable dining experience together.",
+        "icon": "restaurant-menu",
+        "color": "#05688f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Cooking,Romance"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Paper Heart",
+        "instruction": "Write a love letter.",
+        "info": "Express your deepest affections in a heartfelt and timeless way by writing a love letter. This allows you to articulate your emotions, strengthen your bond with the recipient, and create a cherished keepsake that can be treasured for years to come.",
+        "icon": "love-letter",
+        "color": "#a90e57",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Romance,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Sip Through Time",
+        "instruction": "Go wine tasting.",
+        "info": "Indulge your senses and expand your knowledge of wine by going wine tasting. This allows you to sample different varieties, learn about the winemaking process, and discover new favorites while enjoying a sophisticated and social experience.",
+        "icon": "wine-cup",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Culture,Cooking"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Wheel & Wander",
+        "instruction": "Take a road trip.",
+        "info": "Embrace the open road and embark on an adventure by taking a road trip. This allows you to explore new places, enjoy scenic landscapes, and experience the freedom of traveling at your own pace, creating lasting memories along the way.",
+        "icon": "car",
+        "color": "#444e86",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Travel,Adventure"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "On Your Marks",
+        "instruction": "Run a marathon.",
+        "info": "Challenge your physical and mental endurance by training for and running a marathon. This is a significant accomplishment that requires dedication, discipline, and perseverance, providing an unparalleled sense of achievement upon crossing the finish line.",
+        "icon": "running",
+        "color": "#5c006a",
+        "recommendability": 5,
+        "involvement": 3,
+        "categories": "Fitness,Adventure"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Render unto Caesar",
+        "instruction": "Do your taxes.",
+        "info": "Fulfill your civic duty and ensure your financial well-being by doing your taxes. This allows you to contribute to public services, avoid potential penalties, and gain a clearer understanding of your financial situation.",
+        "icon": "government",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Productivity"
+      }
+    ],
+    "removed": [],
+    "updated": []
+  }
+}

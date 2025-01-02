@@ -1,5 +1,6 @@
 import type { Cell } from '@adbl/cells';
 import type { IconName } from '#/library/icon-name';
+import type { GoalColor } from '#/library/goal-color';
 
 export type Nullable<T> = T | null;
 export type Id<T> = T & string;
@@ -24,7 +25,7 @@ export interface GoalProps {
   title: string;
   instruction: string;
   info: string;
-  color: string;
+  color: GoalColor;
   icon: IconName;
   index?: Cell<number>;
   total?: Cell<number>;

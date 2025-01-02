@@ -27,10 +27,11 @@
   translate: 0 calc(var(--goal-card-border-radius) * 1.5);
 
   & > * {
+    --starting-fade-position-y: 20%;
     position: sticky;
     top: calc((var(--index) + 1) * var(--goal-card-height) * 0.1);
     margin-block-end: -20dvh;
-    animation-name: var(--fade-in);
+    animation-name: var(--fade-in-from-bottom);
     animation-duration: calc(var(--default-duration) * 2);
     animation-delay: calc(
       (var(--total) - var(--index)) * var(--default-duration) * 0.35

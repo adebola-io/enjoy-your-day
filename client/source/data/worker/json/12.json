@@ -1,0 +1,340 @@
+{
+  "$schema": "./schema.json",
+  "chunk": 12,
+  "goals": {
+    "added": [
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Dreamweaver",
+        "instruction": "Write a bedtime story starring your baby.",
+        "info": "Craft a personalized bedtime story featuring your baby as the hero. This strengthens your bond, sparks their imagination, and creates a unique story to share.",
+        "icon": "book",
+        "color": "#253a54",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Literature,Storytelling"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Jurassic Bugs",
+        "instruction": "Debug the oldest code you've ever written.",
+        "info": "Revisit and debug your earliest coding attempts. It's a journey into your programming past, offering a chance to improve old work and reflect on your growth.",
+        "icon": "code-brackets",
+        "color": "#444e86",
+        "recommendability": 4,
+        "involvement": 2,
+        "categories": "Technology,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Pop Quiz(z)",
+        "instruction": "Complete FizzBuzz.",
+        "info": "Test your coding skills with the classic FizzBuzz challenge. This simple exercise reinforces fundamental programming concepts.",
+        "icon": "code-brackets",
+        "color": "#253a54",
+        "recommendability": 4,
+        "involvement": 1,
+        "categories": "Technology,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Zero Star(bucks)",
+        "instruction": "Write a review of your worst coffee experience.",
+        "info": "Share your unfortunate caffeine experience by reviewing the worst coffee ever. It's a humorous way to express your standards and potentially save others from a similar fate.",
+        "icon": "cup",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Literature,Cooking"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Press Start",
+        "instruction": "Learn the basics of making a game",
+        "info": "Dive into the world of game development by learning its fundamentals. This challenging endeavor combines creativity, logic, and technical skills.",
+        "icon": "games",
+        "color": "#5c006a",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Games,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "From Ashes, Breakfast",
+        "instruction": "Write a recipe starting with “burnt toast.”",
+        "info": "Get creative in the kitchen by inventing a recipe that salvages burnt toast. It's a fun exercise in culinary improvisation and problem-solving.",
+        "icon": "cooking",
+        "color": "#004d40",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Cooking,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Ripple Effects",
+        "instruction": "Photograph a reflection in a puddle.",
+        "info": "Capture the world in a different light by photographing a puddle's reflection. It's a chance to find beauty in the mundane and see from a new perspective.",
+        "icon": "camera",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Photography,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "This Way, Somewhere",
+        "instruction": "Photograph a public sign.",
+        "info": "Find humor or irony by photographing a public sign in an unexpected setting. It's a unique photographic challenge that plays with meaning and context.",
+        "icon": "map-pin",
+        "color": "#9a0007",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Photography,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Background Character",
+        "instruction": "Find a stranger with matching outfits.",
+        "info": "Observe your surroundings and find a stranger whose outfit blends seamlessly with the environment. It's a real-life game of \"Where's Waldo?\" that highlights camouflage in everyday life.",
+        "icon": "search",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Fun,Style"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Toothpaste Tightrope",
+        "instruction": "Brush your teeth on one leg.",
+        "info": "Improve your balance and multitask by standing on one leg while brushing. It's a simple way to add a physical challenge to your daily routine.",
+        "icon": "toothbrush",
+        "color": "#2d0a62",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Wellness,Fitness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Page Exchange Program",
+        "instruction": "Swap a book with someone.",
+        "info": "Share your love of reading by exchanging a book with a stranger. It's a spontaneous way to connect with others and discover new literature.",
+        "icon": "book",
+        "color": "#5d6835",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Literature,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Steam Dream",
+        "instruction": "Go to the spa.",
+        "info": "Indulge in self-care with a spa visit. It's a chance to relax, rejuvenate, and enjoy some well-deserved pampering.",
+        "icon": "self-care",
+        "color": "#003f5c",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Self-Care,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "At First Light",
+        "instruction": "Watch the sunrise.",
+        "info": "Greet the day by witnessing the beauty of a sunrise. It's a peaceful experience that connects you with nature's rhythm.",
+        "icon": "sun",
+        "color": "#801d02",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Nature,Mindfulness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Notes to Tomorrow",
+        "instruction": "Write a letter to a future generation.",
+        "info": "Pen a letter to those who will come after us. Share your hopes, dreams, and wisdom with the future.",
+        "icon": "love-letter",
+        "color": "#016760",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Literature,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Mini Manor",
+        "instruction": "Build a model of your dream home.",
+        "info": "Design and construct a tiny version of your ideal house. It's a creative project that lets you envision and build your perfect space in miniature.",
+        "icon": "home",
+        "color": "#253a54",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Arts,Crafts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Roots in Time",
+        "instruction": "Research the history of your hometown.",
+        "info": "Discover the past of your hometown. Unearth local stories, historical events, and the people who shaped your community.",
+        "icon": "tombstone",
+        "color": "#a90e57",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Culture,Urban Exploration"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Crayon Scribbles",
+        "instruction": "List your favorite childhood memories.",
+        "info": "Revisit the joys of your past by listing cherished childhood memories. It's a nostalgic journey that highlights the moments that shaped you.",
+        "icon": "book",
+        "color": "#004d40",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Mental Health,Mindfulness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "One Cup Away",
+        "instruction": "Try a new type of tea.",
+        "info": "Explore the vast world of tea by sampling a new variety. Discover different flavors, aromas, and potential health benefits.",
+        "icon": "cup",
+        "color": "#53086f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Cooking,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Memory, Folded",
+        "instruction": "Create a digital scrapbook.",
+        "info": "Preserve your memories by making a digital scrapbook. It's a modern way to compile and showcase your cherished photos.",
+        "icon": "photo",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Digital Design,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "String and Song",
+        "instruction": "Learn to play the ukulele.",
+        "info": "Dive into the world of music by learning a ukulele song. It's a fun, accessible way to develop a new musical skill.",
+        "icon": "guitar",
+        "color": "#444e86",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Music,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Empty Chairs",
+        "instruction": "Write a letter to a local politician.",
+        "info": "Engage in civic action by writing to a politician. Share your views and advocate for change on issues you're passionate about.",
+        "icon": "government",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Social Connection,Culture"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Bibliophile",
+        "instruction": "Make a list of your favorite book quotes.",
+        "info": "Compile a list of meaningful quotes from your favorite books. It's a way to capture the wisdom and beauty of the written word.",
+        "icon": "book",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Literature,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Pivot",
+        "instruction": "Try a new type of exercise class.",
+        "info": "Step out of your comfort zone and join a new exercise class. It's a chance to challenge your body in new ways and potentially discover a new favorite workout.",
+        "icon": "fitness",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Fitness,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Dusty Pages",
+        "instruction": "Research a famous historical event.",
+        "info": "Deepen your understanding of the past by researching a renowned historical event. Learn about its causes, consequences, and significance.",
+        "icon": "tombstone",
+        "color": "#5d6835",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Culture,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Cut to Favorites",
+        "instruction": "Make a playlist of your best movies.",
+        "info": "Create a playlist of the soundtracks from your favorite films. Relive cinematic moments through their iconic scores.",
+        "icon": "music",
+        "color": "#a90e57",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Film,Music"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Kneadful",
+        "instruction": "Try a new type of bread recipe.",
+        "info": "Expand your baking skills by tackling a new bread recipe. Enjoy the process of kneading, baking and the aroma of fresh bread.",
+        "icon": "bread",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Cooking,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Virtuoso",
+        "instruction": "Create a digital painting using a tablet.",
+        "info": "Explore the world of digital art by creating a painting on a tablet. Experiment with different brushes, colors, and techniques.",
+        "icon": "digital-design",
+        "color": "#2f2f2f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Arts,Digital Design"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Decalogue",
+        "instruction": "Learn to say \"thank you\" in ten languages.",
+        "info": "Express gratitude in multiple languages. It's a small but meaningful way to connect with different cultures.",
+        "icon": "language",
+        "color": "#5c006a",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Culture,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Talk To Me",
+        "instruction": "List out your favorite podcasts.",
+        "info": "Curate a list of your go-to podcasts. Share your recommendations and discover new ones from others.",
+        "icon": "microphone",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Music,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Empty Your Burdens",
+        "instruction": "Try a new meditation technique.",
+        "info": "Explore different meditation practices to find what resonates with you. Enhance your mindfulness and inner peace.",
+        "icon": "lotus",
+        "color": "#2f384f",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Mental Health,Mindfulness"
+      }
+    ],
+    "removed": [],
+    "updated": []
+  }
+}

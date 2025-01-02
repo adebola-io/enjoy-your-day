@@ -21,14 +21,21 @@ export async function initializeDatabase() {
   return testData;
 }
 
-export async function getAutoRecommendations(_: never) {
+export async function getAutoRecommendations(categories: string[]) {
   await new Promise((resolve) => setTimeout(resolve, 600));
-  const response = await toWorker({ type: 'goals.today' });
+  const response = await toWorker({ type: 'goals.today', categories });
   return response;
 }
 
-export async function getExampleGoalInstruction(selected: string[]) {
-  const response = await toWorker({ type: 'goals.search-example', selected });
+export async function getExampleGoalInstruction(
+  selected: string[],
+  categories: string[]
+) {
+  const response = await toWorker({
+    type: 'goals.search-example',
+    selected,
+    categories,
+  });
   return response;
 }
 
@@ -46,11 +53,7 @@ export async function getAutoCompleteSuggestions(
 }
 
 export async function saveGoalState(goalStates: GoalState[], date: string) {
-  const response = await toWorker({
-    type: 'goals.record',
-    goalStates: JSON.parse(JSON.stringify(goalStates)), // removes cell proxies
-    date,
-  });
+  const response = await toWorker({ type: 'goals.record', goalStates, date });
   if (!response) console.error('Error saving goal state');
   return response;
 }

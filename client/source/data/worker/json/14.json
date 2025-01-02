@@ -1,0 +1,329 @@
+{
+  "$schema": "./schema.json",
+  "chunk": 14,
+  "goals": {
+    "added": [
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Bookmarked",
+        "instruction": "Write a review of a business book.",
+        "info": "Share your insights on a business book by writing a review. It's a way to contribute to the professional community and help others find valuable resources.",
+        "icon": "book",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Profession,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Milestones",
+        "instruction": "Create a career timeline.",
+        "info": "Visualize your professional journey by creating a career timeline. It helps you reflect on your accomplishments and plan future steps.",
+        "icon": "calendar",
+        "color": "#53086f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Profession,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Network Effect",
+        "instruction": "Join a career-related community.",
+        "info": "Connect with peers and mentors by joining a career-related community. It's a valuable resource for support, advice, and networking.",
+        "icon": "social-connection",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Profession,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Mantra",
+        "instruction": "Develop a personal mission statement.",
+        "info": "Define your purpose and values by creating a personal mission statement. It provides a framework for decision-making and a sense of direction.",
+        "icon": "compass",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Mental Health,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Level Up",
+        "instruction": "Learn a new technical skill.",
+        "info": "Enhance your technical abilities by acquiring a new skill. It can open up new career opportunities and increase your value in the job market.",
+        "icon": "microchip",
+        "color": "#444e86",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Technology,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Roadmap",
+        "instruction": "Write a career development plan.",
+        "info": "Chart your professional growth by creating a career development plan. Set goals, identify necessary skills, and outline steps to achieve your aspirations.",
+        "icon": "paper",
+        "color": "#a90e57",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Profession,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Scattershot",
+        "instruction": "Apply to 7 different jobs.",
+        "info": "Broaden your job search by applying to multiple positions. It increases your chances of finding a suitable opportunity.",
+        "icon": "briefcase",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Profession,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Art of War",
+        "instruction": "Learn about a competitor's strategy.",
+        "info": "Gain a competitive edge by studying a competitor's strategy. Analyze their strengths and weaknesses to inform your own approach.",
+        "icon": "search",
+        "color": "#004d40",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Profession,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Rotten to Radiant",
+        "instruction": "Make compost from kitchen scraps.",
+        "info": "Turn kitchen waste into a valuable resource by composting. It's an environmentally friendly way to enrich your garden soil.",
+        "icon": "recycle",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Green Living,Home Care"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Sky High Diner",
+        "instruction": "Make a DIY bird feeder.",
+        "info": "Attract birds to your yard by building a bird feeder. It's a fun project that provides a food source for your feathered friends.",
+        "icon": "bird",
+        "color": "#5d6835",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Nature,Crafts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Golden Ticket to...",
+        "instruction": "Create a budget for a dream vacation.",
+        "info": "Plan your dream getaway by creating a detailed budget. It helps you save and prepare for a memorable trip.",
+        "icon": "piggy-bank",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Travel"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Token of Trust",
+        "instruction": "Set up a cryptocurrency wallet.",
+        "info": "Explore the world of digital currency by setting up a cryptocurrency wallet. It's a first step towards understanding and potentially investing in cryptocurrencies.",
+        "icon": "bitcoin",
+        "color": "#003f5c",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Finance,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "By the Numbers",
+        "instruction": "Calculate your net worth.",
+        "info": "Assess your financial standing by calculating your net worth. It's a snapshot of your assets minus liabilities, providing a clearer picture of your financial health.",
+        "icon": "calculator",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Due Diligence",
+        "instruction": "Automate your bill payments.",
+        "info": "Automating bill payments ensures timely payments, avoids late fees, and simplifies your financial management, promoting better financial health and peace of mind.",
+        "icon": "productivity",
+        "color": "#5c006a",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Money Making Money",
+        "instruction": "Compare high-yield savings accounts.",
+        "info": "Exploring high-yield savings options allows you to maximize the return on your savings while maintaining the liquidity of your funds, helping your money grow faster with minimal risk.",
+        "icon": "growth",
+        "color": "#a90e57",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Cents and Sensibility",
+        "instruction": "Open a micro-investing account.",
+        "info": "Opening a micro-investing account allows you to start investing with small amounts of money, making it more accessible and less intimidating, fostering a habit of regular saving and investing.",
+        "icon": "dollar",
+        "color": "#801d02",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Finance,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Fundamentally Yours",
+        "instruction": "Explore crowdfunding platforms.",
+        "info": "Exploring crowdfunding platforms introduces you to alternative ways of investing and supporting creative projects or startups, while also diversifying your investment options beyond traditional markets.",
+        "icon": "share",
+        "color": "#000000",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Finance,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Balancing Act",
+        "instruction": "Calculate your debt-to-income ratio.",
+        "info": "Calculating your debt-to-income ratio provides a clear understanding of your debt burden relative to your income, helping you assess your financial health and make informed decisions about managing your finances.",
+        "icon": "calculator",
+        "color": "#004d40",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Tomorrow's Treasure",
+        "instruction": "Set up a retirement savings account.",
+        "info": "Setting up a retirement savings account is crucial for securing your financial future. It allows you to save and invest for retirement, taking advantage of the benefits of compound interest and tax advantages.",
+        "icon": "piggy-bank",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Fiscal Footnotes",
+        "instruction": "Find tax deductions you qualify for.",
+        "info": "Identifying tax deductions allows you to reduce your taxable income, potentially leading to lower tax liabilities and increasing your after-tax income. This requires diligent research and understanding of relevant tax laws.",
+        "icon": "dollar",
+        "color": "#5d6835",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Finance,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Picture This",
+        "instruction": "Design a financial vision board.",
+        "info": "Creating a financial vision board is a creative and motivational tool for visualizing your financial goals and aspirations. It helps to clarify your desires, keep you focused on your objectives, and provides inspiration on your financial journey.",
+        "icon": "photo",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Mental Health"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Extra Credit",
+        "instruction": "Start a side hustle.",
+        "info": "Starting a side hustle provides additional income, develops new skills, and offers the potential for financial independence and entrepreneurial growth, supplementing your primary income source.",
+        "icon": "productivity",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 3,
+        "categories": "Finance,Profession"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "For the Rainy Days",
+        "instruction": "Build an emergency fund.",
+        "info": "Building an emergency fund provides a financial safety net for unexpected expenses, reducing stress and enhancing financial security. It is a crucial step for responsible financial planning.",
+        "icon": "piggy-bank",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "App-etite",
+        "instruction": "Test drive financial apps.",
+        "info": "Exploring financial apps allows you to leverage technology to manage your money, automate saving, track spending, and invest more efficiently, potentially enhancing your financial literacy.",
+        "icon": "mobile-device",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Finance,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Follow the Money",
+        "instruction": "Analyze your monthly cash flow.",
+        "info": "Analyzing your monthly cash flow provides insights into your income and expenses, allowing you to identify areas of overspending, optimize your budget, and better align your spending habits with your financial goals.",
+        "icon": "bar-chart",
+        "color": "#5c006a",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Mix It Up",
+        "instruction": "Diversify your investment portfolio.",
+        "info": "Diversifying your investment portfolio across different asset classes reduces the risk of substantial losses, increases potential returns, and safeguards your portfolio against market volatility, aligning with long-term financial success.",
+        "icon": "growth",
+        "color": "#00600f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Finance,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Map to Freedom",
+        "instruction": "Plan your financial freedom journey.",
+        "info": "Planning a financial freedom journey requires a strategic roadmap, outlining specific steps and goals to achieve financial independence and reach a point where your investments and passive income cover your living expenses.",
+        "icon": "compass",
+        "color": "#016760",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Finance,Productivity"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Auto Pilot",
+        "instruction": "Use a robot-advisor for investing.",
+        "info": "Using a robo-advisor for investing allows you to automate the investment process, relying on algorithms to manage your portfolio and adjust your allocations based on your risk profile and investment goals, providing hands-off and efficient investing.",
+        "icon": "robot",
+        "color": "#2d0a62",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": "Finance,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Target Savings",
+        "instruction": "Save for a big purchase goal.",
+        "info": "Saving for a big purchase goal encourages responsible financial planning. It requires discipline and strategic saving methods to ensure you accumulate the required funds to achieve desired financial milestones.",
+        "icon": "piggy-bank",
+        "color": "#404a62",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Finance,Productivity"
+      }
+    ],
+    "removed": [],
+    "updated": []
+  }
+}

@@ -1,4 +1,5 @@
 {
+  "$schema": "./schema.json",
   "chunk": 2,
   "goals": {
     "added": [
@@ -7,11 +8,11 @@
         "title": "Count Your Blessings",
         "instruction": "List five things you're grateful for.",
         "info": "Listing things you're grateful for cultivates a positive mindset. It's a simple yet powerful practice that shifts focus from what's lacking to what's abundant, fostering contentment and appreciation.",
-        "icon": "heart",
-        "color": "#331A24",
+        "icon": "heart-in-hand",
+        "color": "#2d0a62",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Wellness,Mindfulness,Mental Health"
+        "categories": "Mindfulness,Wellness"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -19,10 +20,10 @@
         "instruction": "Write a song chorus.",
         "info": "Writing a song chorus allows for creative expression through music and lyrics. It's a chance to explore emotions and melodies, crafting a catchy tune that might resonate with others.",
         "icon": "music",
-        "color": "#4E342E",
+        "color": "#2f2f2f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Music,Arts,Creativity"
+        "categories": "Music,Arts"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -30,32 +31,32 @@
         "instruction": "Try a yoga pose you've never done.",
         "info": "Trying a new yoga pose challenges your body and mind, promoting flexibility and balance. It's an opportunity to expand your practice and experience the physical and mental benefits of yoga.",
         "icon": "yoga",
-        "color": "#082D0F",
+        "color": "#004d40",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Wellness,Fitness,Mindfulness"
+        "categories": "Wellness,Fitness"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "Pass It On",
         "instruction": "Donate an item of clothing.",
         "info": "Donating clothing declutters your space and helps those in need. It's a simple act of generosity that gives your pre-loved items a second life, extending their utility and reducing waste.",
-        "icon": "hanger",
-        "color": "#1B4E3B",
+        "icon": "t-shirt",
+        "color": "#00600f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Volunteering,Home Care,Green Living"
+        "categories": "Volunteering,Green Living"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "What's Possible?",
         "instruction": "Create a vision board.",
         "info": "Creating a vision board is a powerful tool for visualizing your goals and aspirations. It's a creative process that clarifies your desires and motivates you to work towards them, turning dreams into tangible plans.",
-        "icon": "creativity",
-        "color": "#291B2E",
+        "icon": "photo",
+        "color": "#5d6835",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Mental Health,Arts,Productivity"
+        "categories": "Arts,Mental Health"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -63,10 +64,10 @@
         "instruction": "Design a personal logo.",
         "info": "Designing a personal logo is an exercise in self-branding. It encourages you to consider your unique qualities and how you want to present yourself to the world, fostering a sense of identity and purpose.",
         "icon": "profile",
-        "color": "#0C2C2D",
+        "color": "#b93200",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Digital Design,Arts,Productivity"
+        "categories": "Digital Design,Productivity"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -74,10 +75,10 @@
         "instruction": "Interview someone about their life.",
         "info": "Interviewing someone offers a window into their experiences and perspectives. It fosters connection and understanding, providing valuable insights that can broaden your own worldview.",
         "icon": "chat-bubble",
-        "color": "#101B32",
+        "color": "#253a54",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Social Connection,Culture,Storytelling"
+        "categories": "Social Connection,Storytelling"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -85,10 +86,10 @@
         "instruction": "Make a photo collage.",
         "info": "Making a photo collage is a creative way to preserve memories. It allows you to curate and display cherished moments, transforming individual photos into a visually engaging narrative.",
         "icon": "photo",
-        "color": "#0E141B",
+        "color": "#444e86",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Photography,Arts,Mindfulness"
+        "categories": "Photography,Arts"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -96,10 +97,10 @@
         "instruction": "Write a limerick about a cat.",
         "info": "Writing a limerick is a fun exercise in wordplay and rhythm. Focusing on a cat as the subject adds a touch of whimsy and lightheartedness to this poetic form.",
         "icon": "cat",
-        "color": "#1B1A3B",
+        "color": "#801d02",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Literature,Arts,Fun"
+        "categories": "Literature,Arts"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -107,21 +108,21 @@
         "instruction": "Create a new sandwich recipe.",
         "info": "Creating a new sandwich recipe is a culinary adventure that can be both simple and satisfying. It's a chance to experiment with flavors and textures, potentially discovering your new favorite lunchtime staple.",
         "icon": "sandwich-slice",
-        "color": "#4C3C2E",
+        "color": "#53086f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Cooking,Fun,Creativity"
+        "categories": "Cooking"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "One Good Turn",
         "instruction": "Do a random act of kindness.",
         "info": "Performing a random act of kindness creates a ripple effect of positivity. It can brighten someone's day and boost your own mood, fostering a sense of connection and goodwill within your community.",
-        "icon": "heart-in-hand",
-        "color": "#19341F",
+        "icon": "heart",
+        "color": "#016760",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Volunteering,Social Connection,Wellness"
+        "categories": "Social Connection,Wellness"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -129,10 +130,10 @@
         "instruction": "Research a local historical event.",
         "info": "Researching a local historical event deepens your understanding of your community's past. It connects you to the place you live, uncovering stories and insights that enrich your sense of belonging.",
         "icon": "tombstone",
-        "color": "#11151C",
+        "color": "#013c3b",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Culture,Literature,Learning"
+        "categories": "Culture,Urban Exploration"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -140,10 +141,10 @@
         "instruction": "Meditate for five minutes.",
         "info": "Meditating for just five minutes can provide a moment of calm amidst a busy day. It's a practice that promotes mindfulness, reduces stress, and cultivates inner peace.",
         "icon": "lotus",
-        "color": "#222C2C",
+        "color": "#2f2f2f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Mindfulness,Mental Health,Wellness"
+        "categories": "Mindfulness,Mental Health"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -151,10 +152,10 @@
         "instruction": "Make a list of inspiring quotes.",
         "info": "Compiling a list of inspiring quotes creates a personal reservoir of motivation. It's a resource you can draw upon for encouragement and wisdom, helping you to stay focused on your goals and values.",
         "icon": "sparkle",
-        "color": "#202A44",
+        "color": "#5c006a",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Mental Health,Mindfulness,Literature"
+        "categories": "Mental Health,Literature"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -162,10 +163,10 @@
         "instruction": "Write a letter to a friend.",
         "info": "Writing a letter to a friend is a heartfelt way to maintain connections. In a digital age, a handwritten letter is a tangible expression of care and thoughtfulness that can be cherished for years to come.",
         "icon": "love-letter",
-        "color": "#2D1C22",
-        "recommendability": 1,
+        "color": "#a90e57",
+        "recommendability": 2,
         "involvement": 2,
-        "categories": "Social Connection,Mindfulness,Arts"
+        "categories": "Social Connection,Literature"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -173,10 +174,10 @@
         "instruction": "Visit a museum online.",
         "info": "Visiting a museum online provides access to art and artifacts from around the world. It's an enriching experience that broadens your cultural horizons and satisfies curiosity, all from the comfort of your home.",
         "icon": "arts",
-        "color": "#092327",
-        "recommendability": 2,
+        "color": "#2f384f",
+        "recommendability": 1,
         "involvement": 1,
-        "categories": "Culture,Arts,Learning"
+        "categories": "Culture,Arts"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -184,32 +185,32 @@
         "instruction": "Make a budget for the week.",
         "info": "Creating a weekly budget promotes financial awareness and responsibility. It allows you to track your spending, identify areas for improvement, and work towards your financial goals with greater intention.",
         "icon": "piggy-bank",
-        "color": "#2B1E1F",
+        "color": "#05688f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Productivity,Mental Health"
+        "categories": "Finance,Productivity"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "Lost In Translation",
         "instruction": "Watch a foreign film without subtitles.",
         "info": "Watching a foreign film without subtitles challenges your comprehension and immerses you in another culture. It's an exercise in observation and deduction, enhancing your ability to understand nonverbal cues and appreciate cinematic storytelling.",
-        "icon": "film-strip",
-        "color": "#2B242D",
+        "icon": "film-roll",
+        "color": "#5d6835",
         "recommendability": 3,
-        "involvement": 1,
-        "categories": "Film,Culture,Learning"
+        "involvement": 2,
+        "categories": "Film,Culture"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "Bridging the Divide",
         "instruction": "Learn to say \"hello\" in five languages.",
         "info": "Learning to say \"hello\" in different languages is a small step towards cross-cultural communication. It demonstrates respect and openness to other cultures, potentially sparking connections with people from diverse backgrounds.",
-        "icon": "globe",
-        "color": "#1D131F",
+        "icon": "language",
+        "color": "#003f5c",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Culture,Learning,Social Connection"
+        "categories": "Culture,Learning"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -217,21 +218,21 @@
         "instruction": "Sew a button onto something.",
         "info": "Sewing a button is a practical skill that can save you money and extend the life of your clothing. It's a small act of self-sufficiency that fosters a sense of accomplishment and resourcefulness.",
         "icon": "scissors",
-        "color": "#391819",
+        "color": "#b93200",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Crafts,Home Care,Style"
+        "categories": "Crafts,Home Care"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "Dreamnest",
         "instruction": "Build a small birdhouse.",
         "info": "Building a birdhouse is a rewarding project that connects you to nature. It provides shelter for birds in your area, allowing you to observe wildlife and contribute to a healthy ecosystem.",
-        "icon": "bird",
-        "color": "#0D2A2A",
+        "icon": "hut",
+        "color": "#9a0007",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Nature,Crafts,Green Living"
+        "categories": "Nature,Crafts"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -239,10 +240,10 @@
         "instruction": "Create a digital poster.",
         "info": "Creating a digital poster allows for artistic expression and the development of design skills. It's a versatile medium for conveying messages, promoting causes, or simply exploring your creativity.",
         "icon": "digital-design",
-        "color": "#08172C",
+        "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Digital Design,Arts,Creativity"
+        "categories": "Digital Design,Arts"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -250,10 +251,10 @@
         "instruction": "Make a nature-inspired playlist.",
         "info": "Curating a nature-inspired playlist connects you to the sounds of the natural world. It can be a calming and restorative experience, providing a soundtrack for relaxation, meditation, or outdoor adventures.",
         "icon": "music",
-        "color": "#141C2D",
+        "color": "#004d40",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Music,Nature,Mindfulness"
+        "categories": "Music,Nature"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -261,21 +262,21 @@
         "instruction": "Identify five constellations.",
         "info": "Identifying constellations connects you to the night sky and the vastness of the universe. It's a humbling experience that sparks curiosity about astronomy and the stories humans have woven around these celestial patterns.",
         "icon": "moon-and-starts",
-        "color": "#0A1022",
+        "color": "#444e86",
         "recommendability": 3,
-        "involvement": 1,
-        "categories": "Science,Nature,Learning"
+        "involvement": 2,
+        "categories": "Nature,Science"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "The Mane Event",
         "instruction": "Try a new haircut or style.",
         "info": "Trying a new haircut or style can be a refreshing change that boosts your confidence. It's an opportunity to experiment with your appearance and express your personality in a new way.",
-        "icon": "heels",
-        "color": "#13121A",
+        "icon": "comb-and-scissors",
+        "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Style,Self-care,Fun"
+        "categories": "Style,Self-Care"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -283,10 +284,10 @@
         "instruction": "Write a chat between 2 historical figures.",
         "info": "Writing a conversation between two historical figures is a creative exercise that blends history and imagination. It allows you to explore different perspectives and potentially gain a deeper understanding of these individuals and their times.",
         "icon": "chat-bubble",
-        "color": "#2E1B1D",
+        "color": "#05688f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Storytelling,Literature,Culture"
+        "categories": "Storytelling,Culture"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -294,21 +295,43 @@
         "instruction": "Research a country you've never visited.",
         "info": "Researching a new country sparks curiosity and expands your knowledge of the world. It's a virtual form of travel that can inspire future adventures and broaden your understanding of different cultures and geographies.",
         "icon": "globe",
-        "color": "#231B27",
+        "color": "#53086f",
         "recommendability": 2,
-        "involvement": 1,
-        "categories": "Culture,Learning,Adventure"
+        "involvement": 2,
+        "categories": "Culture,Travel"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "WWW",
         "instruction": "Build a simple website layout.",
         "info": "Building a simple website layout introduces you to the basics of web design. It's a valuable skill in today's digital world, offering a creative outlet and potentially opening doors to new opportunities.",
-        "icon": "digital-design",
-        "color": "#1A1F1A",
+        "icon": "code-brackets",
+        "color": "#003f5c",
         "recommendability": 3,
+        "involvement": 3,
+        "categories": "Technology,Digital Design"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Dear Little Me",
+        "instruction": "Write a letter to your childhood self.",
+        "info": "Writing a letter to your childhood self is an introspective exercise that fosters self-compassion and understanding. It allows you to reflect on your past, acknowledge your growth, and offer guidance to the younger you.",
+        "icon": "love-letter",
+        "color": "#a90e57",
+        "recommendability": 2,
         "involvement": 2,
-        "categories": "Technology,Digital Design,Productivity"
+        "categories": "Mental Health,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Thanks a Million",
+        "instruction": "Start a gratitude journal.",
+        "info": "Starting a gratitude journal cultivates a habit of appreciation. Regularly reflecting on the good things in your life can improve your overall well-being, reduce stress, and foster a more positive outlook.",
+        "icon": "heart",
+        "color": "#5c006a",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Mental Health,Mindfulness"
       }
     ],
     "removed": [],

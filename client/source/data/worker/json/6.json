@@ -1,0 +1,340 @@
+{
+  "$schema": "./schema.json",
+  "chunk": 6,
+  "goals": {
+    "added": [
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Gordian Knot",
+        "instruction": "Write a riddle.",
+        "info": "Challenge your mind and the minds of others by writing a riddle. This playful exercise in wordplay and logic hones your creative thinking skills, resulting in a clever puzzle that can entertain and engage.",
+        "icon": "brain",
+        "color": "#003f5c",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Literature,Mental Health"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Strong Fortressezzz",
+        "instruction": "Build a pillow fort.",
+        "info": "Embrace your inner child by building a pillow fort. This cozy and imaginative retreat provides a fun escape from the everyday, offering a space for relaxation, reading, or simply enjoying a moment of playful nostalgia.",
+        "icon": "hut",
+        "color": "#004d40",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Fun,Home Care"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Pinch Hitter",
+        "instruction": "Make a new spice blend.",
+        "info": "Experiment with flavors by creating a new spice blend. This allows you to customize your culinary creations, potentially discovering unique and delicious combinations that elevate your cooking and add a personal touch to your dishes.",
+        "icon": "spice",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Cooking,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Simulacrum",
+        "instruction": "Create a digital avatar.",
+        "info": "Design a digital representation of yourself by creating an avatar. This allows for creative self-expression in online spaces, providing a visual identity for gaming, social media, or other virtual environments.",
+        "icon": "profile",
+        "color": "#53086f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Digital Design,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Dear Time Traveler",
+        "instruction": "Write a letter to a historical figure.",
+        "info": "Engage with history in a personal way by writing a letter to a historical figure. This allows you to reflect on their impact, ask questions, and express your thoughts and feelings about their life and times, fostering a deeper connection to the past.",
+        "icon": "quill",
+        "color": "#444e86",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Literature,Culture"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Press Pause",
+        "instruction": "Organize your digital photos.",
+        "info": "Preserve your memories and declutter your digital space by organizing your photos. This makes it easier to find and enjoy your favorite images, while also providing an opportunity to reflect on past experiences and share them with others.",
+        "icon": "photo",
+        "color": "#a90e57",
+        "recommendability": 1,
+        "involvement": 2,
+        "categories": "Photography,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Wyvernal",
+        "instruction": "Draw a mythical creature.",
+        "info": "Let your imagination soar by drawing a mythical creature. This allows for creative exploration of fantastical forms and features, resulting in a unique piece of artwork that reflects your personal interpretation of legendary beings.",
+        "icon": "arts",
+        "color": "#b93200",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Arts,Storytelling"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Third Wall",
+        "instruction": "Sketch a floor plan.",
+        "info": "Design your dream space by sketching a floor plan. This allows you to visualize different layouts and consider the flow of a home, providing a creative outlet for architectural ideas and potentially inspiring future home improvement projects.",
+        "icon": "home",
+        "color": "#801d02",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Arts,Digital Design"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Unbalanced Scales",
+        "instruction": "Write a fantasy creature description.",
+        "info": "Bring a fantastical being to life with words by writing a detailed description of a fantasy creature. This exercise in creative writing allows you to explore imaginative physical attributes, behaviors, and habitats, enriching your storytelling abilities and world-building skills.",
+        "icon": "book",
+        "color": "#253a54",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Literature,Storytelling"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Torn Into Light",
+        "instruction": "Create a paper collage.",
+        "info": "Transform discarded materials into art by creating a paper collage. This allows for creative exploration of textures, colors, and shapes, resulting in a unique piece of artwork that reflects your personal style and resourcefulness.",
+        "icon": "paper",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Arts,Crafts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Crunchology",
+        "instruction": "Try a new fruit or vegetable.",
+        "info": "Expand your palate and nutritional intake by trying a new fruit or vegetable. This introduces you to different flavors and textures, potentially discovering new healthy favorites and adding variety to your diet.",
+        "icon": "apple",
+        "color": "#004d40",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Cooking,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Snap Snap Click",
+        "instruction": "Build a model from a kit.",
+        "info": "Engage in a hands-on project by building a model from a kit. This develops your fine motor skills, spatial reasoning, and ability to follow instructions, resulting in a tangible creation that showcases your craftsmanship and attention to detail.",
+        "icon": "hobbies",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Crafts,Technology"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Consumer's Verdict",
+        "instruction": "Write a product review.",
+        "info": "Share your experiences and opinions by writing a product review. This helps other consumers make informed decisions, while also honing your ability to articulate your thoughts about a product's features, benefits, and drawbacks.",
+        "icon": "chat-bubble",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Productivity,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Roll With It",
+        "instruction": "Design a new board game.",
+        "info": "Create a new form of entertainment by designing a board game. This involves developing a unique concept, rules, and mechanics, providing a challenging and rewarding exercise in game design that can lead to hours of fun for you and others.",
+        "icon": "games",
+        "color": "#5d6835",
+        "recommendability": 3,
+        "involvement": 3,
+        "categories": "Games,Digital Design"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Folded Sentiment",
+        "instruction": "Make a custom greeting card.",
+        "info": "Express your creativity and thoughtfulness by making a custom greeting card. This allows you to personalize your message and create a unique keepsake for the recipient, adding a special touch to any occasion.",
+        "icon": "paper",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Arts,Crafts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Voices Only",
+        "instruction": "Write a dialogue-only scene.",
+        "info": "Hone your ability to convey character and advance plot through dialogue by writing a scene that consists only of spoken words. This challenges you to use language effectively to reveal personalities, motivations, and relationships without relying on descriptive narration.",
+        "icon": "microphone",
+        "color": "#00600f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Literature,Storytelling"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Crumb Trail",
+        "instruction": "Bake cookies and share them.",
+        "info": "Indulge in the joy of baking and spread happiness by making cookies and sharing them with others. This act of generosity brings people together, creates positive interactions, and allows you to share the delicious fruits of your labor.",
+        "icon": "cookie",
+        "color": "#016760",
+        "recommendability": 1,
+        "involvement": 2,
+        "categories": "Cooking,Social Connection"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Off the Grid",
+        "instruction": "Explore a new neighborhood.",
+        "info": "Discover hidden gems and expand your sense of place by exploring a new neighborhood. This allows you to experience different environments, encounter new people, and potentially find new favorite spots, adding variety and adventure to your routine.",
+        "icon": "map-pin",
+        "color": "#a90e57",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Urban Exploration,Adventure"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Monumental",
+        "instruction": "Learn about a famous landmark.",
+        "info": "Expand your knowledge of iconic structures by researching a famous landmark. This satisfies curiosity about architectural marvels, historical significance, and cultural impact, enriching your understanding of human achievements and the stories behind these renowned sites.",
+        "icon": "buildings",
+        "color": "#2f2f2f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Culture,Learning"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Words to Wisdom",
+        "instruction": "Write a letter to a mentor.",
+        "info": "Express gratitude and seek guidance by writing a letter to a mentor. This fosters a valuable relationship, acknowledges the positive influence they've had on your life, and provides an opportunity to gain further insights and support.",
+        "icon": "love-letter",
+        "color": "#5c006a",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Social Connection,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Find the Beat",
+        "instruction": "Learn a new dance.",
+        "info": "Immerse yourself in the rhythm and movement of a new dance style. This is a fun and expressive way to improve coordination, learn about different cultures, and potentially discover a new passion for dance.",
+        "icon": "dancing",
+        "color": "#53086f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Fitness,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Brush the Infinite",
+        "instruction": "Paint a galaxy.",
+        "info": "Unleash your creativity and explore the cosmos through art by painting a galaxy. This allows for imaginative exploration of colors, shapes, and celestial bodies, resulting in a unique piece of artwork that reflects the vastness and beauty of space.",
+        "icon": "palette",
+        "color": "#3e2723",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Arts,Science"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "REMnants",
+        "instruction": "Write about a dream you had.",
+        "info": "Tap into your subconscious by documenting a dream you had. This can be a fascinating exploration of your inner world, potentially revealing hidden emotions, anxieties, or desires, and providing inspiration for creative writing or self-reflection.",
+        "icon": "book",
+        "color": "#444e86",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Mental Health,Literature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Inner Space",
+        "instruction": "Try a meditation app.",
+        "info": "Explore the world of mindfulness and relaxation with a meditation app. This can introduce you to various meditation techniques, helping to reduce stress, improve focus, and cultivate a greater sense of inner peace.",
+        "icon": "mental-health",
+        "color": "#5d6835",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Mental Health,Mindfulness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "The Fifth Season",
+        "instruction": "Photograph patterns in nature.",
+        "info": "Train your eye to see the beauty in natural patterns by photographing them. This encourages a deeper appreciation for the intricate designs found in nature, from the spirals of a seashell to the branching of a tree, developing your photographic skills and connection to the environment.",
+        "icon": "camera",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": "Photography,Nature"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Elephant in the Mind",
+        "instruction": "Sketch an animal from memory.",
+        "info": "Test your memory and artistic skills by sketching an animal from memory. This challenges your ability to recall details and translate them into a visual representation, providing a fun and engaging exercise in observation and drawing.",
+        "icon": "pencil",
+        "color": "#00600f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": "Arts,Mental Health"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Sticky Fingers",
+        "instruction": "Create a digital sticker pack.",
+        "info": "Design your own set of digital stickers. This allows for creative expression in a format that's widely used in digital communication, providing a personalized and fun way to enhance your messages and interact with others online.",
+        "icon": "digital-design",
+        "color": "#a90e57",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": "Digital Design,Arts"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Scent-sational",
+        "instruction": "Write a list of favorite smells.",
+        "info": "Indulge in the power of scent by making a list of your favorite smells. This can evoke pleasant memories and emotions, reminding you of the profound impact that aromas can have on our experiences and well-being.",
+        "icon": "bottle",
+        "color": "#05688f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Mindfulness,Wellness"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Phantom Limb",
+        "instruction": "Stay away from your phone for 3 hours.",
+        "info": "Experience a digital detox by disconnecting from your phone for a few hours. This allows you to be more present in your surroundings, reduces distractions, and can improve focus and mindfulness.",
+        "icon": "smartphone",
+        "color": "#2d0a62",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Mindfulness,Mental Health"
+      },
+      {
+        "dateAdded": "2024-12-28T00:01:00.000Z",
+        "title": "Less Is More",
+        "instruction": "De-clutter five things in your space.",
+        "info": "Create a more organized and peaceful environment by decluttering five items. This small act of simplifying your surroundings can reduce stress, improve clarity, and make your space more functional and enjoyable.",
+        "icon": "home-care",
+        "color": "#b93200",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": "Home Care,Productivity"
+      }
+    ],
+    "removed": [],
+    "updated": []
+  }
+}

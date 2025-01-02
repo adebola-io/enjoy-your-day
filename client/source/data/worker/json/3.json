@@ -12,7 +12,8 @@
         "color": "#00600f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Music,Mindfulness"
+        "categories": "Music,Mindfulness",
+        "uuid": "8039da52-78a1-483f-a3d9-3de76da01de4"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -23,7 +24,8 @@
         "color": "#444e86",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Culture"
+        "categories": "Arts,Culture",
+        "uuid": "c3e2ef82-a471-471e-87da-500916b2bc43"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -34,7 +36,8 @@
         "color": "#004d40",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Fitness,Arts"
+        "categories": "Fitness,Arts",
+        "uuid": "6b231ef0-acb0-49e4-a666-cd0835d37522"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -45,7 +48,8 @@
         "color": "#a90e57",
         "recommendability": 1,
         "involvement": 2,
-        "categories": "Self-Care,Wellness"
+        "categories": "Self-Care,Wellness",
+        "uuid": "64a42a04-c7fc-4c20-98ea-6aee1ed0bda9"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -56,7 +60,8 @@
         "color": "#05688f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Nature,Mindfulness"
+        "categories": "Nature,Mindfulness",
+        "uuid": "838ff454-c516-4512-b6ec-89966fc21c09"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -67,7 +72,8 @@
         "color": "#253a54",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Literature,Arts"
+        "categories": "Literature,Arts",
+        "uuid": "d3808e61-cdf0-4c73-9a04-88a11c5035ae"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -78,7 +84,8 @@
         "color": "#2f2f2f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Photography,Arts"
+        "categories": "Photography,Arts",
+        "uuid": "3e145fb4-5270-4470-9f97-6b6dd0aaede2"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -89,7 +96,8 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Cooking,Wellness"
+        "categories": "Cooking,Wellness",
+        "uuid": "9446d1f4-241e-43cf-89a5-42496e6cdde9"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -100,7 +108,8 @@
         "color": "#016760",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Mental Health,Mindfulness"
+        "categories": "Mental Health,Mindfulness",
+        "uuid": "1f16bd67-1479-4bf3-b1e7-978449f28304"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -111,7 +120,8 @@
         "color": "#2f384f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Social Connection,Arts"
+        "categories": "Social Connection,Arts",
+        "uuid": "930dc8d3-9eca-4005-b271-1111f1b30026"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -122,7 +132,8 @@
         "color": "#801d02",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Technology,Learning"
+        "categories": "Technology,Learning",
+        "uuid": "50906a67-9711-4c59-a515-01586f230532"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -133,7 +144,8 @@
         "color": "#013c3b",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Productivity,Technology"
+        "categories": "Productivity,Technology",
+        "uuid": "f544c5ad-e9df-44bd-a513-18234032aa47"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -144,7 +156,8 @@
         "color": "#b93200",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Storytelling,Arts"
+        "categories": "Storytelling,Arts",
+        "uuid": "8fc61557-b56c-4f33-ac40-6c23d6852cdb"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -155,7 +168,8 @@
         "color": "#5d6835",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Literature,Arts"
+        "categories": "Literature,Arts",
+        "uuid": "18a28895-02d1-4432-9eb9-1ad182d574e5"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -166,7 +180,8 @@
         "color": "#5d6835",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fun,Mental Health"
+        "categories": "Fun,Mental Health",
+        "uuid": "1ec81a8c-9619-4889-b8fd-287a5ad349a4"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -177,7 +192,8 @@
         "color": "#003f5c",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Mental Health,Mindfulness"
+        "categories": "Mental Health,Mindfulness",
+        "uuid": "81eb1b05-b5ac-4af5-86ee-5ba62fbdc3c0"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -188,7 +204,8 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Nature,Learning"
+        "categories": "Nature,Learning",
+        "uuid": "4787ddff-960b-4c84-bde0-410e1f10d527"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -199,7 +216,8 @@
         "color": "#2d0a62",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Games,Social Connection"
+        "categories": "Games,Social Connection",
+        "uuid": "a1c3ad85-1706-41ea-a0eb-f54aaf68386e"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -210,7 +228,8 @@
         "color": "#2f384f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Fitness,Wellness"
+        "categories": "Fitness,Wellness",
+        "uuid": "d4a6a387-b12b-4980-b7a1-27f4950e07ef"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -221,7 +240,8 @@
         "color": "#a90e57",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Storytelling,Productivity"
+        "categories": "Storytelling,Productivity",
+        "uuid": "f5c7b7b2-0214-4c23-a978-a75b33562a57"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -232,7 +252,8 @@
         "color": "#801d02",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Travel,Culture"
+        "categories": "Travel,Culture",
+        "uuid": "25ac03db-3b14-4894-bd89-191e89cccb2d"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -243,7 +264,8 @@
         "color": "#b93200",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Cooking,Culture"
+        "categories": "Cooking,Culture",
+        "uuid": "03a0e2f1-24b6-4c61-a2c2-8844ff31451e"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -254,7 +276,8 @@
         "color": "#5c006a",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Arts,Technology"
+        "categories": "Arts,Technology",
+        "uuid": "2705d236-085f-48da-9de2-42ed30bfcac0"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -265,7 +288,8 @@
         "color": "#05688f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Photography,Fun"
+        "categories": "Photography,Fun",
+        "uuid": "173ea064-ffcc-472c-aece-460289189995"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -276,7 +300,8 @@
         "color": "#444e86",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Digital Design,Technology"
+        "categories": "Digital Design,Technology",
+        "uuid": "db5ee152-380d-488e-ac17-15f18f5e196b"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -287,7 +312,8 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Learning"
+        "categories": "Finance,Learning",
+        "uuid": "e9bc839d-daf8-42d2-8dda-706dc343eaa9"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -298,7 +324,8 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Home Care,Green Living"
+        "categories": "Home Care,Green Living",
+        "uuid": "5d294df0-7c98-4a5b-9914-f720c2a7c6a1"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -309,7 +336,8 @@
         "color": "#53086f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Crafts,Arts"
+        "categories": "Crafts,Arts",
+        "uuid": "a5eae701-8491-434e-ad04-381e3f3d10e9"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -320,7 +348,8 @@
         "color": "#2f384f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Literature,Mental Health"
+        "categories": "Literature,Mental Health",
+        "uuid": "12558fb9-9df6-4037-94ab-49d44fb0e6d0"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -331,7 +360,8 @@
         "color": "#b93200",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Storytelling"
+        "categories": "Arts,Storytelling",
+        "uuid": "56ea8668-5d48-4e4e-add0-23569a594eb5"
       }
     ],
     "removed": [],

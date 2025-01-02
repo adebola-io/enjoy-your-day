@@ -12,7 +12,8 @@
         "color": "#05688f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Profession,Literature"
+        "categories": "Profession,Literature",
+        "uuid": "efba7792-68b0-4fab-b9cb-1015ff548012"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -23,7 +24,8 @@
         "color": "#53086f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Profession,Productivity"
+        "categories": "Profession,Productivity",
+        "uuid": "b1597e6c-a93c-4216-95e0-f0f1afaaaeb1"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -34,7 +36,8 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Profession,Social Connection"
+        "categories": "Profession,Social Connection",
+        "uuid": "84109fd9-36d8-4b8a-838b-2a1b369564ef"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -45,7 +48,8 @@
         "color": "#003f5c",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Mental Health,Productivity"
+        "categories": "Mental Health,Productivity",
+        "uuid": "73ace779-4720-4c09-bd30-13e8cd597ee0"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -56,7 +60,8 @@
         "color": "#444e86",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Technology,Learning"
+        "categories": "Technology,Learning",
+        "uuid": "b77fd7d1-b2e5-430f-97c3-ee0e423471d0"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -67,7 +72,8 @@
         "color": "#a90e57",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Profession,Productivity"
+        "categories": "Profession,Productivity",
+        "uuid": "fc696a94-2e2c-4110-b7fc-a8d76e3b94fa"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -78,7 +84,8 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Profession,Productivity"
+        "categories": "Profession,Productivity",
+        "uuid": "f5a46c11-e347-4733-b6a8-7186aa377b9a"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -89,7 +96,8 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Profession,Learning"
+        "categories": "Profession,Learning",
+        "uuid": "162cfcc2-30d1-4d84-8e95-8d0362f49a85"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -100,7 +108,8 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Green Living,Home Care"
+        "categories": "Green Living,Home Care",
+        "uuid": "dcef0520-d534-4f73-a337-acb3541617df"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -111,7 +120,8 @@
         "color": "#5d6835",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Nature,Crafts"
+        "categories": "Nature,Crafts",
+        "uuid": "97d9437f-3588-4393-8f72-44e429fa2a47"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -122,7 +132,8 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Travel"
+        "categories": "Finance,Travel",
+        "uuid": "3d78bb37-d930-4e79-9715-6c30e5c13746"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -133,7 +144,8 @@
         "color": "#003f5c",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Technology"
+        "categories": "Finance,Technology",
+        "uuid": "fce1fcea-defb-4ad5-b0ae-e6d54099357a"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -144,7 +156,8 @@
         "color": "#05688f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Productivity"
+        "categories": "Finance,Productivity",
+        "uuid": "976f9c8f-34cd-434e-8ea5-ea005f9bf593"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -155,7 +168,8 @@
         "color": "#5c006a",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Productivity"
+        "categories": "Finance,Productivity",
+        "uuid": "b99d76ff-ff76-4b48-910e-f4ef0e168e2c"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -166,7 +180,8 @@
         "color": "#a90e57",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Learning"
+        "categories": "Finance,Learning",
+        "uuid": "e035d16a-a200-4b7d-a1f7-990d072ebb57"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -177,7 +192,8 @@
         "color": "#801d02",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Learning"
+        "categories": "Finance,Learning",
+        "uuid": "4d1fc964-5413-451a-af84-fa20087fbe6f"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -188,7 +204,8 @@
         "color": "#000000",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Technology"
+        "categories": "Finance,Technology",
+        "uuid": "b18b0ebb-1d11-4c3d-aa80-7299a4876943"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -199,7 +216,8 @@
         "color": "#004d40",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Productivity"
+        "categories": "Finance,Productivity",
+        "uuid": "0552430c-d659-4cd5-b386-08bbe5032f24"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -210,7 +228,8 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Productivity"
+        "categories": "Finance,Productivity",
+        "uuid": "e9b4b54a-bb50-4bb5-9927-3e7b17518826"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -221,7 +240,8 @@
         "color": "#5d6835",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Learning"
+        "categories": "Finance,Learning",
+        "uuid": "c1d69a70-d03e-4378-abde-53edadb8953c"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -232,7 +252,8 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Mental Health"
+        "categories": "Finance,Mental Health",
+        "uuid": "3f79e864-f708-4b17-afbb-2e8db6107eeb"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -243,7 +264,8 @@
         "color": "#05688f",
         "recommendability": 2,
         "involvement": 3,
-        "categories": "Finance,Profession"
+        "categories": "Finance,Profession",
+        "uuid": "eb2c402f-cc77-4168-bda7-bc56fd482768"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -254,7 +276,8 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Productivity"
+        "categories": "Finance,Productivity",
+        "uuid": "c5dad398-1e47-4855-adc4-0356d1d1067d"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -265,7 +288,8 @@
         "color": "#003f5c",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Finance,Technology"
+        "categories": "Finance,Technology",
+        "uuid": "3428ce76-1ba9-48b7-abbc-0f01e3448450"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -276,7 +300,8 @@
         "color": "#5c006a",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Productivity"
+        "categories": "Finance,Productivity",
+        "uuid": "f0bd1692-ed7c-4fff-8564-288ccc8a5d42"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -287,7 +312,8 @@
         "color": "#00600f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Learning"
+        "categories": "Finance,Learning",
+        "uuid": "82c873e1-7032-4883-b9e9-5e6fd8cf679b"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -298,7 +324,8 @@
         "color": "#016760",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Productivity"
+        "categories": "Finance,Productivity",
+        "uuid": "7c02a54b-8018-419d-8c4b-5197723227bf"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -309,7 +336,8 @@
         "color": "#2d0a62",
         "recommendability": 3,
         "involvement": 1,
-        "categories": "Finance,Technology"
+        "categories": "Finance,Technology",
+        "uuid": "6a7f9977-294d-4fa2-8e2f-036f557b185a"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -320,7 +348,8 @@
         "color": "#404a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Productivity"
+        "categories": "Finance,Productivity",
+        "uuid": "15615c8d-eeae-4c41-a89f-2dac0cb52070"
       }
     ],
     "removed": [],

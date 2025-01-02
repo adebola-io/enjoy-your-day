@@ -4,7 +4,6 @@ import { CalendarIcon } from '#/components/icons/calendar';
 import { SparkleIcon } from '#/components/icons/sparkle';
 import { CSS_VARS } from '#/styles/variables';
 import classes from './home-start-state.module.css';
-import AddIcon from '#/components/icons/add';
 import MicrochipIcon from '#/components/icons/microchip';
 
 export default function InitialHome() {

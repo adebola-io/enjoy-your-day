@@ -24,7 +24,7 @@
         "color": "#444e86",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Science,Learning",
+        "categories": "Science",
         "uuid": "746f8aba-01a2-453f-913a-fc315257a950"
       },
       {
@@ -120,7 +120,7 @@
         "color": "#444e86",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Culture,Learning",
+        "categories": "Culture",
         "uuid": "6e803ce5-31ff-4b6a-8e42-7ac7e92d3ca5"
       },
       {
@@ -180,7 +180,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Profession,Learning",
+        "categories": "Profession",
         "uuid": "a16a084a-317f-4396-be22-b9e3d94fb26b"
       },
       {
@@ -300,7 +300,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Profession,Learning",
+        "categories": "Profession",
         "uuid": "7927ccbd-c612-41a6-9b62-05aec120296d"
       },
       {
@@ -324,7 +324,7 @@
         "color": "#5d6835",
         "recommendability": 3,
         "involvement": 1,
-        "categories": "Profession,Learning",
+        "categories": "Profession",
         "uuid": "e00c6b53-13e9-480c-b322-966aad5e9e37"
       },
       {
@@ -360,7 +360,7 @@
         "color": "#b93200",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Profession,Learning",
+        "categories": "Profession",
         "uuid": "9ca3391a-994c-4d04-8bc9-1e2099bad140"
       }
     ],

@@ -60,7 +60,7 @@
         "color": "#444e86",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Technology,Learning",
+        "categories": "Technology",
         "uuid": "b77fd7d1-b2e5-430f-97c3-ee0e423471d0"
       },
       {
@@ -96,7 +96,7 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Profession,Learning",
+        "categories": "Profession",
         "uuid": "162cfcc2-30d1-4d84-8e95-8d0362f49a85"
       },
       {
@@ -180,7 +180,7 @@
         "color": "#a90e57",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Finance,Learning",
+        "categories": "Finance",
         "uuid": "e035d16a-a200-4b7d-a1f7-990d072ebb57"
       },
       {
@@ -192,7 +192,7 @@
         "color": "#801d02",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Learning",
+        "categories": "Finance",
         "uuid": "4d1fc964-5413-451a-af84-fa20087fbe6f"
       },
       {
@@ -240,7 +240,7 @@
         "color": "#5d6835",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Learning",
+        "categories": "Finance",
         "uuid": "c1d69a70-d03e-4378-abde-53edadb8953c"
       },
       {
@@ -312,7 +312,7 @@
         "color": "#00600f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Learning",
+        "categories": "Finance",
         "uuid": "82c873e1-7032-4883-b9e9-5e6fd8cf679b"
       },
       {

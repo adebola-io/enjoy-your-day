@@ -1,3 +1,4 @@
+// Bun script to assign UUIDs to goals in the JSON files.
 import type { GoalProps } from '#/data/entities';
 import fs from 'node:fs';
 
@@ -21,7 +22,7 @@ const jsonFiles = fs
 
 for (const file of jsonFiles) {
   const chunkNo = Number(file.split('.')[0]);
-  if (chunkNo < OLDEST_UNASSIGNED_CHUNK) continue;
+  if (chunkNo <= OLDEST_UNASSIGNED_CHUNK) continue;
 
   const data = JSON.parse(fs.readFileSync(file, 'utf-8'));
   data.goals.added = assignGoalUuids(data.goals.added);

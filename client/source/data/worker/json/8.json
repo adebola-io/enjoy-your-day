@@ -72,7 +72,7 @@
         "color": "#5c006a",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Self-Care,Wellness",
+        "categories": "Wellness",
         "uuid": "9ad246a2-8ed4-496c-a9ae-d7d2976811f1"
       },
       {
@@ -84,7 +84,7 @@
         "color": "#53086f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Learning,Music",
+        "categories": "Music",
         "uuid": "911a23dc-a879-46bb-910b-81926b9b8001"
       },
       {
@@ -132,7 +132,7 @@
         "color": "#444e86",
         "recommendability": 4,
         "involvement": 3,
-        "categories": "Technology,Learning",
+        "categories": "Technology",
         "uuid": "076a8e3c-8d9f-453b-926a-62ce6e197f92"
       },
       {
@@ -192,7 +192,7 @@
         "color": "#444e86",
         "recommendability": 4,
         "involvement": 2,
-        "categories": "Philosophy,Learning",
+        "categories": "Philosophy",
         "uuid": "2f4a1b51-dc7f-4b5c-b6cc-3791546ee922"
       },
       {
@@ -216,7 +216,7 @@
         "color": "#003f5c",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Style,Self-Care",
+        "categories": "Style",
         "uuid": "1afe6f82-7e7d-4dc2-b5fe-89c826acb676"
       },
       {

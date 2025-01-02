@@ -43,7 +43,7 @@ export function GoalsCompletedDrawer() {
         color={CSS_VARS['--space-cadet-500']}
         title="Confetti Icon"
       />
-      <h2 class={classes.heading}>Congrats to you!</h2>
+      <h2 class={classes.heading}>Congratulations!</h2>
       <p class={classes.text}>
         Well done! You completed all your goals. I hope you had an interesting
         day.

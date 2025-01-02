@@ -36,7 +36,7 @@
         "color": "#253a54",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fun,Self-Care",
+        "categories": "Fun",
         "uuid": "8b2c09a9-2357-4028-9108-7637db0f2ef5"
       },
       {
@@ -144,7 +144,7 @@
         "color": "#53086f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Technology,Learning",
+        "categories": "Technology",
         "uuid": "7ee41d1f-20bf-4b67-95be-08033481c7ec"
       },
       {
@@ -360,7 +360,7 @@
         "color": "#05688f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Nature,Learning",
+        "categories": "Nature",
         "uuid": "b9704b5e-e987-4501-bc7c-d06a99662ffb"
       }
     ],

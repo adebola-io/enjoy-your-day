@@ -48,7 +48,7 @@
         "color": "#a90e57",
         "recommendability": 1,
         "involvement": 2,
-        "categories": "Self-Care,Wellness",
+        "categories": "Wellness",
         "uuid": "64a42a04-c7fc-4c20-98ea-6aee1ed0bda9"
       },
       {
@@ -132,7 +132,7 @@
         "color": "#801d02",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Technology,Learning",
+        "categories": "Technology",
         "uuid": "50906a67-9711-4c59-a515-01586f230532"
       },
       {
@@ -204,7 +204,7 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Nature,Learning",
+        "categories": "Nature",
         "uuid": "4787ddff-960b-4c84-bde0-410e1f10d527"
       },
       {
@@ -312,7 +312,7 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Finance,Learning",
+        "categories": "Finance",
         "uuid": "e9bc839d-daf8-42d2-8dda-706dc343eaa9"
       },
       {

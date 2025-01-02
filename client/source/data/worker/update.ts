@@ -15,9 +15,8 @@ export async function* getNewData(
     try {
       const data = (await import(`./json/${i}.json`)).default;
       const goals = data.goals;
-      const addedGoalObjects = retrieveCategoryIdentifiers(
-        assignGoalUuids(goals.added),
-        categories
+      const addedGoalObjects = setDates(
+        getCategoryIdentifiers(goals.added, categories)
       );
       yield {
         addedGoalObjects,
@@ -32,14 +31,9 @@ export async function* getNewData(
   }
 }
 
-/**
- * Assigns a unique UUID to each goal in the provided array.
- * @param goals - An array of GoalProps objects to assign UUIDs to.
- * @returns The input goals array with UUIDs assigned to each goal.
- */
-function assignGoalUuids(goals: GoalProps[]) {
+function setDates(goals: Array<GoalProps>) {
   for (const goal of goals) {
-    goal.uuid = crypto.randomUUID();
+    goal.dateAdded = new Date(goal.dateAdded);
   }
   return goals;
 }
@@ -55,7 +49,7 @@ function assignGoalUuids(goals: GoalProps[]) {
  * @returns The input goals array with the `categories` property updated to contain
  *   an array of category UUIDs instead of names.
  */
-function retrieveCategoryIdentifiers(
+function getCategoryIdentifiers(
   goals: Array<GoalProps & { categories: string | string[] }>,
   categories: Map<string, SendableCategory>
 ) {

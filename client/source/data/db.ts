@@ -17,7 +17,7 @@ export async function initializeDatabase() {
     lastLoadedChunk: lastLoadedChunk.value,
     latestChunk: LATEST_DATA_CHUNK,
   });
-  // lastLoadedChunk.value = LATEST_DATA_CHUNK;
+  lastLoadedChunk.value = LATEST_DATA_CHUNK;
   return testData;
 }
 

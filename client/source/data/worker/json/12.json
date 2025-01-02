@@ -24,7 +24,7 @@
         "color": "#444e86",
         "recommendability": 4,
         "involvement": 2,
-        "categories": "Technology,Learning",
+        "categories": "Technology",
         "uuid": "6fa11cae-7f53-4311-9924-701f2a33b5db"
       },
       {
@@ -36,7 +36,7 @@
         "color": "#253a54",
         "recommendability": 4,
         "involvement": 1,
-        "categories": "Technology,Learning",
+        "categories": "Technology",
         "uuid": "f73fdb75-90f4-4d1a-aab0-90841ba04cf3"
       },
       {
@@ -144,7 +144,7 @@
         "color": "#003f5c",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Self-Care,Wellness",
+        "categories": "Wellness",
         "uuid": "1265b3a4-3569-4451-a18a-c7b79cb63f8e"
       },
       {
@@ -240,7 +240,7 @@
         "color": "#444e86",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Music,Learning",
+        "categories": "Music",
         "uuid": "5968ea08-f403-48bb-aa71-1e1a43398923"
       },
       {
@@ -288,7 +288,7 @@
         "color": "#5d6835",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Culture,Learning",
+        "categories": "Culture",
         "uuid": "b4f6ff2b-985e-4e31-b0f9-1340c78be9cc"
       },
       {
@@ -336,7 +336,7 @@
         "color": "#5c006a",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Culture,Learning",
+        "categories": "Culture",
         "uuid": "bed21a65-a6d7-4588-be8b-3543e3834bce"
       },
       {

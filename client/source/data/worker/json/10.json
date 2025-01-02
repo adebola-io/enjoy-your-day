@@ -12,7 +12,7 @@
         "color": "#003f5c",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Culture,Learning",
+        "categories": "Culture",
         "uuid": "9bd875e4-16ac-4b5c-a944-95504f49a95b"
       },
       {
@@ -216,7 +216,7 @@
         "color": "#00600f",
         "recommendability": 4,
         "involvement": 2,
-        "categories": "Philosophy,Learning",
+        "categories": "Philosophy",
         "uuid": "61609e66-4183-4f13-bf0f-b8b1f6c12a29"
       },
       {
@@ -228,7 +228,7 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Technology,Learning",
+        "categories": "Technology",
         "uuid": "902c5164-8df3-4b35-b36a-0e1dd4ae2f4c"
       },
       {
@@ -348,7 +348,7 @@
         "color": "#253a54",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Literature,Learning",
+        "categories": "Literature",
         "uuid": "28c04da4-5795-4ca0-95b2-94529cc991bc"
       },
       {

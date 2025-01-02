@@ -228,7 +228,7 @@
         "color": "#003f5c",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Culture,Learning",
+        "categories": "Culture",
         "uuid": "c98c0f36-6b2a-4cb6-8df8-3f44f6ec7e8c"
       },
       {
@@ -300,7 +300,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Style,Self-Care",
+        "categories": "Style",
         "uuid": "1e2d3573-10ed-4b67-ae1b-9d0051b7030d"
       },
       {

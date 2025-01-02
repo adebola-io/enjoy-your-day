@@ -276,7 +276,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Fitness,Learning",
+        "categories": "Fitness",
         "uuid": "3c3962ce-f54f-4203-a5ef-5ce7008083c4"
       },
       {
@@ -300,7 +300,7 @@
         "color": "#013c3b",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Learning,Fun",
+        "categories": "Fun",
         "uuid": "f421ec58-4d44-450a-bc46-9c17613f2276"
       },
       {

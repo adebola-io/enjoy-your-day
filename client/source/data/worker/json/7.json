@@ -180,7 +180,7 @@
         "color": "#5c006a",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Nature,Learning",
+        "categories": "Nature",
         "uuid": "942cf613-28b5-4954-b761-a194b442ceb3"
       },
       {
@@ -216,7 +216,7 @@
         "color": "#5c006a",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Mental Health,Learning",
+        "categories": "Mental Health",
         "uuid": "648e8b91-26a0-4c4f-8451-880042ebaada"
       },
       {
@@ -252,7 +252,7 @@
         "color": "#a90e57",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Nature,Learning",
+        "categories": "Nature",
         "uuid": "de5ca5f0-169f-496b-8cb2-4c404e3af2fa"
       },
       {
@@ -288,7 +288,7 @@
         "color": "#003f5c",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Science,Learning",
+        "categories": "Science",
         "uuid": "7e7564b9-8430-4f1b-8230-785133659a23"
       },
       {
@@ -300,7 +300,7 @@
         "color": "#004d40",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Wellness,Self-Care",
+        "categories": "Wellness",
         "uuid": "e75f0a4f-91d7-4658-8575-3b18031d5ed6"
       },
       {
@@ -336,7 +336,7 @@
         "color": "#2d0a62",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Technology,Learning",
+        "categories": "Technology",
         "uuid": "a1c3c55e-ae9a-40c1-99f0-c9c9acc70cc3"
       },
       {

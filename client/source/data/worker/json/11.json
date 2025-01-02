@@ -36,7 +36,7 @@
         "color": "#a90e57",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Style,Self-Care",
+        "categories": "Style",
         "uuid": "d22be1c7-078b-4395-9858-f7ecc529e549"
       },
       {
@@ -60,7 +60,7 @@
         "color": "#5c006a",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Style,Self-Care",
+        "categories": "Style",
         "uuid": "f66953e2-db1f-4b38-a218-bc2cd78dbef9"
       },
       {
@@ -180,7 +180,7 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Social Connection,Self-Care",
+        "categories": "Social Connection",
         "uuid": "da5fbc4e-a7d1-4137-95ae-21fe2260f3b3"
       },
       {
@@ -300,7 +300,7 @@
         "color": "#05688f",
         "recommendability": 4,
         "involvement": 3,
-        "categories": "Learning,Culture",
+        "categories": "Culture",
         "uuid": "b73319e0-765d-45c0-8d5a-74c44a30e6dc"
       },
       {
@@ -348,7 +348,7 @@
         "color": "#b93200",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Style,Self-Care",
+        "categories": "Style",
         "uuid": "7a72f11a-0e02-46d9-bd6f-e9f30f62061f"
       },
       {

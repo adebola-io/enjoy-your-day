@@ -21,7 +21,7 @@ export interface Goal {
 }
 
 export interface GoalProps {
-  dateAdded: Date;
+  dateAdded: Date | string;
   uuid: string;
   title: string;
   instruction: string;

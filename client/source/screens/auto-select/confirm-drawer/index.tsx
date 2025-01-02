@@ -12,7 +12,8 @@ import { Temporal } from 'temporal-polyfill';
 import classes from './confirm-drawer.module.css';
 
 function transformToGoalState(goal: GoalProps): GoalState {
-  return { goal, state: 'scheduled', updatedAt: null };
+  const dateAdded = new Date(goal.dateAdded).toISOString();
+  return { goal: { ...goal, dateAdded }, state: 'scheduled', updatedAt: null };
 }
 
 async function saveGoalsForToday(goals: GoalProps[]) {
@@ -79,6 +80,16 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
     );
   };
 
+  const ErrorOccurred = () => (
+    <>
+      <h2 class={classes.heading}>An Error Occurred.</h2>
+      <p class={classes.text}>{resource.error.value?.message}</p>
+      <Button variant="secondary" rounded onClick={saveGoals}>
+        Try Again
+      </Button>
+    </>
+  );
+
   return (
     <BottomDrawer
       class={classes.container}
@@ -92,7 +103,7 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
       {Switch(state, {
         inert: Prompt,
         pending: Pending,
-        error: NoOp,
+        error: ErrorOccurred,
         success: NoOp,
       })}
     </BottomDrawer>

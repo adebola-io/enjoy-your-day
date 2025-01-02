@@ -15,9 +15,8 @@ export async function* getNewData(
     try {
       const data = (await import(`./json/${i}.json`)).default;
       const goals = data.goals;
-      const addedGoalObjects = retrieveCategoryIdentifiers(
-        assignGoalUuids(goals.added),
-        categories
+      const addedGoalObjects = setDates(
+        getCategoryIdentifiers(goals.added, categories)
       );
       yield {
         addedGoalObjects,
@@ -32,30 +31,14 @@ export async function* getNewData(
   }
 }
 
-/**
- * Assigns a unique UUID to each goal in the provided array.
- * @param goals - An array of GoalProps objects to assign UUIDs to.
- * @returns The input goals array with UUIDs assigned to each goal.
- */
-function assignGoalUuids(goals: GoalProps[]) {
+function setDates(goals: Array<GoalProps>) {
   for (const goal of goals) {
-    goal.uuid = crypto.randomUUID();
+    goal.dateAdded = new Date(goal.dateAdded);
   }
   return goals;
 }
 
-/**
- * Retrieves the category identifiers for the provided goals, matching them to the
- * corresponding categories in the provided categories map.
- *
- * @param goals - An array of GoalProps objects, each with a `categories` property
- *   containing a string or array of category names.
- * @param categories - A Map of category names to Category objects, used to look up
- *   the UUID for each category.
- * @returns The input goals array with the `categories` property updated to contain
- *   an array of category UUIDs instead of names.
- */
-function retrieveCategoryIdentifiers(
+function getCategoryIdentifiers(
   goals: Array<GoalProps & { categories: string | string[] }>,
   categories: Map<string, SendableCategory>
 ) {
@@ -63,18 +46,14 @@ function retrieveCategoryIdentifiers(
     const categoryNames = (goal.categories as string)
       .split(',')
       .filter(Boolean);
-    const categoryUuids = [];
+    goal.categories = categoryNames;
     for (const categoryName of categoryNames) {
       const categoryObj = categories.get(categoryName);
-      if (categoryObj) {
-        categoryUuids.push(categoryObj.uuid);
-        continue;
-      }
+      if (categoryObj) continue;
       console.error(
         'Error matching uuids, category not found locally:',
         categoryName
       );
-      goal.categories = categoryUuids;
     }
   }
   return goals;

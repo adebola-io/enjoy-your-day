@@ -1,5 +1,6 @@
 import type { Cell } from '@adbl/cells';
 import type { IconName } from '#/library/icon-name';
+import type { GoalColor } from '#/library/goal-color';
 
 export type Nullable<T> = T | null;
 export type Id<T> = T & string;
@@ -20,11 +21,12 @@ export interface Goal {
 }
 
 export interface GoalProps {
+  dateAdded: Date;
   uuid: string;
   title: string;
   instruction: string;
   info: string;
-  color: string;
+  color: GoalColor;
   icon: IconName;
   index?: Cell<number>;
   total?: Cell<number>;
@@ -43,6 +45,17 @@ export interface Category {
   theme_color: string;
   goals: Array<Id<Goal>>;
   creator: Id<User>;
+}
+
+export interface HistoryRecordRaw {
+  uuid: string;
+  date: string;
+  goalStates: GoalState[];
+}
+export interface HistoryRecord {
+  uuid: string;
+  date: Date;
+  goalStates: GoalState[];
 }
 
 export interface Journey {

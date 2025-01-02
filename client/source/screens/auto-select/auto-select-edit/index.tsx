@@ -16,6 +16,7 @@ import {
 } from '#/data/db';
 import { CSS_VARS } from '#/styles/variables';
 import classes from './auto-selection-edit.module.css';
+import { selectedCategories } from '#/data/state';
 
 export interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[]>;
@@ -42,9 +43,11 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
 
   const openSearch = () => {
     if (!searchIsOpen.value) {
-      getExampleGoalInstruction(goalUuids.value).then((example) => {
-        placeholder.value = `e.g. ${example}`;
-      });
+      getExampleGoalInstruction(goalUuids.value, selectedCategories.value).then(
+        (example) => {
+          placeholder.value = `e.g. ${example}`;
+        }
+      );
       router.navigate(searchHref);
     }
   };
@@ -69,9 +72,11 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
     setMetaTheme('#ffffff');
     setAutoSelectStage(2);
 
-    getExampleGoalInstruction(goalUuids.value).then((example) => {
-      placeholder.value = `e.g. ${example}`;
-    });
+    getExampleGoalInstruction(goalUuids.value, selectedCategories.value).then(
+      (example) => {
+        placeholder.value = `e.g. ${example}`;
+      }
+    );
   });
 
   const autoComplete = (query: string) => {

@@ -70,20 +70,11 @@
 .timeGreeting,
 .encouragement,
 .progressBar {
-  --starting-fade-position-y: 50%;
   z-index: 2;
-  animation: var(--fade-in-from-bottom) var(--default-duration);
   margin-inline: var(--side-padding);
 }
 
-.timeGreeting,
-.encouragement,
-.progressBar {
-  animation-fill-mode: backwards;
-}
-
 .timeGreeting {
-  animation-delay: calc(var(--default-duration) * 0.5);
   font: var(--eyebrow-bold);
 }
 
@@ -114,14 +105,6 @@
     background: white;
     content: '';
   }
-}
-
-.encouragement {
-  animation-delay: calc(var(--default-duration) * 1);
-}
-
-.progressBar {
-  animation-delay: calc(var(--default-duration) * 1.5);
 }
 
 .goalsCompletedBadge {

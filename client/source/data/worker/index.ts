@@ -32,7 +32,10 @@ export async function toWorker<T extends WorkerProtocol.Requests.Request>(
   return new Promise((resolve, reject) => {
     const id = crypto.randomUUID();
     messageIdToPromiseHandlerMap.set(id, { reject, resolve });
-    dbWorker.postMessage({ id, message } as WorkerProtocol.Message<T>);
+    dbWorker.postMessage({
+      id,
+      message: JSON.parse(JSON.stringify(message)),
+    } as WorkerProtocol.Message<T>);
   });
 }
 

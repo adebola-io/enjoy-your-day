@@ -5,6 +5,7 @@ import { CSS_VARS } from '#/styles/variables';
 import { Cell } from '@adbl/cells';
 import classes from './goals-completed.module.css';
 import confetti from 'canvas-confetti';
+import { InlinedIcon } from '#/components/inlined-icon';
 
 export function GoalsCompletedDrawer() {
   const router = useRouter();
@@ -36,8 +37,13 @@ export function GoalsCompletedDrawer() {
       root="#mainOutlet"
       data-stagger-children={isOpen}
     >
-      <ConfettiIcon class={classes.icon} />
-      <h2 class={classes.heading}>Congrats to you!</h2>
+      <InlinedIcon
+        Icon={ConfettiIcon}
+        class={classes.icon}
+        color={CSS_VARS['--space-cadet-500']}
+        title="Confetti Icon"
+      />
+      <h2 class={classes.heading}>Congratulations!</h2>
       <p class={classes.text}>
         Well done! You completed all your goals. I hope you had an interesting
         day.

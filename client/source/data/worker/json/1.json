@@ -1,4 +1,5 @@
 {
+  "$schema": "./schema.json",
   "chunk": 1,
   "goals": {
     "added": [
@@ -8,11 +9,11 @@
         "instruction": "Water a plant in your home.",
         "info": "Watering a plant is a simple act of care that connects you to nature. It fosters a sense of responsibility and provides a moment of peaceful engagement with the living world.",
         "icon": "two-leaves",
-        "color": "#3A5249",
+        "color": "#00600f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Nature,Wellness,Mindfulness",
-        "uuid": "5e6448d7-5b74-4344-8e67-cfa37bb7df9c"
+        "categories": "Nature,Home Care",
+        "uuid": "2b4c16d6-1f95-4114-930b-9490c54aa7bb"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -20,11 +21,11 @@
         "instruction": "Create a playlist with 5 songs.",
         "info": "Discovering new music can invigorate your day and broaden your horizons. Curating a playlist allows for personal expression and the potential to stumble upon your next favorite track.",
         "icon": "music",
-        "color": "#360464",
+        "color": "#5c006a",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Music,Arts,Fun",
-        "uuid": "1e492a6d-c622-4996-8874-0d8e441a0cf5"
+        "categories": "Music,Arts",
+        "uuid": "5ce3b2fe-9041-4c7f-a930-c499cb52bd26"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -32,23 +33,23 @@
         "instruction": "Write a poem about a river.",
         "info": "Engaging in creative writing, such as poetry, stimulates the imagination. Observing a river's flow can be a meditative experience, offering metaphors for life's constant movement and change.",
         "icon": "quill",
-        "color": "#007171",
+        "color": "#05688f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Literature,Mindfulness",
-        "uuid": "d07527a3-2651-488c-9090-bdafb5007416"
+        "categories": "Literature,Arts",
+        "uuid": "29aa1359-da35-4627-ae24-07f9d546877b"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "In Between the Lines",
         "instruction": "Organize your bookshelf by genre.",
         "info": "A well-organized bookshelf not only enhances the aesthetic of your space but also reflects your interests. Categorizing by genre can make it easier to find the book you're looking for.",
-        "icon": "literature",
-        "color": "#543B48",
+        "icon": "book",
+        "color": "#2f2f2f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Home Care,Literature,Productivity",
-        "uuid": "6995684e-022f-403d-9ea1-57076fb50fa7"
+        "categories": "Home Care,Productivity",
+        "uuid": "4549d3eb-abfc-4315-ac60-9c64e5a1fdd4"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -56,23 +57,23 @@
         "instruction": "Try a new spice in a recipe.",
         "info": "Experimenting with new spices elevates your culinary skills and introduces your palate to diverse flavors. It's a simple way to add an unexpected twist to familiar dishes and explore different cultures.",
         "icon": "spice",
-        "color": "#923131",
+        "color": "#004d40",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Cooking,Culture,Fun",
-        "uuid": "b71ec30e-4a40-46e0-a068-0568be3a1719"
+        "categories": "Cooking,Culture",
+        "uuid": "95a275e7-a061-41e6-919b-f1a7d609cb76"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "A Praise Parade",
         "instruction": "Compliment six strangers.",
         "info": "Offering genuine compliments can brighten someone's day and foster positive social interactions. It costs nothing to be kind, and the ripple effect of a single compliment can be surprisingly far-reaching.",
-        "icon": "chat-bubble",
-        "color": "#1C2430",
+        "icon": "smiley-face",
+        "color": "#a90e57",
         "recommendability": 1,
-        "involvement": 2,
-        "categories": "Social Connection,Volunteering,Wellness",
-        "uuid": "6a5f417d-a4dc-4238-8f30-3f18fd3ad159"
+        "involvement": 1,
+        "categories": "Social Connection,Wellness",
+        "uuid": "aae803cb-8258-4e07-b4c1-d61e6522b44c"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -80,47 +81,47 @@
         "instruction": "Sketch something you see outside.",
         "info": "Sketching from nature encourages you to observe the world more closely. It's a relaxing activity that hones your artistic skills and allows you to capture the beauty of the everyday.",
         "icon": "pencil",
-        "color": "#1E5A2C",
+        "color": "#05688f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Arts,Nature,Mindfulness",
-        "uuid": "c1b3108b-ba99-4d40-aa66-a274541e56bb"
+        "categories": "Arts,Nature",
+        "uuid": "52a1d1e5-b818-4862-98c1-401edd9450d9"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
-        "title": "Tricks, the Tutorial",
+        "title": "Tips and Tricks",
         "instruction": "Learn a magic trick.",
         "info": "Learning a magic trick can be a fun way to entertain friends and family. It challenges your dexterity and showmanship, while also providing a sense of wonder and accomplishment when mastered.",
         "icon": "wand",
-        "color": "#181E4E",
-        "recommendability": 2,
+        "color": "#53086f",
+        "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Fun,Games",
-        "uuid": "9137f823-2272-4d07-8760-7a59e2187fb2"
+        "categories": "Fun,Arts",
+        "uuid": "07dc7afd-5dcb-486d-8433-120dfe8a2e98"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
-        "title": "Dearest Future Me",
+        "title": "Dear Future Me",
         "instruction": "Write a letter to your future self.",
         "info": "A letter to your future self offers a unique form of reflection. It provides a snapshot of your current hopes and dreams, allowing for an interesting comparison when read later.",
         "icon": "love-letter",
-        "color": "#6A0414",
+        "color": "#003f5c",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Mindfulness,Mental Health,Storytelling",
-        "uuid": "d2abf24a-b76f-4448-a7da-460227900014"
+        "categories": "Mindfulness,Literature",
+        "uuid": "4b562d5c-8cfb-4014-be60-2d9e328d8d82"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
-        "title": "Last Chance Creatures",
+        "title": "Vanishing Act",
         "instruction": "Research an endangered animal.",
         "info": "Researching endangered species raises awareness about conservation efforts. Understanding the challenges faced by these animals can inspire action and a greater appreciation for biodiversity.",
-        "icon": "paw",
-        "color": "#4E2A68",
+        "icon": "owl",
+        "color": "#016760",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Nature,Science,Green Living",
-        "uuid": "a6c8bb2b-f92d-487e-b6c3-d11e277c827f"
+        "categories": "Nature,Science",
+        "uuid": "a368c6ae-bcde-45ab-8921-16f3121417b3"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -128,23 +129,23 @@
         "instruction": "Take a photo of something blue.",
         "info": "Focusing on a specific color, like blue, can enhance your photographic eye. It's an exercise in observation, encouraging you to find beauty in the mundane and to see your surroundings in a new light.",
         "icon": "camera",
-        "color": "#003049",
+        "color": "#444e86",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Photography,Arts,Mindfulness",
-        "uuid": "2400b817-a747-4bf3-a37c-f564b82c43af"
+        "categories": "Photography,Arts",
+        "uuid": "fe71b5e1-404d-430f-a8d2-ccc5ddcc0379"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
-        "title": "Email Exorcism",
+        "title": "Inbox Zero",
         "instruction": "Organize your email inbox.",
         "info": "A clean inbox promotes mental clarity and efficiency. Tackling digital clutter reduces stress and ensures important messages aren't lost in the shuffle.",
         "icon": "mail",
-        "color": "#245081",
-        "recommendability": 1,
+        "color": "#253a54",
+        "recommendability": 2,
         "involvement": 2,
-        "categories": "Productivity,Technology,Mindfulness",
-        "uuid": "b4d49f1a-ccfa-4932-8c1e-f1fda7a45c21"
+        "categories": "Productivity,Technology",
+        "uuid": "517f8d2d-f55b-4f26-b68c-d6a69e4e2686"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -152,23 +153,23 @@
         "instruction": "Cook a meal with only 3 ingredients.",
         "info": "Cooking with minimal ingredients challenges your creativity in the kitchen. It demonstrates that delicious meals don't require complex recipes and encourages resourcefulness with what's on hand.",
         "icon": "cooking",
-        "color": "#64363C",
-        "recommendability": 2,
+        "color": "#5d6835",
+        "recommendability": 3,
         "involvement": 2,
-        "categories": "Cooking,Home Care,Productivity",
-        "uuid": "02b28944-07b9-4f01-b787-8ead2e31ea62"
+        "categories": "Cooking,Arts",
+        "uuid": "bf6a8d98-8c28-4b8f-aac6-20a3fd120c39"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "Credits and Critique",
-        "instruction": "Review a movie you watched.",
+        "instruction": "Review of a movie you watched.",
         "info": "Writing a movie review sharpens critical thinking skills and allows for a deeper engagement with the film. Sharing your perspective can also influence others' viewing choices and spark engaging discussions.",
-        "icon": "film-roll",
-        "color": "#321A19",
-        "recommendability": 2,
+        "icon": "clapperboard",
+        "color": "#801d02",
+        "recommendability": 3,
         "involvement": 2,
-        "categories": "Film,Literature,Arts",
-        "uuid": "8e57236b-f58d-44c5-a1fa-4aabe59f47b0"
+        "categories": "Film,Literature",
+        "uuid": "a7b99da7-5e37-4e05-b425-aa6ea5c6dab7"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -176,11 +177,11 @@
         "instruction": "Call a relative you haven't spoken to in months.",
         "info": "Reconnecting with distant relatives strengthens familial bonds. A simple phone call can bridge geographical distances and maintain relationships that might otherwise fade.",
         "icon": "phone",
-        "color": "#37343D",
-        "recommendability": 1,
+        "color": "#a90e57",
+        "recommendability": 2,
         "involvement": 1,
-        "categories": "Social Connection,Wellness,Home Care",
-        "uuid": "bbe6d6c3-0e78-42f6-9c83-dad5dacf9a62"
+        "categories": "Social Connection",
+        "uuid": "26c3ccf1-02f5-4227-a611-67671998e19f"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -188,11 +189,11 @@
         "instruction": "Rearrange one piece of furniture.",
         "info": "Rearranging furniture can refresh your living space and create a new perspective. This minor change can improve flow, functionality, and overall ambiance without much effort.",
         "icon": "couch",
-        "color": "#0A1128",
+        "color": "#2f384f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Home Care,Productivity,Mindfulness",
-        "uuid": "30638706-2f1c-47b0-bd9f-56b315e24302"
+        "categories": "Home Care,Productivity",
+        "uuid": "84f6983b-fed1-4eb9-980c-7e9e70ee90f3"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -200,11 +201,11 @@
         "instruction": "Memorize a short poem.",
         "info": "Memorizing poetry enhances memory and appreciation for language. It provides a mental exercise and a repertoire of verses to recite and reflect upon.",
         "icon": "literature",
-        "color": "#4D4456",
-        "recommendability": 2,
+        "color": "#9a0007",
+        "recommendability": 3,
         "involvement": 2,
-        "categories": "Literature,Arts,Mindfulness",
-        "uuid": "79598948-afe9-4c04-9d62-dc9c2170b8a5"
+        "categories": "Literature,Mental Health",
+        "uuid": "aedd3fa8-d6d0-408d-a0db-b18f48763c09"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -212,23 +213,23 @@
         "instruction": "Build a paper airplane and fly it.",
         "info": "Building and flying a paper airplane is a playful activity that can evoke childhood nostalgia. It's a simple pleasure that combines creativity with a basic understanding of aerodynamics.",
         "icon": "paper-plane",
-        "color": "#313B3A",
+        "color": "#00600f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fun,Arts,Science",
-        "uuid": "5b88cc9d-d91d-4f0d-9551-42d64cd407ce"
+        "categories": "Fun,Arts",
+        "uuid": "aa0220f9-4c37-4582-bc20-a8b9177cb405"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
-        "title": "The Sky's Breath",
+        "title": "Sky's Breath",
         "instruction": "Write a haiku about clouds.",
         "info": "Composing a haiku encourages concise and evocative expression. Observing clouds and capturing their essence in a few words connects you to nature and stimulates poetic thought.",
         "icon": "cloud",
-        "color": "#101820",
+        "color": "#003f5c",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Literature,Nature",
-        "uuid": "0ccd60dc-256b-43fb-9ba3-3225745b73b3"
+        "categories": "Nature,Literature",
+        "uuid": "22886176-8ce9-4829-b9b6-1bd5ae1d20a8"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -236,35 +237,35 @@
         "instruction": "Draw a self-portrait from memory.",
         "info": "Drawing a self-portrait from memory is a unique challenge that tests your self-perception. It is an introspective exercise that reveals how you see yourself, independent of a mirror's reflection.",
         "icon": "mirror",
-        "color": "#011627",
+        "color": "#9a0007",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Mindfulness,Mental Health",
-        "uuid": "e1aa0cd2-ec9b-4153-b0f9-1655d2a2e506"
+        "categories": "Arts,Mental Health",
+        "uuid": "2f6647b3-515a-4489-8282-b4eb1ca3d3ad"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
-        "title": "Five Alive Futures",
+        "title": "Ladder Climber",
         "instruction": "Make a list of five career goals.",
         "info": "Listing career goals provides direction and motivation. It helps clarify aspirations and serves as a roadmap for professional development, turning abstract ambitions into actionable steps.",
         "icon": "briefcase",
-        "color": "#433D3F",
+        "color": "#004d40",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Profession,Productivity,Mental Health",
-        "uuid": "ca5aec9d-aeb2-4393-aa23-7db194aa1c8d"
+        "categories": "Profession,Productivity",
+        "uuid": "001e5aa9-4ad2-4080-abb2-5f69e9062c53"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "Loop Ahead",
         "instruction": "Learn to tie a new type of knot.",
         "info": "Learning a new knot is a practical skill with various applications, from camping to crafting. It enhances dexterity and problem-solving abilities, while also providing a sense of accomplishment.",
-        "icon": "padlock",
-        "color": "#24262B",
+        "icon": "paper-clip",
+        "color": "#05688f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Crafts,Productivity,Adventure",
-        "uuid": "b7ebcebd-f0c3-4e1f-98fa-bdd5d3a3f7dc"
+        "categories": "Crafts",
+        "uuid": "2d83265a-83ab-4a4c-abf8-12504df4a2f0"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -272,11 +273,11 @@
         "instruction": "Pick up five pieces of litter outside.",
         "info": "Picking up litter is a small act of environmental stewardship. It improves the appearance of your community and contributes to a healthier ecosystem, however incremental the contribution.",
         "icon": "recycle",
-        "color": "#323E1D",
+        "color": "#016760",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Green Living,Volunteering,Nature",
-        "uuid": "1bdb2311-80b8-46c0-908e-53bcd1c232ec"
+        "categories": "Nature,Green Living",
+        "uuid": "b450e9ac-e963-4e07-b253-1de32ae945d2"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -284,11 +285,11 @@
         "instruction": "Draw a map of your neighborhood.",
         "info": "Drawing a map of your neighborhood enhances spatial awareness and observation skills. It allows you to engage with your surroundings in a detailed manner, noticing elements you might otherwise overlook.",
         "icon": "map-pin",
-        "color": "#1B3B6F",
-        "recommendability": 2,
+        "color": "#3e2723",
+        "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Mindfulness,Adventure",
-        "uuid": "5d8d6697-2443-4cfe-a870-938c50f12832"
+        "categories": "Arts,Urban Exploration",
+        "uuid": "6827a946-1a46-42d1-b3f5-9c624b145df2"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -296,23 +297,23 @@
         "instruction": "Bake a loaf of bread.",
         "info": "Baking bread is a rewarding culinary experience that fills your home with a comforting aroma. It is a tangible, delicious representation of patience and the magic of simple ingredients transforming under heat.",
         "icon": "bread",
-        "color": "#382329",
-        "recommendability": 2,
+        "color": "#b93200",
+        "recommendability": 3,
         "involvement": 3,
-        "categories": "Cooking,Home Care,Mindfulness",
-        "uuid": "4b973d24-933a-4439-aaa6-732a9c8956c8"
+        "categories": "Cooking,Arts",
+        "uuid": "c6c599ff-adcd-4f14-814a-ef7fa63ffa0e"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "Hemingway's Hundred",
         "instruction": "Write a short story in 100 words.",
         "info": "Writing a 100-word story challenges you to be concise and impactful with your words. It's an exercise in brevity that can improve your ability to convey a narrative effectively.",
-        "icon": "storytelling",
-        "color": "#1F0D22",
+        "icon": "paper",
+        "color": "#444e86",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Literature,Arts,Storytelling",
-        "uuid": "822a8724-9b9e-49b2-b6a1-0d440699a6a0"
+        "categories": "Literature,Storytelling",
+        "uuid": "83c3c3d3-b8e3-4401-861a-5c79821945ef"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
@@ -320,47 +321,47 @@
         "instruction": "Watch a documentary about space.",
         "info": "Watching a space documentary expands your knowledge of the universe. It satisfies curiosity and provides a sense of awe and perspective, reminding you of the vastness beyond our planet.",
         "icon": "telescope",
-        "color": "#22092C",
+        "color": "#013c3b",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Science,Culture,Film",
-        "uuid": "d8cd806b-ff9b-48c8-bdd2-980146ecf91e"
+        "categories": "Science,Technology",
+        "uuid": "ed86d4c1-41f0-4d0d-9565-2fd269991191"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "Three's Company",
         "instruction": "Paint using only three colors.",
         "info": "Painting with a limited palette encourages creativity and resourcefulness. It forces you to experiment with color mixing and develop a deeper understanding of color theory.",
-        "icon": "palette",
-        "color": "#23243C",
-        "recommendability": 2,
+        "icon": "color-picker",
+        "color": "#5d6835",
+        "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Creativity,Mindfulness",
-        "uuid": "47e7440f-9eca-4a27-a211-5640f9ccf9e1"
+        "categories": "Arts,Digital Design",
+        "uuid": "02be7f4d-e76f-4a10-918b-444ffaddd08e"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
         "title": "The Literary Canon",
         "instruction": "Make a list of your favorite books.",
         "info": "Creating a list of your favorite books is a reflective exercise that revisits meaningful stories. It provides insight into your literary preferences and can be a valuable resource for recommending books to others.",
-        "icon": "literature",
-        "color": "#311B3B",
-        "recommendability": 1,
+        "icon": "book",
+        "color": "#a90e57",
+        "recommendability": 2,
         "involvement": 1,
-        "categories": "Literature,Mindfulness,Arts",
-        "uuid": "e90a9639-dcc1-4864-981d-e1bcba23a9e4"
+        "categories": "Literature",
+        "uuid": "3833dacb-c9b3-478e-a47f-f56788bd980b"
       },
       {
         "dateAdded": "2024-12-28T00:01:00.000Z",
-        "title": "The Roads Not Taken",
+        "title": "Roads Not Taken",
         "instruction": "Walk a route you've never taken before.",
         "info": "Taking a new route during a walk can offer fresh perspectives and discoveries. This can break routine, stimulate the senses, and perhaps introduce you to hidden gems in familiar surroundings.",
         "icon": "road",
-        "color": "#2E294E",
-        "recommendability": 1,
+        "color": "#5c006a",
+        "recommendability": 2,
         "involvement": 1,
-        "categories": "Adventure,Mindfulness,Wellness",
-        "uuid": "f977611b-8650-4244-81e4-46c06eb079fe"
+        "categories": "Adventure,Nature",
+        "uuid": "1ba5eaaf-0245-4147-934f-0110ae56fe91"
       }
     ],
     "removed": [],

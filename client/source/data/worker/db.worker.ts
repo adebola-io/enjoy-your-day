@@ -3,8 +3,15 @@ import type { GoalProps } from '../entities';
 import { getNewData } from './update';
 import { dexie } from './dexie';
 
-const goals: GoalProps[] = [];
 let isUpdatingGoals = false;
+
+function shuffleArray(array: GoalProps[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 const messageHandlers: WorkerProtocol.MessageHandlerMap = {
   async ping() {
@@ -16,52 +23,46 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
   },
 
   async 'goals.today'(data) {
-    const todaysGoals: GoalProps[] = [];
-    let i = 0;
-    const goalsInCategories = goals.filter((g) =>
-      data.message.categories.some((c) => g.categories.includes(c))
-    );
-    while (i++ < 6) {
-      let index = Math.floor(Math.random() * goalsInCategories.length);
-      while (todaysGoals.includes(goalsInCategories[index])) {
-        index = Math.floor(Math.random() * goalsInCategories.length);
-      }
-      todaysGoals.push(goalsInCategories[index]);
-    }
-    return todaysGoals;
+    const { categories } = data.message;
+
+    const yesterdaysRecord = await dexie.history
+      .where('date')
+      .below(new Date())
+      .last();
+    const yesterdaysGoals =
+      yesterdaysRecord?.goalStates.map((g) => g.goal) ?? [];
+    const goalsInCategories = dexie.goals
+      .where('categories')
+      .anyOf(categories)
+      .filter((g) => !yesterdaysGoals.includes(g));
+
+    return shuffleArray(await goalsInCategories.toArray()).slice(0, 6);
   },
 
   async 'goals.autocomplete'(data) {
     const { query, addedUuids } = data.message;
     const queryLower = query.trim().toLowerCase();
-    const results = [];
 
-    for (const goal of goals) {
-      const isMatch =
-        goal.instruction.toLowerCase().includes(queryLower) ||
-        goal.title.toLowerCase().includes(queryLower);
-      if (!isMatch || addedUuids.includes(goal.uuid)) continue;
-      results.push(goal);
-      if (results.length === 5) break;
-    }
-    return results;
+    return await dexie.goals
+      .where('title')
+      .startsWithIgnoreCase(queryLower)
+      .or('instruction')
+      .startsWithIgnoreCase(queryLower)
+      .filter((g) => !addedUuids.includes(g.uuid))
+      .limit(5)
+      .toArray();
   },
 
   async 'goals.search-example'(data) {
     const { selected, categories } = data.message;
-    const categoryGoals = goals.filter((g) =>
-      categories.some((c) => g.categories.includes(c))
-    );
-    let example = Math.floor(Math.random() * categoryGoals.length);
-    let i = 0;
-    while (
-      selected.includes(categoryGoals[example].uuid) &&
-      i < categoryGoals.length
-    ) {
-      example = Math.floor(Math.random() * categoryGoals.length);
-      i++;
-    }
-    return categoryGoals[example].instruction.toLowerCase();
+
+    return shuffleArray(
+      await dexie.goals
+        .where('categories')
+        .anyOf(categories)
+        .filter((g) => !selected.includes(g.uuid))
+        .toArray()
+    )[0].instruction.toLowerCase();
   },
 
   async 'goals.update'(data) {
@@ -71,10 +72,8 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
     const reloader = getNewData(lastLoadedChunk, latestChunk, categoryList);
     try {
       for await (const update of reloader) {
-        const newGoals = update.addedGoalObjects;
-        goals.push(...newGoals);
         // Adding new goals:
-        dexie.goals.bulkPut(update.addedGoalObjects).then(() => {
+        dexie.goals.bulkAdd(update.addedGoalObjects).then(() => {
           // Removing goals:
           for (const goalUuid of update.removedGoalUuids) {
             dexie.goals.where('uuid').equals(goalUuid).delete();
@@ -91,8 +90,13 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
     }
   },
 
-  async 'goals.record'() {
-    // TODO: Update IndexedDB here.
+  async 'goals.record'(data) {
+    const { goalStates } = data.message;
+    await dexie.history.add({
+      uuid: crypto.randomUUID(),
+      date: new Date(data.message.date),
+      goalStates,
+    });
     return true;
   },
 };

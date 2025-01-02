@@ -47,6 +47,17 @@ export interface Category {
   creator: Id<User>;
 }
 
+export interface HistoryRecordRaw {
+  uuid: string;
+  date: string;
+  goalStates: GoalState[];
+}
+export interface HistoryRecord {
+  uuid: string;
+  date: Date;
+  goalStates: GoalState[];
+}
+
 export interface Journey {
   description: string;
   icon_name: string;

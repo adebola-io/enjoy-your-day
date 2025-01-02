@@ -38,17 +38,6 @@ function setDates(goals: Array<GoalProps>) {
   return goals;
 }
 
-/**
- * Retrieves the category identifiers for the provided goals, matching them to the
- * corresponding categories in the provided categories map.
- *
- * @param goals - An array of GoalProps objects, each with a `categories` property
- *   containing a string or array of category names.
- * @param categories - A Map of category names to Category objects, used to look up
- *   the UUID for each category.
- * @returns The input goals array with the `categories` property updated to contain
- *   an array of category UUIDs instead of names.
- */
 function getCategoryIdentifiers(
   goals: Array<GoalProps & { categories: string | string[] }>,
   categories: Map<string, SendableCategory>
@@ -57,18 +46,14 @@ function getCategoryIdentifiers(
     const categoryNames = (goal.categories as string)
       .split(',')
       .filter(Boolean);
-    const categoryUuids = [];
+    goal.categories = categoryNames;
     for (const categoryName of categoryNames) {
       const categoryObj = categories.get(categoryName);
-      if (categoryObj) {
-        categoryUuids.push(categoryObj.uuid);
-        continue;
-      }
+      if (categoryObj) continue;
       console.error(
         'Error matching uuids, category not found locally:',
         categoryName
       );
-      goal.categories = categoryUuids;
     }
   }
   return goals;

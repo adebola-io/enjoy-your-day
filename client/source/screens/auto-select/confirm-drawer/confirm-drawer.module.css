@@ -1,6 +1,6 @@
 .container {
   --drawer-open-position-y: 0;
-  --drawer-visible-height: max(300px, 40dvh);
+  --drawer-visible-height: max(400px, 45dvh);
   --initial-stagger-delay: calc(var(--drawer) * 0.8);
   position: relative;
   display: grid;
@@ -115,6 +115,7 @@
 
 .heading {
   margin-bottom: 1dvh;
+  font: var(--subtitle-bold);
 }
 
 .text {

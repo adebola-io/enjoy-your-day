@@ -58,7 +58,7 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
     return (
       <>
         <PadLockIcon class={classes.padlock} />
-        <h2 class={classes.heading}>Get Started?</h2>
+        <h2 class={classes.heading}>Almost There...</h2>
         <p class={classes.text}>
           Once set, these goals cannot be changed until the day is over. Are you
           ready?

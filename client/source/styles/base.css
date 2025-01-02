@@ -128,8 +128,8 @@ body {
 
   &[data-auto-select-is-open] {
     /* filter: brightness(0.65); */
-    translate: -40% 0;
-    scale: 0.4 0.9;
+    translate: -30% 0;
+    scale: 1 0.9;
   }
 
   body:has(#autoSelectionView[data-stage='3']) & {

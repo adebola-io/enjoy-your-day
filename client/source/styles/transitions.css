@@ -41,6 +41,31 @@
   --loader-fill: loader-fill;
   --expand-in: expand-in;
   --hide: hide;
+  --bounce: bounce;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-20%);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  70% {
+    transform: translateY(-5%);
+  }
+  80% {
+    transform: translateY(0);
+  }
+  95% {
+    transform: translateY(-3%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes shrink-out {
@@ -257,16 +282,29 @@
 
 [data-stagger-children] {
   --initial-stagger-delay: 0ms;
+  --stagger-difference: 0.5;
   --stagger-item-1: var(--fade-in-from-bottom) var(--default-duration)
     var(--initial-stagger-delay);
   --stagger-item-2: var(--fade-in-from-bottom) var(--default-duration)
-    calc(var(--initial-stagger-delay) + var(--default-duration) * 0.5);
+    calc(
+      var(--initial-stagger-delay) + var(--default-duration) *
+        var(--stagger-difference)
+    );
   --stagger-item-3: var(--fade-in-from-bottom) var(--default-duration)
-    calc(var(--initial-stagger-delay) + var(--default-duration) * 0.9);
+    calc(
+      var(--initial-stagger-delay) + var(--default-duration) *
+        (var(--stagger-difference) * 2)
+    );
   --stagger-item-4: var(--fade-in-from-bottom) var(--default-duration)
-    calc(var(--initial-stagger-delay) + var(--default-duration) * 1.2);
+    calc(
+      var(--initial-stagger-delay) + var(--default-duration) *
+        (var(--stagger-difference) * 3)
+    );
   --stagger-item-5: var(--fade-in-from-bottom) var(--default-duration)
-    calc(var(--initial-stagger-delay) + var(--default-duration) * 1.5);
+    calc(
+      var(--initial-stagger-delay) + var(--default-duration) *
+        (var(--stagger-difference) * 4)
+    );
 
   & > * {
     &:first-child {

@@ -11,9 +11,13 @@
 }
 
 .icon {
-  width: 125px;
+  width: min(200px, 15dvh);
   height: auto;
   aspect-ratio: 1;
+}
+
+.heading {
+  font: var(--title-bold);
 }
 
 .text {

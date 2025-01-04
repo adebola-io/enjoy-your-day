@@ -3,7 +3,7 @@ import { useLiveDate } from '@adbl/dom-cells/useDate';
 import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 import type { GoalState } from '#/data/entities';
 import { Temporal } from 'temporal-polyfill';
-import { saveGoalState } from './db';
+import { saveGoalState } from './services';
 
 export const DATE_UPDATE_INTERVAL = 1000 * 30; // updates every 30 seconds.
 export const LOCALSTORAGE_KEYS = {

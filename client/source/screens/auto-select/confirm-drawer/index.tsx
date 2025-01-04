@@ -96,7 +96,7 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
       open={drawerIsOpen}
       closable={drawerClosable}
       onClose={handleDrawerClose}
-      root="#autoSelectionView"
+      shrinkTarget="#autoSelectionView"
       data-dialog-state={state}
       data-stagger-children={shouldStaggerChildren}
     >

@@ -1,6 +1,6 @@
 import type { JSX } from '@adbl/unfinished/jsx-dev-runtime';
 import { getMetaTheme, overlayBlack, setMetaTheme } from '#/library/utils';
-import { useObserver } from '@adbl/unfinished';
+import { Teleport, useObserver } from '@adbl/unfinished';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { type RouteChangeEvent, useRouter } from '@adbl/unfinished/router';
 import classes from './bottom-drawer.module.css';
@@ -12,13 +12,13 @@ interface BottomDrawerProps extends DialogProps {
   closable?: JSX.ValueOrCell<boolean>;
   onClose?: () => void;
   onClosePrevented?: () => void;
-  root?: string;
+  shrinkTarget?: string;
 }
 
 export function BottomDrawer(props: BottomDrawerProps) {
   const {
     open,
-    root = 'body',
+    shrinkTarget = 'body',
     ref = Cell.source<HTMLDialogElement | null>(null),
     closable = Cell.source(true),
     onClose,
@@ -40,7 +40,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
     const dialog = ref.value;
     if (!dialog || !dialog.isConnected) return;
     const shouldOpen = isOpen && !dialog.open;
-    const rootElement = document.querySelector<HTMLElement>(root);
+    const rootElement = document.querySelector<HTMLElement>(shrinkTarget);
     if (rootElement) rootElement.toggleAttribute('data-dialog-is-open', isOpen);
     if (shouldOpen) {
       formerMetaTheme = getMetaTheme();
@@ -85,7 +85,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
         !isIntersecting &&
         isOpen.value &&
         isClosable.value &&
-        dialog.checkVisibility();
+        div.checkVisibility();
       if (!canClose) return;
       toggle(false);
     };
@@ -103,18 +103,20 @@ export function BottomDrawer(props: BottomDrawerProps) {
   });
 
   return (
-    <dialog
-      ref={ref}
-      class={classes.drawer}
-      data-open={isOpen}
-      data-closable={isClosable}
-      onClick--self={handleOutsideClick}
-      onCancel={handleCancel}
-      onClose={onClose}
-    >
-      <div {...rest} class={[classes.drawerContent, props.class]}>
-        {props.children}
-      </div>
-    </dialog>
+    <Teleport to="body">
+      <dialog
+        ref={ref}
+        class={classes.drawer}
+        data-open={isOpen}
+        data-closable={isClosable}
+        onClick--self={handleOutsideClick}
+        onCancel={handleCancel}
+        onClose={onClose}
+      >
+        <div {...rest} class={[classes.drawerContent, props.class]}>
+          {props.children}
+        </div>
+      </dialog>
+    </Teleport>
   );
 }

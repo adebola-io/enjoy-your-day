@@ -1,0 +1,59 @@
+.drawerContainer {
+  --drawer-open-position-y: 0;
+  display: grid;
+  overflow: hidden;
+  padding-block-end: var(--block-padding);
+  color: white;
+  text-align: center;
+  place-content: center;
+  place-items: center;
+  column-gap: 10px;
+  grid-template-rows: 1fr auto auto 0.5fr;
+}
+
+.overlay {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.value {
+  align-self: end;
+  word-spacing: -0.75rem;
+  font: var(--value-bold);
+  grid-area: 1 / 2;
+  justify-self: start;
+}
+
+.suffix {
+  font: var(--title-bold);
+}
+
+.label {
+  font: var(--subtitle-bold);
+  grid-area: 2 / 1 / 3 / 3;
+}
+
+.icon {
+  align-self: end;
+  width: 40px;
+  grid-area: 1 / 1;
+  justify-self: end;
+  translate: 0 -1lh;
+}
+
+.description {
+  max-width: 60dvw;
+  padding-top: calc(var(--block-padding) * 0.5);
+  grid-area: 3 / 1 / 4 / 3;
+}
+
+.button {
+  align-self: end;
+  grid-area: 4 / 1 / 5 / 3;
+}

@@ -1,5 +1,5 @@
 import { BackButton } from '#/components/back-button';
-import { getAutoRecommendations } from '#/data/db';
+import { getAutoRecommendations } from '#/data/services';
 import type { GoalProps } from '#/data/entities';
 import { finalTexts, headings } from '#/data/headings';
 import {

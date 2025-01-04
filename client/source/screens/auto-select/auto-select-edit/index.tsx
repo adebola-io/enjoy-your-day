@@ -13,7 +13,7 @@ import { useRouter } from '@adbl/unfinished/router';
 import {
   getExampleGoalInstruction,
   getAutoCompleteSuggestions,
-} from '#/data/db';
+} from '#/data/services';
 import { CSS_VARS } from '#/styles/variables';
 import classes from './auto-selection-edit.module.css';
 import { selectedCategories } from '#/data/state';

@@ -1,5 +1,7 @@
+import type { GoalColor } from '#/library/goal-color';
+import type { IconName } from '#/library/icon-name';
 import type { SendableCategory } from '../categories';
-import type { GoalProps, GoalState } from '../entities';
+import type { GoalProps, GoalState, UserMetadata } from '../entities';
 
 export namespace WorkerProtocol {
   export namespace Requests {
@@ -35,6 +37,14 @@ export namespace WorkerProtocol {
       goalStates: GoalState[];
       date: string;
     };
+    export type GetInsightsOverview = {
+      type: 'insights.overview';
+      todaysData: GoalState[];
+    };
+    export type RecordMetadata = {
+      type: 'metadata.record';
+      metadata: UserMetadata;
+    };
     export type Request =
       | Echo<unknown>
       | GetRecommendedGoals
@@ -42,7 +52,9 @@ export namespace WorkerProtocol {
       | GetExampleSearchGoalInstruction
       | GetAutoCompleteSuggestions
       | UpdateGoals
-      | RecordGoalState;
+      | RecordGoalState
+      | GetInsightsOverview
+      | RecordMetadata;
   }
 
   export type Response<T extends Requests.Request> = T extends Requests.Ping
@@ -58,6 +70,10 @@ export namespace WorkerProtocol {
     : T extends Requests.UpdateGoals
     ? boolean | null
     : T extends Requests.RecordGoalState
+    ? boolean | null
+    : T extends Requests.GetInsightsOverview
+    ? InsightsOverview
+    : T extends Requests.RecordMetadata
     ? boolean | null
     : unknown;
 
@@ -86,4 +102,22 @@ export interface PromiseHandler {
   resolve: Function;
   // biome-ignore lint/complexity/noBannedTypes: <explanation>
   reject: Function;
+}
+
+export interface InsightsOverview {
+  userBadge: {
+    icon: IconName;
+    name: string;
+    description: string;
+  };
+  cards: Array<InsightCardDetails>;
+}
+
+export interface InsightCardDetails {
+  name: string;
+  value: string | number;
+  suffix?: string;
+  icon: IconName;
+  color: GoalColor;
+  description: string;
 }

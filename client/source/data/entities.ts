@@ -58,6 +58,12 @@ export interface HistoryRecord {
   goalStates: GoalState[];
 }
 
+export interface UserMetadata {
+  uuid: string;
+  name: string;
+  startDate: string;
+}
+
 export interface Journey {
   description: string;
   icon_name: string;

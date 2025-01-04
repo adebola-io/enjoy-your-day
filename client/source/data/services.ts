@@ -5,7 +5,12 @@ import { LATEST_DATA_CHUNK } from './constants';
 import type { GoalState } from './entities';
 
 export async function createUser(name: string) {
-  name;
+  const uuid = crypto.randomUUID();
+  const startDate = new Date().toISOString();
+  return await toWorker({
+    type: 'metadata.record',
+    metadata: { uuid, name, startDate },
+  });
 }
 
 const lastLoadedChunk = useLocalStorage<number>('last-loaded-chunk', 0);
@@ -56,4 +61,8 @@ export async function saveGoalState(goalStates: GoalState[], date: string) {
   const response = await toWorker({ type: 'goals.record', goalStates, date });
   if (!response) console.error('Error saving goal state');
   return response;
+}
+
+export async function getInsightsOverview(todaysData: GoalState[]) {
+  return toWorker({ type: 'insights.overview', todaysData });
 }

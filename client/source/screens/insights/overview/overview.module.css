@@ -1,0 +1,17 @@
+.container {
+  z-index: 2;
+  display: grid;
+  background-color: white;
+  padding-block: 20px;
+  padding-inline: var(--side-padding);
+  grid-template-columns: 1fr;
+  grid-row: 3;
+  scroll-snap-align: start;
+  gap: 20px;
+
+  &::after {
+    display: block;
+    height: 40px;
+    content: '';
+  }
+}

@@ -21,6 +21,16 @@
     background-color: var(--white);
   }
 
+  &[data-variant='transparent'] {
+    background-color: transparent;
+  }
+
+  &[data-variant='outlined'] {
+    border: 4px solid;
+    color: inherit;
+    background-color: transparent;
+  }
+
   &[data-variant='primary'] {
     border: 4px solid var(--space-cadet-500);
     color: var(--space-cadet-500);

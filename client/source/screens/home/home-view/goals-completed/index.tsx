@@ -10,7 +10,6 @@ import { InlinedIcon } from '#/components/inlined-icon';
 export function GoalsCompletedDrawer() {
   const router = useRouter();
   const route = router.getCurrentRoute();
-  const drawerRef = Cell.source<HTMLDialogElement | null>(null);
   const isOpen = Cell.derived(() => {
     return route.value.query.has('goals-completed');
   });
@@ -30,11 +29,10 @@ export function GoalsCompletedDrawer() {
 
   return (
     <BottomDrawer
-      ref={drawerRef}
       class={classes.container}
       open={isOpen}
       onClose={goBackHome}
-      root="#mainOutlet"
+      shrinkTarget="#mainOutlet"
       data-stagger-children={isOpen}
     >
       <InlinedIcon

@@ -2,6 +2,7 @@ import type { WorkerProtocol } from './types';
 import type { GoalProps } from '../entities';
 import { getNewData } from './update';
 import { dexie } from './dexie';
+import { cardDescriptionGenerator as cardDesc } from './card-description';
 
 let isUpdatingGoals = false;
 
@@ -97,6 +98,101 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
       date: new Date(data.message.date),
       goalStates,
     });
+    return true;
+  },
+
+  async 'insights.overview'(data) {
+    const { todaysData } = data.message;
+    const previousRecords = await dexie.history.orderBy('date').toArray();
+    let totalGoalsCompleted = 0;
+    let totalGoalsCommittedTo = 0;
+    let longestDailyStreak = 0;
+    let unfinishedGoals = 0;
+
+    const users = await dexie.userMetadata.toArray();
+    const user = users[0];
+    const startDate = new Date(user.startDate).toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    for (const record of previousRecords) {
+      let completedDaily = 0;
+      let totalDaily = 0;
+      for (const goalState of record.goalStates) {
+        totalDaily++;
+        if (goalState.state === 'completed') completedDaily++;
+        else unfinishedGoals++;
+      }
+      if (completedDaily === totalDaily) longestDailyStreak++;
+      else longestDailyStreak = 0;
+      totalGoalsCommittedTo += totalDaily;
+      totalGoalsCompleted += completedDaily;
+    }
+
+    for (const goalState of todaysData) {
+      totalGoalsCommittedTo++;
+      if (goalState.state === 'completed') totalGoalsCompleted++;
+    }
+
+    return {
+      userBadge: {
+        icon: 'profile',
+        name: 'New Kid.',
+        description:
+          "You recently started your journey on this app. It's great to have you on board!",
+      },
+      cards: [
+        {
+          name: 'Total Completed',
+          value: totalGoalsCompleted,
+          suffix: totalGoalsCompleted === 1 ? 'goal' : 'goals',
+          icon: 'bar-chart',
+          color: '#013c3b',
+          description: cardDesc.completed(totalGoalsCompleted, startDate),
+        },
+        {
+          name: 'Committed To',
+          value: totalGoalsCommittedTo,
+          suffix: totalGoalsCommittedTo === 1 ? 'goal' : 'goals',
+          icon: 'anchor',
+          color: '#05688f',
+          description: cardDesc.committed(totalGoalsCommittedTo, startDate),
+        },
+        {
+          name: 'Longest Streak',
+          value: String(longestDailyStreak),
+          suffix: longestDailyStreak === 1 ? 'day' : 'days',
+          icon: 'trophy',
+          color: '#2d0a62',
+          description:
+            "You recently started your journey on this app. It's great to have you on board!",
+        },
+        {
+          name: 'Average Completion Rate',
+          value: '30',
+          suffix: '%',
+          icon: 'calendar',
+          color: '#253a54',
+          description:
+            "You recently started your journey on this app. It's great to have you on board!",
+        },
+        {
+          name: 'Unfinished Goals',
+          value: unfinishedGoals,
+          suffix: unfinishedGoals === 1 ? 'goal' : 'goals',
+          icon: 'stack',
+          color: '#b93200',
+          description:
+            "You recently started your journey on this app. It's great to have you on board!",
+        },
+      ],
+    };
+  },
+
+  async 'metadata.record'(data) {
+    await dexie.userMetadata.add(data.message.metadata);
     return true;
   },
 };

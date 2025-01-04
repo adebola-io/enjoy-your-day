@@ -1,0 +1,217 @@
+.mainLoader {
+  width: min(60px, 40vh);
+  animation: var(--pop) var(--default-duration),
+    var(--loader-spin) var(--base-animation-duration) var(--default-duration)
+      linear infinite;
+}
+
+@property --pill-translate {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: true;
+}
+
+@property --overview-tab-color {
+  syntax: '<color>';
+  initial-value: white;
+  inherits: true;
+}
+
+@property --history-tab-color {
+  syntax: '<color>';
+  initial-value: white;
+  inherits: true;
+}
+
+@keyframes switch-tabs {
+  from {
+    --overview-mix-blend: color-dodge;
+  }
+  to {
+    --pill-translate: 1;
+    --overview-tab-color: #e4e4c5;
+    --history-tab-color: white;
+    --history-mix-blend: color-dodge;
+  }
+}
+
+.container {
+  &[data-state='pending'] {
+    display: grid;
+    height: 100%;
+    place-content: center;
+    place-items: center;
+  }
+
+  &[data-state='success'] {
+    --pill-translate: 0;
+    --overview-tab-color: white;
+    --history-tab-color: #e4e4c5;
+    display: grid;
+    overflow: scroll;
+    height: calc(100dvh - var(--navbar-height));
+    color: var(--space-cadet-500);
+    transition: scale var(--drawer);
+    animation-name: switch-tabs;
+    grid-template-rows: max-content;
+    grid-template-columns: 100% 100%;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @supports (animation-timeline: scroll(self inline)) {
+      animation-duration: auto;
+      animation-timeline: scroll(self inline);
+    }
+
+    @supports not (animation-timeline: scroll(self inline)) {
+      animation-duration: 51ms;
+      animation-play-state: paused;
+    }
+  }
+
+  &[data-dialog-is-open] {
+    scale: 0.9;
+  }
+}
+
+.heading {
+  position: sticky;
+  left: 0;
+  display: grid;
+  overflow: hidden;
+  width: calc(100% - var(--side-padding) * 2);
+  padding-block-start: calc(var(--block-padding) * 1.5);
+  text-align: center;
+  grid-template-rows: min(64px, 10dvh) auto auto;
+  grid-template-columns: 100%;
+  row-gap: min(5px, 2dvh);
+  place-items: center;
+  grid-area: 1 / 1;
+  padding-inline: var(--side-padding);
+}
+
+.userBadgeIcon {
+  width: min(60px, 40vh);
+}
+
+.userBadgeOverlay:is(.userBadgeOverlay) {
+  position: sticky;
+  z-index: 2;
+  left: calc(50% - min(30px, 20vh));
+  display: block;
+  align-self: end;
+  width: min(60px, 40vh);
+  opacity: 0.05;
+  animation: none;
+  pointer-events: none;
+  justify-self: center;
+  grid-area: 1 / 1;
+  translate: 0 30%;
+  scale: 6;
+
+  &::after {
+    position: absolute;
+    display: block;
+    height: 40px;
+    background-color: white;
+    content: '';
+  }
+}
+
+.userDesignation {
+  width: calc(100% - var(--side-padding) * 2);
+  font: var(--eyebrow-bold);
+}
+
+.headingDescription {
+  text-wrap: balance;
+}
+
+.tabList {
+  position: sticky;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  display: grid;
+  padding-block-start: calc(var(--block-padding) * 0.5);
+  padding-block-end: calc(var(--block-padding) * 0.25);
+  border-bottom: 2px solid var(--space-cadet-500);
+  background: #ffffff;
+  padding-inline: var(--side-padding);
+  grid-template-columns: 50% 50%;
+  grid-area: 2 / 1;
+
+  &::after {
+    position: absolute;
+    display: block;
+    height: 40px;
+    background-color: white;
+    content: '';
+  }
+}
+
+.overviewTabPill {
+  color: var(--overview-tab-color);
+  mix-blend-mode: var(--overview-mix-blend, difference);
+  grid-area: 1 / 1;
+}
+
+.historyTabPill {
+  color: var(--history-tab-color);
+  mix-blend-mode: var(--history-mix-blend, difference);
+  grid-area: 1 / 2;
+}
+
+.overviewTabPill,
+.historyTabPill {
+  width: 100%;
+  border: none;
+  transition: scale var(--default-duration),
+    color calc(var(--default-duration) * 1.5);
+  font: inherit;
+  padding-block: 1.5dvh;
+  padding-inline: 0;
+
+  &:active {
+    filter: unset;
+    scale: 0.8;
+  }
+}
+
+.pillHighlighter {
+  position: relative;
+  width: 100%;
+  height: calc(3dvh + 1lh);
+  border-radius: 20px;
+  background-color: var(--space-cadet-500);
+  pointer-events: none;
+  justify-self: start;
+  grid-row: 1;
+  grid-column: 1;
+  translate: calc(var(--pill-translate) * 100%);
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    content: '';
+  }
+
+  &::before {
+    width: 200%;
+    background-color: white;
+    translate: calc(var(--pill-translate) * -50%);
+  }
+
+  &::after {
+    background: var(--space-cadet-500);
+  }
+}

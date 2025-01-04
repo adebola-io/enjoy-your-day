@@ -121,6 +121,7 @@
   --input-inline-padding: 10px;
 
   /* Typography */
+  --value-font-size: min(6rem, 20dvh);
   --heading-font-size: min(4.2rem, 12dvh);
   --sub-heading-font-size: min(3.8rem, 10dvh);
   --eyebrow-font-size: min(2.7rem, 9dvh);
@@ -130,6 +131,10 @@
   --small-font-size: min(0.75rem, 2dvh);
   --tiny-font-size: min(0.6875rem, 1.5dvh);
 
+  --value-bold: normal 700 var(--value-font-size) / 100px 'Parkinsans',
+    sans-serif;
+  --value-regular: normal 400 var(--value-font-size) / 100px 'Parkinsans',
+    sans-serif;
   --heading-bold: normal 600 var(--heading-font-size) / 100px 'Parkinsans',
     sans-serif;
   --heading-regular: normal 300 var(--heading-font-size) / 100px 'Parkinsans',

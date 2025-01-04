@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import { initializeDatabase } from '#/data/db';
+import { initializeDatabase } from '#/data/services';
 import { createWebRouter, defineRoutes } from '@adbl/unfinished/router';
 import { appRouteTree, onboardingMiddleware } from './screens/routes';
 

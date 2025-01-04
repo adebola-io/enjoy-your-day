@@ -4,9 +4,14 @@ import { useRouter, type RouterLinkProps } from '@adbl/unfinished/router';
 import { vibrate } from '#/library/utils';
 import classes from './button.module.css';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'neutral';
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'neutral'
+  | 'transparent'
+  | 'outlined';
 export type ButtonProps = JSX.IntrinsicElements['button'] &
-  RouterLinkProps & {
+  Omit<RouterLinkProps, 'onClick'> & {
     vibrate?: boolean;
     variant?: JSX.ValueOrCell<ButtonVariant>;
     rounded?: boolean;

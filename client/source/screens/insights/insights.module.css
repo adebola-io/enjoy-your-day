@@ -74,7 +74,7 @@
   }
 
   &[data-dialog-is-open] {
-    scale: 0.9;
+    scale: var(--drawer-background-scale);
   }
 }
 
@@ -139,7 +139,6 @@
   display: grid;
   padding-block-start: calc(var(--block-padding) * 0.5);
   padding-block-end: calc(var(--block-padding) * 0.25);
-  border-bottom: 2px solid var(--space-cadet-500);
   background: #ffffff;
   padding-inline: var(--side-padding);
   grid-template-columns: 50% 50%;

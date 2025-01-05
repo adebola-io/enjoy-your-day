@@ -48,7 +48,6 @@ export function BottomDrawer(props: BottomDrawerProps) {
       setMetaTheme(overlayBlack(formerMetaTheme));
     } else if (dialog.open) {
       dialog.close();
-      setMetaTheme(formerMetaTheme);
     }
   };
 
@@ -74,6 +73,11 @@ export function BottomDrawer(props: BottomDrawerProps) {
     return;
   };
 
+  const handleClose = () => {
+    setMetaTheme(formerMetaTheme);
+    onClose?.();
+  };
+
   isOpen.listen(toggle);
   observer.onConnected(ref, () => {
     // Intersection Observer doesn't work on cell values directly
@@ -86,8 +90,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
         isOpen.value &&
         isClosable.value &&
         div.checkVisibility();
-      if (!canClose) return;
-      toggle(false);
+      if (canClose) toggle(false);
     };
     const options = { root: dialog, threshold: 0.3 };
     const intersectObserver = new IntersectionObserver(callback, options);
@@ -111,7 +114,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
         data-closable={isClosable}
         onClick--self={handleOutsideClick}
         onCancel={handleCancel}
-        onClose={onClose}
+        onClose={handleClose}
       >
         <div {...rest} class={[classes.drawerContent, props.class]}>
           {props.children}

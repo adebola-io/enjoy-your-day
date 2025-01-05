@@ -138,7 +138,7 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
 
     return {
       userBadge: {
-        icon: 'profile',
+        icon: 'cookie',
         name: 'New Kid.',
         description:
           "You recently started your journey on this app. It's great to have you on board!",

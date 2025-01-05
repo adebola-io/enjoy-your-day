@@ -6,12 +6,16 @@ type AsyncRequestAtoms<T, U> = {
   error: Cell<U>;
 };
 
-export function setMetaTheme(color: string) {
-  setTimeout(() => {
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', color);
-  }, 0);
+export let appIsReadyResolver: (() => void) | null = null;
+const appIsReady = new Promise<void>((resolve) => {
+  appIsReadyResolver = resolve;
+});
+
+export async function setMetaTheme(color: string) {
+  await appIsReady;
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', color);
 }
 
 /**
@@ -134,4 +138,8 @@ export function overlayBlack(hexColor: string) {
   const newB = Math.round(b).toString(16).padStart(2, '0');
 
   return `#${newR}${newG}${newB}`;
+}
+
+export function toKebabCase(str: string) {
+  return str.replace(/\s/g, '-').toLowerCase();
 }

@@ -6,6 +6,7 @@ import { Icon, loadIconDataUrl } from '#/components/icon';
 import { Button } from '#/components/button';
 import classes from './card-drawer.module.css';
 import { If } from '@adbl/unfinished';
+import { toKebabCase } from '#/library/utils';
 
 export interface CardDrawerProps {
   cards: InsightCardDetails[];
@@ -16,34 +17,32 @@ export function CardDrawer(props: CardDrawerProps) {
   const router = useRouter();
   const route = router.getCurrentRoute();
   const isOpen = Cell.derived(() => route.value.query.has('card'));
-  const overlayRef = Cell.source<HTMLElement | null>(null);
+  const backgroundImage = Cell.source<string | undefined>(undefined);
+  const card = Cell.source<InsightCardDetails | undefined>(undefined);
 
   const goBackToInsights = () => {
     return router.navigate('/insights');
   };
 
-  const card = Cell.derived(() => {
-    return cards.find(
-      (card) =>
-        card.name.replace(/\s/g, '-').toLowerCase() ===
-        route.value.query.get('card')
+  // This is a unidirectional effect so that the card is not
+  // automatically unset when the drawer closes, leading to
+  // glitches in the drawer content as it animates out.
+  isOpen.runAndListen((drawerIsOpen) => {
+    if (!drawerIsOpen) return;
+    card.value = cards.find(
+      (c) => toKebabCase(c.name) === route.value.query.get('card')
     );
   });
+
   const openCardName = Cell.derived(
-    () => `${card.value?.name.replace(/\s/g, '-').toLowerCase()}-open`
+    () => `${toKebabCase(card.value?.name ?? '')}-open`
   );
   const openCardValue = Cell.derived(() => card.value?.value);
   const openCardLabel = Cell.derived(() => card.value?.name);
   const cardIcon = Cell.derived(() => card.value?.icon);
   const cardSuffix = Cell.derived(() => card.value?.suffix);
   const cardDescription = Cell.derived(() => card.value?.description);
-  const backgroundColor = Cell.source<string | undefined>(undefined);
-
-  //  An effect so the drawer does not switch back to white instantly
-  // when it is closed.
-  card.runAndListen((card) => {
-    if (card) backgroundColor.value = card.color;
-  });
+  const backgroundColor = Cell.derived(() => card.value?.color);
 
   cardIcon.runAndListen(async (icon) => {
     if (!icon) return;
@@ -52,9 +51,7 @@ export function CardDrawer(props: CardDrawerProps) {
       height: '100px',
       color: 'white',
     });
-    console.log(icon, src);
-    overlayRef.value?.style.removeProperty('background');
-    overlayRef.value?.style.setProperty('background', `url('${src}')`);
+    backgroundImage.value = `url('${src}')`;
   });
 
   return (
@@ -65,7 +62,7 @@ export function CardDrawer(props: CardDrawerProps) {
       shrinkTarget="#insightsContainer"
       style={{ backgroundColor }}
     >
-      <div ref={overlayRef} class={classes.overlay} />
+      <div class={classes.overlay} style={{ backgroundImage }} />
       <Icon
         name={cardIcon}
         class={classes.icon}

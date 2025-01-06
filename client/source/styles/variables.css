@@ -3,7 +3,7 @@
 :root {
   --default-duration: 150ms;
   --view-transition-duration: calc(var(--default-duration) * 1.5);
-  --drawer: calc(var(--default-duration) * 2);
+  --drawer: calc(var(--default-duration) * 1.75);
 
   --white: #ffffff;
   --black: #000000;
@@ -119,6 +119,7 @@
     var(--block-padding);
   --side-padding: 7.63dvw;
   --input-inline-padding: 10px;
+  --drawer-background-scale: 0.87;
 
   /* Typography */
   --value-font-size: min(6rem, 20dvh);
@@ -170,6 +171,7 @@
   --bottom-drawer-index: 100;
   --floating-button-z-index: 9;
   --behind-autocomplete-z-index: -9;
+
   &.low-end {
     --default-duration: 0ms;
   }

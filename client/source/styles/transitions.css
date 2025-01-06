@@ -305,6 +305,11 @@
       var(--initial-stagger-delay) + var(--default-duration) *
         (var(--stagger-difference) * 4)
     );
+  --stagger-item-6: var(--fade-in-from-bottom) var(--default-duration)
+    calc(
+      var(--initial-stagger-delay) + var(--default-duration) *
+        (var(--stagger-difference) * 5)
+    );
 
   & > * {
     &:first-child {

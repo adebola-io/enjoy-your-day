@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding-inline: 10px;
+}
+
+.sparkleLeft,
+.sparkleRight {
+  position: absolute;
+  width: 10px;
+  animation: var(--twinkle) calc(var(--default-duration) * 20) infinite;
+
+  path:nth-child(2) {
+    display: none;
+  }
+}
+
+.sparkleLeft {
+  top: 0;
+  left: 0;
+  animation-delay: calc(var(--default-duration) * 5);
+}
+
+.sparkleRight {
+  right: 0;
+  bottom: 0;
+}

@@ -42,6 +42,12 @@ export async function resumeApp() {
   router.attachWindowListeners();
   document.body.prepend(router.Outlet());
 
+  // In some scenarios in Android, the auto-generated splash screen
+  // sometimes waits too long and bleeds into the start of the
+  // waiting screen animation. The delay is meant to prevent the
+  // app from loading until the splash screen is gone.
+  await new Promise((resolve) => setTimeout(resolve, 250));
+
   const waitingScreen = document.querySelector('#waiting-screen');
   waitingScreen?.classList.add('loading');
   const fullCurrentPath =
@@ -57,6 +63,7 @@ export async function resumeApp() {
     // leads to a memory leak in Edge.
     circle.addEventListener('animationend', (event) => {
       if (event.animationName !== 'expand-forever') return;
+      appIsReadyResolver?.();
       waitingScreen?.remove();
       document.querySelector('#start-screen')?.remove();
     });

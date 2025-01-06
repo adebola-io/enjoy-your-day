@@ -10,12 +10,13 @@ import {
 import { Switch, useObserver } from '@adbl/unfinished';
 import { Icon } from '#/components/icon';
 import { CSS_VARS } from '#/styles/variables';
+import { Sparkles } from '#/components/sparkles';
 import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
 import { Overview } from './overview';
 import { History } from './history';
-import classes from './insights.module.css';
 import { dailyGoals } from '#/data/state';
+import classes from './insights.module.css';
 
 export default function Insights() {
   const observer = useObserver();
@@ -35,19 +36,18 @@ export default function Insights() {
   const Loaded = () => {
     if (!resource.data.value) return null;
     const { cards, userBadge } = resource.data.value;
-    const overviewRef = Cell.source<HTMLElement | null>(null);
-    const historyRef = Cell.source<HTMLDivElement | null>(null);
 
     const setSelectedTab = function (this: HTMLButtonElement) {
       vibrate();
       const name = this.dataset.tabName as 'overview' | 'history';
-      const scrollOptions: ScrollIntoViewOptions = {
-        inline: 'start',
-        block: 'nearest',
+      if (!containerRef.value) return;
+      const container = containerRef.value;
+      // Im using scrollTo() on the container because scrollIntoView()
+      // for each tab scrolls vertically, regardless of the block option set.
+      container.scrollTo({
+        left: name === 'overview' ? 0 : container.scrollWidth / 2,
         behavior: 'smooth',
-      };
-      const tabRef = name === 'overview' ? overviewRef : historyRef;
-      tabRef.value?.scrollIntoView(scrollOptions);
+      });
     };
 
     observer.onConnected(containerRef, (div) => {
@@ -66,14 +66,15 @@ export default function Insights() {
           inline
         />
         <section class={classes.heading} data-stagger-children>
-          <Icon
-            name={userBadge.icon}
-            class={classes.userBadgeIcon}
-            title="User Badge"
-            color={CSS_VARS['--space-cadet-500']}
-            inline
-          />
-
+          <Sparkles>
+            <Icon
+              name={userBadge.icon}
+              class={classes.userBadgeIcon}
+              title="User Badge"
+              color={CSS_VARS['--space-cadet-500']}
+              inline
+            />
+          </Sparkles>
           <h2 class={classes.userDesignation}>{userBadge.name}</h2>
           <p class={classes.headingDescription}>{userBadge.description}</p>
         </section>
@@ -100,8 +101,8 @@ export default function Insights() {
             History
           </Button>
         </div>
-        <Overview ref={overviewRef} cards={cards} />
-        <History ref={historyRef} />
+        <Overview cards={cards} />
+        <History />
       </>
     );
   };

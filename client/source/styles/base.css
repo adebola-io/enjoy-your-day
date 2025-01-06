@@ -117,13 +117,13 @@ body {
   &[data-dialog-is-open] {
     &:has([data-dialog-state='pending']) {
       & > *:not(dialog, #backButton) {
-        scale: 0.95;
+        scale: var(--drawer-background-scale);
       }
     }
 
     & > *:not(dialog, #backButton) {
       pointer-events: none;
-      scale: 0.87;
+      scale: var(--drawer-background-scale);
     }
   }
 }
@@ -134,13 +134,11 @@ body {
   transition-property: translate, scale, filter;
 
   &[data-auto-select-is-open] {
-    /* filter: brightness(0.65); */
+    filter: brightness(0.65);
     translate: -30% 0;
-    scale: 1 0.9;
   }
 
   body:has(#autoSelectionView[data-stage='3']) & {
-    /* filter: brightness(0.65); */
     translate: none;
     scale: 1;
   }

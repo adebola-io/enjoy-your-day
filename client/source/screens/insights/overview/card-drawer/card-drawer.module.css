@@ -1,5 +1,6 @@
 .drawerContainer {
   --drawer-open-position-y: 0;
+  --drawer-visible-height: min(800px, 65dvh);
   display: grid;
   overflow: hidden;
   padding-block-end: var(--block-padding);

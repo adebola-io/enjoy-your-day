@@ -14,6 +14,7 @@ import { InlinedIcon } from '#/components/inlined-icon';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
 import { CSS_VARS } from '#/styles/variables';
 import { PencilIcon } from '#/components/icons/pencil';
+import { ElasticView } from '#/components/elastic-view';
 
 interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[]>;
@@ -42,11 +43,17 @@ export default function GoalCardList(props: GoalCardsViewProps) {
 
   return (
     <>
-      <ul ref={ulRef} class={classes.goalCards} style={ulStyles}>
+      <ElasticView
+        yAxis
+        as="ul"
+        ref={ulRef}
+        class={classes.goalCards}
+        style={ulStyles}
+      >
         {For(goals, (goal, index) => {
           return <GoalCard {...goal} index={index} />;
         })}
-      </ul>
+      </ElasticView>
       <div class={classes.buttonRow}>
         <Button class={classes.btn} href={confirmDrawerHref} vibrate>
           <InlinedIcon

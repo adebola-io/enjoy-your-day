@@ -12,6 +12,7 @@ import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { CSS_VARS } from '#/styles/variables';
 import classes from './home-view.module.css';
+import { ElasticView } from '#/components/elastic-view';
 
 export default function HomeView() {
   const router = useRouter();
@@ -58,7 +59,11 @@ export default function HomeView() {
   };
 
   return (
-    <div class={classes.container} data-goals-completed={goalsCompleted}>
+    <ElasticView
+      yAxis
+      class={classes.container}
+      data-goals-completed={goalsCompleted}
+    >
       <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
       <TimeBasedGreeting class={classes.timeGreeting} />
       <div ref={stickyAreaRef} class={classes.stickyArea}>
@@ -101,6 +106,6 @@ export default function HomeView() {
         })}
       </form>
       <GoalsCompletedDrawer />
-    </div>
+    </ElasticView>
   );
 }

@@ -42,10 +42,12 @@ export default function Insights() {
       const name = this.dataset.tabName as 'overview' | 'history';
       if (!containerRef.value) return;
       const container = containerRef.value;
+      const { scrollTop, scrollWidth } = container;
       // Im using scrollTo() on the container because scrollIntoView()
       // for each tab scrolls vertically, regardless of the block option set.
       container.scrollTo({
-        left: name === 'overview' ? 0 : container.scrollWidth / 2,
+        left: name === 'overview' ? 0 : scrollWidth / 2,
+        top: scrollTop,
         behavior: 'smooth',
       });
     };

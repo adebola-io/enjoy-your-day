@@ -1,5 +1,6 @@
 .container {
   --starting-fade-position-y: 150%;
+  position: relative;
   display: grid;
   overflow-y: hidden;
   width: calc(100% - var(--side-padding) * 2);

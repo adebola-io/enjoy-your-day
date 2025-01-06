@@ -2,8 +2,10 @@
 import { initializeDatabase } from '#/data/services';
 import { createWebRouter, defineRoutes } from '@adbl/unfinished/router';
 import { appRouteTree, onboardingMiddleware } from './screens/routes';
+import { appIsReadyResolver } from './library/utils';
 
 export default async function main() {
+  appIsReadyResolver?.();
   disableContextMenu();
   initializeDatabase()
     .then(() => {

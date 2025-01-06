@@ -17,6 +17,7 @@ import {
 import { CSS_VARS } from '#/styles/variables';
 import classes from './auto-selection-edit.module.css';
 import { selectedCategories } from '#/data/state';
+import { ElasticView } from '#/components/elastic-view';
 
 export interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[]>;
@@ -84,69 +85,66 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   };
 
   return (
-    <>
-      <div
-        ref={containerRef}
-        class={classes.container}
-        data-no-goals-added={noGoalsAdded}
-        data-search-is-open={searchIsOpen}
-      >
-        <h1 class={classes.title}>Goals for Today</h1>
-        <p class={classes.subtitle}>
-          Shape a day that works best for you by adding goals and adjusting
-          priorities.
-        </p>
-        <Container
-          class={classes.buttonAndSearchContainer}
-          onClick={openSearch}
-        >
-          {If(searchIsOpen, {
-            true: () => (
-              <SearchInput
-                class={classes.searchForm}
-                containerClasses={classes.searchInputContainer}
-                autoCompleteClasses={classes.autoComplete}
-                placeholder={placeholder}
-                autoCompleteGetter={autoComplete}
-                AutoCompleteTemplate={GoalOption}
-                onAutoCompleteSelect={addGoal}
-                onSubmit--prevent={closeSearch}
-                onDismiss={closeSearch}
-                focused
+    <ElasticView
+      yAxis
+      ref={containerRef}
+      class={classes.container}
+      data-no-goals-added={noGoalsAdded}
+      data-search-is-open={searchIsOpen}
+      xAxis={false}
+    >
+      <h1 class={classes.title}>Goals for Today</h1>
+      <p class={classes.subtitle}>
+        Shape a day that works best for you by adding goals and adjusting
+        priorities.
+      </p>
+      <Container class={classes.buttonAndSearchContainer} onClick={openSearch}>
+        {If(searchIsOpen, {
+          true: () => (
+            <SearchInput
+              class={classes.searchForm}
+              containerClasses={classes.searchInputContainer}
+              autoCompleteClasses={classes.autoComplete}
+              placeholder={placeholder}
+              autoCompleteGetter={autoComplete}
+              AutoCompleteTemplate={GoalOption}
+              onAutoCompleteSelect={addGoal}
+              onSubmit--prevent={closeSearch}
+              onDismiss={closeSearch}
+              focused
+            />
+          ),
+          false: () => (
+            <>
+              <InlinedIcon
+                Icon={AddIcon}
+                class={classes.buttonAndSearchContainerIcon}
+                color={CSS_VARS['--space-cadet-500']}
+                title="Add Icon"
               />
-            ),
-            false: () => (
-              <>
-                <InlinedIcon
-                  Icon={AddIcon}
-                  class={classes.buttonAndSearchContainerIcon}
-                  color={CSS_VARS['--space-cadet-500']}
-                  title="Add Icon"
-                />
-                Add a goal
-              </>
-            ),
-          })}
-        </Container>
-        <ul class={classes.goalItemList} inert={searchIsOpen} style={ulStyles}>
-          {For(goals, (goal, index) => {
-            return <GoalItem {...goal} index={index} onRemove={removeGoal} />;
-          })}
-        </ul>
-        <router.Link
-          class={classes.submitBtn}
-          href={confirmDrawerHref}
-          inert={searchIsOpen}
-          onClick={() => vibrate()}
-        >
-          <InlinedIcon
-            Icon={DoubleCheckIcon}
-            class={classes.submitBtnIcon}
-            title="Submit Goals"
-            color="white"
-          />
-        </router.Link>
-      </div>
-    </>
+              Add a goal
+            </>
+          ),
+        })}
+      </Container>
+      <ul class={classes.goalItemList} inert={searchIsOpen} style={ulStyles}>
+        {For(goals, (goal, index) => {
+          return <GoalItem {...goal} index={index} onRemove={removeGoal} />;
+        })}
+      </ul>
+      <router.Link
+        class={classes.submitBtn}
+        href={confirmDrawerHref}
+        inert={searchIsOpen}
+        onClick={() => vibrate()}
+      >
+        <InlinedIcon
+          Icon={DoubleCheckIcon}
+          class={classes.submitBtnIcon}
+          title="Submit Goals"
+          color="white"
+        />
+      </router.Link>
+    </ElasticView>
   );
 }

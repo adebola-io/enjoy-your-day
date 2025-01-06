@@ -36,13 +36,16 @@ body {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   touch-action: manipulation;
-  overscroll-behavior-y: none;
   /* Platform-specific reset */
   -webkit-overflow-scrolling: touch;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -ms-overflow-style: scrollbar;
   font-synthesis-weight: none;
+}
+
+* {
+  overscroll-behavior-y: none;
 }
 
 body {

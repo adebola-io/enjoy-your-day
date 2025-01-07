@@ -1,0 +1,25 @@
+.stepper {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+}
+
+.button {
+  display: grid;
+  width: 90px;
+  height: auto;
+  border: none;
+  background-color: transparent;
+  place-content: center;
+  place-items: center;
+  aspect-ratio: 1;
+}
+
+.icon {
+  width: 30%;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.buttonRightIcon {
+  rotate: 180deg;
+}

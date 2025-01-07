@@ -1,0 +1,68 @@
+.container {
+  position: relative;
+  display: grid;
+  overflow-x: auto;
+  width: calc(100% - var(--side-padding) * 6);
+  padding-inline: var(--side-padding) calc(var(--side-padding) * 5);
+  grid-template-columns: repeat(var(--total), 40px);
+  grid-template-rows: 1fr;
+  column-gap: calc(var(--side-padding) * 0.5);
+}
+
+.chartItem {
+  display: grid;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: repeat(2, 20px);
+
+  &[data-is-today] {
+    font-weight: bold;
+  }
+
+  &[data-is-selected-day] {
+    color: red;
+  }
+}
+
+.total {
+  align-self: end;
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--space-cadet-50);
+  grid-area: 1/ 1;
+}
+
+.completed {
+  align-self: end;
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--space-cadet-400);
+  grid-area: 1/ 2;
+}
+
+.chartItemDate {
+  position: relative;
+  margin-block-start: 10px;
+  background-color: white;
+  grid-area: 2 / 1 / 2 / 3;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: -15px;
+    display: block;
+    width: 15px;
+    height: 100%;
+    background-color: white;
+    content: '';
+  }
+}
+
+.chartItemDay {
+  margin-block-end: 10px;
+  background-color: white;
+  grid-area: 3 / 1 / 3 / 3;
+}

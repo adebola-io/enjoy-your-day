@@ -6,9 +6,9 @@ import { GoalChecklistItem } from '#/components/goal-checklist-item';
 import { InlinedIcon } from '#/components/inlined-icon';
 import { dailyGoals, goalsCompleted, timeOfDay } from '#/data/state';
 import { GoalsCompletedDrawer } from './goals-completed';
-import { vibrate } from '#/library/utils';
+import { setMetaTheme, vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
-import { For, If } from '@adbl/unfinished';
+import { For, If, useObserver } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { CSS_VARS } from '#/styles/variables';
 import classes from './home-view.module.css';
@@ -16,8 +16,10 @@ import { ElasticView } from '#/components/elastic-view';
 
 export default function HomeView() {
   const router = useRouter();
+  const observer = useObserver();
   const listChanged = Cell.source(false);
   const stickyAreaRef = Cell.source<HTMLElement | null>(null);
+  const containerRef = Cell.source<HTMLElement | null>(null);
   const numberOfScheduledGoals = Cell.derived(() => {
     return dailyGoals.value.filter((s) => s.state === 'scheduled').length;
   });
@@ -58,8 +60,13 @@ export default function HomeView() {
     setTimeout(() => router.navigate('/home?goals-completed'), 400);
   };
 
+  observer.onConnected(containerRef, () => {
+    setMetaTheme('#ffffff');
+  });
+
   return (
     <ElasticView
+      ref={containerRef}
       yAxis
       class={classes.container}
       data-goals-completed={goalsCompleted}

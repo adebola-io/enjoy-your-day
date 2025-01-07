@@ -1,8 +1,59 @@
 .container {
+  z-index: 2;
   display: grid;
   width: 100%;
   height: 100%;
-  background-color: green;
+  padding-block-start: calc(var(--block-padding) * 0.5);
+  background-color: white;
   grid-row: 3;
   scroll-snap-align: start;
+
+  &[data-state='success'] {
+    grid-template-rows: 300px auto auto auto 1fr;
+  }
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: min-content min-content;
+
+  button:first-child {
+    align-self: center;
+    grid-area: 1 / 1 / 3 / 1;
+  }
+
+  button:last-child {
+    align-self: center;
+    grid-area: 1 / 3 / 3 / 3;
+  }
+}
+
+.day {
+  align-self: end;
+  font: var(--base-regular);
+  grid-area: 1 / 2;
+}
+
+.date {
+  align-self: start;
+  font: var(--base-bold);
+  grid-area: 2 / 2;
+}
+
+.remark {
+  display: inline-grid;
+  padding-block-end: calc(var(--block-padding) * 0.25);
+  gap: 10px;
+  padding-inline: var(--side-padding);
+}
+
+.percent {
+  margin-block-end: calc(var(--block-padding) * 0.25);
+  margin-inline: var(--side-padding);
+}
+
+.completedGoalsHeading {
+  font: var(--base-bold);
+  margin-inline: var(--side-padding);
 }

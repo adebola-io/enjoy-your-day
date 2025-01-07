@@ -84,7 +84,7 @@
 }
 
 .cancelBtn {
-  align-self: end;
+  align-self: center;
   border: none;
   background: transparent;
   grid-row-start: 1;

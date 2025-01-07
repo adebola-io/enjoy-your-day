@@ -66,3 +66,7 @@ export async function saveGoalState(goalStates: GoalState[], date: string) {
 export async function getInsightsOverview(todaysData: GoalState[]) {
   return toWorker({ type: 'insights.overview', todaysData });
 }
+
+export async function getInsightsHistory(todaysData: GoalState[]) {
+  return toWorker({ type: 'insights.history', todaysData });
+}

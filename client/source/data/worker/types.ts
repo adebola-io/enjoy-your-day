@@ -41,6 +41,10 @@ export namespace WorkerProtocol {
       type: 'insights.overview';
       todaysData: GoalState[];
     };
+    export type GetInsightsHistory = {
+      type: 'insights.history';
+      todaysData: GoalState[];
+    };
     export type RecordMetadata = {
       type: 'metadata.record';
       metadata: UserMetadata;
@@ -54,6 +58,7 @@ export namespace WorkerProtocol {
       | UpdateGoals
       | RecordGoalState
       | GetInsightsOverview
+      | GetInsightsHistory
       | RecordMetadata;
   }
 
@@ -75,12 +80,18 @@ export namespace WorkerProtocol {
     ? InsightsOverview
     : T extends Requests.RecordMetadata
     ? boolean | null
+    : T extends Requests.GetInsightsHistory
+    ? InsightHistoryDetails
     : unknown;
 
   export interface Message<T extends Requests.Request | unknown = unknown> {
     id: string;
     message: T;
   }
+
+  export type Handler<T extends WorkerProtocol.Requests.Request> = (
+    data: WorkerProtocol.Message<T>
+  ) => Promise<WorkerProtocol.Response<T>>;
 
   type RequestFromType<T> = Requests.Request extends infer V
     ? V extends Requests.Request
@@ -120,4 +131,18 @@ export interface InsightCardDetails {
   icon: IconName;
   color: GoalColor;
   description: string;
+}
+
+export interface InsightHistoryDetails {
+  maxChartValue: number;
+  chartData: HistoryChartItem[];
+}
+
+export interface HistoryChartItem {
+  date: string;
+  value: {
+    completed: number;
+    total: number;
+  };
+  categoryProfile: string[];
 }

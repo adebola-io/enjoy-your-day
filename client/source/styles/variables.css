@@ -9,6 +9,7 @@
   --black: #000000;
 
   /* Colors */
+  --outline: 1px solid #6b6b6bb5;
   --primary-600: #007480ff;
   --primary-500: #00868dff;
   --primary-400: #0093b0ff;

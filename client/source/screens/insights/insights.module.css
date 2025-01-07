@@ -57,6 +57,7 @@
     grid-template-columns: 100% 100%;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+    overscroll-behavior: none;
 
     &::-webkit-scrollbar {
       display: none;
@@ -84,7 +85,7 @@
   display: grid;
   overflow: hidden;
   width: calc(100% - var(--side-padding) * 2);
-  padding-block-start: calc(var(--block-padding) * 1.5);
+  padding-block-start: calc(var(--block-padding) * 1.05);
   text-align: center;
   grid-template-rows: min(64px, 10dvh) auto auto;
   grid-template-columns: 100%;
@@ -139,6 +140,7 @@
   display: grid;
   padding-block-start: calc(var(--block-padding) * 0.5);
   padding-block-end: calc(var(--block-padding) * 0.25);
+  border-bottom: var(--outline);
   background: #ffffff;
   padding-inline: var(--side-padding);
   grid-template-columns: 50% 50%;

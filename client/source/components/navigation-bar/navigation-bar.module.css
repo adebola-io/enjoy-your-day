@@ -5,7 +5,7 @@
   overflow-y: hidden;
   width: calc(100% - var(--side-padding) * 2);
   margin-top: auto;
-  border-top: 3px solid var(--space-cadet-500);
+  border-top: var(--outline);
   background-color: white;
   animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 2);
   padding-block: 1rem max(env(safe-area-inset-bottom), 1rem);

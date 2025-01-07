@@ -7,6 +7,7 @@ import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { vibrate } from '#/library/utils';
 import classes from './select-categories.module.css';
+import { ElasticView } from '#/components/elastic-view';
 
 export default async function SelectCategories() {
   const router = useRouter();
@@ -38,7 +39,9 @@ export default async function SelectCategories() {
         going!
       </p>
       <div class={classes.categoryListContainer}>
-        <div class={classes.categoryList}>{For(categories, CategoryCard)}</div>
+        <ElasticView class={classes.categoryList} yAxis>
+          {For(categories, CategoryCard)}
+        </ElasticView>
       </div>
       <Button
         class={classes.categorySubmitButton}

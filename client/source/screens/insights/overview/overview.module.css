@@ -1,17 +1,25 @@
 .container {
+  --initial-stagger-delay: calc(var(--default-duration) * 1.5);
+  --starting-fade-position-y: 30%;
   z-index: 2;
   display: grid;
+  padding-block-start: 20px;
   background-color: white;
-  padding-block: 20px;
   padding-inline: var(--side-padding);
   grid-template-columns: 1fr;
   grid-row: 3;
-  scroll-snap-align: start;
+  scroll-snap-align: none start;
   gap: 20px;
+  content-visibility: auto;
+  contain-intrinsic-width: 100dvw;
+
+  &:is(&) {
+    animation: none;
+  }
 
   &::after {
     display: block;
-    height: 40px;
+    height: 30px;
     content: '';
   }
 }

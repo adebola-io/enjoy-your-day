@@ -15,7 +15,6 @@ export function InsightCard(props: InsightCardProps) {
   const link = `/insights?card=${nameInKebabCase}`;
   const style = {
     backgroundColor: props.color,
-    viewTransitionName: nameInKebabCase,
     '--index': props.index,
   };
 

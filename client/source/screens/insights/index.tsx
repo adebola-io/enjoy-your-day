@@ -13,9 +13,9 @@ import { CSS_VARS } from '#/styles/variables';
 import { Sparkles } from '#/components/sparkles';
 import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
+import { dailyGoals } from '#/data/state';
 import { Overview } from './overview';
 import { History } from './history';
-import { dailyGoals } from '#/data/state';
 import classes from './insights.module.css';
 
 export default function Insights() {
@@ -24,6 +24,7 @@ export default function Insights() {
   const containerRef = Cell.source<HTMLDivElement | null>(null);
 
   const state = getResourceState(resource);
+  const isSuccess = Cell.derived(() => state.value === 'success');
 
   const Loading = () => <Loader class={classes.mainLoader} />;
 
@@ -42,14 +43,11 @@ export default function Insights() {
       const name = this.dataset.tabName as 'overview' | 'history';
       if (!containerRef.value) return;
       const container = containerRef.value;
-      const { scrollTop, scrollWidth } = container;
+      const { scrollTop: top, scrollWidth } = container;
+      const left = name === 'overview' ? 0 : scrollWidth / 2;
       // Im using scrollTo() on the container because scrollIntoView()
       // for each tab scrolls vertically, regardless of the block option set.
-      container.scrollTo({
-        left: name === 'overview' ? 0 : scrollWidth / 2,
-        top: scrollTop,
-        behavior: 'smooth',
-      });
+      container.scrollTo({ left, top, behavior: 'smooth' });
     };
 
     observer.onConnected(containerRef, (div) => {
@@ -60,13 +58,6 @@ export default function Insights() {
 
     return (
       <>
-        <Icon
-          name={userBadge.icon}
-          class={classes.userBadgeOverlay}
-          title="User Badge Overlay"
-          color={CSS_VARS['--space-cadet-500']}
-          inline
-        />
         <section class={classes.heading} data-stagger-children>
           <Sparkles>
             <Icon
@@ -120,6 +111,7 @@ export default function Insights() {
       ref={containerRef}
       class={classes.container}
       data-state={state}
+      data-stagger-children={isSuccess}
     >
       {Switch(state, {
         inert: NoOp,

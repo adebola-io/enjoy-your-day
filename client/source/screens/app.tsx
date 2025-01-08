@@ -4,12 +4,14 @@ import { appLoadingState, dailyGoals } from '#/data/state';
 import { setMetaTheme } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
-import { If } from '@adbl/unfinished';
+import { If, useObserver } from '@adbl/unfinished';
 import { CSS_VARS } from '#/styles/variables';
 
 export default async function App() {
   const router = useRouter();
   const route = router.getCurrentRoute();
+  const observer = useObserver();
+  const outletRef = Cell.source<HTMLElement | null>(null);
 
   const appIsLoaded = Cell.derived(() => {
     return appLoadingState.value === 'done';
@@ -21,15 +23,18 @@ export default async function App() {
     return dailyGoals.value.length > 0;
   });
 
-  if (appIsLoaded.value) {
-    setMetaTheme('#ffffff');
-  } else {
-    setMetaTheme(CSS_VARS['--space-cadet-500']);
-  }
+  observer.onConnected(outletRef, () => {
+    if (appIsLoaded.value) {
+      setMetaTheme('#ffffff');
+    } else {
+      setMetaTheme(CSS_VARS['--space-cadet-500']);
+    }
+  });
 
   return (
     <>
       <router.Outlet
+        ref={outletRef}
         id="mainOutlet"
         data-auto-select-is-open={autoSelectIsOpen}
         data-goals-loaded={dailyGoalsLoaded}

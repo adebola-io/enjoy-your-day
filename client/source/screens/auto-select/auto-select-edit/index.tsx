@@ -91,7 +91,6 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
       class={classes.container}
       data-no-goals-added={noGoalsAdded}
       data-search-is-open={searchIsOpen}
-      xAxis={false}
     >
       <h1 class={classes.title}>Goals for Today</h1>
       <p class={classes.subtitle}>

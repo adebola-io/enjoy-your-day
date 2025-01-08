@@ -23,7 +23,7 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
     goalState.state = this.checked ? 'completed' : 'scheduled'; // dailyGoals array is already deeply reactive.
     if (this.checked) {
       props.onCheck?.();
-      goalState.updatedAt = Temporal.Now.plainDateISO().toString();
+      goalState.updatedAt = Temporal.Now.plainDateTimeISO().toString();
     } else {
       goalState.updatedAt = null;
     }

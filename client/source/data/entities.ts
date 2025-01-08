@@ -54,7 +54,7 @@ export interface HistoryRecordRaw {
 }
 export interface HistoryRecord {
   uuid: string;
-  date: Date;
+  date: string;
   goalStates: GoalState[];
 }
 

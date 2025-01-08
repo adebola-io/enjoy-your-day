@@ -3,41 +3,23 @@ import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
 type DivProps = Omit<JSX.IntrinsicElements['div'], 'children'>;
 export interface ElasticViewProps extends DivProps {
-  as?: keyof HTMLElementTagNameMap;
+  as?: keyof HTMLElementTagNameMap | `${string}-${string}`;
   scaleFactor?: number;
   children?: unknown;
   xAxis?: boolean;
   yAxis?: boolean;
 }
 
-function canStretch(event: TouchEvent) {
-  for (const element of event.composedPath()) {
-    if (!(element instanceof HTMLElement)) continue;
-    const rect = element.getBoundingClientRect();
-    const isAtStartVertical = Math.round(rect.top) >= 0;
-    const isAtEndVertical = innerHeight >= Math.round(rect.bottom);
-    const isAtStartHorizontal = Math.round(rect.left) >= 0;
-    const isAtEndHorizontal = innerWidth >= Math.round(rect.right);
-    const shouldStretch =
-      (isAtStartHorizontal || isAtEndHorizontal) &&
-      (isAtStartVertical || isAtEndVertical);
-    if (!shouldStretch) return false;
-  }
-  return true;
-}
-
-export function ElasticView(props: ElasticViewProps) {
+export function ElasticView(props: ElasticViewProps): JSX.Template {
   const {
     yAxis,
     xAxis,
     children,
-    scaleFactor = 0.05,
+    scaleFactor = 0.08,
     as: tagname = 'div',
     ...rest
   } = props;
-  const ua = navigator.userAgent.toLowerCase();
-  const isAndroid = ua.indexOf('android') > -1;
-  let dragStartPosition = [0, 0];
+  const dragStartPosition = [0, 0];
   let dragging = false;
   let dragged = false;
 
@@ -69,19 +51,24 @@ export function ElasticView(props: ElasticViewProps) {
     requestAnimationFrame(() => {
       this.style.transform = `${scale} ${translate}`;
     });
-    dragged = true;
+    dragged = Math.abs(deltaX) > 15 || Math.abs(deltaY) > 15;
   };
 
   const handleTouchEnd = function (this: HTMLDivElement) {
-    if (!dragging || !dragged) return;
+    const removeTransition = () => {
+      this.style.removeProperty('transition');
+      this.style.removeProperty('transform');
+    };
+    if (!dragging || !dragged) {
+      removeTransition();
+      return;
+    }
     dragging = false;
+    dragged = false;
+
     requestAnimationFrame(() => {
       this.style.transition = 'transform 0.2s ease-out';
-      this.style.transform = `none`;
-      const removeTransition = () => {
-        this.style.removeProperty('transition');
-        this.style.removeProperty('transform');
-      };
+      this.style.transform = 'none';
       this.addEventListener('transitionend', removeTransition, { once: true });
     });
   };
@@ -91,10 +78,26 @@ export function ElasticView(props: ElasticViewProps) {
     setAttributeFromProps(element, key, value);
   }
   appendChild(element, tagname, props.children);
-  if (isAndroid) {
-    element.addEventListener('touchstart', handleTouchStart, { passive: true });
-    element.addEventListener('touchmove', handleTouchMove, { passive: true });
-    element.addEventListener('touchend', handleTouchEnd, { passive: true });
-  }
+
+  element.addEventListener('touchstart', handleTouchStart, { passive: true });
+  element.addEventListener('touchmove', handleTouchMove, { passive: true });
+  element.addEventListener('touchend', handleTouchEnd, { passive: true });
+
   return element;
+}
+
+function canStretch(event: TouchEvent) {
+  for (const element of event.composedPath()) {
+    if (!(element instanceof HTMLElement)) continue;
+    const rect = element.getBoundingClientRect();
+    const isAtStartVertical = Math.round(rect.top) >= 0;
+    const isAtEndVertical = innerHeight >= Math.round(rect.bottom);
+    const isAtStartHorizontal = Math.round(rect.left) >= 0;
+    const isAtEndHorizontal = innerWidth >= Math.round(rect.right);
+    const shouldStretch =
+      (isAtStartHorizontal || isAtEndHorizontal) &&
+      (isAtStartVertical || isAtEndVertical);
+    if (!shouldStretch) return false;
+  }
+  return true;
 }

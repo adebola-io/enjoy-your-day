@@ -7,8 +7,10 @@ import { Cell } from '@adbl/cells';
 import { Icon } from '../icon';
 import { XIcon } from '#/components/icons/x';
 import classes from './goal-item.module.css';
+import { Temporal } from 'temporal-polyfill';
 
-export interface GoalItemProps {
+type DivProps = JSX.IntrinsicElements['div'];
+export interface GoalItemProps extends DivProps {
   title: string;
   icon: IconName;
   index?: Cell<number>;
@@ -16,24 +18,37 @@ export interface GoalItemProps {
   instruction: string;
   listItem?: boolean;
   labelFor?: JSX.ValueOrCell<string>;
+  cancelable?: boolean;
+  timeStamp?: string | null;
   onRemove?: (
     item: number,
     container: HTMLElement,
     type: 'Swipe' | 'Tap'
   ) => void;
-  cancelable?: boolean;
 }
 
 export function GoalItem(props: GoalItemProps) {
   const containerRef = Cell.source<HTMLElement | null>(null);
   const wrapperRef = Cell.source<HTMLElement | null>(null);
   const observer = useObserver();
-  const { cancelable = true, listItem = true, labelFor } = props;
-  const styles = { '--level': props.index, '--bg-color': props.color };
+  const {
+    title,
+    icon,
+    color,
+    instruction,
+    labelFor,
+    timeStamp,
+    index,
+    onRemove,
+    cancelable = true,
+    listItem = true,
+    ...rest
+  } = props;
+  const styles = { '--level': index, '--bg-color': color };
 
   const removeItem = () => {
-    if (!containerRef.value || !props.index) return;
-    props.onRemove?.(props.index.value, containerRef.value, 'Tap');
+    if (!containerRef.value || !index) return;
+    onRemove?.(index.value, containerRef.value, 'Tap');
   };
 
   observer.onConnected(wrapperRef, () => {
@@ -43,8 +58,8 @@ export function GoalItem(props: GoalItemProps) {
     const container = containerRef.deproxy();
 
     const callback = ([entry]: IntersectionObserverEntry[]) => {
-      if (!entry.isIntersecting && container.checkVisibility() && props.index) {
-        props.onRemove?.(props.index.value, container, 'Swipe');
+      if (!entry.isIntersecting && container.checkVisibility() && index) {
+        onRemove?.(index.value, container, 'Swipe');
       }
     };
     const options = { root: container, threshold: 0.55 };
@@ -61,24 +76,31 @@ export function GoalItem(props: GoalItemProps) {
   };
 
   const Content = () => (
-    <div ref={wrapperRef} class={classes.scrollSnapWrapper}>
+    <div
+      ref={wrapperRef}
+      {...rest}
+      class={[classes.scrollSnapWrapper, rest.class]}
+    >
       <Icon
-        name={props.icon}
+        name={icon}
         class={[classes.icon, classes.goalIcon]}
         color="white"
-        secondaryColor={props.color}
+        secondaryColor={color}
         title="Icon related to the goal"
         inline
       />
-      <h2 class={classes.title}>{props.title}</h2>
-      <p class={classes.instruction}>{props.instruction}</p>
+      <h2 class={classes.title}>
+        {title}
+        {If(timeStamp, GoalTimeStamp)}
+      </h2>
+      <p class={classes.instruction}>{instruction}</p>
       {If(cancelable, () => (
         <button type="button" class={classes.cancelBtn} onClick={removeItem}>
           <InlinedIcon
             Icon={XIcon}
             class={classes.icon}
             color="white"
-            secondaryColor={props.color}
+            secondaryColor={color}
             title="Remove Goal"
           />
         </button>
@@ -105,5 +127,21 @@ export function GoalItem(props: GoalItemProps) {
     <div {...containProps}>
       <Content />
     </div>
+  );
+}
+
+function GoalTimeStamp(stamp: string) {
+  const locale = navigator.languages[0];
+  const options: Intl.DateTimeFormatOptions = {
+    hour: '2-digit',
+    minute: '2-digit',
+  };
+  const temporal = Temporal.PlainDateTime.from(stamp);
+  const time = temporal.toLocaleString(locale, options);
+  return (
+    <>
+      {' '}
+      • <time class={classes.timeStamp}>{time}</time>
+    </>
   );
 }

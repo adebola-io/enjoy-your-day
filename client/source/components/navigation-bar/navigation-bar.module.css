@@ -5,7 +5,7 @@
   overflow-y: hidden;
   width: calc(100% - var(--side-padding) * 2);
   margin-top: auto;
-  border-top: 3px solid var(--space-cadet-500);
+  border-top: var(--outline);
   background-color: white;
   animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 2);
   padding-block: 1rem max(env(safe-area-inset-bottom), 1rem);
@@ -86,10 +86,6 @@
     scale: 1 1;
     translate: none;
   }
-  to {
-    scale: 1 0;
-    translate: 0 30%;
-  }
 }
 
 @keyframes grow-bar {
@@ -128,8 +124,6 @@
 
 .icon {
   height: 1.5rem;
-  transition-duration: var(--default-duration);
-  transition-property: translate, fill;
 
   &[data-name='Home'] {
     rect {
@@ -139,6 +133,8 @@
       fill: currentColor;
       x: 21%;
       y: 45%;
+      scale: 1 0;
+      translate: 0 30%;
     }
   }
 
@@ -149,8 +145,7 @@
       rect {
         display: initial;
         animation: open-home calc(var(--default-duration) * 6)
-          calc(var(--default-duration) * 0.5);
-        animation-fill-mode: both;
+          calc(var(--default-duration) * 0.5) backwards;
       }
     }
 
@@ -203,9 +198,5 @@
         animation: animate-body calc(var(--default-duration) * 5);
       }
     }
-  }
-
-  .item:not([active]) & {
-    translate: 0% 4px;
   }
 }

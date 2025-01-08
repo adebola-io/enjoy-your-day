@@ -2,7 +2,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  padding-inline: 10px;
+  padding-inline: 5px;
 }
 
 .sparkleLeft,

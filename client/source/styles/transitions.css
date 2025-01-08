@@ -38,6 +38,7 @@
   --fade-stretch-from-bottom: fade-stretch-from-bottom;
   --pop: pop;
   --loader-spin: loader-spin;
+  --spin: spin;
   --loader-fill: loader-fill;
   --expand-in: expand-in;
   --hide: hide;
@@ -72,6 +73,15 @@
   to {
     opacity: 0;
     scale: 0.6;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 

@@ -2,13 +2,13 @@
 
 :root {
   --default-duration: 150ms;
-  --view-transition-duration: calc(var(--default-duration) * 1.5);
-  --drawer: calc(var(--default-duration) * 1.75);
+  --drawer: calc(var(--default-duration) * 1.25);
 
   --white: #ffffff;
   --black: #000000;
 
   /* Colors */
+  --outline: 1px solid #6b6b6bb5;
   --primary-600: #007480ff;
   --primary-500: #00868dff;
   --primary-400: #0093b0ff;
@@ -30,7 +30,7 @@
   --space-cadet-300: #55556cff;
   --space-cadet-400: #383853ff;
   --space-cadet-450: #1f1f45;
-  --space-cadet-500: #1b1b3aff;
+  --space-cadet-500: #1d1d3c;
   --space-cadet-600: #1b1b3aff;
   --space-cadet-700: #14142bff;
   --space-cadet-800: #111125ff;

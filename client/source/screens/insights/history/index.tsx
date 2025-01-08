@@ -127,11 +127,6 @@ function LoadedHistoryView(props: LoadedHistoryProps) {
     const previous = pickedDate.value.subtract({ days: 1 });
     const newPickedItem = lookupMap.value.get(previous.toString());
     if (newPickedItem) picked.value = newPickedItem;
-    else {
-      upperBounds = lowerBounds;
-      lowerBounds = lowerBounds.subtract({ days: chunkSize });
-      getOlder({ start: lowerBounds.toString(), end: upperBounds.toString() });
-    }
   };
 
   const goToNextDay = () => {
@@ -140,6 +135,15 @@ function LoadedHistoryView(props: LoadedHistoryProps) {
     if (newPickedItem) picked.value = newPickedItem;
   };
 
+  const requestOlderData = async () => {
+    upperBounds = lowerBounds;
+    lowerBounds = lowerBounds.subtract({ days: chunkSize });
+    await getOlder({
+      start: lowerBounds.toString(),
+      end: upperBounds.toString(),
+    });
+    return olderData.value !== null;
+  };
   return (
     <>
       <HistoryChart
@@ -147,9 +151,7 @@ function LoadedHistoryView(props: LoadedHistoryProps) {
         chartData={chartData}
         lookupMap={lookupMap}
         maxChartValue={maxChartValue}
-        onRequestOlder={() => {
-          console.log('Gimme more.');
-        }}
+        onRequestOlder={requestOlderData}
       />
       <Stepper
         class={classes.stepper}

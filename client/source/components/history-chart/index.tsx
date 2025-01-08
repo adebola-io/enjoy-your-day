@@ -12,13 +12,19 @@ export interface HistoryChartProps {
   chartData: Cell<HistoryChartItem[]>;
   maxChartValue: Cell<number>;
   lookupMap: Cell<LookupMap<'date', HistoryChartItem>>;
-  onRequestOlder: () => void;
+  onRequestOlder: () => Promise<boolean>;
 }
 
 export function HistoryChart(props: HistoryChartProps) {
   const observer = useObserver();
   const containerRef = Cell.source<HTMLElement | null>(null);
-  const { maxChartValue: max, chartData, picked, lookupMap } = props;
+  const {
+    maxChartValue: max,
+    chartData,
+    picked,
+    lookupMap,
+    onRequestOlder,
+  } = props;
 
   const pickedIndex = Cell.source(0); // Invariant: will always start on today.
   const containerStyles = {
@@ -26,6 +32,18 @@ export function HistoryChart(props: HistoryChartProps) {
     '--picked': pickedIndex,
     '--total': Cell.derived(() => chartData.value.length),
   };
+
+  const lazyLoaderObserver = new IntersectionObserver(
+    async ([{ isIntersecting, target }]) => {
+      if (!isIntersecting) return;
+
+      const moreItemsLoaded = await onRequestOlder();
+      if (!moreItemsLoaded) return;
+
+      lazyLoaderObserver.unobserve(target);
+      trackOldestItemVisibility();
+    }
+  );
 
   // Delegated for performance reasons.
   const selectDate = (event: MouseEvent) => {
@@ -40,17 +58,31 @@ export function HistoryChart(props: HistoryChartProps) {
     picked.value = selectedItem;
   };
 
+  const trackOldestItemVisibility = () => {
+    const container = containerRef.deproxy();
+    const lastChartItem = container.lastElementChild as HTMLElement;
+    if (!lastChartItem) return;
+    lazyLoaderObserver.observe(lastChartItem);
+  };
+
   observer.onConnected(containerRef, () => {
     // IntersectionObserver doesn't work on cell proxies.
     const container = containerRef.deproxy();
     container.scrollLeft = container.scrollWidth;
-    const callback = ([{ isIntersecting }]: IntersectionObserverEntry[]) => {
-      if (isIntersecting) container.dataset.shown = 'true';
+    const callback: IntersectionObserverCallback = ([{ isIntersecting }]) => {
+      if (isIntersecting) {
+        container.dataset.shown = 'true';
+        trackOldestItemVisibility();
+      }
     };
     const options: IntersectionObserverInit = { threshold: 0.9 };
-    const observer = new IntersectionObserver(callback, options);
-    observer.observe(container);
-    return () => observer.disconnect();
+    const containerObserver = new IntersectionObserver(callback, options);
+    containerObserver.observe(container);
+
+    return () => {
+      containerObserver.disconnect();
+      lazyLoaderObserver.disconnect();
+    };
   });
 
   return (

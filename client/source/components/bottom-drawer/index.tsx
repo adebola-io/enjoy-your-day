@@ -32,6 +32,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
   const isOpen = Cell.derived(() =>
     Cell.isCell(open) ? open.value : Boolean(open)
   );
+  const isClosed = Cell.derived(() => !isOpen.value);
   const isClosable = Cell.derived(() =>
     Cell.isCell(closable) ? closable.value : Boolean(closable)
   );
@@ -111,6 +112,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
         ref={ref}
         class={classes.drawer}
         data-open={isOpen}
+        inert={isClosed}
         data-closable={isClosable}
         onClick--self={handleOutsideClick}
         onCancel={handleCancel}

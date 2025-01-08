@@ -43,7 +43,8 @@ export namespace WorkerProtocol {
     };
     export type GetInsightsHistory = {
       type: 'insights.history';
-      todaysData: GoalState[];
+      start: string;
+      end: string;
     };
     export type RecordMetadata = {
       type: 'metadata.record';
@@ -140,9 +141,8 @@ export interface InsightHistoryDetails {
 
 export interface HistoryChartItem {
   date: string;
-  value: {
-    completed: number;
-    total: number;
-  };
-  categoryProfile: string[];
+  total: number;
+  categories: string[];
+  completed: GoalState[];
+  unfinished: GoalState[];
 }

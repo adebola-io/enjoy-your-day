@@ -1,34 +1,27 @@
-@property --goal-scroll-visibility {
-  syntax: '<number>';
-  initial-value: 1;
-  inherits: true;
-}
-
 /* Total count is 240% (70% + 100% + 70%)  */
 @keyframes scroll-snap-fade {
   /* 0/240 */
   0% {
-    --goal-scroll-visibility: 0;
+    opacity: 0;
   }
   /* 70/240 */
   29.166667% {
-    --goal-scroll-visibility: 0.85;
+    opacity: 0.85;
   }
   /* 100/240 */
   41.666667% {
-    --goal-scroll-visibility: 1;
+    opacity: 1;
   }
   /* 170/240 */
   70.833333% {
-    --goal-scroll-visibility: 0.85;
+    opacity: 0.85;
   }
   100% {
-    --goal-scroll-visibility: 0;
+    opacity: 0;
   }
 }
 
 .container {
-  --goal-scroll-visibility: 1;
   display: grid;
   width: 100%;
   min-height: 70px;
@@ -61,7 +54,6 @@
 .scrollSnapWrapper {
   display: grid;
   border-radius: 20px;
-  opacity: var(--goal-scroll-visibility);
   color: white;
   background-color: var(--bg-color);
   transition-duration: var(--default-duration);
@@ -71,10 +63,13 @@
   padding-block: 12px;
   column-gap: 8px;
   place-content: center;
-  scroll-snap-align: center;
 
   &:active {
     scale: 0.97;
+  }
+
+  [data-cancelable] & {
+    scroll-snap-align: center;
   }
 }
 
@@ -105,6 +100,11 @@
   align-self: center;
   font: var(--base-bold);
   grid-area: 1 / 2;
+}
+
+.timeStamp {
+  white-space: nowrap;
+  font: var(--small-bold);
 }
 
 .instruction {

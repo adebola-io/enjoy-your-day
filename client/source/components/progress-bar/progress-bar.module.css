@@ -10,13 +10,11 @@
 
   &::before {
     display: block;
-    width: 100%;
+    width: calc(var(--progress-percent) * 1%);
     height: 100%;
     background: var(--progress-color);
     content: '';
     transition-duration: calc(var(--default-duration) * 2);
-    transition-property: scale, translate, background-color;
-    scale: calc(var(--progress-percent) * 0.01) 1;
-    translate: calc(((var(--progress-percent) - 100) / 2) * 1%);
+    transition-property: width, background-color;
   }
 }

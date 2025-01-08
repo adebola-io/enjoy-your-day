@@ -1,5 +1,5 @@
 import { dexie } from './dexie';
-import { WorkerProtocol } from './types';
+import type { WorkerProtocol } from './types';
 import { getNewData } from './update';
 import { shuffleArray } from './utils';
 
@@ -46,9 +46,21 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
 
 export const recordGoalState: RecordGoalsHandler = async (data) => {
   const { goalStates } = data.message;
+  if (goalStates.length === 0) return true;
+
+  goalStates.sort((a, b) => {
+    const dateA = a.updatedAt
+      ? new Date(a.updatedAt).getTime()
+      : Number.POSITIVE_INFINITY;
+    const dateB = b.updatedAt
+      ? new Date(b.updatedAt).getTime()
+      : Number.POSITIVE_INFINITY;
+    return dateA - dateB;
+  });
+
   await dexie.history.add({
     uuid: crypto.randomUUID(),
-    date: new Date(data.message.date),
+    date: data.message.date,
     goalStates,
   });
   return true;

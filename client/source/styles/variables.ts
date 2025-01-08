@@ -1,6 +1,5 @@
 export const CSS_VARS = {
   '--default-duration': '150ms',
-  '--view-transition-duration': 'calc(var(--default-duration) * 1.5)',
   '--drawer': 'calc(var(--default-duration) * 2)',
   '--white': '#ffffff',
   '--black': '#000000',
@@ -25,7 +24,7 @@ export const CSS_VARS = {
   '--space-cadet-300': '#55556cff',
   '--space-cadet-400': '#383853ff',
   '--space-cadet-450': '#1f1f45',
-  '--space-cadet-500': '#1b1b3aff',
+  '--space-cadet-500': '#1d1d3c',
   '--space-cadet-600': '#1b1b3aff',
   '--space-cadet-700': '#14142bff',
   '--space-cadet-800': '#111125ff',

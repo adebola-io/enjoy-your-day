@@ -1,6 +1,8 @@
+import { Temporal } from 'temporal-polyfill';
 import { cardDescriptionGenerator as cardDesc } from './card-description';
 import { dexie } from './dexie';
-import type { WorkerProtocol } from './types';
+import type { HistoryChartItem, WorkerProtocol } from './types';
+import type { GoalState } from '../entities';
 
 type InsightsOverviewHandler =
   WorkerProtocol.Handler<WorkerProtocol.Requests.GetInsightsOverview>;
@@ -45,7 +47,7 @@ export const insightsOverview: InsightsOverviewHandler = async (data) => {
   return {
     userBadge: {
       icon: 'cookie',
-      name: 'New Kid.',
+      name: 'New Kid',
       description:
         "You recently started your journey on this app. It's great to have you on board!",
     },
@@ -98,55 +100,44 @@ export const insightsOverview: InsightsOverviewHandler = async (data) => {
 };
 
 export const insightsHistory: InsightsHistoryHandler = async (data) => {
-  data;
-  return {
-    maxChartValue: 15,
-    chartData: [
-      {
-        date: new Date('2025-01-01').toISOString(),
-        value: { completed: 2, total: 2 },
-        categoryProfile: ['Cooking', 'Arts', 'Social Connection'],
-      },
-      {
-        date: new Date('2025-01-01').toISOString(),
-        value: { completed: 2, total: 2 },
-        categoryProfile: ['Cooking', 'Arts', 'Social Connection'],
-      },
-      {
-        date: new Date('2025-01-01').toISOString(),
-        value: { completed: 2, total: 2 },
-        categoryProfile: ['Cooking', 'Arts', 'Social Connection'],
-      },
-      {
-        date: new Date('2025-01-01').toISOString(),
-        value: { completed: 2, total: 2 },
-        categoryProfile: ['Cooking', 'Arts', 'Social Connection'],
-      },
-      {
-        date: new Date('2025-01-02').toISOString(),
-        value: { completed: 10, total: 12 },
-        categoryProfile: ['Cooking', 'Arts', 'Social Connection'],
-      },
-      {
-        date: new Date('2025-01-03').toISOString(),
-        value: { completed: 10, total: 12 },
-        categoryProfile: ['Cooking', 'Arts', 'Social Connection'],
-      },
-      {
-        date: new Date('2025-01-04').toISOString(),
-        value: { completed: 8, total: 15 },
-        categoryProfile: ['Cooking', 'Arts', 'Social Connection'],
-      },
-      {
-        date: new Date('2025-01-05').toISOString(),
-        value: { completed: 8, total: 10 },
-        categoryProfile: ['Cooking', 'Arts', 'Social Connection'],
-      },
-      {
-        date: new Date().toISOString(),
-        value: { completed: 10, total: 10 },
-        categoryProfile: ['Cooking', 'Arts', 'Social Connection'],
-      },
-    ],
-  };
+  const { start, end } = data.message;
+  let nextDate = Temporal.PlainDate.from(end);
+  const startDate = Temporal.PlainDate.from(start);
+
+  const chartData: HistoryChartItem[] = [];
+  let maxChartValue = 1;
+  while (Temporal.PlainDate.compare(nextDate, startDate) >= 1) {
+    const date = nextDate.toString();
+    const records = await dexie.history.where('date').equals(date).toArray();
+
+    // No record for the day.
+    if (records.length === 0) {
+      chartData.push({
+        date,
+        total: 0,
+        categories: [],
+        completed: [],
+        unfinished: [],
+      });
+      nextDate = nextDate.subtract({ days: 1 });
+      continue;
+    }
+
+    const data = records[0];
+    const goalStates = data.goalStates;
+    const completed: GoalState[] = [];
+    const unfinished: GoalState[] = [];
+    const total = goalStates.length;
+    maxChartValue = Math.max(maxChartValue, goalStates.length);
+    const categories = ['Arts'];
+
+    for (const goalState of goalStates) {
+      if (goalState.state === 'completed') completed.push(goalState);
+      else unfinished.push(goalState);
+    }
+
+    chartData.push({ date, total, categories, completed, unfinished });
+    nextDate = nextDate.subtract({ days: 1 });
+  }
+  return { maxChartValue, chartData };
 };

@@ -24,6 +24,7 @@ export default function Insights() {
   const containerRef = Cell.source<HTMLDivElement | null>(null);
 
   const state = getResourceState(resource);
+  const isSuccess = Cell.derived(() => state.value === 'success');
 
   const Loading = () => <Loader class={classes.mainLoader} />;
 
@@ -110,6 +111,7 @@ export default function Insights() {
       ref={containerRef}
       class={classes.container}
       data-state={state}
+      data-stagger-children={isSuccess}
     >
       {Switch(state, {
         inert: NoOp,

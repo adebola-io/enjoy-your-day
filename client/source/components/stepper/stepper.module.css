@@ -1,6 +1,14 @@
 .stepper {
   display: grid;
   grid-template-columns: auto 1fr auto;
+
+  &:not([data-forwards-enabled]) button:last-child {
+    visibility: hidden;
+  }
+
+  &:not([data-backwards-enabled]) button:first-child {
+    visibility: hidden;
+  }
 }
 
 .button {
@@ -9,9 +17,35 @@
   height: auto;
   border: none;
   background-color: transparent;
+  transition: scale var(--default-duration);
   place-content: center;
   place-items: center;
   aspect-ratio: 1;
+
+  &:active {
+    scale: 0.8;
+
+    &::before {
+      opacity: 0.3;
+      scale: 3;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    display: block;
+    width: auto;
+    height: 40%;
+    border-radius: 50%;
+    opacity: 0;
+    background-color: var(--space-cadet-500);
+    content: '';
+    transition-duration: calc(var(--default-duration) * 1.25);
+    transition-property: opacity, scale;
+    pointer-events: none;
+    aspect-ratio: 1;
+    scale: 2.2;
+  }
 }
 
 .icon {

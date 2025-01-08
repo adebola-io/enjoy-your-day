@@ -3,13 +3,13 @@
   display: grid;
   width: 100%;
   height: 100%;
-  padding-block-start: calc(var(--block-padding) * 0.5);
-  background-color: white;
   grid-row: 3;
-  scroll-snap-align: start;
+  scroll-snap-align: none start;
+  content-visibility: auto;
+  contain-intrinsic-width: 100dvw;
 
   &[data-state='success'] {
-    grid-template-rows: 300px auto auto auto 1fr;
+    grid-template-rows: 300px auto auto 1fr;
   }
 }
 
@@ -41,6 +41,12 @@
   grid-area: 2 / 2;
 }
 
+.selectedItem {
+  --starting-fade-position-y: -50px;
+  padding-block-end: var(--block-padding);
+  animation: var(--fade-in-from-top) calc(var(--default-duration) * 1.5);
+}
+
 .remark {
   display: inline-grid;
   padding-block-end: calc(var(--block-padding) * 0.25);
@@ -53,7 +59,54 @@
   margin-inline: var(--side-padding);
 }
 
-.completedGoalsHeading {
+.goalsHeading {
   font: var(--base-bold);
   margin-inline: var(--side-padding);
+}
+
+.unfinishedGoalsHeading {
+  margin-top: calc(var(--block-padding) * 0.25);
+}
+
+.goalsList {
+  display: flex;
+  flex-direction: column;
+  padding-block-start: calc(var(--block-padding) * 0.25);
+  padding-inline: var(--side-padding);
+  gap: calc(var(--block-padding) * 0.25);
+}
+
+.unfinishedGoalsList > * {
+  filter: brightness(0.5) opacity(0.7);
+}
+
+.fadedText {
+  display: grid;
+  color: var(--space-cadet-200);
+  animation: var(--fade-in) calc(var(--default-duration) * 2) ease-out;
+  text-wrap: balance;
+  font: var(--base-regular);
+  grid-template-columns: auto 1fr;
+  padding-inline: var(--side-padding);
+  place-items: center;
+  gap: calc(var(--block-padding) * 0.1);
+}
+
+.fadedTextContent {
+  justify-self: start;
+}
+
+.emptyIcon {
+  width: min(20px, 40dvw);
+  height: auto;
+  color: var(--space-cadet-100);
+  aspect-ratio: 1;
+}
+
+.settingsIcon {
+  width: min(20px, 40dvw);
+  height: auto;
+  color: var(--space-cadet-100);
+  animation: var(--spin) calc(var(--default-duration) * 20) linear infinite;
+  aspect-ratio: 1;
 }

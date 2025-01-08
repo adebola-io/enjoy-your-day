@@ -32,6 +32,7 @@ ul {
 
 :root,
 body {
+  color: var(--space-cadet-500);
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;

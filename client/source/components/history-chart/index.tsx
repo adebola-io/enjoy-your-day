@@ -1,30 +1,56 @@
 import { For, useObserver } from '@adbl/unfinished';
-import type {
-  HistoryChartItem,
-  InsightHistoryDetails,
-} from '#/data/worker/types';
+import { ElasticView } from '#/components/elastic-view';
+import type { HistoryChartItem } from '#/data/worker/types';
+import type { LookupMap } from '#/library/utils';
 import { Temporal } from 'temporal-polyfill';
-import { Cell } from '@adbl/cells';
-import { ElasticView } from '../elastic-view';
+import { Cell, type SourceCell } from '@adbl/cells';
+import { todayStr } from '#/data/state';
 import classes from './history-chart.module.css';
 
 export interface HistoryChartProps {
-  today: Cell<string | undefined>;
-  selectedDay?: Cell<string | undefined>;
-  onSelectDate?: (date: string, data: HistoryChartItem) => void;
-  details: InsightHistoryDetails;
+  picked: SourceCell<HistoryChartItem>;
+  chartData: Cell<HistoryChartItem[]>;
+  maxChartValue: Cell<number>;
+  lookupMap: Cell<LookupMap<'date', HistoryChartItem>>;
+  onRequestOlder: () => void;
 }
 
 export function HistoryChart(props: HistoryChartProps) {
   const observer = useObserver();
   const containerRef = Cell.source<HTMLElement | null>(null);
-  const locale = navigator.languages[0];
-  const { details, selectedDay, today, onSelectDate } = props;
-  const { maxChartValue: max, chartData } = details;
-  const containerStyles = { '--total': chartData.length };
+  const { maxChartValue: max, chartData, picked, lookupMap } = props;
 
-  observer.onConnected(containerRef, (container) => {
+  const pickedIndex = Cell.source(0); // Invariant: will always start on today.
+  const containerStyles = {
+    '--max': max,
+    '--picked': pickedIndex,
+    '--total': Cell.derived(() => chartData.value.length),
+  };
+
+  // Delegated for performance reasons.
+  const selectDate = (event: MouseEvent) => {
+    const target = event.target as Element;
+    const selector = `.${classes.chartItem}`;
+    const clicked = target.closest<HTMLButtonElement>(selector);
+    if (!clicked) return;
+    const { date } = clicked.dataset;
+    if (!date) return;
+    const selectedItem = lookupMap.value.get(date);
+    if (!selectedItem) return;
+    picked.value = selectedItem;
+  };
+
+  observer.onConnected(containerRef, () => {
+    // IntersectionObserver doesn't work on cell proxies.
+    const container = containerRef.deproxy();
     container.scrollLeft = container.scrollWidth;
+    const callback = ([{ isIntersecting }]: IntersectionObserverEntry[]) => {
+      if (isIntersecting) container.dataset.shown = 'true';
+    };
+    const options: IntersectionObserverInit = { threshold: 0.9 };
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(container);
+    return () => observer.disconnect();
   });
 
   return (
@@ -33,39 +59,68 @@ export function HistoryChart(props: HistoryChartProps) {
       class={classes.container}
       style={containerStyles}
       xAxis
+      onClick={selectDate}
     >
-      {For(chartData, (item) => {
-        const { total, completed } = item.value;
-        const dateStr = item.date.slice(0, -1);
-        const totalBarStyles = { height: `${(total / max) * 100}%` };
-        const completedBarStyles = { height: `${(completed / max) * 100}%` };
-        const date = Temporal.ZonedDateTime.from(`${dateStr}[UTC]`);
-        const dateOfMonth = String(date.day).padStart(2, '0');
-        const intlOptions: Intl.DateTimeFormatOptions = { weekday: 'short' };
-        const dayOfWeek = String(date.toLocaleString(locale, intlOptions));
-        const dayMarker = date.startOfDay().toPlainDateTime().toString();
-        const isToday = Cell.derived(() => dayMarker === today.value);
-        const isSelected = Cell.derived(() => selectedDay?.value === dayMarker);
-
-        const selectDate = () => onSelectDate?.(dayMarker, item);
-
-        if (isToday.value && item.value) selectDate();
-
-        return (
-          <button
-            type="button"
-            class={classes.chartItem}
-            data-is-today={isToday}
-            data-is-selected-day={isSelected}
-            onClick={selectDate}
-          >
-            <div class={classes.total} style={totalBarStyles} />
-            <div class={classes.completed} style={completedBarStyles} />
-            <div class={classes.chartItemDate}>{dateOfMonth}</div>
-            <span class={classes.chartItemDay}>{dayOfWeek}</span>
-          </button>
-        );
-      })}
+      {For(chartData, (item, index) => (
+        <ChartItem
+          item={item}
+          index={index}
+          picked={picked}
+          pickedIndex={pickedIndex}
+        />
+      ))}
     </ElasticView>
+  );
+}
+
+interface ChartItemProps {
+  item: HistoryChartItem;
+  index: Cell<number>;
+  picked: Cell<HistoryChartItem | null>;
+  pickedIndex: SourceCell<number>;
+}
+
+function ChartItem(props: ChartItemProps) {
+  const { item, index, picked, pickedIndex } = props;
+  const { total: totalCount } = item;
+  const { length: completedCount } = item.completed;
+  const locale = navigator.languages[0];
+  const dateStr = item.date;
+  const buttonRef = Cell.source<HTMLButtonElement | null>(null);
+  const date = Temporal.PlainDate.from(dateStr);
+  const dateOfMonth = String(date.day).padStart(2, '0');
+  const intlOptions: Intl.DateTimeFormatOptions = { weekday: 'short' };
+  const dayOfWeek = String(date.toLocaleString(locale, intlOptions));
+  const isToday = Cell.derived(() => dateStr === todayStr.value);
+  const isSelected = Cell.derived(() => picked.value?.date === dateStr);
+  const chartItemStyles = {
+    '--total-height': totalCount,
+    '--completed-height': completedCount,
+    '---index': index,
+  };
+
+  isSelected.listen((isSelected) => {
+    if (!isSelected) return;
+    pickedIndex.value = index.value;
+    buttonRef.value?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'center',
+      block: 'nearest',
+    });
+  });
+
+  return (
+    <button
+      ref={buttonRef}
+      type="button"
+      class={classes.chartItem}
+      data-is-today={isToday}
+      data-date={dateStr}
+      data-is-picked-day={isSelected}
+      style={chartItemStyles}
+    >
+      <div class={classes.chartItemDate}>{dateOfMonth}</div>
+      <span class={classes.chartItemDay}>{dayOfWeek}</span>
+    </button>
   );
 }

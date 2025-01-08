@@ -67,6 +67,8 @@ export async function getInsightsOverview(todaysData: GoalState[]) {
   return toWorker({ type: 'insights.overview', todaysData });
 }
 
-export async function getInsightsHistory(todaysData: GoalState[]) {
-  return toWorker({ type: 'insights.history', todaysData });
+type InsightHistoryRequest = { start: string; end: string };
+export async function getInsightsHistory(details: InsightHistoryRequest) {
+  const response = await toWorker({ type: 'insights.history', ...details });
+  return response;
 }

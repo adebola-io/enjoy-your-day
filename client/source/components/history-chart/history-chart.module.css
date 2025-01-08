@@ -1,68 +1,133 @@
 .container {
+  --bar-width: 25px;
+  --bar-animation-duration: calc(var(--default-duration) * 3);
   position: relative;
-  display: grid;
+  display: flex;
   overflow-x: auto;
-  width: calc(100% - var(--side-padding) * 6);
-  padding-inline: var(--side-padding) calc(var(--side-padding) * 5);
-  grid-template-columns: repeat(var(--total), 40px);
-  grid-template-rows: 1fr;
+  flex-direction: row-reverse;
+  padding-block-start: calc(var(--block-padding) * 0.85);
+  padding-inline-start: var(--side-padding);
+  padding-inline-end: 40dvw;
+  background-image: url(./background.svg);
   column-gap: calc(var(--side-padding) * 0.5);
+  overscroll-behavior-y: initial;
+  overscroll-behavior-x: none;
+  scrollbar-width: none;
+  contain: strict;
+
+  &:not([data-shown]) {
+    .total,
+    .completed {
+      display: none;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::before {
+    position: absolute;
+    bottom: 0;
+    width: calc(var(--bar-width) * 2);
+    height: calc((var(--small-font-size) * 2) + 30px);
+    border-radius: 10px;
+    background-color: var(--space-cadet-500);
+    content: '';
+    transition: translate calc(var(--default-duration) * 1.5);
+    translate: calc(var(--picked) * (-100% - (var(--side-padding) * 0.5)));
+  }
 }
 
 .chartItem {
+  position: relative;
   display: grid;
+  min-width: calc(var(--bar-width) * 2);
   height: 100%;
+  padding: 0;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+  transition-duration: var(--default-duration);
+  transition-property: scale, color;
   text-align: center;
+  font: var(--small-regular);
+  content-visibility: auto;
   grid-template-rows: 1fr auto;
-  grid-template-columns: repeat(2, 20px);
+  grid-template-columns: repeat(2, var(--bar-width));
+
+  &:active {
+    scale: 0.95;
+  }
 
   &[data-is-today] {
     font-weight: bold;
   }
 
-  &[data-is-selected-day] {
-    color: red;
+  &[data-is-picked-day] {
+    color: white;
+
+    &::before {
+      background-color: #c8c8e1;
+    }
+  }
+
+  &::before {
+    align-self: end;
+    width: 100%;
+    height: calc((var(--total-height) / var(--max)) * 100%);
+    border-radius: 10px;
+    background-color: var(--space-cadet-50);
+    transition: background-color var(--default-duration);
+    animation-duration: calc(
+      (var(--total-height) / var(--max)) * var(--bar-animation-duration)
+    );
+    grid-area: 1/ 1;
+  }
+
+  &::after {
+    align-self: end;
+    width: 100%;
+    height: calc((var(--completed-height) / var(--max)) * 100%);
+    border-radius: 10px;
+    background-color: var(--space-cadet-400);
+    animation-duration: calc(
+      (var(--completed-height) / var(--max)) * var(--bar-animation-duration)
+    );
+    grid-area: 1/ 2;
+  }
+
+  &::before,
+  &::after {
+    display: block;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    content: '';
+    transform-origin: bottom;
+    animation-name: grow;
+    animation-timing-function: ease;
+    animation-fill-mode: backwards;
   }
 }
 
-.total {
-  align-self: end;
-  width: 100%;
-  border-radius: 10px;
-  background-color: var(--space-cadet-50);
-  grid-area: 1/ 1;
-}
-
-.completed {
-  align-self: end;
-  width: 100%;
-  border-radius: 10px;
-  background-color: var(--space-cadet-400);
-  grid-area: 1/ 2;
+@keyframes grow {
+  from {
+    scale: 1 0;
+  }
 }
 
 .chartItemDate {
   position: relative;
+  padding-block-start: 5px;
   margin-block-start: 10px;
-  background-color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   grid-area: 2 / 1 / 2 / 3;
-
-  &::before {
-    position: absolute;
-    top: 0;
-    left: -15px;
-    display: block;
-    width: 15px;
-    height: 100%;
-    background-color: white;
-    content: '';
-  }
 }
 
 .chartItemDay {
-  margin-block-end: 10px;
-  background-color: white;
+  position: relative;
+  padding-block-end: 5px;
+  margin-block-end: 5px;
   grid-area: 3 / 1 / 3 / 3;
 }

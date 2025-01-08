@@ -23,6 +23,7 @@
   }
 
   &:not([open]) {
+    overflow-y: hidden;
     pointer-events: none;
     &::before {
       /* Not a real animation. just delays the snap until the drawer is gone. */

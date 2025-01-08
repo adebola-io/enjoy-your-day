@@ -3,7 +3,7 @@ import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
 type DivProps = Omit<JSX.IntrinsicElements['div'], 'children'>;
 export interface ElasticViewProps extends DivProps {
-  as?: keyof HTMLElementTagNameMap;
+  as?: keyof HTMLElementTagNameMap | `${string}-${string}`;
   scaleFactor?: number;
   children?: unknown;
   xAxis?: boolean;
@@ -55,16 +55,20 @@ export function ElasticView(props: ElasticViewProps): JSX.Template {
   };
 
   const handleTouchEnd = function (this: HTMLDivElement) {
-    if (!dragging || !dragged) return;
+    const removeTransition = () => {
+      this.style.removeProperty('transition');
+      this.style.removeProperty('transform');
+    };
+    if (!dragging || !dragged) {
+      removeTransition();
+      return;
+    }
     dragging = false;
     dragged = false;
+
     requestAnimationFrame(() => {
       this.style.transition = 'transform 0.2s ease-out';
       this.style.transform = 'none';
-      const removeTransition = () => {
-        this.style.removeProperty('transition');
-        this.style.removeProperty('transform');
-      };
       this.addEventListener('transitionend', removeTransition, { once: true });
     });
   };

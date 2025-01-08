@@ -39,6 +39,10 @@ export const goalsCompleted = Cell.derived(() => {
 });
 export const shouldShowCompletionScreen = Cell.source(goalsCompleted.value);
 export const liveDate = useLiveDate(DATE_UPDATE_INTERVAL);
+export const todayStr = Cell.derived(() => {
+  liveDate.value;
+  return Temporal.Now.plainDateISO().toString();
+});
 export const timeOfDay = Cell.derived(() => {
   const hours = liveDate.value.getHours();
   if (hours < 12) return 'morning';

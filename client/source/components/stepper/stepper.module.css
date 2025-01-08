@@ -16,6 +16,7 @@
   width: 90px;
   height: auto;
   border: none;
+  color: inherit;
   background-color: transparent;
   transition: scale var(--default-duration);
   place-content: center;

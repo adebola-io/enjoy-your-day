@@ -3,10 +3,12 @@
   --starting-fade-position-y: 30%;
   z-index: 2;
   display: grid;
+  height: max-content;
   padding-block-start: 20px;
   background-color: white;
   padding-inline: var(--side-padding);
   grid-template-columns: 1fr;
+  grid-template-rows: repeat(var(--total), max(150px, 20dvh));
   grid-row: 3;
   scroll-snap-align: none start;
   gap: 20px;

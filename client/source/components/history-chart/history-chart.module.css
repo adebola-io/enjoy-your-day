@@ -6,8 +6,7 @@
   overflow-x: auto;
   flex-direction: row-reverse;
   padding-block-start: calc(var(--block-padding) * 0.85);
-  padding-inline-start: var(--side-padding);
-  padding-inline-end: 40dvw;
+  padding-inline-end: 20dvw;
   background-image: url(./background.svg);
   column-gap: calc(var(--side-padding) * 0.5);
   overscroll-behavior-y: initial;
@@ -46,6 +45,7 @@
   height: 100%;
   padding: 0;
   border: none;
+  color: inherit;
   background-color: transparent;
   cursor: pointer;
   transition-duration: var(--default-duration);

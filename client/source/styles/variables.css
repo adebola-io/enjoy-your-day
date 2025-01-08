@@ -2,7 +2,7 @@
 
 :root {
   --default-duration: 150ms;
-  --drawer: calc(var(--default-duration) * 1.25);
+  --drawer: calc(var(--default-duration) * 2);
 
   --white: #ffffff;
   --black: #000000;

@@ -1,6 +1,7 @@
 import type { JSX } from '@adbl/unfinished/jsx-dev-runtime';
 import { getMetaTheme, overlayBlack, setMetaTheme } from '#/library/utils';
-import { Teleport, useObserver } from '@adbl/unfinished';
+import { useObserver } from '@adbl/unfinished';
+import { Teleport } from '@adbl/unfinished/teleport';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { type RouteChangeEvent, useRouter } from '@adbl/unfinished/router';
 import classes from './bottom-drawer.module.css';

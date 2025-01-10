@@ -7,6 +7,7 @@ import { involvementLevel, selectedCategories, username } from '#/data/state';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './involvement.module.css';
+import { vibrate } from '#/library/utils';
 
 export default async function Involvement() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default async function Involvement() {
     return;
   }
 
-  if (selectedCategories.value.length > 3) {
+  if (selectedCategories.value.length < 3) {
     await router.replace('/onboarding/select-categories');
     return;
   }
@@ -74,7 +75,11 @@ function InvolvementLevel(props: InvolvementLevelProps) {
   const { title, Icon, description, color, value } = props;
   const styles = { '--level-color': color, '--level-value': value };
   return (
-    <label class={classes.involvementLevel} style={styles}>
+    <label
+      class={classes.involvementLevel}
+      style={styles}
+      onClick={() => vibrate()}
+    >
       <Icon class={classes.icon} />
       <input type="radio" name="involvementLevel" value={value} required />
       <h2 class={classes.title}>{title}</h2>

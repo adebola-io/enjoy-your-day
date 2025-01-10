@@ -27,7 +27,7 @@
   transition-duration: calc(var(--default-duration) * 2);
   transition-property: border-color, color, scale;
   animation: var(--fade-in-from-bottom)
-    calc(var(--default-duration) * var(--level-value));
+    calc(var(--default-duration) * var(--level-value) * 1.5);
   padding-inline: calc(var(--side-padding) * 0.5);
   grid-template-columns: min(70px, 15dvh) 1fr;
   column-gap: min(20px, 10dvw);

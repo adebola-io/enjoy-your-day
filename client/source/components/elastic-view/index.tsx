@@ -24,7 +24,7 @@ export function ElasticView(props: ElasticViewProps): JSX.Template {
   let dragged = false;
 
   const handleTouchStart = (event: TouchEvent) => {
-    if (!canStretch(event)) return;
+    if (!canStretch(event, xAxis, yAxis)) return;
     dragging = true;
     dragStartPosition[0] = event.touches[0].clientX;
     dragStartPosition[1] = event.touches[0].clientY;
@@ -34,7 +34,7 @@ export function ElasticView(props: ElasticViewProps): JSX.Template {
     if (!dragging) return;
     const deltaX = xAxis ? event.touches[0].clientX - dragStartPosition[0] : 0;
     const deltaY = yAxis ? event.touches[0].clientY - dragStartPosition[1] : 0;
-    if (!canStretch(event)) return;
+    if (!canStretch(event, xAxis, yAxis)) return;
     const elementHeight = this.clientHeight;
     const elementWidth = this.clientWidth;
 
@@ -86,9 +86,25 @@ export function ElasticView(props: ElasticViewProps): JSX.Template {
   return element;
 }
 
-function canStretch(event: TouchEvent) {
+function canStretch(event: TouchEvent, xAxis?: boolean, yAxis?: boolean) {
   for (const element of event.composedPath()) {
     if (!(element instanceof HTMLElement)) continue;
+    if (!(xAxis || yAxis)) return false;
+
+    if (yAxis) {
+      const isAtUpperEdge = element.scrollTop === 0;
+      const isAtBottomEdge =
+        element.scrollTop + element.clientHeight >= element.scrollHeight;
+      if (!(isAtUpperEdge || isAtBottomEdge)) return false;
+    }
+
+    if (xAxis) {
+      const isAtLeftEdge = element.scrollLeft === 0;
+      const isAtRightEdge =
+        element.scrollLeft + element.clientWidth >= element.scrollWidth;
+      if (!(isAtLeftEdge || isAtRightEdge)) return false;
+    }
+
     const rect = element.getBoundingClientRect();
     const isAtStartVertical = Math.round(rect.top) >= 0;
     const isAtEndVertical = innerHeight >= Math.round(rect.bottom);

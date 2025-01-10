@@ -16,8 +16,6 @@ export interface HistoryChartProps {
 }
 
 export function HistoryChart(props: HistoryChartProps) {
-  const observer = useObserver();
-  const containerRef = Cell.source<HTMLElement | null>(null);
   const {
     maxChartValue: max,
     chartData,
@@ -25,6 +23,8 @@ export function HistoryChart(props: HistoryChartProps) {
     lookupMap,
     onRequestOlder,
   } = props;
+  const observer = useObserver();
+  const containerRef = Cell.source<HTMLElement | null>(null);
 
   const pickedIndex = Cell.source(0); // Invariant: will always start on today.
   const containerStyles = {

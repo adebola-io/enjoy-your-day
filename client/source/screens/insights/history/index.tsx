@@ -19,7 +19,7 @@ import { CSS_VARS } from '#/styles/variables';
 import classes from './history.module.css';
 import SettingsIcon from '#/components/icons/settings';
 
-export function History() {
+export default function History() {
   const observer = useObserver();
   const resource = Cell.async(getInsightsHistory);
   const state = getResourceState(resource);

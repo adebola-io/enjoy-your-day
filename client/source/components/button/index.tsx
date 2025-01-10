@@ -18,7 +18,6 @@ export type ButtonProps = JSX.IntrinsicElements['button'] &
   };
 
 export function Button(props: ButtonProps): JSX.Template {
-  const router = useRouter();
   const {
     vibrate: vibrateOnClick = false,
     class: className,
@@ -30,6 +29,7 @@ export function Button(props: ButtonProps): JSX.Template {
     type,
     ...rest
   } = props;
+  const router = useRouter();
 
   let button: HTMLElement | HTMLElement[];
   if (href) {

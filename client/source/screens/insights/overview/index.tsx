@@ -8,7 +8,7 @@ export interface InsightsOverviewProps {
   cards: InsightsOverview['cards'];
 }
 
-export function Overview(props: InsightsOverviewProps) {
+export default function Overview(props: InsightsOverviewProps) {
   const { cards } = props;
   const styles = { '--total': cards.length };
   return (

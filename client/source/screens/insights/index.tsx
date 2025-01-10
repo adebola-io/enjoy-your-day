@@ -14,8 +14,8 @@ import { Sparkles } from '#/components/sparkles';
 import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
 import { dailyGoals } from '#/data/state';
-import { Overview } from './overview';
-import { History } from './history';
+import Overview from './overview';
+import History from './history';
 import classes from './insights.module.css';
 
 export default function Insights() {

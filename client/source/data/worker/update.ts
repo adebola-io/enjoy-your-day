@@ -1,33 +1,38 @@
 import type { GoalProps, GoalListingUpdate } from '#/data/entities';
+import { TaskQueue } from '#/library/task-queue';
+import { LookupMap } from '#/library/lookup-map';
 import type { SendableCategory } from '../categories';
 
-export async function* getNewData(
+export const updateDataQueue = new TaskQueue<GoalListingUpdate>();
+export function startGoalUpdateProcess(
   lastLoadedChunk: number,
   latestChunk: number,
   categoryList: Array<SendableCategory>
-): AsyncGenerator<GoalListingUpdate, void, unknown> {
-  const categories = new Map<string, SendableCategory>();
-  for (const category of categoryList) {
-    categories.set(category.name, category);
-  }
+) {
+  const categories = new LookupMap(categoryList, 'name');
+  let errored = false;
 
   for (let i = lastLoadedChunk + 1; i <= latestChunk; i++) {
-    try {
-      const data = (await import(`./json/${i}.json`)).default;
-      const goals = data.goals;
-      const addedGoalObjects = setDates(
-        getCategoryIdentifiers(goals.added, categories)
-      );
-      yield {
-        addedGoalObjects,
-        removedGoalUuids: goals.removed,
-        updatedGoals: goals.updated,
-      };
-    } catch (error) {
-      console.error('Error loading goals. Stopping load at chunk', i);
-      console.error(error);
-      break;
-    }
+    import(`./json/${i}.json`)
+      .then((module) => {
+        if (errored) return;
+        const data = module.default;
+        const goals = data.goals;
+        const addedGoalObjects = setDates(
+          getCategoryIdentifiers(goals.added, categories)
+        );
+        const update: GoalListingUpdate = {
+          chunk: data.chunk,
+          addedGoalObjects,
+          removedGoalUuids: goals.removed,
+          updatedGoals: goals.updated,
+        };
+        updateDataQueue.insertAtIndex(i - 1, update);
+      })
+      .catch((error) => {
+        console.error('Error loading goals. Stopping load at chunk', i);
+        console.error(error);
+      });
   }
 }
 
@@ -39,14 +44,14 @@ function setDates(goals: Array<GoalProps>) {
 }
 
 function getCategoryIdentifiers(
-  goals: Array<GoalProps & { categories: string | string[] }>,
-  categories: Map<string, SendableCategory>
+  goals: Array<GoalProps & { categories: string | Set<string> }>,
+  categories: LookupMap<'name', SendableCategory>
 ) {
   for (const goal of goals) {
     const categoryNames = (goal.categories as string)
       .split(',')
       .filter(Boolean);
-    goal.categories = categoryNames;
+    goal.categories = new Set(categoryNames);
     for (const categoryName of categoryNames) {
       const categoryObj = categories.get(categoryName);
       if (categoryObj) continue;

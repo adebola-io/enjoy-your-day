@@ -3,6 +3,7 @@ import Onboarding from '.';
 import EnterName from './enter-name';
 import SelectCategories from './select-categories';
 import Loading from './loading';
+import Involvement from './involvement';
 
 export const onboardingRouteTree = defineRoute({
   name: 'Onboarding View',
@@ -18,6 +19,11 @@ export const onboardingRouteTree = defineRoute({
       name: 'Onboarding - Select Categories',
       path: 'select-categories',
       component: SelectCategories,
+    },
+    {
+      name: 'Onboarding - Involvement',
+      path: 'involvement',
+      component: Involvement,
     },
     {
       name: 'Onboarding - Loading',

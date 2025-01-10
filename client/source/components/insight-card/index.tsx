@@ -10,31 +10,27 @@ export interface InsightCardProps extends InsightCardDetails {
 }
 
 export function InsightCard(props: InsightCardProps) {
+  const { name, value, icon, color, suffix, index } = props;
   const router = useRouter();
-  const nameInKebabCase = props.name.replace(/\s/g, '-').toLowerCase();
+  const nameInKebabCase = name.replace(/\s/g, '-').toLowerCase();
   const link = `/insights?card=${nameInKebabCase}`;
   const style = {
-    backgroundColor: props.color,
-    '--index': props.index,
+    backgroundColor: color,
+    '--index': index,
   };
 
   return (
     <li class={classes.container} style={style}>
       <router.Link class={classes.link} href={link}>
         <output id={nameInKebabCase} class={classes.value}>
-          {String(props.value)}{' '}
-          {If(props.suffix, (value) => {
+          {String(value)}{' '}
+          {If(suffix, (value) => {
             return <span class={classes.suffix}>{value}</span>;
           })}
         </output>
-        <Icon
-          name={props.icon}
-          class={classes.icon}
-          color="white"
-          title="Icon"
-        />
+        <Icon name={icon} class={classes.icon} color="white" title="Icon" />
         <label for={nameInKebabCase} class={classes.label}>
-          {props.name}
+          {name}
         </label>
       </router.Link>
     </li>

@@ -15,6 +15,7 @@ export namespace WorkerProtocol {
     export type GetRecommendedGoals = {
       type: 'goals.today';
       categories: string[];
+      preferredInvolvementLevel: number;
     };
     export type GetExampleSearchGoalInstruction = {
       type: 'goals.search-example';

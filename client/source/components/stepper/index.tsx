@@ -18,19 +18,20 @@ export function Stepper(props: StepperProps) {
     onForwards,
     forwardsEnabled = true,
     backwardsEnabled = true,
+    class: className,
     ...rest
   } = props;
   return (
     <div
       {...rest}
-      class={[props.class, classes.stepper]}
+      class={[classes.stepper, className]}
       data-forwards-enabled={forwardsEnabled}
       data-backwards-enabled={backwardsEnabled}
     >
       <button class={classes.button} type="button" onClick={onBackwards}>
         <CaretRightIcon class={classes.icon} />
       </button>
-      {props.children}
+      {children}
       <button class={classes.button} type="button" onClick={onForwards}>
         <CaretRightIcon class={[classes.icon, classes.buttonRightIcon]} />
       </button>

@@ -1,14 +1,15 @@
 import type { IconProps } from '#/components/icons/props';
 
 export function Loader(props: IconProps) {
+  const { class: className, ...rest } = props;
   return (
     <svg
       viewBox="0 0 45 46"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style="--base-animation-duration: 2s"
-      {...props}
-      class={['hourglass-loader', props.class]}
+      {...rest}
+      class={['hourglass-loader', className]}
     >
       <title xmlns="http://www.w3.org/2000/svg">
         Loading Hourglass Animation

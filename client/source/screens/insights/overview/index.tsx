@@ -13,7 +13,7 @@ export function Overview(props: InsightsOverviewProps) {
   const styles = { '--total': cards.length };
   return (
     <ul class={classes.container} style={styles} data-stagger-children>
-      {For(props.cards, (cardDetails, index) => (
+      {For(cards, (cardDetails, index) => (
         <InsightCard {...cardDetails} index={index} />
       ))}
       <CardDrawer cards={cards} />

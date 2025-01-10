@@ -77,7 +77,7 @@ export function ElasticView(props: ElasticViewProps): JSX.Template {
   for (const [key, value] of Object.entries(rest)) {
     setAttributeFromProps(element, key, value);
   }
-  appendChild(element, tagname, props.children);
+  appendChild(element, tagname, children);
 
   element.addEventListener('touchstart', handleTouchStart, { passive: true });
   element.addEventListener('touchmove', handleTouchMove, { passive: true });

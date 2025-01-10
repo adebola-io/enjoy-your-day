@@ -6,7 +6,7 @@ import { Cell, type SourceCell } from '@adbl/cells';
 import { type RouteChangeEvent, useRouter } from '@adbl/unfinished/router';
 import classes from './bottom-drawer.module.css';
 
-type DialogProps = JSX.IntrinsicElements['div'];
+type DialogProps = Omit<JSX.IntrinsicElements['div'], 'children'>;
 interface BottomDrawerProps extends DialogProps {
   ref?: SourceCell<HTMLDialogElement | null>;
   open?: JSX.ValueOrCell<boolean>;
@@ -14,16 +14,19 @@ interface BottomDrawerProps extends DialogProps {
   onClose?: () => void;
   onClosePrevented?: () => void;
   shrinkTarget?: string;
+  children?: unknown;
 }
 
 export function BottomDrawer(props: BottomDrawerProps) {
   const {
     open,
-    shrinkTarget = 'body',
-    ref = Cell.source<HTMLDialogElement | null>(null),
-    closable = Cell.source(true),
     onClose,
     onClosePrevented,
+    closable = Cell.source(true),
+    ref = Cell.source<HTMLDialogElement | null>(null),
+    shrinkTarget = 'body',
+    children,
+    class: className,
     ...rest
   } = props;
   const observer = useObserver();
@@ -86,7 +89,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
     // because they are proxies.
     const dialog = ref.deproxy();
     const div = dialog.firstElementChild as HTMLDivElement;
-    const callback = ([{ isIntersecting }]: IntersectionObserverEntry[]) => {
+    const callback: IntersectionObserverCallback = ([{ isIntersecting }]) => {
       const canClose =
         !isIntersecting &&
         isOpen.value &&
@@ -119,8 +122,8 @@ export function BottomDrawer(props: BottomDrawerProps) {
         onCancel={handleCancel}
         onClose={handleClose}
       >
-        <div {...rest} class={[classes.drawerContent, props.class]}>
-          {props.children}
+        <div {...rest} class={[classes.drawerContent, className]}>
+          {children}
         </div>
       </dialog>
     </Teleport>

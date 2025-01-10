@@ -6,8 +6,8 @@ import { InlinedIcon } from '#/components/inlined-icon';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { vibrate } from '#/library/utils';
-import classes from './select-categories.module.css';
 import { ElasticView } from '#/components/elastic-view';
+import classes from './select-categories.module.css';
 
 export default async function SelectCategories() {
   const router = useRouter();
@@ -21,14 +21,14 @@ export default async function SelectCategories() {
     return selectedCategories.value.length < 3;
   });
 
-  const loadApp = async () => {
+  const goToInvolvement = async () => {
     if (!formRef.value) return;
     formRef.value.style.opacity = '0';
     const animationPromises = formRef.value
       .getAnimations()
       .map((animation) => animation.finished);
     await Promise.all(animationPromises);
-    await router.replace('/onboarding/loading');
+    await router.navigate('/onboarding/involvement');
   };
 
   return (
@@ -47,7 +47,7 @@ export default async function SelectCategories() {
         class={classes.categorySubmitButton}
         disabled={continueButtonIsDisabled}
         vibrate
-        onClick={loadApp}
+        onClick={goToInvolvement}
       >
         Continue
       </Button>

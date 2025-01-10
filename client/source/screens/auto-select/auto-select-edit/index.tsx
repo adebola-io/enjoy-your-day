@@ -59,7 +59,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   const addGoal = async (goal: GoalOptionProps) => {
     closeSearch();
     activeItemIndex.value = 0;
-    props.goals.value.splice(0, 0, goal);
+    goals.value.splice(0, 0, goal);
   };
 
   const removeGoal = (index: number, item: Element, mode: 'Swipe' | 'Tap') => {

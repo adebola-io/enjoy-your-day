@@ -7,13 +7,9 @@ export type InputProps = JSX.IntrinsicElements['input'] & {
   icon?: JSX.Element;
 };
 export function Input(props: InputProps) {
-  const { model, icon, ...rest } = props;
+  const { model, icon, class: className, onInput, ...rest } = props;
   const input = (
-    <input
-      {...rest}
-      onInput={handleInput}
-      class={[classes.input, props.class]}
-    />
+    <input {...rest} onInput={handleInput} class={[classes.input, className]} />
   ) as HTMLInputElement;
 
   const callback = (value: string) => {
@@ -25,8 +21,8 @@ export function Input(props: InputProps) {
     callback; // Keeps the callback alive in memory until the input is freed.
     if (model?.value === input.value) return;
 
-    if (typeof props.onInput === 'function') {
-      props.onInput.bind(input)(event);
+    if (typeof onInput === 'function') {
+      onInput.bind(input)(event);
       if (event.defaultPrevented) return;
     }
     if (model) {

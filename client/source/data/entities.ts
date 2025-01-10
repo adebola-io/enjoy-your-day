@@ -25,15 +25,17 @@ export interface GoalProps {
   uuid: string;
   title: string;
   instruction: string;
+  involvement: number;
   info: string;
   color: GoalColor;
   icon: IconName;
   index?: Cell<number>;
   total?: Cell<number>;
-  categories: Array<string>;
+  categories: Set<string>;
 }
 
 export interface GoalListingUpdate {
+  chunk: number;
   addedGoalObjects: Array<GoalProps>;
   removedGoalUuids: Array<string>;
   updatedGoals: Array<Partial<GoalProps> & { uuid: string }>;

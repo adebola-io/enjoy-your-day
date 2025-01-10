@@ -1,19 +1,22 @@
-import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 import { categories } from './categories';
 import { toWorker } from './worker';
 import { LATEST_DATA_CHUNK } from './constants';
 import type { GoalState } from './entities';
+import { Temporal } from 'temporal-polyfill';
+import { lastLoadedChunk } from './state';
 
 export async function createUser(name: string) {
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const uuid = crypto.randomUUID();
-  const startDate = new Date().toISOString();
+  const startDate = Temporal.Now.zonedDateTimeISO()
+    .withTimeZone(timezone)
+    .toString();
+
   return await toWorker({
     type: 'metadata.record',
     metadata: { uuid, name, startDate },
   });
 }
-
-const lastLoadedChunk = useLocalStorage<number>('last-loaded-chunk', 0);
 
 export async function initializeDatabase() {
   const testData = await toWorker({
@@ -26,9 +29,15 @@ export async function initializeDatabase() {
   return testData;
 }
 
-export async function getAutoRecommendations(categories: string[]) {
+type AutoRecommendationRequest = {
+  categories: string[];
+  preferredInvolvementLevel: number;
+};
+export async function getAutoRecommendations(
+  details: AutoRecommendationRequest
+) {
   await new Promise((resolve) => setTimeout(resolve, 600));
-  const response = await toWorker({ type: 'goals.today', categories });
+  const response = await toWorker({ type: 'goals.today', ...details });
   return response;
 }
 

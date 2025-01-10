@@ -8,6 +8,14 @@
   grid-area: 1 / 1;
 }
 
+.categoryFormHeading {
+  view-transition-name: onboarding-heading;
+}
+
+.categoryFormSubHeading {
+  view-transition-name: onboarding-subheading;
+}
+
 .categoryFormHeading,
 .categoryFormSubHeading {
   animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 2);

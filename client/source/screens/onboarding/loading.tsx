@@ -14,6 +14,7 @@ export default function Loading() {
       createUser(username.value),
       new Promise<void>(onboardingPromiseCallback),
     ]);
+    router.useViewTransitions = false;
     router.replace('/home');
   };
 

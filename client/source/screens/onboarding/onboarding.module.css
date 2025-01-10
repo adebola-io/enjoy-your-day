@@ -19,6 +19,11 @@
     height: 100dvh;
     padding-inline: var(--side-padding);
   }
+
+  &.involvement {
+    height: 100dvh;
+    padding-inline: var(--side-padding);
+  }
 }
 
 @keyframes fade-to-white {
@@ -61,6 +66,7 @@
   text-align: center;
   font: var(--title-bold);
   animation-fill-mode: backwards;
+  view-transition-name: onboarding-heading;
 }
 
 .nameFormSubHeading {
@@ -68,6 +74,7 @@
     calc(var(--default-duration) * 0.5);
   text-align: center;
   animation-fill-mode: backwards;
+  view-transition-name: onboarding-subheading;
 }
 
 .nameSubmitButton {

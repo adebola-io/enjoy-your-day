@@ -17,6 +17,18 @@
   scale: 0.9;
 }
 
+::view-transition-old(onboarding-heading),
+::view-transition-new(onboarding-heading),
+::view-transition-group(onboarding-heading) {
+  animation-duration: calc(var(--default-duration) * 2);
+}
+
+::view-transition-old(onboarding-subheading),
+::view-transition-new(onboarding-subheading),
+::view-transition-group(onboarding-subheading) {
+  animation-duration: calc(var(--default-duration) * 2.5);
+}
+
 /* Fallback for browsers that don't support animation-timeline. Adding this class will require an assumption that the element already has an animation set to scroll(self).  */
 .scrollTimelineFallback {
   animation-duration: 100ms;

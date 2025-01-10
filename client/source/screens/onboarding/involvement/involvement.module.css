@@ -1,9 +1,12 @@
+.backButton {
+  grid-area: 1 / 1;
+}
+
 .container {
   display: grid;
-  height: 100dvh;
   padding-block-start: var(--block-padding);
-  padding-inline: var(--side-padding);
   grid-template-rows: auto auto auto auto 1fr;
+  grid-area: 1 / 1;
 
   &:has(:checked) .submitBtn {
     opacity: 1;
@@ -12,9 +15,16 @@
 }
 
 .heading {
-  padding-bottom: calc(var(--block-padding) * 0.75);
+  padding-bottom: min(15px, 2dvh);
   animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 2);
   text-align: center;
+  view-transition-name: onboarding-heading;
+}
+
+.subHeading {
+  padding-bottom: calc(var(--block-padding) * 0.5);
+  text-align: center;
+  view-transition-name: onboarding-subheading;
 }
 
 .involvementLevel {
@@ -74,8 +84,9 @@
 }
 
 .submitBtn {
-  align-self: center;
+  align-self: end;
   height: min-content;
+  margin-block-end: var(--block-padding);
   opacity: 0;
   pointer-events: none;
 }

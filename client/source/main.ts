@@ -17,6 +17,7 @@ export default async function main() {
 
   const router = createRouter();
   router.window = window;
+  router.useViewTransitions = true;
   router.attachWindowListeners();
   document.body.prepend(router.Outlet());
 

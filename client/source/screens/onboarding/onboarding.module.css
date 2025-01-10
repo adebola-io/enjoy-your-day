@@ -58,6 +58,7 @@
   align-self: end;
   width: min(25%, 145px);
   color: var(--white);
+  view-transition-name: onboarding-logo;
 }
 
 .nameFormHeading {

@@ -10,13 +10,6 @@
   animation: none;
 }
 
-/* Starting Logo Transition from index.html to app. */
-::view-transition-old(start-logo) {
-  transition-duration: var(--default-duration);
-  translate: -5% -6%;
-  scale: 0.9;
-}
-
 ::view-transition-old(onboarding-heading),
 ::view-transition-new(onboarding-heading),
 ::view-transition-group(onboarding-heading) {
@@ -27,6 +20,19 @@
 ::view-transition-new(onboarding-subheading),
 ::view-transition-group(onboarding-subheading) {
   animation-duration: calc(var(--default-duration) * 2.5);
+}
+
+::view-transition-old(onboarding-logo) {
+  --starting-fade-position-y: 30%;
+  animation-name: var(--fade-in-from-bottom);
+  animation-duration: calc(var(--default-duration) * 2);
+  animation-direction: reverse;
+}
+
+::view-transition-new(onboarding-logo) {
+  --starting-fade-position-y: 30%;
+  animation-name: var(--fade-in-from-bottom);
+  animation-duration: calc(var(--default-duration) * 2);
 }
 
 /* Fallback for browsers that don't support animation-timeline. Adding this class will require an assumption that the element already has an animation set to scroll(self).  */

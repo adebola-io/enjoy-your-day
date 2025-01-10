@@ -11,13 +11,14 @@ const goBack = () => {
 };
 
 export function BackButton(props: JSX.IntrinsicElements['button']) {
+  const { class: className, ...rest } = props;
   return (
     <button
       id="backButton"
       type="button"
       onClick={goBack}
-      {...props}
-      class={[classes.backButton, props.class]}
+      {...rest}
+      class={[classes.backButton, className]}
     >
       <CaretRightIcon class={classes.backButtonIcon} />
     </button>

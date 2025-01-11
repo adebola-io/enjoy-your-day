@@ -184,15 +184,16 @@ export const recordGoalState: RecordGoalsHandler = async (data) => {
 };
 
 export const getSearchExample: GetSearchExampleHandler = async (data) => {
-  const { selected, categories } = data.message;
+  const { selected } = data.message;
 
-  return shuffleArray(
-    await dexie.goals
-      .where('categories')
-      .anyOf(categories)
-      .filter((g) => !selected.includes(g.uuid))
-      .toArray()
-  )[0].instruction.toLowerCase();
+  const array = shuffleArray(
+    await dexie.goals.filter((g) => !selected.includes(g.uuid)).toArray()
+  );
+
+  const example = array[0];
+  if (!example) return '';
+
+  return example.instruction.toLowerCase();
 };
 
 let isUpdatingGoals = false;

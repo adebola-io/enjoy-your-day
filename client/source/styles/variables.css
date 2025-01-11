@@ -119,7 +119,8 @@
     var(--block-padding);
   --side-padding: 7.63dvw;
   --input-inline-padding: 10px;
-  --drawer-background-scale: 0.87;
+  --drawer-background-scale: 0.85;
+  --drawer-background-scale-pending: 0.899;
 
   /* Typography */
   --value-font-size: min(6rem, 20dvh);

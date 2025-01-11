@@ -118,7 +118,7 @@ body {
   &[data-dialog-is-open] {
     &:has([data-dialog-state='pending']) {
       & > *:not(dialog, #backButton) {
-        scale: var(--drawer-background-scale);
+        scale: var(--drawer-background-scale-pending);
       }
     }
 

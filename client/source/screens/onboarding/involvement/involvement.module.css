@@ -116,5 +116,6 @@
   opacity: 0;
   isolation: isolate;
   pointer-events: none;
+  justify-self: center;
   grid-area: 3 / 1;
 }

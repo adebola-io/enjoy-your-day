@@ -8,13 +8,36 @@
 
 .container {
   display: grid;
+  overflow: hidden;
   padding-block-start: var(--block-padding);
-  grid-template-rows: auto auto auto auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 1fr;
   grid-area: 1 / 1;
 
   &:has(:checked) .submitBtn {
     opacity: 1;
     pointer-events: initial;
+  }
+}
+
+.inputs {
+  display: grid;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  padding-block: 0;
+  padding-inline: 0;
+  margin-inline: 0;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto 1fr;
+  grid-area: 3 / 1;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -33,8 +56,6 @@
 
 .involvementLevel {
   display: grid;
-  align-self: start;
-  height: min(140px, 15dvh);
   margin-bottom: calc(var(--block-padding) * 0.5);
   border: 3px solid;
   border-radius: 25px;
@@ -43,6 +64,7 @@
   animation: var(--fade-in-from-bottom)
     calc(var(--default-duration) * var(--level-value) * 1.5);
   padding-inline: calc(var(--side-padding) * 0.5);
+  padding-block: calc(var(--block-padding) * 0.5);
   grid-template-columns: min(70px, 15dvh) 1fr;
   column-gap: min(20px, 10dvw);
   row-gap: 5px;
@@ -70,8 +92,8 @@
 
 .icon {
   align-self: center;
-  width: auto;
-  height: 45%;
+  width: 100%;
+  height: auto;
   justify-self: center;
   aspect-ratio: 1;
   grid-area: 1 / 1 / 3 / 2;
@@ -90,7 +112,9 @@
 .submitBtn {
   align-self: end;
   height: min-content;
-  margin-block-end: var(--block-padding);
+  margin-block-end: calc(var(--block-padding) * 1.5);
   opacity: 0;
+  isolation: isolate;
   pointer-events: none;
+  grid-area: 3 / 1;
 }

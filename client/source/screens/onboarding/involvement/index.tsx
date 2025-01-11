@@ -40,27 +40,30 @@ export default async function Involvement() {
         <p class={classes.subHeading}>
           You can select a preferred level of difficulty for your goals.
         </p>
-        <InvolvementLevel
-          Icon={CompassIcon}
-          value={1}
-          title="Explorer"
-          description="Light, mundane and manageable goals each day."
-          color="#a1d8ff"
-        />
-        <InvolvementLevel
-          Icon={BullseyeIcon}
-          value={2}
-          title="Navigator"
-          description="Focus to achieve results, balance effort and reward."
-          color="#53f6eb"
-        />
-        <InvolvementLevel
-          Icon={MountainIcon}
-          value={3}
-          title="Trailblazer"
-          description="Looking for a challenge?"
-          color="#ff8bdf"
-        />
+
+        <fieldset class={classes.inputs}>
+          <InvolvementLevel
+            Icon={CompassIcon}
+            value={1}
+            title="Explorer"
+            description="Light, mundane and manageable goals."
+            color="#a1d8ff"
+          />
+          <InvolvementLevel
+            Icon={BullseyeIcon}
+            value={2}
+            title="Navigator"
+            description="Focus to achieve results, balance effort and reward."
+            color="#53f6eb"
+          />
+          <InvolvementLevel
+            Icon={MountainIcon}
+            value={3}
+            title="Trailblazer"
+            description="Looking for a challenge?"
+            color="#ff8bdf"
+          />
+        </fieldset>
         <Button class={classes.submitBtn} type="submit" vibrate>
           Continue
         </Button>

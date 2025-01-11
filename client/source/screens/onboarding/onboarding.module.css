@@ -9,8 +9,7 @@
   grid-template-rows: 1fr;
 
   &.enteringName {
-    height: calc(100dvh - var(--block-padding));
-    padding-block-end: var(--block-padding);
+    height: 100dvh;
     padding-inline: var(--side-padding);
   }
 
@@ -80,6 +79,7 @@
 
 .nameSubmitButton {
   align-self: end;
+  margin-block-end: calc(var(--block-padding) * 1.5);
   color: var(--space-cadet-500);
   background-color: var(--white);
 }

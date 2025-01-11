@@ -13,10 +13,10 @@ export function startGoalUpdateProcess(
   let errored = false;
 
   for (let i = lastLoadedChunk + 1; i <= latestChunk; i++) {
-    import(`./json/${i}.json`)
-      .then((module) => {
+    fetch(`/json/${i}.json`)
+      .then((response) => response.json())
+      .then((data) => {
         if (errored) return;
-        const data = module.default;
         const goals = data.goals;
         const addedGoalObjects = setDates(
           getCategoryIdentifiers(goals.added, categories)

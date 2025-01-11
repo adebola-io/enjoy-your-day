@@ -17,7 +17,7 @@ function assignGoalUuids(goals: GoalProps[]) {
 }
 
 const jsonFiles = fs
-  .readdirSync('./')
+  .readdirSync('/public/json')
   .filter((file) => file.endsWith('.json') && !file.startsWith('schema'));
 
 for (const file of jsonFiles) {

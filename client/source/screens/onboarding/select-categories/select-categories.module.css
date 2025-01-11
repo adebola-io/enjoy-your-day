@@ -50,7 +50,7 @@
 
 .categorySubmitButton {
   align-self: end;
-  margin-block-end: var(--block-padding);
+  margin-block-end: calc(var(--block-padding) * 1.5);
   transition: opacity var(--default-duration);
   isolation: isolate;
   justify-self: center;

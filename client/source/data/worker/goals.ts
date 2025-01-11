@@ -144,9 +144,6 @@ export const recommendGoals: GenerateGoalsForTodayHandler = async (data) => {
     finalResults.push(...completedGoalsFromYesterday);
   }
 
-  console.log('Categories', categories);
-  console.log('Final Results', finalResults);
-
   return finalResults.slice(0, 6);
 };
 

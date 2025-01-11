@@ -5,6 +5,7 @@ import path from 'node:path';
 import { VitePWA } from 'vite-plugin-pwa';
 import { hmrPlugin } from '@adbl/unfinished/render';
 import inlineSource from 'vite-plugin-inline-source';
+import { ViteMinifyPlugin } from 'vite-plugin-minify';
 
 export default defineConfig({
   resolve: {
@@ -13,6 +14,7 @@ export default defineConfig({
   worker: { format: 'es' },
   plugins: [
     inlineSource(),
+    ViteMinifyPlugin(),
     hmrPlugin(),
     VitePWA({
       registerType: 'autoUpdate',

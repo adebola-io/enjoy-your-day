@@ -16,7 +16,8 @@
     "dexie": "^4.0.10",
     "postcss": "^8.4.49",
     "postcss-nesting": "^13.0.1",
-    "temporal-polyfill": "^0.2.5"
+    "temporal-polyfill": "^0.2.5",
+    "vite-plugin-inline-source": "^2.5.2"
   },
   "devDependencies": {
     "typescript": "^5.7.2",

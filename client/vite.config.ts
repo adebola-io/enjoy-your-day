@@ -4,17 +4,15 @@ import { defineConfig } from 'vite';
 import path from 'node:path';
 import { VitePWA } from 'vite-plugin-pwa';
 import { hmrPlugin } from '@adbl/unfinished/render';
+import inlineSource from 'vite-plugin-inline-source';
 
 export default defineConfig({
   resolve: {
-    alias: {
-      '#': path.resolve(__dirname, './source'),
-    },
+    alias: { '#': path.resolve(__dirname, './source') },
   },
-  worker: {
-    format: 'es',
-  },
+  worker: { format: 'es' },
   plugins: [
+    inlineSource(),
     hmrPlugin(),
     VitePWA({
       registerType: 'autoUpdate',

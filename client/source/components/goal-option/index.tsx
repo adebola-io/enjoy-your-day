@@ -9,21 +9,22 @@ export interface GoalOptionProps
     GoalProps {}
 
 export function GoalOption(props: GoalOptionProps) {
+  const { icon, instruction, onSelect } = props;
   const handleSelect = () => {
-    props.onSelect?.(props);
+    onSelect?.(props);
   };
 
   return (
     <li class={classes.container} onKeyDown={navigateVertically}>
       <button type="button" class={classes.option} onClick={handleSelect}>
         <Icon
-          name={props.icon}
+          name={icon}
           class={classes.icon}
           inline
           color={CSS_VARS['--space-cadet-500']}
           title="Icon related to the goal"
         />
-        <span class={classes.text}>{props.instruction}</span>
+        <span class={classes.text}>{instruction}</span>
       </button>
     </li>
   );

@@ -17,6 +17,7 @@ export default async function main() {
 
   const router = createRouter();
   router.window = window;
+  router.useViewTransitions = true;
   router.attachWindowListeners();
   document.body.prepend(router.Outlet());
 
@@ -46,7 +47,7 @@ export async function resumeApp() {
   // sometimes waits too long and bleeds into the start of the
   // waiting screen animation. The delay is meant to prevent the
   // app from loading until the splash screen is gone.
-  await new Promise((resolve) => setTimeout(resolve, 300));
+  await new Promise((resolve) => setTimeout(resolve, 400));
 
   const waitingScreen = document.querySelector('#waiting-screen');
   waitingScreen?.classList.add('loading');

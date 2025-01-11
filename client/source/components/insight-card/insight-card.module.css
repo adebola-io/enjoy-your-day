@@ -1,9 +1,9 @@
 .container {
+  display: grid;
   overflow: hidden;
   border-radius: 20px;
   list-style-type: none;
   transition: scale var(--default-duration);
-  padding-block: calc(var(--block-padding) * 0.5);
 
   &:active {
     scale: 0.95;
@@ -17,6 +17,7 @@
   text-decoration: none;
   padding-inline: calc(var(--side-padding) * 0.5);
   grid-template-rows: auto auto;
+  padding-block: calc(var(--block-padding) * 0.5);
 }
 
 .value {

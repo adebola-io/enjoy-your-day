@@ -18,38 +18,42 @@ export type ButtonProps = JSX.IntrinsicElements['button'] &
   };
 
 export function Button(props: ButtonProps): JSX.Template {
-  const router = useRouter();
   const {
     vibrate: vibrateOnClick = false,
+    class: className,
     variant = 'neutral',
     onClick,
     rounded,
+    href,
+    children,
+    type,
     ...rest
   } = props;
+  const router = useRouter();
 
   let button: HTMLElement | HTMLElement[];
-  if (props.href) {
+  if (href) {
     button = (
       <router.Link
         {...rest}
-        href={props.href}
+        href={href}
         data-variant={variant}
         data-rounded={rounded}
-        class={[classes.button, props.class]}
+        class={[classes.button, className]}
       >
-        {props.children}
+        {children}
       </router.Link>
     ) as HTMLElement[];
   } else {
     button = (
       <button
         {...rest}
-        class={[classes.button, props.class]}
+        class={[classes.button, className]}
         data-variant={variant}
         data-rounded={rounded}
-        type={props.type ?? 'button'}
+        type={type ?? 'button'}
       >
-        {props.children}
+        {children}
       </button>
     ) as HTMLButtonElement;
   }

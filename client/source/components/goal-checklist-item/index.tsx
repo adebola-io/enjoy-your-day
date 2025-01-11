@@ -13,7 +13,7 @@ export interface GoalChecklistItemProps {
 }
 
 export function GoalChecklistItem(props: GoalChecklistItemProps) {
-  const { goalState, index, listChanged } = props;
+  const { goalState, index, listChanged, onCheck } = props;
   const containerStyles = { '--i': index };
   const initialCheckState = goalState.state === 'completed';
   const goalInputId = Cell.derived(() => `goal-checklist-${index.value}`);
@@ -22,7 +22,7 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
     listChanged.value = true;
     goalState.state = this.checked ? 'completed' : 'scheduled'; // dailyGoals array is already deeply reactive.
     if (this.checked) {
-      props.onCheck?.();
+      onCheck?.();
       goalState.updatedAt = Temporal.Now.plainDateTimeISO().toString();
     } else {
       goalState.updatedAt = null;
@@ -47,7 +47,7 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
         onChange={changeGoalState}
       />
       <GoalItem
-        {...props.goalState.goal}
+        {...goalState.goal}
         cancelable={false}
         listItem={false}
         labelFor={goalInputId}

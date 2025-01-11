@@ -8,12 +8,12 @@ export interface InsightsOverviewProps {
   cards: InsightsOverview['cards'];
 }
 
-export function Overview(props: InsightsOverviewProps) {
+export default function Overview(props: InsightsOverviewProps) {
   const { cards } = props;
   const styles = { '--total': cards.length };
   return (
     <ul class={classes.container} style={styles} data-stagger-children>
-      {For(props.cards, (cardDetails, index) => (
+      {For(cards, (cardDetails, index) => (
         <InsightCard {...cardDetails} index={index} />
       ))}
       <CardDrawer cards={cards} />

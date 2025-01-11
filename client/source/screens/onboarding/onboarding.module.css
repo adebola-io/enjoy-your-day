@@ -9,13 +9,17 @@
   grid-template-rows: 1fr;
 
   &.enteringName {
-    height: calc(100dvh - var(--block-padding));
-    padding-block-end: var(--block-padding);
+    height: 100dvh;
     padding-inline: var(--side-padding);
   }
 
   &.selectingCategories {
     overflow: hidden;
+    height: 100dvh;
+    padding-inline: var(--side-padding);
+  }
+
+  &.involvement {
     height: 100dvh;
     padding-inline: var(--side-padding);
   }
@@ -53,6 +57,7 @@
   align-self: end;
   width: min(25%, 145px);
   color: var(--white);
+  view-transition-name: onboarding-logo;
 }
 
 .nameFormHeading {
@@ -61,6 +66,7 @@
   text-align: center;
   font: var(--title-bold);
   animation-fill-mode: backwards;
+  view-transition-name: onboarding-heading;
 }
 
 .nameFormSubHeading {
@@ -68,10 +74,12 @@
     calc(var(--default-duration) * 0.5);
   text-align: center;
   animation-fill-mode: backwards;
+  view-transition-name: onboarding-subheading;
 }
 
 .nameSubmitButton {
   align-self: end;
+  margin-block-end: calc(var(--block-padding) * 1.5);
   color: var(--space-cadet-500);
   background-color: var(--white);
 }

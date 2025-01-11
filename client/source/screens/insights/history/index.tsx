@@ -9,7 +9,8 @@ import type {
   InsightHistoryDetails,
 } from '#/data/worker/types';
 import { todayStr } from '#/data/state';
-import { defer, getResourceState, LookupMap, NoOp } from '#/library/utils';
+import { defer, getResourceState, NoOp } from '#/library/utils';
+import { LookupMap } from '#/library/lookup-map';
 import { Cell } from '@adbl/cells';
 import { For, If, Switch, useObserver } from '@adbl/unfinished';
 import { Temporal } from 'temporal-polyfill';
@@ -18,7 +19,7 @@ import { CSS_VARS } from '#/styles/variables';
 import classes from './history.module.css';
 import SettingsIcon from '#/components/icons/settings';
 
-export function History() {
+export default function History() {
   const observer = useObserver();
   const resource = Cell.async(getInsightsHistory);
   const state = getResourceState(resource);
@@ -92,45 +93,37 @@ function LoadedHistoryView(props: LoadedHistoryProps) {
 
   // Invariant: The first item in the array is always today.
   const todayDetails = chartDataRaw[0];
-  const picked = Cell.source<HistoryChartItem>(todayDetails);
+  const picked = Cell.source(todayDetails);
 
-  const pickedDay = Cell.derived(() => picked.value.date);
-  const pickedDate = Cell.derived(() => {
-    return Temporal.PlainDate.from(pickedDay.value);
-  });
-  const pickedIsToday = Cell.derived(() => pickedDay.value === todayStr.value);
-  const pickedIsNotToday = Cell.derived(() => !pickedIsToday.value);
-  const pickedDateDayString = Cell.derived(() => {
-    return pickedDate.value.toLocaleString(locale, weekdayOptions);
-  });
-  const pickedDateString = Cell.derived(() => {
-    return pickedDate.value.toLocaleString(locale, dateOptions);
-  });
-  const pickedCompleted = Cell.derived(() => {
-    return picked.value?.completed ?? [];
-  });
-  const pickedUnfinished = Cell.derived(() => {
-    return picked.value?.unfinished ?? [];
-  });
+  const day = Cell.derived(() => picked.value.date);
+  const date = Cell.derived(() => Temporal.PlainDate.from(day.value));
+  const isToday = Cell.derived(() => day.value === todayStr.value);
+  const isNotToday = Cell.derived(() => !isToday.value);
+  const dateDayStr = Cell.derived(() =>
+    date.value.toLocaleString(locale, weekdayOptions)
+  );
+  const dateStr = Cell.derived(() =>
+    date.value.toLocaleString(locale, dateOptions)
+  );
+  const completed = Cell.derived(() => picked.value?.completed ?? []);
+  const unfinished = Cell.derived(() => picked.value?.unfinished ?? []);
 
-  const pickedHasGoals = Cell.derived(() => {
-    return Boolean(
-      pickedCompleted.value.length || pickedUnfinished.value.length
-    );
-  });
+  const pickedHasGoals = Cell.derived(() =>
+    Boolean(completed.value.length || unfinished.value.length)
+  );
 
   // The data has to be updated manually,
   // because Temporal object is not trackable by cells.
-  pickedDay.listen(() => defer(() => pickedDate.update()));
+  day.listen(() => defer(() => date.update()));
 
   const goToPreviousDay = () => {
-    const previous = pickedDate.value.subtract({ days: 1 });
+    const previous = date.value.subtract({ days: 1 });
     const newPickedItem = lookupMap.value.get(previous.toString());
     if (newPickedItem) picked.value = newPickedItem;
   };
 
   const goToNextDay = () => {
-    const next = pickedDate.value.add({ days: 1 });
+    const next = date.value.add({ days: 1 });
     const newPickedItem = lookupMap.value.get(next.toString());
     if (newPickedItem) picked.value = newPickedItem;
   };
@@ -138,10 +131,11 @@ function LoadedHistoryView(props: LoadedHistoryProps) {
   const requestOlderData = async () => {
     upperBounds = lowerBounds;
     lowerBounds = lowerBounds.subtract({ days: chunkSize });
-    await getOlder({
+    const options = {
       start: lowerBounds.toString(),
       end: upperBounds.toString(),
-    });
+    };
+    await getOlder(options);
     return olderData.value !== null;
   };
   return (
@@ -155,14 +149,14 @@ function LoadedHistoryView(props: LoadedHistoryProps) {
       />
       <Stepper
         class={classes.stepper}
-        forwardsEnabled={pickedIsNotToday}
+        forwardsEnabled={isNotToday}
         onBackwards={goToPreviousDay}
         onForwards={goToNextDay}
       >
-        <p class={classes.day}>{pickedDateDayString}</p>
-        <h2 class={classes.date}>{pickedDateString}</h2>
+        <p class={classes.day}>{dateDayStr}</p>
+        <h2 class={classes.date}>{dateStr}</h2>
       </Stepper>
-      {If(pickedIsToday, {
+      {If(isToday, {
         true: ComputingScreen,
         false: () =>
           If(pickedHasGoals, {
@@ -181,27 +175,13 @@ interface DayDetailsProps {
 function SelectedDayDetails(props: DayDetailsProps) {
   const { picked } = props;
 
-  const pickedTotal = Cell.derived(() => {
-    return picked.value?.total;
-  });
+  const total = Cell.derived(() => picked.value?.total);
+  const completed = Cell.derived(() => picked.value?.completed ?? []);
+  const unfinished = Cell.derived(() => picked.value?.unfinished ?? []);
+  const completedCount = Cell.derived(() => picked.value?.completed.length);
+  const hasUnfinished = Cell.derived(() => !!picked.value?.unfinished.length);
 
-  const pickedCompleted = Cell.derived(() => {
-    return picked.value?.completed ?? [];
-  });
-
-  const pickedUnfinished = Cell.derived(() => {
-    return picked.value?.unfinished ?? [];
-  });
-
-  const pickedCompletedCount = Cell.derived(() => {
-    return picked.value?.completed.length;
-  });
-
-  const pickedHasUnfinished = Cell.derived(() => {
-    return Boolean(picked.value?.unfinished.length);
-  });
-
-  const pickedCategoryProfile = Cell.derived(() => {
+  const categoryProfile = Cell.derived(() => {
     if (!picked.value) return '';
     const { categories: categoryProfile } = picked.value;
     return categoryProfile.reduce((str, category, index) => {
@@ -211,7 +191,7 @@ function SelectedDayDetails(props: DayDetailsProps) {
     }, '');
   });
 
-  const pickedItemPercent = Cell.derived(() => {
+  const percent = Cell.derived(() => {
     if (!picked.value) return 0;
     const { total, completed: completedGoals } = picked.value;
     const { length: completed } = completedGoals;
@@ -219,28 +199,24 @@ function SelectedDayDetails(props: DayDetailsProps) {
   });
 
   const color = Cell.derived(() => {
-    if (pickedItemPercent.value <= 30) return '#ff0000';
-    if (pickedItemPercent.value <= 60) return CSS_VARS['--space-cadet-500'];
-    if (pickedItemPercent.value <= 90) return '#75700d';
+    if (percent.value <= 30) return '#ff0000';
+    if (percent.value <= 60) return CSS_VARS['--space-cadet-500'];
+    if (percent.value <= 90) return '#75700d';
     return '#056e05';
   });
 
   return (
     <div class={classes.selectedItem}>
       <span class={classes.remark}>
-        You completed {pickedCompletedCount} out of {pickedTotal} goals relating
-        to {pickedCategoryProfile}.
+        You completed {completedCount} out of {total} goals relating to{' '}
+        {categoryProfile}.
       </span>
-      <ProgressBar
-        class={classes.percent}
-        percent={pickedItemPercent}
-        color={color}
-      />
-      {If(pickedCompletedCount, () => (
+      <ProgressBar class={classes.percent} percent={percent} color={color} />
+      {If(completedCount, () => (
         <>
           <h3 class={classes.goalsHeading}>Completed Goals</h3>
           <ul class={classes.goalsList}>
-            {For(pickedCompleted, (state) => (
+            {For(completed, (state) => (
               <GoalItem
                 {...state.goal}
                 cancelable={false}
@@ -250,13 +226,13 @@ function SelectedDayDetails(props: DayDetailsProps) {
           </ul>
         </>
       ))}
-      {If(pickedHasUnfinished, () => (
+      {If(hasUnfinished, () => (
         <>
           <h3 class={[classes.goalsHeading, classes.unfinishedGoalsHeading]}>
             Unfinished Goals
           </h3>
           <ul class={[classes.goalsList, classes.unfinishedGoalsList]}>
-            {For(pickedUnfinished, (state) => (
+            {For(unfinished, (state) => (
               <GoalItem
                 {...state.goal}
                 cancelable={false}

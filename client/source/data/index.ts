@@ -8,23 +8,23 @@ import type { JSX } from '@adbl/unfinished/jsx-runtime';
 export interface NavigationLink {
   name: string;
   path: string;
-  icon: (props: IconProps) => JSX.Template;
+  Icon: (props: IconProps) => JSX.Template;
 }
 
 export const navigationBarLinks: NavigationLink[] = [
   {
     name: 'Home',
     path: '/home',
-    icon: HomeIcon,
+    Icon: HomeIcon,
   },
   {
     name: 'Insights',
     path: '/insights',
-    icon: BarChartIcon,
+    Icon: BarChartIcon,
   },
   {
     name: 'Settings',
     path: '/settings',
-    icon: ProfileIcon,
+    Icon: ProfileIcon,
   },
 ];

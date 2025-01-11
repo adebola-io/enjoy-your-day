@@ -17,7 +17,7 @@ import { useRouter } from '@adbl/unfinished/router';
 import { Loader } from '#/components/loader';
 import classes from './auto-select.module.css';
 import { ConfirmDrawer } from './confirm-drawer';
-import { selectedCategories } from '#/data/state';
+import { involvementLevel, selectedCategories } from '#/data/state';
 
 type AutoSelectStage = 'cardList' | 'edit';
 
@@ -65,7 +65,10 @@ export default function AutoSelect() {
     setMetaTheme('#0e0e1f');
     setAutoSelectStage(1);
     if (currentStage.value === 'cardList') {
-      await resource.run(selectedCategories.value);
+      await resource.run({
+        categories: selectedCategories.value,
+        preferredInvolvementLevel: involvementLevel.value,
+      });
     } else {
       resource.data.value = [];
     }

@@ -19,6 +19,8 @@ export default async function Onboarding() {
         return classes.enteringName;
       case '/onboarding/select-categories':
         return classes.selectingCategories;
+      case '/onboarding/involvement':
+        return classes.involvement;
       default:
         return '';
     }

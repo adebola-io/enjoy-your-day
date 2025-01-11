@@ -1,6 +1,6 @@
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
-import classes from './sparkles.module.css';
 import SparkleIcon from '../icons/sparkle';
+import classes from './sparkles.module.css';
 
 type DivProps = Omit<JSX.IntrinsicElements['div'], 'children'>;
 export interface SparkleProps extends DivProps {
@@ -8,11 +8,11 @@ export interface SparkleProps extends DivProps {
 }
 
 export function Sparkles(props: SparkleProps) {
-  const { children, ...rest } = props;
+  const { children, class: className, ...rest } = props;
   return (
-    <div {...rest} class={[classes.container, props.class]}>
+    <div {...rest} class={[classes.container, className]}>
       <SparkleIcon class={classes.sparkleLeft} inert />
-      {props.children}
+      {children}
       <SparkleIcon class={classes.sparkleRight} inert />
     </div>
   );

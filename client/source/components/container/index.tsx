@@ -17,6 +17,6 @@ export function Container(props: ContainerProps): JSX.Template {
     }
     setAttributeFromProps(container, key, value);
   }
-  appendChild(container, tagname, props.children);
+  appendChild(container, tagname, children);
   return container;
 }

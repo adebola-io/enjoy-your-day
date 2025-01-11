@@ -33,9 +33,11 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
     autoCompleteGetter,
     AutoCompleteTemplate,
     containerClasses,
+    autoCompleteClasses,
     onDismiss,
     onAutoCompleteSelect,
     ref = Cell.source(null),
+    class: className,
     ...rest
   } = props;
   const observer = useObserver();
@@ -79,7 +81,7 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
     <form
       {...rest}
       ref={ref}
-      class={[classes.searchContainer, props.class]}
+      class={[classes.searchContainer, className]}
       onKeyDown={handleKeyDown}
     >
       <div class={[classes.searchInputContainer, containerClasses]}>
@@ -97,10 +99,7 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
             return (
               <ul
                 ref={autoCompleteRef}
-                class={[
-                  classes.autoCompleteDropdown,
-                  props.autoCompleteClasses,
-                ]}
+                class={[classes.autoCompleteDropdown, autoCompleteClasses]}
                 style={ulStyles}
                 tabIndex={-1}
                 onFocusOut={handleBlur}

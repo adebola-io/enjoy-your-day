@@ -9,7 +9,9 @@ export const DATE_UPDATE_INTERVAL = 1000 * 30; // updates every 30 seconds.
 export const LOCALSTORAGE_KEYS = {
   selectedCategories: 'selected-categories',
   appLoadingState: 'app-loading-state',
+  involvementLevel: 'involvement-level',
   goalsForTheDay: 'goals-for-the-day',
+  lastLoadedChunk: 'last-loaded-chunk',
   username: 'username',
   goalsForTheDayDateStamp: 'goals-for-the-day-date-stamp',
 };
@@ -17,6 +19,10 @@ export const LOCALSTORAGE_KEYS = {
 export const selectedCategories = useLocalStorage<string[]>(
   LOCALSTORAGE_KEYS.selectedCategories,
   []
+);
+export const involvementLevel = useLocalStorage<number>(
+  LOCALSTORAGE_KEYS.involvementLevel,
+  0
 );
 export type AppSetupState = 'setup' | 'done';
 export const appLoadingState = useLocalStorage<AppSetupState>(
@@ -31,6 +37,11 @@ export const dailyGoalsDateStamp = useLocalStorage<string | null>(
   LOCALSTORAGE_KEYS.goalsForTheDayDateStamp,
   null
 );
+export const lastLoadedChunk = useLocalStorage<number>(
+  LOCALSTORAGE_KEYS.lastLoadedChunk,
+  0
+);
+
 export const goalsCompleted = Cell.derived(() => {
   return (
     dailyGoals.value.length > 0 &&

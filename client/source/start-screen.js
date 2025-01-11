@@ -252,7 +252,8 @@ function start() {
   domElements.screenSlide.addEventListener('scroll', onSliderScroll);
   const prepareApp = () => {
     domElements.getStartedButton.classList.add('loading');
-    domElements.getStartedButton.childNodes[2].textContent = 'Loading...';
+    const span = domElements.getStartedButton.querySelector('span');
+    span.textContent = 'Loading...';
     for (const animation of Object.values(animations)) {
       animation.cancel();
     }
@@ -269,4 +270,4 @@ function start() {
   });
 }
 
-window.addEventListener('DOMContentLoaded', start, { once: true });
+start();

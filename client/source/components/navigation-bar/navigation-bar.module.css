@@ -102,7 +102,7 @@
     translate: none;
   }
 }
-
+/* 
 @keyframes animate-head {
   40% {
     translate: 0% -15%;
@@ -120,7 +120,7 @@
   60% {
     translate: 0 20%;
   }
-}
+} */
 
 .icon {
   height: 1.5rem;
@@ -136,6 +136,10 @@
       scale: 1 0;
       translate: 0 30%;
     }
+  }
+
+  &[data-name='Settings'] {
+    scale: 1.2;
   }
 
   [active] > & {
@@ -184,19 +188,24 @@
     }
 
     &[data-name='Settings'] {
-      overflow: visible;
+      animation: var(--spin) calc(var(--default-duration) * 3)
+        calc(var(--default-duration) * 0.75) forwards;
 
       path {
         fill: currentColor;
       }
 
-      [data-head] {
+      [data-inner-circle] {
+        fill: white;
+      }
+
+      /* [data-head] {
         animation: animate-head calc(var(--default-duration) * 4);
       }
 
       [data-body] {
         animation: animate-body calc(var(--default-duration) * 5);
-      }
+      } */
     }
   }
 }

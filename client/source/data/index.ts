@@ -4,6 +4,7 @@ import ProfileIcon from '#/components/icons/profile';
 
 import type { IconProps } from '#/components/icons/props';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
+import SettingsIcon from '#/components/icons/settings';
 
 export interface NavigationLink {
   name: string;
@@ -25,6 +26,6 @@ export const navigationBarLinks: NavigationLink[] = [
   {
     name: 'Settings',
     path: '/settings',
-    Icon: ProfileIcon,
+    Icon: SettingsIcon,
   },
 ];

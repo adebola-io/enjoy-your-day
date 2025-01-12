@@ -23,6 +23,7 @@ export function SettingsIcon(props: IconProps) {
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
+        data-inner-circle
       />
     </svg>
   );

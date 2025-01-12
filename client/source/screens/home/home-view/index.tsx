@@ -69,6 +69,7 @@ export default function HomeView() {
       ref={containerRef}
       yAxis
       class={classes.container}
+      data-stagger-children
       data-goals-completed={goalsCompleted}
     >
       <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />

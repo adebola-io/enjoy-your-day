@@ -1,4 +1,6 @@
 .container {
+  --starting-fade-position-y: 100px;
+  --stagger-difference: 0.25;
   display: grid;
   overflow-x: hidden;
   overflow-y: auto;
@@ -10,6 +12,11 @@
   grid-template-rows: auto auto auto 1fr;
   grid-template-columns: 100%;
   gap: min(15px, 2dvh);
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .timeIcon {

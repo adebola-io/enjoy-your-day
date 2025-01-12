@@ -1,6 +1,5 @@
 import HomeIcon from '#/components/icons/home';
 import BarChartIcon from '#/components/icons/bar-chart';
-import ProfileIcon from '#/components/icons/profile';
 
 import type { IconProps } from '#/components/icons/props';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';

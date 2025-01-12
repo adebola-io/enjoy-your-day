@@ -51,7 +51,7 @@ export const insightsOverview: InsightsOverviewHandler = async (data) => {
   while (previousRecords[i]) {
     const record = previousRecords[i];
     const previous = previousRecords[i - 1];
-    if (!isDayBefore(previous.date, record.date)) {
+    if (previous && !isDayBefore(previous.date, record.date)) {
       streakCounter = 0;
     }
 

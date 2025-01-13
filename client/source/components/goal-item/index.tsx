@@ -8,6 +8,7 @@ import { Icon } from '../icon';
 import { XIcon } from '#/components/icons/x';
 import classes from './goal-item.module.css';
 import { Temporal } from 'temporal-polyfill';
+import { defer } from '#/library/utils';
 
 type DivProps = JSX.IntrinsicElements['div'];
 export interface GoalItemProps extends DivProps {
@@ -58,13 +59,18 @@ export function GoalItem(props: GoalItemProps) {
     const container = containerRef.deproxy();
 
     const callback = ([entry]: IntersectionObserverEntry[]) => {
-      if (!entry.isIntersecting && container.checkVisibility() && index) {
+      if (
+        !entry.isIntersecting &&
+        index &&
+        wrapper.checkVisibility() &&
+        container.checkVisibility()
+      ) {
         onRemove?.(index.value, container, 'Swipe');
       }
     };
     const options = { root: container, threshold: 0.55 };
     const intersectObserver = new IntersectionObserver(callback, options);
-    intersectObserver.observe(wrapper);
+    defer(() => intersectObserver.observe(wrapper));
     return () => intersectObserver.disconnect();
   });
 

@@ -1,0 +1,48 @@
+.cuboid {
+  transition-duration: 200ms;
+  transition-property: scale;
+  transform: rotate3d(1, 1, 2, 0deg);
+
+  &:active {
+    scale: 0.8;
+  }
+
+  &.spinning {
+    cursor: wait;
+    animation: spinning-cube 2s linear infinite;
+  }
+
+  &::part(front-face) {
+    background-color: yellow;
+  }
+
+  &::part(top-face) {
+    background-color: lightgreen;
+  }
+
+  &::part(right-face) {
+    background-color: lightblue;
+  }
+
+  &::part(bottom-face) {
+    background-color: orange;
+  }
+
+  &::part(left-face) {
+    background-color: pink;
+  }
+
+  &::part(back-face) {
+    background-color: purple;
+  }
+}
+
+@keyframes spinning-cube {
+  0% {
+    transform: rotate3d(1, 1, 1, 0deg);
+  }
+
+  100% {
+    transform: rotate3d(1, 1, 1, 360deg);
+  }
+}

@@ -4,9 +4,9 @@ import { JSX } from '@adbl/unfinished/jsx-runtime';
 
 type DivProps = JSX.IntrinsicElements['div'];
 export interface CuboidProps extends DivProps {
-  length?: string;
-  height?: string;
-  breadth?: string;
+  length: string;
+  height: string;
+  breadth: string;
   fill?: string;
   strokeWidth?: string;
   strokeStyle?: string;
@@ -29,7 +29,7 @@ export function Cuboid(props: CuboidProps) {
     ...rest
   } = props;
 
-  let extraStyles = `:host(x-cuboid) {`;
+  let extraStyles = `:host(div) {`;
   if (length) extraStyles += `--cuboid-length: ${length};`;
   if (height) extraStyles += `--cuboid-height: ${height};`;
   if (breadth) extraStyles += `--cuboid-breadth: ${breadth};`;
@@ -46,7 +46,7 @@ export function Cuboid(props: CuboidProps) {
   extraStyles += '}';
 
   return (
-    <x-cuboid data-curved={curvature !== undefined} {...rest}>
+    <div data-curved={curvature !== undefined} {...rest}>
       <ShadowRoot mode="closed">
         <style>
           {styles} {extraStyles}
@@ -71,6 +71,6 @@ export function Cuboid(props: CuboidProps) {
         </div>
       </ShadowRoot>
       {props.children}
-    </x-cuboid>
+    </div>
   );
 }

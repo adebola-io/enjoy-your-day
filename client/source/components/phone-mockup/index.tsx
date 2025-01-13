@@ -21,7 +21,6 @@ export function PhoneMockup(props: PhoneMockupProps) {
     ...rest
   } = props;
   const phoneStyles = { '--phone-size': size, '--notch-color': notchColor };
-  console.log(contentClasses);
 
   return (
     <Cuboid

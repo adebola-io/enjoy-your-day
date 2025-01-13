@@ -1,36 +1,34 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
 import { Cell } from '@adbl/cells';
-import { For, If, useObserver } from '@adbl/unfinished';
-import classes from './install-prompt-drawer.module.css';
+import { For, useObserver } from '@adbl/unfinished';
 import { PhoneMockup } from '#/components/phone-mockup';
 import { Logo } from '#/components/logo';
 import { Button } from '#/components/button';
 import { installDetails } from '#/library/utils';
+import classes from './install-prompt-drawer.module.css';
 
 export default function InstallPromptDrawer() {
   const observer = useObserver();
   const drawerRef = Cell.source<HTMLDialogElement | null>(null);
   const drawerIsOpen = Cell.source(false);
   const apps = Array(10);
-  const isSafari = Boolean(
-    navigator.vendor &&
-      navigator.vendor.indexOf('Apple') > -1 &&
-      navigator.userAgent &&
-      navigator.userAgent.indexOf('CriOS') == -1 &&
-      navigator.userAgent.indexOf('FxiOS') == -1
-  );
-  const nestedDrawerIsOpenSource = Cell.source(false);
+  const fillerApps = For(apps, () => <li class={classes.app}></li>);
+  const nestedDrawerIsOpenHandle = Cell.source(false);
   const nestedDrawerIsOpen = Cell.derived(() => {
-    return nestedDrawerIsOpenSource.value && drawerIsOpen.value;
+    return nestedDrawerIsOpenHandle.value && drawerIsOpen.value;
   });
 
-  const listener = (event: MediaQueryListEvent) => {
+  const openDrawerListener = (event: MediaQueryListEvent) => {
     drawerIsOpen.value = !event.matches;
+  };
+
+  const closeNestedDrawer = () => {
+    nestedDrawerIsOpenHandle.value = false;
   };
 
   const promptInstall = () => {
     if (!installDetails.deferredPrompt) {
-      nestedDrawerIsOpenSource.value = true;
+      nestedDrawerIsOpenHandle.value = true;
       return;
     }
     installDetails.deferredPrompt.prompt?.().then?.((result) => {
@@ -38,33 +36,28 @@ export default function InstallPromptDrawer() {
         installDetails.deferredPrompt = undefined;
         drawerIsOpen.value = false;
       } else {
-        nestedDrawerIsOpenSource.value = true;
+        nestedDrawerIsOpenHandle.value = true;
       }
     });
   };
 
-  const closeNestedDrawer = () => {
-    nestedDrawerIsOpenSource.value = false;
-  };
-
-  nestedDrawerIsOpen.listen((nestedDrawerIsOpen) => {
+  nestedDrawerIsOpen.listen((innerDrawerIsOpen) => {
+    console.log('innerDrawerIsOpen', innerDrawerIsOpen);
     document.body.toggleAttribute(
       'data-nested-drawer-is-open',
-      nestedDrawerIsOpen
+      innerDrawerIsOpen
     );
   });
 
   observer.onConnected(drawerRef, () => {
-    const isStandaloneQuery = matchMedia('(display-mode: standalone)');
-    isStandaloneQuery.addEventListener('change', listener);
+    const isStandalone = matchMedia('(display-mode: standalone)');
+    isStandalone.addEventListener('change', openDrawerListener);
 
     setTimeout(() => {
-      drawerIsOpen.value = !isStandaloneQuery.matches;
+      drawerIsOpen.value = !isStandalone.matches;
     }, 300);
 
-    return () => {
-      isStandaloneQuery.removeEventListener('change', listener);
-    };
+    return () => isStandalone.removeEventListener('change', openDrawerListener);
   });
 
   return (
@@ -83,9 +76,7 @@ export default function InstallPromptDrawer() {
           contentClasses={classes.phoneContent}
         >
           <ul class={classes.appList}>
-            {For(apps, () => (
-              <li class={classes.app}></li>
-            ))}
+            {fillerApps}
             <li class={[classes.app, classes.eydApp]}>
               <Logo class={classes.logo} />
             </li>
@@ -96,17 +87,15 @@ export default function InstallPromptDrawer() {
         Enjoy Your Day works better as a web app - install it for offline
         access, faster performance, and everything a tap away.
       </p>
-      {If(!isSafari, () => (
-        <Button
-          class={classes.installButton}
-          rounded
-          vibrate
-          variant="secondary"
-          onClick={promptInstall}
-        >
-          Install
-        </Button>
-      ))}
+      <Button
+        class={classes.installButton}
+        rounded
+        vibrate
+        variant="secondary"
+        onClick={promptInstall}
+      >
+        Install
+      </Button>
       <NestedDrawer isOpen={nestedDrawerIsOpen} onClose={closeNestedDrawer} />
     </BottomDrawer>
   );
@@ -126,6 +115,7 @@ function NestedDrawer(props: NestedDrawerProps) {
 
   return (
     <BottomDrawer
+      class={classes.nestedDrawer}
       shrinkTarget="#installPromptDrawer"
       open={isOpen}
       onClose={closeDrawer}

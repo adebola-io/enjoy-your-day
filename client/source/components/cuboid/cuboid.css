@@ -1,4 +1,4 @@
-:host(x-cuboid) {
+:host(div) {
   display: grid;
   width: var(--cuboid-length);
   height: var(--cuboid-height);

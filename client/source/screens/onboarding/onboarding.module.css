@@ -54,12 +54,10 @@
   display: none;
 
   .onboardingView.selectingCategories & {
-    @media (display-mode: standalone) {
-      display: grid;
-      align-self: start;
-      grid-row: 1;
-      grid-column: 1;
-    }
+    display: grid;
+    align-self: start;
+    grid-row: 1;
+    grid-column: 1;
   }
 }
 

@@ -55,6 +55,10 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
     router.navigate('/home');
   };
 
+  resource.pending.listen((isPending) => {
+    document.body.dataset.dialogIsPending = isPending ? 'true' : undefined;
+  });
+
   const Prompt = () => {
     return (
       <>

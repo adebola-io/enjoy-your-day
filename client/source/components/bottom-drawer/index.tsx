@@ -104,7 +104,6 @@ export function BottomDrawer(props: BottomDrawerProps) {
     toggle(isOpen.value);
 
     return () => {
-      setMetaTheme(formerMetaTheme);
       router.removeEventListener('routechange', handleRouteChange);
       intersectObserver.disconnect();
     };

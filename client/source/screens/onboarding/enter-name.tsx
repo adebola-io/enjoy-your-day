@@ -5,7 +5,6 @@ import { username } from '#/data/state';
 import { vibrate } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './onboarding.module.css';
-import InstallPromptDrawer from './install-prompt-drawer';
 
 export default function EnterName() {
   const router = useRouter();
@@ -30,7 +29,6 @@ export default function EnterName() {
       <Button type="submit" class={classes.nameSubmitButton} vibrate>
         Continue
       </Button>
-      <InstallPromptDrawer />
     </form>
   );
 }

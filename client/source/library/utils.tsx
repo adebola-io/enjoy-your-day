@@ -26,6 +26,10 @@ export async function setMetaTheme(color: string) {
   document
     .querySelector('meta[name="theme-color"]')
     ?.setAttribute('content', color);
+  // Allow changing status bar in mockup.
+  if (window.parent) {
+    window.parent.postMessage({ type: 'setMetaTheme', color }, '*');
+  }
 }
 
 /**

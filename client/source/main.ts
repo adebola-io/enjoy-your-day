@@ -6,6 +6,7 @@ import {
   appIsReadyResolver,
   type DeferredPromptEvent,
   installDetails,
+  setMetaTheme,
 } from './library/utils';
 
 export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
@@ -70,6 +71,7 @@ export async function resumeApp() {
     circle.addEventListener('animationend', (event) => {
       if (event.animationName !== 'expand-forever') return;
       appIsReadyResolver?.();
+      setMetaTheme('#ffffff');
       waitingScreen?.remove();
       document.querySelector('#start-screen')?.remove();
     });

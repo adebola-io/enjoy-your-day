@@ -11,17 +11,12 @@
 }
 
 .backButton:is(.backButton) {
-  /* :is() forces specificity override. */
-  display: none;
-
-  @media (display-mode: standalone) {
-    z-index: 1;
-    display: grid;
-    align-self: start;
-    padding-inline-start: var(--block-padding);
-    grid-row: 1;
-    grid-column: 1;
-  }
+  z-index: 1;
+  display: grid;
+  align-self: start;
+  padding-inline-start: var(--block-padding);
+  grid-row: 1;
+  grid-column: 1;
 }
 
 .autoSelectionLoader {

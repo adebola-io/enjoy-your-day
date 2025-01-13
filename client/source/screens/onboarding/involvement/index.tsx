@@ -7,7 +7,6 @@ import { involvementLevel, selectedCategories, username } from '#/data/state';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './involvement.module.css';
-import { vibrate } from '#/library/utils';
 import { BackButton } from '#/components/back-button';
 
 export default async function Involvement() {
@@ -85,11 +84,7 @@ function InvolvementLevel(props: InvolvementLevelProps) {
   const { title, Icon, description, color, value } = props;
   const styles = { '--level-color': color, '--level-value': value };
   return (
-    <label
-      class={classes.involvementLevel}
-      style={styles}
-      onClick={() => vibrate()}
-    >
+    <label class={classes.involvementLevel} style={styles}>
       <Icon class={classes.icon} />
       <input type="radio" name="involvementLevel" value={value} required />
       <h2 class={classes.title}>{title}</h2>

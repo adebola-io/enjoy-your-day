@@ -12,7 +12,7 @@ export default function InstallPromptDrawer() {
   const drawerRef = Cell.source<HTMLDialogElement | null>(null);
   const drawerIsOpen = Cell.source(false);
   const apps = Array(10);
-  const fillerApps = For(apps, () => <li class={classes.app}></li>);
+  const fillerApps = For(apps, () => <li class={classes.app} />);
   const nestedDrawerIsOpenHandle = Cell.source(false);
   const nestedDrawerIsOpen = Cell.derived(() => {
     return nestedDrawerIsOpenHandle.value && drawerIsOpen.value;
@@ -108,10 +108,7 @@ interface NestedDrawerProps {
 
 function NestedDrawer(props: NestedDrawerProps) {
   const { isOpen } = props;
-
-  const closeDrawer = () => {
-    props.onClose?.();
-  };
+  const closeDrawer = () => props.onClose?.();
 
   return (
     <BottomDrawer

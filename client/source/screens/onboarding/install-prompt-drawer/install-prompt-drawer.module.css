@@ -1,7 +1,7 @@
 .drawer:is(.drawer) {
   --drawer-visible-height: min(600px, 75dvh);
   --line-duration: calc(var(--default-duration) * 3);
-  --phone-duration: calc(var(--default-duration) * 3.5);
+  --phone-duration: calc(var(--default-duration) * 3.75);
   --other-apps-duration: calc(var(--default-duration) * 5);
   --app-duration: calc(var(--default-duration) * 2);
   --initial-stagger-delay: calc(
@@ -117,6 +117,6 @@
 
 @keyframes phone-slide-up {
   from {
-    transform: rotate3d(0, 1, 0, -85deg) translate(-90%, 120%);
+    transform: rotate3d(0, 1, 0, -110deg) translate(-30%, 120%);
   }
 }

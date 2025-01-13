@@ -35,9 +35,19 @@
 .nameForm {
   display: grid;
   padding-block-start: calc(var(--block-padding) * 2);
+  transition: scale var(--drawer), translate var(--drawer);
   place-items: center;
   grid-template-rows: auto auto auto auto 1fr;
   gap: 15px;
+
+  &[data-dialog-is-open] {
+    scale: 0.8;
+  }
+
+  body[data-nested-drawer-is-open] & {
+    scale: 0.6;
+    translate: 0 10%;
+  }
 }
 
 .backButton:is(.backButton) {

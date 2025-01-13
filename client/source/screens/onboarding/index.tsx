@@ -14,7 +14,7 @@ export default async function Onboarding() {
   }
 
   const supplementaryClass = Cell.derived(() => {
-    switch (currentRoute.value.fullPath) {
+    switch (currentRoute.value.path) {
       case '/onboarding/enter-name':
         return classes.enteringName;
       case '/onboarding/select-categories':

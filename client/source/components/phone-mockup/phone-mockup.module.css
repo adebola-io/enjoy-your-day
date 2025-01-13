@@ -1,0 +1,24 @@
+.phoneFront {
+  --notch-area: calc(var(--phone-size) * 0.15);
+  display: grid;
+  height: 100%;
+  background-color: white;
+  grid-template-rows: 1fr;
+
+  /* Phone notch. */
+  &::before {
+    display: block;
+    width: 25%;
+    height: 4%;
+    margin-block-start: 4%;
+    border-radius: calc(var(--phone-size) * 0.05);
+    background-color: var(--notch-color);
+    content: '';
+    justify-self: center;
+    grid-area: 1 / 1;
+  }
+}
+
+.content {
+  grid-area: 1 / 1;
+}

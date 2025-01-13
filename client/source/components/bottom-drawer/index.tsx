@@ -51,7 +51,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
       formerMetaTheme = getMetaTheme();
       dialog.showModal();
       setMetaTheme(overlayBlack(formerMetaTheme));
-    } else if (dialog.open) {
+    } else if (dialog.open && isClosable.value) {
       dialog.close();
     }
   };

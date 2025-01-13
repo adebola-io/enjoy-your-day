@@ -5,6 +5,7 @@ import { username } from '#/data/state';
 import { vibrate } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './onboarding.module.css';
+import InstallPromptDrawer from './install-prompt-drawer';
 
 export default function EnterName() {
   const router = useRouter();
@@ -15,7 +16,11 @@ export default function EnterName() {
   };
 
   return (
-    <form class={classes.nameForm} onSubmit--prevent={handleNameSubmit}>
+    <form
+      id="onboardingNameForm"
+      class={classes.nameForm}
+      onSubmit--prevent={handleNameSubmit}
+    >
       <Logo class={classes.nameFormLogo} />
       <h2 class={classes.nameFormHeading}>What's your name?</h2>
       <p class={classes.nameFormSubHeading}>
@@ -25,6 +30,7 @@ export default function EnterName() {
       <Button type="submit" class={classes.nameSubmitButton} vibrate>
         Continue
       </Button>
+      <InstallPromptDrawer />
     </form>
   );
 }

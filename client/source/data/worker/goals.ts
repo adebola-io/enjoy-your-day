@@ -2,7 +2,7 @@ import { dexie } from './dexie';
 import type { WorkerProtocol } from './types';
 import { startGoalUpdateProcess, updateDataQueue } from './update';
 import { shuffleArray } from './utils';
-import { GoalProps } from '../entities';
+import type { GoalProps } from '../entities';
 import { Temporal } from 'temporal-polyfill';
 
 type GenerateGoalsForTodayHandler =

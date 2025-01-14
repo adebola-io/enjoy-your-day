@@ -4,7 +4,7 @@ import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
 import { dailyGoals, dailyGoalsDateStamp } from '#/data/state';
 import type { GoalProps, GoalState } from '#/data/entities';
-import { getResourceState, NoOp } from '#/library/utils';
+import { defer, getResourceState, NoOp, setMetaTheme } from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
@@ -52,7 +52,10 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
 
   const saveGoals = async () => {
     await resource.run(goals.value);
-    router.navigate('/home');
+    router.navigate('/home').then(() => {
+      // Deferred so it is not affected by the drawer closing.
+      defer(() => setMetaTheme('#ffffff'));
+    });
   };
 
   resource.pending.listen((isPending) => {

@@ -1,0 +1,37 @@
+.nestedDrawer {
+  --drawer-visible-height: min-content;
+  display: grid;
+  width: calc(100% - var(--side-padding) * 2);
+  padding-top: var(--block-padding);
+  padding-inline: var(--side-padding);
+  grid-template-rows: auto auto auto 1fr;
+}
+
+.heading {
+  font: var(--subtitle-bold);
+}
+
+.paragraph {
+  margin-block-end: calc(var(--block-padding) * 0.25);
+  color: var(--space-cadet-300);
+  font: var(--base-regular);
+}
+
+.listItem {
+  display: grid;
+  align-items: center;
+  height: 2.5rem;
+  list-style-type: none;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+}
+
+.listItemIcon {
+  height: 70%;
+}
+
+.closeButton {
+  align-self: end;
+  margin-block-start: calc(var(--block-padding) * 0.5);
+  margin-block-end: var(--block-padding);
+}

@@ -37,7 +37,11 @@ export default async function Onboarding() {
   });
 
   return (
-    <main ref={mainRef} class={[classes.onboardingView, supplementaryClass]}>
+    <main
+      id="onboardingMain"
+      ref={mainRef}
+      class={[classes.onboardingView, supplementaryClass]}
+    >
       <router.Outlet class={classes.startOutlet} />
       <BackButton class={classes.backButton} />
       <InstallPromptDrawer />

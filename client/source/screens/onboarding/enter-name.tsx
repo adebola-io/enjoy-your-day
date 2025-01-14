@@ -15,11 +15,7 @@ export default function EnterName() {
   };
 
   return (
-    <form
-      id="onboardingNameForm"
-      class={classes.nameForm}
-      onSubmit--prevent={handleNameSubmit}
-    >
+    <form class={classes.nameForm} onSubmit--prevent={handleNameSubmit}>
       <Logo class={classes.nameFormLogo} />
       <h2 class={classes.nameFormHeading}>What's your name?</h2>
       <p class={classes.nameFormSubHeading}>

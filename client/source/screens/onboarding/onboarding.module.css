@@ -42,11 +42,10 @@
 
   &[data-dialog-is-open] {
     scale: 0.8;
-  }
 
-  body[data-nested-drawer-is-open] & {
-    scale: 0.6;
-    translate: 0 10%;
+    body[data-nested-drawer-is-open] & {
+      scale: 0.7;
+    }
   }
 }
 

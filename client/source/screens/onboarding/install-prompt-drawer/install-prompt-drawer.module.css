@@ -1,5 +1,5 @@
 .drawer:is(.drawer) {
-  --drawer-visible-height: min(600px, 75dvh);
+  --drawer-visible-height: min-content;
   --line-duration: calc(var(--default-duration) * 3);
   --phone-duration: calc(var(--default-duration) * 3.75);
   --other-apps-duration: calc(var(--default-duration) * 5);
@@ -10,16 +10,14 @@
   --stagger-difference: 0.85;
   --drawer-open-position-y: 5%;
 
-  display: grid;
   width: calc(100% - var(--side-padding) * 2);
+  padding-block-end: 5%;
   transition-property: translate, opacity, scale;
   text-align: center;
-  grid-template-rows: auto auto 1fr;
   padding-inline: var(--side-padding);
 
   &[data-dialog-is-open] {
-    --drawer-open-position-y: 1%;
-    scale: 0.97;
+    scale: 0.94;
   }
 }
 
@@ -109,10 +107,6 @@
   height: fit-content;
   margin-block-start: calc(var(--block-padding) * 0.5);
   margin-block-end: var(--block-padding);
-}
-
-.nestedDrawer {
-  --drawer-visible-height: min(550px, 70dvh);
 }
 
 @keyframes phone-slide-up {

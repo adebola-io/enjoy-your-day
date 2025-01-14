@@ -22,13 +22,17 @@
     overflow-y: hidden;
   }
 
-  &:not([open]) {
+  &:not([data-open]) {
     overflow-y: hidden;
     pointer-events: none;
     &::before {
       /* Not a real animation. just delays the snap until the drawer is gone. */
       animation: snap 0ms var(--drawer) both;
     }
+  }
+
+  &:not([data-open])::backdrop {
+    display: none;
   }
 
   &::before {
@@ -57,7 +61,7 @@
     scroll-snap-align: end;
   }
 
-  &::backdrop {
+  &[data-open]::backdrop {
     background-color: rgba(0, 0, 0, 0.3);
   }
 }
@@ -96,7 +100,7 @@
     justify-self: center;
   }
 
-  .drawer[open] & {
+  .drawer[data-open] & {
     opacity: 1;
     translate: 0 var(--drawer-open-position-y, 0);
   }

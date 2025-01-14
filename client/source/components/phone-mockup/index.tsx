@@ -31,7 +31,7 @@ export function PhoneMockup(props: PhoneMockupProps) {
       strokeStyle="solid"
       strokeColor={phoneColor}
       fill={phoneColor}
-      curvature="calc(var(--phone-size) * 0.15)"
+      curvature="calc(var(--phone-size) * 0.18)"
       extraVars={phoneStyles}
       {...rest}
     >

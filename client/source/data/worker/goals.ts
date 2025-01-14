@@ -152,10 +152,12 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
   const queryLower = query.trim().toLowerCase();
 
   return await dexie.goals
-    .where('title')
-    .startsWithIgnoreCase(queryLower)
-    .or('instruction')
-    .startsWithIgnoreCase(queryLower)
+    .filter(
+      (g) =>
+        g.title.toLowerCase().includes(queryLower) ||
+        g.instruction.toLowerCase().includes(queryLower) ||
+        g.categories.has(queryLower)
+    )
     .filter((g) => !addedUuids.includes(g.uuid))
     .limit(5)
     .toArray();

@@ -1,11 +1,16 @@
 import AddIcon from '#/components/icons/add';
 import ShareIosIcon from '#/components/icons/share-ios';
 import SimpleCheckIcon from '#/components/icons/simple-check';
-import type { IconProps } from '#/components/icons/props';
-import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import AppsIcon from '#/components/icons/apps';
 import FluentCubeIcon from '#/components/icons/fluent-cube';
 import CircleCheckMarkIcon from '#/components/icons/circle-check-mark';
+import ThreeDotsIcon from '#/components/icons/three-dots';
+import AddToHomeScreenIcon from '#/components/icons/add-to-home-screen';
+import DownloadIcon from '#/components/icons/download';
+import CheckUnderlinedIcon from '#/components/icons/check-underlined';
+import type { IconProps } from '#/components/icons/props';
+import type { JSX } from '@adbl/unfinished/jsx-runtime';
+import InstallToDesktopIcon from '#/components/icons/install-to-desktop';
 
 export interface InstallInstructions {
   name: string;
@@ -33,7 +38,7 @@ export const installInstructions = {
       },
     ],
   },
-  edge: {
+  edgeDesktop: {
     name: 'Microsoft Edge',
     instructions: [
       {
@@ -50,37 +55,42 @@ export const installInstructions = {
       },
     ],
   },
-  chrome: {
+  chromeDesktop: {
     name: 'Chrome',
     instructions: [
       {
-        title: 'Open your browser’s menu.',
-        icon: ShareIosIcon,
+        title:
+          'Click the download icon in the right corner of the address bar.',
+        icon: InstallToDesktopIcon,
       },
       {
-        title: 'Click “Add to Home Screen”.',
-        icon: AddIcon,
+        title: "Tap 'Install' on the notification.",
+        icon: DownloadIcon,
       },
       {
         title: 'Save Enjoy Your Day to your device.',
-        icon: SimpleCheckIcon,
+        icon: CheckUnderlinedIcon,
       },
     ],
   },
-  default: {
-    name: 'your browser',
+  chromeMobile: {
+    name: 'Chrome',
     instructions: [
       {
-        title: 'Open your browser’s menu.',
-        icon: ShareIosIcon,
+        title: 'Open your browser’s menu from the top right corner.',
+        icon: ThreeDotsIcon,
       },
       {
-        title: 'Click “Add to Home Screen”.',
-        icon: AddIcon,
+        title: 'Click “Add to Home screen”.',
+        icon: AddToHomeScreenIcon,
+      },
+      {
+        title: "Tap 'Install' on the notification.",
+        icon: DownloadIcon,
       },
       {
         title: 'Save Enjoy Your Day to your device.',
-        icon: SimpleCheckIcon,
+        icon: CheckUnderlinedIcon,
       },
     ],
   },
@@ -94,10 +104,13 @@ type UserAgentData = {
       version: string;
     }>;
     mobile: boolean;
+    platform: string;
   }>;
 };
 
-export async function getInstallInstructions(): Promise<InstallInstructions> {
+export async function getInstallInstructions(): Promise<
+  InstallInstructions | undefined
+> {
   if ('userAgentData' in navigator) {
     try {
       const data = await (
@@ -109,12 +122,18 @@ export async function getInstallInstructions(): Promise<InstallInstructions> {
         'uaFullVersion',
       ]);
 
-      const isEdge = data.brands.some((brand) => brand.brand.includes('Edge'));
-      if (isEdge) return installInstructions.edge;
+      const isEdgeDesktop =
+        data.brands.some((brand) => brand.brand.includes('Edge')) &&
+        !data.mobile;
+      if (isEdgeDesktop) return installInstructions.edgeDesktop;
+
       const isChrome = data.brands.some((brand) =>
         brand.brand.includes('Chrome')
       );
-      if (isChrome) return installInstructions.chrome;
+      if (isChrome) {
+        if (data.mobile) return installInstructions.chromeMobile;
+        return installInstructions.chromeDesktop;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -129,6 +148,4 @@ export async function getInstallInstructions(): Promise<InstallInstructions> {
   if (isSafari) {
     return installInstructions.safari;
   }
-
-  return installInstructions.default;
 }

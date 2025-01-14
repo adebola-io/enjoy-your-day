@@ -5,12 +5,17 @@ import classes from './nested-drawer.module.css';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import type { IconProps } from '#/components/icons/props';
 import { Button } from '#/components/button';
-import { getInstallInstructions } from '#/data/install-instructions';
+import type { InstallInstructions } from '#/data/install-instructions';
 import { For } from '@adbl/unfinished';
 
+interface NestedDrawerProps {
+  instructions: InstallInstructions;
+}
+
 export const nestedDrawerQuery = 'nested-install-prompt-drawer';
-export async function NestedDrawer() {
+export function NestedDrawer(props: NestedDrawerProps) {
   const router = useRouter();
+  const { instructions } = props;
   const route = router.getCurrentRoute();
   const isOpen = Cell.derived(() => {
     return route.value.query.has(nestedDrawerQuery);
@@ -28,7 +33,10 @@ export async function NestedDrawer() {
   };
 
   isOpen.listen(toggleNestedDrawerAttribute);
-  const instructions = await getInstallInstructions();
+  const heading = `Install with ${instructions.name}.`;
+  const paragraph = 'Follow these steps to install Enjoy Your Day:';
+
+  71;
 
   return (
     <BottomDrawer
@@ -38,10 +46,8 @@ export async function NestedDrawer() {
       onClose={closeDrawer}
       onBeforeClose={toggleNestedDrawerAttribute}
     >
-      <h3 class={classes.heading}>Install with {instructions.name}.</h3>
-      <p class={classes.paragraph}>
-        Follow these steps to install Enjoy Your Day:
-      </p>
+      <h3 class={classes.heading}>{heading}</h3>
+      <p class={classes.paragraph}>{paragraph}</p>
       <ol>
         {For(instructions.instructions, (instruction) => (
           <ListItem Icon={instruction.icon} text={instruction.title} />

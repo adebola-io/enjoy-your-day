@@ -26,8 +26,9 @@ export async function setMetaTheme(color: string) {
   document
     .querySelector('meta[name="theme-color"]')
     ?.setAttribute('content', color);
-  // Allow changing status bar in mockup.
-  if (window.parent) {
+
+  if (isRunningInIFrame()) {
+    // Allow changing status bar in mockup.
     window.parent.postMessage({ type: 'setMetaTheme', color }, '*');
   }
 }
@@ -43,6 +44,21 @@ export function getMetaTheme(): string {
       .querySelector('meta[name="theme-color"]')
       ?.getAttribute('content') ?? '#ffffff'
   );
+}
+
+export function isRunningInIFrame() {
+  return parent && parent !== window;
+}
+
+export function defineSafeArea() {
+  if (!isRunningInIFrame()) return;
+
+  window.CSS.registerProperty({
+    name: '--safe-area-inset-bottom',
+    syntax: '<length>',
+    inherits: true,
+    initialValue: '37px',
+  });
 }
 
 export function setAutoSelectStage(stage: number) {

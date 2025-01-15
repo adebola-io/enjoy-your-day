@@ -8,7 +8,8 @@
   border-top: var(--outline);
   background-color: white;
   animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 2);
-  padding-block: 1rem max(env(safe-area-inset-bottom), 1rem);
+  padding-block: 1rem
+    max(env(safe-area-inset-bottom), var(--safe-area-inset-bottom, 1rem));
   grid-template-columns: repeat(3, auto);
   scrollbar-width: none;
   padding-inline: var(--side-padding);

@@ -23,7 +23,7 @@ ul {
 :root {
   --navbar-height: calc(
     6px + 1rem + 1.5rem + 10px + var(--tiny-font-size) +
-      max(env(safe-area-inset-bottom), 1rem)
+      max(env(safe-area-inset-bottom), var(--safe-area-inset-bottom, 1rem))
   );
   position: fixed;
   overflow: hidden;

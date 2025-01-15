@@ -54,6 +54,20 @@ export default function InstallPromptDrawer() {
   };
 
   observer.onConnected(drawerRef, async () => {
+    if (
+      'getInstalledRelatedApps' in navigator &&
+      typeof navigator.getInstalledRelatedApps === 'function' &&
+      (!window.parent || window.parent === window)
+    ) {
+      try {
+        const apps = await navigator.getInstalledRelatedApps();
+        if (Array.isArray(apps) && apps.length > 0) {
+          return () => {};
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
     instructions.value = await getInstallInstructions();
     if (instructions.value === undefined) return () => {};
     const isStandalone = matchMedia('(display-mode: standalone)');

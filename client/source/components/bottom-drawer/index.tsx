@@ -56,9 +56,11 @@ export function BottomDrawer(props: BottomDrawerProps) {
     for (const element of shrinkTargets) {
       element.toggleAttribute('data-dialog-is-open', isOpen);
     }
+    const dialogContent = dialog.firstElementChild as HTMLElement;
     if (shouldOpen) {
       formerMetaTheme = getMetaTheme();
       dialog.showModal();
+      dialogContent.scrollIntoView();
       setMetaTheme(overlayBlack(formerMetaTheme));
     } else if (dialog.open && isClosable.value) {
       // Explicitly remove the open attribute to prevent
@@ -66,7 +68,6 @@ export function BottomDrawer(props: BottomDrawerProps) {
       dialog.removeAttribute('data-open');
       onBeforeClose?.(false);
       setMetaTheme(formerMetaTheme);
-      const dialogContent = dialog.firstElementChild as HTMLElement;
       const closer = () => dialog.close();
       dialogContent.addEventListener('transitionend', closer, { once: true });
     }

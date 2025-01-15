@@ -1,0 +1,116 @@
+.drawer:is(.drawer) {
+  --drawer-visible-height: min-content;
+  --line-duration: calc(var(--default-duration) * 3);
+  --phone-duration: calc(var(--default-duration) * 3.75);
+  --other-apps-duration: calc(var(--default-duration) * 5);
+  --app-duration: calc(var(--default-duration) * 2);
+  --initial-stagger-delay: calc(
+    var(--drawer) * 1.5 + var(--phone-duration) * 0.5
+  );
+  --stagger-difference: 0.85;
+  --drawer-open-position-y: 5%;
+
+  width: calc(100% - var(--side-padding) * 2);
+  padding-block-end: 5%;
+  transition-property: translate, opacity, scale;
+  text-align: center;
+  padding-inline: var(--side-padding);
+
+  &[data-dialog-is-open] {
+    scale: 0.94;
+  }
+}
+
+.phoneContainer:is(.phoneContainer) {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  animation: none;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--space-cadet-500);
+    content: '';
+  }
+
+  [data-open] &::after {
+    animation: var(--stretch-x) var(--line-duration) var(--drawer) backwards;
+  }
+}
+
+.phone {
+  transform: translateY(30%);
+  pointer-events: none;
+  justify-self: center;
+  grid-area: 1 / 1;
+
+  [data-open] & {
+    animation: phone-slide-up var(--phone-duration)
+      calc(var(--drawer) + var(--line-duration) * 0.75) backwards;
+  }
+}
+
+.text {
+  width: 90%;
+  padding-top: calc(var(--block-padding) * 0.5);
+  justify-self: center;
+}
+
+.phoneContent {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.appList {
+  display: grid;
+  height: 100%;
+  padding-block-start: calc(var(--notch-area) * 1.25);
+  padding-inline: 5%;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(6, calc(var(--phone-size) * 0.2));
+  gap: 3%;
+}
+
+.app {
+  display: grid;
+  width: auto;
+  height: calc(var(--phone-size) * 0.2);
+  border-radius: calc(var(--phone-size) * 0.05);
+  background-color: var(--space-cadet-50);
+  list-style-type: none;
+  animation: var(--fade-in) var(--other-apps-duration)
+    calc(var(--phone-duration) * 2) backwards;
+  aspect-ratio: 1;
+  place-items: center;
+  aspect-ratio: 1;
+}
+
+.eydApp {
+  color: white;
+  background-color: var(--space-cadet-500);
+  animation: var(--pop) var(--app-duration)
+    calc(var(--phone-duration) * 1.75 + var(--other-apps-duration)) backwards;
+}
+
+.logo {
+  width: 70%;
+}
+
+.installButton {
+  height: fit-content;
+  margin-block-start: calc(var(--block-padding) * 0.5);
+  margin-block-end: var(--block-padding);
+}
+
+@keyframes phone-slide-up {
+  from {
+    transform: rotate3d(0, 1, 0, -110deg) translate(-30%, 120%);
+  }
+}

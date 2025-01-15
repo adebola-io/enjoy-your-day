@@ -1,5 +1,10 @@
 import type { JSX } from '@adbl/unfinished/jsx-dev-runtime';
-import { getMetaTheme, overlayBlack, setMetaTheme } from '#/library/utils';
+import {
+  defer,
+  getMetaTheme,
+  overlayBlack,
+  setMetaTheme,
+} from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
 import { Teleport } from '@adbl/unfinished/teleport';
 import { Cell, type SourceCell } from '@adbl/cells';
@@ -12,6 +17,7 @@ interface BottomDrawerProps extends DialogProps {
   open?: JSX.ValueOrCell<boolean>;
   closable?: JSX.ValueOrCell<boolean>;
   onClose?: () => void;
+  onBeforeClose?: (value: false) => void;
   onClosePrevented?: () => void;
   shrinkTarget?: string;
   children?: unknown;
@@ -22,6 +28,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
     open,
     onClose,
     onClosePrevented,
+    onBeforeClose,
     closable = Cell.source(true),
     ref = Cell.source<HTMLDialogElement | null>(null),
     shrinkTarget = 'body',
@@ -45,14 +52,24 @@ export function BottomDrawer(props: BottomDrawerProps) {
     const dialog = ref.value;
     if (!dialog || !dialog.isConnected) return;
     const shouldOpen = isOpen && !dialog.open;
-    const rootElement = document.querySelector<HTMLElement>(shrinkTarget);
-    if (rootElement) rootElement.toggleAttribute('data-dialog-is-open', isOpen);
+    const shrinkTargets = document.querySelectorAll<HTMLElement>(shrinkTarget);
+    for (const element of shrinkTargets) {
+      element.toggleAttribute('data-dialog-is-open', isOpen);
+    }
+    const dialogContent = dialog.firstElementChild as HTMLElement;
     if (shouldOpen) {
       formerMetaTheme = getMetaTheme();
       dialog.showModal();
+      dialogContent.scrollIntoView();
       setMetaTheme(overlayBlack(formerMetaTheme));
-    } else if (dialog.open) {
-      dialog.close();
+    } else if (dialog.open && isClosable.value) {
+      // Explicitly remove the open attribute to prevent
+      // z-index and top layering issues.
+      dialog.removeAttribute('data-open');
+      onBeforeClose?.(false);
+      setMetaTheme(formerMetaTheme);
+      const closer = () => dialog.close();
+      dialogContent.addEventListener('transitionend', closer, { once: true });
     }
   };
 
@@ -79,7 +96,6 @@ export function BottomDrawer(props: BottomDrawerProps) {
   };
 
   const handleClose = () => {
-    setMetaTheme(formerMetaTheme);
     onClose?.();
   };
 
@@ -99,12 +115,11 @@ export function BottomDrawer(props: BottomDrawerProps) {
     };
     const options = { root: dialog, threshold: 0.3 };
     const intersectObserver = new IntersectionObserver(callback, options);
-    intersectObserver.observe(div);
+    defer(() => intersectObserver.observe(div));
     router.addEventListener('routechange', handleRouteChange);
     toggle(isOpen.value);
 
     return () => {
-      setMetaTheme(formerMetaTheme);
       router.removeEventListener('routechange', handleRouteChange);
       intersectObserver.disconnect();
     };

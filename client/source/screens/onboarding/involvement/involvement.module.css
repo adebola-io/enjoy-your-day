@@ -1,9 +1,5 @@
 .backButton {
   grid-area: 1 / 1;
-
-  @media not (display-mode: standalone) {
-    display: none;
-  }
 }
 
 .container {

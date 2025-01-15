@@ -2,9 +2,15 @@
 import { initializeDatabase } from '#/data/services';
 import { createWebRouter, defineRoutes } from '@adbl/unfinished/router';
 import { appRouteTree, onboardingMiddleware } from './screens/routes';
-import { appIsReadyResolver } from './library/utils';
+import {
+  appIsReadyResolver,
+  type DeferredPromptEvent,
+  installDetails,
+  setMetaTheme,
+} from './library/utils';
 
-export default async function main() {
+export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
+  installDetails.deferredPrompt = deferredPromptEvent;
   appIsReadyResolver?.();
   disableContextMenu();
   initializeDatabase()
@@ -17,11 +23,11 @@ export default async function main() {
 
   const router = createRouter();
   router.window = window;
-  router.useViewTransitions = true;
   router.attachWindowListeners();
   document.body.prepend(router.Outlet());
 
   return router.replace('/onboarding/enter-name').then(() => {
+    router.useViewTransitions = true;
     document.querySelector('#waiting-screen')?.remove();
     document.querySelector('#start-screen')?.remove();
     document.querySelector('html')?.removeAttribute('data-view');
@@ -65,6 +71,7 @@ export async function resumeApp() {
     circle.addEventListener('animationend', (event) => {
       if (event.animationName !== 'expand-forever') return;
       appIsReadyResolver?.();
+      setMetaTheme('#ffffff');
       waitingScreen?.remove();
       document.querySelector('#start-screen')?.remove();
     });

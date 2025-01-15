@@ -81,6 +81,10 @@
   margin-inline: var(--side-padding);
 }
 
+.stickyArea {
+  animation: none;
+}
+
 .timeGreeting {
   font: var(--eyebrow-bold);
 }
@@ -141,12 +145,16 @@
   display: grid;
   transition-duration: var(--default-duration);
   transition-property: translate;
-  animation: var(--fade-in) calc(var(--default-duration) * 2);
+  isolation: isolate;
   place-content: start;
   gap: 9px;
   grid-template-columns: 100%;
   grid-row: 4;
   grid-column: 1;
+
+  &:is(&) {
+    animation: var(--fade-in) calc(var(--default-duration) * 2);
+  }
 
   &::after {
     display: block;

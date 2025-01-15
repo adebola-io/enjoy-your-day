@@ -7,6 +7,7 @@ h5,
 h6,
 p,
 li,
+ol,
 ul {
   padding: 0;
   margin: 0;
@@ -116,16 +117,14 @@ body {
   }
 
   &[data-dialog-is-open] {
-    &:has([data-dialog-state='pending']) {
-      & > *:not(dialog, #backButton) {
-        scale: var(--drawer-background-scale-pending);
-      }
-    }
-
-    & > *:not(dialog, #backButton) {
+    & > *:not(#backButton) {
       pointer-events: none;
       scale: var(--drawer-background-scale);
     }
+  }
+
+  body[data-dialog-is-pending] & > *:not(#backButton) {
+    scale: var(--drawer-background-scale-pending);
   }
 }
 

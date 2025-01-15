@@ -13,9 +13,11 @@ async function startApp() {
     if (!module) return;
     const main = module.default;
     if ('startViewTransition' in document) {
-      return document.startViewTransition(main).finished;
+      return document.startViewTransition(() => {
+        main(deferredPrompt);
+      }).finished;
     }
-    return main();
+    return main(deferredPrompt);
   });
 }
 
@@ -269,5 +271,11 @@ function start() {
     once: true,
   });
 }
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  deferredPrompt = event;
+});
 
 start();

@@ -52,8 +52,14 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
 
   const saveGoals = async () => {
     await resource.run(goals.value);
+    await handleDrawerClose();
+    await new Promise((r) => setTimeout(r, 200));
     router.navigate('/home');
   };
+
+  resource.pending.listen((isPending) => {
+    document.body.toggleAttribute('data-dialog-is-pending', isPending);
+  });
 
   const Prompt = () => {
     return (

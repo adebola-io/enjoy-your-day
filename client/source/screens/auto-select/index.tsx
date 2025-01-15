@@ -2,12 +2,7 @@ import { BackButton } from '#/components/back-button';
 import { getAutoRecommendations } from '#/data/services';
 import type { GoalProps } from '#/data/entities';
 import { finalTexts, headings } from '#/data/headings';
-import {
-  getResourceState,
-  NoOp,
-  setAutoSelectStage,
-  setMetaTheme,
-} from '#/library/utils';
+import { getResourceState, NoOp, setAutoSelectStage } from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
 import GoalCardList from './goal-cards-view';
 import AutoSelectEdit from './auto-select-edit';
@@ -62,7 +57,6 @@ export default function AutoSelect() {
   };
 
   observer.onConnected(buttonRef, async () => {
-    setMetaTheme('#0e0e1f');
     setAutoSelectStage(1);
     if (currentStage.value === 'cardList') {
       await resource.run({
@@ -72,7 +66,6 @@ export default function AutoSelect() {
     } else {
       resource.data.value = [];
     }
-    return () => setMetaTheme('#ffffff');
   });
 
   return (

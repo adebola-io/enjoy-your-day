@@ -2,7 +2,7 @@ import { dexie } from './dexie';
 import type { WorkerProtocol } from './types';
 import { startGoalUpdateProcess, updateDataQueue } from './update';
 import { shuffleArray } from './utils';
-import { GoalProps } from '../entities';
+import type { GoalProps } from '../entities';
 import { Temporal } from 'temporal-polyfill';
 
 type GenerateGoalsForTodayHandler =
@@ -152,10 +152,12 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
   const queryLower = query.trim().toLowerCase();
 
   return await dexie.goals
-    .where('title')
-    .startsWithIgnoreCase(queryLower)
-    .or('instruction')
-    .startsWithIgnoreCase(queryLower)
+    .filter(
+      (g) =>
+        g.title.toLowerCase().includes(queryLower) ||
+        g.instruction.toLowerCase().includes(queryLower) ||
+        g.categories.has(queryLower)
+    )
     .filter((g) => !addedUuids.includes(g.uuid))
     .limit(5)
     .toArray();

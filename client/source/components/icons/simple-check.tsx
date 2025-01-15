@@ -1,6 +1,6 @@
 import type { IconProps } from './props';
 
-export function AddIcon(props: IconProps) {
+export function SimpleCheckIcon(props: IconProps) {
   return (
     <svg
       viewBox="0 0 50 50"
@@ -9,7 +9,7 @@ export function AddIcon(props: IconProps) {
       {...props}
     >
       <path
-        d="M12.5 25H25M25 25H37.5M25 25V37.5M25 25V12.5"
+        d="M12.5 25L21.3388 33.8387L39.0146 16.1611"
         stroke="currentColor"
         stroke-width="4.16667"
         stroke-linecap="round"
@@ -20,4 +20,4 @@ export function AddIcon(props: IconProps) {
   );
 }
 
-export default AddIcon;
+export default SimpleCheckIcon;

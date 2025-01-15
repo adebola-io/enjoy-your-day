@@ -6,6 +6,16 @@ type AsyncRequestAtoms<T, U> = {
   error: Cell<U>;
 };
 
+export type DeferredPromptEvent = Event & {
+  prompt: () => Promise<{
+    outcome: 'accepted' | 'dismissed' | 'user-dismissed';
+    platform: string;
+  }>;
+};
+
+export const installDetails = {
+  deferredPrompt: undefined as DeferredPromptEvent | undefined,
+};
 export let appIsReadyResolver: (() => void) | null = null;
 const appIsReady = new Promise<void>((resolve) => {
   appIsReadyResolver = resolve;
@@ -16,6 +26,10 @@ export async function setMetaTheme(color: string) {
   document
     .querySelector('meta[name="theme-color"]')
     ?.setAttribute('content', color);
+  // Allow changing status bar in mockup.
+  if (window.parent) {
+    window.parent.postMessage({ type: 'setMetaTheme', color }, '*');
+  }
 }
 
 /**

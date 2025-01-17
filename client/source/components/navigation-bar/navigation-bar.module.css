@@ -103,25 +103,6 @@
     translate: none;
   }
 }
-/* 
-@keyframes animate-head {
-  40% {
-    translate: 0% -15%;
-  }
-
-  65% {
-    translate: 0% 13%;
-  }
-}
-
-@keyframes animate-body {
-  40% {
-    translate: 0% -10%;
-  }
-  60% {
-    translate: 0 20%;
-  }
-} */
 
 .icon {
   height: 1.5rem;
@@ -199,14 +180,6 @@
       [data-inner-circle] {
         fill: white;
       }
-
-      /* [data-head] {
-        animation: animate-head calc(var(--default-duration) * 4);
-      }
-
-      [data-body] {
-        animation: animate-body calc(var(--default-duration) * 5);
-      } */
     }
   }
 }

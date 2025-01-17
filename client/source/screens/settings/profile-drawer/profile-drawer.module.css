@@ -1,0 +1,275 @@
+.profileDrawer {
+  --drawer-visible-height: calc(100dvh - var(--block-padding));
+
+  --drawer-content-padding-top: calc(var(--block-padding) * 2);
+  --drawer-content-padding-bottom: var(--block-padding);
+  --drawer-content-gap: calc(var(--block-padding) * 0.25);
+  --drawer-profile-picture-size: calc(
+    var(--base-font-size) * 4 + min(5dvh, 30px) * 2 + 5px
+  );
+  --selected-category-size: calc(
+    (1rem + var(--base-font-size) * 1.5) * 2 + 0.5rem
+  );
+  --username-size: var(--eyebrow-font-size);
+  --involvement-level-size: calc(var(--base-font-size) * 2.5);
+  --close-button-top-margin: var(--block-padding);
+  --close-button-size: calc(min(6dvh, 18px) * 2 + var(--base-font-size) + 4px);
+
+  /* Dragons ahead. */
+  --drawer-content-height: calc(
+    var(--drawer-content-padding-top) + var(--drawer-profile-picture-size) +
+      var(--drawer-content-gap) + var(--username-size) +
+      var(--drawer-content-gap) + var(--involvement-level-size) +
+      var(--drawer-content-gap) + var(--selected-category-size) +
+      var(--drawer-content-gap) + var(--close-button-top-margin) +
+      var(--close-button-size) + var(--drawer-content-padding-bottom) + 1rem
+  );
+  --drawer-open-position-y: calc(
+    100dvh - var(--block-padding) - var(--drawer-content-height)
+  );
+  transition-property: opacity, translate;
+
+  &[data-username-focused] {
+    --drawer-open-position-y: 0;
+
+    .content::before {
+      scale: 1;
+    }
+
+    .involvementLevel,
+    .selectedCategoriesList {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .profilePictureContainer {
+      scale: 0.85;
+    }
+  }
+
+  &[data-involvement-level-focused] {
+    --drawer-open-position-y: 0;
+
+    .involvementLevel {
+      opacity: 1;
+    }
+
+    .profilePictureContainer,
+    .selectedCategoriesList,
+    .username,
+    .involvementLevel {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .involvementLevelsFieldset {
+      display: initial;
+    }
+  }
+
+  &[data-categories-focused] {
+    --drawer-open-position-y: 0;
+
+    .profilePictureContainer,
+    .username,
+    .involvementLevel {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &[data-involvement-level-focused],
+  &[data-username-focused],
+  &[data-categories-focused] {
+    .closeButton {
+      translate: 0
+        calc(100dvh - var(--drawer-content-height) - var(--block-padding));
+    }
+  }
+}
+
+.involvementLevel,
+.selectedCategoriesList,
+.closeButton,
+.profilePictureContainer,
+.username {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: var(--drawer);
+  transition-property: opacity, scale, translate;
+}
+
+.content {
+  display: grid;
+  padding-block-start: calc(var(--block-padding) * 2);
+  padding-block-end: var(--block-padding);
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-columns: 1fr;
+  gap: var(--drawer-content-gap);
+
+  &::before {
+    display: block;
+    align-self: end;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background-color: var(--space-cadet-500);
+    content: '';
+    transition: scale var(--drawer), translate var(--drawer);
+    grid-area: 2 / 1;
+    justify-self: center;
+    translate: 0 calc(var(--base-font-size) * 0.5);
+    scale: 0 1;
+  }
+}
+
+.profilePictureContainer {
+  position: relative;
+  display: grid;
+  width: auto;
+  height: var(--drawer-profile-picture-size);
+  border-radius: 50%;
+  outline: 5px solid;
+  place-items: center;
+  aspect-ratio: 1;
+  place-items: center;
+  justify-self: center;
+  grid-area: 1 / 1;
+}
+
+.profilePicture {
+  overflow: visible;
+  width: 50%;
+
+  [data-open] & {
+    [data-head] {
+      animation: animate-head calc(var(--default-duration) * 4) var(--drawer);
+    }
+
+    [data-body] {
+      animation: animate-body calc(var(--default-duration) * 5) var(--drawer);
+    }
+  }
+}
+
+.username {
+  position: relative;
+  display: grid;
+  padding: 0;
+  border: none;
+  color: inherit;
+  text-align: center;
+  font: var(--eyebrow-bold);
+  place-items: center;
+  grid-area: 2 / 1;
+
+  &:focus-within {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.involvementLevel {
+  display: grid;
+  border: none;
+  background-color: transparent;
+  font: var(--base-regular);
+  place-items: center;
+  place-content: center;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  column-gap: 0.5rem;
+  justify-self: center;
+  grid-area: 3 / 1;
+}
+
+.involvementLevelIcon {
+  align-self: center;
+  height: var(--base-font-size);
+}
+
+.involvementLevelText {
+  align-self: center;
+}
+
+.selectedCategoriesListContainer {
+  display: grid;
+  border: none;
+  background: transparent;
+  grid-template-columns: 1fr;
+  margin-inline: auto;
+  place-content: center;
+}
+
+.selectedCategoriesList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 75%;
+  justify-self: center;
+
+  gap: 0.5rem;
+  grid-area: 4 / 1;
+}
+
+.selectedCategory {
+  display: grid;
+  border-radius: 1rem;
+  outline: 1px solid;
+  color: var(--space-cadet-500);
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.3rem;
+}
+
+.selectedCategoryName {
+  font: var(--base-regular);
+}
+
+.selectedCategoryIcon {
+  width: calc(var(--base-font-size) * 1.5);
+}
+
+.closeButton {
+  width: calc(100% - var(--side-padding) * 2);
+  margin-top: var(--block-padding);
+  margin-inline: var(--side-padding);
+  grid-area: 5 / 1;
+}
+
+.involvementLevelsFieldset {
+  position: absolute;
+  display: none;
+  height: var(--drawer-profile-picture-size);
+  border: none;
+  outline: none;
+  animation: var(--fade-in) var(--drawer);
+  grid-area: 1 / 1;
+  padding-inline: var(--side-padding);
+
+  & > *:is(label):has(:checked) {
+    border-color: var(--space-cadet-500);
+    outline-color: transparent;
+  }
+}
+
+@keyframes animate-head {
+  40% {
+    translate: 0% -15%;
+  }
+
+  65% {
+    translate: 0% 13%;
+  }
+}
+
+@keyframes animate-body {
+  40% {
+    translate: 0% -10%;
+  }
+  60% {
+    translate: 0 20%;
+  }
+}

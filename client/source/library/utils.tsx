@@ -1,4 +1,5 @@
 import { Cell } from '@adbl/cells';
+import { useRouter } from '@adbl/unfinished/router';
 
 type AsyncRequestAtoms<T, U> = {
   pending: Cell<boolean>;
@@ -172,4 +173,14 @@ export function overlayBlack(hexColor: string) {
 
 export function toKebabCase(str: string) {
   return str.replace(/\s/g, '-').toLowerCase();
+}
+
+export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
+  if (guard && guard.value === false) return;
+
+  const router = useRouter();
+  const route = router.getCurrentRoute();
+  const searchParams = new URLSearchParams(route.value.query);
+  searchParams.delete(query);
+  await router.navigate(`${route.value.path}?${searchParams}`);
 }

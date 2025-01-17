@@ -1,2 +1,3 @@
 export const ONBOARDING_LOADING_DELAY = 2000;
 export const LATEST_DATA_CHUNK = 14;
+export const MAX_USERNAME_LENGTH = 15;

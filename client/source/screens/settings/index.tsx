@@ -1,111 +1,93 @@
-import { Cuboid } from '#/components/cuboid';
-import { Cell } from '@adbl/cells';
+import type { IconProps } from '#/components/icons/props';
+import LockedIcon from '#/components/icons/locked';
+import NotificationIcon from '#/components/icons/notification';
+import UserIcon from '#/components/icons/user';
+import BinIcon from '#/components/icons/bin';
+import { InlinedIcon } from '#/components/inlined-icon';
+import CaretRightIcon from '#/components/icons/caret-right';
+import InfoIcon from '#/components/icons/info';
+import { CSS_VARS } from '#/styles/variables';
+import { ProfileDrawer } from './profile-drawer';
+import { useRouter } from '@adbl/unfinished/router';
+import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './settings.module.css';
+import { useObserver } from '@adbl/unfinished';
+import { setMetaTheme } from '#/library/utils';
+import { Cell } from '@adbl/cells';
 
 export default function Settings() {
-  const text = Cell.source('Click Me!!');
+  const observer = useObserver();
+  const containerRef = Cell.source<HTMLElement | null>(null);
+
+  observer.onConnected(containerRef, () => {
+    setMetaTheme('#ffffff');
+  });
+
   return (
-    <div
-      style={{
-        height: '100%',
-        display: 'grid',
-        placeItems: 'center',
-        placeContent: 'center',
-      }}
-    >
-      <Cuboid
-        length="200px"
-        height="230px"
-        breadth="200px"
-        fill="var(--space-cadet-50)"
-        strokeColor="black"
-        strokeWidth="2px"
-        strokeStyle="solid"
-        class={classes.cuboid}
-        onClick={function () {
-          if (this.classList.contains(classes.spinning)) {
-            this.addEventListener(
-              'animationiteration',
-              () => {
-                this.classList.remove(classes.spinning);
-                text.value = 'Click Me!!';
-              },
-              { once: true }
-            );
-          } else {
-            this.classList.add(classes.spinning);
-            text.value = 'weeee!';
-          }
-        }}
-      >
-        <div
-          slot="front"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          {text}
-        </div>
-        <div
-          slot="left"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          ahhhhh
-        </div>
-        <div
-          slot="right"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          yeeeee
-        </div>
-        <div
-          slot="top"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          lmaoo
-        </div>
-        <div
-          slot="bottom"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          omg
-        </div>
-        <div
-          slot="back"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          wut
-        </div>
-      </Cuboid>
-      <br />
+    <div ref={containerRef} id="settingsView" class={classes.settings}>
+      <h1 class={classes.heading}>Settings</h1>
+      <menu id="settingsMenu" class={classes.settingsMenu}>
+        <SettingsItem
+          link="profile"
+          title="Profile"
+          description="Change aspects of your experience."
+          Icon={UserIcon}
+        />
+        <SettingsItem
+          link="security"
+          title="Security"
+          description="Change your password and other security settings."
+          Icon={LockedIcon}
+        />
+        <SettingsItem
+          link="notifications"
+          title="Notifications"
+          description="Enable reminders and notifications."
+          Icon={NotificationIcon}
+        />
+        <SettingsItem
+          link="reset"
+          title="Reset"
+          description="Delete parts or all of your data and start over."
+          Icon={BinIcon}
+        />
+        <SettingsItem
+          link="about"
+          title="About"
+          description="Learn more about this app."
+          Icon={InfoIcon}
+        />
+      </menu>
+      <ProfileDrawer />
     </div>
+  );
+}
+
+interface SettingsItemProps {
+  title: string;
+  description: string;
+  link: string;
+  Icon: (props: IconProps) => JSX.Template;
+}
+
+function SettingsItem(props: SettingsItemProps) {
+  const { title, description, Icon } = props;
+  const router = useRouter();
+
+  return (
+    <router.Link
+      href={`/settings?level-one=${props.link}`}
+      class={classes.settingsItem}
+    >
+      <InlinedIcon
+        Icon={Icon}
+        class={classes.settingsIcon}
+        color={CSS_VARS['--space-cadet-500']}
+        title={`${title} settings icon`}
+      />
+      <h2 class={classes.settingsTitle}>{title}</h2>
+      <p class={classes.settingsDescription}>{description}</p>
+      <CaretRightIcon class={classes.settingsCaret} />
+    </router.Link>
   );
 }

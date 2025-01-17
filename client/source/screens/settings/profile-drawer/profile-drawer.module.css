@@ -37,7 +37,7 @@
     }
 
     .involvementLevel,
-    .selectedCategoriesList {
+    .selectedCategoriesListContainer {
       opacity: 0;
       pointer-events: none;
     }
@@ -55,7 +55,7 @@
     }
 
     .profilePictureContainer,
-    .selectedCategoriesList,
+    .selectedCategoriesListContainer,
     .username,
     .involvementLevel {
       opacity: 0;
@@ -72,9 +72,14 @@
 
     .profilePictureContainer,
     .username,
-    .involvementLevel {
+    .involvementLevel,
+    .selectedCategoriesListContainer {
       opacity: 0;
       pointer-events: none;
+    }
+
+    .categoryList {
+      display: flex;
     }
   }
 
@@ -89,7 +94,7 @@
 }
 
 .involvementLevel,
-.selectedCategoriesList,
+.selectedCategoriesListContainer,
 .closeButton,
 .profilePictureContainer,
 .username {
@@ -195,6 +200,8 @@
 
 .selectedCategoriesListContainer {
   display: grid;
+  overflow: hidden;
+  height: var(--selected-category-size);
   border: none;
   background: transparent;
   grid-template-columns: 1fr;
@@ -216,9 +223,11 @@
 
 .selectedCategory {
   display: grid;
+  height: calc(var(--base-font-size));
   border-radius: 1rem;
   outline: 1px solid;
   color: var(--space-cadet-500);
+  place-content: center;
   padding-block: 0.5rem;
   padding-inline: 1rem;
   grid-template-columns: auto 1fr;
@@ -231,13 +240,21 @@
 
 .selectedCategoryIcon {
   width: calc(var(--base-font-size) * 1.5);
+  height: 100%;
 }
 
 .closeButton {
+  position: relative;
   width: calc(100% - var(--side-padding) * 2);
   margin-top: var(--block-padding);
+  background-color: white;
   margin-inline: var(--side-padding);
   grid-area: 5 / 1;
+
+  &:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .involvementLevelsFieldset {
@@ -253,6 +270,33 @@
   & > *:is(label):has(:checked) {
     border-color: var(--space-cadet-500);
     outline-color: transparent;
+  }
+}
+
+.categoryList {
+  position: absolute;
+  display: none;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-height: calc(var(--drawer-content-height));
+  padding-block-end: calc(var(--block-padding) * 3);
+  padding-inline: var(--side-padding);
+  grid-area: 1 / 1;
+  gap: 8px;
+
+  & > label {
+    &:has(:checked) {
+      outline-color: transparent;
+    }
+
+    img {
+      filter: invert(1);
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 

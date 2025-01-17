@@ -20,6 +20,8 @@ import { For } from '@adbl/unfinished';
 import { categories } from '#/data/categories';
 import { MAX_USERNAME_LENGTH } from '#/data/constants';
 import classes from './profile-drawer.module.css';
+import { ElasticView } from '#/components/elastic-view';
+import { CategoryCard } from '#/components/category-card';
 
 export function ProfileDrawer() {
   const router = useRouter();
@@ -28,23 +30,24 @@ export function ProfileDrawer() {
   const involvementLevelIsFocused = Cell.source(false);
   const usernameInput = Cell.source<HTMLInputElement | null>(null);
   const categoriesFocused = Cell.source(false);
-  const focused = Cell.derived(() => {
-    return (
+  let initialUsernameValue = '';
+  const isOpen = Cell.derived(
+    () => route.value.query.get('level-one') === 'profile'
+  );
+  const focused = Cell.derived(
+    () =>
       involvementLevelIsFocused.value ||
       usernameIsFocused.value ||
       categoriesFocused.value
-    );
-  });
-  const buttonText = Cell.derived(() => {
-    return focused.value ? 'Save' : 'Close';
-  });
-  const isClosable = Cell.derived(() => {
-    return !focused.value;
-  });
-  const isOpen = Cell.derived(() => {
-    return route.value.query.get('level-one') === 'profile';
-  });
-  let initialUsernameValue = '';
+  );
+  const buttonText = Cell.derived(() => (focused.value ? 'Save' : 'Close'));
+  const isClosable = Cell.derived(() => !focused.value);
+  const selectedCategoriesSnippet = Cell.derived(() =>
+    selectedCategories.value.slice(0, 3)
+  );
+  const buttonDisabled = Cell.derived(
+    () => selectedCategories.value.length < 3
+  );
 
   const handleDrawerClose = async () => {
     await removeRouteQuery('level-one', isOpen);
@@ -76,16 +79,20 @@ export function ProfileDrawer() {
   const handleSubmit = async () => {
     if (usernameIsFocused.value) {
       saveUsername();
+      usernameInput.value?.blur();
       return;
     }
+
     if (involvementLevelIsFocused.value) {
       involvementLevelIsFocused.value = false;
       return;
     }
+
     if (categoriesFocused.value) {
       categoriesFocused.value = false;
       return;
     }
+
     await handleDrawerClose();
   };
 
@@ -128,25 +135,27 @@ export function ProfileDrawer() {
             {involvementLevelStr}
           </span>
         </button>
+        <InvolvementLevels />
+        <Categories />
         <button
           type="button"
           class={classes.selectedCategoriesListContainer}
           onClick={handleCategoriesClick}
         >
           <ul class={classes.selectedCategoriesList}>
-            {For(selectedCategories, SelectedCategory)}
+            {For(selectedCategoriesSnippet, SelectedCategory)}
           </ul>
         </button>
         <Button
           class={classes.closeButton}
           rounded
           vibrate
-          variant="outlined"
+          variant="primary"
           type="submit"
+          disabled={buttonDisabled}
         >
           {buttonText}
         </Button>
-        <InvolvementLevels />
       </form>
     </BottomDrawer>
   );
@@ -194,5 +203,13 @@ function InvolvementLevels() {
         color="#ff8bdf"
       />
     </fieldset>
+  );
+}
+
+function Categories() {
+  return (
+    <ElasticView class={classes.categoryList} yAxis>
+      {For(categories, CategoryCard)}
+    </ElasticView>
   );
 }

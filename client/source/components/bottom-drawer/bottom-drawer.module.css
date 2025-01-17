@@ -77,7 +77,7 @@
   position: relative;
   width: 100%;
   height: var(--drawer-visible-height);
-  border-radius: min(8dvw, 40px) min(8dvw, 40px) 0px 0px;
+  border-radius: min(9dvw, 50px) min(9dvw, 50px) 0px 0px;
   opacity: 0;
   background-color: white;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

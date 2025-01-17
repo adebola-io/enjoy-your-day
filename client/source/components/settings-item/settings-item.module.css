@@ -1,0 +1,61 @@
+.settingsItem {
+  position: relative;
+  display: grid;
+  color: inherit;
+  text-decoration: none;
+  grid-template-columns: auto 1fr auto;
+  column-gap: calc(var(--block-padding) * 0.25);
+  padding-inline: var(--side-padding);
+  padding-block: calc(var(--block-padding) * 0.35);
+
+  &:active {
+    &::before {
+      opacity: 0.3;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: var(--space-cadet-500);
+    content: '';
+    transition-duration: calc(var(--default-duration) * 2.5);
+    transition-property: opacity, scale;
+    pointer-events: none;
+  }
+
+  & > * {
+    position: relative;
+  }
+}
+
+.settingsIcon {
+  align-self: center;
+  width: calc(var(--base-font-size) * 2);
+  grid-area: 1 / 1 / 3 / 1;
+}
+
+.settingsTitle {
+  font: var(--base-regular);
+  grid-area: 1 / 2 / 2 / 2;
+}
+
+.settingsDescription {
+  color: var(--space-cadet-400);
+  font: var(--small-regular);
+  grid-area: 2 / 2 / 3 / 2;
+}
+
+.settingsCaret {
+  align-self: center;
+  width: calc(var(--base-font-size) * 0.6);
+  margin-inline-start: calc(var(--side-padding) * 0.5);
+  color: var(--space-cadet-300);
+  rotate: 180deg;
+  grid-area: 1 / 3 / 3 / 3;
+}

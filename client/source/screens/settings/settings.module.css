@@ -1,10 +1,17 @@
 .settings {
   display: grid;
+  overflow: hidden;
   transition: scale var(--drawer);
-  grid-template-rows: auto 1fr;
+  grid-template-columns: 100% 100%;
 
   &[data-dialog-is-open] {
     scale: var(--drawer-background-scale);
+  }
+
+  &[data-security-page-is-open] {
+    .settingsMenu {
+      translate: -30% 0;
+    }
   }
 
   body[data-drawer-inner-focus] & {
@@ -12,77 +19,18 @@
   }
 }
 
-.heading {
-  padding-block-start: var(--block-padding);
-  font: var(--title-bold);
-  padding-inline: var(--side-padding);
-}
-
 .settingsMenu {
   display: grid;
   padding: 0;
+  margin: 0;
+  transition: translate var(--slide-duration);
   grid-template-columns: 1fr;
   grid-template-rows: repeat(10, min-content);
 }
 
-.settingsItem {
-  position: relative;
-  display: grid;
-  color: inherit;
-  text-decoration: none;
-  grid-template-columns: auto 1fr auto;
-  column-gap: calc(var(--block-padding) * 0.25);
+.heading {
+  padding-block-start: var(--block-padding);
+  margin-block-end: calc(var(--block-padding) * 0.25);
+  font: var(--title-bold);
   padding-inline: var(--side-padding);
-  padding-block: calc(var(--block-padding) * 0.35);
-
-  &:active {
-    &::before {
-      opacity: 0.3;
-    }
-  }
-
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    background-color: var(--space-cadet-500);
-    content: '';
-    transition-duration: calc(var(--default-duration) * 2.5);
-    transition-property: opacity, scale;
-    pointer-events: none;
-  }
-
-  & > * {
-    position: relative;
-  }
-}
-
-.settingsIcon {
-  align-self: center;
-  width: calc(var(--base-font-size) * 2);
-  grid-area: 1 / 1 / 3 / 1;
-}
-
-.settingsTitle {
-  font: var(--base-regular);
-  grid-area: 1 / 2 / 2 / 2;
-}
-
-.settingsDescription {
-  color: var(--space-cadet-400);
-  font: var(--small-regular);
-  grid-area: 2 / 2 / 3 / 2;
-}
-
-.settingsCaret {
-  align-self: center;
-  width: calc(var(--base-font-size) * 0.6);
-  margin-inline-start: calc(var(--side-padding) * 0.5);
-  color: var(--space-cadet-300);
-  rotate: 180deg;
-  grid-area: 1 / 3 / 3 / 3;
 }

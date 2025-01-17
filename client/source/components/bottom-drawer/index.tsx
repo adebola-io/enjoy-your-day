@@ -48,7 +48,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
     Cell.isCell(closable) ? closable.value : Boolean(closable)
   );
 
-  const toggle = (isOpen: boolean) => {
+  const toggle = async (isOpen: boolean) => {
     const dialog = ref.value;
     if (!dialog || !dialog.isConnected) return;
     const shouldOpen = isOpen && !dialog.open;
@@ -59,17 +59,17 @@ export function BottomDrawer(props: BottomDrawerProps) {
     const dialogContent = dialog.firstElementChild as HTMLElement;
     if (shouldOpen) {
       formerMetaTheme = getMetaTheme();
+      setMetaTheme(overlayBlack(formerMetaTheme));
       dialog.showModal();
       dialogContent.scrollIntoView();
-      setMetaTheme(overlayBlack(formerMetaTheme));
     } else if (dialog.open && isClosable.value) {
       // Explicitly remove the open attribute to prevent
       // z-index and top layering issues.
       dialog.removeAttribute('data-open');
       onBeforeClose?.(false);
       setMetaTheme(formerMetaTheme);
-      const closer = () => dialog.close();
-      dialogContent.addEventListener('transitionend', closer, { once: true });
+      await Promise.all(dialogContent.getAnimations().map((a) => a.finished));
+      dialog.close();
     }
   };
 

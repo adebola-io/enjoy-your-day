@@ -16,7 +16,7 @@ import {
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { Input } from '#/components/input';
-import { For } from '@adbl/unfinished';
+import { For, If } from '@adbl/unfinished';
 import { categories } from '#/data/categories';
 import { MAX_USERNAME_LENGTH } from '#/data/constants';
 import classes from './profile-drawer.module.css';
@@ -44,6 +44,9 @@ export function ProfileDrawer() {
   const isClosable = Cell.derived(() => !focused.value);
   const selectedCategoriesSnippet = Cell.derived(() =>
     selectedCategories.value.slice(0, 3)
+  );
+  const selectedCategoriesRestCount = Cell.derived(() =>
+    Math.max(0, selectedCategories.value.length - 3)
   );
   const buttonDisabled = Cell.derived(
     () => selectedCategories.value.length < 3
@@ -76,6 +79,10 @@ export function ProfileDrawer() {
     categoriesFocused.value = true;
   };
 
+  const handleInvolvementBlur = () => {
+    involvementLevelIsFocused.value = false;
+  };
+
   const handleSubmit = async () => {
     if (usernameIsFocused.value) {
       saveUsername();
@@ -105,11 +112,11 @@ export function ProfileDrawer() {
       open={isOpen}
       closable={isClosable}
       shrinkTarget="#settingsView"
-      onClose={handleDrawerClose}
       class={classes.profileDrawer}
       data-username-focused={usernameIsFocused}
       data-involvement-level-focused={involvementLevelIsFocused}
       data-categories-focused={categoriesFocused}
+      onClose={handleDrawerClose}
     >
       <form class={classes.content} onSubmit--prevent={handleSubmit}>
         <div class={classes.profilePictureContainer}>
@@ -135,7 +142,7 @@ export function ProfileDrawer() {
             {involvementLevelStr}
           </span>
         </button>
-        <InvolvementLevels />
+        <InvolvementLevels onBlur={handleInvolvementBlur} />
         <Categories />
         <button
           type="button"
@@ -144,6 +151,9 @@ export function ProfileDrawer() {
         >
           <ul class={classes.selectedCategoriesList}>
             {For(selectedCategoriesSnippet, SelectedCategory)}
+            {If(selectedCategoriesRestCount, (count) => {
+              return <div class={classes.restIndicator}>+{count}</div>;
+            })}
           </ul>
         </button>
         <Button
@@ -175,9 +185,14 @@ function SelectedCategory(categoryName: string) {
   );
 }
 
-function InvolvementLevels() {
+interface InvolvementLevelProps {
+  onBlur: () => void;
+}
+
+function InvolvementLevels(props: InvolvementLevelProps) {
+  const { onBlur } = props;
   return (
-    <fieldset class={classes.involvementLevelsFieldset}>
+    <fieldset class={classes.involvementLevelsFieldset} onClick--self={onBlur}>
       <InvolvementLevel
         checked={Cell.derived(() => involvementLevel.value === 1)}
         Icon={CompassIcon}

@@ -222,7 +222,7 @@ export const categories: Category[] = [
     uuid: 'e2265443-e29e-4111-922f-6a9710cba0bb',
     name: 'Urban Exploration',
     icon: BuildingsIcon,
-    theme: '#7288D7',
+    theme: '#b7c5f9',
   },
   {
     uuid: '6d6e79f0-3eee-4371-ab2a-0fdccfe653af',

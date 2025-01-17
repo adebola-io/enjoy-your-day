@@ -1,5 +1,5 @@
 .profileDrawer {
-  --drawer-visible-height: calc(100dvh - var(--block-padding));
+  --drawer-visible-height: 100dvh;
 
   --drawer-content-padding-top: calc(var(--block-padding) * 2);
   --drawer-content-padding-bottom: var(--block-padding);
@@ -11,7 +11,7 @@
     (1rem + var(--base-font-size) * 1.5) * 2 + 0.5rem
   );
   --username-size: var(--eyebrow-font-size);
-  --involvement-level-size: calc(var(--base-font-size) * 2.5);
+  --involvement-level-size: calc(var(--base-font-size) * 2.5 + 0.5rem);
   --close-button-top-margin: var(--block-padding);
   --close-button-size: calc(min(6dvh, 18px) * 2 + var(--base-font-size) + 4px);
 
@@ -24,13 +24,11 @@
       var(--drawer-content-gap) + var(--close-button-top-margin) +
       var(--close-button-size) + var(--drawer-content-padding-bottom) + 1rem
   );
-  --drawer-open-position-y: calc(
-    100dvh - var(--block-padding) - var(--drawer-content-height)
-  );
+  --drawer-open-position-y: calc(100dvh - var(--drawer-content-height));
   transition-property: opacity, translate;
 
   &[data-username-focused] {
-    --drawer-open-position-y: 0;
+    --drawer-open-position-y: var(--block-padding);
 
     .content::before {
       scale: 1;
@@ -48,7 +46,7 @@
   }
 
   &[data-involvement-level-focused] {
-    --drawer-open-position-y: 0;
+    --drawer-open-position-y: var(--block-padding);
 
     .involvementLevel {
       opacity: 1;
@@ -84,11 +82,16 @@
   }
 
   &[data-involvement-level-focused],
-  &[data-username-focused],
-  &[data-categories-focused] {
+  &[data-username-focused] {
     .closeButton {
       translate: 0
         calc(100dvh - var(--drawer-content-height) - var(--block-padding));
+    }
+  }
+
+  &[data-categories-focused] {
+    .closeButton {
+      translate: 0 calc(100dvh - var(--drawer-content-height));
     }
   }
 }
@@ -176,7 +179,8 @@
 
 .involvementLevel {
   display: grid;
-  border: none;
+  border: 2px solid var(--space-cadet-500);
+  border-radius: 1rem;
   color: inherit;
   background-color: transparent;
   font: var(--base-regular);
@@ -186,6 +190,8 @@
   grid-template-rows: 1fr;
   column-gap: 0.5rem;
   justify-self: center;
+  padding-inline: 1rem;
+  padding-block: 0.25rem;
   grid-area: 3 / 1;
 }
 
@@ -216,20 +222,24 @@
   justify-content: center;
   max-width: 75%;
   justify-self: center;
-
   gap: 0.5rem;
   grid-area: 4 / 1;
+}
+
+.selectedCategory,
+.restIndicator {
+  border-radius: 1rem;
+  outline: 1px solid;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
 }
 
 .selectedCategory {
   display: grid;
   height: calc(var(--base-font-size));
-  border-radius: 1rem;
   outline: 1px solid;
   color: var(--space-cadet-500);
   place-content: center;
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
   grid-template-columns: auto 1fr;
   column-gap: 0.3rem;
 }
@@ -241,6 +251,10 @@
 .selectedCategoryIcon {
   width: calc(var(--base-font-size) * 1.5);
   height: 100%;
+}
+
+.restIndicator {
+  background-color: var(--space-cadet-50);
 }
 
 .closeButton {
@@ -260,7 +274,7 @@
 .involvementLevelsFieldset {
   position: absolute;
   display: none;
-  height: var(--drawer-profile-picture-size);
+  height: calc(var(--drawer-content-height));
   border: none;
   outline: none;
   animation: var(--fade-in) var(--drawer);
@@ -275,14 +289,15 @@
 
 .categoryList {
   position: absolute;
+  top: var(--drawer-knob-area);
   display: none;
   overflow-y: auto;
   flex-wrap: wrap;
   justify-content: space-between;
   max-height: calc(var(--drawer-content-height));
+  padding-block-start: var(--drawer-content-padding-top);
   padding-block-end: calc(var(--block-padding) * 3);
   padding-inline: var(--side-padding);
-  grid-area: 1 / 1;
   gap: 8px;
 
   & > label {

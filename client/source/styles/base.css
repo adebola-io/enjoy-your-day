@@ -130,11 +130,9 @@ body {
 
 #mainOutlet,
 #mainNavbar {
-  transition-duration: calc(var(--default-duration) * 1.25);
-  transition-property: translate, scale, filter;
+  transition: translate var(--slide-duration);
 
   &[data-auto-select-is-open] {
-    filter: brightness(0.65);
     translate: -30% 0;
   }
 
@@ -145,6 +143,5 @@ body {
 }
 
 #autoSelectionView {
-  transition-duration: calc(var(--default-duration) * 1.25);
-  transition-property: translate;
+  transition: translate var(--slide-duration);
 }

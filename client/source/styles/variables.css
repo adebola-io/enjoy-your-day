@@ -3,6 +3,7 @@
 :root {
   --default-duration: 150ms;
   --drawer: calc(var(--default-duration) * 2);
+  --slide-duration: calc(var(--default-duration) * 1.25);
 
   --white: #ffffff;
   --black: #000000;

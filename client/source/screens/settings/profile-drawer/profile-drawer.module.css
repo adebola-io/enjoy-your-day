@@ -172,6 +172,7 @@
 .involvementLevel {
   display: grid;
   border: none;
+  color: inherit;
   background-color: transparent;
   font: var(--base-regular);
   place-items: center;

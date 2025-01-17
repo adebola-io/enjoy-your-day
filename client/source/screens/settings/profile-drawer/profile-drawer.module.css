@@ -297,6 +297,7 @@
   max-height: calc(var(--drawer-content-height));
   padding-block-start: var(--drawer-content-padding-top);
   padding-block-end: calc(var(--block-padding) * 3);
+  animation: var(--fade-in) var(--drawer);
   padding-inline: var(--side-padding);
   gap: 8px;
 

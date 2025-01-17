@@ -182,5 +182,6 @@ export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
   const route = router.getCurrentRoute();
   const searchParams = new URLSearchParams(route.value.query);
   searchParams.delete(query);
-  await router.navigate(`${route.value.path}?${searchParams}`);
+  const nextPath = `${route.value.path}?${searchParams}`;
+  await router.navigate(nextPath);
 }

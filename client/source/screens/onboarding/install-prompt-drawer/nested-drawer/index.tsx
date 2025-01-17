@@ -1,12 +1,13 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
-import { Cell } from '@adbl/cells';
-import { useRouter } from '@adbl/unfinished/router';
-import classes from './nested-drawer.module.css';
-import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import type { IconProps } from '#/components/icons/props';
 import { Button } from '#/components/button';
+import { Cell } from '@adbl/cells';
+import { useRouter } from '@adbl/unfinished/router';
+import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import type { InstallInstructions } from '#/data/install-instructions';
+import { removeRouteQuery } from '#/library/utils';
 import { For } from '@adbl/unfinished';
+import classes from './nested-drawer.module.css';
 
 interface NestedDrawerProps {
   instructions: InstallInstructions;
@@ -26,10 +27,7 @@ export function NestedDrawer(props: NestedDrawerProps) {
   };
 
   const closeDrawer = async () => {
-    if (!isOpen.value) return;
-    const searchParams = new URLSearchParams(route.value.query);
-    searchParams.delete(nestedDrawerQuery);
-    await router.navigate(`${route.value.path}?${searchParams}`);
+    await removeRouteQuery(nestedDrawerQuery, isOpen);
   };
 
   isOpen.listen(toggleNestedDrawerAttribute);

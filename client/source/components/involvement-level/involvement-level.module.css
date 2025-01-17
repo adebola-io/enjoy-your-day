@@ -1,0 +1,54 @@
+.involvementLevel {
+  display: grid;
+  margin-bottom: calc(var(--block-padding) * 0.5);
+  border: 3px solid;
+  border-radius: 25px;
+  transition-duration: calc(var(--default-duration) * 2);
+  transition-property: border-color, color, scale;
+  animation: var(--fade-in-from-bottom)
+    calc(var(--default-duration) * var(--level-value) * 1.5);
+  padding-inline: calc(var(--side-padding) * 0.5);
+  padding-block: calc(var(--block-padding) * 0.5);
+  grid-template-columns: min(70px, 15dvh) 1fr;
+  column-gap: min(20px, 10dvw);
+  row-gap: 5px;
+
+  &:active {
+    scale: 0.9;
+  }
+
+  &:has(:checked) {
+    border-color: var(--level-color);
+    outline: 2px solid var(--level-color);
+    color: black;
+    background-color: var(--level-color);
+
+    &:not(:active) {
+      scale: 0.98;
+    }
+  }
+
+  input {
+    appearance: none;
+    grid-area: 1 / 1;
+  }
+}
+
+.icon {
+  align-self: center;
+  width: 100%;
+  height: auto;
+  justify-self: center;
+  aspect-ratio: 1;
+  grid-area: 1 / 1 / 3 / 2;
+}
+
+.title {
+  align-self: end;
+  grid-area: 1 / 2 / 1 / 2;
+}
+
+.description {
+  align-self: start;
+  grid-area: 2 / 2 / 2 / 2;
+}

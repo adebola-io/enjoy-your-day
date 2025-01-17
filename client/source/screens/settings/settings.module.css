@@ -1,48 +1,36 @@
-.cuboid {
-  transition-duration: 200ms;
-  transition-property: scale;
-  transform: rotate3d(1, 1, 2, 0deg);
+.settings {
+  display: grid;
+  overflow: hidden;
+  transition: scale var(--drawer);
+  grid-template-columns: 100% 100%;
 
-  &:active {
-    scale: 0.8;
+  &[data-dialog-is-open] {
+    scale: var(--drawer-background-scale);
   }
 
-  &.spinning {
-    cursor: wait;
-    animation: spinning-cube 2s linear infinite;
+  &[data-security-page-is-open] {
+    .settingsMenu {
+      translate: -30% 0;
+    }
   }
 
-  &::part(front-face) {
-    background-color: yellow;
-  }
-
-  &::part(top-face) {
-    background-color: lightgreen;
-  }
-
-  &::part(right-face) {
-    background-color: lightblue;
-  }
-
-  &::part(bottom-face) {
-    background-color: orange;
-  }
-
-  &::part(left-face) {
-    background-color: pink;
-  }
-
-  &::part(back-face) {
-    background-color: purple;
+  body[data-drawer-inner-focus] & {
+    scale: calc(var(--drawer-background-scale) * 0.9);
   }
 }
 
-@keyframes spinning-cube {
-  0% {
-    transform: rotate3d(1, 1, 1, 0deg);
-  }
+.settingsMenu {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  transition: translate var(--slide-duration);
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(10, min-content);
+}
 
-  100% {
-    transform: rotate3d(1, 1, 1, 360deg);
-  }
+.heading {
+  padding-block-start: var(--block-padding);
+  margin-block-end: calc(var(--block-padding) * 0.25);
+  font: var(--title-bold);
+  padding-inline: var(--side-padding);
 }

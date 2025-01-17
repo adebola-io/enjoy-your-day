@@ -5,6 +5,7 @@ import { appRouteTree, onboardingMiddleware } from './screens/routes';
 import {
   appIsReadyResolver,
   type DeferredPromptEvent,
+  defineSafeArea,
   installDetails,
   setMetaTheme,
 } from './library/utils';
@@ -13,6 +14,7 @@ export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
   installDetails.deferredPrompt = deferredPromptEvent;
   appIsReadyResolver?.();
   disableContextMenu();
+  defineSafeArea();
   initializeDatabase()
     .then(() => {
       console.log('Database initialized!');
@@ -36,6 +38,7 @@ export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
 
 export async function resumeApp() {
   disableContextMenu();
+  defineSafeArea();
   initializeDatabase()
     .then(async () => {
       console.log('Database initialized!');

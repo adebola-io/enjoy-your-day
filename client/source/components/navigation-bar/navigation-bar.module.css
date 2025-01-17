@@ -8,7 +8,8 @@
   border-top: var(--outline);
   background-color: white;
   animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 2);
-  padding-block: 1rem max(env(safe-area-inset-bottom), 1rem);
+  padding-block: 1rem
+    max(env(safe-area-inset-bottom), var(--safe-area-inset-bottom, 1rem));
   grid-template-columns: repeat(3, auto);
   scrollbar-width: none;
   padding-inline: var(--side-padding);
@@ -102,25 +103,6 @@
     translate: none;
   }
 }
-/* 
-@keyframes animate-head {
-  40% {
-    translate: 0% -15%;
-  }
-
-  65% {
-    translate: 0% 13%;
-  }
-}
-
-@keyframes animate-body {
-  40% {
-    translate: 0% -10%;
-  }
-  60% {
-    translate: 0 20%;
-  }
-} */
 
 .icon {
   height: 1.5rem;
@@ -198,14 +180,6 @@
       [data-inner-circle] {
         fill: white;
       }
-
-      /* [data-head] {
-        animation: animate-head calc(var(--default-duration) * 4);
-      }
-
-      [data-body] {
-        animation: animate-body calc(var(--default-duration) * 5);
-      } */
     }
   }
 }

@@ -7,7 +7,7 @@ import { useRouter } from '@adbl/unfinished/router';
 import { If } from '@adbl/unfinished';
 import { CSS_VARS } from '#/styles/variables';
 
-export default async function App() {
+export default function App() {
   const router = useRouter();
   const route = router.getCurrentRoute();
   const outletRef = Cell.source<HTMLElement | null>(null);

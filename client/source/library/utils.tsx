@@ -1,4 +1,5 @@
 import { Cell } from '@adbl/cells';
+import { useRouter } from '@adbl/unfinished/router';
 
 type AsyncRequestAtoms<T, U> = {
   pending: Cell<boolean>;
@@ -26,8 +27,9 @@ export async function setMetaTheme(color: string) {
   document
     .querySelector('meta[name="theme-color"]')
     ?.setAttribute('content', color);
-  // Allow changing status bar in mockup.
-  if (window.parent) {
+
+  if (isRunningInIFrame()) {
+    // Allow changing status bar in mockup.
     window.parent.postMessage({ type: 'setMetaTheme', color }, '*');
   }
 }
@@ -43,6 +45,21 @@ export function getMetaTheme(): string {
       .querySelector('meta[name="theme-color"]')
       ?.getAttribute('content') ?? '#ffffff'
   );
+}
+
+export function isRunningInIFrame() {
+  return parent && parent !== window;
+}
+
+export function defineSafeArea() {
+  if (!isRunningInIFrame()) return;
+
+  window.CSS.registerProperty({
+    name: '--safe-area-inset-bottom',
+    syntax: '<length>',
+    inherits: true,
+    initialValue: '37px',
+  });
 }
 
 export function setAutoSelectStage(stage: number) {
@@ -156,4 +173,15 @@ export function overlayBlack(hexColor: string) {
 
 export function toKebabCase(str: string) {
   return str.replace(/\s/g, '-').toLowerCase();
+}
+
+export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
+  if (guard && guard.value === false) return;
+
+  const router = useRouter();
+  const route = router.getCurrentRoute();
+  const searchParams = new URLSearchParams(route.value.query);
+  searchParams.delete(query);
+  const nextPath = `${route.value.path}?${searchParams}`;
+  await router.navigate(nextPath);
 }

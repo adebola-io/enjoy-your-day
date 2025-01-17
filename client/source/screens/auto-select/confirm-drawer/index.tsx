@@ -4,7 +4,7 @@ import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
 import { dailyGoals, dailyGoalsDateStamp } from '#/data/state';
 import type { GoalProps, GoalState } from '#/data/entities';
-import { getResourceState, NoOp } from '#/library/utils';
+import { getResourceState, NoOp, removeRouteQuery } from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
@@ -44,10 +44,7 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
   });
 
   const handleDrawerClose = async () => {
-    if (!drawerIsOpen.value) return;
-    const searchParams = new URLSearchParams(route.value.query);
-    searchParams.delete('confirm');
-    await router.navigate(`/home?${searchParams}`);
+    await removeRouteQuery('confirm', drawerIsOpen);
   };
 
   const saveGoals = async () => {

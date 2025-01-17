@@ -1,111 +1,52 @@
-import { Cuboid } from '#/components/cuboid';
+import NotificationIcon from '#/components/icons/notification';
+import UserIcon from '#/components/icons/user';
+import BinIcon from '#/components/icons/bin';
+import InfoIcon from '#/components/icons/info';
+import { setMetaTheme } from '#/library/utils';
+import ProfileDrawer from './profile-drawer';
+import { useObserver } from '@adbl/unfinished';
 import { Cell } from '@adbl/cells';
 import classes from './settings.module.css';
+import { SettingsItem } from '#/components/settings-item';
 
 export default function Settings() {
-  const text = Cell.source('Click Me!!');
+  const observer = useObserver();
+  const containerRef = Cell.source<HTMLElement | null>(null);
+
+  observer.onConnected(containerRef, () => {
+    setMetaTheme('#ffffff');
+  });
+
   return (
-    <div
-      style={{
-        height: '100%',
-        display: 'grid',
-        placeItems: 'center',
-        placeContent: 'center',
-      }}
-    >
-      <Cuboid
-        length="200px"
-        height="230px"
-        breadth="200px"
-        fill="var(--space-cadet-50)"
-        strokeColor="black"
-        strokeWidth="2px"
-        strokeStyle="solid"
-        class={classes.cuboid}
-        onClick={function () {
-          if (this.classList.contains(classes.spinning)) {
-            this.addEventListener(
-              'animationiteration',
-              () => {
-                this.classList.remove(classes.spinning);
-                text.value = 'Click Me!!';
-              },
-              { once: true }
-            );
-          } else {
-            this.classList.add(classes.spinning);
-            text.value = 'weeee!';
-          }
-        }}
-      >
-        <div
-          slot="front"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          {text}
-        </div>
-        <div
-          slot="left"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          ahhhhh
-        </div>
-        <div
-          slot="right"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          yeeeee
-        </div>
-        <div
-          slot="top"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          lmaoo
-        </div>
-        <div
-          slot="bottom"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          omg
-        </div>
-        <div
-          slot="back"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          wut
-        </div>
-      </Cuboid>
-      <br />
+    <div ref={containerRef} id="settingsView" class={classes.settings}>
+      <menu id="settingsMenu" class={classes.settingsMenu}>
+        <h1 class={classes.heading}>Settings</h1>
+        <SettingsItem
+          link="/settings?level-one=profile"
+          title="Profile"
+          description="Change aspects of your experience."
+          Icon={UserIcon}
+        />
+        <SettingsItem
+          link="/settings?level-one=notifications"
+          title="Notifications"
+          description="Enable reminders and notifications."
+          Icon={NotificationIcon}
+        />
+        <SettingsItem
+          link="/settings?level-one=reset"
+          title="Reset"
+          description="Delete parts or all of your data and start over."
+          Icon={BinIcon}
+        />
+        <SettingsItem
+          link="/about?level-one=about"
+          title="About"
+          description="Learn more about this app."
+          Icon={InfoIcon}
+        />
+      </menu>
+      <ProfileDrawer />
     </div>
   );
 }

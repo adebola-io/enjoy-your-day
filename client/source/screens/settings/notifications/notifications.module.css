@@ -1,0 +1,23 @@
+.container {
+  transition: translate var(--slide-duration);
+
+  &[data-page-is-open] {
+    background-color: white;
+    translate: -100% 0;
+  }
+}
+
+.backButton {
+  padding-inline: var(--side-padding);
+}
+
+.heading {
+  padding-block-start: calc(var(--block-padding) * 0.25);
+  font: var(--subtitle-bold);
+  padding-inline: var(--side-padding);
+}
+
+.button {
+  width: calc(100% - var(--side-padding) * 2);
+  margin-inline: var(--side-padding);
+}

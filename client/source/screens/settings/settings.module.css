@@ -8,7 +8,7 @@
     scale: var(--drawer-background-scale);
   }
 
-  &[data-security-page-is-open] {
+  &[data-notifications-page-is-open] {
     .settingsMenu {
       translate: -30% 0;
     }

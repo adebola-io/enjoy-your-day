@@ -175,6 +175,15 @@ export function toKebabCase(str: string) {
   return str.replace(/\s/g, '-').toLowerCase();
 }
 
+export async function addRouteQuery(query: string, value?: string) {
+  const router = useRouter();
+  const route = router.getCurrentRoute();
+  const searchParams = new URLSearchParams(route.value.query);
+  searchParams.set(query, value ?? '');
+  const nextPath = `${route.value.path}?${searchParams}`;
+  await router.navigate(nextPath);
+}
+
 export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
   if (guard && guard.value === false) return;
 

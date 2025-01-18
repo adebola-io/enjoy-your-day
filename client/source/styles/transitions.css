@@ -62,6 +62,7 @@
   --hide: hide;
   --bounce: bounce;
   --stretch-x: stretch-x;
+  --phone-slide-up: phone-slide-up;
 }
 
 @keyframes bounce {
@@ -205,6 +206,12 @@
   }
   100% {
     translate: 0;
+  }
+}
+
+@keyframes phone-slide-up {
+  from {
+    transform: rotate3d(0, 1, 0, -110deg) translate(-30%, 120%);
   }
 }
 

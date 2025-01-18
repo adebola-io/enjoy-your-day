@@ -7,7 +7,7 @@ import { ElasticView } from '#/components/elastic-view';
 import { InlinedIcon } from '#/components/inlined-icon';
 import { dailyGoals, goalsCompleted, timeOfDay } from '#/data/state';
 import { GoalsCompletedDrawer } from './goals-completed';
-import { vibrate } from '#/library/utils';
+import { addRouteQuery, vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
@@ -55,7 +55,7 @@ export default function HomeView() {
   const handleGoalChecked = () => {
     if (!goalsCompleted.value) return;
     vibrate([100, 75, 50, 75, 100]);
-    setTimeout(() => router.navigate('/home?goals-completed'), 400);
+    setTimeout(() => addRouteQuery('goals-completed'), 400);
   };
 
   return (

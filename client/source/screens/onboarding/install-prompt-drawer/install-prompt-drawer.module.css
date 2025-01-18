@@ -1,6 +1,5 @@
 .drawer:is(.drawer) {
   --drawer-visible-height: min-content;
-  --line-duration: calc(var(--default-duration) * 3);
   --phone-duration: calc(var(--default-duration) * 3.75);
   --other-apps-duration: calc(var(--default-duration) * 5);
   --app-duration: calc(var(--default-duration) * 2);
@@ -52,7 +51,7 @@
   grid-area: 1 / 1;
 
   [data-open] & {
-    animation: phone-slide-up var(--phone-duration)
+    animation: var(--phone-slide-up) var(--phone-duration)
       calc(var(--drawer) + var(--line-duration) * 0.75) backwards;
   }
 }
@@ -107,10 +106,4 @@
   height: fit-content;
   margin-block-start: calc(var(--block-padding) * 0.5);
   margin-block-end: var(--block-padding);
-}
-
-@keyframes phone-slide-up {
-  from {
-    transform: rotate3d(0, 1, 0, -110deg) translate(-30%, 120%);
-  }
 }

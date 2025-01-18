@@ -4,6 +4,7 @@
   --default-duration: 150ms;
   --drawer: calc(var(--default-duration) * 2);
   --slide-duration: calc(var(--default-duration) * 1.25);
+  --line-duration: calc(var(--default-duration) * 3);
 
   --white: #ffffff;
   --black: #000000;

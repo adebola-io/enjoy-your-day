@@ -4,7 +4,7 @@ import { InvolvementLevel } from '#/components/involvement-level';
 import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
-import { removeRouteQuery } from '#/library/utils';
+import { addRouteQuery, removeRouteQuery } from '#/library/utils';
 import ProfileIcon from '#/components/icons/profile';
 import {
   username,
@@ -63,7 +63,7 @@ export default function ProfileDrawer() {
   };
 
   const handleUsernameFocus = async () => {
-    await router.navigate('/settings?level-one=profile&focus=username');
+    await addRouteQuery('focus', 'username');
     initialUsernameValue = username.value;
   };
 
@@ -78,13 +78,11 @@ export default function ProfileDrawer() {
   };
 
   const handleInvolvementClick = async () => {
-    await router.navigate(
-      '/settings?level-one=profile&focus=involvement-level'
-    );
+    await addRouteQuery('focus', 'involvement-level');
   };
 
   const handleCategoriesClick = async () => {
-    await router.navigate('/settings?level-one=profile&focus=categories');
+    await addRouteQuery('focus', 'categories');
   };
 
   const handleInvolvementBlur = async () => {

@@ -5,7 +5,7 @@ import { Cell } from '@adbl/cells';
 import { For, If, useObserver } from '@adbl/unfinished';
 import { PhoneMockup } from '#/components/phone-mockup';
 import { NestedDrawer, nestedDrawerQuery } from './nested-drawer';
-import { installDetails } from '#/library/utils';
+import { addRouteQuery, installDetails } from '#/library/utils';
 import {
   getInstallInstructions,
   type InstallInstructions,
@@ -16,7 +16,6 @@ import classes from './install-prompt-drawer.module.css';
 export default function InstallPromptDrawer() {
   const observer = useObserver();
   const router = useRouter();
-  const route = router.getCurrentRoute();
   const drawerRef = Cell.source<HTMLDialogElement | null>(null);
   const drawerIsOpen = Cell.source(false);
   const apps = Array(10);
@@ -30,27 +29,22 @@ export default function InstallPromptDrawer() {
     drawerIsOpen.value = false;
   };
 
-  const openNestedDrawer = () => {
-    const path = route.value.fullPath;
-    const nextPath = path.includes('?')
-      ? `${path}&${nestedDrawerQuery}`
-      : `${path}?${nestedDrawerQuery}`;
-    router.navigate(nextPath);
+  const openNestedDrawer = async () => {
+    await addRouteQuery(nestedDrawerQuery, 'true');
   };
 
-  const promptInstall = () => {
+  const promptInstall = async () => {
     if (!installDetails.deferredPrompt) {
       openNestedDrawer();
       return;
     }
-    installDetails.deferredPrompt.prompt?.().then?.((result) => {
-      if (result.outcome === 'accepted') {
-        installDetails.deferredPrompt = undefined;
-        drawerIsOpen.value = false;
-      } else {
-        openNestedDrawer();
-      }
-    });
+    const result = await installDetails.deferredPrompt.prompt?.();
+    if (result?.outcome === 'accepted') {
+      installDetails.deferredPrompt = undefined;
+      drawerIsOpen.value = false;
+    } else {
+      await openNestedDrawer();
+    }
   };
 
   observer.onConnected(drawerRef, async () => {

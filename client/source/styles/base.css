@@ -13,6 +13,14 @@ ul {
   margin: 0;
 }
 
+button,
+input,
+select,
+textarea,
+svg {
+  font: inherit;
+}
+
 * {
   -webkit-user-select: none;
   user-select: none;

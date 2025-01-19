@@ -6,7 +6,7 @@ import type {
   InsightsOverview,
   WorkerProtocol,
 } from './types';
-import type { GoalState } from '../entities';
+import type { GoalState } from '../../data/entities';
 
 type InsightsOverviewHandler =
   WorkerProtocol.Handler<WorkerProtocol.Requests.GetInsightsOverview>;

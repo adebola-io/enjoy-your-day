@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import { initializeDatabase } from '#/data/services';
+import { initializeDatabase } from '#/services';
 import { createWebRouter, defineRoutes } from '@adbl/unfinished/router';
 import { appRouteTree, onboardingMiddleware } from './screens/routes';
 import {
@@ -9,19 +9,15 @@ import {
   installDetails,
   setMetaTheme,
 } from './library/utils';
+import { registerNotificationServiceWorker } from './services/notifications';
 
 export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
   installDetails.deferredPrompt = deferredPromptEvent;
   appIsReadyResolver?.();
   disableContextMenu();
   defineSafeArea();
-  initializeDatabase()
-    .then(() => {
-      console.log('Database initialized!');
-    })
-    .catch((error) => {
-      console.error('Error initializing database', error);
-    });
+  initializeDatabase();
+  registerNotificationServiceWorker();
 
   const router = createRouter();
   router.window = window;
@@ -39,13 +35,8 @@ export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
 export async function resumeApp() {
   disableContextMenu();
   defineSafeArea();
-  initializeDatabase()
-    .then(async () => {
-      console.log('Database initialized!');
-    })
-    .catch((error) => {
-      console.error('Error initializing database', error);
-    });
+  initializeDatabase();
+  registerNotificationServiceWorker();
 
   const router = createRouter();
   router.window = window;

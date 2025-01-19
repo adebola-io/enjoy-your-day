@@ -3,11 +3,11 @@ import { Loader } from '#/components/loader';
 import { Stepper } from '#/components/stepper';
 import { GoalItem } from '#/components/goal-item';
 import { EmptyIcon } from '#/components/icons/empty';
-import { getInsightsHistory } from '#/data/services';
+import { getInsightsHistory } from '#/services';
 import type {
   HistoryChartItem,
   InsightHistoryDetails,
-} from '#/data/worker/types';
+} from '#/services/database/types';
 import { todayStr } from '#/data/state';
 import { defer, getResourceState, NoOp } from '#/library/utils';
 import { LookupMap } from '#/library/lookup-map';

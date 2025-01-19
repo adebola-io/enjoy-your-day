@@ -1,4 +1,4 @@
-import type { InsightCardDetails } from '#/data/worker/types';
+import type { InsightCardDetails } from '#/services/database/types';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './insight-card.module.css';
 import { Icon } from '../icon';

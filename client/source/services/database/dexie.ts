@@ -1,5 +1,9 @@
 import Dexie from 'dexie';
-import type { GoalProps, HistoryRecord, UserMetadata } from '../entities';
+import type {
+  GoalProps,
+  HistoryRecord,
+  UserMetadata,
+} from '../../data/entities';
 
 export const dexie = new Dexie('enjoy-your-day') as Dexie & {
   goals: Dexie.Table<GoalProps, string>;

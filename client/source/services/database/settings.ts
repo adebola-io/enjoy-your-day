@@ -1,5 +1,5 @@
 import { dexie } from './dexie';
-import { WorkerProtocol } from './types';
+import type { WorkerProtocol } from './types';
 
 type RecordUserMetadataHandler =
   WorkerProtocol.Handler<WorkerProtocol.Requests.RecordMetadata>;

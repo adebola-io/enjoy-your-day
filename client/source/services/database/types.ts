@@ -1,7 +1,7 @@
 import type { GoalColor } from '#/library/goal-color';
 import type { IconName } from '#/library/icon-name';
-import type { SendableCategory } from '../categories';
-import type { GoalProps, GoalState, UserMetadata } from '../entities';
+import type { SendableCategory } from '../../data/categories';
+import type { GoalProps, GoalState, UserMetadata } from '../../data/entities';
 
 export namespace WorkerProtocol {
   export namespace Requests {

@@ -13,6 +13,7 @@ import classes from './notifications.module.css';
 import WifiIcon from '#/components/icons/wifi';
 import { loadIconDataUrl } from '#/components/icon';
 import { CSS_VARS } from '#/styles/variables';
+import { sendNotification } from '#/services/notifications';
 
 export default function Notifications() {
   const router = useRouter();
@@ -60,7 +61,7 @@ function NotificationsPageContent() {
     const icon = await loadIconDataUrl('notification', {
       color: CSS_VARS['--space-cadet-200'],
     });
-    new Notification('Testing...', {
+    await sendNotification('Testing...', {
       icon,
       body: 'This is a test notification from Enjoy Your Day.',
     });

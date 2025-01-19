@@ -1,9 +1,9 @@
-import { categories } from './categories';
-import { toWorker } from './worker';
-import { LATEST_DATA_CHUNK } from './constants';
-import type { GoalState } from './entities';
+import { categories } from '../data/categories';
+import { toDbWorker } from './database';
+import { LATEST_DATA_CHUNK } from '../data/constants';
+import type { GoalState } from '../data/entities';
 import { Temporal } from 'temporal-polyfill';
-import { lastLoadedChunk } from './state';
+import { lastLoadedChunk } from '../data/state';
 
 export async function createUser(name: string) {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -12,14 +12,14 @@ export async function createUser(name: string) {
     .withTimeZone(timezone)
     .toString();
 
-  return await toWorker({
+  return await toDbWorker({
     type: 'metadata.record',
     metadata: { uuid, name, startDate },
   });
 }
 
 export async function initializeDatabase() {
-  const testData = await toWorker({
+  const testData = await toDbWorker({
     type: 'goals.update',
     categoryList: categories.map((c) => ({ ...c, icon: undefined })),
     lastLoadedChunk: lastLoadedChunk.value,
@@ -37,7 +37,7 @@ export async function getAutoRecommendations(
   details: AutoRecommendationRequest
 ) {
   await new Promise((resolve) => setTimeout(resolve, 600));
-  const response = await toWorker({ type: 'goals.today', ...details });
+  const response = await toDbWorker({ type: 'goals.today', ...details });
   return response;
 }
 
@@ -45,7 +45,7 @@ export async function getExampleGoalInstruction(
   selected: string[],
   categories: string[]
 ) {
-  const response = await toWorker({
+  const response = await toDbWorker({
     type: 'goals.search-example',
     selected,
     categories,
@@ -58,7 +58,7 @@ export async function getAutoCompleteSuggestions(
   addedUuids: string[]
 ) {
   if (!query.trim()) return [];
-  const response = await toWorker({
+  const response = await toDbWorker({
     type: 'goals.autocomplete',
     query,
     addedUuids,
@@ -67,17 +67,17 @@ export async function getAutoCompleteSuggestions(
 }
 
 export async function saveGoalState(goalStates: GoalState[], date: string) {
-  const response = await toWorker({ type: 'goals.record', goalStates, date });
+  const response = await toDbWorker({ type: 'goals.record', goalStates, date });
   if (!response) console.error('Error saving goal state');
   return response;
 }
 
 export async function getInsightsOverview(todaysData: GoalState[]) {
-  return toWorker({ type: 'insights.overview', todaysData });
+  return toDbWorker({ type: 'insights.overview', todaysData });
 }
 
 type InsightHistoryRequest = { start: string; end: string };
 export async function getInsightsHistory(details: InsightHistoryRequest) {
-  const response = await toWorker({ type: 'insights.history', ...details });
+  const response = await toDbWorker({ type: 'insights.history', ...details });
   return response;
 }

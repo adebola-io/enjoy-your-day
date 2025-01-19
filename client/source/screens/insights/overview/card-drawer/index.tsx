@@ -1,5 +1,5 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
-import type { InsightCardDetails } from '#/data/worker/types';
+import type { InsightCardDetails } from '#/services/database/types';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { Icon, loadIconDataUrl } from '#/components/icon';

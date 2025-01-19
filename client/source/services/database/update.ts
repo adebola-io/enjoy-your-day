@@ -1,7 +1,7 @@
 import type { GoalProps, GoalListingUpdate } from '#/data/entities';
 import { TaskQueue } from '#/library/task-queue';
 import { LookupMap } from '#/library/lookup-map';
-import type { SendableCategory } from '../categories';
+import type { SendableCategory } from '../../data/categories';
 
 export const updateDataQueue = new TaskQueue<GoalListingUpdate>();
 export function startGoalUpdateProcess(
@@ -10,7 +10,7 @@ export function startGoalUpdateProcess(
   categoryList: Array<SendableCategory>
 ) {
   const categories = new LookupMap(categoryList, 'name');
-  let errored = false;
+  const errored = false;
 
   for (let i = lastLoadedChunk + 1; i <= latestChunk; i++) {
     fetch(`/json/${i}.json`)

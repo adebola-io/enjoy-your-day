@@ -1,17 +1,27 @@
 .settingsItem {
   position: relative;
   display: grid;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
   color: inherit;
+  background-color: transparent;
+  text-align: left;
   text-decoration: none;
   grid-template-columns: auto 1fr auto;
   column-gap: calc(var(--block-padding) * 0.25);
   padding-inline: var(--side-padding);
   padding-block: calc(var(--block-padding) * 0.35);
 
-  &:active {
+  &:active:not(:disabled) {
     &::before {
       opacity: 0.3;
     }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   &::before {

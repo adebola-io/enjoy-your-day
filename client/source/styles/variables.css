@@ -134,6 +134,8 @@
   --base-font-size: min(0.9rem, 3dvh);
   --small-font-size: min(0.75rem, 2dvh);
   --tiny-font-size: min(0.6875rem, 1.5dvh);
+  --tinier-font-size: min(0.5rem, 1.25dvh);
+  --tiniest-font-size: min(0.4rem, 1dvh);
 
   --value-bold: normal 700 var(--value-font-size) / 100px 'Parkinsans',
     sans-serif;
@@ -164,6 +166,11 @@
   --small-regular: normal 400 var(--small-font-size) 'Parkinsans', sans-serif;
   --tiny-bold: normal 600 var(--tiny-font-size) 'Parkinsans', sans-serif;
   --tiny-regular: normal 400 var(--tiny-font-size) 'Parkinsans', sans-serif;
+  --tinier-bold: normal 600 var(--tinier-font-size) 'Parkinsans', sans-serif;
+  --tinier-regular: normal 400 var(--tinier-font-size) 'Parkinsans', sans-serif;
+  --tiniest-bold: normal 600 var(--tiniest-font-size) 'Parkinsans', sans-serif;
+  --tiniest-regular: normal 400 var(--tiniest-font-size) 'Parkinsans',
+    sans-serif;
 
   /* Shadows */
   --shadow-outline: 0px 0px 1px 1px #1b1b3a;

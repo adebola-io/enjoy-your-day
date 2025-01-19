@@ -63,6 +63,7 @@
   --bounce: bounce;
   --stretch-x: stretch-x;
   --phone-slide-up: phone-slide-up;
+  --nothing: nothing;
 }
 
 @keyframes bounce {
@@ -181,20 +182,24 @@
     rotate: 0deg;
   }
   5% {
-    rotate: -10deg;
+    rotate: calc(var(--shake-angle, 10deg) * -1);
   }
   10% {
-    rotate: 10deg;
+    rotate: var(--shake-angle, 10deg);
   }
   15% {
-    rotate: -5deg;
+    rotate: calc(var(--shake-angle, 10deg) * -0.5);
   }
   20% {
-    rotate: 5deg;
+    rotate: calc(var(--shake-angle, 10deg) * 0.5);
   }
   25% {
     rotate: 0deg;
   }
+}
+
+@keyframes nothing {
+  /*  */
 }
 
 @keyframes bump-up {

@@ -7,9 +7,8 @@ async function startApp() {
   const loadModule = async () => {
     module = await import('./main');
   };
-  const wait = () => new Promise((r) => setTimeout(r, 1000));
 
-  return Promise.all([loadModule(), wait()]).then(async () => {
+  return loadModule().then(async () => {
     if (!module) return;
     const main = module.default;
     if ('startViewTransition' in document) {

@@ -1,27 +1,73 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
-import { removeRouteQuery } from '#/library/utils';
+import { Button } from '#/components/button';
+import { Logo } from '#/components/logo';
+import SimpleCheckIcon from '#/components/icons/simple-check';
+import BellIcon from '#/components/icons/bell';
+import { PhoneMockup } from '#/components/phone-mockup';
+import { addRouteQuery, removeRouteQuery } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { notificationsEnabled } from '#/data/state';
+import { DEFAULT_LOCALE, DEFAULT_TIMEZONE } from '#/data/constants';
+import {
+  PhoneNotification,
+  type PhoneNotificationProps,
+} from '#/components/phone-notification';
+import { For } from '@adbl/unfinished';
+import { Temporal } from 'temporal-polyfill';
+import NotificationDeniedDrawer, {
+  notificationDeniedDrawerQuery,
+} from './notification-denied-drawer';
 import classes from './notification-prompt-drawer.module.css';
-import { Button } from '#/components/button';
-import { PhoneMockup } from '#/components/phone-mockup';
 
+export const notificationDrawerQuery = 'notifications-prompt-drawer';
 export default function NotificationPromptDrawer() {
   const router = useRouter();
   const route = router.getCurrentRoute();
+  const today = Temporal.Now.zonedDateTimeISO().withTimeZone(DEFAULT_TIMEZONE);
+  const currentDate = today.toLocaleString(DEFAULT_LOCALE, {
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long',
+  });
+  const currentTime = today.toLocaleString(DEFAULT_LOCALE, {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  });
+  const notificationListStyles = { '--total': mockNotifications.length };
+  const checkRef = Cell.source<SVGElement | null>(null);
 
   const drawerIsOpen = Cell.derived(() =>
-    route.value.query.has('notifications-prompt-drawer')
+    route.value.query.has(notificationDrawerQuery)
   );
 
   const handleDrawerClose = async () => {
-    notificationsEnabled.value = Notification.permission === 'granted';
-    await removeRouteQuery('notifications-prompt-drawer', drawerIsOpen);
+    await removeRouteQuery(notificationDrawerQuery, drawerIsOpen);
+  };
+
+  const finishAnimations = async () => {
+    if (!checkRef.value) return;
+    await Promise.all(checkRef.value.getAnimations().map((a) => a.finished));
+  };
+
+  const requestNotificationPermission = async () => {
+    const result = await Notification.requestPermission();
+
+    if (result === 'denied') {
+      await addRouteQuery(notificationDeniedDrawerQuery);
+      return;
+    }
+
+    if (result === 'granted') {
+      notificationsEnabled.value = Notification.permission === 'granted';
+      await finishAnimations().then(handleDrawerClose);
+    }
   };
 
   return (
     <BottomDrawer
+      id="notificationsPrompt"
       class={classes.drawer}
       open={drawerIsOpen}
       shrinkTarget="#settingsView"
@@ -35,14 +81,28 @@ export default function NotificationPromptDrawer() {
           phoneColor="white"
           notchColor="white"
           contentClasses={classes.phoneContent}
+          inert
+          data-notifications-enabled={notificationsEnabled}
         >
-          heje
+          <SimpleCheckIcon ref={checkRef} class={classes.check} />
+          <BellIcon class={classes.bellIcon} />
+          <span class={classes.todaysDate}>{currentDate}</span>
+          <time class={classes.currentTime}>{currentTime}</time>
+          <ul class={classes.notifications} style={notificationListStyles}>
+            {For(mockNotifications, (notification, index) => (
+              <PhoneNotification
+                {...notification}
+                class={classes.notification}
+                style={{ '--index': index }}
+              />
+            ))}
+          </ul>
         </PhoneMockup>
       </div>
       <h2 class={classes.heading}>Enable Notifications.</h2>
       <p class={classes.text}>
-        Notifications are used to inform you about new messages, updates, and
-        other events.
+        Enable notifications to receive gentle reminders and updates tailored
+        just for you.
       </p>
       <Button
         class={classes.closeButton}
@@ -52,9 +112,35 @@ export default function NotificationPromptDrawer() {
       >
         Close
       </Button>
-      <Button class={classes.enableButton} rounded>
+      <Button
+        class={classes.enableButton}
+        rounded
+        onClick={requestNotificationPermission}
+      >
         Enable
       </Button>
+      <NotificationDeniedDrawer />
     </BottomDrawer>
   );
 }
+
+const mockNotifications: PhoneNotificationProps[] = [
+  {
+    time: 'now',
+    Icon: Logo,
+    title: 'Almost there!',
+    description: 'Just one goal left for today!',
+  },
+  {
+    time: '2m ago',
+    Icon: Logo,
+    title: 'Final Goal',
+    description: 'Make a budget for the week.',
+  },
+  {
+    time: '1h ago',
+    Icon: Logo,
+    title: 'Bravo!',
+    description: "You've completed your first goal of the day. Well done!",
+  },
+];

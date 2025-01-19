@@ -18,8 +18,17 @@ export const LOCALSTORAGE_KEYS = {
   lastLoadedChunk: 'last-loaded-chunk',
   username: 'username',
   goalsForTheDayDateStamp: 'goals-for-the-day-date-stamp',
+  notificationsEnabled: 'notifications-enabled',
 };
 
+const notificationsPermissionGranted = Notification.permission === 'granted';
+export const notificationsEnabled = useLocalStorage<boolean>(
+  LOCALSTORAGE_KEYS.notificationsEnabled,
+  notificationsPermissionGranted
+);
+if (!notificationsPermissionGranted) {
+  notificationsEnabled.value = false;
+}
 export const selectedCategories = useLocalStorage<string[]>(
   LOCALSTORAGE_KEYS.selectedCategories,
   []

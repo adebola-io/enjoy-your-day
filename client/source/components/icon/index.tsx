@@ -62,7 +62,10 @@ export function Icon(props: DynamicIconProps) {
   return placeholder as JSX.Template;
 }
 
-export async function loadIconDataUrl(iconName: IconName, props: IconProps) {
+export async function loadIconDataUrl(
+  iconName: IconName,
+  props: IconProps = {}
+) {
   const module = await import(`../icons/${iconName}.tsx`);
   const IconComponent = module.default;
   const svgNode = (<IconComponent {...props} />) as [SVGElement];

@@ -1,0 +1,29 @@
+.drawer {
+  --drawer-visible-height: min-content;
+  display: grid;
+  width: calc(100% - var(--side-padding) * 2);
+  padding: var(--block-padding) var(--side-padding);
+  text-align: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.icon {
+  height: calc(var(--base-font-size) * 4);
+  padding: 3%;
+  margin-bottom: calc(var(--block-padding) * 0.5);
+  border: 5px solid;
+  border-radius: 50%;
+  justify-self: center;
+}
+
+.heading {
+  margin-bottom: calc(var(--block-padding) * 0.25);
+  font: var(--subtitle-bold);
+}
+
+.text {
+  width: 90%;
+  padding-block-end: calc(var(--block-padding) * 0.5);
+  justify-self: center;
+}

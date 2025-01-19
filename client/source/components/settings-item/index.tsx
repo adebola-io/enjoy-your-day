@@ -5,7 +5,7 @@ import { InlinedIcon } from '../inlined-icon';
 import { CSS_VARS } from '#/styles/variables';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { If } from '@adbl/unfinished';
-import type { Cell } from '@adbl/cells';
+import { Cell } from '@adbl/cells';
 import classes from './settings-item.module.css';
 
 interface SettingsLinkItemProps {
@@ -26,14 +26,35 @@ interface SettingsToggleItemProps {
   inputRef?: Cell<HTMLInputElement | null>;
 }
 
-type SettingsItemProps = SettingsLinkItemProps | SettingsToggleItemProps;
+interface SettingsButtonItemProps {
+  type: 'button';
+  title: string;
+  description?: string;
+  Icon: (props: IconProps) => JSX.Template;
+  disabled?: JSX.ValueOrCell<boolean>;
+  onClick: (this: HTMLButtonElement, event: Event) => void;
+}
+
+type SettingsItemProps =
+  | SettingsLinkItemProps
+  | SettingsToggleItemProps
+  | SettingsButtonItemProps;
 
 export function SettingsItem(props: SettingsItemProps) {
   const { title, description, Icon, type = 'link' } = props;
   const link = 'link' in props ? props.link : undefined;
   const onChange = 'onChange' in props ? props.onChange : undefined;
   const inputRef = 'inputRef' in props ? props.inputRef : undefined;
+  const checked = 'checked' in props ? props.checked : undefined;
+  const onClick = 'onClick' in props ? props.onClick : undefined;
+  const disabled = 'disabled' in props ? props.disabled : undefined;
   const router = useRouter();
+
+  if (Cell.isCell(disabled)) {
+    disabled.listen(() => {
+      console.log('Hello');
+    });
+  }
 
   const Content = () => {
     return (
@@ -48,17 +69,6 @@ export function SettingsItem(props: SettingsItemProps) {
         {If(description, (description) => {
           return <p class={classes.settingsDescription}>{description}</p>;
         })}
-        {If(link, {
-          true: () => <CaretRightIcon class={classes.settingsCaret} />,
-          false: () => (
-            <input
-              ref={inputRef}
-              type="checkbox"
-              class={classes.settingsToggle}
-              onChange={onChange}
-            />
-          ),
-        })}
       </>
     );
   };
@@ -68,13 +78,32 @@ export function SettingsItem(props: SettingsItemProps) {
       return (
         <label class={classes.settingsItem}>
           <Content />
+          <input
+            ref={inputRef}
+            type="checkbox"
+            class={classes.settingsToggle}
+            onChange={onChange}
+            checked={checked}
+          />
         </label>
       );
     case 'link':
       return (
         <router.Link href={link} class={classes.settingsItem}>
           <Content />
+          <CaretRightIcon class={classes.settingsCaret} />
         </router.Link>
+      );
+    case 'button':
+      return (
+        <button
+          type="button"
+          class={classes.settingsItem}
+          onClick={onClick}
+          disabled={disabled}
+        >
+          <Content />
+        </button>
       );
     default:
       return <></>;

@@ -1,17 +1,38 @@
 .drawer {
   --drawer-visible-height: min-content;
   --phone-duration: calc(var(--default-duration) * 3.75);
+  --notification-duration: calc(var(--default-duration) * 2.5);
+  --bell-shake-duration: calc(var(--default-duration) * 15);
+  --before-bell-shake-time: calc(
+    var(--drawer) + var(--line-duration) * 0.75 + var(--phone-duration)
+  );
+  --total-bell-shake-time: calc(
+    var(--before-bell-shake-time) + var(--bell-shake-duration) * 0.35
+  );
+  --total-bell-time: calc(
+    var(--total-bell-shake-time) + var(--default-duration)
+  );
+  --date-fade-in-time: calc(var(--default-duration) * 2.5);
+  --before-notification-time: var(--total-bell-time);
+  --drawer-open-position-y: 5%;
+  --initial-stagger-delay: var(--drawer);
 
   display: grid;
   width: calc(100% - var(--side-padding) * 2);
-  padding-block-end: var(--block-padding);
+  padding-block-end: calc(var(--block-padding) + 5%);
   color: white;
   background-color: var(--space-cadet-500);
+  transition-duration: var(--drawer);
+  transition-property: translate, scale;
   text-align: center;
   grid-template-columns: auto auto;
   padding-inline: var(--side-padding);
   row-gap: calc(var(--block-padding) * 0.25);
   column-gap: calc(var(--side-padding) * 0.25);
+
+  &[data-dialog-is-open] {
+    scale: 0.92;
+  }
 }
 
 .phoneContainer:is(.phoneContainer) {
@@ -28,7 +49,7 @@
     position: absolute;
     bottom: 0;
     display: block;
-    width: calc(100% - var(--side-padding) * 2);
+    width: 100%;
     height: 4px;
     border-radius: 4px;
     background: white;
@@ -51,8 +72,94 @@
 }
 
 .phoneContent {
-  padding-block-start: var(--notch-area);
+  position: relative;
+  display: grid;
+  padding-block-start: calc(var(--notch-area) * 2);
   background-color: var(--space-cadet-500);
+  padding-inline: calc(var(--phone-size) * 0.05);
+  grid-template-rows: auto auto 1fr;
+
+  .phone[data-notifications-enabled] & {
+    & > *:not(.check) {
+      display: none;
+    }
+  }
+}
+
+.check,
+.bellIcon {
+  align-self: center;
+  margin-block-end: 100%;
+  grid-area: 1 / 1 / 4 / 1;
+  justify-self: center;
+}
+
+.check {
+  width: 35%;
+  padding: 5%;
+  border: calc(var(--phone-size) * 0.02) solid;
+  border-radius: 50%;
+  animation: var(--pop) calc(var(--default-duration) * 2),
+    var(--nothing) calc(var(--default-duration) * 4);
+
+  .phone:not([data-notifications-enabled]) & {
+    display: none;
+  }
+}
+
+.bellIcon {
+  --shake-angle: 50deg;
+  width: 35%;
+  opacity: 0;
+
+  [data-open] & {
+    animation: var(--shake) var(--bell-shake-duration)
+        var(--before-bell-shake-time) linear,
+      var(--fade-in-from-top) var(--default-duration)
+        var(--total-bell-shake-time) reverse backwards;
+  }
+}
+
+.todaysDate,
+.currentTime,
+.notifications {
+  [data-open] & {
+    --starting-fade-position-y: calc(var(--phone-size) * 0.175);
+    animation: var(--fade-in-from-bottom) var(--date-fade-in-time)
+      var(--total-bell-time) backwards;
+  }
+}
+
+.todaysDate {
+  font: var(--tiny-regular);
+  grid-area: 1 / 1;
+}
+
+.currentTime {
+  margin-bottom: calc(var(--phone-size) * 0.04);
+  font: var(--title-bold);
+  grid-area: 2 / 1;
+}
+
+.notifications {
+  display: grid;
+  grid-template-rows: repeat(var(--total), min-content);
+  grid-template-columns: 1fr;
+  gap: calc(var(--phone-size) * 0.04);
+  grid-area: 3 / 1;
+}
+
+.notification {
+  background-color: var(--space-cadet-400);
+
+  [data-open] & {
+    animation: var(--pop) var(--notification-duration)
+      calc(
+        var(--before-notification-time) + var(--index) *
+          var(--notification-duration) * 0.25
+      )
+      backwards;
+  }
 }
 
 .heading {

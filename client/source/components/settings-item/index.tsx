@@ -5,7 +5,7 @@ import { InlinedIcon } from '../inlined-icon';
 import { CSS_VARS } from '#/styles/variables';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { If } from '@adbl/unfinished';
-import { Cell } from '@adbl/cells';
+import type { Cell } from '@adbl/cells';
 import classes from './settings-item.module.css';
 
 interface SettingsLinkItemProps {
@@ -41,6 +41,7 @@ type SettingsItemProps =
   | SettingsButtonItemProps;
 
 export function SettingsItem(props: SettingsItemProps) {
+  const router = useRouter();
   const { title, description, Icon, type = 'link' } = props;
   const link = 'link' in props ? props.link : undefined;
   const onChange = 'onChange' in props ? props.onChange : undefined;
@@ -48,13 +49,6 @@ export function SettingsItem(props: SettingsItemProps) {
   const checked = 'checked' in props ? props.checked : undefined;
   const onClick = 'onClick' in props ? props.onClick : undefined;
   const disabled = 'disabled' in props ? props.disabled : undefined;
-  const router = useRouter();
-
-  if (Cell.isCell(disabled)) {
-    disabled.listen(() => {
-      console.log('Hello');
-    });
-  }
 
   const Content = () => {
     return (

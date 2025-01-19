@@ -3,7 +3,7 @@ import { Loader } from '#/components/loader';
 import { Stepper } from '#/components/stepper';
 import { GoalItem } from '#/components/goal-item';
 import { EmptyIcon } from '#/components/icons/empty';
-import { getInsightsHistory } from '#/services';
+import { getInsightsHistory } from '#/services/database';
 import type {
   HistoryChartItem,
   InsightHistoryDetails,

@@ -3,7 +3,7 @@ import { useLiveDate } from '@adbl/dom-cells/useDate';
 import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 import type { GoalState } from '#/data/entities';
 import { Temporal } from 'temporal-polyfill';
-import { saveGoalState } from '../services';
+import { saveGoalState } from '../services/database';
 import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';

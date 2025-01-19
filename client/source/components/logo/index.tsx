@@ -1,4 +1,5 @@
 import type { IconProps } from '../icons/props';
+import { InlinedIcon } from '../inlined-icon';
 
 interface LogoProps extends IconProps {
   thick?: boolean;
@@ -29,4 +30,17 @@ export function Logo(props: LogoProps) {
       />
     </svg>
   );
+}
+
+export function getLogoDataUrl() {
+  return (
+    InlinedIcon({
+      title: 'Notification Badge Icon',
+      Icon: Logo,
+      color: 'white',
+      width: '96px',
+      height: '96px',
+      thick: true,
+    }) as HTMLImageElement
+  ).src;
 }

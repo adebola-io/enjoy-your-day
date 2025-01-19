@@ -100,7 +100,7 @@
   border: calc(var(--phone-size) * 0.02) solid;
   border-radius: 50%;
   animation: var(--pop) calc(var(--default-duration) * 2),
-    var(--nothing) calc(var(--default-duration) * 4);
+    var(--nothing) calc(var(--default-duration) * 5);
 
   .phone:not([data-notifications-enabled]) & {
     display: none;

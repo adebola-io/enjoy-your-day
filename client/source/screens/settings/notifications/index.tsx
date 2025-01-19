@@ -3,17 +3,22 @@ import NotificationPromptDrawer, {
   notificationDrawerQuery,
 } from './notification-prompt-drawer';
 import { SettingsItem } from '#/components/settings-item';
+import { getLogoDataUrl } from '#/components/logo';
 import BellIcon from '#/components/icons/bell';
 import { addRouteQuery } from '#/library/utils';
 import { notificationsEnabled } from '#/data/state';
+import WifiIcon from '#/components/icons/wifi';
+import { loadIconDataUrl } from '#/components/icon';
+import {
+  triggerNotification,
+  subscribeToPushNotifications,
+  fcmToken,
+} from '#/services/notifications';
+import { CSS_VARS } from '#/styles/variables';
 import { Cell } from '@adbl/cells';
 import { If, useObserver } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './notifications.module.css';
-import WifiIcon from '#/components/icons/wifi';
-import { loadIconDataUrl } from '#/components/icon';
-import { CSS_VARS } from '#/styles/variables';
-import { sendNotification } from '#/services/notifications';
 
 export default function Notifications() {
   const router = useRouter();
@@ -41,8 +46,9 @@ export default function Notifications() {
 }
 
 function NotificationsPageContent() {
-  const inputRef = Cell.source<HTMLInputElement | null>(null);
   const observer = useObserver();
+  const inputRef = Cell.source<HTMLInputElement | null>(null);
+  const itemsDisabled = Cell.derived(() => !notificationsEnabled.value);
 
   const showNotificationDrawer = async () => {
     await addRouteQuery(notificationDrawerQuery, 'true');
@@ -58,18 +64,23 @@ function NotificationsPageContent() {
   };
 
   const sendTestNotification = async () => {
-    const icon = await loadIconDataUrl('notification', {
-      color: CSS_VARS['--space-cadet-200'],
-    });
-    await sendNotification('Testing...', {
-      icon,
+    await triggerNotification({
+      title: 'Testing...',
       body: 'This is a test notification from Enjoy Your Day.',
+      icon: await loadIconDataUrl('notification', {
+        width: '96px',
+        height: '96px',
+        color: CSS_VARS['--space-cadet-200'],
+      }),
+      vibrate: [100, 50, 100],
+      badge: getLogoDataUrl(),
     });
   };
 
   const notificationChangeListener = (notificationsEnabled: boolean) => {
     if (!inputRef.value) return;
     inputRef.value.checked = notificationsEnabled;
+    if (notificationsEnabled) subscribeToPushNotifications();
   };
 
   observer.onConnected(inputRef, () => {
@@ -96,8 +107,9 @@ function NotificationsPageContent() {
         description="Triggers a test notification sent to your device."
         Icon={WifiIcon}
         onClick={sendTestNotification}
-        disabled={Cell.derived(() => !notificationsEnabled.value)}
+        disabled={itemsDisabled}
       />
+      <span style={{ userSelect: 'text' }}>{fcmToken}</span>
       <NotificationPromptDrawer />
     </>
   );

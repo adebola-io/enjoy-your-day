@@ -106,4 +106,5 @@
   height: fit-content;
   margin-block-start: calc(var(--block-padding) * 0.5);
   margin-block-end: var(--block-padding);
+  justify-self: center;
 }

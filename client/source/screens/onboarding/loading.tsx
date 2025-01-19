@@ -1,6 +1,6 @@
 import { Loader } from '#/components/loader';
 import { appLoadingState, username } from '#/data/state';
-import { createUser } from '#/services';
+import { createUser } from '#/services/database';
 import { ONBOARDING_LOADING_DELAY } from '#/data/constants';
 import { useRouter } from '@adbl/unfinished/router';
 import { setMetaTheme } from '#/library/utils';

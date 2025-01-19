@@ -35,5 +35,5 @@ async function handleMessage<T extends WorkerProtocol.Requests.Request>(
   self.postMessage({ id, message: response });
 }
 
-console.log('storage thread running.');
+console.log('[database] Initializing');
 self.addEventListener('message', handleMessage);

@@ -6,6 +6,7 @@ export interface InlinedIconProps extends IconProps {
   Icon: (props: IconProps) => JSX.Template;
   color: string;
   title: string;
+  thick?: boolean;
 }
 
 export function InlinedIcon(props: InlinedIconProps): JSX.Template {

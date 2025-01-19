@@ -14,6 +14,7 @@
     "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@e23dc28",
     "canvas-confetti": "^1.9.3",
     "dexie": "^4.0.10",
+    "firebase": "^11.2.0",
     "temporal-polyfill": "^0.2.5"
   },
   "devDependencies": {

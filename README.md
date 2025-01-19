@@ -9,6 +9,7 @@
 </p>
 
 _Enjoy Your Day_ is a simple offline web app for tracking daily goals. It is a proof-of-concept app for [@adbl/unfinished](https://github.com/adebola-io/unfinished), a lightweight web framework.
+
 ## 🚀 Deployment
 
 The stage application is deployed on [dev.enjoyyourday.live/](https://dev.enjoyyourday.live/).
@@ -32,10 +33,11 @@ The app is a progressive web application. Majority of the functionality lies in 
 - [CSS Modules](https://github.com/css-modules/css-modules)
 - [unfinished](https://github.com/adebola-io/unfinished), and
 - [cells](https://github.com/adebola-io/cells).
+- [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging)
 
 ### 🎨 Design
 
-The draft UI design is available on Figma [here](https://www.figma.com/design/ANBzTQord4FWzzxzsMzz61/Enjoy-Your-Day?node-id=16-52&t=NpdQhq0snsail8Y7-1). 
+The draft UI design is available on Figma [here](https://www.figma.com/design/ANBzTQord4FWzzxzsMzz61/Enjoy-Your-Day?node-id=16-52&t=NpdQhq0snsail8Y7-1).
 
 ### 📥 Installation
 
@@ -54,6 +56,14 @@ To run the client, run the following command in the client folder:
 ```sh
 bun run dev
 ```
+
+## Environment Variables
+
+The following environment variables are required for the project:
+
+- `VITE_FIREBASE_MESSAGING_VAPID_KEY`: The VAPID key for Firebase Cloud Messaging.
+
+Ensure these variables are set in your environment before running the project.
 
 ## 🤝 Contributing
 

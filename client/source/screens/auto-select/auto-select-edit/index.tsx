@@ -5,7 +5,12 @@ import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
 import { AddIcon } from '#/components/icons/add';
 import { InlinedIcon } from '#/components/inlined-icon';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
-import { setAutoSelectStage, setMetaTheme, vibrate } from '#/library/utils';
+import {
+  setAutoSelectStage,
+  setMetaTheme,
+  useRouteQueryPresence,
+  vibrate,
+} from '#/library/utils';
 import type { GoalProps } from '#/data/entities';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { For, If, useObserver } from '@adbl/unfinished';
@@ -27,11 +32,10 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   const { goals } = props;
   const observer = useObserver();
   const router = useRouter();
-  const route = router.getCurrentRoute();
+  const searchIsOpen = useRouteQueryPresence('search');
   const containerRef = Cell.source<HTMLDivElement | null>(null);
   const placeholder = Cell.source('');
   const activeItemIndex = Cell.source(0);
-  const searchIsOpen = Cell.derived(() => route.value.query.has('search'));
   const noGoalsAdded = Cell.derived(() => goals.value.length === 0);
   const goalUuids = Cell.derived(() => goals.value.map((g) => g.uuid));
   const baseHref = '/home?auto-select&stage=edit';

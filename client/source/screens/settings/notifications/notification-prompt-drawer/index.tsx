@@ -4,9 +4,12 @@ import { Logo } from '#/components/logo';
 import SimpleCheckIcon from '#/components/icons/simple-check';
 import BellIcon from '#/components/icons/bell';
 import { PhoneMockup } from '#/components/phone-mockup';
-import { addRouteQuery, removeRouteQuery } from '#/library/utils';
+import {
+  addRouteQuery,
+  removeRouteQuery,
+  useRouteQueryPresence,
+} from '#/library/utils';
 import { Cell } from '@adbl/cells';
-import { useRouter } from '@adbl/unfinished/router';
 import { notificationsEnabled } from '#/data/state';
 import { DEFAULT_LOCALE, DEFAULT_TIMEZONE } from '#/data/constants';
 import {
@@ -22,8 +25,7 @@ import classes from './notification-prompt-drawer.module.css';
 
 export const notificationDrawerQuery = 'notifications-prompt-drawer';
 export default function NotificationPromptDrawer() {
-  const router = useRouter();
-  const route = router.getCurrentRoute();
+  const drawerIsOpen = useRouteQueryPresence(notificationDrawerQuery);
   const today = Temporal.Now.zonedDateTimeISO().withTimeZone(DEFAULT_TIMEZONE);
   const currentDate = today.toLocaleString(DEFAULT_LOCALE, {
     month: 'long',
@@ -37,10 +39,6 @@ export default function NotificationPromptDrawer() {
   });
   const notificationListStyles = { '--total': mockNotifications.length };
   const checkRef = Cell.source<SVGElement | null>(null);
-
-  const drawerIsOpen = Cell.derived(() =>
-    route.value.query.has(notificationDrawerQuery)
-  );
 
   const handleDrawerClose = async () => {
     await removeRouteQuery(notificationDrawerQuery, drawerIsOpen);

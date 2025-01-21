@@ -1,11 +1,9 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
 import type { IconProps } from '#/components/icons/props';
 import { Button } from '#/components/button';
-import { Cell } from '@adbl/cells';
-import { useRouter } from '@adbl/unfinished/router';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import type { InstallInstructions } from '#/data/install-instructions';
-import { removeRouteQuery } from '#/library/utils';
+import { removeRouteQuery, useRouteQueryPresence } from '#/library/utils';
 import { For } from '@adbl/unfinished';
 import classes from './nested-drawer.module.css';
 
@@ -15,12 +13,8 @@ interface NestedDrawerProps {
 
 export const nestedDrawerQuery = 'nested-install-prompt-drawer';
 export function NestedDrawer(props: NestedDrawerProps) {
-  const router = useRouter();
   const { instructions } = props;
-  const route = router.getCurrentRoute();
-  const isOpen = Cell.derived(() => {
-    return route.value.query.has(nestedDrawerQuery);
-  });
+  const isOpen = useRouteQueryPresence(nestedDrawerQuery);
 
   const toggleNestedDrawerAttribute = (value: boolean) => {
     document.body.toggleAttribute('data-nested-drawer-is-open', value);

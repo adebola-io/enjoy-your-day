@@ -194,3 +194,9 @@ export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
   const nextPath = `${route.value.path}?${searchParams}`;
   await router.navigate(nextPath);
 }
+
+export function useRouteQueryPresence(query: string) {
+  return Cell.derived(() => {
+    return useRouter().getCurrentRoute().value.query.has(query);
+  });
+}

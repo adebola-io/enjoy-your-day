@@ -1,19 +1,12 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
-import { removeRouteQuery } from '#/library/utils';
-import { Cell } from '@adbl/cells';
-import { useRouter } from '@adbl/unfinished/router';
-import classes from './notification-denied-drawer.module.css';
 import XIcon from '#/components/icons/x';
 import { Button } from '#/components/button';
+import { removeRouteQuery, useRouteQueryPresence } from '#/library/utils';
+import classes from './notification-denied-drawer.module.css';
 
 export const notificationDeniedDrawerQuery = 'notifications-denied-drawer';
 export default function NotificationDeniedDrawer() {
-  const router = useRouter();
-  const route = router.getCurrentRoute();
-  const drawerIsOpen = Cell.derived(() => {
-    return route.value.query.has(notificationDeniedDrawerQuery);
-  });
-
+  const drawerIsOpen = useRouteQueryPresence(notificationDeniedDrawerQuery);
   const handleDrawerClose = async () => {
     await removeRouteQuery(notificationDeniedDrawerQuery, drawerIsOpen);
   };

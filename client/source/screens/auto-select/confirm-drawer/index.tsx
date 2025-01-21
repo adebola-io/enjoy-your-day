@@ -4,7 +4,12 @@ import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
 import { dailyGoals, dailyGoalsDateStamp } from '#/data/state';
 import type { GoalProps, GoalState } from '#/data/entities';
-import { getResourceState, NoOp, removeRouteQuery } from '#/library/utils';
+import {
+  getResourceState,
+  NoOp,
+  removeRouteQuery,
+  useRouteQueryPresence,
+} from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
@@ -29,11 +34,8 @@ export interface ConfirmDrawerProps {
 
 export function ConfirmDrawer(props: ConfirmDrawerProps) {
   const router = useRouter();
-  const route = router.getCurrentRoute();
+  const drawerIsOpen = useRouteQueryPresence('confirm');
   const { goals } = props;
-  const drawerIsOpen = Cell.derived(() => {
-    return route.value.query.has('confirm');
-  });
   const resource = Cell.async(saveGoalsForToday);
   const state = getResourceState(resource);
   const drawerClosable = Cell.derived(() => !resource.pending.value);

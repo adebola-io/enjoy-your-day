@@ -6,7 +6,7 @@ import { Icon, loadIconDataUrl } from '#/components/icon';
 import { Button } from '#/components/button';
 import classes from './card-drawer.module.css';
 import { If } from '@adbl/unfinished';
-import { toKebabCase } from '#/library/utils';
+import { toKebabCase, useRouteQueryPresence } from '#/library/utils';
 
 export interface CardDrawerProps {
   cards: InsightCardDetails[];
@@ -16,7 +16,7 @@ export function CardDrawer(props: CardDrawerProps) {
   const { cards } = props;
   const router = useRouter();
   const route = router.getCurrentRoute();
-  const isOpen = Cell.derived(() => route.value.query.has('card'));
+  const isOpen = useRouteQueryPresence('card');
   const backgroundImage = Cell.source<string | undefined>(undefined);
   const card = Cell.source<InsightCardDetails | undefined>(undefined);
 

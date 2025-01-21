@@ -1,7 +1,5 @@
 # Use the official Rust image as the build environment
-# This stage is named "builder"
-# The slim version of the Rust image is used to reduce the image size
-FROM rust:1.75-slim as builder
+FROM rust:1.67
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app

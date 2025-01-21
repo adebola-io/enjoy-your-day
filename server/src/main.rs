@@ -45,16 +45,9 @@ async fn send_message(Json(payload): Json<SendMessage>) -> String {
     }
 }
 
-fn create_service_account_file() -> io::Result<()> {
-    let service_account_content = std::env::var("FIREBASE_SERVICE_ACCOUNT_JSON")
-        .expect("FIREBASE_SERVICE_ACCOUNT_JSON is not set as an environment variable");
-    fs::write("./service-account.json", service_account_content)
-}
-
 #[tokio::main]
 async fn main() {
     dotenv().ok();
-    create_service_account_file().unwrap();
 
     let app = Router::new()
         .route("/", get(index))

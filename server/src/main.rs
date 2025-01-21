@@ -20,7 +20,7 @@ struct SendMessage {
 }
 
 async fn index() -> String {
-    String::from("homepage")
+    String::from("Hello, World!")
 }
 
 async fn send_message(Json(payload): Json<SendMessage>) -> String {
@@ -62,7 +62,7 @@ async fn main() {
 
     let port: SocketAddr = std::env::var("PORT")
         .map(|port| format!("0.0.0.0:{}", port))
-        .unwrap_or_else(|_| "0.0.0.0:8000".to_string())
+        .unwrap_or_else(|_| "0.0.0.0:7860".to_string())
         .parse()
         .unwrap();
 

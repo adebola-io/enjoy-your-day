@@ -1,5 +1,5 @@
 # Use the official Rust image as the build environment
-FROM rust:1.67
+FROM rust:latest as builder
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app

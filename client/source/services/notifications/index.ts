@@ -1,5 +1,8 @@
 import { getLogoDataUrl } from '#/components/logo';
-import { FIREBASE_MESSAGING_VAPID_KEY } from '#/data/constants';
+import {
+  FIREBASE_CONFIG,
+  FIREBASE_MESSAGING_VAPID_KEY,
+} from '#/data/constants';
 import { notificationsEnabled } from '#/data/state';
 import { Cell } from '@adbl/cells';
 import workerUrl from './notifications.worker?worker&url';
@@ -24,15 +27,6 @@ export interface ExtraNotificationOptions extends NotificationOptions {
 export const fcmToken = Cell.source<string | null>(null);
 let serviceWorkerRegistration: ServiceWorkerRegistration | null = null;
 let firebaseInitialized = false;
-const firebaseConfig = {
-  apiKey: 'AIzaSyA7vYoPHtPE841wGcECSN2nE7sV2NB2MJQ',
-  authDomain: 'enjoy-your-day-cb467.firebaseapp.com',
-  projectId: 'enjoy-your-day-cb467',
-  storageBucket: 'enjoy-your-day-cb467.firebasestorage.app',
-  messagingSenderId: '643320215252',
-  appId: '1:643320215252:web:89b9597ea15ec4e7692d41',
-  measurementId: 'G-PSVB87DW1W',
-};
 
 export async function triggerNotification(options: ExtraNotificationOptions) {
   if (!serviceWorkerRegistration) {
@@ -56,7 +50,7 @@ export async function subscribeToPushNotifications() {
   }
 
   try {
-    const firebaseApp = initializeApp(firebaseConfig);
+    const firebaseApp = initializeApp(FIREBASE_CONFIG);
     const messaging = getMessaging(firebaseApp);
     const token = await getToken(messaging, {
       vapidKey: FIREBASE_MESSAGING_VAPID_KEY,

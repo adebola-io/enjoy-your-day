@@ -11,7 +11,7 @@
   "dependencies": {
     "@adbl/cells": "^0.0.11",
     "@adbl/dom-cells": "^0.0.5",
-    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@e23dc28",
+    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@82e85ec",
     "canvas-confetti": "^1.9.3",
     "dexie": "^4.0.10",
     "firebase": "^11.2.0",

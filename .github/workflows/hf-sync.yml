@@ -1,0 +1,37 @@
+name: Sync Rust Backend to Huggingface Spaces
+
+on:
+  push:
+    paths:
+      - 'server/**'
+      - '.github/workflows/hf-sync.yml'
+      - 'Dockerfile'
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create minimal repository with server
+        run: |
+          mkdir -p sync-repo
+          cp -r server/* sync-repo/
+
+      - name: Push to HuggingFace Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          cd sync-repo
+          git init
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add .
+          git commit -m "Sync backend from GitHub"
+          git branch -M main
+
+          # Replace with your Huggingface space name
+          git remote add space https://huggingface.co/spaces/${{ secrets.HF_USERNAME }}/${{ secrets.HF_SPACE_NAME }}
+          git push --force https://$HF_TOKEN@huggingface.co/spaces/${{ secrets.HF_USERNAME }}/${{ secrets.HF_SPACE_NAME }} main

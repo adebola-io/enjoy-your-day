@@ -22,7 +22,7 @@ FROM debian:bookworm-slim
 # Clean up the package list to reduce the image size
 RUN apt-get update && \
     apt-get install -y libssl-dev ca-certificates && \
-    apt install pkg-config && \
+    apt install pkg-config -y && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy the compiled Rust binary from the builder stage to the runtime environment

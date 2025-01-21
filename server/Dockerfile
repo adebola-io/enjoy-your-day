@@ -34,8 +34,8 @@ COPY --from=builder /usr/src/app/target/release/enjoy_your_day_server /usr/local
 # Set an environment variable for Rust logging
 ENV RUST_LOG=info
 
-# Expose port 8000 for the application
-EXPOSE 8000
+# Expose port 7860 for the application
+EXPOSE 7860
 
 # Set the default command to run the Rust application
 CMD ["enjoy_your_day_server"]

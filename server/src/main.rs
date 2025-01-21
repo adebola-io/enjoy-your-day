@@ -10,7 +10,6 @@ use fcm_rs::{
 };
 use serde::{Deserialize, Serialize};
 use std::net::SocketAddr;
-use std::{fs, io};
 
 #[derive(Serialize, Deserialize)]
 struct SendMessage {

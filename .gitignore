@@ -2,3 +2,5 @@
 .idea
 vault
 target
+.env
+service-account.json

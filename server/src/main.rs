@@ -23,7 +23,7 @@ async fn index() -> String {
 }
 
 async fn send_message(Json(payload): Json<SendMessage>) -> String {
-    let service_account_path = "./service-account.json";
+    let service_account_path = "/usr/src/app/service_account.json";
     let client = match FcmClient::new(service_account_path).await {
         Ok(client) => client,
         Err(error) => return format!("Error creating FCM client: {}", error),

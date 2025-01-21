@@ -20,7 +20,10 @@ FROM debian:bookworm-slim
 # - libssl-dev: SSL library required by the Rust application
 # - ca-certificates: Common CA certificates
 # Clean up the package list to reduce the image size
-RUN apt-get update && apt-get install -y libssl-dev ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y libssl-dev ca-certificates && \
+    apt install pkg-config && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copy the compiled Rust binary from the builder stage to the runtime environment
 COPY --from=builder /usr/src/app/target/release/enjoy_your_day_server /usr/local/bin/

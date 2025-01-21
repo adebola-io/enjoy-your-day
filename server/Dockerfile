@@ -28,13 +28,16 @@ RUN apt-get update && \
     apt-get install -y libssl-dev ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
+# Set the working directory inside the container
+WORKDIR /usr/src/app
+
 # Copy the compiled Rust binary from the builder stage to the runtime environment
-COPY --from=builder /usr/src/app/target/release/enjoy_your_day_server /usr/local/bin/
+COPY --from=builder /usr/src/app/target/release/enjoy_your_day_server /usr/src/app/enjoy_your_day_server
 
 # Expose the secret SECRET_EXAMPLE at buildtime and use its value as git remote URL
 RUN --mount=type=secret,id=FIREBASE_SERVICE_ACCOUNT_JSON,mode=0444,required=true \
     touch ./service_account.json && \
-    cat /run/secrets/FIREBASE_SERVICE_ACCOUNT_JSON > ./service_account.json
+    cat /run/secrets/FIREBASE_SERVICE_ACCOUNT_JSON > /usr/src/app/service_account.json
 
 # Set an environment variable for Rust logging
 ENV RUST_LOG=info
@@ -43,4 +46,4 @@ ENV RUST_LOG=info
 EXPOSE 7860
 
 # Set the default command to run the Rust application
-CMD ["enjoy_your_day_server"]
+CMD ["/usr/src/app/enjoy_your_day_server"]

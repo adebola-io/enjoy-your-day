@@ -34,7 +34,7 @@ WORKDIR /usr/src/app
 # Copy the compiled Rust binary from the builder stage to the runtime environment
 COPY --from=builder /usr/src/app/target/release/enjoy_your_day_server /usr/src/app/enjoy_your_day_server
 
-# Expose the secret SECRET_EXAMPLE at buildtime and use its value as git remote URL
+# Copy the service account JSON file from the secret to the runtime environment
 RUN --mount=type=secret,id=FIREBASE_SERVICE_ACCOUNT_JSON,mode=0444,required=true \
     touch ./service_account.json && \
     cat /run/secrets/FIREBASE_SERVICE_ACCOUNT_JSON > /usr/src/app/service_account.json

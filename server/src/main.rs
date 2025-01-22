@@ -22,8 +22,15 @@ async fn index() -> String {
     String::from("Hello, World!")
 }
 
+fn get_service_account_path() -> String {
+    std::env::var("SERVICE_ACCOUNT_PATH").unwrap_or_else(|_| {
+        eprintln!("SERVICE_ACCOUNT_PATH is not set");
+        std::process::exit(1);
+    })
+}
+
 async fn send_message(Json(payload): Json<SendMessage>) -> String {
-    let service_account_path = "/usr/src/app/service_account.json";
+    let service_account_path = get_service_account_path();
     let client = match FcmClient::new(service_account_path).await {
         Ok(client) => client,
         Err(error) => return format!("Error creating FCM client: {}", error),

@@ -4,6 +4,9 @@ FROM rust:latest as builder
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
+# Set the environment variable for the Firebase service account JSON file path
+ARG FIREBASE_SERVICE_ACCOUNT_JSON_PATH
+
 # Copy the entire project directory into the container
 COPY . .
 
@@ -36,8 +39,8 @@ COPY --from=builder /usr/src/app/target/release/enjoy_your_day_server /usr/src/a
 
 # Copy the service account JSON file from the secret to the runtime environment
 RUN --mount=type=secret,id=FIREBASE_SERVICE_ACCOUNT_JSON,mode=0444,required=true \
-    touch ./service_account.json && \
-    cat /run/secrets/FIREBASE_SERVICE_ACCOUNT_JSON > /usr/src/app/service_account.json
+    touch $FIREBASE_SERVICE_ACCOUNT_JSON_PATH && \
+    cat /run/secrets/FIREBASE_SERVICE_ACCOUNT_JSON > $FIREBASE_SERVICE_ACCOUNT_JSON_PATH
 
 # Set an environment variable for Rust logging
 ENV RUST_LOG=info

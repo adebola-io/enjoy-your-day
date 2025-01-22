@@ -4,9 +4,6 @@ FROM rust:latest as builder
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Set the environment variable for the Firebase service account JSON file path
-ARG FIREBASE_SERVICE_ACCOUNT_JSON_PATH
-
 # Copy the entire project directory into the container
 COPY . .
 
@@ -22,6 +19,9 @@ RUN cargo build --release
 # Use the official Debian image as the runtime environment
 # The slim version of the Debian image is used to reduce the image size
 FROM debian:bookworm-slim
+
+# Set the environment variable for the Firebase service account JSON file path
+ARG FIREBASE_SERVICE_ACCOUNT_JSON_PATH
 
 # Update the package list and install necessary dependencies
 # - libssl-dev: SSL library required by the Rust application

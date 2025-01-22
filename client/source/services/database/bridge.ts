@@ -1,11 +1,11 @@
 import dbWorkerUrl from './db.worker?worker&url';
-import type { WorkerProtocol, PromiseHandler } from './types';
+import type { DbWorkerProtocol, PromiseHandler } from './types';
 
 const dbWorker = new Worker(dbWorkerUrl, { type: 'module' });
 const messageIdToPromiseHandlerMap = new Map<string, PromiseHandler>();
 
 dbWorker.addEventListener('message', (event) => {
-  const data = event.data as WorkerProtocol.Message;
+  const data = event.data as DbWorkerProtocol.Message;
   const { id, message } = data;
   const { resolve } = messageIdToPromiseHandlerMap.get(id) ?? {};
 
@@ -24,18 +24,18 @@ dbWorker.addEventListener('message', (event) => {
  *
  * @template T - The type of the request message that extends WorkerProtocol.Requests.Request.
  * @param {T} message - The message to be sent to the worker.
- * @returns {Promise<WorkerProtocol.Response<T>>} A promise that resolves with the worker's response.
+ * @returns {Promise<DbWorkerProtocol.Response<T>>} A promise that resolves with the worker's response.
  */
-export async function toDbWorker<T extends WorkerProtocol.Requests.Request>(
+export async function toDbWorker<T extends DbWorkerProtocol.Requests.Request>(
   message: T
-): Promise<WorkerProtocol.Response<T>> {
+): Promise<DbWorkerProtocol.Response<T>> {
   return new Promise((resolve, reject) => {
     const id = crypto.randomUUID();
     messageIdToPromiseHandlerMap.set(id, { reject, resolve });
     dbWorker.postMessage({
       id,
       message: JSON.parse(JSON.stringify(message)),
-    } as WorkerProtocol.Message<T>);
+    } as DbWorkerProtocol.Message<T>);
   });
 }
 

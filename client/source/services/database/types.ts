@@ -3,7 +3,7 @@ import type { IconName } from '#/library/icon-name';
 import type { SendableCategory } from '../../data/categories';
 import type { GoalProps, GoalState, UserMetadata } from '../../data/entities';
 
-export namespace WorkerProtocol {
+export namespace DbWorkerProtocol {
   export namespace Requests {
     export type Ping = {
       type: 'ping';
@@ -51,6 +51,10 @@ export namespace WorkerProtocol {
       type: 'metadata.record';
       metadata: UserMetadata;
     };
+    export type UpdateUsername = {
+      type: 'metadata.update.username';
+      username: string;
+    };
     export type Request =
       | Echo<unknown>
       | GetRecommendedGoals
@@ -61,7 +65,8 @@ export namespace WorkerProtocol {
       | RecordGoalState
       | GetInsightsOverview
       | GetInsightsHistory
-      | RecordMetadata;
+      | RecordMetadata
+      | UpdateUsername;
   }
 
   export type Response<T extends Requests.Request> = T extends Requests.Ping
@@ -84,6 +89,8 @@ export namespace WorkerProtocol {
     ? boolean | null
     : T extends Requests.GetInsightsHistory
     ? InsightHistoryDetails
+    : T extends Requests.UpdateUsername
+    ? boolean | null
     : unknown;
 
   export interface Message<T extends Requests.Request | unknown = unknown> {
@@ -91,9 +98,9 @@ export namespace WorkerProtocol {
     message: T;
   }
 
-  export type Handler<T extends WorkerProtocol.Requests.Request> = (
-    data: WorkerProtocol.Message<T>
-  ) => Promise<WorkerProtocol.Response<T>>;
+  export type Handler<T extends DbWorkerProtocol.Requests.Request> = (
+    data: DbWorkerProtocol.Message<T>
+  ) => Promise<DbWorkerProtocol.Response<T>>;
 
   type RequestFromType<T> = Requests.Request extends infer V
     ? V extends Requests.Request

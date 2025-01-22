@@ -18,6 +18,14 @@ export async function createUser(name: string) {
   });
 }
 
+export async function updateUsername(username: string) {
+  const response = await toDbWorker({
+    type: 'metadata.update.username',
+    username,
+  });
+  return response;
+}
+
 export async function initializeDatabase() {
   const testData = await toDbWorker({
     type: 'goals.update',

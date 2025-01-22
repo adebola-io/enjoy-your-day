@@ -1,4 +1,4 @@
-import type { WorkerProtocol } from './types';
+import type { DbWorkerProtocol } from './types';
 import { insightsHistory, insightsOverview } from './insights';
 import {
   autoCompleteGoals,
@@ -7,9 +7,9 @@ import {
   recordGoalState,
   updateGoalsList,
 } from './goals';
-import { recordUserMetadata } from './settings';
+import { recordUserMetadata, updateUsername } from './settings';
 
-const messageHandlers: WorkerProtocol.MessageHandlerMap = {
+const messageHandlers: DbWorkerProtocol.MessageHandlerMap = {
   echo: async (data) => data.message,
   ping: async () => 'pong',
 
@@ -23,10 +23,11 @@ const messageHandlers: WorkerProtocol.MessageHandlerMap = {
   'insights.history': insightsHistory,
 
   'metadata.record': recordUserMetadata,
+  'metadata.update.username': updateUsername,
 };
 
-async function handleMessage<T extends WorkerProtocol.Requests.Request>(
-  event: MessageEvent<WorkerProtocol.Message<T>>
+async function handleMessage<T extends DbWorkerProtocol.Requests.Request>(
+  event: MessageEvent<DbWorkerProtocol.Message<T>>
 ) {
   const data = event.data;
   const { id } = data;

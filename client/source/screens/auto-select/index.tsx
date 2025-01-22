@@ -10,9 +10,9 @@ import { Cell, type SourceCell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { Loader } from '#/components/loader';
-import classes from './auto-select.module.css';
 import { ConfirmDrawer } from './confirm-drawer';
 import { involvementLevel, selectedCategories } from '#/data/state';
+import classes from './auto-select.module.css';
 
 type AutoSelectStage = 'cardList' | 'edit';
 

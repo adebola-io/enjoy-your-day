@@ -1,20 +1,20 @@
 import { dexie } from './dexie';
-import type { WorkerProtocol } from './types';
+import type { DbWorkerProtocol } from './types';
 import { startGoalUpdateProcess, updateDataQueue } from './update';
 import { shuffleArray } from './utils';
 import type { GoalProps } from '../../data/entities';
 import { Temporal } from 'temporal-polyfill';
 
 type GenerateGoalsForTodayHandler =
-  WorkerProtocol.Handler<WorkerProtocol.Requests.GetRecommendedGoals>;
+  DbWorkerProtocol.Handler<DbWorkerProtocol.Requests.GetRecommendedGoals>;
 type AutoCompleteGoalsHandler =
-  WorkerProtocol.Handler<WorkerProtocol.Requests.GetAutoCompleteSuggestions>;
+  DbWorkerProtocol.Handler<DbWorkerProtocol.Requests.GetAutoCompleteSuggestions>;
 type RecordGoalsHandler =
-  WorkerProtocol.Handler<WorkerProtocol.Requests.RecordGoalState>;
+  DbWorkerProtocol.Handler<DbWorkerProtocol.Requests.RecordGoalState>;
 type GetSearchExampleHandler =
-  WorkerProtocol.Handler<WorkerProtocol.Requests.GetExampleSearchGoalInstruction>;
+  DbWorkerProtocol.Handler<DbWorkerProtocol.Requests.GetExampleSearchGoalInstruction>;
 type UpdateGoalsListHandler =
-  WorkerProtocol.Handler<WorkerProtocol.Requests.UpdateGoals>;
+  DbWorkerProtocol.Handler<DbWorkerProtocol.Requests.UpdateGoals>;
 
 export const recommendGoals: GenerateGoalsForTodayHandler = async (data) => {
   const { categories: categoriesArray, preferredInvolvementLevel } =

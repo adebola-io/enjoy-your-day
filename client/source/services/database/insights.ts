@@ -4,14 +4,14 @@ import { dexie } from './dexie';
 import type {
   HistoryChartItem,
   InsightsOverview,
-  WorkerProtocol,
+  DbWorkerProtocol,
 } from './types';
 import type { GoalState } from '../../data/entities';
 
 type InsightsOverviewHandler =
-  WorkerProtocol.Handler<WorkerProtocol.Requests.GetInsightsOverview>;
+  DbWorkerProtocol.Handler<DbWorkerProtocol.Requests.GetInsightsOverview>;
 type InsightsHistoryHandler =
-  WorkerProtocol.Handler<WorkerProtocol.Requests.GetInsightsHistory>;
+  DbWorkerProtocol.Handler<DbWorkerProtocol.Requests.GetInsightsHistory>;
 
 function isDayBefore(previous: string, next: string) {
   return Temporal.PlainDate.from(previous).equals(

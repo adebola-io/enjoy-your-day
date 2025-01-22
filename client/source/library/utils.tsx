@@ -1,4 +1,4 @@
-import { Cell } from '@adbl/cells';
+import { Cell, type DerivedCell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 
 type AsyncRequestAtoms<T, U> = {
@@ -175,9 +175,26 @@ export function toKebabCase(str: string) {
   return str.replace(/\s/g, '-').toLowerCase();
 }
 
+const currentRoute = {
+  value: null as DerivedCell<{
+    name: string | null;
+    params: Map<string, string>;
+    query: URLSearchParams;
+    path: string;
+    fullPath: string;
+  }> | null,
+
+  get() {
+    if (!this.value) {
+      this.value = useRouter().getCurrentRoute();
+    }
+    return this.value;
+  },
+};
+
 export async function addRouteQuery(query: string, value?: string) {
   const router = useRouter();
-  const route = router.getCurrentRoute();
+  const route = currentRoute.get();
   const searchParams = new URLSearchParams(route.value.query);
   searchParams.set(query, value ?? '');
   const nextPath = `${route.value.path}?${searchParams}`;
@@ -188,7 +205,7 @@ export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
   if (guard && guard.value === false) return;
 
   const router = useRouter();
-  const route = router.getCurrentRoute();
+  const route = currentRoute.get();
   const searchParams = new URLSearchParams(route.value.query);
   searchParams.delete(query);
   const nextPath = `${route.value.path}?${searchParams}`;
@@ -197,6 +214,6 @@ export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
 
 export function useRouteQueryPresence(query: string) {
   return Cell.derived(() => {
-    return useRouter().getCurrentRoute().value.query.has(query);
+    return currentRoute.get().value.query.has(query);
   });
 }

@@ -3,7 +3,7 @@ import { useLiveDate } from '@adbl/dom-cells/useDate';
 import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 import type { GoalState } from '#/data/entities';
 import { Temporal } from 'temporal-polyfill';
-import { saveGoalState } from '../services/database';
+import { saveGoalState, updateUsername } from '../services/database';
 import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
@@ -96,6 +96,11 @@ export const timeOfDay = Cell.derived(() => {
   return 'evening';
 });
 export const username = useLocalStorage<string>(LOCALSTORAGE_KEYS.username, '');
+appLoadingState.runAndListen((state) => {
+  if (state === 'done') {
+    username.listen(updateUsername);
+  }
+});
 
 async function trackDateChange() {
   const today = Temporal.Now.plainDateISO().toString();

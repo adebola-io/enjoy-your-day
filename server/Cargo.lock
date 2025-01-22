@@ -283,6 +283,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "enjoy_your_day_server"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "dotenv",
+ "fcm-rs",
+ "serde",
+ "tokio",
+ "tower-http",
+]
+
+[[package]]
 name = "equivalent"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1380,18 +1392,6 @@ dependencies = [
  "itoa",
  "ryu",
  "serde",
-]
-
-[[package]]
-name = "server"
-version = "0.1.0"
-dependencies = [
- "axum",
- "dotenv",
- "fcm-rs",
- "serde",
- "tokio",
- "tower-http",
 ]
 
 [[package]]

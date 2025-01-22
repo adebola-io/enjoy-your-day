@@ -23,15 +23,15 @@ async fn index() -> String {
 }
 
 fn get_service_account_path() -> String {
-    std::env::var("SERVICE_ACCOUNT_PATH").unwrap_or_else(|_| {
-        eprintln!("SERVICE_ACCOUNT_PATH is not set");
+    std::env::var("FIREBASE_SERVICE_ACCOUNT_JSON_PATH").unwrap_or_else(|_| {
+        eprintln!("FIREBASE_SERVICE_ACCOUNT_JSON_PATH environment variable not set");
         std::process::exit(1);
     })
 }
 
 async fn send_message(Json(payload): Json<SendMessage>) -> String {
     let service_account_path = get_service_account_path();
-    let client = match FcmClient::new(service_account_path).await {
+    let client = match FcmClient::new(&service_account_path).await {
         Ok(client) => client,
         Err(error) => return format!("Error creating FCM client: {}", error),
     };

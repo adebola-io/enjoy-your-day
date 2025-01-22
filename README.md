@@ -29,27 +29,54 @@ The app is a progressive web application. Majority of the functionality lies in 
 
 - [Bun](https://bun.sh/)
 - [Vite](https://vitejs.dev/)
+- [Rust](https://www.rust-lang.org/)
+- [Axum](https://github.com/tokio-rs/axum)
 - [TypeScript](https://www.typescriptlang.org/)
 - [CSS Modules](https://github.com/css-modules/css-modules)
 - [unfinished](https://github.com/adebola-io/unfinished), and
 - [cells](https://github.com/adebola-io/cells).
 - [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging)
 
+### 🖥️ System Dependencies
+
+Ensure you have the following dependencies installed on your system:
+
+- [Node.js](https://nodejs.org/) (version 14 or higher)
+- [Bun](https://bun.sh/)
+- [Rust](https://www.rust-lang.org/tools/install)
+- [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+- `pkg-config` and `libssl-dev` (required for building some Rust dependencies)
+
 ### 🎨 Design
 
 The draft UI design is available on Figma [here](https://www.figma.com/design/ANBzTQord4FWzzxzsMzz61/Enjoy-Your-Day?node-id=16-52&t=NpdQhq0snsail8Y7-1).
 
-### 📥 Installation
+### 📥 Getting Started
 
 To get started, you need to clone the repository and install the dependencies.
 
 ```sh
 git clone https://github.com/adebola-io/enjoy-your-day.git
-
-cd enjoy-your-day/client
-
-bun install
 ```
+
+## 🌐 Environment Variables
+
+The following environment variables are required for the client:
+
+- `VITE_FIREBASE_MESSAGING_VAPID_KEY`: The VAPID key for Firebase Cloud Messaging.
+- `VITE_FIREBASE_CONFIG`: The Firebase configuration object as a JSON string.
+- `VITE_API_URL`: The URL of the API server.
+
+The following are required for the server:
+
+- `FIREBASE_SERVICE_ACCOUNT_JSON_PATH`: The path to your [Firebase service account JSON file](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk).
+- `PORT`: The port to run the server on.
+
+Ensure these variables are set in your environment before running the project.
+
+### 🚀 Running the Project
+
+#### Client
 
 To run the client, run the following command in the client folder:
 
@@ -57,13 +84,19 @@ To run the client, run the following command in the client folder:
 bun run dev
 ```
 
-## Environment Variables
+#### Server
 
-The following environment variables are required for the project:
+To run the server, run the following command in the server folder:
 
-- `VITE_FIREBASE_MESSAGING_VAPID_KEY`: The VAPID key for Firebase Cloud Messaging.
+```sh
+cargo build
+```
 
-Ensure these variables are set in your environment before running the project.
+To run the server, run the following command in the server folder:
+
+```sh
+cargo run
+```
 
 ## 🤝 Contributing
 

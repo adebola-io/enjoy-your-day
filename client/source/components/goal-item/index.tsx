@@ -71,6 +71,11 @@ export function GoalItem(props: GoalItemProps) {
     const options = { root: container, threshold: 0.55 };
     const intersectObserver = new IntersectionObserver(callback, options);
     defer(() => intersectObserver.observe(wrapper));
+
+    if (listItem) {
+      container.scrollIntoView({ behavior: 'instant', inline: 'start' });
+    }
+
     return () => intersectObserver.disconnect();
   });
 

@@ -7,7 +7,7 @@ import { PhoneMockup } from '#/components/phone-mockup';
 import {
   addRouteQuery,
   removeRouteQuery,
-  useRouteQueryPresence,
+  useRouteQuery,
 } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { notificationsEnabled } from '#/data/state';
@@ -25,7 +25,7 @@ import classes from './notification-prompt-drawer.module.css';
 
 export const notificationDrawerQuery = 'notifications-prompt-drawer';
 export default function NotificationPromptDrawer() {
-  const drawerIsOpen = useRouteQueryPresence(notificationDrawerQuery);
+  const drawerIsOpen = useRouteQuery(notificationDrawerQuery);
   const today = Temporal.Now.zonedDateTimeISO().withTimeZone(DEFAULT_TIMEZONE);
   const currentDate = today.toLocaleString(DEFAULT_LOCALE, {
     month: 'long',

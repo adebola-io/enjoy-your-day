@@ -5,7 +5,7 @@ import NotificationPromptDrawer, {
 import { SettingsItem } from '#/components/settings-item';
 import { getLogoDataUrl } from '#/components/logo';
 import BellIcon from '#/components/icons/bell';
-import { addRouteQuery } from '#/library/utils';
+import { addRouteQuery, useRouteQuery } from '#/library/utils';
 import { notificationsEnabled } from '#/data/state';
 import WifiIcon from '#/components/icons/wifi';
 import { loadIconDataUrl } from '#/components/icon';
@@ -17,17 +17,11 @@ import {
 import { CSS_VARS } from '#/styles/variables';
 import { Cell } from '@adbl/cells';
 import { If, useObserver } from '@adbl/unfinished';
-import { useRouter } from '@adbl/unfinished/router';
 import classes from './notifications.module.css';
 
 export default function Notifications() {
-  const router = useRouter();
-  const route = router.getCurrentRoute();
   const containerRef = Cell.source<HTMLElement | null>(null);
-
-  const notificationsPageIsOpen = Cell.derived(() => {
-    return route.value.query.get('level-one') === 'notifications';
-  });
+  const notificationsPageIsOpen = useRouteQuery('level-one', 'notifications');
   let loaded = false;
   const contentLoaded = Cell.derived(() => {
     if (notificationsPageIsOpen.value) loaded = true;

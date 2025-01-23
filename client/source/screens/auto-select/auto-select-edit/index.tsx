@@ -8,7 +8,7 @@ import { DoubleCheckIcon } from '#/components/icons/double-check';
 import {
   setAutoSelectStage,
   setMetaTheme,
-  useRouteQueryPresence,
+  useRouteQuery,
   vibrate,
 } from '#/library/utils';
 import type { GoalProps } from '#/data/entities';
@@ -32,7 +32,7 @@ export default function AutoSelectionEdit(props: GoalCardsViewProps) {
   const { goals } = props;
   const observer = useObserver();
   const router = useRouter();
-  const searchIsOpen = useRouteQueryPresence('search');
+  const searchIsOpen = useRouteQuery('search');
   const containerRef = Cell.source<HTMLDivElement | null>(null);
   const placeholder = Cell.source('');
   const activeItemIndex = Cell.source(0);

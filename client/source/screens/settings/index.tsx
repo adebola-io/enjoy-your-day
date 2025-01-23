@@ -3,17 +3,14 @@ import UserIcon from '#/components/icons/user';
 import BinIcon from '#/components/icons/bin';
 import InfoIcon from '#/components/icons/info';
 import { SettingsItem } from '#/components/settings-item';
-import { setMetaTheme } from '#/library/utils';
+import { setMetaTheme, useRouteQuery } from '#/library/utils';
 import ProfileDrawer from './profile-drawer';
 import Notifications from './notifications';
 import { useObserver } from '@adbl/unfinished';
-import { useRouter } from '@adbl/unfinished/router';
 import { Cell } from '@adbl/cells';
 import classes from './settings.module.css';
 
 export default function Settings() {
-  const router = useRouter();
-  const route = router.getCurrentRoute();
   const observer = useObserver();
   const containerRef = Cell.source<HTMLElement | null>(null);
 
@@ -21,9 +18,7 @@ export default function Settings() {
     setMetaTheme('#ffffff');
   });
 
-  const notificationsPageIsOpen = Cell.derived(() => {
-    return route.value.query.get('level-one') === 'notifications';
-  });
+  const notificationsPageIsOpen = useRouteQuery('level-one', 'notifications');
 
   return (
     <div

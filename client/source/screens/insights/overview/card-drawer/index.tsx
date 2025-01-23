@@ -4,9 +4,9 @@ import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { Icon, loadIconDataUrl } from '#/components/icon';
 import { Button } from '#/components/button';
-import classes from './card-drawer.module.css';
 import { If } from '@adbl/unfinished';
-import { toKebabCase, useRouteQueryPresence } from '#/library/utils';
+import { defer, toKebabCase, useRouteQuery } from '#/library/utils';
+import classes from './card-drawer.module.css';
 
 export interface CardDrawerProps {
   cards: InsightCardDetails[];
@@ -16,7 +16,7 @@ export function CardDrawer(props: CardDrawerProps) {
   const { cards } = props;
   const router = useRouter();
   const route = router.getCurrentRoute();
-  const isOpen = useRouteQueryPresence('card');
+  const isOpen = useRouteQuery('card');
   const backgroundImage = Cell.source<string | undefined>(undefined);
   const card = Cell.source<InsightCardDetails | undefined>(undefined);
 
@@ -28,10 +28,12 @@ export function CardDrawer(props: CardDrawerProps) {
   // automatically unset when the drawer closes, leading to
   // glitches in the drawer content as it animates out.
   isOpen.runAndListen((drawerIsOpen) => {
-    if (!drawerIsOpen) return;
-    card.value = cards.find(
-      (c) => toKebabCase(c.name) === route.value.query.get('card')
-    );
+    defer(() => {
+      if (!drawerIsOpen) return;
+      card.value = cards.find(
+        (c) => toKebabCase(c.name) === route.value.query.get('card')
+      );
+    });
   });
 
   const openCardName = Cell.derived(

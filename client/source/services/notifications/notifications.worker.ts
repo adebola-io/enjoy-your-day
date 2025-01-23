@@ -42,6 +42,10 @@ async function handlePushNotification(event: PushEvent<NotificationData>) {
   await worker.registration.showNotification(title, options);
 }
 
+async function handleNotificationClick(event: Event) {
+  console.log('[notifications] Notification clicked', event);
+}
+
 function setBadgeUrl(event: MessageEvent<BadgeSetRequest>) {
   if (event.data.type !== 'setBadgeUrl') return;
   badge = event.data.badgeUrl;
@@ -50,3 +54,4 @@ function setBadgeUrl(event: MessageEvent<BadgeSetRequest>) {
 console.log('[notifications] Initializing');
 addEventListener('push', handlePushNotification);
 addEventListener('message', setBadgeUrl);
+addEventListener('notificationclick', handleNotificationClick);

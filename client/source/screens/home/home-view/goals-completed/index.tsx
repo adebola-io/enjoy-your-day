@@ -3,13 +3,13 @@ import { ConfettiIcon } from '#/components/icons/confetti';
 import { useRouter } from '@adbl/unfinished/router';
 import { CSS_VARS } from '#/styles/variables';
 import { InlinedIcon } from '#/components/inlined-icon';
-import { useRouteQueryPresence } from '#/library/utils';
+import { useRouteQuery } from '#/library/utils';
 import confetti from 'canvas-confetti';
 import classes from './goals-completed.module.css';
 
 export function GoalsCompletedDrawer() {
   const router = useRouter();
-  const isOpen = useRouteQueryPresence('goals-completed');
+  const isOpen = useRouteQuery('goals-completed');
   const goBackHome = () => router.navigate('/home');
 
   isOpen.listen((isOpen) => {

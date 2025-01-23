@@ -1,7 +1,7 @@
 import { NavigationBar } from '#/components/navigation-bar';
 import AutoSelect from './auto-select';
 import { appLoadingState, dailyGoals } from '#/data/state';
-import { setMetaTheme, useRouteQueryPresence } from '#/library/utils';
+import { setMetaTheme, useRouteQuery } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { If } from '@adbl/unfinished';
@@ -9,7 +9,7 @@ import { CSS_VARS } from '#/styles/variables';
 
 export default function App() {
   const router = useRouter();
-  const autoSelectIsOpen = useRouteQueryPresence('auto-select');
+  const autoSelectIsOpen = useRouteQuery('auto-select');
   const outletRef = Cell.source<HTMLElement | null>(null);
 
   const appIsLoaded = Cell.derived(() => {

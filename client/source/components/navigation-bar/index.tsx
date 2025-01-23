@@ -1,11 +1,11 @@
 import { navigationBarLinks, type NavigationLink } from '#/data';
-import { useRouteQueryPresence, vibrate } from '#/library/utils';
+import { useRouteQuery, vibrate } from '#/library/utils';
 import { For } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './navigation-bar.module.css';
 
 export function NavigationBar() {
-  const autoSelectIsOpen = useRouteQueryPresence('auto-select');
+  const autoSelectIsOpen = useRouteQuery('auto-select');
   return (
     <nav
       id="mainNavbar"

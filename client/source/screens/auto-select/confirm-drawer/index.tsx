@@ -8,7 +8,7 @@ import {
   getResourceState,
   NoOp,
   removeRouteQuery,
-  useRouteQueryPresence,
+  useRouteQuery,
 } from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
@@ -34,7 +34,7 @@ export interface ConfirmDrawerProps {
 
 export function ConfirmDrawer(props: ConfirmDrawerProps) {
   const router = useRouter();
-  const drawerIsOpen = useRouteQueryPresence('confirm');
+  const drawerIsOpen = useRouteQuery('confirm');
   const { goals } = props;
   const resource = Cell.async(saveGoalsForToday);
   const state = getResourceState(resource);

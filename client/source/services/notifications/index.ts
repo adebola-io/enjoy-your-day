@@ -7,7 +7,12 @@ import { notificationsEnabled } from '#/data/state';
 import { Cell } from '@adbl/cells';
 import workerUrl from './notifications.worker?worker&url';
 import { initializeApp } from 'firebase/app';
-import { getMessaging, getToken } from 'firebase/messaging';
+import {
+  deleteToken,
+  getMessaging,
+  getToken,
+  type Messaging,
+} from 'firebase/messaging';
 
 export type NotificationAction = {
   actions: string;
@@ -27,6 +32,7 @@ export interface ExtraNotificationOptions extends NotificationOptions {
 export const fcmToken = Cell.source<string | null>(null);
 let serviceWorkerRegistration: ServiceWorkerRegistration | null = null;
 let firebaseInitialized = false;
+let messaging: Messaging | null = null;
 
 export async function triggerNotification(options: ExtraNotificationOptions) {
   if (!serviceWorkerRegistration) {
@@ -51,7 +57,7 @@ export async function subscribeToPushNotifications() {
 
   try {
     const firebaseApp = initializeApp(FIREBASE_CONFIG);
-    const messaging = getMessaging(firebaseApp);
+    messaging = getMessaging(firebaseApp);
     const token = await getToken(messaging, {
       vapidKey: FIREBASE_MESSAGING_VAPID_KEY,
       serviceWorkerRegistration,
@@ -67,6 +73,13 @@ export async function subscribeToPushNotifications() {
   }
   firebaseInitialized = true;
 }
+
+export const disableNotifications = async () => {
+  if (!messaging) return;
+  firebaseInitialized = false;
+  await deleteToken(messaging);
+  fcmToken.value = null;
+};
 
 export const registerNotificationServiceWorker = async () => {
   if (!('serviceWorker' in navigator)) {
@@ -85,4 +98,5 @@ export const registerNotificationServiceWorker = async () => {
     badgeUrl: getLogoDataUrl(),
   });
   if (notificationsEnabled.value) await subscribeToPushNotifications();
+  else await disableNotifications();
 };

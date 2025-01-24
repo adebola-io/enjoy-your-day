@@ -13,6 +13,7 @@ import {
   triggerNotification,
   subscribeToPushNotifications,
   fcmToken,
+  disableNotifications,
 } from '#/services/notifications';
 import { CSS_VARS } from '#/styles/variables';
 import { Cell } from '@adbl/cells';
@@ -75,6 +76,7 @@ function NotificationsPageContent() {
     if (!inputRef.value) return;
     inputRef.value.checked = notificationsEnabled;
     if (notificationsEnabled) subscribeToPushNotifications();
+    else disableNotifications();
   };
 
   observer.onConnected(inputRef, () => {

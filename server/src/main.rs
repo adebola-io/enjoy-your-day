@@ -7,12 +7,14 @@ mod utils;
 
 use app_state::AppState;
 use axum::{
+    http::Method,
     routing::{delete, get, post},
     Extension, Router, Server,
 };
 use dotenv::dotenv;
 use env::{get_admin_password, get_service_account_path};
 use std::{net::SocketAddr, sync::Arc};
+use tower_http::cors::{Any, CorsLayer};
 
 #[tokio::main]
 async fn main() {
@@ -37,6 +39,12 @@ async fn main() {
                     .await
                     .start_checkpoint_loop(),
             )))
+            .layer(
+                CorsLayer::new()
+                    .allow_origin(Any)
+                    .allow_methods([Method::GET, Method::POST, Method::OPTIONS, Method::DELETE])
+                    .allow_headers(Any),
+            )
             .into_make_service(),
     )
     .await

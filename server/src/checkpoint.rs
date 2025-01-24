@@ -7,18 +7,21 @@ use fcm_rs::{
     client::FcmClient,
     models::{Message, Notification},
 };
+use futures::future::join_all;
 use std::time::Duration;
 use tokio::time::interval;
 
 pub fn checkpoint_loop(state: AppState) -> AppState {
     let user_snapshots = state.user_snapshots.clone();
     let fcm_client = state.fcm_client.clone();
+    let mut interval = interval(Duration::from_secs(60));
 
     tokio::spawn(async move {
-        let mut interval = interval(Duration::from_secs(60));
         loop {
             interval.tick().await;
             let current_time = chrono::Utc::now();
+            let mut futures = vec![];
+
             for user in user_snapshots.iter() {
                 let current_time = current_time.with_timezone(&user.timezone);
                 for ScheduledNotification {
@@ -34,10 +37,15 @@ pub fn checkpoint_loop(state: AppState) -> AppState {
                     if let Some(details) = notification_data {
                         let device_token = user.device_token.clone();
                         let details = details.clone();
-                        if let Err(error) = send_message(&fcm_client, device_token, details).await {
-                            eprintln!("Error sending message {}", error)
-                        }
+                        futures.push(send_message(&fcm_client, device_token, details));
                     }
+                }
+            }
+
+            let results = join_all(futures).await;
+            for result in results {
+                if let Err(error) = result {
+                    eprintln!("Error sending message {}", error);
                 }
             }
         }

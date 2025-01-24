@@ -371,6 +371,7 @@ dependencies = [
  "dashmap",
  "dotenv",
  "fcm-rs",
+ "futures",
  "serde",
  "serde_json",
  "tokio",

@@ -15,8 +15,9 @@ import {
 } from 'firebase/messaging';
 
 export type NotificationAction = {
-  actions: string;
+  action: string;
   title: string;
+  type: string;
   icon: string;
 };
 
@@ -27,6 +28,7 @@ export interface ExtraNotificationOptions extends NotificationOptions {
   silent?: boolean;
   requireInteraction?: boolean;
   renotify?: boolean;
+  image?: string;
 }
 
 export const fcmToken = Cell.source<string | null>(null);

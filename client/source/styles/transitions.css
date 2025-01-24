@@ -71,13 +71,13 @@
     transform: translateY(0);
   }
   30% {
-    transform: translateY(-20%);
+    transform: translateY(-25%);
   }
   60% {
     transform: translateY(0);
   }
   70% {
-    transform: translateY(-5%);
+    transform: translateY(-10%);
   }
   80% {
     transform: translateY(0);

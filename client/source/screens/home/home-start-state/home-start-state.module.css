@@ -13,8 +13,8 @@
 .calendarIcon:is(.calendarIcon) {
   height: min(90px, 15dvh);
   animation: var(--stagger-item-1) backwards,
-    var(--bounce) calc(var(--default-duration) * 5)
-      calc(var(--default-duration) * 2.5) linear;
+    var(--bounce) calc(var(--default-duration) * 4.5)
+      calc(var(--default-duration) * 2);
 }
 
 .noGoalsHeading {

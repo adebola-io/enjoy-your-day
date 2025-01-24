@@ -70,6 +70,7 @@ The following environment variables are required for the client:
 The following are required for the server:
 
 - `FIREBASE_SERVICE_ACCOUNT_JSON_PATH`: The path to your [Firebase service account JSON file](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk).
+- `ADMIN_PASSWORD`: A password for the admin user, for testing notifications.
 - `PORT`: The port to run the server on.
 
 Ensure these variables are set in your environment before running the project.

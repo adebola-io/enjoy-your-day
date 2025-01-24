@@ -1,72 +1,50 @@
+mod app_state;
+mod checkpoint;
+mod dtos;
+mod env;
+mod routes;
+mod utils;
+
+use app_state::AppState;
 use axum::{
-    extract::Json,
-    routing::{get, post},
-    Router,
+    routing::{delete, get, post},
+    Extension, Router, Server,
 };
 use dotenv::dotenv;
-use fcm_rs::{
-    client::FcmClient,
-    models::{Message, Notification},
-};
-use serde::{Deserialize, Serialize};
-use std::net::SocketAddr;
-
-#[derive(Serialize, Deserialize)]
-struct SendMessage {
-    device_token: String,
-    message_title: String,
-    message_body: String,
-}
-
-async fn index() -> String {
-    String::from("Hello, World!")
-}
-
-fn get_service_account_path() -> String {
-    std::env::var("FIREBASE_SERVICE_ACCOUNT_JSON_PATH").unwrap_or_else(|_| {
-        eprintln!("FIREBASE_SERVICE_ACCOUNT_JSON_PATH environment variable not set");
-        std::process::exit(1);
-    })
-}
-
-async fn send_message(Json(payload): Json<SendMessage>) -> String {
-    let service_account_path = get_service_account_path();
-    let client = match FcmClient::new(&service_account_path).await {
-        Ok(client) => client,
-        Err(error) => return format!("Error creating FCM client: {}", error),
-    };
-
-    let message = Message {
-        token: Some(payload.device_token),
-        notification: Some(Notification {
-            title: Some(payload.message_title),
-            body: Some(payload.message_body),
-        }),
-        data: None,
-    };
-
-    match client.send(message).await {
-        Ok(response) => format!("Successfully sent message: {:?}", response),
-        Err(e) => format!("Error sending message: {}", e),
-    }
-}
+use env::{get_admin_password, get_service_account_path};
+use std::{net::SocketAddr, sync::Arc};
 
 #[tokio::main]
 async fn main() {
-    dotenv().ok();
-
-    let app = Router::new()
-        .route("/", get(index))
-        .route("/message", post(send_message));
-
-    let port: SocketAddr = std::env::var("PORT")
-        .map(|port| format!("0.0.0.0:{}", port))
-        .unwrap_or_else(|_| "0.0.0.0:7860".to_string())
-        .parse()
-        .unwrap();
-
-    axum::Server::bind(&port)
-        .serve(app.into_make_service())
-        .await
-        .unwrap();
+    match dotenv() {
+        Ok(_) => {
+            Server::bind(
+                &std::env::var("PORT")
+                    .map(|port| format!("0.0.0.0:{}", port))
+                    .unwrap_or_else(|_| "0.0.0.0:7860".to_string())
+                    .parse::<SocketAddr>()
+                    .expect("Could not parse SocketAddr."),
+            )
+            .serve(
+                Router::new()
+                    .route("/", get(routes::get_index))
+                    .route("/notify", post(routes::post_send_notification_to_user))
+                    .route("/echo", post(routes::post_echo))
+                    .route("/register", post(routes::post_register_user))
+                    .route("/delete", delete(routes::delete_user))
+                    .route("/users", get(routes::get_users))
+                    .layer(Extension(Arc::new(
+                        AppState::new(get_service_account_path(), get_admin_password())
+                            .await
+                            .start_checkpoint_loop(),
+                    )))
+                    .into_make_service(),
+            )
+            .await
+            .expect("Server could not be started.");
+        }
+        Err(e) => {
+            panic!("Could not read env variables from environment: {:?}", e)
+        }
+    }
 }

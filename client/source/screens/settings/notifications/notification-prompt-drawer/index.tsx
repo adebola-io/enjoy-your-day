@@ -21,6 +21,14 @@ import { Temporal } from 'temporal-polyfill';
 import NotificationDeniedDrawer, {
   notificationDeniedDrawerQuery,
 } from './notification-denied-drawer';
+import {
+  isMaybeMobileOrSafari,
+  isRunningAsStandaloneApp,
+} from '#/library/app-environment';
+import {
+  InstallationInstructionsDrawer,
+  installInstructionsDrawerQuery,
+} from '#/screens/onboarding/install-prompt-drawer/nested-drawer';
 import classes from './notification-prompt-drawer.module.css';
 
 export const notificationDrawerQuery = 'notifications-prompt-drawer';
@@ -50,6 +58,11 @@ export default function NotificationPromptDrawer() {
   };
 
   const requestNotificationPermission = async () => {
+    if (!isRunningAsStandaloneApp() && (await isMaybeMobileOrSafari())) {
+      await addRouteQuery(installInstructionsDrawerQuery);
+      return;
+    }
+
     const result = await Notification.requestPermission();
 
     if (result === 'denied') {
@@ -118,6 +131,11 @@ export default function NotificationPromptDrawer() {
         Enable
       </Button>
       <NotificationDeniedDrawer />
+      <InstallationInstructionsDrawer shrinkTarget="#notificationsPrompt">
+        <p class={classes.addendum}>
+          Enjoy Your Day must be installed to receive notifications.
+        </p>
+      </InstallationInstructionsDrawer>
     </BottomDrawer>
   );
 }

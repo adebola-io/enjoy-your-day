@@ -184,3 +184,8 @@
   justify-self: end;
   grid-area: 4 / 1;
 }
+
+.addendum {
+  font: var(--base-regular);
+  font-style: italic;
+}

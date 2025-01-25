@@ -2,26 +2,31 @@ import { BottomDrawer } from '#/components/bottom-drawer';
 import type { IconProps } from '#/components/icons/props';
 import { Button } from '#/components/button';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
-import type { InstallInstructions } from '#/data/install-instructions';
+import { getInstallInstructions } from '#/data/install-instructions';
 import { removeRouteQuery, useRouteQuery } from '#/library/utils';
-import { For } from '@adbl/unfinished';
+import { For, If } from '@adbl/unfinished';
 import classes from './nested-drawer.module.css';
 
-interface NestedDrawerProps {
-  instructions: InstallInstructions;
+interface InstallInstructionsDrawerProps {
+  shrinkTarget?: string;
+  children?: JSX.Children;
 }
 
-export const nestedDrawerQuery = 'nested-install-prompt-drawer';
-export function NestedDrawer(props: NestedDrawerProps) {
-  const { instructions } = props;
-  const isOpen = useRouteQuery(nestedDrawerQuery);
+export const installInstructionsDrawerQuery = 'nested-install-prompt-drawer';
+export async function InstallationInstructionsDrawer(
+  props: InstallInstructionsDrawerProps
+) {
+  const instructions = await getInstallInstructions();
+  if (instructions === undefined) return <></>;
+
+  const isOpen = useRouteQuery(installInstructionsDrawerQuery);
 
   const toggleNestedDrawerAttribute = (value: boolean) => {
     document.body.toggleAttribute('data-nested-drawer-is-open', value);
   };
 
   const closeDrawer = async () => {
-    await removeRouteQuery(nestedDrawerQuery, isOpen);
+    await removeRouteQuery(installInstructionsDrawerQuery, isOpen);
   };
 
   isOpen.listen(toggleNestedDrawerAttribute);
@@ -33,12 +38,15 @@ export function NestedDrawer(props: NestedDrawerProps) {
   return (
     <BottomDrawer
       class={classes.nestedDrawer}
-      shrinkTarget="#installPromptDrawer"
+      shrinkTarget={props.shrinkTarget}
       open={isOpen}
       onClose={closeDrawer}
       onBeforeClose={toggleNestedDrawerAttribute}
     >
       <h3 class={classes.heading}>{heading}</h3>
+      {If(props.children, () => (
+        <>{props.children}</>
+      ))}
       <p class={classes.paragraph}>{paragraph}</p>
       <ol>
         {For(instructions.instructions, (instruction) => (

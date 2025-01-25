@@ -96,7 +96,7 @@ export const installInstructions = {
   },
 } satisfies Record<string, InstallInstructions>;
 
-type UserAgentData = {
+export type UserAgentData = {
   getHighEntropyValues: (options: string[]) => Promise<{
     architecture: string;
     brands: Array<{

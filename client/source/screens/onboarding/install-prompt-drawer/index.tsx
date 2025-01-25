@@ -4,7 +4,10 @@ import { Button } from '#/components/button';
 import { Cell } from '@adbl/cells';
 import { For, If, useObserver } from '@adbl/unfinished';
 import { PhoneMockup } from '#/components/phone-mockup';
-import { NestedDrawer, nestedDrawerQuery } from './nested-drawer';
+import {
+  InstallationInstructionsDrawer,
+  installInstructionsDrawerQuery,
+} from './nested-drawer';
 import { addRouteQuery, installDetails } from '#/library/utils';
 import {
   getInstallInstructions,
@@ -20,7 +23,6 @@ export default function InstallPromptDrawer() {
   const drawerIsOpen = Cell.source(false);
   const apps = Array(10);
   const fillerApps = For(apps, () => <li class={classes.app} />);
-  const instructions = Cell.source<InstallInstructions | undefined>(undefined);
 
   const matchListener = (event: MediaQueryListEvent) => {
     drawerIsOpen.value = !event.matches;
@@ -30,7 +32,7 @@ export default function InstallPromptDrawer() {
   };
 
   const openNestedDrawer = async () => {
-    await addRouteQuery(nestedDrawerQuery, 'true');
+    await addRouteQuery(installInstructionsDrawerQuery, 'true');
   };
 
   const promptInstall = async () => {
@@ -62,8 +64,7 @@ export default function InstallPromptDrawer() {
         console.error(e);
       }
     }
-    instructions.value = await getInstallInstructions();
-    if (instructions.value === undefined) return () => {};
+
     const isStandalone = matchMedia('(display-mode: standalone)');
     isStandalone.addEventListener('change', matchListener);
     setTimeout(() => {
@@ -113,9 +114,7 @@ export default function InstallPromptDrawer() {
       >
         Install
       </Button>
-      {If(instructions, (instructions) => (
-        <NestedDrawer instructions={instructions} />
-      ))}
+      <InstallationInstructionsDrawer shrinkTarget="#installPromptDrawer" />
     </BottomDrawer>
   );
 }

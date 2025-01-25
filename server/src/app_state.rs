@@ -26,6 +26,10 @@ impl AppState {
     }
 
     pub fn add_user(&self, request: requests::RegisterUserRequest) {
+        println!(
+            "Adding UUID: {} with token {}",
+            &request.uuid, &request.data.device_token
+        );
         self.user_snapshots.insert(request.uuid, request.data);
     }
 

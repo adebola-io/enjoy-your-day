@@ -7,7 +7,7 @@ import { saveGoalState, updateUsername } from '../services/database';
 import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
-import { NoOp } from '#/library/utils';
+import { getRandomMorningTime, NoOp } from '#/library/utils';
 
 export const DATE_UPDATE_INTERVAL = 1000 * 30; // updates every 30 seconds.
 export const LOCALSTORAGE_KEYS = {
@@ -19,6 +19,7 @@ export const LOCALSTORAGE_KEYS = {
   username: 'username',
   goalsForTheDayDateStamp: 'goals-for-the-day-date-stamp',
   notificationsEnabled: 'notifications-enabled',
+  morningTime: 'morning-time',
 };
 
 const notificationsPermissionGranted = Notification.permission === 'granted';
@@ -76,6 +77,10 @@ export const dailyGoalsDateStamp = useLocalStorage<string | null>(
 export const lastLoadedChunk = useLocalStorage<number>(
   LOCALSTORAGE_KEYS.lastLoadedChunk,
   0
+);
+export const morningTime = useLocalStorage<{ hours: number; minutes: number }>(
+  LOCALSTORAGE_KEYS.morningTime,
+  getRandomMorningTime()
 );
 
 export const goalsCompleted = Cell.derived(() => {

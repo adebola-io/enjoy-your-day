@@ -3,23 +3,22 @@ import NotificationPromptDrawer, {
   notificationDrawerQuery,
 } from './notification-prompt-drawer';
 import { SettingsItem } from '#/components/settings-item';
+import TvIcon from '#/components/icons/tv';
+import WifiIcon from '#/components/icons/wifi';
 import BellIcon from '#/components/icons/bell';
 import { addRouteQuery, useRouteQuery } from '#/library/utils';
 import { notificationsEnabled } from '#/data/state';
-import WifiIcon from '#/components/icons/wifi';
 import { loadIconDataUrl } from '#/components/icon';
 import {
   triggerNotification,
   subscribeToPushNotifications,
-  fcmToken,
   disableNotifications,
+  refreshNotificationsServiceWorker,
 } from '#/services/notifications';
 import { CSS_VARS } from '#/styles/variables';
 import { Cell } from '@adbl/cells';
 import { If, useObserver } from '@adbl/unfinished';
 import classes from './notifications.module.css';
-import { BADGE_URL } from '#/data/constants';
-import { getUserUuid } from '#/services/database';
 
 export default function Notifications() {
   const containerRef = Cell.source<HTMLElement | null>(null);
@@ -60,16 +59,12 @@ function NotificationsPageContent() {
   };
 
   const sendTestNotification = async () => {
+    const color = CSS_VARS['--space-cadet-200'];
     await triggerNotification({
       title: 'Testing...',
       body: 'This is a test notification from Enjoy Your Day.',
-      icon: await loadIconDataUrl('notification', {
-        width: '96px',
-        height: '96px',
-        color: CSS_VARS['--space-cadet-200'],
-      }),
+      icon: await loadIconDataUrl('bell', { color }),
       vibrate: [100, 50, 100],
-      badge: BADGE_URL,
     });
   };
 
@@ -85,19 +80,10 @@ function NotificationsPageContent() {
     return () => notificationsEnabled.ignore(notificationChangeListener);
   });
 
-  const uuid = Cell.async(async (_: never) => {
-    const uuid = await getUserUuid();
-    console.log(uuid);
-    return uuid;
-  });
-
-  uuid.run();
-
   return (
     <>
       <BackButton class={classes.backButton} />
       <h2 class={classes.heading}>Notifications</h2>
-      {uuid.data}
       <SettingsItem
         type="toggle"
         inputRef={inputRef}
@@ -115,7 +101,14 @@ function NotificationsPageContent() {
         onClick={sendTestNotification}
         disabled={itemsDisabled}
       />
-      <span style={{ userSelect: 'text' }}>{fcmToken}</span>
+      <SettingsItem
+        type="button"
+        title="Refresh Service"
+        description="Reregisters the worker responsible for handling notifications."
+        Icon={TvIcon}
+        onClick={refreshNotificationsServiceWorker}
+        disabled={itemsDisabled}
+      />
       <NotificationPromptDrawer />
     </>
   );

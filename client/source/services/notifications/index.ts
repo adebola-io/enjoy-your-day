@@ -1,9 +1,10 @@
 import {
   API_URL,
+  BADGE_URL,
   FIREBASE_CONFIG,
   FIREBASE_MESSAGING_VAPID_KEY,
 } from '#/data/constants';
-import { notificationsEnabled } from '#/data/state';
+import { morningTime, notificationsEnabled } from '#/data/state';
 import workerUrl from './notifications.worker?worker&url';
 import { initializeApp } from 'firebase/app';
 import {
@@ -21,7 +22,7 @@ let serviceWorkerRegistration: ServiceWorkerRegistration | null = null;
 let firebaseInitialized = false;
 let messaging: Messaging | null = null;
 
-const toNotificationsWorker = Bridge.sender('notifications');
+let toNotificationsWorker = Bridge.sender('notifications');
 export const fcmToken = Cell.source<string | null>(null);
 export const scheduledNotifications = Cell.source<ScheduledNotification[]>([]);
 
@@ -37,9 +38,13 @@ export async function triggerNotification(options: FullNotificationOptions) {
     console.warn('Service worker is not registered.');
     return;
   }
+  if (notificationsEnabled.value === false) return;
   const { title, ...rest } = options;
   try {
-    await serviceWorkerRegistration.showNotification(title, rest);
+    await serviceWorkerRegistration.showNotification(title, {
+      badge: BADGE_URL,
+      ...rest,
+    });
   } catch (error) {
     console.error('Unable to show notification:', error);
   }
@@ -64,7 +69,7 @@ export async function subscribeToPushNotifications() {
     toNotificationsWorker({
       type: 'startScheduleLoop',
       device_token: token,
-    });
+    }).then(setDefaultNotifications);
 
     if (!token) {
       console.warn('No FCM token available.');
@@ -98,4 +103,36 @@ export const registerNotificationServiceWorker = async () => {
   serviceWorkerRegistration = registration;
   if (notificationsEnabled.value) await subscribeToPushNotifications();
   else await disableNotifications();
+};
+
+export const refreshNotificationsServiceWorker = async () => {
+  if (!serviceWorkerRegistration) {
+    console.warn('Service worker is not registered.');
+    return;
+  }
+
+  await serviceWorkerRegistration.unregister();
+  await disableNotifications();
+  await registerNotificationServiceWorker();
+  toNotificationsWorker = Bridge.sender('notifications');
+};
+
+export const setDefaultNotifications = async () => {
+  const defaultNotifications: ScheduledNotification[] = [
+    // Default Morning Notification.
+    {
+      hours: morningTime.value.hours,
+      minutes: morningTime.value.minutes,
+      notification_data: {
+        title: 'Good Morning.',
+        body: 'What will you do today? ✨',
+        url: window.location.href,
+      },
+    },
+  ];
+
+  await toNotificationsWorker({
+    type: 'updateScheduledNotifications',
+    scheduled_notifications: defaultNotifications,
+  });
 };

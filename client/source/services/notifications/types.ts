@@ -85,17 +85,22 @@ export type NotificationAction = {
 export interface ScheduledNotification {
   hours: number;
   minutes: number;
-  notification_data: FullNotificationOptions;
+  notification_data: FullNotificationOptions & CustomNotificationOptions;
 }
 
 export interface NotificationData {
   notification?: NotificationPayload;
-  data?: Partial<FullNotificationOptions>;
+  data?: Partial<FullNotificationOptions & CustomNotificationOptions>;
+}
+
+export interface CustomNotificationOptions {
+  url?: string;
 }
 
 export interface NotificationEvent extends Event {
   notification?: Notification;
   action?: string;
+  waitUntil?: (promise: Promise<unknown>) => void;
 }
 
 export interface PushEvent<T> extends Event {

@@ -221,3 +221,14 @@ export function useRouteQuery(query: string, value?: string) {
     return routeSearchParams.has(query);
   });
 }
+
+export const getRandomMorningTime = () => {
+  const start = new Date();
+  start.setHours(5, 30, 0, 0);
+  const end = new Date();
+  end.setHours(8, 30, 0, 0);
+  const randomTime = new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+  return { hours: randomTime.getHours(), minutes: randomTime.getMinutes() };
+};

@@ -8,10 +8,8 @@ import type { Notifications, ScheduledNotification } from './types';
 
 type StartScheduleLoopHandler =
   Notifications.Handler<Notifications.Requests.StartScheduleLoop>;
-
 type StopScheduleLoopHandler =
   Notifications.Handler<Notifications.Requests.StopScheduleLoop>;
-
 type UpdateScheduledNotificationsHandler =
   Notifications.Handler<Notifications.Requests.UpdateScheduledNotifications>;
 

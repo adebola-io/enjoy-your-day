@@ -15,6 +15,7 @@ import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { Temporal } from 'temporal-polyfill';
 import classes from './confirm-drawer.module.css';
+import { triggerNotification } from '#/services/notifications';
 
 function transformToGoalState(goal: GoalProps): GoalState {
   const dateAdded = new Date(goal.dateAdded).toISOString();
@@ -52,7 +53,11 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
   const saveGoals = async () => {
     await resource.run(goals.value);
     await handleDrawerClose();
-    await new Promise((r) => setTimeout(r, 200));
+    await new Promise((r) => setTimeout(r, 200)); // TODO: remove this
+    triggerNotification({
+      title: 'Enjoy your day!',
+      body: 'Your goals have been set. Good luck!',
+    });
     router.navigate('/home');
   };
 

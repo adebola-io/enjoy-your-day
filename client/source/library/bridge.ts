@@ -90,9 +90,11 @@ export const Bridge = {
       }
 
       if (data.message === 'RECEIVER_READY') return;
-      // @ts-ignore: The type of the message is checked in the messageHandlers map.
-      const response = await handlers[data.message.type](data);
-      channel.postMessage({ id, message: response });
+      if (data.message?.type && data.message.type in handlers) {
+        // @ts-ignore: The type of the message is checked in the messageHandlers map.
+        const response = await handlers[data.message.type]?.(data);
+        channel.postMessage({ id, message: response });
+      }
     };
     channel.postMessage({ id: crypto.randomUUID(), message: 'RECEIVER_READY' });
   },

@@ -10,6 +10,9 @@ declare global {
     registration: ServiceWorkerRegistration;
     pushManager: PushManager;
     notifications: Notification;
+    clients: {
+      openWindow: (url: string) => Promise<unknown>;
+    };
   }
 }
 
@@ -32,6 +35,7 @@ export async function handlePushNotification(
   const silent = data?.silent ?? false;
   const vibrate = data?.vibrate ?? [];
   const badge = data?.badge ?? BADGE_URL;
+  const url = data?.url;
 
   const options: Partial<FullNotificationOptions> = {
     body,
@@ -42,6 +46,7 @@ export async function handlePushNotification(
     requireInteraction,
     silent,
     vibrate,
+    data: { url },
   };
   await self.registration.showNotification(title, options);
 }

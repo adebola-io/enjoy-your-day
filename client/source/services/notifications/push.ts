@@ -28,7 +28,10 @@ export async function handlePushNotification(
   const icon = notification.icon ?? data?.icon;
   const image = notification.image ?? data?.image;
   const actions = data?.actions ?? [];
-  const badge = BADGE_URL;
+  const requireInteraction = data?.requireInteraction ?? false;
+  const silent = data?.silent ?? false;
+  const vibrate = data?.vibrate ?? [];
+  const badge = data?.badge ?? BADGE_URL;
 
   const options: Partial<FullNotificationOptions> = {
     body,
@@ -36,6 +39,9 @@ export async function handlePushNotification(
     image,
     actions,
     badge,
+    requireInteraction,
+    silent,
+    vibrate,
   };
   await self.registration.showNotification(title, options);
 }

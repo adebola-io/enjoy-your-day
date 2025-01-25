@@ -1,3 +1,4 @@
+import { BADGE_URL } from '#/data/constants';
 import type {
   FullNotificationOptions,
   NotificationData,
@@ -27,12 +28,14 @@ export async function handlePushNotification(
   const icon = notification.icon ?? data?.icon;
   const image = notification.image ?? data?.image;
   const actions = data?.actions ?? [];
+  const badge = BADGE_URL;
 
   const options: Partial<FullNotificationOptions> = {
     body,
     icon,
     image,
     actions,
+    badge,
   };
   await self.registration.showNotification(title, options);
 }

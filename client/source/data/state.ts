@@ -8,7 +8,6 @@ import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
 import { NoOp } from '#/library/utils';
-import type { ScheduledNotification } from '#/services/notifications/types';
 
 export const DATE_UPDATE_INTERVAL = 1000 * 30; // updates every 30 seconds.
 export const LOCALSTORAGE_KEYS = {

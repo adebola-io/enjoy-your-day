@@ -2,17 +2,13 @@ import { BottomDrawer } from '#/components/bottom-drawer';
 import { Logo } from '#/components/logo';
 import { Button } from '#/components/button';
 import { Cell } from '@adbl/cells';
-import { For, If, useObserver } from '@adbl/unfinished';
+import { For, useObserver } from '@adbl/unfinished';
 import { PhoneMockup } from '#/components/phone-mockup';
 import {
   InstallationInstructionsDrawer,
   installInstructionsDrawerQuery,
 } from './nested-drawer';
 import { addRouteQuery, installDetails } from '#/library/utils';
-import {
-  getInstallInstructions,
-  type InstallInstructions,
-} from '#/data/install-instructions';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './install-prompt-drawer.module.css';
 

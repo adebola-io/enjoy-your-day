@@ -63,7 +63,7 @@ export async function subscribeToPushNotifications() {
     storeDeviceToken(token);
     toNotificationsWorker({
       type: 'startScheduleLoop',
-      device_token: fcmToken.value,
+      device_token: token,
     });
 
     if (!token) {

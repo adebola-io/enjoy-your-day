@@ -1,17 +1,11 @@
 import { Temporal } from 'temporal-polyfill';
 import { cardDescriptionGenerator as cardDesc } from './card-description';
 import { dexie } from './dexie';
-import type {
-  HistoryChartItem,
-  InsightsOverview,
-  DbWorkerProtocol,
-} from './types';
+import type { HistoryChartItem, InsightsOverview, Db } from './types';
 import type { GoalState } from '../../data/entities';
 
-type InsightsOverviewHandler =
-  DbWorkerProtocol.Handler<DbWorkerProtocol.Requests.GetInsightsOverview>;
-type InsightsHistoryHandler =
-  DbWorkerProtocol.Handler<DbWorkerProtocol.Requests.GetInsightsHistory>;
+type InsightsOverviewHandler = Db.Handler<Db.Requests.GetInsightsOverview>;
+type InsightsHistoryHandler = Db.Handler<Db.Requests.GetInsightsHistory>;
 
 function isDayBefore(previous: string, next: string) {
   return Temporal.PlainDate.from(previous).equals(
@@ -28,7 +22,7 @@ export const insightsOverview: InsightsOverviewHandler = async (data) => {
   let totalGoalsCommittedTo = 0;
 
   let streakCounter = 0;
-  let longestStreak = 0;
+  const longestStreak: number = 0;
   let longestStreakStart: string | undefined = undefined;
   let longestStreakEnd: string | undefined = undefined;
 

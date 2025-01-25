@@ -1,9 +1,17 @@
 import { categories } from '../../data/categories';
-import { toDbWorker } from './bridge';
 import { LATEST_DATA_CHUNK } from '../../data/constants';
 import type { GoalState } from '../../data/entities';
 import { Temporal } from 'temporal-polyfill';
 import { lastLoadedChunk } from '../../data/state';
+import dbWorkerUrl from './db.worker?worker&url';
+import { Bridge } from '#/library/bridge';
+
+new Worker(dbWorkerUrl, { type: 'module' });
+const toDbWorker = Bridge.sender('db');
+
+export async function echo<T>(value: T): Promise<T> {
+  return await toDbWorker({ type: 'echo', value });
+}
 
 export async function createUser(name: string) {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -12,10 +20,24 @@ export async function createUser(name: string) {
     .withTimeZone(timezone)
     .toString();
 
-  return await toDbWorker({
+  const response = await toDbWorker({
     type: 'metadata.record',
-    metadata: { uuid, name, startDate },
+    metadata: { uuid, name, startDate, deviceToken: null },
   });
+  return response;
+}
+
+export async function getUserUuid() {
+  const response = await toDbWorker({ type: 'metadata.uuid' });
+  return response;
+}
+
+export async function storeDeviceToken(deviceToken: string) {
+  const response = await toDbWorker({
+    type: 'metadata.store.deviceToken',
+    deviceToken,
+  });
+  return response;
 }
 
 export async function updateUsername(username: string) {
@@ -45,7 +67,10 @@ export async function getAutoRecommendations(
   details: AutoRecommendationRequest
 ) {
   await new Promise((resolve) => setTimeout(resolve, 600));
-  const response = await toDbWorker({ type: 'goals.today', ...details });
+  const response = await toDbWorker({
+    type: 'goals.today',
+    ...details,
+  });
   return response;
 }
 
@@ -75,7 +100,11 @@ export async function getAutoCompleteSuggestions(
 }
 
 export async function saveGoalState(goalStates: GoalState[], date: string) {
-  const response = await toDbWorker({ type: 'goals.record', goalStates, date });
+  const response = await toDbWorker({
+    type: 'goals.record',
+    goalStates,
+    date,
+  });
   if (!response) console.error('Error saving goal state');
   return response;
 }
@@ -86,6 +115,9 @@ export async function getInsightsOverview(todaysData: GoalState[]) {
 
 type InsightHistoryRequest = { start: string; end: string };
 export async function getInsightsHistory(details: InsightHistoryRequest) {
-  const response = await toDbWorker({ type: 'insights.history', ...details });
+  const response = await toDbWorker({
+    type: 'insights.history',
+    ...details,
+  });
   return response;
 }

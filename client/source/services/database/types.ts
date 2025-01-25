@@ -3,7 +3,7 @@ import type { IconName } from '#/library/icon-name';
 import type { SendableCategory } from '../../data/categories';
 import type { GoalProps, GoalState, UserMetadata } from '../../data/entities';
 
-export namespace DbWorkerProtocol {
+export namespace Db {
   export namespace Requests {
     export type Ping = {
       type: 'ping';
@@ -55,6 +55,16 @@ export namespace DbWorkerProtocol {
       type: 'metadata.update.username';
       username: string;
     };
+    export type GetUserUuid = {
+      type: 'metadata.uuid';
+    };
+    export type StoreDeviceToken = {
+      type: 'metadata.store.deviceToken';
+      deviceToken: string;
+    };
+    export type GetDeviceToken = {
+      type: 'metadata.get.deviceToken';
+    };
     export type Request =
       | Echo<unknown>
       | GetRecommendedGoals
@@ -66,7 +76,10 @@ export namespace DbWorkerProtocol {
       | GetInsightsOverview
       | GetInsightsHistory
       | RecordMetadata
-      | UpdateUsername;
+      | UpdateUsername
+      | GetUserUuid
+      | StoreDeviceToken
+      | GetDeviceToken;
   }
 
   export type Response<T extends Requests.Request> = T extends Requests.Ping
@@ -91,6 +104,12 @@ export namespace DbWorkerProtocol {
     ? InsightHistoryDetails
     : T extends Requests.UpdateUsername
     ? boolean | null
+    : T extends Requests.GetUserUuid
+    ? string
+    : T extends Requests.StoreDeviceToken
+    ? boolean | null
+    : T extends Requests.GetDeviceToken
+    ? string | null
     : unknown;
 
   export interface Message<T extends Requests.Request | unknown = unknown> {
@@ -98,9 +117,19 @@ export namespace DbWorkerProtocol {
     message: T;
   }
 
-  export type Handler<T extends DbWorkerProtocol.Requests.Request> = (
-    data: DbWorkerProtocol.Message<T>
-  ) => Promise<DbWorkerProtocol.Response<T>>;
+  export type Listener = (<T extends Db.Requests.Request>(
+    event: MessageEvent<Db.Message<T>>
+  ) => void) & {
+    handlerMap?: MessageHandlerMap;
+  };
+
+  export type Fn = <T extends Db.Requests.Request>(
+    message: T
+  ) => Promise<Db.Response<T>>;
+
+  export type Handler<T extends Db.Requests.Request> = (
+    data: Db.Message<T>
+  ) => Promise<Db.Response<T>>;
 
   type RequestFromType<T> = Requests.Request extends infer V
     ? V extends Requests.Request
@@ -115,13 +144,6 @@ export namespace DbWorkerProtocol {
       data: Message<RequestFromType<key>>
     ) => Promise<Response<RequestFromType<key>>>;
   };
-}
-
-export interface PromiseHandler {
-  // biome-ignore lint/complexity/noBannedTypes: <explanation>
-  resolve: Function;
-  // biome-ignore lint/complexity/noBannedTypes: <explanation>
-  reject: Function;
 }
 
 export interface InsightsOverview {

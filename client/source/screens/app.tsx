@@ -6,14 +6,18 @@ import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { If } from '@adbl/unfinished';
 import { CSS_VARS } from '#/styles/variables';
+import { registerNotificationServiceWorker } from '#/services/notifications';
 
 export default function App() {
   const router = useRouter();
   const autoSelectIsOpen = useRouteQuery('auto-select');
-  const outletRef = Cell.source<HTMLElement | null>(null);
 
   const appIsLoaded = Cell.derived(() => {
     return appLoadingState.value === 'done';
+  });
+
+  appIsLoaded.runAndListen((appIsLoaded) => {
+    if (appIsLoaded) registerNotificationServiceWorker();
   });
 
   const dailyGoalsLoaded = Cell.derived(() => {
@@ -27,7 +31,6 @@ export default function App() {
   return (
     <>
       <router.Outlet
-        ref={outletRef}
         id="mainOutlet"
         data-auto-select-is-open={autoSelectIsOpen}
         data-goals-loaded={dailyGoalsLoaded}

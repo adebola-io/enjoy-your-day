@@ -9,7 +9,6 @@ import {
   installDetails,
   setMetaTheme,
 } from './library/utils';
-import { registerNotificationServiceWorker } from './services/notifications';
 
 export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
   installDetails.deferredPrompt = deferredPromptEvent;
@@ -17,7 +16,6 @@ export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
   disableContextMenu();
   defineSafeArea();
   initializeDatabase();
-  registerNotificationServiceWorker();
 
   const router = createRouter();
   router.window = window;
@@ -36,7 +34,6 @@ export async function resumeApp() {
   disableContextMenu();
   defineSafeArea();
   initializeDatabase();
-  registerNotificationServiceWorker();
 
   const router = createRouter();
   router.window = window;
@@ -51,8 +48,7 @@ export async function resumeApp() {
 
   const waitingScreen = document.querySelector('#waiting-screen');
   waitingScreen?.classList.add('loading');
-  const fullCurrentPath =
-    window.location.pathname + window.location.search + window.location.hash;
+  const fullCurrentPath = location.pathname + location.search + location.hash;
 
   return router.replace(fullCurrentPath).then(async () => {
     const waitingScreen = document.querySelector('#waiting-screen');

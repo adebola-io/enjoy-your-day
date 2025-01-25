@@ -1,4 +1,3 @@
-import type { DbWorkerProtocol } from './types';
 import { insightsHistory, insightsOverview } from './insights';
 import {
   autoCompleteGoals,
@@ -7,9 +6,18 @@ import {
   recordGoalState,
   updateGoalsList,
 } from './goals';
-import { recordUserMetadata, updateUsername } from './settings';
+import {
+  getDeviceToken,
+  getUserUuid,
+  recordUserMetadata,
+  storeDeviceToken,
+  updateUsername,
+} from './settings';
+import { Bridge } from '#/library/bridge';
 
-const messageHandlers: DbWorkerProtocol.MessageHandlerMap = {
+console.log('[db] Initializing');
+
+Bridge.receiver('db', {
   echo: async (data) => data.message,
   ping: async () => 'pong',
 
@@ -24,17 +32,7 @@ const messageHandlers: DbWorkerProtocol.MessageHandlerMap = {
 
   'metadata.record': recordUserMetadata,
   'metadata.update.username': updateUsername,
-};
-
-async function handleMessage<T extends DbWorkerProtocol.Requests.Request>(
-  event: MessageEvent<DbWorkerProtocol.Message<T>>
-) {
-  const data = event.data;
-  const { id } = data;
-  // @ts-ignore: The type of the message is checked in the messageHandlers map.
-  const response = await messageHandlers[data.message.type](data);
-  self.postMessage({ id, message: response });
-}
-
-console.log('[database] Initializing');
-self.addEventListener('message', handleMessage);
+  'metadata.uuid': getUserUuid,
+  'metadata.store.deviceToken': storeDeviceToken,
+  'metadata.get.deviceToken': getDeviceToken,
+});

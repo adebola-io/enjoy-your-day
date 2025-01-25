@@ -1,11 +1,9 @@
 import type { IconProps } from '../icons/props';
 import type { IconName } from '#/library/icon-name';
-import { setAttributeFromProps, useObserver } from '@adbl/unfinished';
-import type { JSX } from '@adbl/unfinished/jsx-runtime';
-import { Cell } from '@adbl/cells';
+import { setAttributeFromProps } from '@adbl/unfinished';
 
 export type DynamicIconProps = IconProps & {
-  name: JSX.ValueOrCell<IconName | undefined>;
+  name: IconName;
 } & (
     | {
         inline: true;
@@ -23,43 +21,21 @@ export type DynamicIconProps = IconProps & {
  * @param props - The props for the icon component, including the name of the icon to render.
  * @returns The rendered icon component.
  */
-export function Icon(props: DynamicIconProps) {
-  const observer = useObserver();
+export async function Icon(props: DynamicIconProps) {
   const { name, inline, ...rest } = props;
-  let placeholder: ChildNode = document.createComment('---');
+  const module = await import(`../icons/${name}.tsx`);
+  const IconComponent = module.default;
+  const svgNode = IconComponent({ ...props }) as SVGElement;
+  if (!inline) return svgNode;
 
-  const getIcon = async (name?: string) => {
-    if (!name) return;
-    const module = await import(`../icons/${name}.tsx`);
-    const IconComponent = module.default;
-    const svgNode = (<IconComponent {...props} />) as [SVGElement];
-    if (!inline) {
-      placeholder.replaceWith(svgNode[0]);
-      placeholder = svgNode[0];
-      return;
-    }
-
-    // Serializing as an <img> tag.
-    const svgString = svgNode[0].outerHTML;
-    const img = document.createElement('img');
-    for (const [key, value] of Object.entries(rest)) {
-      setAttributeFromProps(img, key, value);
-    }
-    img.src = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
-    placeholder.replaceWith(img);
-    placeholder = img;
-  };
-
-  observer.onConnected(Cell.source(placeholder), () => {
-    if (Cell.isCell(name)) {
-      name.runAndListen((value) => {
-        getIcon(value);
-        Reflect.set(placeholder, 'cell', name);
-      });
-    } else getIcon(name);
-  });
-
-  return placeholder as JSX.Template;
+  // Serializing as an <img> tag.
+  const svgString = svgNode.outerHTML;
+  const img = document.createElement('img');
+  for (const [key, value] of Object.entries(rest)) {
+    setAttributeFromProps(img, key, value);
+  }
+  img.src = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+  return img;
 }
 
 export async function loadIconDataUrl(

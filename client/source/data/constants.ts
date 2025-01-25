@@ -1,8 +1,10 @@
 import type { FirebaseOptions } from 'firebase/app';
 
 export const ONBOARDING_LOADING_DELAY = 2000;
+export const NOTIFICATION_SCHEDULE_INTERVAL = 1000 * 60 * 60 * 3; // 3 hours.
 export const LATEST_DATA_CHUNK = 14;
 export const MAX_USERNAME_LENGTH = 15;
+export const API_URL: string = import.meta.env.VITE_API_URL;
 export const FIREBASE_MESSAGING_VAPID_KEY: string = import.meta.env
   .VITE_FIREBASE_MESSAGING_VAPID_KEY;
 export const FIREBASE_CONFIG: FirebaseOptions = JSON.parse(

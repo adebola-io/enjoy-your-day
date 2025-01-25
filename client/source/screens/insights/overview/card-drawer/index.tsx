@@ -2,7 +2,7 @@ import { BottomDrawer } from '#/components/bottom-drawer';
 import type { InsightCardDetails } from '#/services/database/types';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
-import { Icon, loadIconDataUrl } from '#/components/icon';
+import { loadIconDataUrl } from '#/components/icon';
 import { Button } from '#/components/button';
 import { If } from '@adbl/unfinished';
 import { defer, toKebabCase, useRouteQuery } from '#/library/utils';
@@ -17,7 +17,7 @@ export function CardDrawer(props: CardDrawerProps) {
   const router = useRouter();
   const route = router.getCurrentRoute();
   const isOpen = useRouteQuery('card');
-  const backgroundImage = Cell.source<string | undefined>(undefined);
+  const cardImageSrc = Cell.source<string | undefined>(undefined);
   const card = Cell.source<InsightCardDetails | undefined>(undefined);
 
   const goBackToInsights = () => {
@@ -45,15 +45,15 @@ export function CardDrawer(props: CardDrawerProps) {
   const cardSuffix = Cell.derived(() => card.value?.suffix);
   const cardDescription = Cell.derived(() => card.value?.description);
   const backgroundColor = Cell.derived(() => card.value?.color);
+  const backgroundImage = Cell.derived(() => `url('${cardImageSrc.value}')`);
 
   cardIcon.runAndListen(async (icon) => {
     if (!icon) return;
-    const src = await loadIconDataUrl(icon, {
+    cardImageSrc.value = await loadIconDataUrl(icon, {
       width: '100px',
       height: '100px',
       color: 'white',
     });
-    backgroundImage.value = `url('${src}')`;
   });
 
   return (
@@ -65,13 +65,7 @@ export function CardDrawer(props: CardDrawerProps) {
       style={{ backgroundColor }}
     >
       <div class={classes.overlay} style={{ backgroundImage }} />
-      <Icon
-        name={cardIcon}
-        class={classes.icon}
-        inline
-        color="white"
-        title="Card Icon"
-      />
+      <img alt="Card Icon" src={cardImageSrc} class={classes.icon} />
       <output id={openCardName} class={classes.value}>
         {openCardValue}{' '}
         {If(cardSuffix, (value) => (

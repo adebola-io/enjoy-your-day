@@ -11,10 +11,10 @@ export interface InlinedIconProps extends IconProps {
 
 export function InlinedIcon(props: InlinedIconProps): JSX.Template {
   const { Icon, color, ...rest } = props;
-  const icon = (<Icon {...rest} color={color} />) as [SVGElement];
+  const icon = Icon({ ...rest, color }) as SVGElement;
 
   // Serializing as an <img> tag.
-  const svgString = icon[0].outerHTML;
+  const svgString = icon.outerHTML;
   const img = document.createElement('img');
   for (const [key, value] of Object.entries(rest)) {
     setAttributeFromProps(img, key, value);

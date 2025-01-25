@@ -13,7 +13,6 @@ export default defineConfig({
   },
   worker: { format: 'es' },
   plugins: [
-    inlineSource(),
     ViteMinifyPlugin(),
     hmrPlugin(),
     VitePWA({
@@ -492,5 +491,6 @@ export default defineConfig({
         ],
       },
     }),
+    inlineSource(),
   ],
 });

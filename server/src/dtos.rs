@@ -54,6 +54,7 @@ pub struct NotificationDetails {
     pub badge: Option<String>,
     pub icon: Option<String>,
     pub image: Option<String>,
+    pub url: Option<String>,
     pub actions: Option<Vec<NotificationAction>>,
     pub extra_data: Option<serde_json::Value>,
 }
@@ -65,6 +66,7 @@ pub struct SupplementaryNotificationData {
     pub image: Option<String>,
     pub actions: Option<Vec<NotificationAction>>,
     pub extra_data: Option<serde_json::Value>,
+    pub url: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Clone)]

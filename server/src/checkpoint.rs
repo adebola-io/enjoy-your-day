@@ -79,6 +79,7 @@ pub async fn send_message(
                 badge: details.badge,
                 icon: details.icon,
                 image: details.image,
+                url: details.url,
                 extra_data: details.extra_data,
             })
             .ok(),

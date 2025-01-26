@@ -25,7 +25,7 @@
 
 :root {
   --default-duration: 150ms;
-  --drawer: calc(var(--default-duration) * 2);
+  --drawer: calc(var(--default-duration) * 2.5);
   --slide-duration: calc(var(--default-duration) * 1.25);
   --line-duration: calc(var(--default-duration) * 3);
 

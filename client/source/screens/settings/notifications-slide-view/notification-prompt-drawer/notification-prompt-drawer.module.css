@@ -23,7 +23,7 @@
   color: white;
   background-color: var(--space-cadet-500);
   transition-duration: var(--drawer);
-  transition-property: translate, scale;
+  transition-property: translate, scale, opacity;
   text-align: center;
   grid-template-columns: auto auto;
   padding-inline: var(--side-padding);

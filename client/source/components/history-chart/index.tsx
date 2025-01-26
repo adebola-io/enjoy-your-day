@@ -134,11 +134,6 @@ function ChartItem(props: ChartItemProps) {
   isSelected.listen((isSelected) => {
     if (!isSelected) return;
     pickedIndex.value = index.value;
-    buttonRef.value?.scrollIntoView({
-      behavior: 'smooth',
-      inline: 'center',
-      block: 'nearest',
-    });
   });
 
   return (

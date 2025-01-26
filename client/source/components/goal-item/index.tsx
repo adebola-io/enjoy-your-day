@@ -73,7 +73,7 @@ export function GoalItem(props: GoalItemProps) {
     defer(() => intersectObserver.observe(wrapper));
 
     if (listItem) {
-      container.scrollIntoView({ behavior: 'instant', inline: 'start' });
+      wrapper.scrollLeft = 0;
     }
 
     return () => intersectObserver.disconnect();

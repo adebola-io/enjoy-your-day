@@ -1,17 +1,30 @@
+.slide {
+  color: var(--space-cadet-500);
+  background-color: white;
+}
+
 .container {
   --toggle-search-duration: var(--default-duration);
   display: grid;
   overflow-y: auto;
   align-self: normal;
   width: 100%;
-  padding-block-start: calc(var(--block-padding) * 1.5);
-  transition-duration: var(--drawer);
-  transition-property: scale;
+  height: 100%;
+  transition: scale var(--drawer);
+  isolation: isolate;
   grid-template-rows: auto auto auto 1fr;
   grid-row: 1;
   grid-column: 1;
   gap: 10px;
   scrollbar-width: none;
+
+  &:not([data-is-open]) {
+    translate: 100% 0;
+  }
+
+  &[data-dialog-is-open] {
+    scale: var(--drawer-background-scale);
+  }
 
   &[data-search-is-open] {
     &:not([data-no-goals-added]) {
@@ -48,12 +61,33 @@
   }
 }
 
+.backButton {
+  padding-inline-start: var(--block-padding);
+  grid-area: 1 / 1;
+}
+
+.title {
+  padding-block-start: calc(var(--block-padding) * 1.5);
+  grid-area: 1 / 1;
+}
+
+.subtitle {
+  grid-area: 2 / 1;
+}
+
+.buttonAndSearchContainer {
+  grid-area: 3 / 1;
+}
+
+.goalItemList {
+  grid-area: 4 / 1;
+}
+
 .title,
 .subtitle {
   --starting-fade-position-y: 50%;
   transition-duration: var(--toggle-search-duration);
   transition-property: opacity, scale;
-  animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 1.5);
   padding-inline: var(--side-padding);
 }
 
@@ -63,7 +97,6 @@
   padding-block-end: calc(var(--block-padding) * 3);
   transition-duration: var(--toggle-search-duration);
   transition-property: translate, opacity;
-  animation: var(--fade-in-from-top) calc(var(--default-duration) * 1.5);
   grid-template-rows: repeat(var(--total), max-content);
   gap: 10px;
 
@@ -97,7 +130,6 @@
   background-color: white;
   transition-duration: var(--toggle-search-duration);
   transition-property: opacity, translate;
-  animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 1.25);
   font-weight: bold;
   margin-inline: var(--side-padding);
   grid-template-columns: 40px 1fr;

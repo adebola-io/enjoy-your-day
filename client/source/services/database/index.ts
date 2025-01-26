@@ -66,7 +66,7 @@ type AutoRecommendationRequest = {
 export async function getAutoRecommendations(
   details: AutoRecommendationRequest
 ) {
-  await new Promise((resolve) => setTimeout(resolve, 600));
+  await new Promise((resolve) => setTimeout(resolve, 500));
   const response = await toDbWorker({
     type: 'goals.today',
     ...details,

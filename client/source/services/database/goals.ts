@@ -2,7 +2,7 @@ import { dexie } from './dexie';
 import type { Db } from './types';
 import { startGoalUpdateProcess, updateDataQueue } from './update';
 import { shuffleArray } from './utils';
-import type { GoalProps } from '../../data/entities';
+import type { GoalProps } from '#/data/entities';
 import { Temporal } from 'temporal-polyfill';
 
 type GenerateGoalsForTodayHandler = Db.Handler<Db.Requests.GetRecommendedGoals>;
@@ -84,6 +84,7 @@ export const recommendGoals: GenerateGoalsForTodayHandler = async (data) => {
       (categoryMatchToGoal / goal.categories.size +
         categoryMatchToUser / categories.size) /
       2;
+
     if (categoryMatchRatio > 0.95) {
       if (goal.involvement === preferredInvolvementLevel) {
         preferredInvolvementLevelTier1.push(goal);

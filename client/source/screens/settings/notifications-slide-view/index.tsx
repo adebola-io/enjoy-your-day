@@ -6,6 +6,7 @@ import { SettingsItem } from '#/components/settings-item';
 import TvIcon from '#/components/icons/tv';
 import WifiIcon from '#/components/icons/wifi';
 import BellIcon from '#/components/icons/bell';
+import { SlideView } from '#/components/slide-view';
 import { addRouteQuery, useRouteQuery } from '#/library/utils';
 import { notificationsEnabled } from '#/data/state';
 import { loadIconDataUrl } from '#/components/icon';
@@ -17,31 +18,12 @@ import {
 } from '#/services/notifications';
 import { CSS_VARS } from '#/styles/variables';
 import { Cell } from '@adbl/cells';
-import { If, useObserver } from '@adbl/unfinished';
+import { useObserver } from '@adbl/unfinished';
 import classes from './notifications.module.css';
 
-export default function Notifications() {
-  const containerRef = Cell.source<HTMLElement | null>(null);
-  const notificationsPageIsOpen = useRouteQuery('level-one', 'notifications');
-  let loaded = false;
-  const contentLoaded = Cell.derived(() => {
-    if (notificationsPageIsOpen.value) loaded = true;
-    return loaded;
-  });
-
-  return (
-    <div
-      ref={containerRef}
-      class={classes.container}
-      data-page-is-open={notificationsPageIsOpen}
-    >
-      {If(contentLoaded, NotificationsPageContent)}
-    </div>
-  );
-}
-
-function NotificationsPageContent() {
+export default function NotificationsSlideView() {
   const observer = useObserver();
+  const notificationsPageIsOpen = useRouteQuery('level-one', 'notifications');
   const inputRef = Cell.source<HTMLInputElement | null>(null);
   const itemsDisabled = Cell.derived(() => !notificationsEnabled.value);
 
@@ -81,35 +63,41 @@ function NotificationsPageContent() {
   });
 
   return (
-    <>
-      <BackButton class={classes.backButton} />
-      <h2 class={classes.heading}>Notifications</h2>
-      <SettingsItem
-        type="toggle"
-        inputRef={inputRef}
-        title="Enable Notifications"
-        description="Allow notifications to be displayed on your device."
-        Icon={BellIcon}
-        onChange={handleNotificationsChange}
-        checked={notificationsEnabled}
-      />
-      <SettingsItem
-        type="button"
-        title="Test Notification"
-        description="Triggers a test notification sent to your device."
-        Icon={WifiIcon}
-        onClick={sendTestNotification}
-        disabled={itemsDisabled}
-      />
-      <SettingsItem
-        type="button"
-        title="Refresh Service"
-        description="Reregisters the worker responsible for handling notifications."
-        Icon={TvIcon}
-        onClick={refreshNotificationsServiceWorker}
-        disabled={itemsDisabled}
-      />
-      <NotificationPromptDrawer />
-    </>
+    <SlideView
+      class={classes.container}
+      open={notificationsPageIsOpen}
+      lazyContent={() => (
+        <div id="notificationsView" class={classes.shrinkWrapper}>
+          <BackButton class={classes.backButton} />
+          <h2 class={classes.heading}>Notifications</h2>
+          <SettingsItem
+            type="toggle"
+            inputRef={inputRef}
+            title="Enable Notifications"
+            description="Allow notifications to be displayed on your device."
+            Icon={BellIcon}
+            onChange={handleNotificationsChange}
+            checked={notificationsEnabled}
+          />
+          <SettingsItem
+            type="button"
+            title="Test Notification"
+            description="Triggers a test notification sent to your device."
+            Icon={WifiIcon}
+            onClick={sendTestNotification}
+            disabled={itemsDisabled}
+          />
+          <SettingsItem
+            type="button"
+            title="Refresh Service"
+            description="Reregisters the worker responsible for handling notifications."
+            Icon={TvIcon}
+            onClick={refreshNotificationsServiceWorker}
+            disabled={itemsDisabled}
+          />
+          <NotificationPromptDrawer />
+        </div>
+      )}
+    />
   );
 }

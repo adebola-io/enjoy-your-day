@@ -81,7 +81,7 @@ export default function NotificationPromptDrawer() {
       id="notificationsPrompt"
       class={classes.drawer}
       open={drawerIsOpen}
-      shrinkTarget="#settingsView"
+      shrinkTarget="#notificationsView"
       onClose={handleDrawerClose}
       data-stagger-children={drawerIsOpen}
     >

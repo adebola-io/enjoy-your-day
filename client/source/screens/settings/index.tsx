@@ -3,12 +3,13 @@ import UserIcon from '#/components/icons/user';
 import BinIcon from '#/components/icons/bin';
 import InfoIcon from '#/components/icons/info';
 import { SettingsItem } from '#/components/settings-item';
-import { setMetaTheme, useRouteQuery } from '#/library/utils';
+import { setMetaTheme } from '#/library/utils';
 import ProfileDrawer from './profile-drawer';
-import Notifications from './notifications';
+import NotificationsSlideView from './notifications-slide-view';
 import { useObserver } from '@adbl/unfinished';
 import { Cell } from '@adbl/cells';
 import classes from './settings.module.css';
+import { SlideView, SlideViews } from '#/components/slide-view';
 
 export default function Settings() {
   const observer = useObserver();
@@ -18,44 +19,41 @@ export default function Settings() {
     setMetaTheme('#ffffff');
   });
 
-  const notificationsPageIsOpen = useRouteQuery('level-one', 'notifications');
-
   return (
-    <div
-      ref={containerRef}
-      id="settingsView"
-      class={classes.settings}
-      data-notifications-page-is-open={notificationsPageIsOpen}
-    >
-      <menu id="settingsMenu" class={classes.settingsMenu}>
-        <h1 class={classes.heading}>Settings</h1>
-        <SettingsItem
-          link="/settings?level-one=profile"
-          title="Profile"
-          description="Change aspects of your experience."
-          Icon={UserIcon}
-        />
-        <SettingsItem
-          link="/settings?level-one=notifications"
-          title="Notifications"
-          description="Enable reminders and notifications."
-          Icon={NotificationIcon}
-        />
-        <SettingsItem
-          link="/settings?level-one=reset"
-          title="Reset"
-          description="Delete parts or all of your data and start over."
-          Icon={BinIcon}
-        />
-        <SettingsItem
-          link="/about?level-one=about"
-          title="About"
-          description="Learn more about this app."
-          Icon={InfoIcon}
-        />
-      </menu>
-      <ProfileDrawer />
-      <Notifications />
-    </div>
+    <SlideViews>
+      <SlideView open>
+        <div ref={containerRef} id="settingsView" class={classes.settings}>
+          <menu id="settingsMenu" class={classes.settingsMenu}>
+            <h1 class={classes.heading}>Settings</h1>
+            <SettingsItem
+              link="/settings?level-one=profile"
+              title="Profile"
+              description="Change aspects of your experience."
+              Icon={UserIcon}
+            />
+            <SettingsItem
+              link="/settings?level-one=notifications"
+              title="Notifications"
+              description="Enable reminders and notifications."
+              Icon={NotificationIcon}
+            />
+            <SettingsItem
+              link="/settings?level-one=reset"
+              title="Reset"
+              description="Delete parts or all of your data and start over."
+              Icon={BinIcon}
+            />
+            <SettingsItem
+              link="/about?level-one=about"
+              title="About"
+              description="Learn more about this app."
+              Icon={InfoIcon}
+            />
+            <ProfileDrawer />
+          </menu>
+        </div>
+      </SlideView>
+      <NotificationsSlideView />
+    </SlideViews>
   );
 }

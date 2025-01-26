@@ -18,27 +18,26 @@ export const installDetails = {
   deferredPrompt: undefined as DeferredPromptEvent | undefined,
 };
 export let appIsReadyResolver: (() => void) | null = null;
-const appIsReady = new Promise<void>((resolve) => {
+export const appIsReady = new Promise<void>((resolve) => {
   appIsReadyResolver = resolve;
 });
 
 export async function setMetaTheme(color: string) {
-  await appIsReady;
-  document
-    .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', color);
+  // note: This has been replaced with a no-op because the
+  // un-animatable snapping of the status bar leads to
+  // a worse user experience overall.
+  color;
+  // await appIsReady;
+  // document
+  //   .querySelector('meta[name="theme-color"]')
+  //   ?.setAttribute('content', color);
 
-  if (isRunningInIFrame()) {
-    // Allow changing status bar in mockup.
-    window.parent.postMessage({ type: 'setMetaTheme', color }, '*');
-  }
+  // if (isRunningInIFrame()) {
+  //   // Allow changing status bar in mockup.
+  //   window.parent.postMessage({ type: 'setMetaTheme', color }, '*');
+  // }
 }
 
-/**
- * Retrieves the content of the meta tag with the name "theme-color".
- *
- * @returns {string} The content of the meta tag if it exists, otherwise returns '#ffffff'.
- */
 export function getMetaTheme(): string {
   return (
     document
@@ -60,12 +59,6 @@ export function defineSafeArea() {
     inherits: true,
     initialValue: '37px',
   });
-}
-
-export function setAutoSelectStage(stage: number) {
-  document
-    .querySelector('#autoSelectionView')
-    ?.setAttribute('data-stage', stage.toString());
 }
 
 export function initScrollTimeline(

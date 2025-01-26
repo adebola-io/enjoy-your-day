@@ -1,9 +1,15 @@
 .container {
-  transition: translate var(--slide-duration);
+  background-color: white;
+}
 
-  &[data-page-is-open] {
-    background-color: white;
-    translate: -100% 0;
+.shrinkWrapper {
+  transition: scale var(--drawer);
+  &[data-dialog-is-open] {
+    scale: var(--drawer-background-scale);
+  }
+
+  body[data-nested-drawer-is-open] & {
+    scale: calc(var(--drawer-background-scale) * 0.9);
   }
 }
 

@@ -60,6 +60,7 @@ export default function HomeView() {
 
   return (
     <ElasticView
+      id="homeView"
       yAxis
       class={classes.container}
       data-stagger-children

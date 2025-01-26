@@ -7,12 +7,16 @@
   width: 100%;
   height: calc(100% - var(--block-padding) * 1.5);
   padding-block-start: calc(var(--block-padding) * 1.5);
-  transition-duration: var(--drawer);
+  transition: scale var(--drawer);
   place-content: start;
   grid-template-rows: auto auto auto 1fr;
   grid-template-columns: 100%;
   gap: min(15px, 2dvh);
   scrollbar-width: none;
+
+  &[data-dialog-is-open] {
+    scale: var(--drawer-background-scale);
+  }
 
   &::-webkit-scrollbar {
     display: none;

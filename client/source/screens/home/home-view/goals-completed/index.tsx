@@ -29,7 +29,7 @@ export function GoalsCompletedDrawer() {
       class={classes.container}
       open={isOpen}
       onClose={goBackHome}
-      shrinkTarget="#mainOutlet"
+      shrinkTarget="#homeView"
       data-stagger-children={isOpen}
     >
       <InlinedIcon

@@ -35,7 +35,6 @@ The app is a progressive web application. Majority of the functionality lies in 
 - [CSS Modules](https://github.com/css-modules/css-modules)
 - [unfinished](https://github.com/adebola-io/unfinished), and
 - [cells](https://github.com/adebola-io/cells).
-- [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging)
 
 ### 🖥️ System Dependencies
 
@@ -63,13 +62,10 @@ git clone https://github.com/adebola-io/enjoy-your-day.git
 
 The following environment variables are required for the client:
 
-- `VITE_FIREBASE_MESSAGING_VAPID_KEY`: The VAPID key for Firebase Cloud Messaging.
-- `VITE_FIREBASE_CONFIG`: The Firebase configuration object as a JSON string.
-- `VITE_API_URL`: The URL of the API server.
+- `VITE_API_URL`: The URL of the Notification Scheduler API server.
 
 The following are required for the server:
 
-- `FIREBASE_SERVICE_ACCOUNT_JSON_PATH`: The path to your [Firebase service account JSON file](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk).
 - `ADMIN_PASSWORD`: A password for the admin user, for testing notifications.
 - `PORT`: The port to run the server on.
 

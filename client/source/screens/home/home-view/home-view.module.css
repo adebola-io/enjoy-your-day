@@ -145,7 +145,6 @@
   display: grid;
   transition-duration: var(--default-duration);
   transition-property: translate;
-  isolation: isolate;
   place-content: start;
   gap: 9px;
   grid-template-columns: 100%;

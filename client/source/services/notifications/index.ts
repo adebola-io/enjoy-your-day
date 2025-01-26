@@ -1,26 +1,12 @@
-import {
-  API_URL,
-  BADGE_URL,
-  FIREBASE_CONFIG,
-  FIREBASE_MESSAGING_VAPID_KEY,
-} from '#/data/constants';
+import { API_URL, BADGE_URL } from '#/data/constants';
 import { morningTime, notificationsEnabled } from '#/data/state';
 import workerUrl from './notifications.worker?worker&url';
-import { initializeApp } from 'firebase/app';
-import {
-  deleteToken,
-  getMessaging,
-  getToken,
-  type Messaging,
-} from 'firebase/messaging';
 import type { FullNotificationOptions, ScheduledNotification } from './types';
 import { Bridge } from '#/library/bridge';
 import { Cell } from '@adbl/cells';
-import { storeDeviceToken } from '../database';
+// import { storeDeviceToken } from '../database';
 
 let serviceWorkerRegistration: ServiceWorkerRegistration | null = null;
-let firebaseInitialized = false;
-let messaging: Messaging | null = null;
 
 let toNotificationsWorker = Bridge.sender('notifications');
 export const fcmToken = Cell.source<string | null>(null);
@@ -51,41 +37,22 @@ export async function triggerNotification(options: FullNotificationOptions) {
 }
 
 export async function subscribeToPushNotifications() {
-  if (firebaseInitialized) return;
-  if (!serviceWorkerRegistration) {
-    console.warn('Service worker is not registered.');
-    return;
-  }
-
-  try {
-    const firebaseApp = initializeApp(FIREBASE_CONFIG);
-    messaging = getMessaging(firebaseApp);
-    const token = await getToken(messaging, {
-      vapidKey: FIREBASE_MESSAGING_VAPID_KEY,
-      serviceWorkerRegistration,
-    });
-    fcmToken.value = token;
-    storeDeviceToken(token);
-    toNotificationsWorker({
-      type: 'startScheduleLoop',
-      device_token: token,
-    }).then(setDefaultNotifications);
-
-    if (!token) {
-      console.warn('No FCM token available.');
-      return;
-    }
-  } catch (error) {
-    console.error('An error occurred while retrieving token. ', error);
-  }
-  firebaseInitialized = true;
+  // if (!serviceWorkerRegistration) {
+  //   console.warn('Service worker is not registered.');
+  //   return;
+  // }
+  // try {
+  //   const device_token = 'test-token';
+  //   await storeDeviceToken(device_token);
+  //   await toNotificationsWorker({ type: 'startScheduleLoop', device_token });
+  //   await setDefaultNotifications();
+  // } catch (error) {
+  //   console.error('An error occurred while retrieving token. ', error);
+  // }
 }
 
 export const disableNotifications = async () => {
-  if (!messaging) return;
-  firebaseInitialized = false;
   fcmToken.value = null;
-  deleteToken(messaging);
   toNotificationsWorker({ type: 'stopScheduleLoop', apiUrl: API_URL });
 };
 

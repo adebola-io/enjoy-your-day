@@ -1,5 +1,3 @@
-import type { NotificationPayload } from 'firebase/messaging';
-
 export namespace Notifications {
   export namespace Requests {
     export type Ping = {
@@ -89,7 +87,25 @@ export interface ScheduledNotification {
 }
 
 export interface NotificationData {
-  notification?: NotificationPayload;
+  notification?: {
+    /**
+     * The notification's title.
+     */
+    title?: string;
+    /**
+     * The notification's body text.
+     */
+    body?: string;
+    /**
+     * The URL of an image that is downloaded on the device and displayed in the notification.
+     */
+    image?: string;
+    /**
+     * The URL to use for the notification's icon. If you don't send this key in the request,
+     * FCM displays the launcher icon specified in your app manifest.
+     */
+    icon?: string;
+  };
   data?: Partial<FullNotificationOptions & CustomNotificationOptions>;
 }
 

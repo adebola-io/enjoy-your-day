@@ -59,6 +59,8 @@
 .text {
   width: 90%;
   padding-top: calc(var(--block-padding) * 0.5);
+  text-align: center;
+  margin-inline: auto;
   justify-self: center;
 }
 

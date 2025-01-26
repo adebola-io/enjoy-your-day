@@ -22,7 +22,8 @@ export const LOCALSTORAGE_KEYS = {
   morningTime: 'morning-time',
 };
 
-const notificationsPermissionGranted = Notification.permission === 'granted';
+const notificationsPermissionGranted =
+  window.Notification?.permission === 'granted';
 export const notificationsEnabled = useLocalStorage<boolean>(
   LOCALSTORAGE_KEYS.notificationsEnabled,
   notificationsPermissionGranted

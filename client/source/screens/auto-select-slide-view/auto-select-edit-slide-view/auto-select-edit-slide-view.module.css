@@ -172,7 +172,7 @@
   right: var(--side-padding);
   bottom: var(--block-padding);
   display: grid;
-  width: auto;
+  width: min(20.63vw, 80px);
   height: min(20.63vw, 80px);
   border: 2.15px solid white;
   border-radius: 50%;
@@ -181,7 +181,6 @@
   transition-duration: var(--toggle-search-duration);
   transition-property: scale;
   filter: drop-shadow(2px 4px 6px #00000025);
-  aspect-ratio: 1;
   place-items: center;
   place-content: center;
 

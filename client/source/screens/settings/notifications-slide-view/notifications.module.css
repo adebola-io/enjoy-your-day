@@ -3,13 +3,14 @@
 }
 
 .shrinkWrapper {
-  transition: scale var(--drawer);
+  transition: scale var(--drawer), translate var(--drawer);
   &[data-dialog-is-open] {
     scale: var(--drawer-background-scale);
   }
 
   body[data-nested-drawer-is-open] & {
     scale: calc(var(--drawer-background-scale) * 0.9);
+    translate: 0 15%;
   }
 }
 

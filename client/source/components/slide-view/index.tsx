@@ -8,14 +8,14 @@ type DivProps = JSX.IntrinsicElements['div'];
 interface SlideProps extends DivProps {
   ref?: Cell<HTMLDivElement | null>;
   open: JSX.ValueOrCell<boolean>;
-  lazyContent?: () => JSX.Template;
+  content?: () => JSX.Template;
 }
 
 export function SlideView(props: SlideProps) {
   const {
     open: isOpenRaw = true,
     ref = Cell.source<HTMLDivElement | null>(null),
-    lazyContent,
+    content: lazyContent,
     ...rest
   } = props;
   const isOpen = Cell.derived(() =>

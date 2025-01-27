@@ -24,7 +24,7 @@ export default function AutoSelectSlideView() {
     <SlideView
       class={classes.slide}
       open={useRouteQuery('auto-select')}
-      lazyContent={AutoSelectSlideContent}
+      content={AutoSelectSlideContent}
     />
   );
 }

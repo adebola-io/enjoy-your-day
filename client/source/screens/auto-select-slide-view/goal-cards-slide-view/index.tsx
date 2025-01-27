@@ -48,7 +48,7 @@ export default function GoalCardsSlideView(props: GoalCardsViewProps) {
     <SlideView
       open={isOpen}
       class={classes.container}
-      lazyContent={() => (
+      content={() => (
         <>
           <BackButton class={classes.backButton} />
           <ElasticView

@@ -92,7 +92,7 @@ export default function AutoSelectEditSlideView(props: GoalCardsViewProps) {
     <SlideView
       class={classes.slide}
       open={useRouteQuery('stage', 'edit')}
-      lazyContent={() => (
+      content={() => (
         <ElasticView
           id="autoSelectEdit"
           yAxis

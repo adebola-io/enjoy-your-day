@@ -66,7 +66,7 @@ export default function NotificationsSlideView() {
     <SlideView
       class={classes.container}
       open={notificationsPageIsOpen}
-      lazyContent={() => (
+      content={() => (
         <div id="notificationsView" class={classes.shrinkWrapper}>
           <BackButton class={classes.backButton} />
           <h2 class={classes.heading}>Notifications</h2>

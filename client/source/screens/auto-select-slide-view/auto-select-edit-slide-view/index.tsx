@@ -1,0 +1,177 @@
+import { GoalItem } from '#/components/goal-item';
+import { SearchInput } from '#/components/search-input';
+import { Container } from '#/components/container';
+import { ElasticView } from '#/components/elastic-view';
+import { BackButton } from '#/components/back-button';
+import { SlideView } from '#/components/slide-view';
+import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
+import { AddIcon } from '#/components/icons/add';
+import { InlinedIcon } from '#/components/inlined-icon';
+import { DoubleCheckIcon } from '#/components/icons/double-check';
+import { selectedCategories } from '#/data/state';
+import {
+  addRouteQuery,
+  removeRouteQuery,
+  useRouteQuery,
+  vibrate,
+} from '#/library/utils';
+import type { GoalProps } from '#/data/entities';
+import { Cell, type SourceCell } from '@adbl/cells';
+import { For, If, useObserver } from '@adbl/unfinished';
+import {
+  getExampleGoalInstruction,
+  getAutoCompleteSuggestions,
+} from '#/services/database';
+import { CSS_VARS } from '#/styles/variables';
+import classes from './auto-select-edit-slide-view.module.css';
+
+export interface GoalCardsViewProps {
+  goals: SourceCell<GoalProps[] | null>;
+}
+
+export default function AutoSelectEditSlideView(props: GoalCardsViewProps) {
+  const goals = props.goals as SourceCell<GoalProps[]>;
+  const observer = useObserver();
+  const searchIsOpen = useRouteQuery('search');
+  const editIsOpen = useRouteQuery('stage', 'edit');
+  const containerRef = Cell.source<HTMLDivElement | null>(null);
+  const placeholder = Cell.source('');
+  const activeItemIndex = Cell.source(0);
+  const noGoalsAdded = Cell.derived(() => goals.value.length === 0);
+  const goalUuids = Cell.derived(() => goals.value.map((g) => g.uuid));
+  const ulStyles = {
+    '--total': Cell.derived(() => goals.value.length),
+    '--active-item-index': Cell.derived(() => String(activeItemIndex.value)),
+  };
+
+  const openSearch = async () => {
+    if (!searchIsOpen.value) {
+      getExampleGoalInstruction(goalUuids.value, selectedCategories.value).then(
+        (example) => {
+          placeholder.value = `e.g. ${example}`;
+        }
+      );
+      await addRouteQuery('search');
+    }
+  };
+  const closeSearch = async () => {
+    if (searchIsOpen.value) await removeRouteQuery('search');
+  };
+
+  const addGoal = async (goal: GoalOptionProps) => {
+    closeSearch();
+    activeItemIndex.value = 0;
+    goals.value.splice(0, 0, goal);
+  };
+
+  const removeGoal = (index: number, item: Element, mode: 'Swipe' | 'Tap') => {
+    activeItemIndex.value = index;
+    item.classList.add(classes[`deletingBy${mode}`]);
+    vibrate();
+    goals.value.splice(index, 1);
+  };
+
+  const handleSubmit = () => {
+    vibrate();
+    addRouteQuery('confirm');
+  };
+
+  observer.onConnected(containerRef, () => {
+    getExampleGoalInstruction(goalUuids.value, selectedCategories.value).then(
+      (example) => {
+        placeholder.value = `e.g. ${example}`;
+      }
+    );
+  });
+
+  const autoComplete = (query: string) => {
+    return getAutoCompleteSuggestions(query, goalUuids.value);
+  };
+
+  return (
+    <SlideView
+      class={classes.slide}
+      open={useRouteQuery('stage', 'edit')}
+      content={() => (
+        <ElasticView
+          id="autoSelectEdit"
+          yAxis
+          ref={containerRef}
+          class={classes.container}
+          data-is-open={editIsOpen}
+          data-no-goals-added={noGoalsAdded}
+          data-search-is-open={searchIsOpen}
+        >
+          {If(true, () => {
+            return (
+              <>
+                <BackButton class={classes.backButton} />
+                <h1 class={classes.title}>Goals for Today</h1>
+                <p class={classes.subtitle}>
+                  Shape a day that works best for you by adding goals and
+                  adjusting priorities.
+                </p>
+                <Container
+                  class={classes.buttonAndSearchContainer}
+                  onClick={openSearch}
+                >
+                  {If(searchIsOpen, {
+                    true: () => (
+                      <SearchInput
+                        class={classes.searchForm}
+                        containerClasses={classes.searchInputContainer}
+                        autoCompleteClasses={classes.autoComplete}
+                        placeholder={placeholder}
+                        autoCompleteGetter={autoComplete}
+                        AutoCompleteTemplate={GoalOption}
+                        onAutoCompleteSelect={addGoal}
+                        onSubmit--prevent={closeSearch}
+                        onDismiss={closeSearch}
+                        focused
+                      />
+                    ),
+                    false: () => (
+                      <>
+                        <InlinedIcon
+                          Icon={AddIcon}
+                          class={classes.buttonAndSearchContainerIcon}
+                          color={CSS_VARS['--space-cadet-500']}
+                          title="Add Icon"
+                        />
+                        Add a goal
+                      </>
+                    ),
+                  })}
+                </Container>
+                <ul
+                  class={classes.goalItemList}
+                  inert={searchIsOpen}
+                  style={ulStyles}
+                >
+                  {For(goals, (goal, index) => {
+                    return (
+                      <GoalItem {...goal} index={index} onRemove={removeGoal} />
+                    );
+                  })}
+                </ul>
+                <button
+                  type="button"
+                  class={classes.submitBtn}
+                  inert={searchIsOpen}
+                  onClick={handleSubmit}
+                >
+                  <InlinedIcon
+                    Icon={DoubleCheckIcon}
+                    class={classes.submitBtnIcon}
+                    title="Submit Goals"
+                    color="white"
+                  />
+                </button>
+              </>
+            );
+          })}
+        </ElasticView>
+      )}
+    />
+  );
+}

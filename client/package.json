@@ -11,13 +11,14 @@
   "dependencies": {
     "@adbl/cells": "^0.0.11",
     "@adbl/dom-cells": "^0.0.5",
-    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@e23dc28",
+    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@df2b30f",
     "canvas-confetti": "^1.9.3",
     "dexie": "^4.0.10",
     "temporal-polyfill": "^0.2.5"
   },
   "devDependencies": {
     "typescript": "^5.7.2",
+    "spa-http-server": "^0.9.0",
     "vite": "^5.4.11",
     "vite-plugin-pwa": "^0.21.0",
     "@types/node": "^22.10.1",

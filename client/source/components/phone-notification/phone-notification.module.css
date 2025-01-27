@@ -1,0 +1,42 @@
+.container {
+  display: grid;
+  min-height: calc(var(--phone-size) * 0.2);
+  border-radius: 13px;
+  text-align: left;
+  grid-template-columns: 12% 1fr auto;
+  grid-template-rows: auto auto;
+  padding-inline: 6%;
+  padding-block: calc(var(--phone-size) * 0.003);
+  column-gap: calc(var(--phone-size) * 0.03);
+}
+
+.icon {
+  align-self: center;
+  width: 100%;
+  grid-area: 1 / 1 / 3 / 1;
+}
+
+.title {
+  overflow: hidden;
+  align-self: end;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--tinier-bold);
+  grid-area: 1 / 2;
+}
+
+.description {
+  overflow: hidden;
+  align-self: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--tiniest-regular);
+  grid-area: 2 / 2 / 2 / 4;
+}
+
+.time {
+  align-self: center;
+  opacity: 0.5;
+  font: var(--tiniest-regular);
+  grid-area: 1 / 3;
+}

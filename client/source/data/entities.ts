@@ -64,6 +64,7 @@ export interface UserMetadata {
   uuid: string;
   name: string;
   startDate: string;
+  deviceToken: string | null;
 }
 
 export interface Journey {

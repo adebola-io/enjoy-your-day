@@ -1,4 +1,4 @@
-import type { InsightsOverview } from '#/data/worker/types';
+import type { InsightsOverview } from '#/services/database/types';
 import { InsightCard } from '#/components/insight-card';
 import { For } from '@adbl/unfinished';
 import { CardDrawer } from './card-drawer';

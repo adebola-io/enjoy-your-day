@@ -71,6 +71,11 @@ export function GoalItem(props: GoalItemProps) {
     const options = { root: container, threshold: 0.55 };
     const intersectObserver = new IntersectionObserver(callback, options);
     defer(() => intersectObserver.observe(wrapper));
+
+    if (listItem) {
+      container.scrollLeft = container.scrollWidth * 0.29166667;
+    }
+
     return () => intersectObserver.disconnect();
   });
 

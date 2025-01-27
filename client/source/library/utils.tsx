@@ -1,4 +1,4 @@
-import { Cell } from '@adbl/cells';
+import { Cell, type DerivedCell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 
 type AsyncRequestAtoms<T, U> = {
@@ -18,27 +18,26 @@ export const installDetails = {
   deferredPrompt: undefined as DeferredPromptEvent | undefined,
 };
 export let appIsReadyResolver: (() => void) | null = null;
-const appIsReady = new Promise<void>((resolve) => {
+export const appIsReady = new Promise<void>((resolve) => {
   appIsReadyResolver = resolve;
 });
 
 export async function setMetaTheme(color: string) {
-  await appIsReady;
-  document
-    .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', color);
+  // note: This has been replaced with a no-op because the
+  // un-animatable snapping of the status bar leads to
+  // a worse user experience overall.
+  color;
+  // await appIsReady;
+  // document
+  //   .querySelector('meta[name="theme-color"]')
+  //   ?.setAttribute('content', color);
 
-  if (isRunningInIFrame()) {
-    // Allow changing status bar in mockup.
-    window.parent.postMessage({ type: 'setMetaTheme', color }, '*');
-  }
+  // if (isRunningInIFrame()) {
+  //   // Allow changing status bar in mockup.
+  //   window.parent.postMessage({ type: 'setMetaTheme', color }, '*');
+  // }
 }
 
-/**
- * Retrieves the content of the meta tag with the name "theme-color".
- *
- * @returns {string} The content of the meta tag if it exists, otherwise returns '#ffffff'.
- */
 export function getMetaTheme(): string {
   return (
     document
@@ -60,12 +59,6 @@ export function defineSafeArea() {
     inherits: true,
     initialValue: '37px',
   });
-}
-
-export function setAutoSelectStage(stage: number) {
-  document
-    .querySelector('#autoSelectionView')
-    ?.setAttribute('data-stage', stage.toString());
 }
 
 export function initScrollTimeline(
@@ -175,13 +168,60 @@ export function toKebabCase(str: string) {
   return str.replace(/\s/g, '-').toLowerCase();
 }
 
+const currentRoute = {
+  value: null as DerivedCell<{
+    name: string | null;
+    params: Map<string, string>;
+    query: URLSearchParams;
+    path: string;
+    fullPath: string;
+  }> | null,
+
+  get() {
+    if (!this.value) {
+      this.value = useRouter().getCurrentRoute();
+    }
+    return this.value;
+  },
+};
+
+export async function addRouteQuery(query: string, value?: string) {
+  const router = useRouter();
+  const route = currentRoute.get();
+  const searchParams = new URLSearchParams(route.value.query);
+  searchParams.set(query, value ?? '');
+  const nextPath = `${route.value.path}?${searchParams}`;
+  await router.navigate(nextPath);
+}
+
 export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
   if (guard && guard.value === false) return;
 
   const router = useRouter();
-  const route = router.getCurrentRoute();
+  const route = currentRoute.get();
   const searchParams = new URLSearchParams(route.value.query);
   searchParams.delete(query);
   const nextPath = `${route.value.path}?${searchParams}`;
   await router.navigate(nextPath);
 }
+
+export function useRouteQuery(query: string, value?: string) {
+  return Cell.derived(() => {
+    const routeSearchParams = currentRoute.get().value.query;
+    if (value) {
+      return routeSearchParams.get(query) === value;
+    }
+    return routeSearchParams.has(query);
+  });
+}
+
+export const getRandomMorningTime = () => {
+  const start = new Date();
+  start.setHours(5, 30, 0, 0);
+  const end = new Date();
+  end.setHours(8, 30, 0, 0);
+  const randomTime = new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+  return { hours: randomTime.getHours(), minutes: randomTime.getMinutes() };
+};

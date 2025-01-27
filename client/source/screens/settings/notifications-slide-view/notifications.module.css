@@ -1,0 +1,30 @@
+.container {
+  background-color: white;
+}
+
+.shrinkWrapper {
+  transition: scale var(--drawer), translate var(--drawer);
+  &[data-dialog-is-open] {
+    scale: var(--drawer-background-scale);
+  }
+
+  body[data-nested-drawer-is-open] & {
+    scale: calc(var(--drawer-background-scale) * 0.9);
+    translate: 0 15%;
+  }
+}
+
+.backButton {
+  padding-inline: var(--side-padding);
+}
+
+.heading {
+  padding-block-start: calc(var(--block-padding) * 0.25);
+  font: var(--subtitle-bold);
+  padding-inline: var(--side-padding);
+}
+
+.button {
+  width: calc(100% - var(--side-padding) * 2);
+  margin-inline: var(--side-padding);
+}

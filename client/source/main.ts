@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import { initializeDatabase } from '#/data/services';
+import { initializeDatabase } from '#/services/database';
 import { createWebRouter, defineRoutes } from '@adbl/unfinished/router';
 import { appRouteTree, onboardingMiddleware } from './screens/routes';
 import {
@@ -15,13 +15,7 @@ export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
   appIsReadyResolver?.();
   disableContextMenu();
   defineSafeArea();
-  initializeDatabase()
-    .then(() => {
-      console.log('Database initialized!');
-    })
-    .catch((error) => {
-      console.error('Error initializing database', error);
-    });
+  initializeDatabase();
 
   const router = createRouter();
   router.window = window;
@@ -39,13 +33,7 @@ export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
 export async function resumeApp() {
   disableContextMenu();
   defineSafeArea();
-  initializeDatabase()
-    .then(async () => {
-      console.log('Database initialized!');
-    })
-    .catch((error) => {
-      console.error('Error initializing database', error);
-    });
+  initializeDatabase();
 
   const router = createRouter();
   router.window = window;
@@ -60,8 +48,7 @@ export async function resumeApp() {
 
   const waitingScreen = document.querySelector('#waiting-screen');
   waitingScreen?.classList.add('loading');
-  const fullCurrentPath =
-    window.location.pathname + window.location.search + window.location.hash;
+  const fullCurrentPath = location.pathname + location.search + location.hash;
 
   return router.replace(fullCurrentPath).then(async () => {
     const waitingScreen = document.querySelector('#waiting-screen');

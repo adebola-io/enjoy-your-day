@@ -1,6 +1,6 @@
 import { For, useObserver } from '@adbl/unfinished';
 import { ElasticView } from '#/components/elastic-view';
-import type { HistoryChartItem } from '#/data/worker/types';
+import type { HistoryChartItem } from '#/services/database/types';
 import type { LookupMap } from '#/library/lookup-map';
 import { Temporal } from 'temporal-polyfill';
 import { Cell, type SourceCell } from '@adbl/cells';
@@ -134,11 +134,6 @@ function ChartItem(props: ChartItemProps) {
   isSelected.listen((isSelected) => {
     if (!isSelected) return;
     pickedIndex.value = index.value;
-    buttonRef.value?.scrollIntoView({
-      behavior: 'smooth',
-      inline: 'center',
-      block: 'nearest',
-    });
   });
 
   return (

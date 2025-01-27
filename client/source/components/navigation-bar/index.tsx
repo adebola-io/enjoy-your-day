@@ -1,16 +1,11 @@
 import { navigationBarLinks, type NavigationLink } from '#/data';
-import { vibrate } from '#/library/utils';
+import { useRouteQuery, vibrate } from '#/library/utils';
 import { For } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
-import { Cell } from '@adbl/cells';
 import classes from './navigation-bar.module.css';
 
 export function NavigationBar() {
-  const router = useRouter();
-  const route = router.getCurrentRoute();
-  const autoSelectIsOpen = Cell.derived(() => {
-    return route.value.query.has('auto-select');
-  });
+  const autoSelectIsOpen = useRouteQuery('auto-select');
   return (
     <nav
       id="mainNavbar"

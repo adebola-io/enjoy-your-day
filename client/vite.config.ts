@@ -13,15 +13,10 @@ export default defineConfig({
   },
   worker: { format: 'es' },
   plugins: [
-    inlineSource(),
     ViteMinifyPlugin(),
     hmrPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
-      devOptions: {
-        enabled: true,
-      },
-
       manifest: {
         name: 'Enjoy Your Day',
         short_name: 'Enjoy Your Day',
@@ -492,5 +487,6 @@ export default defineConfig({
         ],
       },
     }),
+    inlineSource(),
   ],
 });

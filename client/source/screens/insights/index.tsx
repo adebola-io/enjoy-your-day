@@ -1,5 +1,5 @@
 import { Cell } from '@adbl/cells';
-import { getInsightsOverview } from '#/data/services';
+import { getInsightsOverview } from '#/services/database';
 import {
   getResourceState,
   initScrollTimeline,

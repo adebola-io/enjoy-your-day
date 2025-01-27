@@ -2,26 +2,23 @@ import { BottomDrawer } from '#/components/bottom-drawer';
 import { Logo } from '#/components/logo';
 import { Button } from '#/components/button';
 import { Cell } from '@adbl/cells';
-import { For, If, useObserver } from '@adbl/unfinished';
+import { For, useObserver } from '@adbl/unfinished';
 import { PhoneMockup } from '#/components/phone-mockup';
-import { NestedDrawer, nestedDrawerQuery } from './nested-drawer';
-import { installDetails } from '#/library/utils';
 import {
-  getInstallInstructions,
-  type InstallInstructions,
-} from '#/data/install-instructions';
+  InstallationInstructionsDrawer,
+  installInstructionsDrawerQuery,
+} from './nested-drawer';
+import { addRouteQuery, installDetails } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './install-prompt-drawer.module.css';
 
 export default function InstallPromptDrawer() {
   const observer = useObserver();
   const router = useRouter();
-  const route = router.getCurrentRoute();
   const drawerRef = Cell.source<HTMLDialogElement | null>(null);
   const drawerIsOpen = Cell.source(false);
   const apps = Array(10);
   const fillerApps = For(apps, () => <li class={classes.app} />);
-  const instructions = Cell.source<InstallInstructions | undefined>(undefined);
 
   const matchListener = (event: MediaQueryListEvent) => {
     drawerIsOpen.value = !event.matches;
@@ -30,27 +27,22 @@ export default function InstallPromptDrawer() {
     drawerIsOpen.value = false;
   };
 
-  const openNestedDrawer = () => {
-    const path = route.value.fullPath;
-    const nextPath = path.includes('?')
-      ? `${path}&${nestedDrawerQuery}`
-      : `${path}?${nestedDrawerQuery}`;
-    router.navigate(nextPath);
+  const openNestedDrawer = async () => {
+    await addRouteQuery(installInstructionsDrawerQuery, 'true');
   };
 
-  const promptInstall = () => {
+  const promptInstall = async () => {
     if (!installDetails.deferredPrompt) {
       openNestedDrawer();
       return;
     }
-    installDetails.deferredPrompt.prompt?.().then?.((result) => {
-      if (result.outcome === 'accepted') {
-        installDetails.deferredPrompt = undefined;
-        drawerIsOpen.value = false;
-      } else {
-        openNestedDrawer();
-      }
-    });
+    const result = await installDetails.deferredPrompt.prompt?.();
+    if (result?.outcome === 'accepted') {
+      installDetails.deferredPrompt = undefined;
+      drawerIsOpen.value = false;
+    } else {
+      await openNestedDrawer();
+    }
   };
 
   observer.onConnected(drawerRef, async () => {
@@ -68,8 +60,7 @@ export default function InstallPromptDrawer() {
         console.error(e);
       }
     }
-    instructions.value = await getInstallInstructions();
-    if (instructions.value === undefined) return () => {};
+
     const isStandalone = matchMedia('(display-mode: standalone)');
     isStandalone.addEventListener('change', matchListener);
     setTimeout(() => {
@@ -119,9 +110,7 @@ export default function InstallPromptDrawer() {
       >
         Install
       </Button>
-      {If(instructions, (instructions) => (
-        <NestedDrawer instructions={instructions} />
-      ))}
+      <InstallationInstructionsDrawer shrinkTarget="#installPromptDrawer" />
     </BottomDrawer>
   );
 }

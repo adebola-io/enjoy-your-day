@@ -1,0 +1,22 @@
+.appContent {
+  &[data-app-loaded] {
+    display: grid;
+    grid-template-rows: 1fr auto;
+
+    @media (orientation: landscape) {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto;
+    }
+  }
+}
+
+.mainOutlet {
+  display: grid;
+  background-color: white;
+
+  &[data-dialog-is-open] {
+    & > :not(dialog) {
+      scale: 0.9;
+    }
+  }
+}

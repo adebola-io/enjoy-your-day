@@ -1,9 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+/* latin-ext */
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/parkinsans/v1/-W_7XJXvQyPb1QfpBpRrfkoLfq0k.woff2)
+    format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/parkinsans/v1/-W_7XJXvQyPb1QfpBpRrfkQLfg.woff2)
+    format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 :root {
   --default-duration: 150ms;
-  --drawer: calc(var(--default-duration) * 2);
-  --slide-duration: calc(var(--default-duration) * 1.25);
+  --drawer: calc(var(--default-duration) * 2.25);
+  --slide-duration: calc(var(--default-duration) * 1.15);
+  --line-duration: calc(var(--default-duration) * 3);
 
   --white: #ffffff;
   --black: #000000;
@@ -120,7 +144,7 @@
     var(--block-padding);
   --side-padding: 7.63dvw;
   --input-inline-padding: 10px;
-  --drawer-background-scale: 0.85;
+  --drawer-background-scale: 0.9;
   --drawer-background-scale-pending: 0.899;
 
   /* Typography */
@@ -133,6 +157,8 @@
   --base-font-size: min(0.9rem, 3dvh);
   --small-font-size: min(0.75rem, 2dvh);
   --tiny-font-size: min(0.6875rem, 1.5dvh);
+  --tinier-font-size: min(0.5rem, 1.25dvh);
+  --tiniest-font-size: min(0.4rem, 1dvh);
 
   --value-bold: normal 700 var(--value-font-size) / 100px 'Parkinsans',
     sans-serif;
@@ -163,6 +189,11 @@
   --small-regular: normal 400 var(--small-font-size) 'Parkinsans', sans-serif;
   --tiny-bold: normal 600 var(--tiny-font-size) 'Parkinsans', sans-serif;
   --tiny-regular: normal 400 var(--tiny-font-size) 'Parkinsans', sans-serif;
+  --tinier-bold: normal 600 var(--tinier-font-size) 'Parkinsans', sans-serif;
+  --tinier-regular: normal 400 var(--tinier-font-size) 'Parkinsans', sans-serif;
+  --tiniest-bold: normal 600 var(--tiniest-font-size) 'Parkinsans', sans-serif;
+  --tiniest-regular: normal 400 var(--tiniest-font-size) 'Parkinsans',
+    sans-serif;
 
   /* Shadows */
   --shadow-outline: 0px 0px 1px 1px #1b1b3a;

@@ -3,11 +3,11 @@ import { useLiveDate } from '@adbl/dom-cells/useDate';
 import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 import type { GoalState } from '#/data/entities';
 import { Temporal } from 'temporal-polyfill';
-import { saveGoalState } from './services';
+import { saveGoalState, updateUsername } from '../services/database';
 import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
-import { NoOp } from '#/library/utils';
+import { getRandomMorningTime, NoOp } from '#/library/utils';
 
 export const DATE_UPDATE_INTERVAL = 1000 * 30; // updates every 30 seconds.
 export const LOCALSTORAGE_KEYS = {
@@ -18,8 +18,19 @@ export const LOCALSTORAGE_KEYS = {
   lastLoadedChunk: 'last-loaded-chunk',
   username: 'username',
   goalsForTheDayDateStamp: 'goals-for-the-day-date-stamp',
+  notificationsEnabled: 'notifications-enabled',
+  morningTime: 'morning-time',
 };
 
+const notificationsPermissionGranted =
+  window.Notification?.permission === 'granted';
+export const notificationsEnabled = useLocalStorage<boolean>(
+  LOCALSTORAGE_KEYS.notificationsEnabled,
+  notificationsPermissionGranted
+);
+if (!notificationsPermissionGranted) {
+  notificationsEnabled.value = false;
+}
 export const selectedCategories = useLocalStorage<string[]>(
   LOCALSTORAGE_KEYS.selectedCategories,
   []
@@ -28,6 +39,7 @@ export const involvementLevel = useLocalStorage<number>(
   LOCALSTORAGE_KEYS.involvementLevel,
   0
 );
+
 export const involvementLevelStr = Cell.derived(() => {
   switch (involvementLevel.value) {
     case 1:
@@ -67,6 +79,10 @@ export const lastLoadedChunk = useLocalStorage<number>(
   LOCALSTORAGE_KEYS.lastLoadedChunk,
   0
 );
+export const morningTime = useLocalStorage<{ hours: number; minutes: number }>(
+  LOCALSTORAGE_KEYS.morningTime,
+  getRandomMorningTime()
+);
 
 export const goalsCompleted = Cell.derived(() => {
   return (
@@ -87,6 +103,11 @@ export const timeOfDay = Cell.derived(() => {
   return 'evening';
 });
 export const username = useLocalStorage<string>(LOCALSTORAGE_KEYS.username, '');
+appLoadingState.runAndListen((state) => {
+  if (state === 'done') {
+    username.listen(updateUsername);
+  }
+});
 
 async function trackDateChange() {
   const today = Temporal.Now.plainDateISO().toString();

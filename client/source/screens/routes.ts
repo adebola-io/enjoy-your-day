@@ -3,7 +3,7 @@ import {
   defineRouterMiddleware,
   redirect,
 } from '@adbl/unfinished/router';
-import App from './app';
+import App from '.';
 import Home from './home';
 import Insights from './insights';
 import Settings from './settings';

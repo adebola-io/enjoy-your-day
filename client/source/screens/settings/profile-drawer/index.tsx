@@ -4,7 +4,11 @@ import { InvolvementLevel } from '#/components/involvement-level';
 import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
-import { removeRouteQuery } from '#/library/utils';
+import {
+  addRouteQuery,
+  removeRouteQuery,
+  useRouteQuery,
+} from '#/library/utils';
 import ProfileIcon from '#/components/icons/profile';
 import {
   username,
@@ -14,7 +18,6 @@ import {
   involvementLevel,
 } from '#/data/state';
 import { Cell } from '@adbl/cells';
-import { useRouter } from '@adbl/unfinished/router';
 import { Input } from '#/components/input';
 import { For, If } from '@adbl/unfinished';
 import { categories } from '#/data/categories';
@@ -24,26 +27,15 @@ import { CategoryCard } from '#/components/category-card';
 import classes from './profile-drawer.module.css';
 
 export default function ProfileDrawer() {
-  const router = useRouter();
-  const route = router.getCurrentRoute();
-
-  const usernameIsFocused = Cell.derived(
-    () => route.value.query.get('focus') === 'username'
-  );
-  const involvementLevelIsFocused = Cell.derived(
-    () => route.value.query.get('focus') === 'involvement-level'
-  );
-  const categoriesFocused = Cell.derived(
-    () => route.value.query.get('focus') === 'categories'
-  );
-  const usernameInput = Cell.source<HTMLInputElement | null>(null);
   let initialUsernameValue = '';
-  const isOpen = Cell.derived(
-    () => route.value.query.get('level-one') === 'profile'
-  );
+  const usernameIsFocused = useRouteQuery('focus', 'username');
+  const involvementIsFocused = useRouteQuery('focus', 'involvement-level');
+  const categoriesFocused = useRouteQuery('focus', 'categories');
+  const usernameInput = Cell.source<HTMLInputElement | null>(null);
+  const isOpen = useRouteQuery('level-one', 'profile');
   const focused = Cell.derived(
     () =>
-      involvementLevelIsFocused.value ||
+      involvementIsFocused.value ||
       usernameIsFocused.value ||
       categoriesFocused.value
   );
@@ -63,7 +55,7 @@ export default function ProfileDrawer() {
   };
 
   const handleUsernameFocus = async () => {
-    await router.navigate('/settings?level-one=profile&focus=username');
+    await addRouteQuery('focus', 'username');
     initialUsernameValue = username.value;
   };
 
@@ -78,17 +70,15 @@ export default function ProfileDrawer() {
   };
 
   const handleInvolvementClick = async () => {
-    await router.navigate(
-      '/settings?level-one=profile&focus=involvement-level'
-    );
+    await addRouteQuery('focus', 'involvement-level');
   };
 
   const handleCategoriesClick = async () => {
-    await router.navigate('/settings?level-one=profile&focus=categories');
+    await addRouteQuery('focus', 'categories');
   };
 
   const handleInvolvementBlur = async () => {
-    await removeRouteQuery('focus', involvementLevelIsFocused);
+    await removeRouteQuery('focus', involvementIsFocused);
   };
 
   const handleSubmit = async () => {
@@ -116,7 +106,7 @@ export default function ProfileDrawer() {
       shrinkTarget="#settingsView"
       class={classes.profileDrawer}
       data-username-focused={usernameIsFocused}
-      data-involvement-level-focused={involvementLevelIsFocused}
+      data-involvement-level-focused={involvementIsFocused}
       data-categories-focused={categoriesFocused}
       onClose={handleDrawerClose}
     >

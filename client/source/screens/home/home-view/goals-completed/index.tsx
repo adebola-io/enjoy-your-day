@@ -2,17 +2,14 @@ import { BottomDrawer } from '#/components/bottom-drawer';
 import { ConfettiIcon } from '#/components/icons/confetti';
 import { useRouter } from '@adbl/unfinished/router';
 import { CSS_VARS } from '#/styles/variables';
-import { Cell } from '@adbl/cells';
-import classes from './goals-completed.module.css';
-import confetti from 'canvas-confetti';
 import { InlinedIcon } from '#/components/inlined-icon';
+import { useRouteQuery } from '#/library/utils';
+import confetti from 'canvas-confetti';
+import classes from './goals-completed.module.css';
 
 export function GoalsCompletedDrawer() {
   const router = useRouter();
-  const route = router.getCurrentRoute();
-  const isOpen = Cell.derived(() => {
-    return route.value.query.has('goals-completed');
-  });
+  const isOpen = useRouteQuery('goals-completed');
   const goBackHome = () => router.navigate('/home');
 
   isOpen.listen((isOpen) => {
@@ -32,7 +29,7 @@ export function GoalsCompletedDrawer() {
       class={classes.container}
       open={isOpen}
       onClose={goBackHome}
-      shrinkTarget="#mainOutlet"
+      shrinkTarget="#homeView"
       data-stagger-children={isOpen}
     >
       <InlinedIcon

@@ -202,7 +202,6 @@ export const updateGoalsList: UpdateGoalsListHandler = async (data) => {
   isUpdatingGoals = true;
   const { lastLoadedChunk, latestChunk, categoryList } = data.message;
   try {
-    startGoalUpdateProcess(lastLoadedChunk, latestChunk, categoryList);
     updateDataQueue.defineHandler(async (update) => {
       // Adding new goals:
       dexie.goals.bulkAdd(update.addedGoalObjects).then(() => {
@@ -214,6 +213,7 @@ export const updateGoalsList: UpdateGoalsListHandler = async (data) => {
         // TODO.
       });
     });
+    startGoalUpdateProcess(lastLoadedChunk, latestChunk, categoryList);
     isUpdatingGoals = false;
     return true;
   } catch (error) {

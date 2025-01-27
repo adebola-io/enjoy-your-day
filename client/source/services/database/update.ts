@@ -4,13 +4,24 @@ import { LookupMap } from '#/library/lookup-map';
 import type { SendableCategory } from '../../data/categories';
 
 export const updateDataQueue = new TaskQueue<GoalListingUpdate>();
-export function startGoalUpdateProcess(
+export async function startGoalUpdateProcess(
   lastLoadedChunk: number,
   latestChunk: number,
   categoryList: Array<SendableCategory>
 ) {
   const categories = new LookupMap(categoryList, 'name');
   const errored = false;
+
+  let i = 0;
+  while (i < latestChunk) {
+    updateDataQueue.insertAtIndex(i, {
+      chunk: i + 1,
+      addedGoalObjects: [],
+      removedGoalUuids: [],
+      updatedGoals: [],
+    });
+    i++;
+  }
 
   for (let i = lastLoadedChunk + 1; i <= latestChunk; i++) {
     fetch(`/json/${i}.json`)

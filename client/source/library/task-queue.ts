@@ -14,6 +14,9 @@ export class TaskQueue<T> {
 
   async insertAtIndex(index: number, item: T) {
     this.#queue[index] = item;
+    if (this.#i >= index) {
+      await this.#callback?.(item);
+    }
     await this.#process();
   }
 

@@ -1,5 +1,6 @@
 import type { IconProps } from '../icons/props';
 import type { IconName } from '#/library/icon-name';
+import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { setAttributeFromProps } from '@adbl/unfinished';
 
 export type DynamicIconProps = IconProps & {
@@ -45,6 +46,16 @@ export async function loadIconDataUrl(
   const module = await import(`../icons/${iconName}.tsx`);
   const IconComponent = module.default;
   const svgNode = (<IconComponent {...props} />) as [SVGElement];
+  const svgString = svgNode[0].outerHTML;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+}
+
+export function loadIconDataUrlEager(
+  Icon?: (props: IconProps) => JSX.Template,
+  props: IconProps = {}
+) {
+  if (!Icon) return '';
+  const svgNode = (<Icon {...props} />) as [SVGElement];
   const svgString = svgNode[0].outerHTML;
   return `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
 }

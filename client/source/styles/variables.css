@@ -126,7 +126,7 @@
 
   /* Typography */
 
-  --font-family: 'Inter', sans-serif;
+  --font-family: 'Schibsted Grotesk', sans-serif;
 
   --value-font-size: min(6rem, 20dvh);
   --heading-font-size: min(4.2rem, 12dvh);

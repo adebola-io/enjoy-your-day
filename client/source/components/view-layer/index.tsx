@@ -59,7 +59,8 @@ export function ViewLayer(props: ViewLayerProps) {
   );
 }
 
-export function ViewLayerGroup(props: DivProps) {
+export interface ViewLayerGroupProps extends DivProps {}
+export function ViewLayerGroup(props: ViewLayerGroupProps) {
   return (
     <div {...props} class={[classes.viewLayerContainer, props.class]}>
       {props.children}

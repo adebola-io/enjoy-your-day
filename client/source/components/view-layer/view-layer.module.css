@@ -9,6 +9,7 @@
   transition: translate var(--slide-duration), opacity var(--slide-duration);
   transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
   translate: 100%;
+  contain: strict;
 
   &[data-is-open] {
     opacity: 1;

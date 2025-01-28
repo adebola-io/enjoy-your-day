@@ -122,7 +122,7 @@
 
 .userDesignation {
   width: calc(100% - var(--side-padding) * 2);
-  font: var(--eyebrow-bold);
+  font: var(--title-bold);
 }
 
 .headingDescription {

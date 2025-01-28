@@ -14,11 +14,11 @@ import { ElasticView } from '#/components/elastic-view';
 import { BackButton } from '#/components/back-button';
 import classes from './goal-cards-layer.module.css';
 
-interface GoalCardsViewProps {
+interface GoalCardsLayerProps {
   goals: SourceCell<GoalProps[] | null>;
 }
 
-export default function GoalCardsSlideView(props: GoalCardsViewProps) {
+export default function GoalCardsLayer(props: GoalCardsLayerProps) {
   const goals = props.goals as SourceCell<GoalProps[]>;
   const ulRef = Cell.source<HTMLUListElement | null>(null);
 

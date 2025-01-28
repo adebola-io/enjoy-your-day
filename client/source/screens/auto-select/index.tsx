@@ -7,7 +7,7 @@ import {
   useRouteQuery,
 } from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
-import GoalCardsSlideView from './goal-cards-layer';
+import GoalCardsLayer from './goal-cards-layer';
 import { Cell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
@@ -58,7 +58,7 @@ function AutoSelectSlideContent() {
         error: () => <div>Error, {resource.error.value?.message}</div>,
         success: () => (
           <>
-            <GoalCardsSlideView goals={resource.data} />
+            <GoalCardsLayer goals={resource.data} />
             <AutoSelectEditLayer goals={resource.data} />
             <ConfirmDrawer goals={resource.data} />
           </>

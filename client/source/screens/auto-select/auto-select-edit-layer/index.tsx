@@ -3,7 +3,7 @@ import { SearchInput } from '#/components/search-input';
 import { Container } from '#/components/container';
 import { ElasticView } from '#/components/elastic-view';
 import { BackButton } from '#/components/back-button';
-import { SlideView } from '#/components/slide-view';
+import { ViewLayer } from '#/components/view-layer';
 import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
 import { AddIcon } from '#/components/icons/add';
 import { InlinedIcon } from '#/components/inlined-icon';
@@ -23,13 +23,13 @@ import {
   getAutoCompleteSuggestions,
 } from '#/services/database';
 import { CSS_VARS } from '#/styles/variables';
-import classes from './auto-select-edit-slide-view.module.css';
+import classes from './auto-select-edit-layer.module.css';
 
 export interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[] | null>;
 }
 
-export default function AutoSelectEditSlideView(props: GoalCardsViewProps) {
+export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
   const goals = props.goals as SourceCell<GoalProps[]>;
   const observer = useObserver();
   const searchIsOpen = useRouteQuery('search');
@@ -89,8 +89,7 @@ export default function AutoSelectEditSlideView(props: GoalCardsViewProps) {
   };
 
   return (
-    <SlideView
-      class={classes.slide}
+    <ViewLayer
       open={useRouteQuery('stage', 'edit')}
       content={() => (
         <ElasticView

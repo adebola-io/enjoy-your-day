@@ -1,17 +1,17 @@
 import { Cell } from '@adbl/cells';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
-import classes from './slide.module.css';
 import { If } from '@adbl/unfinished';
 import { defer } from '#/library/utils';
+import classes from './view-layer.module.css';
 
 type DivProps = JSX.IntrinsicElements['div'];
-interface SlideProps extends DivProps {
+interface ViewLayerProps extends DivProps {
   ref?: Cell<HTMLDivElement | null>;
   open: JSX.ValueOrCell<boolean>;
   content?: () => JSX.Template;
 }
 
-export function SlideView(props: SlideProps) {
+export function ViewLayer(props: ViewLayerProps) {
   const {
     open: isOpenRaw = true,
     ref = Cell.source<HTMLDivElement | null>(null),
@@ -23,7 +23,6 @@ export function SlideView(props: SlideProps) {
   );
   const isNotOpen = Cell.derived(() => !isOpen.value);
   const contentLoaded = Cell.source(isOpen.value);
-  const containerRef = Cell.source<HTMLDivElement | null>(null);
 
   isOpen.listen((slideIsOpen) => {
     if (slideIsOpen) {
@@ -31,9 +30,9 @@ export function SlideView(props: SlideProps) {
       return;
     }
     defer(async () => {
-      if (!containerRef.value) return;
+      if (!ref.value) return;
       await Promise.all(
-        containerRef.value
+        ref.value
           .getAnimations()
           .filter((a) => a instanceof CSSTransition)
           .map((a) => a.finished)
@@ -44,9 +43,9 @@ export function SlideView(props: SlideProps) {
 
   return (
     <div
-      ref={containerRef}
+      ref={ref}
       {...rest}
-      class={[rest.class, classes.slide]}
+      class={[rest.class, classes.viewLayer]}
       inert={isNotOpen}
       data-is-open={isOpen}
     >
@@ -60,9 +59,9 @@ export function SlideView(props: SlideProps) {
   );
 }
 
-export function SlideViews(props: DivProps) {
+export function ViewLayerGroup(props: DivProps) {
   return (
-    <div {...props} class={[classes.slideContainer, props.class]}>
+    <div {...props} class={[classes.viewLayerContainer, props.class]}>
       {props.children}
     </div>
   );

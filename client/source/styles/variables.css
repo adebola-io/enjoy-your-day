@@ -26,7 +26,7 @@
 :root {
   --default-duration: 150ms;
   --drawer: calc(var(--default-duration) * 2.25);
-  --slide-duration: calc(var(--default-duration) * 1.15);
+  --slide-duration: calc(var(--default-duration) * 1.25);
   --line-duration: calc(var(--default-duration) * 3);
 
   --white: #ffffff;
@@ -207,6 +207,10 @@
 
   &.low-end {
     --default-duration: 0ms;
+  }
+
+  @media (max-width: 768px) {
+    --slide-duration: calc(var(--default-duration) * 0.95);
   }
 }
 

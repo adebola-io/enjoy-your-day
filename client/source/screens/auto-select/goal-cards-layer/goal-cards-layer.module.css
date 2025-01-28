@@ -7,7 +7,8 @@
 }
 
 .backButton {
-  padding-inline-start: var(--side-padding);
+  margin-inline-start: var(--side-padding);
+  color: var(--space-cadet-500);
   grid-area: 1 / 1;
 }
 
@@ -72,7 +73,8 @@
 
 .btn {
   display: grid;
-  filter: drop-shadow(0 0 10px #0000003e);
+  border: 2px solid var(--space-cadet-500);
+  isolation: isolate;
   grid-auto-flow: column;
   gap: 6px;
 }

@@ -7,21 +7,21 @@ import {
   useRouteQuery,
 } from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
-import GoalCardsSlideView from './goal-cards-slide-view';
+import GoalCardsSlideView from './goal-cards-layer';
 import { Cell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { Loader } from '#/components/loader';
-import { SlideView, SlideViews } from '#/components/slide-view';
+import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
 import { involvementLevel, selectedCategories } from '#/data/state';
-import AutoSelectEditSlideView from './auto-select-edit-slide-view';
+import AutoSelectEditLayer from './auto-select-edit-layer';
 import { BackButton } from '#/components/back-button';
-import classes from './auto-select.module.css';
 import { ConfirmDrawer } from './confirm-drawer';
+import classes from './auto-select.module.css';
 
-export default function AutoSelectSlideView() {
+export default function AutoSelectLayer() {
   return (
-    <SlideView
+    <ViewLayer
       class={classes.slide}
       open={useRouteQuery('auto-select')}
       content={AutoSelectSlideContent}
@@ -51,20 +51,20 @@ function AutoSelectSlideContent() {
   });
 
   return (
-    <SlideViews ref={containerRef} class={classes.container}>
+    <ViewLayerGroup ref={containerRef}>
       {Switch(state, {
         inert: NoOp,
         pending: Pending,
         error: () => <div>Error, {resource.error.value?.message}</div>,
         success: () => (
           <>
-            <GoalCardsSlideView goals={resource.data} />;
-            <AutoSelectEditSlideView goals={resource.data} />
+            <GoalCardsSlideView goals={resource.data} />
+            <AutoSelectEditLayer goals={resource.data} />
             <ConfirmDrawer goals={resource.data} />
           </>
         ),
       })}
-    </SlideViews>
+    </ViewLayerGroup>
   );
 }
 

@@ -4,7 +4,6 @@ import {
   getResourceState,
   initScrollTimeline,
   NoOp,
-  setMetaTheme,
   vibrate,
 } from '#/library/utils';
 import { Switch, useObserver } from '@adbl/unfinished';
@@ -101,7 +100,6 @@ export default function Insights() {
   };
 
   observer.onConnected(containerRef, () => {
-    setMetaTheme('#ffffff');
     resource.run(dailyGoals.value);
   });
 

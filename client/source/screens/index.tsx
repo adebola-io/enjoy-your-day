@@ -1,15 +1,15 @@
 import { NavigationBar } from '#/components/navigation-bar';
-import { SlideView, SlideViews } from '#/components/slide-view';
+import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
 import { appLoadingState, dailyGoals } from '#/data/state';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { If } from '@adbl/unfinished';
 import { registerNotificationServiceWorker } from '#/services/notifications';
-import AutoSelectSlideView from './auto-select-slide-view';
+import AutoSelectLayer from './auto-select';
 import classes from './app.module.css';
 
 export default function App() {
-  const router = useRouter();
+  const { Outlet } = useRouter();
 
   const appIsLoaded = Cell.derived(() => {
     return appLoadingState.value === 'done';
@@ -24,15 +24,12 @@ export default function App() {
   });
 
   return (
-    <SlideViews>
-      <SlideView class={classes.appContent} open data-app-loaded={appIsLoaded}>
-        <router.Outlet
-          class={classes.mainOutlet}
-          data-goals-loaded={dailyGoalsLoaded}
-        />
+    <ViewLayerGroup>
+      <ViewLayer class={classes.appContent} open data-app-loaded={appIsLoaded}>
+        <Outlet class={classes.outlet} data-goals-loaded={dailyGoalsLoaded} />
         {If(appIsLoaded, NavigationBar)}
-      </SlideView>
-      <AutoSelectSlideView />
-    </SlideViews>
+      </ViewLayer>
+      <AutoSelectLayer />
+    </ViewLayerGroup>
   );
 }

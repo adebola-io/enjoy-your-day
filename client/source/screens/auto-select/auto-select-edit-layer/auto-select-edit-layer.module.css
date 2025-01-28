@@ -1,8 +1,3 @@
-.slide {
-  color: var(--space-cadet-500);
-  background-color: white;
-}
-
 .container {
   --toggle-search-duration: var(--default-duration);
   display: grid;
@@ -16,10 +11,6 @@
   grid-column: 1;
   gap: 10px;
   scrollbar-width: none;
-
-  &:not([data-is-open]) {
-    translate: 100% 0;
-  }
 
   &[data-dialog-is-open] {
     scale: var(--drawer-background-scale);
@@ -61,7 +52,7 @@
 }
 
 .backButton {
-  padding-inline-start: var(--block-padding);
+  margin-inline-start: var(--side-padding);
   grid-area: 1 / 1;
 }
 

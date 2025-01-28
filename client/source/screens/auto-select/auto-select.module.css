@@ -1,0 +1,39 @@
+.pendingContainer {
+  display: grid;
+  width: 100%;
+  height: 100%;
+}
+
+.backButton {
+  margin-inline-start: var(--side-padding);
+  color: var(--space-cadet-500);
+  grid-area: 1 / 1;
+}
+
+.autoSelectionLoader {
+  align-self: end;
+  width: min(90px, 7dvh);
+  animation: var(--loader-spin) var(--base-animation-duration) infinite;
+  justify-self: center;
+  grid-area: 1 / 1;
+
+  @media (orientation: landscape) {
+    animation: var(--loader-spin) var(--base-animation-duration) infinite;
+  }
+}
+
+.heading {
+  align-self: start;
+  max-width: 60dvw;
+  min-height: calc(var(--subtitle-font-size) * 3);
+  animation: var(--fade-out) 6 calc(var(--default-duration) * 25)
+    calc(var(--slide-duration) + var(--default-duration) * 25);
+  text-align: center;
+  font: var(--subtitle-bold);
+  justify-self: center;
+  grid-area: 2 / 1;
+
+  @media (orientation: landscape) {
+    animation: var(--fade-out) 6 calc(var(--default-duration) * 25);
+  }
+}

@@ -23,19 +23,15 @@ export const appIsReady = new Promise<void>((resolve) => {
 });
 
 export async function setMetaTheme(color: string) {
-  // note: This has been replaced with a no-op because the
-  // un-animatable snapping of the status bar leads to
-  // a worse user experience overall.
-  color;
-  // await appIsReady;
-  // document
-  //   .querySelector('meta[name="theme-color"]')
-  //   ?.setAttribute('content', color);
+  await appIsReady;
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', color);
 
-  // if (isRunningInIFrame()) {
-  //   // Allow changing status bar in mockup.
-  //   window.parent.postMessage({ type: 'setMetaTheme', color }, '*');
-  // }
+  if (isRunningInIFrame()) {
+    // Allow changing status bar in mockup.
+    window.parent.postMessage({ type: 'setMetaTheme', color }, '*');
+  }
 }
 
 export function getMetaTheme(): string {

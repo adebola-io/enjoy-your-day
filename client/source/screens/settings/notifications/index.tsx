@@ -6,7 +6,7 @@ import { SettingsItem } from '#/components/settings-item';
 import TvIcon from '#/components/icons/tv';
 import WifiIcon from '#/components/icons/wifi';
 import BellIcon from '#/components/icons/bell';
-import { SlideView } from '#/components/slide-view';
+import { ViewLayer } from '#/components/view-layer';
 import { addRouteQuery, useRouteQuery } from '#/library/utils';
 import { notificationsEnabled } from '#/data/state';
 import { loadIconDataUrl } from '#/components/icon';
@@ -21,7 +21,7 @@ import { Cell } from '@adbl/cells';
 import { useObserver } from '@adbl/unfinished';
 import classes from './notifications.module.css';
 
-export default function NotificationsSlideView() {
+export default function NotificationsLayer() {
   const observer = useObserver();
   const notificationsPageIsOpen = useRouteQuery('level-one', 'notifications');
   const inputRef = Cell.source<HTMLInputElement | null>(null);
@@ -63,7 +63,7 @@ export default function NotificationsSlideView() {
   });
 
   return (
-    <SlideView
+    <ViewLayer
       class={classes.container}
       open={notificationsPageIsOpen}
       content={() => (

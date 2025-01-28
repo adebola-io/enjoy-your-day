@@ -1,10 +1,5 @@
 import type { JSX } from '@adbl/unfinished/jsx-dev-runtime';
-import {
-  defer,
-  getMetaTheme,
-  overlayBlack,
-  setMetaTheme,
-} from '#/library/utils';
+import { defer } from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
 import { Teleport } from '@adbl/unfinished/teleport';
 import { Cell, type SourceCell } from '@adbl/cells';
@@ -38,7 +33,6 @@ export function BottomDrawer(props: BottomDrawerProps) {
   } = props;
   const observer = useObserver();
   const router = useRouter();
-  let formerMetaTheme = getMetaTheme();
 
   const isOpen = Cell.derived(() =>
     Cell.isCell(open) ? open.value : Boolean(open)
@@ -58,8 +52,6 @@ export function BottomDrawer(props: BottomDrawerProps) {
     }
     const dialogContent = dialog.firstElementChild as HTMLElement;
     if (shouldOpen) {
-      formerMetaTheme = getMetaTheme();
-      setMetaTheme(overlayBlack(formerMetaTheme));
       dialog.showModal();
       dialogContent.scrollIntoView();
     } else if (dialog.open && isClosable.value) {
@@ -67,7 +59,6 @@ export function BottomDrawer(props: BottomDrawerProps) {
       // z-index and top layering issues.
       dialog.removeAttribute('data-open');
       onBeforeClose?.(false);
-      setMetaTheme(formerMetaTheme);
       await Promise.all(dialogContent.getAnimations().map((a) => a.finished));
       dialog.close();
     }

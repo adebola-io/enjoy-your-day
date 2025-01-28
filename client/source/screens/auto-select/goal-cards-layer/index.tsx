@@ -1,11 +1,7 @@
 import { Button } from '#/components/button';
 import { GoalCard } from '#/components/goal-card';
-import { SlideView } from '#/components/slide-view';
-import {
-  initScrollTimeline,
-  setMetaTheme,
-  useRouteQuery,
-} from '#/library/utils';
+import { ViewLayer } from '#/components/view-layer';
+import { initScrollTimeline, useRouteQuery } from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
 import type { GoalProps } from '#/data/entities';
 import { Cell, type SourceCell } from '@adbl/cells';
@@ -16,7 +12,7 @@ import { CSS_VARS } from '#/styles/variables';
 import { PencilIcon } from '#/components/icons/pencil';
 import { ElasticView } from '#/components/elastic-view';
 import { BackButton } from '#/components/back-button';
-import classes from './goal-cards-slide-view.module.css';
+import classes from './goal-cards-layer.module.css';
 
 interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[] | null>;
@@ -34,7 +30,6 @@ export default function GoalCardsSlideView(props: GoalCardsViewProps) {
   const editStageHref = '/home?auto-select&cards-view&stage=edit';
 
   observer.onConnected(ulRef, (ul) => {
-    setMetaTheme('#0e0e1f');
     ul.scrollTop = ul.scrollHeight;
     const scrollTimelinePolyfilled = initScrollTimeline(ul);
     return () => {
@@ -45,7 +40,7 @@ export default function GoalCardsSlideView(props: GoalCardsViewProps) {
   });
 
   return (
-    <SlideView
+    <ViewLayer
       open={isOpen}
       class={classes.container}
       content={() => (
@@ -64,7 +59,12 @@ export default function GoalCardsSlideView(props: GoalCardsViewProps) {
             })}
           </ElasticView>
           <div class={classes.buttonRow}>
-            <Button class={classes.btn} href={confirmDrawerHref} vibrate>
+            <Button
+              class={classes.btn}
+              href={confirmDrawerHref}
+              rounded
+              vibrate
+            >
               <InlinedIcon
                 Icon={DoubleCheckIcon}
                 class={classes.btnIcon}
@@ -73,7 +73,7 @@ export default function GoalCardsSlideView(props: GoalCardsViewProps) {
               />
               Perfect
             </Button>
-            <Button class={classes.btn} href={editStageHref} vibrate>
+            <Button class={classes.btn} href={editStageHref} rounded vibrate>
               <InlinedIcon
                 Icon={PencilIcon}
                 class={classes.btnIcon}

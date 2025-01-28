@@ -3,26 +3,16 @@ import UserIcon from '#/components/icons/user';
 import BinIcon from '#/components/icons/bin';
 import InfoIcon from '#/components/icons/info';
 import { SettingsItem } from '#/components/settings-item';
-import { setMetaTheme } from '#/library/utils';
 import ProfileDrawer from './profile-drawer';
-import NotificationsSlideView from './notifications-slide-view';
-import { useObserver } from '@adbl/unfinished';
-import { Cell } from '@adbl/cells';
+import NotificationsLayer from './notifications';
 import classes from './settings.module.css';
-import { SlideView, SlideViews } from '#/components/slide-view';
+import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
 
 export default function Settings() {
-  const observer = useObserver();
-  const containerRef = Cell.source<HTMLElement | null>(null);
-
-  observer.onConnected(containerRef, () => {
-    setMetaTheme('#ffffff');
-  });
-
   return (
-    <SlideViews>
-      <SlideView open>
-        <div ref={containerRef} id="settingsView" class={classes.settings}>
+    <ViewLayerGroup>
+      <ViewLayer open>
+        <div id="settingsView" class={classes.settings}>
           <menu id="settingsMenu" class={classes.settingsMenu}>
             <h1 class={classes.heading}>Settings</h1>
             <SettingsItem
@@ -52,8 +42,8 @@ export default function Settings() {
             <ProfileDrawer />
           </menu>
         </div>
-      </SlideView>
-      <NotificationsSlideView />
-    </SlideViews>
+      </ViewLayer>
+      <NotificationsLayer />
+    </ViewLayerGroup>
   );
 }

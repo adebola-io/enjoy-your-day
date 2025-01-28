@@ -62,7 +62,7 @@
   }
 
   &[data-open]::backdrop {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: transparent;
   }
 }
 
@@ -78,6 +78,10 @@
   position: relative;
   width: 100%;
   height: var(--drawer-visible-height);
+  border-top: 2.5px solid var(--space-cadet-500);
+  border-right: 2.5px solid var(--space-cadet-500);
+  border-left: 2.5px solid var(--space-cadet-500);
+
   border-radius: min(6dvw, 30px) min(6dvw, 30px) 0px 0px;
   opacity: 0;
   background-color: white;
@@ -86,7 +90,7 @@
   transition-property: translate, opacity;
   container: drawer inline-size;
   margin-inline: auto;
-  translate: 0 var(--drawer-closed-position-y, 100%);
+  translate: -2.5px var(--drawer-closed-position-y, 100%);
 
   &::before {
     position: absolute;
@@ -103,6 +107,6 @@
 
   .drawer[data-open] & {
     opacity: 1;
-    translate: 0 var(--drawer-open-position-y, 0);
+    translate: -2.5px var(--drawer-open-position-y, 0);
   }
 }

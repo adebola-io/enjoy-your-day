@@ -46,11 +46,6 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
 
   const openSearch = async () => {
     if (!searchIsOpen.value) {
-      getExampleGoalInstruction(goalUuids.value, selectedCategories.value).then(
-        (example) => {
-          placeholder.value = `e.g. ${example}`;
-        }
-      );
       await addRouteQuery('search');
     }
   };
@@ -62,6 +57,11 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
     closeSearch();
     activeItemIndex.value = 0;
     goals.value.splice(0, 0, goal);
+    getExampleGoalInstruction(goalUuids.value, selectedCategories.value).then(
+      (example) => {
+        placeholder.value = `e.g. ${example}`;
+      }
+    );
   };
 
   const removeGoal = (index: number, item: Element, mode: 'Swipe' | 'Tap') => {

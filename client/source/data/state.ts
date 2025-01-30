@@ -20,6 +20,7 @@ export const LOCALSTORAGE_KEYS = {
   goalsForTheDayDateStamp: 'goals-for-the-day-date-stamp',
   notificationsEnabled: 'notifications-enabled',
   morningTime: 'morning-time',
+  themeColor: 'theme-color',
 };
 
 const notificationsPermissionGranted =
@@ -78,6 +79,11 @@ export const dailyGoalsDateStamp = useLocalStorage<string | null>(
 export const lastLoadedChunk = useLocalStorage<number>(
   LOCALSTORAGE_KEYS.lastLoadedChunk,
   0
+);
+export type ThemeColor = 'Light' | 'Dark' | 'System';
+export const themeColor = useLocalStorage<ThemeColor>(
+  LOCALSTORAGE_KEYS.themeColor,
+  'System'
 );
 export const morningTime = useLocalStorage<{ hours: number; minutes: number }>(
   LOCALSTORAGE_KEYS.morningTime,

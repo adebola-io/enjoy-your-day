@@ -211,6 +211,13 @@ export function useRouteQuery(query: string, value?: string) {
   });
 }
 
+export function withDefaultProps<T extends (...args: any) => any>(
+  Component: T,
+  inputProps: Parameters<T>[0]
+) {
+  return (props: Parameters<T>[0]) => Component({ ...inputProps, ...props });
+}
+
 export const getRandomMorningTime = () => {
   const start = new Date();
   start.setHours(5, 30, 0, 0);

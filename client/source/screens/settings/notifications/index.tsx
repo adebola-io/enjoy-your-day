@@ -1,8 +1,7 @@
-import { BackButton } from '#/components/back-button';
 import NotificationPromptDrawer, {
   notificationDrawerQuery,
 } from './notification-prompt-drawer';
-import { SettingsItem } from '#/components/settings-item';
+import { SettingsItem, SettingsItemList } from '#/components/settings-item';
 import TvIcon from '#/components/icons/tv';
 import WifiIcon from '#/components/icons/wifi';
 import BellIcon from '#/components/icons/bell';
@@ -67,14 +66,17 @@ export default function NotificationsLayer() {
       class={classes.container}
       open={notificationsPageIsOpen}
       content={() => (
-        <div id="notificationsView" class={classes.shrinkWrapper}>
-          <BackButton class={classes.backButton} />
-          <h2 class={classes.heading}>Notifications</h2>
+        <SettingsItemList
+          subList
+          id="notificationsView"
+          class={classes.shrinkWrapper}
+          heading="Notifications"
+        >
           <SettingsItem
             type="toggle"
             inputRef={inputRef}
             title="Enable Notifications"
-            description="Allow notifications to be displayed on your device."
+            description="Allow notifications to be displayed."
             Icon={BellIcon}
             onChange={handleNotificationsChange}
             checked={notificationsEnabled}
@@ -82,7 +84,7 @@ export default function NotificationsLayer() {
           <SettingsItem
             type="button"
             title="Test Notification"
-            description="Triggers a test notification sent to your device."
+            description="Sends a test notification to your device."
             Icon={WifiIcon}
             onClick={sendTestNotification}
             disabled={itemsDisabled}
@@ -90,13 +92,13 @@ export default function NotificationsLayer() {
           <SettingsItem
             type="button"
             title="Refresh Service"
-            description="Reregisters the worker responsible for handling notifications."
+            description="Reregisters the service for handling notifications."
             Icon={TvIcon}
             onClick={refreshNotificationsServiceWorker}
             disabled={itemsDisabled}
           />
           <NotificationPromptDrawer />
-        </div>
+        </SettingsItemList>
       )}
     />
   );

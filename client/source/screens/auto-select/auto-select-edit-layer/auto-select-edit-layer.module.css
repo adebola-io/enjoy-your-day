@@ -58,6 +58,7 @@
 
 .title {
   padding-block-start: calc(var(--block-padding) * 1.5);
+  font: var(--subtitle-bold);
   grid-area: 1 / 1;
 }
 

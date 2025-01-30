@@ -1,20 +1,20 @@
 import NotificationIcon from '#/components/icons/notification';
 import UserIcon from '#/components/icons/user';
-import BinIcon from '#/components/icons/bin';
+import ArtsIcon from '#/components/icons/arts';
+import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
 import InfoIcon from '#/components/icons/info';
-import { SettingsItem } from '#/components/settings-item';
+import { SettingsItem, SettingsItemList } from '#/components/settings-item';
 import ProfileDrawer from './profile-drawer';
 import NotificationsLayer from './notifications';
+import AppearanceLayer from './appearance';
 import classes from './settings.module.css';
-import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
 
 export default function Settings() {
   return (
     <ViewLayerGroup>
       <ViewLayer open>
         <div id="settingsView" class={classes.settings}>
-          <menu id="settingsMenu" class={classes.settingsMenu}>
-            <h1 class={classes.heading}>Settings</h1>
+          <SettingsItemList heading="Settings">
             <SettingsItem
               link="/settings?level-one=profile"
               title="Profile"
@@ -28,10 +28,10 @@ export default function Settings() {
               Icon={NotificationIcon}
             />
             <SettingsItem
-              link="/settings?level-one=reset"
-              title="Reset"
-              description="Delete parts or all of your data and start over."
-              Icon={BinIcon}
+              link="/settings?level-one=appearance"
+              title="Appearance"
+              description="Fine-tune the app to your tastes."
+              Icon={ArtsIcon}
             />
             <SettingsItem
               link="/about?level-one=about"
@@ -40,10 +40,11 @@ export default function Settings() {
               Icon={InfoIcon}
             />
             <ProfileDrawer />
-          </menu>
+          </SettingsItemList>
         </div>
       </ViewLayer>
       <NotificationsLayer />
+      <AppearanceLayer />
     </ViewLayerGroup>
   );
 }

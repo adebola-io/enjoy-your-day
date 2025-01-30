@@ -12,19 +12,3 @@
     scale: calc(var(--drawer-background-scale) * 0.9);
   }
 }
-
-.settingsMenu {
-  display: grid;
-  padding: 0;
-  margin: 0;
-  transition: translate var(--slide-duration);
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(10, min-content);
-}
-
-.heading {
-  padding-block-start: var(--block-padding);
-  margin-block-end: calc(var(--block-padding) * 0.25);
-  font: var(--title-bold);
-  padding-inline: var(--side-padding);
-}

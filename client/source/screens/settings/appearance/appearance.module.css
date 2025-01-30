@@ -1,0 +1,10 @@
+.theme {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  place-items: center;
+  gap: 5px;
+}
+
+.icon {
+  height: var(--base-font-size);
+}

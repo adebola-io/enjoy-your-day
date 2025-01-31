@@ -37,15 +37,51 @@ svg {
   overflow: hidden;
   width: 100dvw;
   height: 100dvh;
+
+  &[data-theme='Light'] {
+    color-scheme: light;
+  }
+
+  &[data-theme='System'] {
+    color-scheme: light dark;
+  }
+
+  &[data-theme='Dark'] {
+    color-scheme: dark;
+  }
+}
+
+[data-font='System'] {
+  --font-family: system-ui, sans-serif;
+  font-family: system-ui, sans-serif;
+}
+
+[data-font='Inter'] {
+  --font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
+}
+
+[data-font='Cursive'] {
+  --font-family: 'Edu AU VIC WA NT Pre', sans-serif;
+  font-family: 'Edu AU VIC WA NT Pre', sans-serif;
+}
+
+[data-font='SchibstedGrotesk'] {
+  --font-family: 'Schibsted Grotesk', sans-serif;
+  font-family: 'Schibsted Grotesk', sans-serif;
 }
 
 :root,
 body {
-  color: var(--space-cadet-500);
+  color: light-dark(var(--space-cadet-500), CanvasText);
+  background-color: Canvas;
+  transition: background-color calc(var(--default-duration) * 2),
+    color calc(var(--default-duration) * 0.5);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  touch-action: manipulation;
   /* Platform-specific reset */
   -webkit-overflow-scrolling: touch;
   -webkit-font-smoothing: antialiased;

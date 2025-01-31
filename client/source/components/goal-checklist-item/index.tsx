@@ -28,17 +28,9 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
       goalState.updatedAt = null;
     }
   };
-  const removeInitialAnimation = function (this: HTMLDivElement) {
-    this.style.animation =
-      'from-top calc(var(--default-duration) * 3 * var(--list-changed))';
-  };
 
   return (
-    <div
-      class={classes.container}
-      style={containerStyles}
-      onAnimationEnd--self={removeInitialAnimation}
-    >
+    <div class={classes.container} style={containerStyles}>
       <input
         id={goalInputId}
         class={classes.checkbox}

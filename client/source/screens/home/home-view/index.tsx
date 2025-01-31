@@ -4,23 +4,25 @@ import { TimeBasedIcon } from '#/components/time-based-icon';
 import { TrophyIcon } from '#/components/icons/trophy';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
 import { ElasticView } from '#/components/elastic-view';
-import { InlinedIcon } from '#/components/inlined-icon';
-import { dailyGoals, goalsCompleted, timeOfDay } from '#/data/state';
+import {
+  dailyGoals,
+  goalsCompleted,
+  numberOfScheduledGoals,
+  timeOfDay,
+} from '#/data/state';
+import { encouragement } from '#/data/encouragement';
 import { GoalsCompletedDrawer } from './goals-completed';
 import { addRouteQuery, vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
-import { CSS_VARS } from '#/styles/variables';
 import classes from './home-view.module.css';
+import { triggerNotification } from '#/services/notifications';
 
 export default function HomeView() {
   const router = useRouter();
   const listChanged = Cell.source(false);
   const stickyAreaRef = Cell.source<HTMLElement | null>(null);
-  const numberOfScheduledGoals = Cell.derived(() => {
-    return dailyGoals.value.filter((s) => s.state === 'scheduled').length;
-  });
 
   const goals = Cell.derived(() => {
     const scheduled = [];
@@ -49,12 +51,16 @@ export default function HomeView() {
     if (percentage.value > 90) return '#2c612c';
     if (percentage.value > 80) return 'var(--fern-green-600)';
     if (percentage.value > 60) return '#0e473f';
-    return 'var(--space-cadet-500)';
+    return 'light-dark(var(--space-cadet-500), var(--space-cadet-300))';
   });
 
   const handleGoalChecked = () => {
     if (!goalsCompleted.value) return;
     vibrate([100, 75, 50, 75, 100]);
+    triggerNotification({
+      title: 'Excellent! 😍',
+      body: 'You have completed all your goals for today.',
+    });
     setTimeout(() => addRouteQuery('goals-completed'), 400);
   };
 
@@ -69,10 +75,7 @@ export default function HomeView() {
       <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
       <TimeBasedGreeting class={classes.timeGreeting} />
       <div ref={stickyAreaRef} class={classes.stickyArea}>
-        <p class={classes.encouragement}>
-          There are only 5 goals left for today. Don't give up, you're almost
-          there!
-        </p>
+        <p class={classes.encouragement}>{encouragement}</p>
         <ProgressBar
           class={classes.progressBar}
           percent={percentage}
@@ -84,12 +87,7 @@ export default function HomeView() {
           class={classes.goalsCompletedBadge}
           href="/home?goals-completed"
         >
-          <InlinedIcon
-            Icon={TrophyIcon}
-            class={classes.trophyIcon}
-            color={CSS_VARS['--space-cadet-500']}
-            title="Trophy Icon"
-          />
+          <TrophyIcon class={classes.trophyIcon} />
           Goals completed!
         </router.Link>
       ))}

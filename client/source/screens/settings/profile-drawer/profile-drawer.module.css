@@ -25,6 +25,7 @@
       var(--close-button-size) + var(--drawer-content-padding-bottom) + 1rem
   );
   --drawer-open-position-y: calc(100dvh - var(--drawer-content-height));
+  overflow: hidden;
   transition-property: opacity, translate;
 
   &[data-username-focused] {
@@ -110,6 +111,7 @@
   display: grid;
   padding-block-start: calc(var(--block-padding) * 2);
   padding-block-end: var(--block-padding);
+  background-color: inherit;
   grid-template-rows: auto auto auto auto auto;
   grid-template-columns: 1fr;
   gap: var(--drawer-content-gap);
@@ -120,7 +122,7 @@
     width: 80%;
     height: 3px;
     border-radius: 10px;
-    background-color: var(--space-cadet-500);
+    background-color: light-dark(var(--space-cadet-500), var(--space-cadet-50));
     content: '';
     transition: scale var(--drawer), translate var(--drawer);
     grid-area: 2 / 1;
@@ -179,7 +181,7 @@
 
 .involvementLevel {
   display: grid;
-  border: 2px solid var(--space-cadet-500);
+  border: 2px solid;
   border-radius: 1rem;
   color: inherit;
   background-color: transparent;
@@ -257,11 +259,11 @@
   background-color: var(--space-cadet-50);
 }
 
-.closeButton {
+.closeButton:is(button):nth-child(n) {
   position: relative;
   width: calc(100% - var(--side-padding) * 2);
   margin-top: var(--block-padding);
-  background-color: white;
+  background-color: inherit;
   margin-inline: var(--side-padding);
   grid-area: 5 / 1;
 

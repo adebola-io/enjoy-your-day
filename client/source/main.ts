@@ -9,6 +9,7 @@ import {
   installDetails,
   setMetaTheme,
 } from './library/utils';
+import { isDark } from './data/state';
 
 export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
   installDetails.deferredPrompt = deferredPromptEvent;
@@ -61,7 +62,7 @@ export async function resumeApp() {
     circle.addEventListener('animationend', (event) => {
       if (event.animationName !== 'expand-forever') return;
       appIsReadyResolver?.();
-      setMetaTheme('#ffffff');
+      setMetaTheme(isDark.value ? '#000000' : '#ffffff');
       waitingScreen?.remove();
       document.querySelector('#start-screen')?.remove();
     });

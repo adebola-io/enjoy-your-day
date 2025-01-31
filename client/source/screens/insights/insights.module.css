@@ -26,7 +26,7 @@
 @keyframes switch-tabs {
   to {
     --pill-translate: 1;
-    --overview-tab-color: var(--space-cadet-500);
+    --overview-tab-color: light-dark(var(--space-cadet-500), white);
     --history-tab-color: white;
   }
 }
@@ -42,11 +42,10 @@
   &[data-state='success'] {
     --pill-translate: 0;
     --overview-tab-color: white;
-    --history-tab-color: var(--space-cadet-500);
+    --history-tab-color: light-dark(var(--space-cadet-500), white);
     display: grid;
     overflow: scroll;
     height: calc(100dvh - var(--navbar-height));
-    color: var(--space-cadet-500);
     transition: scale var(--drawer);
     animation-name: switch-tabs;
     grid-template-rows: max-content;
@@ -58,6 +57,9 @@
 
     &::-webkit-scrollbar {
       display: none;
+    }
+    @media (orientation: landscape) {
+      height: 100dvh;
     }
 
     @supports (animation-timeline: scroll(self inline)) {
@@ -110,14 +112,6 @@
   grid-area: 1 / 1;
   translate: 0 30%;
   scale: 6;
-
-  &::after {
-    position: absolute;
-    display: block;
-    height: 40px;
-    background-color: white;
-    content: '';
-  }
 }
 
 .userDesignation {
@@ -136,18 +130,13 @@
   left: 0;
   display: grid;
   border-bottom: var(--outline);
-  background: #ffffff;
+  background-color: light-dark(white, Canvas);
   padding-block: calc(var(--block-padding) * 0.25);
   padding-inline: var(--side-padding);
   grid-template-columns: 50% 50%;
   grid-area: 2 / 1;
-
-  &::after {
-    position: absolute;
-    display: block;
-    height: 40px;
-    background-color: white;
-    content: '';
+  @media (orientation: landscape) {
+    padding-inline: calc(var(--side-padding) * 2);
   }
 }
 
@@ -183,7 +172,7 @@
   width: 100%;
   height: calc(3dvh + 1lh);
   border-radius: 20px;
-  background-color: var(--space-cadet-500);
+  background-color: light-dark(var(--space-cadet-500), var(--space-cadet-300));
   pointer-events: none;
   justify-self: start;
   grid-row: 1;

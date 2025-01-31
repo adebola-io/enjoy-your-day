@@ -1,7 +1,6 @@
 import { Icon } from '#/components/icon';
 import type { AutoCompleteOption } from '../search-input';
 import type { GoalProps } from '#/data/entities';
-import { CSS_VARS } from '#/styles/variables';
 import classes from './goal-option.module.css';
 
 export interface GoalOptionProps
@@ -17,13 +16,7 @@ export function GoalOption(props: GoalOptionProps) {
   return (
     <li class={classes.container} onKeyDown={navigateVertically}>
       <button type="button" class={classes.option} onClick={handleSelect}>
-        <Icon
-          name={icon}
-          class={classes.icon}
-          inline
-          color={CSS_VARS['--space-cadet-500']}
-          title="Icon related to the goal"
-        />
+        <Icon name={icon} class={classes.icon} />
         <span class={classes.text}>{instruction}</span>
       </button>
     </li>

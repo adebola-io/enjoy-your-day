@@ -6,6 +6,7 @@
   border: none;
   color: inherit;
   background-color: transparent;
+  cursor: pointer;
   text-align: left;
   text-decoration: none;
   grid-template-columns: auto 1fr auto;
@@ -56,7 +57,7 @@
 }
 
 .settingsDescription {
-  color: var(--space-cadet-400);
+  color: light-dark(var(--space-cadet-400), var(--space-cadet-100));
   font: var(--small-regular);
   grid-area: 2 / 2 / 3 / 2;
 }
@@ -84,7 +85,7 @@
   appearance: none;
 
   &:checked {
-    --color: var(--space-cadet-500);
+    --color: light-dark(var(--space-cadet-500), var(--space-cadet-200));
 
     &::before {
       translate: 160%;
@@ -102,4 +103,29 @@
     justify-self: start;
     aspect-ratio: 1;
   }
+}
+
+.listMenu {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(10, min-content);
+}
+
+.listHeading {
+  padding-block-start: var(--block-padding);
+  margin-block-end: calc(var(--block-padding) * 0.25);
+  font: var(--title-bold);
+  padding-inline: var(--side-padding);
+}
+
+.backButton {
+  padding-inline: var(--side-padding);
+}
+
+.listSubHeading {
+  padding-block-start: calc(var(--block-padding) * 0.25);
+  font: var(--subtitle-bold);
+  padding-inline: var(--side-padding);
 }

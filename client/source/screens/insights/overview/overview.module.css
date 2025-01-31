@@ -5,7 +5,6 @@
   display: grid;
   height: max-content;
   padding-block-start: 20px;
-  background-color: white;
   padding-inline: var(--side-padding);
   grid-template-columns: 1fr;
   grid-template-rows: repeat(var(--total), max(150px, 20dvh));
@@ -23,5 +22,8 @@
     display: block;
     height: 30px;
     content: '';
+  }
+  @media (orientation: landscape) {
+    padding-inline: calc(var(--side-padding) * 2);
   }
 }

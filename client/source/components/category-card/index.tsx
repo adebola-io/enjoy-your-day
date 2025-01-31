@@ -1,6 +1,6 @@
 import { InlinedIcon } from '#/components/inlined-icon';
 import type { Category } from '#/data/categories';
-import { selectedCategories } from '#/data/state';
+import { isDark, selectedCategories } from '#/data/state';
 import { vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import classes from './category-card.module.css';
@@ -20,6 +20,10 @@ export function CategoryCard(category: Category, index: Cell<number>) {
     return selectedCategories.value.includes(category.name);
   });
 
+  const darkModeClass = Cell.derived(() => {
+    return isDark.value ? classes.dark : undefined;
+  });
+
   const categoryStyles = {
     '--category-color': category.theme,
     animationDelay: `${index.value * 0.02 + 0.1}s`,
@@ -27,7 +31,7 @@ export function CategoryCard(category: Category, index: Cell<number>) {
 
   return (
     <label
-      class={classes.category}
+      class={[classes.category, darkModeClass]}
       style={categoryStyles}
       data-is-selected={isSelected}
     >

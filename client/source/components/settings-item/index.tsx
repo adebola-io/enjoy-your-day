@@ -1,12 +1,11 @@
 import { useRouter } from '@adbl/unfinished/router';
 import type { IconProps } from '../icons/props';
 import CaretRightIcon from '../icons/caret-right';
-import { InlinedIcon } from '../inlined-icon';
-import { CSS_VARS } from '#/styles/variables';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { If } from '@adbl/unfinished';
 import type { Cell } from '@adbl/cells';
 import classes from './settings-item.module.css';
+import { BackButton } from '../back-button';
 
 interface SettingsLinkItemProps {
   type?: 'link';
@@ -29,7 +28,7 @@ interface SettingsToggleItemProps {
 interface SettingsButtonItemProps {
   type: 'button';
   title: string;
-  description?: string;
+  description?: JSX.ValueOrCell<string>;
   Icon: (props: IconProps) => JSX.Template;
   disabled?: JSX.ValueOrCell<boolean>;
   onClick: (this: HTMLButtonElement, event: Event) => void;
@@ -53,12 +52,7 @@ export function SettingsItem(props: SettingsItemProps) {
   const Content = () => {
     return (
       <>
-        <InlinedIcon
-          Icon={Icon}
-          class={classes.settingsIcon}
-          color={CSS_VARS['--space-cadet-500']}
-          title={`${title} settings icon`}
-        />
+        <Icon class={classes.settingsIcon} />
         <h2 class={classes.settingsTitle}>{title}</h2>
         {If(description, (description) => {
           return <p class={classes.settingsDescription}>{description}</p>;
@@ -102,4 +96,28 @@ export function SettingsItem(props: SettingsItemProps) {
     default:
       return <></>;
   }
+}
+
+type MenuProps = JSX.IntrinsicElements['menu'];
+interface SettingsItemListProps extends MenuProps {
+  heading?: string;
+  children?: unknown;
+  subList?: boolean;
+}
+export function SettingsItemList(props: SettingsItemListProps) {
+  const { heading, children, subList, ...rest } = props;
+  return (
+    <>
+      {If(subList, () => (
+        <BackButton class={classes.backButton} />
+      ))}
+      <menu {...rest} class={[classes.listMenu, props.class]}>
+        {If(heading, () => {
+          if (subList) return <h2 class={classes.listSubHeading}>{heading}</h2>;
+          return <h1 class={classes.listHeading}>{heading}</h1>;
+        })}
+        {children}
+      </menu>
+    </>
+  );
 }

@@ -21,6 +21,10 @@
     }
   }
 
+  &.dark {
+    background-image: url(./background-dark.svg);
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -31,7 +35,7 @@
     width: calc(var(--bar-width) * 2);
     height: calc((var(--small-font-size) * 2) + 30px);
     border-radius: 10px;
-    background-color: var(--space-cadet-500);
+    background-color: light-dark(var(--space-cadet-500), CanvasText);
     content: '';
     transition: translate calc(var(--default-duration) * 1.5);
     translate: calc(var(--picked) * (-100% - (var(--side-padding) * 0.5)));
@@ -65,7 +69,7 @@
   }
 
   &[data-is-picked-day] {
-    color: white;
+    color: light-dark(white, Canvas);
 
     &::before {
       background-color: #c8c8e1;
@@ -107,6 +111,10 @@
     animation-name: grow;
     animation-timing-function: ease;
     animation-fill-mode: backwards;
+  }
+
+  .container.dark &::after {
+    background-color: var(--space-cadet-300);
   }
 }
 

@@ -6,7 +6,6 @@
 
 .backButton {
   margin-inline-start: var(--side-padding);
-  color: var(--space-cadet-500);
   grid-area: 1 / 1;
 }
 

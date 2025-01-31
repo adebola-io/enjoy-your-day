@@ -7,7 +7,7 @@ import { saveGoalState, updateUsername } from '../services/database';
 import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
-import { getRandomMorningTime, NoOp } from '#/library/utils';
+import { getRandomMorningTime, NoOp, setMetaTheme } from '#/library/utils';
 
 export const DATE_UPDATE_INTERVAL = 1000 * 30; // updates every 30 seconds.
 export const LOCALSTORAGE_KEYS = {
@@ -20,6 +20,8 @@ export const LOCALSTORAGE_KEYS = {
   goalsForTheDayDateStamp: 'goals-for-the-day-date-stamp',
   notificationsEnabled: 'notifications-enabled',
   morningTime: 'morning-time',
+  themeColor: 'theme-color',
+  selectedFont: 'selected-font',
 };
 
 const notificationsPermissionGranted =
@@ -79,10 +81,52 @@ export const lastLoadedChunk = useLocalStorage<number>(
   LOCALSTORAGE_KEYS.lastLoadedChunk,
   0
 );
+export type ThemeColor = 'Light' | 'Dark' | 'System';
+const query = window.matchMedia('(prefers-color-scheme: dark)');
+export const themeColor = useLocalStorage<ThemeColor>(
+  LOCALSTORAGE_KEYS.themeColor,
+  'Light'
+);
+
+themeColor.runAndListen((themeColor) => {
+  document.documentElement.dataset.theme = themeColor;
+});
+
+export const isDark = Cell.derived(() => {
+  return (
+    themeColor.value === 'Dark' ||
+    (themeColor.value === 'System' && query.matches)
+  );
+});
+query.addEventListener('change', () => isDark.update());
+
+isDark.runAndListen((isDark) => {
+  const root = document.documentElement;
+  root.toggleAttribute('data-is-dark', isDark);
+});
+
+isDark.listen((isDark) => {
+  setMetaTheme(isDark ? '#000000' : '#ffffff');
+});
+
+export type FontFamily = 'System' | 'Inter' | 'Cursive' | 'SchibstedGrotesk';
+export const selectedFont = useLocalStorage<FontFamily>(
+  LOCALSTORAGE_KEYS.selectedFont,
+  'SchibstedGrotesk'
+);
+
+selectedFont.runAndListen((font) => {
+  document.documentElement.dataset.font = font;
+});
+
 export const morningTime = useLocalStorage<{ hours: number; minutes: number }>(
   LOCALSTORAGE_KEYS.morningTime,
   getRandomMorningTime()
 );
+
+export const numberOfScheduledGoals = Cell.derived(() => {
+  return dailyGoals.value.filter((s) => s.state === 'scheduled').length;
+});
 
 export const goalsCompleted = Cell.derived(() => {
   return (

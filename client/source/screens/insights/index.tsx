@@ -8,7 +8,6 @@ import {
 } from '#/library/utils';
 import { Switch, useObserver } from '@adbl/unfinished';
 import { Icon } from '#/components/icon';
-import { CSS_VARS } from '#/styles/variables';
 import { Sparkles } from '#/components/sparkles';
 import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
@@ -59,13 +58,7 @@ export default function Insights() {
       <>
         <section class={classes.heading} data-stagger-children>
           <Sparkles>
-            <Icon
-              name={userBadge.icon}
-              class={classes.userBadgeIcon}
-              title="User Badge"
-              color={CSS_VARS['--space-cadet-500']}
-              inline
-            />
+            <Icon name={userBadge.icon} class={classes.userBadgeIcon} />
           </Sparkles>
           <h2 class={classes.userDesignation}>{userBadge.name}</h2>
           <p class={classes.headingDescription}>{userBadge.description}</p>

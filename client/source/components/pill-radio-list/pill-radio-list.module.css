@@ -1,0 +1,76 @@
+.pillRadioList {
+  padding: 0;
+  border: none;
+  margin-inline: var(--side-padding);
+  margin-block: calc(var(--block-padding) * 0.25);
+}
+
+.pillRadioListHeading {
+  display: grid;
+  width: min-content;
+  padding: 0;
+  margin-bottom: calc(var(--block-padding) * 0.25);
+  font: var(--base-bold);
+  gap: 8px;
+  grid-template-columns: auto 1fr;
+  place-items: center;
+}
+
+.listIcon {
+  width: var(--base-font-size);
+  height: var(--base-font-size);
+}
+
+.items {
+  display: grid;
+  overflow: hidden;
+  min-height: min(var(--block-padding), 50px);
+  border: 3px solid light-dark(var(--space-cadet-500), var(--space-cadet-100));
+  border-radius: 25px;
+  transition: border-color calc(var(--default-duration) * 0.5);
+  place-items: center;
+  grid-auto-flow: column;
+
+  &::before {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: light-dark(var(--space-cadet-500), CanvasText);
+    content: '';
+    transition-duration: calc(var(--default-duration) * 1.5);
+    transition-property: translate, scale, background-color;
+    transform-origin: 0 0;
+    grid-area: 1 / 1;
+    translate: var(--highlighter-translate-x) 0;
+    scale: var(--highlighter-scale-x) 1;
+  }
+}
+
+.pillItem {
+  z-index: 1;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  border-right: 3px solid;
+  place-items: center;
+  place-content: center;
+  grid-area: 1 / calc(var(--index) + 1);
+
+  &:has(:checked) {
+    color: light-dark(white, Canvas);
+  }
+
+  &:not(:last-child) {
+    border-color: light-dark(var(--space-cadet-500), var(--space-cadet-100));
+  }
+
+  &:last-child {
+    border-color: transparent;
+  }
+}
+
+.pillItemInput {
+  height: 0;
+  margin: 0;
+  appearance: none;
+}

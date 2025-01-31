@@ -41,6 +41,13 @@
   animation-play-state: paused;
 }
 
+[data-shrink-on-dialog-open] {
+  transition-duration: var(--drawer);
+  transition-property: scale;
+  &[data-dialog-is-open] {
+    scale: var(--drawer-background-scale);
+  }
+}
 :root {
   /* Animation Names */
   /* I cant figure out how to use global animation names inside of CSS modules, so I'm using them as variables */

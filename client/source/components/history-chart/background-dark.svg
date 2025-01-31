@@ -1,0 +1,33 @@
+<svg width="390" height="309" viewBox="0 0 390 309" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.23">
+        <rect width="390" height="309" fill="#A1A1AD" />
+        <mask id="path-1-inside-1_1023_3062" fill="#A1A1AD">
+            <path d="M1 6H390V39H1V6Z" />
+        </mask>
+        <path d="M390 37H1V41H390V37Z" fill="#ffffff" mask="url(#path-1-inside-1_1023_3062)" />
+        <mask id="path-3-inside-2_1023_3062" fill="#A1A1AD">
+            <path d="M1 39H390V72H1V39Z" />
+        </mask>
+        <path d="M390 70H1V74H390V70Z" fill="#ffffff" mask="url(#path-3-inside-2_1023_3062)" />
+        <mask id="path-5-inside-3_1023_3062" fill="#A1A1AD">
+            <path d="M1 72H390V105H1V72Z" />
+        </mask>
+        <path d="M390 103H1V107H390V103Z" fill="#ffffff" mask="url(#path-5-inside-3_1023_3062)" />
+        <mask id="path-7-inside-4_1023_3062" fill="#A1A1AD">
+            <path d="M1 105H390V138H1V105Z" />
+        </mask>
+        <path d="M390 136H1V140H390V136Z" fill="#ffffff" mask="url(#path-7-inside-4_1023_3062)" />
+        <mask id="path-9-inside-5_1023_3062" fill="#A1A1AD">
+            <path d="M1 138H390V171H1V138Z" />
+        </mask>
+        <path d="M390 169H1V173H390V169Z" fill="#ffffff" mask="url(#path-9-inside-5_1023_3062)" />
+        <mask id="path-11-inside-6_1023_3062" fill="#A1A1AD">
+            <path d="M1 171H390V204H1V171Z" />
+        </mask>
+        <path d="M390 202H1V206H390V202Z" fill="#ffffff" mask="url(#path-11-inside-6_1023_3062)" />
+        <mask id="path-13-inside-7_1023_3062" fill="#A1A1AD">
+            <path d="M1 204H390V237H1V204Z" />
+        </mask>
+        <path d="M390 235H1V239H390V235Z" fill="#ffffff" mask="url(#path-13-inside-7_1023_3062)" />
+    </g>
+</svg>

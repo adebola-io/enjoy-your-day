@@ -21,6 +21,11 @@
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media (orientation: landscape) {
+    width: calc(100% - var(--side-padding) * 2);
+    padding-inline: var(--side-padding);
+  }
 }
 
 .timeIcon {
@@ -28,14 +33,14 @@
   height: 50px;
 
   &[data-time-of-day='morning'] {
-    --svg-mask-color: white;
+    --svg-mask-color: Canvas;
 
     path:not(:last-child) {
       animation: dance calc(var(--default-duration) * 10) linear infinite;
     }
 
     path:last-child {
-      fill: white;
+      fill: Canvas;
     }
   }
 
@@ -98,7 +103,7 @@
   z-index: 1;
   top: calc(var(--block-padding) * -0.5);
   display: grid;
-  background-color: white;
+  background-color: Canvas;
   gap: min(15px, 2dvh);
 
   &::before {
@@ -107,7 +112,7 @@
     display: block;
     width: 100%;
     height: calc(var(--block-padding) * 1.5);
-    background-color: white;
+    background-color: Canvas;
     content: '';
   }
 
@@ -117,7 +122,7 @@
     display: block;
     width: 100%;
     height: min(15px, 2dvh);
-    background: white;
+    background: Canvas;
     content: '';
   }
 }
@@ -127,7 +132,7 @@
   height: min(15px, 2dvh);
   border: 3px solid;
   border-radius: 35px;
-  color: var(--space-cadet-500);
+  color: inherit;
   animation: var(--fade-in-from-top) calc(var(--default-duration) * 2);
   font: var(--small-bold);
   text-decoration: none;
@@ -139,6 +144,10 @@
   gap: 5px;
   padding-block: 15px;
   margin-inline: var(--side-padding);
+
+  html[data-is-dark] & {
+    border: 2px solid var(--space-cadet-100);
+  }
 }
 
 .trophyIcon {
@@ -168,10 +177,10 @@
   }
 
   & > * {
-    transition-duration: calc((var(--default-duration) * 1.5));
+    transition-timing-function: ease-in-out;
+    transition-duration: calc(var(--default-duration) * 1.75);
     transition-property: translate, scale;
-    animation-name: slide-in;
-    animation-duration: calc((var(--default-duration) * 2) + (var(--i) * 40ms));
+    animation: slide-in calc((var(--default-duration) * 2) + (var(--i) * 40ms));
     grid-row: 1;
     grid-column: 1;
     translate: 0 calc(var(--i) * (100% + 10px));

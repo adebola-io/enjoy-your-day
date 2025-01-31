@@ -22,7 +22,6 @@ import {
   getExampleGoalInstruction,
   getAutoCompleteSuggestions,
 } from '#/services/database';
-import { CSS_VARS } from '#/styles/variables';
 import classes from './auto-select-edit-layer.module.css';
 
 export interface GoalCardsViewProps {
@@ -46,11 +45,6 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
 
   const openSearch = async () => {
     if (!searchIsOpen.value) {
-      getExampleGoalInstruction(goalUuids.value, selectedCategories.value).then(
-        (example) => {
-          placeholder.value = `e.g. ${example}`;
-        }
-      );
       await addRouteQuery('search');
     }
   };
@@ -62,6 +56,11 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
     closeSearch();
     activeItemIndex.value = 0;
     goals.value.splice(0, 0, goal);
+    getExampleGoalInstruction(goalUuids.value, selectedCategories.value).then(
+      (example) => {
+        placeholder.value = `e.g. ${example}`;
+      }
+    );
   };
 
   const removeGoal = (index: number, item: Element, mode: 'Swipe' | 'Tap') => {
@@ -131,12 +130,7 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
                     ),
                     false: () => (
                       <>
-                        <InlinedIcon
-                          Icon={AddIcon}
-                          class={classes.buttonAndSearchContainerIcon}
-                          color={CSS_VARS['--space-cadet-500']}
-                          title="Add Icon"
-                        />
+                        <AddIcon class={classes.buttonAndSearchContainerIcon} />
                         Add a goal
                       </>
                     ),

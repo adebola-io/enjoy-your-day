@@ -34,7 +34,7 @@ export default function Settings() {
               Icon={ArtsIcon}
             />
             <SettingsItem
-              link="/about?level-one=about"
+              link="/settings?level-one=about"
               title="About"
               description="Learn more about this app."
               Icon={InfoIcon}

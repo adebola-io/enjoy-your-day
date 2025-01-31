@@ -15,7 +15,6 @@ import {
 import { useRouteQuery } from '#/library/utils';
 import { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './appearance.module.css';
-import LanguageIcon from '#/components/icons/language';
 import FontIcon from '#/components/icons/font';
 
 const themeIcons: Record<ThemeColor, (props: IconProps) => JSX.Template> = {

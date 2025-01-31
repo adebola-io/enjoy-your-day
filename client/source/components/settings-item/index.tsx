@@ -1,8 +1,6 @@
 import { useRouter } from '@adbl/unfinished/router';
 import type { IconProps } from '../icons/props';
 import CaretRightIcon from '../icons/caret-right';
-import { InlinedIcon } from '../inlined-icon';
-import { CSS_VARS } from '#/styles/variables';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { If } from '@adbl/unfinished';
 import type { Cell } from '@adbl/cells';

@@ -22,7 +22,6 @@ import {
   getExampleGoalInstruction,
   getAutoCompleteSuggestions,
 } from '#/services/database';
-import { CSS_VARS } from '#/styles/variables';
 import classes from './auto-select-edit-layer.module.css';
 
 export interface GoalCardsViewProps {

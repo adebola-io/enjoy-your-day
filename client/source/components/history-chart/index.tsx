@@ -4,7 +4,7 @@ import type { HistoryChartItem } from '#/services/database/types';
 import type { LookupMap } from '#/library/lookup-map';
 import { Temporal } from 'temporal-polyfill';
 import { Cell, type SourceCell } from '@adbl/cells';
-import { isDark, themeColor, todayStr } from '#/data/state';
+import { isDark, todayStr } from '#/data/state';
 import classes from './history-chart.module.css';
 
 export interface HistoryChartProps {

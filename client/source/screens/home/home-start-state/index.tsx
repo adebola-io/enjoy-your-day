@@ -1,5 +1,4 @@
 import { Button } from '#/components/button';
-import { InlinedIcon } from '#/components/inlined-icon';
 import { CalendarIcon } from '#/components/icons/calendar';
 import { SparkleIcon } from '#/components/icons/sparkle';
 import classes from './home-start-state.module.css';

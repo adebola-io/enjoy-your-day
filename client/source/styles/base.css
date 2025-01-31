@@ -82,7 +82,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  touch-action: manipulation;
   /* Platform-specific reset */
   -webkit-overflow-scrolling: touch;
   -webkit-font-smoothing: antialiased;

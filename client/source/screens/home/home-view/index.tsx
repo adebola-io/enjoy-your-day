@@ -4,7 +4,13 @@ import { TimeBasedIcon } from '#/components/time-based-icon';
 import { TrophyIcon } from '#/components/icons/trophy';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
 import { ElasticView } from '#/components/elastic-view';
-import { dailyGoals, goalsCompleted, timeOfDay } from '#/data/state';
+import {
+  dailyGoals,
+  goalsCompleted,
+  numberOfScheduledGoals,
+  timeOfDay,
+} from '#/data/state';
+import { encouragement } from '#/data/encouragement';
 import { GoalsCompletedDrawer } from './goals-completed';
 import { addRouteQuery, vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
@@ -16,9 +22,6 @@ export default function HomeView() {
   const router = useRouter();
   const listChanged = Cell.source(false);
   const stickyAreaRef = Cell.source<HTMLElement | null>(null);
-  const numberOfScheduledGoals = Cell.derived(() => {
-    return dailyGoals.value.filter((s) => s.state === 'scheduled').length;
-  });
 
   const goals = Cell.derived(() => {
     const scheduled = [];
@@ -67,10 +70,7 @@ export default function HomeView() {
       <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
       <TimeBasedGreeting class={classes.timeGreeting} />
       <div ref={stickyAreaRef} class={classes.stickyArea}>
-        <p class={classes.encouragement}>
-          There are only 5 goals left for today. Don't give up, you're almost
-          there!
-        </p>
+        <p class={classes.encouragement}>{encouragement}</p>
         <ProgressBar
           class={classes.progressBar}
           percent={percentage}

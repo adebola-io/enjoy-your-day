@@ -9,12 +9,7 @@ import MicrochipIcon from '#/components/icons/microchip';
 export default function InitialHome() {
   return (
     <div class={classes.noGoalsContainer} data-stagger-children>
-      <InlinedIcon
-        Icon={CalendarIcon}
-        class={classes.calendarIcon}
-        color={CSS_VARS['--space-cadet-500']}
-        title="Calendar Icon"
-      />
+      <CalendarIcon class={classes.calendarIcon} />
       <h2 class={classes.noGoalsHeading}>What should we do today?</h2>
       <p class={classes.noGoalsText}>
         Set the tone for an interesting day. Choose goals that inspire you, and

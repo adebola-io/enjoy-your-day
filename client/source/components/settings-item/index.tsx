@@ -54,12 +54,7 @@ export function SettingsItem(props: SettingsItemProps) {
   const Content = () => {
     return (
       <>
-        <InlinedIcon
-          Icon={Icon}
-          class={classes.settingsIcon}
-          color={CSS_VARS['--space-cadet-500']}
-          title={`${title} settings icon`}
-        />
+        <Icon class={classes.settingsIcon} />
         <h2 class={classes.settingsTitle}>{title}</h2>
         {If(description, (description) => {
           return <p class={classes.settingsDescription}>{description}</p>;

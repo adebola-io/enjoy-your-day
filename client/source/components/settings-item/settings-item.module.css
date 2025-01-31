@@ -57,7 +57,7 @@
 }
 
 .settingsDescription {
-  color: var(--space-cadet-400);
+  color: light-dark(var(--space-cadet-400), var(--space-cadet-100));
   font: var(--small-regular);
   grid-area: 2 / 2 / 3 / 2;
 }

@@ -6,7 +6,6 @@
   width: calc(100% - var(--side-padding) * 2);
   margin-top: auto;
   border-top: var(--outline);
-  background-color: white;
   animation: var(--fade-in-from-bottom) calc(var(--default-duration) * 2);
   padding-block: 1rem
     max(env(safe-area-inset-bottom), var(--safe-area-inset-bottom, 1rem));
@@ -36,7 +35,7 @@
   position: relative;
   display: grid;
   min-width: min(46px, 20dvw);
-  color: var(--space-cadet-500);
+  color: inherit;
   transition-duration: var(--default-duration);
   transition-property: font;
   font: var(--tiny-regular);
@@ -140,7 +139,7 @@
 
       rect {
         transition-duration: var(--default-duration);
-        stroke: white;
+        stroke: light-dark(white, Canvas);
         stroke-width: 1;
 
         &[data-bar-1] {
@@ -178,7 +177,7 @@
       }
 
       [data-inner-circle] {
-        fill: white;
+        fill: light-dark(white, Canvas);
       }
     }
   }

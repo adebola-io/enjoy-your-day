@@ -13,7 +13,7 @@
 .checkbox {
   width: 30px;
   height: 30px;
-  border: 3px solid var(--space-cadet-500);
+  border: 3px solid light-dark(var(--space-cadet-500), white);
   border-radius: 50%;
   transition-duration: var(--default-duration);
   transition-property: scale;
@@ -26,6 +26,9 @@
   &:checked {
     border-color: white;
     outline: 2px solid var(--space-cadet-500);
-    background-color: var(--space-cadet-500);
+    background-color: light-dark(
+      var(--space-cadet-500),
+      var(--space-cadet-300)
+    );
   }
 }

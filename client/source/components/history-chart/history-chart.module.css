@@ -21,6 +21,10 @@
     }
   }
 
+  &.dark {
+    background-image: url(./background-dark.svg);
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -107,6 +111,10 @@
     animation-name: grow;
     animation-timing-function: ease;
     animation-fill-mode: backwards;
+  }
+
+  .container.dark &::after {
+    background-color: var(--space-cadet-300);
   }
 }
 

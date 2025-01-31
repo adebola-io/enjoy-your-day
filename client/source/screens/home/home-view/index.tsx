@@ -4,14 +4,12 @@ import { TimeBasedIcon } from '#/components/time-based-icon';
 import { TrophyIcon } from '#/components/icons/trophy';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
 import { ElasticView } from '#/components/elastic-view';
-import { InlinedIcon } from '#/components/inlined-icon';
 import { dailyGoals, goalsCompleted, timeOfDay } from '#/data/state';
 import { GoalsCompletedDrawer } from './goals-completed';
 import { addRouteQuery, vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
-import { CSS_VARS } from '#/styles/variables';
 import classes from './home-view.module.css';
 
 export default function HomeView() {
@@ -49,7 +47,7 @@ export default function HomeView() {
     if (percentage.value > 90) return '#2c612c';
     if (percentage.value > 80) return 'var(--fern-green-600)';
     if (percentage.value > 60) return '#0e473f';
-    return 'var(--space-cadet-500)';
+    return 'light-dark(var(--space-cadet-500), var(--space-cadet-300))';
   });
 
   const handleGoalChecked = () => {
@@ -84,12 +82,7 @@ export default function HomeView() {
           class={classes.goalsCompletedBadge}
           href="/home?goals-completed"
         >
-          <InlinedIcon
-            Icon={TrophyIcon}
-            class={classes.trophyIcon}
-            color={CSS_VARS['--space-cadet-500']}
-            title="Trophy Icon"
-          />
+          <TrophyIcon class={classes.trophyIcon} />
           Goals completed!
         </router.Link>
       ))}

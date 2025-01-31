@@ -2,7 +2,6 @@ import { BottomDrawer } from '#/components/bottom-drawer';
 import { ConfettiIcon } from '#/components/icons/confetti';
 import { useRouter } from '@adbl/unfinished/router';
 import { CSS_VARS } from '#/styles/variables';
-import { InlinedIcon } from '#/components/inlined-icon';
 import { useRouteQuery } from '#/library/utils';
 import confetti from 'canvas-confetti';
 import classes from './goals-completed.module.css';
@@ -32,12 +31,7 @@ export function GoalsCompletedDrawer() {
       shrinkTarget="#homeView"
       data-stagger-children={isOpen}
     >
-      <InlinedIcon
-        Icon={ConfettiIcon}
-        class={classes.icon}
-        color={CSS_VARS['--space-cadet-500']}
-        title="Confetti Icon"
-      />
+      <ConfettiIcon class={classes.icon} />
       <h2 class={classes.heading}>Congratulations!</h2>
       <p class={classes.text}>
         Well done! You completed all your goals. I hope you had an interesting

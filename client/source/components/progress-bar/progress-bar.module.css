@@ -4,7 +4,6 @@
   height: clamp(10px, 25px, 6dvh);
   border: 3px solid var(--progress-color);
   border-radius: 13px;
-  background: white;
   transition: border-color calc(var(--default-duration) * 2);
   grid-template: 100% / 100%;
 
@@ -16,5 +15,8 @@
     content: '';
     transition-duration: calc(var(--default-duration) * 2);
     transition-property: width, background-color;
+  }
+  html[data-is-dark] & {
+    border-color: white;
   }
 }

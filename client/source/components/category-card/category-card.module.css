@@ -26,6 +26,10 @@
     flex: unset;
   }
 
+  &.dark .categoryIcon {
+    filter: invert(0);
+  }
+
   &[data-is-selected] {
     border-color: black;
     outline: 2.5px solid;

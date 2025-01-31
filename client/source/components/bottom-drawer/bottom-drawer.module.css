@@ -11,7 +11,6 @@
   padding: 0;
   margin: unset;
   border: none;
-  color: var(--space-cadet-500);
   background-color: transparent;
   place-items: start;
   scrollbar-width: none;
@@ -78,13 +77,14 @@
   position: relative;
   width: 100%;
   height: var(--drawer-visible-height);
-  border-top: 2.5px solid var(--space-cadet-500);
-  border-right: 2.5px solid var(--space-cadet-500);
-  border-left: 2.5px solid var(--space-cadet-500);
+  border-color: var(--space-cadet-500);
+  border-top: 2.5px solid;
+  border-right: 2.5px solid;
+  border-left: 2.5px solid;
 
   border-radius: min(6dvw, 30px) min(6dvw, 30px) 0px 0px;
   opacity: 0;
-  background-color: white;
+  background-color: Canvas;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: var(--drawer);
   transition-property: translate, opacity;
@@ -103,6 +103,10 @@
     background-color: #9999a45e;
     content: '';
     justify-self: center;
+  }
+
+  html[data-is-dark] & {
+    border-color: #9999a45e;
   }
 
   .drawer[data-open] & {

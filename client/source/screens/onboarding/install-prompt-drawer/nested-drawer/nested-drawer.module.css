@@ -30,8 +30,9 @@
   height: 70%;
 }
 
-.closeButton {
+.closeButton:is(button):is(.closeButton) {
   align-self: end;
   margin-block-start: calc(var(--block-padding) * 0.5);
   margin-block-end: var(--block-padding);
+  background-color: var(--space-cadet-500);
 }

@@ -63,7 +63,6 @@ export default function NotificationsLayer() {
 
   return (
     <ViewLayer
-      class={classes.container}
       open={notificationsPageIsOpen}
       content={() => (
         <SettingsItemList

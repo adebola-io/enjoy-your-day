@@ -4,7 +4,7 @@ import type { HistoryChartItem } from '#/services/database/types';
 import type { LookupMap } from '#/library/lookup-map';
 import { Temporal } from 'temporal-polyfill';
 import { Cell, type SourceCell } from '@adbl/cells';
-import { todayStr } from '#/data/state';
+import { isDark, themeColor, todayStr } from '#/data/state';
 import classes from './history-chart.module.css';
 
 export interface HistoryChartProps {
@@ -32,6 +32,10 @@ export function HistoryChart(props: HistoryChartProps) {
     '--picked': pickedIndex,
     '--total': Cell.derived(() => chartData.value.length),
   };
+
+  const backgroundClass = Cell.derived(() => {
+    return isDark.value ? classes.dark : undefined;
+  });
 
   const lazyLoaderObserver = new IntersectionObserver(
     async ([{ isIntersecting, target }]) => {
@@ -88,7 +92,7 @@ export function HistoryChart(props: HistoryChartProps) {
   return (
     <ElasticView
       ref={containerRef}
-      class={classes.container}
+      class={[classes.container, backgroundClass]}
       style={containerStyles}
       xAxis
       onClick={selectDate}

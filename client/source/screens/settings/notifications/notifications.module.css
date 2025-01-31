@@ -1,7 +1,3 @@
-.container {
-  background-color: white;
-}
-
 .shrinkWrapper {
   transition: scale var(--drawer), translate var(--drawer);
   &[data-dialog-is-open] {

@@ -12,7 +12,6 @@
 
 .outlet {
   display: grid;
-  background-color: white;
 
   &[data-dialog-is-open] {
     & > :not(dialog) {

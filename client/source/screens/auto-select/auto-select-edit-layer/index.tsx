@@ -131,12 +131,7 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
                     ),
                     false: () => (
                       <>
-                        <InlinedIcon
-                          Icon={AddIcon}
-                          class={classes.buttonAndSearchContainerIcon}
-                          color={CSS_VARS['--space-cadet-500']}
-                          title="Add Icon"
-                        />
+                        <AddIcon class={classes.buttonAndSearchContainerIcon} />
                         Add a goal
                       </>
                     ),

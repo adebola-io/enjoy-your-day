@@ -83,8 +83,27 @@ export const lastLoadedChunk = useLocalStorage<number>(
 export type ThemeColor = 'Light' | 'Dark' | 'System';
 export const themeColor = useLocalStorage<ThemeColor>(
   LOCALSTORAGE_KEYS.themeColor,
-  'System'
+  'Light'
 );
+
+themeColor.runAndListen((themeColor) => {
+  document.documentElement.dataset.theme = themeColor;
+});
+
+const query = window.matchMedia('(prefers-color-scheme: dark)');
+export const isDark = Cell.derived(() => {
+  return (
+    themeColor.value === 'Dark' ||
+    (themeColor.value === 'System' && query.matches)
+  );
+});
+query.addEventListener('change', () => isDark.update());
+
+isDark.runAndListen((isDark) => {
+  const root = document.documentElement;
+  root.toggleAttribute('data-is-dark', isDark);
+});
+
 export const morningTime = useLocalStorage<{ hours: number; minutes: number }>(
   LOCALSTORAGE_KEYS.morningTime,
   getRandomMorningTime()

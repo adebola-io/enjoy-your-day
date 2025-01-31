@@ -41,7 +41,10 @@ svg {
 
 :root,
 body {
-  color: var(--space-cadet-500);
+  color: light-dark(var(--space-cadet-500), white);
+  transition-duration: var(--default-duration);
+  transition-property: background-color, color;
+
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -56,6 +59,18 @@ body {
 
 * {
   overscroll-behavior-y: none;
+}
+
+[data-theme='Dark'] {
+  color-scheme: dark;
+}
+
+[data-theme='Light'] {
+  color-scheme: light;
+}
+
+[data-theme='System'] {
+  color-scheme: light dark;
 }
 
 body {

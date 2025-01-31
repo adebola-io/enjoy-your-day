@@ -17,6 +17,9 @@ export default defineConfig({
     hmrPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
+      devOptions: {
+        enabled: true,
+      },
       manifest: {
         name: 'Enjoy Your Day',
         short_name: 'Enjoy Your Day',

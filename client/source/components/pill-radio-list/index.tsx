@@ -1,8 +1,6 @@
 import { IconProps } from '../icons/props';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './pill-radio-list.module.css';
-import { InlinedIcon } from '../inlined-icon';
-import { CSS_VARS } from '#/styles/variables';
 import { For } from '@adbl/unfinished';
 import { Cell, type SourceCell } from '@adbl/cells';
 
@@ -35,15 +33,8 @@ export function PillRadioList<T extends string>(props: PillRadioListProps<T>) {
       onChange={handleChange}
     >
       <legend class={classes.pillRadioListHeading}>
-        {Icon && (
-          <InlinedIcon
-            Icon={Icon}
-            color={CSS_VARS['--space-cadet-500']}
-            class={classes.listIcon}
-            title="pill list icon"
-          />
-        )}
-        {heading}
+        {Icon && <Icon class={classes.listIcon} />}
+        <span>{heading}</span>
       </legend>
       <div class={classes.items}>
         {For(items, (item) => (

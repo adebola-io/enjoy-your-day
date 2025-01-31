@@ -8,6 +8,7 @@ import ProfileDrawer from './profile-drawer';
 import NotificationsLayer from './notifications';
 import AppearanceLayer from './appearance';
 import classes from './settings.module.css';
+import AboutLayer from './about';
 
 export default function Settings() {
   return (
@@ -45,6 +46,7 @@ export default function Settings() {
       </ViewLayer>
       <NotificationsLayer />
       <AppearanceLayer />
+      <AboutLayer />
     </ViewLayerGroup>
   );
 }

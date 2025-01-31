@@ -21,6 +21,11 @@
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media (orientation: landscape) {
+    width: calc(100% - var(--side-padding) * 2);
+    padding-inline: var(--side-padding);
+  }
 }
 
 .timeIcon {

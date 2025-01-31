@@ -24,7 +24,7 @@
 .items {
   display: grid;
   overflow: hidden;
-  min-height: var(--block-padding);
+  min-height: min(var(--block-padding), 50px);
   border: 3px solid light-dark(var(--space-cadet-500), var(--space-cadet-100));
   border-radius: 25px;
   transition: border-color calc(var(--default-duration) * 0.5);

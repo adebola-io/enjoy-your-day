@@ -58,6 +58,9 @@
     &::-webkit-scrollbar {
       display: none;
     }
+    @media (orientation: landscape) {
+      height: 100dvh;
+    }
 
     @supports (animation-timeline: scroll(self inline)) {
       animation-duration: auto;
@@ -132,6 +135,9 @@
   padding-inline: var(--side-padding);
   grid-template-columns: 50% 50%;
   grid-area: 2 / 1;
+  @media (orientation: landscape) {
+    padding-inline: calc(var(--side-padding) * 2);
+  }
 }
 
 .overviewTabPill {

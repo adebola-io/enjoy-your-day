@@ -23,4 +23,7 @@
     height: 30px;
     content: '';
   }
+  @media (orientation: landscape) {
+    padding-inline: calc(var(--side-padding) * 2);
+  }
 }

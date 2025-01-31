@@ -172,10 +172,10 @@
   }
 
   & > * {
-    transition-duration: calc((var(--default-duration) * 1.5));
+    transition-timing-function: ease-in-out;
+    transition-duration: calc(var(--default-duration) * 1.75);
     transition-property: translate, scale;
-    animation-name: slide-in;
-    animation-duration: calc((var(--default-duration) * 2) + (var(--i) * 40ms));
+    animation: slide-in calc((var(--default-duration) * 2) + (var(--i) * 40ms));
     grid-row: 1;
     grid-column: 1;
     translate: 0 calc(var(--i) * (100% + 10px));

@@ -41,7 +41,7 @@ svg {
 
 :root,
 body {
-  color: light-dark(var(--space-cadet-500), white);
+  color: light-dark(var(--space-cadet-500), CanvasText);
   transition-duration: var(--default-duration);
   transition-property: background-color, color;
 

@@ -2,7 +2,6 @@ import { Button } from '#/components/button';
 import { InlinedIcon } from '#/components/inlined-icon';
 import { CalendarIcon } from '#/components/icons/calendar';
 import { SparkleIcon } from '#/components/icons/sparkle';
-import { CSS_VARS } from '#/styles/variables';
 import classes from './home-start-state.module.css';
 import MicrochipIcon from '#/components/icons/microchip';
 
@@ -22,12 +21,7 @@ export default function InitialHome() {
         vibrate
         rounded
       >
-        <InlinedIcon
-          Icon={SparkleIcon}
-          class={classes.sparkleIcon}
-          color="white"
-          title="Sparkle Icon"
-        />
+        <SparkleIcon class={classes.sparkleIcon} />
         Select for me
       </Button>
       <Button
@@ -36,12 +30,7 @@ export default function InitialHome() {
         variant="primary"
         rounded
       >
-        <InlinedIcon
-          Icon={MicrochipIcon}
-          class={classes.sparkleIcon}
-          color={CSS_VARS['--space-cadet-500']}
-          title="Sparkle Icon"
-        />
+        <MicrochipIcon class={classes.sparkleIcon} />
         Create a plan
       </Button>
     </div>

@@ -17,6 +17,6 @@
     transition-property: width, background-color;
   }
   html[data-is-dark] & {
-    border-color: white;
+    border-color: var(--space-cadet-100);
   }
 }

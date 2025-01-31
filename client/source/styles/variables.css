@@ -10,7 +10,7 @@
   --black: #000000;
 
   /* Colors */
-  --outline: 1px solid light-dark(#6b6b6bb5, CanvasText);
+  --outline: 1px solid light-dark(#6b6b6bb5, #6b6b6ba8);
   --primary-600: #007480ff;
   --primary-500: #00868dff;
   --primary-400: #0093b0ff;

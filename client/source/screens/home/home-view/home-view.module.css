@@ -139,6 +139,10 @@
   gap: 5px;
   padding-block: 15px;
   margin-inline: var(--side-padding);
+
+  html[data-is-dark] & {
+    border: 2px solid var(--space-cadet-100);
+  }
 }
 
 .trophyIcon {

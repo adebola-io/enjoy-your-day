@@ -8,3 +8,7 @@
 .icon {
   height: var(--base-font-size);
 }
+
+.font {
+  font-size: var(--base-font-size);
+}

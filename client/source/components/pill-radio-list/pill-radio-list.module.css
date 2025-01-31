@@ -27,25 +27,45 @@
   min-height: var(--block-padding);
   border: 3px solid light-dark(var(--space-cadet-500), var(--space-cadet-100));
   border-radius: 25px;
+  transition: border-color calc(var(--default-duration) * 0.5);
   place-items: center;
   grid-auto-flow: column;
+
+  &::before {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: light-dark(var(--space-cadet-500), CanvasText);
+    content: '';
+    transition-duration: calc(var(--default-duration) * 1.5);
+    transition-property: translate, scale, background-color;
+    transform-origin: 0 0;
+    grid-area: 1 / 1;
+    translate: var(--highlighter-translate-x) 0;
+    scale: var(--highlighter-scale-x) 1;
+  }
 }
 
 .pillItem {
+  z-index: 1;
   display: grid;
   width: 100%;
   height: 100%;
+  border-right: 3px solid;
   place-items: center;
   place-content: center;
+  grid-area: 1 / calc(var(--index) + 1);
 
   &:has(:checked) {
     color: light-dark(white, Canvas);
-    background-color: light-dark(var(--space-cadet-500), CanvasText);
   }
 
   &:not(:last-child) {
-    border-right: 3px solid
-      light-dark(var(--space-cadet-500), var(--space-cadet-100));
+    border-color: light-dark(var(--space-cadet-500), var(--space-cadet-100));
+  }
+
+  &:last-child {
+    border-color: transparent;
   }
 }
 

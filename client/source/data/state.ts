@@ -21,6 +21,7 @@ export const LOCALSTORAGE_KEYS = {
   notificationsEnabled: 'notifications-enabled',
   morningTime: 'morning-time',
   themeColor: 'theme-color',
+  selectedFont: 'selected-font',
 };
 
 const notificationsPermissionGranted =
@@ -106,6 +107,16 @@ isDark.runAndListen((isDark) => {
 
 isDark.listen((isDark) => {
   setMetaTheme(isDark ? '#000000' : '#ffffff');
+});
+
+export type FontFamily = 'System' | 'Inter' | 'Cursive' | 'SchibstedGrotesk';
+export const selectedFont = useLocalStorage<FontFamily>(
+  LOCALSTORAGE_KEYS.selectedFont,
+  'SchibstedGrotesk'
+);
+
+selectedFont.runAndListen((font) => {
+  document.documentElement.dataset.font = font;
 });
 
 export const morningTime = useLocalStorage<{ hours: number; minutes: number }>(

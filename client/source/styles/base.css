@@ -37,6 +37,38 @@ svg {
   overflow: hidden;
   width: 100dvw;
   height: 100dvh;
+
+  &[data-theme='Light'] {
+    color-scheme: light;
+  }
+
+  &[data-theme='System'] {
+    color-scheme: light dark;
+  }
+
+  &[data-theme='Dark'] {
+    color-scheme: dark;
+  }
+}
+
+[data-font='System'] {
+  --font-family: system-ui, sans-serif;
+  font-family: system-ui, sans-serif;
+}
+
+[data-font='Inter'] {
+  --font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
+}
+
+[data-font='Cursive'] {
+  --font-family: 'Edu AU VIC WA NT Pre', sans-serif;
+  font-family: 'Edu AU VIC WA NT Pre', sans-serif;
+}
+
+[data-font='SchibstedGrotesk'] {
+  --font-family: 'Schibsted Grotesk', sans-serif;
+  font-family: 'Schibsted Grotesk', sans-serif;
 }
 
 :root,
@@ -61,18 +93,6 @@ body {
 
 * {
   overscroll-behavior-y: none;
-}
-
-[data-theme='Dark'] {
-  color-scheme: dark;
-}
-
-[data-theme='Light'] {
-  color-scheme: light;
-}
-
-[data-theme='System'] {
-  color-scheme: light dark;
 }
 
 body {

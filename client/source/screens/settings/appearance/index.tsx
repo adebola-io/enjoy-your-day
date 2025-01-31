@@ -6,15 +6,29 @@ import SunIcon from '#/components/icons/sun';
 import { PillRadioList } from '#/components/pill-radio-list';
 import { SettingsItemList } from '#/components/settings-item';
 import { ViewLayer } from '#/components/view-layer';
-import { themeColor, type ThemeColor } from '#/data/state';
+import {
+  FontFamily,
+  selectedFont,
+  themeColor,
+  type ThemeColor,
+} from '#/data/state';
 import { useRouteQuery } from '#/library/utils';
 import { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './appearance.module.css';
+import LanguageIcon from '#/components/icons/language';
+import FontIcon from '#/components/icons/font';
 
 const themeIcons: Record<ThemeColor, (props: IconProps) => JSX.Template> = {
   System: DigitalDesignIcon,
   Light: SunIcon,
   Dark: MoonAndStarsIcon,
+};
+
+const fontNames: Record<FontFamily, string> = {
+  System: 'System',
+  Inter: 'Inter',
+  Cursive: 'Cursive',
+  SchibstedGrotesk: 'Default',
 };
 
 export default function AppearanceLayer() {
@@ -31,6 +45,14 @@ export default function AppearanceLayer() {
             items={['Light', 'Dark', 'System']}
             Template={ThemePillItem}
           />
+          <PillRadioList
+            name="font"
+            heading="Font"
+            model={selectedFont}
+            Icon={FontIcon}
+            items={['SchibstedGrotesk', 'Inter', 'Cursive', 'System']}
+            Template={FontPillItem}
+          />
         </SettingsItemList>
       )}
     />
@@ -43,6 +65,15 @@ function ThemePillItem(item: ThemeColor) {
     <div class={classes.theme}>
       <Icon class={classes.icon} />
       <span>{item}</span>
+    </div>
+  );
+}
+
+function FontPillItem(item: FontFamily) {
+  const fontName = fontNames[item];
+  return (
+    <div class={classes.font} data-font={item}>
+      <span>{fontName}</span>
     </div>
   );
 }

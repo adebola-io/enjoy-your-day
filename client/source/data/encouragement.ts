@@ -6,15 +6,17 @@ import {
   numberOfScheduledGoals,
   timeOfDay,
 } from './state';
+import { selectAtRandom } from '#/library/utils';
 export const encouragement = Cell.derived(() => {
   const count = numberOfScheduledGoals.value;
   const goalsPhrase = count === 1 ? `${count} goal` : `${count} goals`;
 
-  if (count === 0) {
-    return 'You have no goals set for today. Enjoy your free time!';
+  const hours = liveDate.value.getHours();
+  if (hours >= 20 && count > 4) {
+    return `It's getting late, but its not over yet. You have ${goalsPhrase} left. I believe in you!`;
   }
 
-  if (count <= 4 && count <= dailyGoals.value.length - 3) {
+  if (count <= 4 && count && count <= dailyGoals.value.length - 3) {
     return `Almost there! You have just ${goalsPhrase} left for today. Stay motivated, you can do it!`;
   }
 
@@ -23,12 +25,11 @@ export const encouragement = Cell.derived(() => {
   }
 
   if (goalsCompleted.value) {
-    return 'Your goals are done! Take a moment: sit back, relax and enjoy your achievements.';
-  }
-
-  const hours = liveDate.value.getHours();
-  if (hours >= 20) {
-    return `It's getting late, but its not over yet. You have ${goalsPhrase} left. I believe in you!`;
+    return selectAtRandom([
+      'Your goals are done! Take a moment: sit back, relax and enjoy your achievements.',
+      'You did it! All your goals are completed. Congratulations!',
+      'You have no goals left for today. Enjoy your free time!',
+    ]);
   }
 
   if (timeOfDay.value === 'morning') {

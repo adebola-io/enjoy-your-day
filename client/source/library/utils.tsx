@@ -228,3 +228,7 @@ export const getRandomMorningTime = () => {
   );
   return { hours: randomTime.getHours(), minutes: randomTime.getMinutes() };
 };
+
+export function selectAtRandom<T>(array: T[]) {
+  return array[Math.floor(Math.random() * array.length)];
+}

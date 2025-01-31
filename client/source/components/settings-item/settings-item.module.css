@@ -85,7 +85,7 @@
   appearance: none;
 
   &:checked {
-    --color: var(--space-cadet-500);
+    --color: light-dark(var(--space-cadet-500), var(--space-cadet-200));
 
     &::before {
       translate: 160%;

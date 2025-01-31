@@ -7,7 +7,7 @@ import { saveGoalState, updateUsername } from '../services/database';
 import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
-import { getRandomMorningTime, NoOp } from '#/library/utils';
+import { getRandomMorningTime, NoOp, setMetaTheme } from '#/library/utils';
 
 export const DATE_UPDATE_INTERVAL = 1000 * 30; // updates every 30 seconds.
 export const LOCALSTORAGE_KEYS = {
@@ -81,6 +81,7 @@ export const lastLoadedChunk = useLocalStorage<number>(
   0
 );
 export type ThemeColor = 'Light' | 'Dark' | 'System';
+const query = window.matchMedia('(prefers-color-scheme: dark)');
 export const themeColor = useLocalStorage<ThemeColor>(
   LOCALSTORAGE_KEYS.themeColor,
   'Light'
@@ -90,7 +91,6 @@ themeColor.runAndListen((themeColor) => {
   document.documentElement.dataset.theme = themeColor;
 });
 
-const query = window.matchMedia('(prefers-color-scheme: dark)');
 export const isDark = Cell.derived(() => {
   return (
     themeColor.value === 'Dark' ||
@@ -102,6 +102,10 @@ query.addEventListener('change', () => isDark.update());
 isDark.runAndListen((isDark) => {
   const root = document.documentElement;
   root.toggleAttribute('data-is-dark', isDark);
+});
+
+isDark.listen((isDark) => {
+  setMetaTheme(isDark ? '#000000' : '#ffffff');
 });
 
 export const morningTime = useLocalStorage<{ hours: number; minutes: number }>(

@@ -166,7 +166,7 @@
   width: 100%;
   height: calc(3dvh + 1lh);
   border-radius: 20px;
-  background-color: light-dark(var(--space-cadet-500), var(--space-cadet-400));
+  background-color: light-dark(var(--space-cadet-500), var(--space-cadet-300));
   pointer-events: none;
   justify-self: start;
   grid-row: 1;

@@ -42,8 +42,10 @@ svg {
 :root,
 body {
   color: light-dark(var(--space-cadet-500), CanvasText);
-  transition-duration: var(--default-duration);
-  transition-property: background-color, color;
+  background-color: Canvas;
+  transition: background-color calc(var(--default-duration) * 2),
+    color calc(var(--default-duration) * 0.5);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;

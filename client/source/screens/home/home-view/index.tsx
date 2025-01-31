@@ -17,6 +17,7 @@ import { Cell } from '@adbl/cells';
 import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './home-view.module.css';
+import { triggerNotification } from '#/services/notifications';
 
 export default function HomeView() {
   const router = useRouter();
@@ -56,6 +57,10 @@ export default function HomeView() {
   const handleGoalChecked = () => {
     if (!goalsCompleted.value) return;
     vibrate([100, 75, 50, 75, 100]);
+    triggerNotification({
+      title: 'Excellent! 😍',
+      body: 'You have completed all your goals for today.',
+    });
     setTimeout(() => addRouteQuery('goals-completed'), 400);
   };
 

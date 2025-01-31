@@ -2,28 +2,33 @@ import { Cell } from '@adbl/cells';
 import {
   dailyGoals,
   goalsCompleted,
+  liveDate,
   numberOfScheduledGoals,
   timeOfDay,
 } from './state';
-
 export const encouragement = Cell.derived(() => {
   const count = numberOfScheduledGoals.value;
   const goalsPhrase = count === 1 ? `${count} goal` : `${count} goals`;
 
-  if (
-    numberOfScheduledGoals.value <= 4 &&
-    numberOfScheduledGoals.value <= dailyGoals.value.length - 3 &&
-    numberOfScheduledGoals.value !== 0
-  ) {
+  if (count === 0) {
+    return 'You have no goals set for today. Enjoy your free time!';
+  }
+
+  if (count <= 4 && count <= dailyGoals.value.length - 3) {
     return `Almost there! You have just ${goalsPhrase} left for today. Stay motivated, you can do it!`;
   }
 
-  if (numberOfScheduledGoals.value >= 15 && timeOfDay.value === 'morning') {
+  if (count >= 15 && timeOfDay.value === 'morning') {
     return `There is a lot to do today! Keep pushing forward and you'll reach your goals.`;
   }
 
   if (goalsCompleted.value) {
     return 'Your goals are done! Take a moment: sit back, relax and enjoy your achievements.';
+  }
+
+  const hours = liveDate.value.getHours();
+  if (hours >= 20) {
+    return `It's getting late, but its not over yet. You have ${goalsPhrase} left. I believe in you!`;
   }
 
   if (timeOfDay.value === 'morning') {

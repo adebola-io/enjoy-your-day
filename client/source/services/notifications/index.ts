@@ -91,8 +91,8 @@ export const setDefaultNotifications = async () => {
       hours: morningTime.value.hours,
       minutes: morningTime.value.minutes,
       notification_data: {
-        title: 'Good Morning.',
-        body: 'What will you do today? ✨',
+        title: 'Good Morning 💫',
+        body: 'What will you do today?',
         url: window.location.href,
       },
     },

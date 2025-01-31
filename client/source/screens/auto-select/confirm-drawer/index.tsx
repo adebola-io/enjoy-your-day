@@ -55,8 +55,8 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
     await handleDrawerClose();
     await new Promise((r) => setTimeout(r, 200)); // TODO: remove this
     triggerNotification({
-      title: 'Enjoy your day! ❤️',
-      body: 'Your goals have been set. Good luck!',
+      title: 'Godspeed! ✨',
+      body: 'Your goals for today have been set. Good luck.',
     });
     router.navigate('/home');
   };

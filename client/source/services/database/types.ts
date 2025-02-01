@@ -97,7 +97,7 @@ export namespace Db {
     : T extends Requests.GetAutoCompleteSuggestions
     ? GoalProps[]
     : T extends Requests.UpdateGoals
-    ? boolean | null
+    ? true | { error: string; updateFailedAtChunk: number }
     : T extends Requests.RecordGoalState
     ? boolean | null
     : T extends Requests.GetInsightsOverview

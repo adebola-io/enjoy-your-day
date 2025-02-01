@@ -198,28 +198,37 @@ export const getSearchExample: GetSearchExampleHandler = async (data) => {
 
 let isUpdatingGoals = false;
 export const updateGoalsList: UpdateGoalsListHandler = async (data) => {
-  if (isUpdatingGoals) return null;
+  if (isUpdatingGoals) return true;
   isUpdatingGoals = true;
   const { lastLoadedChunk, latestChunk, categoryList } = data.message;
+  let currentUpdate = lastLoadedChunk;
   try {
     updateDataQueue.defineHandler(async (update) => {
       // Adding new goals:
-      dexie.goals.bulkAdd(update.addedGoalObjects).then(() => {
-        // Removing goals:
-        for (const goalUuid of update.removedGoalUuids) {
-          dexie.goals.where('uuid').equals(goalUuid).delete();
-        }
-        // Updating goals:
-        // TODO.
-      });
+      dexie.goals
+        .bulkAdd(update.addedGoalObjects)
+        .then(() => {
+          // Removing goals:
+          for (const goalUuid of update.removedGoalUuids) {
+            dexie.goals.where('uuid').equals(goalUuid).delete();
+          }
+          // Updating goals:
+          // TODO.
+        })
+        .then(() => {
+          currentUpdate = update.chunk;
+        });
     });
     startGoalUpdateProcess(lastLoadedChunk, latestChunk, categoryList);
     isUpdatingGoals = false;
     return true;
   } catch (error) {
     console.error('Error updating goals', error);
-    console.error(error);
     isUpdatingGoals = false;
-    return false;
+
+    return {
+      error: error instanceof Error ? error.message : String(error),
+      updateFailedAtChunk: currentUpdate,
+    };
   }
 };

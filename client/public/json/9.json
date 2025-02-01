@@ -12,7 +12,7 @@
         "color": "#004d40",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Music,Social Connection",
+        "categories": ["Music", "Social Connection"],
         "uuid": "6e1cf9c9-49ed-40f6-b772-d560a10f5beb"
       },
       {
@@ -24,7 +24,7 @@
         "color": "#016760",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Urban Exploration,Adventure",
+        "categories": ["Urban Exploration", "Adventure"],
         "uuid": "7b08d3c5-d337-4923-bc05-f5b934accbc3"
       },
       {
@@ -36,7 +36,7 @@
         "color": "#253a54",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fun",
+        "categories": ["Fun"],
         "uuid": "8b2c09a9-2357-4028-9108-7637db0f2ef5"
       },
       {
@@ -48,7 +48,7 @@
         "color": "#444e86",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Sports,Fitness",
+        "categories": ["Sports", "Fitness"],
         "uuid": "2ca6dc28-a94d-473b-8cee-7d47b9ca8ddf"
       },
       {
@@ -60,7 +60,7 @@
         "color": "#003f5c",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fitness,Wellness",
+        "categories": ["Fitness", "Wellness"],
         "uuid": "2d342150-8f46-4cb7-b444-b28edfccff6b"
       },
       {
@@ -72,7 +72,7 @@
         "color": "#5c006a",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Adventure,Fitness",
+        "categories": ["Adventure", "Fitness"],
         "uuid": "ef614035-c708-4489-a0da-9ee3b5d8a56b"
       },
       {
@@ -84,7 +84,7 @@
         "color": "#05688f",
         "recommendability": 5,
         "involvement": 3,
-        "categories": "Adventure,Fitness",
+        "categories": ["Adventure", "Fitness"],
         "uuid": "97ac9e12-2ca4-41bf-bb6f-50cb3d110589"
       },
       {
@@ -96,7 +96,7 @@
         "color": "#5d6835",
         "recommendability": 5,
         "involvement": 3,
-        "categories": "Adventure,Fitness",
+        "categories": ["Adventure", "Fitness"],
         "uuid": "573818ff-e537-4411-99af-b6f978c13efb"
       },
       {
@@ -108,7 +108,7 @@
         "color": "#016760",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fun,Social Connection",
+        "categories": ["Fun", "Social Connection"],
         "uuid": "36c8f2d2-85ec-49dc-99a3-fc53dec88fb0"
       },
       {
@@ -120,7 +120,7 @@
         "color": "#004d40",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Sports,Fun",
+        "categories": ["Sports", "Fun"],
         "uuid": "d1da242b-5828-4a84-a99a-ed7f8cffcc1d"
       },
       {
@@ -132,7 +132,7 @@
         "color": "#b93200",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fitness,Wellness",
+        "categories": ["Fitness", "Wellness"],
         "uuid": "4b378157-c4f4-4c39-b219-8d4c6d07527f"
       },
       {
@@ -144,7 +144,7 @@
         "color": "#53086f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Technology",
+        "categories": ["Technology"],
         "uuid": "7ee41d1f-20bf-4b67-95be-08033481c7ec"
       },
       {
@@ -156,7 +156,7 @@
         "color": "#2d0a62",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fitness,Wellness",
+        "categories": ["Fitness", "Wellness"],
         "uuid": "662060bd-7806-4f78-9203-ac39c5bf7efd"
       },
       {
@@ -168,7 +168,7 @@
         "color": "#5d6835",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Pets,Fun",
+        "categories": ["Pets", "Fun"],
         "uuid": "e7019f68-1075-45c9-ab76-8fe523915a6c"
       },
       {
@@ -180,7 +180,7 @@
         "color": "#801d02",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Fun,Mental Health",
+        "categories": ["Fun", "Mental Health"],
         "uuid": "9d87f525-fdda-49af-b996-7d60d3955423"
       },
       {
@@ -192,7 +192,7 @@
         "color": "#003f5c",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Home Care,Productivity",
+        "categories": ["Home Care", "Productivity"],
         "uuid": "30ec3017-35f4-4629-9239-3dcbd75ef370"
       },
       {
@@ -204,7 +204,7 @@
         "color": "#a90e57",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Fun,Adventure",
+        "categories": ["Fun", "Adventure"],
         "uuid": "8f66361d-0754-4193-8429-d78de958fcb6"
       },
       {
@@ -216,7 +216,7 @@
         "color": "#2f2f2f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Nature,Mindfulness",
+        "categories": ["Nature", "Mindfulness"],
         "uuid": "25c97ac6-8a7b-47dc-8bba-a0b5759b454f"
       },
       {
@@ -228,7 +228,7 @@
         "color": "#801d02",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Nature,Fun",
+        "categories": ["Nature", "Fun"],
         "uuid": "6394760f-fa80-46c4-a296-04dfff43015c"
       },
       {
@@ -240,7 +240,7 @@
         "color": "#016760",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fun,Arts",
+        "categories": ["Fun", "Arts"],
         "uuid": "65bd825d-e9d7-45ba-9a10-e36159676ede"
       },
       {
@@ -252,7 +252,7 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Nature,Adventure",
+        "categories": ["Nature", "Adventure"],
         "uuid": "b96aa23e-e484-4b43-aa02-670395679df5"
       },
       {
@@ -264,7 +264,7 @@
         "color": "#3e2723",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Photography,Nature",
+        "categories": ["Photography", "Nature"],
         "uuid": "916fccba-40ba-4ccb-94dc-8fb71cd95e59"
       },
       {
@@ -276,7 +276,7 @@
         "color": "#003f5c",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Nature,Science",
+        "categories": ["Nature", "Science"],
         "uuid": "325e8836-2b01-4596-8ed7-3da293f0eb36"
       },
       {
@@ -288,7 +288,7 @@
         "color": "#00600f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Nature,Mindfulness",
+        "categories": ["Nature", "Mindfulness"],
         "uuid": "17a3ed30-b06f-4130-a287-3b804b023831"
       },
       {
@@ -300,7 +300,7 @@
         "color": "#2f384f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Photography,Nature",
+        "categories": ["Photography", "Nature"],
         "uuid": "5647f10a-8286-46e0-88d8-8ed4c9931cb4"
       },
       {
@@ -312,7 +312,7 @@
         "color": "#016760",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Adventure,Nature",
+        "categories": ["Adventure", "Nature"],
         "uuid": "b68192c9-a485-43a3-a28f-8694ceac6580"
       },
       {
@@ -324,7 +324,7 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Nature,Science",
+        "categories": ["Nature", "Science"],
         "uuid": "65521ccc-63dd-442b-b24b-536ecc5f1a7b"
       },
       {
@@ -336,7 +336,7 @@
         "color": "#53086f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Arts,Nature",
+        "categories": ["Arts", "Nature"],
         "uuid": "f9eaa7a9-2441-4317-a4dc-9a29e6f852be"
       },
       {
@@ -348,7 +348,7 @@
         "color": "#253a54",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Digital Design",
+        "categories": ["Arts", "Digital Design"],
         "uuid": "9319f62f-56fb-4cfa-83eb-d14e82b2e0a5"
       },
       {
@@ -360,7 +360,7 @@
         "color": "#05688f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Nature",
+        "categories": ["Nature"],
         "uuid": "b9704b5e-e987-4501-bc7c-d06a99662ffb"
       }
     ],

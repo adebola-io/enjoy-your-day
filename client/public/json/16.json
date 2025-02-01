@@ -12,7 +12,7 @@
         "color": "#003f5c",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Arts,Fun,Social Connection",
+        "categories": ["Arts", "Fun", "Social Connection"],
         "uuid": "510db597-ba27-42a2-b9cf-0bb74cce4720"
       },
       {
@@ -24,7 +24,7 @@
         "color": "#444e86",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Home Care,Style,Wellness",
+        "categories": ["Home Care", "Style", "Wellness"],
         "uuid": "21166f9f-ab5e-4819-a6b8-b472512ef72a"
       },
       {
@@ -36,7 +36,7 @@
         "color": "#9a0007",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Mental Health,Wellness,Productivity",
+        "categories": ["Mental Health", "Wellness", "Productivity"],
         "uuid": "726818bd-79a4-47f2-9c25-930e72550330"
       },
       {
@@ -48,7 +48,7 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Mental Health,Storytelling",
+        "categories": ["Arts", "Mental Health", "Storytelling"],
         "uuid": "cdd9b07b-caa4-4502-8a70-aeb5bd7bdf61"
       },
       {
@@ -60,7 +60,7 @@
         "color": "#3e2723",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Digital Design,Productivity,Wellness",
+        "categories": ["Digital Design", "Productivity", "Wellness"],
         "uuid": "faec6df6-1148-4cd9-a1df-4295de636ae0"
       },
       {
@@ -72,7 +72,7 @@
         "color": "#00600f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Style,Home Care,Productivity",
+        "categories": ["Style", "Home Care", "Productivity"],
         "uuid": "1f5e3967-95f0-4895-b88e-77e8a3e8e412"
       },
       {
@@ -84,7 +84,7 @@
         "color": "#53086f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Home Care,Productivity,Cooking",
+        "categories": ["Home Care", "Productivity", "Cooking"],
         "uuid": "28f870b8-ed5e-47c4-9c62-cf895b8dd04b"
       },
       {
@@ -96,7 +96,7 @@
         "color": "#05688f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Wellness,Mental Health",
+        "categories": ["Wellness", "Mental Health"],
         "uuid": "6d9848d6-2d66-4cf3-8ac9-862cda0c0d9b"
       },
       {
@@ -108,7 +108,7 @@
         "color": "#253a54",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Technology,Productivity,Digital Design",
+        "categories": ["Technology", "Productivity", "Digital Design"],
         "uuid": "005f1b39-e946-495d-a7b5-2d84059be4c0"
       },
       {
@@ -120,7 +120,7 @@
         "color": "#801d02",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Technology,Productivity,Home Care",
+        "categories": ["Technology", "Productivity", "Home Care"],
         "uuid": "460622aa-e3e6-4008-a1c9-57098bb47baa"
       },
       {
@@ -132,7 +132,7 @@
         "color": "#016760",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Technology,Productivity,Home Care",
+        "categories": ["Technology", "Productivity", "Home Care"],
         "uuid": "67386dc2-cae1-4c15-a971-450e675f454d"
       },
       {
@@ -144,7 +144,7 @@
         "color": "#a90e57",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Technology,Home Care,Productivity",
+        "categories": ["Technology", "Home Care", "Productivity"],
         "uuid": "963a5e67-0c22-4607-bf8f-2a9126e6d099"
       },
       {
@@ -156,7 +156,7 @@
         "color": "#2f2f2f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Science,Technology",
+        "categories": ["Science", "Technology"],
         "uuid": "f5c29ea6-b9af-45c8-bd8c-8b2e338a8010"
       },
       {
@@ -168,7 +168,7 @@
         "color": "#2f384f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Technology,Science,Crafts",
+        "categories": ["Technology", "Science", "Crafts"],
         "uuid": "2a56b020-90ec-4ec3-bd95-405229035631"
       },
       {
@@ -180,7 +180,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Productivity,Home Care,Travel",
+        "categories": ["Productivity", "Home Care", "Travel"],
         "uuid": "68661fa4-f3b2-44cd-a5cb-f0b56b098560"
       },
       {
@@ -192,7 +192,7 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Adventure,Nature,Fun",
+        "categories": ["Adventure", "Nature", "Fun"],
         "uuid": "0670efc6-4c69-490e-9835-34fe0fb42bac"
       },
       {
@@ -204,7 +204,7 @@
         "color": "#013c3b",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Travel,Culture,Adventure",
+        "categories": ["Travel", "Culture", "Adventure"],
         "uuid": "7ffc54ce-e9b4-489e-af27-70bc4374b3a0"
       },
       {
@@ -216,7 +216,7 @@
         "color": "#5c006a",
         "recommendability": 3,
         "involvement": 1,
-        "categories": "Technology,Productivity",
+        "categories": ["Technology", "Productivity"],
         "uuid": "f1bb904e-407e-4f26-8384-043eeed743b7"
       },
       {
@@ -228,7 +228,7 @@
         "color": "#5d6835",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Mental Health,Wellness",
+        "categories": ["Mental Health", "Wellness"],
         "uuid": "cb97836f-ed4a-45c4-894c-2e2290b136fc"
       },
       {
@@ -240,7 +240,7 @@
         "color": "#003f5c",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Nature,Arts,Crafts",
+        "categories": ["Nature", "Arts", "Crafts"],
         "uuid": "69aa64d2-1544-413d-a337-c54fe6a0bd49"
       },
       {
@@ -252,7 +252,7 @@
         "color": "#444e86",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Culture,Fun,Adventure",
+        "categories": ["Culture", "Fun", "Adventure"],
         "uuid": "c7c670ec-ee2c-4873-82e8-a0f9b490b060"
       },
       {
@@ -264,7 +264,7 @@
         "color": "#9a0007",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Photography,Digital Design,Arts",
+        "categories": ["Photography", "Digital Design", "Arts"],
         "uuid": "2f1340c3-0a64-475e-bd6e-44259474854d"
       },
       {
@@ -276,7 +276,7 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Literature,Storytelling",
+        "categories": ["Arts", "Literature", "Storytelling"],
         "uuid": "cddd127a-2179-46ad-9c76-97233ba5ec2b"
       },
       {
@@ -288,7 +288,7 @@
         "color": "#3e2723",
         "recommendability": 4,
         "involvement": 3,
-        "categories": "Fun,Social Connection,Arts",
+        "categories": ["Fun", "Social Connection", "Arts"],
         "uuid": "0b65ef51-292b-4520-9014-a89812384ce5"
       },
       {
@@ -300,7 +300,7 @@
         "color": "#00600f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Fitness,Wellness,Mindfulness",
+        "categories": ["Fitness", "Wellness", "Mindfulness"],
         "uuid": "d9a4f0a6-ed62-432a-b443-af7b0ed238fb"
       },
       {
@@ -312,7 +312,7 @@
         "color": "#53086f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Home Care,Productivity,Style",
+        "categories": ["Home Care", "Productivity", "Style"],
         "uuid": "fa7137b1-a8d5-442c-a012-356e9145668b"
       },
       {
@@ -324,7 +324,7 @@
         "color": "#05688f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Home Care,Style,Crafts",
+        "categories": ["Home Care", "Style", "Crafts"],
         "uuid": "b6dbb77f-c20e-47c0-9d10-2720bcfe3477"
       },
       {
@@ -336,7 +336,7 @@
         "color": "#253a54",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Home Care,Productivity,Wellness",
+        "categories": ["Home Care", "Productivity", "Wellness"],
         "uuid": "4d128d01-c352-4e1d-a830-b27b37891baa"
       },
       {
@@ -348,7 +348,7 @@
         "color": "#801d02",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Style,Wellness",
+        "categories": ["Style", "Wellness"],
         "uuid": "eb3c8abc-989e-44cb-a128-97dda8935f6f"
       },
       {
@@ -360,7 +360,7 @@
         "color": "#016760",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Music,Arts,Fun",
+        "categories": ["Music", "Arts", "Fun"],
         "uuid": "6bb7a8a9-2b17-4ca7-b1d7-7ead0f73708d"
       }
     ],

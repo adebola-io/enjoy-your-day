@@ -12,7 +12,7 @@
         "color": "#003f5c",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Culture",
+        "categories": ["Culture"],
         "uuid": "9bd875e4-16ac-4b5c-a944-95504f49a95b"
       },
       {
@@ -24,7 +24,7 @@
         "color": "#5c006a",
         "recommendability": 4,
         "involvement": 2,
-        "categories": "Culture,Philosophy",
+        "categories": ["Culture", "Philosophy"],
         "uuid": "3b35728e-5dd4-4f8c-a2f4-ceaf819a8c46"
       },
       {
@@ -36,7 +36,7 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Cooking,Arts",
+        "categories": ["Cooking", "Arts"],
         "uuid": "81069978-08d6-456b-991f-12d6bd5e3c7c"
       },
       {
@@ -48,7 +48,7 @@
         "color": "#a90e57",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Cooking,Culture",
+        "categories": ["Cooking", "Culture"],
         "uuid": "d5ee8b85-0b10-414d-a9c6-a0a04ab885b8"
       },
       {
@@ -60,7 +60,7 @@
         "color": "#444e86",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Cooking,Social Connection",
+        "categories": ["Cooking", "Social Connection"],
         "uuid": "66175a24-0f90-420c-ac47-a14cd8ebbcbb"
       },
       {
@@ -72,7 +72,7 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Cooking,Culture",
+        "categories": ["Cooking", "Culture"],
         "uuid": "969afac2-ebba-44c8-b47a-5b05a6b11b31"
       },
       {
@@ -84,7 +84,7 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Cooking,Arts",
+        "categories": ["Cooking", "Arts"],
         "uuid": "f45f336b-ca54-4ab4-baba-ff781a552577"
       },
       {
@@ -96,7 +96,7 @@
         "color": "#05688f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Cooking,Wellness",
+        "categories": ["Cooking", "Wellness"],
         "uuid": "38f6f9c6-6eab-4d5f-b05e-e76c37207db7"
       },
       {
@@ -108,7 +108,7 @@
         "color": "#2d0a62",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fitness,Wellness",
+        "categories": ["Fitness", "Wellness"],
         "uuid": "95575268-9754-4676-9a5a-836435cc1ec5"
       },
       {
@@ -120,7 +120,7 @@
         "color": "#05688f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Fitness,Wellness",
+        "categories": ["Fitness", "Wellness"],
         "uuid": "9a0534c0-dd7c-4463-871d-5d0375db12e8"
       },
       {
@@ -132,7 +132,7 @@
         "color": "#004d40",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Fitness,Wellness",
+        "categories": ["Fitness", "Wellness"],
         "uuid": "137e5249-db88-4f3c-af7c-01a80296459e"
       },
       {
@@ -144,7 +144,7 @@
         "color": "#5d6835",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Adventure,Fitness",
+        "categories": ["Adventure", "Fitness"],
         "uuid": "e3ef990a-5d3a-47d2-a53f-14eacc56a52d"
       },
       {
@@ -156,7 +156,7 @@
         "color": "#253a54",
         "recommendability": 4,
         "involvement": 2,
-        "categories": "Philosophy,Mental Health",
+        "categories": ["Philosophy", "Mental Health"],
         "uuid": "b3f14545-bde1-44fa-9c16-ea2fa3f1fc62"
       },
       {
@@ -168,7 +168,7 @@
         "color": "#016760",
         "recommendability": 4,
         "involvement": 2,
-        "categories": "Philosophy,Literature",
+        "categories": ["Philosophy", "Literature"],
         "uuid": "27a5c2e8-ad8a-4abe-b67c-9f43cd89bd1c"
       },
       {
@@ -180,7 +180,7 @@
         "color": "#2f2f2f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Film,Fun",
+        "categories": ["Film", "Fun"],
         "uuid": "51d6b2d3-6d7a-47ff-aeb5-0022d915f6d3"
       },
       {
@@ -192,7 +192,7 @@
         "color": "#5c006a",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Film,Fun",
+        "categories": ["Film", "Fun"],
         "uuid": "79f93c05-8ac0-46b5-b34d-dd54e91e79c3"
       },
       {
@@ -204,7 +204,7 @@
         "color": "#5c006a",
         "recommendability": 4,
         "involvement": 2,
-        "categories": "Philosophy,Culture",
+        "categories": ["Philosophy", "Culture"],
         "uuid": "e523bb06-3a03-4f30-ad7b-c3bfdb93dff1"
       },
       {
@@ -216,7 +216,7 @@
         "color": "#00600f",
         "recommendability": 4,
         "involvement": 2,
-        "categories": "Philosophy",
+        "categories": ["Philosophy"],
         "uuid": "61609e66-4183-4f13-bf0f-b8b1f6c12a29"
       },
       {
@@ -228,7 +228,7 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Technology",
+        "categories": ["Technology"],
         "uuid": "902c5164-8df3-4b35-b36a-0e1dd4ae2f4c"
       },
       {
@@ -240,7 +240,7 @@
         "color": "#05688f",
         "recommendability": 4,
         "involvement": 2,
-        "categories": "Literature,Philosophy",
+        "categories": ["Literature", "Philosophy"],
         "uuid": "59f70911-f1b4-44e1-ae0d-1b82482f443e"
       },
       {
@@ -252,7 +252,7 @@
         "color": "#b93200",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Film,Arts",
+        "categories": ["Film", "Arts"],
         "uuid": "46337e88-bc26-4864-852d-927f17f94cbd"
       },
       {
@@ -264,7 +264,7 @@
         "color": "#5c006a",
         "recommendability": 3,
         "involvement": 1,
-        "categories": "Philosophy,Mental Health",
+        "categories": ["Philosophy", "Mental Health"],
         "uuid": "b0a546d9-836f-499b-a1d7-e3ceb2873687"
       },
       {
@@ -276,7 +276,7 @@
         "color": "#53086f",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Philosophy,Literature",
+        "categories": ["Philosophy", "Literature"],
         "uuid": "14ba0317-d880-408f-9c71-81f8e738bd8a"
       },
       {
@@ -288,7 +288,7 @@
         "color": "#801d02",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Film,Literature",
+        "categories": ["Film", "Literature"],
         "uuid": "113561c3-91b4-41b6-82d2-fc3c2f48b028"
       },
       {
@@ -300,7 +300,7 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Digital Design,Film",
+        "categories": ["Digital Design", "Film"],
         "uuid": "3ebfbdaa-a521-47e5-a1ac-68c0b9b98746"
       },
       {
@@ -312,7 +312,7 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Film,Arts",
+        "categories": ["Film", "Arts"],
         "uuid": "16d5a514-1c6a-47d4-a02f-0d9e8b7861fc"
       },
       {
@@ -324,7 +324,7 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Film,Literature",
+        "categories": ["Film", "Literature"],
         "uuid": "6fb2305c-b926-4ed1-9316-356ba9765dd2"
       },
       {
@@ -336,7 +336,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Literature,Culture",
+        "categories": ["Literature", "Culture"],
         "uuid": "c24cc10c-1ceb-4a28-8d29-051e0f20f41a"
       },
       {
@@ -348,7 +348,7 @@
         "color": "#253a54",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Literature",
+        "categories": ["Literature"],
         "uuid": "28c04da4-5795-4ca0-95b2-94529cc991bc"
       },
       {
@@ -360,7 +360,7 @@
         "color": "#801d02",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Storytelling,Nature",
+        "categories": ["Storytelling", "Nature"],
         "uuid": "d4dfc3a5-b3bd-4b6a-acdc-e61731b3fbe1"
       }
     ],

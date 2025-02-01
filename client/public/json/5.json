@@ -12,7 +12,7 @@
         "color": "#5d6835",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Cooking,Arts",
+        "categories": ["Cooking", "Arts"],
         "uuid": "2910aad9-9f1c-4cef-8752-ab4db42ce208"
       },
       {
@@ -24,7 +24,7 @@
         "color": "#003f5c",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Literature,Technology",
+        "categories": ["Literature", "Technology"],
         "uuid": "def6a8a2-0d16-40e9-af31-b702430b5ba5"
       },
       {
@@ -36,7 +36,7 @@
         "color": "#05688f",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Mental Health,Digital Design",
+        "categories": ["Mental Health", "Digital Design"],
         "uuid": "064fe467-dc0b-407d-8a72-250552d710b6"
       },
       {
@@ -48,7 +48,7 @@
         "color": "#253a54",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Fun,Social Connection",
+        "categories": ["Fun", "Social Connection"],
         "uuid": "ce1e76a6-925f-43d9-81a4-a1e5d9f6a3a0"
       },
       {
@@ -60,7 +60,7 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Arts,Social Connection",
+        "categories": ["Arts", "Social Connection"],
         "uuid": "40950c6b-6cea-4d6d-9d70-ac1b6cf5a8fc"
       },
       {
@@ -72,7 +72,7 @@
         "color": "#a90e57",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Literature,Arts",
+        "categories": ["Literature", "Arts"],
         "uuid": "802f63f3-a7b4-4ec5-a81d-b9d77ea1a092"
       },
       {
@@ -84,7 +84,7 @@
         "color": "#004d40",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Productivity,Technology",
+        "categories": ["Productivity", "Technology"],
         "uuid": "ae760e6f-8697-4ac4-beed-273d815c5212"
       },
       {
@@ -96,7 +96,7 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 3,
-        "categories": "Nature,Green Living",
+        "categories": ["Nature", "Green Living"],
         "uuid": "1613f66e-0bd3-4bca-9473-49789809b24c"
       },
       {
@@ -108,7 +108,7 @@
         "color": "#801d02",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Storytelling,Arts",
+        "categories": ["Storytelling", "Arts"],
         "uuid": "76a9bf51-d2a6-4be6-b870-ac65d3e02668"
       },
       {
@@ -120,7 +120,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Urban Exploration,Culture",
+        "categories": ["Urban Exploration", "Culture"],
         "uuid": "ab2073f7-074a-41f7-8154-3d6ec191db4d"
       },
       {
@@ -132,7 +132,7 @@
         "color": "#444e86",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Music,Arts",
+        "categories": ["Music", "Arts"],
         "uuid": "e37b766b-8b00-4b8d-8c8f-8665950bca67"
       },
       {
@@ -144,7 +144,7 @@
         "color": "#5c006a",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Games,Digital Design",
+        "categories": ["Games", "Digital Design"],
         "uuid": "7b89d778-107f-49f4-9fe0-064d6c36f183"
       },
       {
@@ -156,7 +156,7 @@
         "color": "#003f5c",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Profession,Productivity",
+        "categories": ["Profession", "Productivity"],
         "uuid": "336b4708-ec47-448b-9dba-260a8a135eb6"
       },
       {
@@ -168,7 +168,7 @@
         "color": "#004d40",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Home Care,Arts",
+        "categories": ["Home Care", "Arts"],
         "uuid": "d38d4aca-2f58-4f80-be36-d651308a7b79"
       },
       {
@@ -180,7 +180,7 @@
         "color": "#016760",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Crafts,Arts",
+        "categories": ["Crafts", "Arts"],
         "uuid": "185c5d45-9f07-4008-82fe-3a9815ef8fd9"
       },
       {
@@ -192,7 +192,7 @@
         "color": "#53086f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Social Connection,Literature",
+        "categories": ["Social Connection", "Literature"],
         "uuid": "34e76751-cf61-401c-84e5-0a4ac2b2c4cb"
       },
       {
@@ -204,7 +204,7 @@
         "color": "#801d02",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Film,Arts",
+        "categories": ["Film", "Arts"],
         "uuid": "eb2a638b-68c7-45c8-a42d-4905f6e7d8fa"
       },
       {
@@ -216,7 +216,7 @@
         "color": "#444e86",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Cooking,Fun",
+        "categories": ["Cooking", "Fun"],
         "uuid": "6c392b17-0c19-407e-a86a-4d95cb366dae"
       },
       {
@@ -228,7 +228,7 @@
         "color": "#2d0a62",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Nature,Literature",
+        "categories": ["Nature", "Literature"],
         "uuid": "a7cf1a52-4b39-4988-a4f3-27c4001bde4f"
       },
       {
@@ -240,7 +240,7 @@
         "color": "#05688f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Social Connection,Culture",
+        "categories": ["Social Connection", "Culture"],
         "uuid": "faa147a6-234a-43da-aff2-ebbcc2f3344b"
       },
       {
@@ -252,7 +252,7 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Photography,Arts",
+        "categories": ["Photography", "Arts"],
         "uuid": "8130aead-52be-40db-9e93-ff99f09cb466"
       },
       {
@@ -264,7 +264,7 @@
         "color": "#5d6835",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Mental Health,Mindfulness",
+        "categories": ["Mental Health", "Mindfulness"],
         "uuid": "ee325e46-6b6a-47f3-bce4-5cf9fdc80e5f"
       },
       {
@@ -276,7 +276,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Fitness",
+        "categories": ["Fitness"],
         "uuid": "3c3962ce-f54f-4203-a5ef-5ce7008083c4"
       },
       {
@@ -288,7 +288,7 @@
         "color": "#5c006a",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Arts,Social Connection",
+        "categories": ["Arts", "Social Connection"],
         "uuid": "0fc3bb9a-49a0-4546-a5d0-2cbf69ed66bc"
       },
       {
@@ -300,7 +300,7 @@
         "color": "#013c3b",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Fun",
+        "categories": ["Fun"],
         "uuid": "f421ec58-4d44-450a-bc46-9c17613f2276"
       },
       {
@@ -312,7 +312,7 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Literature,Storytelling",
+        "categories": ["Literature", "Storytelling"],
         "uuid": "df91b28f-97b5-4ac2-8d60-dae15a59384e"
       },
       {
@@ -324,7 +324,7 @@
         "color": "#00600f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Cooking,Green Living",
+        "categories": ["Cooking", "Green Living"],
         "uuid": "df18da02-dc1a-466c-88a0-1cd9896e9056"
       },
       {
@@ -336,7 +336,7 @@
         "color": "#016760",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Adventure,Travel",
+        "categories": ["Adventure", "Travel"],
         "uuid": "451dfde3-9af7-481b-b072-c4ebe4290493"
       },
       {
@@ -348,7 +348,7 @@
         "color": "#53086f",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Fun,Arts",
+        "categories": ["Fun", "Arts"],
         "uuid": "190b13ed-de42-460f-bf93-c436170b8781"
       },
       {
@@ -360,7 +360,7 @@
         "color": "#3e2723",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Volunteering,Social Connection",
+        "categories": ["Volunteering", "Social Connection"],
         "uuid": "e7949a13-d35a-4a3d-ab7e-d81e486f0498"
       }
     ],

@@ -297,7 +297,46 @@
                 "maximum": 5
               },
               "categories": {
-                "type": "string"
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Wellness",
+                    "Arts",
+                    "Mental Health",
+                    "Productivity",
+                    "Cooking",
+                    "Music",
+                    "Literature",
+                    "Digital Design",
+                    "Nature",
+                    "Culture",
+                    "Profession",
+                    "Home Care",
+                    "Style",
+                    "Finance",
+                    "Fun",
+                    "Games",
+                    "Social Connection",
+                    "Photography",
+                    "Sports",
+                    "Volunteering",
+                    "Science",
+                    "Technology",
+                    "Crafts",
+                    "Mindfulness",
+                    "Adventure",
+                    "Pets",
+                    "Green Living",
+                    "Philosophy",
+                    "Film",
+                    "Urban Exploration",
+                    "Storytelling",
+                    "Fitness",
+                    "Romance",
+                    "Travel"
+                  ]
+                }
               }
             },
             "required": [

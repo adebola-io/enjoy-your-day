@@ -12,7 +12,7 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Nature,Crafts",
+        "categories": ["Nature", "Crafts"],
         "uuid": "0dd11c20-e37f-4a91-992b-1bf775066546"
       },
       {
@@ -24,7 +24,7 @@
         "color": "#444e86",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Science",
+        "categories": ["Science"],
         "uuid": "746f8aba-01a2-453f-913a-fc315257a950"
       },
       {
@@ -36,7 +36,7 @@
         "color": "#801d02",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Music,Arts",
+        "categories": ["Music", "Arts"],
         "uuid": "7b4618b6-98c1-4d6f-9aeb-0591207c47e7"
       },
       {
@@ -48,7 +48,7 @@
         "color": "#004d40",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Cooking,Wellness",
+        "categories": ["Cooking", "Wellness"],
         "uuid": "21a8a23d-0cbe-4622-8028-f6b4d166664d"
       },
       {
@@ -60,7 +60,7 @@
         "color": "#253a54",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Digital Design,Arts",
+        "categories": ["Digital Design", "Arts"],
         "uuid": "57a1a5ae-5211-463b-8789-40c74b7ab08d"
       },
       {
@@ -72,7 +72,7 @@
         "color": "#5c006a",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Games,Social Connection",
+        "categories": ["Games", "Social Connection"],
         "uuid": "cf449df9-eb03-4cb8-b3f8-f9774696f9bd"
       },
       {
@@ -84,7 +84,7 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Social Connection,Literature",
+        "categories": ["Social Connection", "Literature"],
         "uuid": "af10643a-7a82-4ba4-86af-22b22153b3da"
       },
       {
@@ -96,7 +96,7 @@
         "color": "#444e86",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Film,Fun",
+        "categories": ["Film", "Fun"],
         "uuid": "6b295f90-2884-484f-9d8c-2d3ec8fa00fe"
       },
       {
@@ -108,7 +108,7 @@
         "color": "#003f5c",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Mental Health,Productivity",
+        "categories": ["Mental Health", "Productivity"],
         "uuid": "8a462d68-d791-4952-b50d-ae6665091a1c"
       },
       {
@@ -120,7 +120,7 @@
         "color": "#444e86",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Culture",
+        "categories": ["Culture"],
         "uuid": "6e803ce5-31ff-4b6a-8e42-7ac7e92d3ca5"
       },
       {
@@ -132,7 +132,7 @@
         "color": "#05688f",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Film,Mental Health",
+        "categories": ["Film", "Mental Health"],
         "uuid": "e0466282-fc4b-4cb4-8d09-c9114aea6325"
       },
       {
@@ -144,7 +144,7 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Profession,Productivity",
+        "categories": ["Profession", "Productivity"],
         "uuid": "5ee7e1cb-031f-47d7-92ae-fc704f37ed5f"
       },
       {
@@ -156,7 +156,7 @@
         "color": "#801d02",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Profession,Social Connection",
+        "categories": ["Profession", "Social Connection"],
         "uuid": "9c139229-cc16-46fe-93a9-329ba74a4984"
       },
       {
@@ -168,7 +168,7 @@
         "color": "#a90e57",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Profession,Finance",
+        "categories": ["Profession", "Finance"],
         "uuid": "03a600a6-e32e-4b77-bde1-86038bd0ee3d"
       },
       {
@@ -180,7 +180,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Profession",
+        "categories": ["Profession"],
         "uuid": "a16a084a-317f-4396-be22-b9e3d94fb26b"
       },
       {
@@ -192,7 +192,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Profession,Technology",
+        "categories": ["Profession", "Technology"],
         "uuid": "0aefe922-8309-49ed-9977-4e1850eb1353"
       },
       {
@@ -204,7 +204,7 @@
         "color": "#5d6835",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Profession,Literature",
+        "categories": ["Profession", "Literature"],
         "uuid": "6440a49c-80df-4a36-8557-70a690ed9cf5"
       },
       {
@@ -216,7 +216,7 @@
         "color": "#003f5c",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Profession,Social Connection",
+        "categories": ["Profession", "Social Connection"],
         "uuid": "74218b1c-c30c-41a1-b267-26e697468868"
       },
       {
@@ -228,7 +228,7 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Profession,Technology",
+        "categories": ["Profession", "Technology"],
         "uuid": "34bb2ad7-26b9-4c0b-8a7f-96838a81f287"
       },
       {
@@ -240,7 +240,7 @@
         "color": "#5c006a",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Profession,Productivity",
+        "categories": ["Profession", "Productivity"],
         "uuid": "c8756236-08fd-4510-bab3-d916ac905b17"
       },
       {
@@ -252,7 +252,7 @@
         "color": "#9a0007",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Profession,Social Connection",
+        "categories": ["Profession", "Social Connection"],
         "uuid": "39abcf22-0edc-4783-83c7-ff7c38b90999"
       },
       {
@@ -264,7 +264,7 @@
         "color": "#53086f",
         "recommendability": 3,
         "involvement": 3,
-        "categories": "Profession,Productivity",
+        "categories": ["Profession", "Productivity"],
         "uuid": "dcf542c1-db3a-4dbd-b38d-4565883fa4fd"
       },
       {
@@ -276,7 +276,7 @@
         "color": "#801d02",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Profession,Technology",
+        "categories": ["Profession", "Technology"],
         "uuid": "47a24b25-5df6-4f5d-a9cd-2601ae9bed0c"
       },
       {
@@ -288,7 +288,7 @@
         "color": "#003f5c",
         "recommendability": 1,
         "involvement": 1,
-        "categories": "Profession,Social Connection",
+        "categories": ["Profession", "Social Connection"],
         "uuid": "ffbb3b6b-bca6-4c70-8e7d-e706dcb4eea1"
       },
       {
@@ -300,7 +300,7 @@
         "color": "#2d0a62",
         "recommendability": 2,
         "involvement": 2,
-        "categories": "Profession",
+        "categories": ["Profession"],
         "uuid": "7927ccbd-c612-41a6-9b62-05aec120296d"
       },
       {
@@ -312,7 +312,7 @@
         "color": "#b93200",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Profession,Productivity",
+        "categories": ["Profession", "Productivity"],
         "uuid": "f55b1d49-b3ec-4494-bbb9-821af197d36f"
       },
       {
@@ -324,7 +324,7 @@
         "color": "#5d6835",
         "recommendability": 3,
         "involvement": 1,
-        "categories": "Profession",
+        "categories": ["Profession"],
         "uuid": "e00c6b53-13e9-480c-b322-966aad5e9e37"
       },
       {
@@ -336,7 +336,7 @@
         "color": "#016760",
         "recommendability": 2,
         "involvement": 1,
-        "categories": "Profession,Social Connection",
+        "categories": ["Profession", "Social Connection"],
         "uuid": "a98c8ee0-3167-4955-8dd4-8637623e474a"
       },
       {
@@ -348,7 +348,7 @@
         "color": "#004d40",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Profession,Productivity",
+        "categories": ["Profession", "Productivity"],
         "uuid": "ec3f3596-21a3-42af-a342-866b83d2d720"
       },
       {
@@ -360,7 +360,7 @@
         "color": "#b93200",
         "recommendability": 3,
         "involvement": 2,
-        "categories": "Profession",
+        "categories": ["Profession"],
         "uuid": "9ca3391a-994c-4d04-8bc9-1e2099bad140"
       }
     ],

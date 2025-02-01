@@ -13,13 +13,18 @@ import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { Loader } from '#/components/loader';
 import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
-import { involvementLevel, selectedCategories } from '#/data/state';
+import { dailyGoals, involvementLevel, selectedCategories } from '#/data/state';
 import AutoSelectEditLayer from './auto-select-edit-layer';
 import { BackButton } from '#/components/back-button';
 import { ConfirmDrawer } from './confirm-drawer';
 import classes from './auto-select.module.css';
 
-export default function AutoSelectLayer() {
+export default async function AutoSelectLayer() {
+  const router = useRouter();
+  if (dailyGoals.value.length > 0) {
+    await router.replace('/home');
+    return;
+  }
   return (
     <ViewLayer
       class={classes.slide}

@@ -6,6 +6,7 @@ type UpdateUsernameHandler = Db.Handler<Db.Requests.UpdateUsername>;
 type GetUserUuidHandler = Db.Handler<Db.Requests.GetUserUuid>;
 type StoreDeviceTokenHandler = Db.Handler<Db.Requests.StoreDeviceToken>;
 type GetDeviceTokenHandler = Db.Handler<Db.Requests.GetDeviceToken>;
+type ResetDataHandler = Db.Handler<Db.Requests.ResetAllData>;
 
 export const storeDeviceToken: StoreDeviceTokenHandler = async (data) => {
   const metadata = await dexie.userMetadata.toArray();
@@ -39,4 +40,11 @@ export const getUserUuid: GetUserUuidHandler = async () => {
   const metadata = await dexie.userMetadata.toArray();
   if (metadata.length === 0) return '';
   return metadata[0].uuid;
+};
+
+export const resetAllData: ResetDataHandler = async () => {
+  await dexie.goals.clear();
+  await dexie.userMetadata.clear();
+  await dexie.history.clear();
+  return true;
 };

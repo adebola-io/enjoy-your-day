@@ -65,6 +65,9 @@ export namespace Db {
     export type GetDeviceToken = {
       type: 'metadata.get.deviceToken';
     };
+    export type ResetAllData = {
+      type: 'metadata.reset';
+    };
     export type Request =
       | Echo<unknown>
       | GetRecommendedGoals
@@ -79,7 +82,8 @@ export namespace Db {
       | UpdateUsername
       | GetUserUuid
       | StoreDeviceToken
-      | GetDeviceToken;
+      | GetDeviceToken
+      | ResetAllData;
   }
 
   export type Response<T extends Requests.Request> = T extends Requests.Ping
@@ -110,6 +114,8 @@ export namespace Db {
     ? boolean | null
     : T extends Requests.GetDeviceToken
     ? string | null
+    : T extends Requests.ResetAllData
+    ? boolean
     : unknown;
 
   export interface Message<T extends Requests.Request | unknown = unknown> {

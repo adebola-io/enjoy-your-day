@@ -113,6 +113,10 @@ export async function getInsightsOverview(todaysData: GoalState[]) {
   return toDbWorker({ type: 'insights.overview', todaysData });
 }
 
+export async function resetDbData() {
+  return toDbWorker({ type: 'metadata.reset' });
+}
+
 type InsightHistoryRequest = { start: string; end: string };
 export async function getInsightsHistory(details: InsightHistoryRequest) {
   const response = await toDbWorker({

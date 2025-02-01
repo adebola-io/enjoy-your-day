@@ -10,6 +10,7 @@ import {
   getDeviceToken,
   getUserUuid,
   recordUserMetadata,
+  resetAllData,
   storeDeviceToken,
   updateUsername,
 } from './settings';
@@ -32,6 +33,7 @@ Bridge.receiver('db', {
 
   'metadata.record': recordUserMetadata,
   'metadata.update.username': updateUsername,
+  'metadata.reset': resetAllData,
   'metadata.uuid': getUserUuid,
   'metadata.store.deviceToken': storeDeviceToken,
   'metadata.get.deviceToken': getDeviceToken,

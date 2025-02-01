@@ -55,13 +55,11 @@ function setDates(goals: Array<GoalProps>) {
 }
 
 function getCategoryIdentifiers(
-  goals: Array<GoalProps & { categories: string | Set<string> }>,
+  goals: Array<GoalProps>,
   categories: LookupMap<'name', SendableCategory>
 ) {
   for (const goal of goals) {
-    const categoryNames = (goal.categories as string)
-      .split(',')
-      .filter(Boolean);
+    const categoryNames = goal.categories;
     goal.categories = new Set(categoryNames);
     for (const categoryName of categoryNames) {
       const categoryObj = categories.get(categoryName);

@@ -45,7 +45,7 @@ export async function resumeApp() {
   // sometimes waits too long and bleeds into the start of the
   // waiting screen animation. The delay is meant to prevent the
   // app from loading until the splash screen is gone.
-  await new Promise((resolve) => setTimeout(resolve, 200));
+  await new Promise((resolve) => setTimeout(resolve, 400));
 
   const waitingScreen = document.querySelector('#waiting-screen');
   waitingScreen?.classList.add('loading');
@@ -62,7 +62,7 @@ export async function resumeApp() {
     circle.addEventListener('animationend', (event) => {
       if (event.animationName !== 'expand-forever') return;
       appIsReadyResolver?.();
-      setMetaTheme(isDark.value ? '#000000' : '#ffffff');
+      setMetaTheme(isDark.value ? '#111111' : '#ffffff');
       waitingScreen?.remove();
       document.querySelector('#start-screen')?.remove();
     });

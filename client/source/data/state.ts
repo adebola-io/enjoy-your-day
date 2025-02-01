@@ -3,7 +3,11 @@ import { useLiveDate } from '@adbl/dom-cells/useDate';
 import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 import type { GoalState } from '#/data/entities';
 import { Temporal } from 'temporal-polyfill';
-import { saveGoalState, updateUsername } from '../services/database';
+import {
+  resetDbData,
+  saveGoalState,
+  updateUsername,
+} from '../services/database';
 import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
@@ -101,12 +105,14 @@ export const isDark = Cell.derived(() => {
 query.addEventListener('change', () => isDark.update());
 
 isDark.runAndListen((isDark) => {
-  const root = document.documentElement;
-  root.toggleAttribute('data-is-dark', isDark);
+  document.documentElement.toggleAttribute('data-is-dark', isDark);
 });
 
+const keyframes = [{ scale: 1 }, { scale: 0.97 }, { scale: 1 }];
 isDark.listen((isDark) => {
-  setMetaTheme(isDark ? '#000000' : '#ffffff');
+  setMetaTheme(isDark ? '#111111' : '#ffffff');
+  // todo: skip on reduced motion.
+  document.body.animate(keyframes, { duration: 250 });
 });
 
 export type FontFamily = 'System' | 'Inter' | 'Cursive' | 'SchibstedGrotesk';
@@ -164,3 +170,12 @@ async function trackDateChange() {
 }
 
 liveDate.runAndListen(trackDateChange);
+
+export async function resetAllData() {
+  for (const key of Object.keys(LOCALSTORAGE_KEYS)) {
+    console.log('removing', key);
+    localStorage.removeItem(key);
+  }
+  await resetDbData();
+  // window.location.reload();
+}

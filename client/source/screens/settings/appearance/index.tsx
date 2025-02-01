@@ -1,5 +1,6 @@
 import DigitalDesignIcon from '#/components/icons/digital-design';
 import MoonAndStarsIcon from '#/components/icons/moon-and-starts';
+import FontIcon from '#/components/icons/font';
 import PaletteIcon from '#/components/icons/palette';
 import { IconProps } from '#/components/icons/props';
 import SunIcon from '#/components/icons/sun';
@@ -7,15 +8,14 @@ import { PillRadioList } from '#/components/pill-radio-list';
 import { SettingsItemList } from '#/components/settings-item';
 import { ViewLayer } from '#/components/view-layer';
 import {
-  FontFamily,
+  type FontFamily,
   selectedFont,
   themeColor,
   type ThemeColor,
 } from '#/data/state';
 import { useRouteQuery } from '#/library/utils';
-import { JSX } from '@adbl/unfinished/jsx-runtime';
+import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './appearance.module.css';
-import FontIcon from '#/components/icons/font';
 
 const themeIcons: Record<ThemeColor, (props: IconProps) => JSX.Template> = {
   System: DigitalDesignIcon,

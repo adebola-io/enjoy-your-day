@@ -11,10 +11,10 @@ const OLDEST_UNASSIGNED_CHUNK = 16;
  * @param goals - An array of GoalProps objects to assign UUIDs to.
  * @returns The input goals array with UUIDs assigned to each goal.
  */
-function assignGoalUuids(goals: GoalProps[]) {
+function assignGoalUuids(goals: GoalProps[], meta: string) {
   assert(
     goals.length === 30,
-    'There must be 30 goals per chunk. Found: ' + goals.length
+    'There must be 30 goals per chunk. Found: ' + goals.length + ' in ' + meta
   );
   for (const goal of goals) {
     goal.uuid = crypto.randomUUID();
@@ -34,7 +34,7 @@ for (const file of jsonFiles) {
     fs.readFileSync(path.join('./public/json', file), 'utf-8')
   );
   console.log(`Processing ${file}`);
-  data.goals.added = assignGoalUuids(data.goals.added);
+  data.goals.added = assignGoalUuids(data.goals.added, file);
   fs.writeFileSync(
     path.join('./public/json', file),
     JSON.stringify(data, null, 2)

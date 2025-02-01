@@ -350,6 +350,18 @@
         "involvement": 2,
         "categories": ["Finance", "Productivity"],
         "uuid": "15615c8d-eeae-4c41-a89f-2dac0cb52070"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "From and To",
+        "instruction": "Create a CSS-only animation.",
+        "info": "Enhance your web design skills by crafting a CSS-only animation. This task allows you to experiment with visual effects and improve your knowledge of CSS, a key skill for front end developers. Express yourself creatively using code.",
+        "icon": "digital-design",
+        "color": "#2d0a62",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": ["Technology", "Digital Design", "Arts"],
+        "uuid": "533162cb-ffee-4b11-99c4-2eae6ace5d4e"
       }
     ],
     "removed": [],

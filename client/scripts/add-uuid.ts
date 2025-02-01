@@ -4,7 +4,7 @@ import type { GoalProps } from '../source/data/entities';
 import fs from 'node:fs';
 import { assert } from 'node:console';
 
-const OLDEST_UNASSIGNED_CHUNK = 16;
+const OLDEST_UNASSIGNED_CHUNK = 22;
 
 /**
  * Assigns a unique UUID to each goal in the provided array.

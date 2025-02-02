@@ -248,14 +248,26 @@ export const insightsHistory: InsightsHistoryHandler = async (data) => {
     const unfinished: GoalState[] = [];
     const total = goalStates.length;
     maxChartValue = Math.max(maxChartValue, goalStates.length);
-    const categories = ['Arts'];
+    const categories = new Set<string>();
+
+    for (const goalState of goalStates) {
+      for (const category of goalState.goal.categories) {
+        categories.add(category);
+      }
+    }
 
     for (const goalState of goalStates) {
       if (goalState.state === 'completed') completed.push(goalState);
       else unfinished.push(goalState);
     }
 
-    chartData.push({ date, total, categories, completed, unfinished });
+    chartData.push({
+      date,
+      total,
+      categories: Array.from(categories),
+      completed,
+      unfinished,
+    });
     nextDate = nextDate.subtract({ days: 1 });
   }
   return { maxChartValue, chartData };

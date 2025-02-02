@@ -1,6 +1,5 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
 import { Button } from '#/components/button';
-import { EmptyIcon } from '#/components/icons/empty';
 import { resetAllData } from '#/data/state';
 import { removeRouteQuery, useRouteQuery } from '#/library/utils';
 import classes from './reset.module.css';
@@ -13,7 +12,6 @@ export default function ResetDataDrawer() {
       onClose={() => removeRouteQuery('level-one')}
       shrinkTarget="#settingsView"
     >
-      <EmptyIcon />
       <h2>Delete all data?</h2>
       <Button rounded vibrate onClick={resetAllData}>
         Delete

@@ -1,6 +1,9 @@
 import NotificationIcon from '#/components/icons/notification';
 import UserIcon from '#/components/icons/user';
 import ArtsIcon from '#/components/icons/arts';
+import BinIcon from '#/components/icons/bin';
+import AboutLayer from './about';
+import ResetDataDrawer from './reset-drawer';
 import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
 import InfoIcon from '#/components/icons/info';
 import { SettingsItem, SettingsItemList } from '#/components/settings-item';
@@ -8,9 +11,6 @@ import ProfileDrawer from './profile-drawer';
 import NotificationsLayer from './notifications';
 import AppearanceLayer from './appearance';
 import classes from './settings.module.css';
-import AboutLayer from './about';
-import ResetDataDrawer from './reset';
-import BinIcon from '#/components/icons/bin';
 
 export default function Settings() {
   return (

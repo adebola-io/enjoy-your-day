@@ -49,14 +49,18 @@ export async function updateUsername(username: string) {
 }
 
 export async function initializeDatabase() {
-  const testData = await toDbWorker({
+  const testDataUpdated = await toDbWorker({
     type: 'goals.update',
     categoryList: categories.map((c) => ({ ...c, icon: undefined })),
     lastLoadedChunk: lastLoadedChunk.value,
     latestChunk: LATEST_DATA_CHUNK,
   });
-  lastLoadedChunk.value = LATEST_DATA_CHUNK;
-  return testData;
+  if (testDataUpdated === true) lastLoadedChunk.value = LATEST_DATA_CHUNK;
+  else {
+    lastLoadedChunk.value = testDataUpdated.updateFailedAtChunk - 1;
+    throw new Error(testDataUpdated.error);
+  }
+  return testDataUpdated;
 }
 
 type AutoRecommendationRequest = {
@@ -111,6 +115,10 @@ export async function saveGoalState(goalStates: GoalState[], date: string) {
 
 export async function getInsightsOverview(todaysData: GoalState[]) {
   return toDbWorker({ type: 'insights.overview', todaysData });
+}
+
+export async function resetDbData() {
+  return toDbWorker({ type: 'metadata.reset' });
 }
 
 type InsightHistoryRequest = { start: string; end: string };

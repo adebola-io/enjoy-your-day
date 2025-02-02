@@ -24,11 +24,11 @@ export function BottomDrawer(props: BottomDrawerProps) {
     onClose,
     onClosePrevented,
     onBeforeClose,
+    class: className,
+    children,
+    shrinkTarget = 'body',
     closable = Cell.source(true),
     ref = Cell.source<HTMLDialogElement | null>(null),
-    shrinkTarget = 'body',
-    children,
-    class: className,
     ...rest
   } = props;
   const observer = useObserver();

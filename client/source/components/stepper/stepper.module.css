@@ -39,7 +39,7 @@
     height: 40%;
     border-radius: 50%;
     opacity: 0;
-    background-color: var(--space-cadet-500);
+    background-color: var(--touch-highlight-color);
     content: '';
     transition-duration: calc(var(--default-duration) * 1.25);
     transition-property: opacity, scale;

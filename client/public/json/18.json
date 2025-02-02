@@ -1,0 +1,470 @@
+{
+  "$schema": "./schema.json",
+  "chunk": 18,
+  "goals": {
+    "added": [
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Lexiconundrum",
+        "instruction": "Make up a new word and define it.",
+        "info": "Challenge your linguistic creativity by inventing a new word. Provide a definition to help others understand its meaning, fostering imagination and a unique style of expression.",
+        "icon": "quill",
+        "color": "#05688f",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": [
+          "Arts",
+          "Culture"
+        ],
+        "uuid": "cbfdc3dc-3ac5-49a8-8db8-5f1af346593f"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Pocket Universe",
+        "instruction": "Make an app.",
+        "info": "Dive into the world of app development by creating a simple application. This project challenges your coding skills and allows for practical, creative problem-solving in digital design.",
+        "icon": "apps",
+        "color": "#253a54",
+        "recommendability": 4,
+        "involvement": 2,
+        "categories": [
+          "Digital Design",
+          "Technology",
+          "Productivity"
+        ],
+        "uuid": "c2f449cc-8f81-4a95-962d-b628a84173d0"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Something Borrowed",
+        "instruction": "Buy a wedding veil.",
+        "info": "Experience a unique piece of attire by purchasing a wedding veil. This unusual shopping task can bring a touch of fantasy to your day and be a catalyst for reflection.",
+        "icon": "tiara",
+        "color": "#a90e57",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": [
+          "Style",
+          "Fun"
+        ],
+        "uuid": "a0c7c0e5-0609-4dee-9ed6-99c6927a8148"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Charcoal",
+        "instruction": "Paint your nails black.",
+        "info": "Express your style by painting your nails black. This simple task is a way to add a touch of boldness and personality to your everyday look with this color choice.",
+        "icon": "palette",
+        "color": "#2f2f2f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Style",
+          "Arts",
+          "Wellness"
+        ],
+        "uuid": "1c6b6de8-0709-47b5-9713-cd23bb24156d"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Four-tunate",
+        "instruction": "Find 4 coins in your house.",
+        "info": "Embark on a miniature treasure hunt by searching for four coins in your home. This simple act adds a playful search to your day, making you more observant of your surroundings.",
+        "icon": "dollar",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": [
+          "Fun",
+          "Home Care"
+        ],
+        "uuid": "2510bfde-38b6-4e1c-8453-d9ec9b1b29ab"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Odd Ends",
+        "instruction": "Buy something unusual from a store.",
+        "info": "Explore the quirky side of shopping by buying something unusual from a store. This activity adds a touch of unexpectedness to your day and can lead to unique discoveries.",
+        "icon": "cart",
+        "color": "#444e86",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": [
+          "Fun",
+          "Adventure"
+        ],
+        "uuid": "f347b91f-5469-4b54-9a50-92ea79a22bb9"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Limited Time Only",
+        "instruction": "Create a 30-second ad.",
+        "info": "Challenge your creative storytelling abilities by crafting a short advertisement. This project is a fun way to practice clear, concise, engaging and persuasive communication.",
+        "icon": "film-roll",
+        "color": "#9a0007",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": [
+          "Arts",
+          "Digital Design"
+        ],
+        "uuid": "5d81264a-adac-428f-91af-a1ac9f318431"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Jackpot!",
+        "instruction": "Enter the lottery and tell everyone you won.",
+        "info": "Add a touch of playful humor to your day by entering a lottery and then jokingly announcing your victory. It's a harmless way to bring joy and amusement to your interactions.",
+        "icon": "confetti",
+        "color": "#004d40",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": [
+          "Fun",
+          "Social Connection"
+        ],
+        "uuid": "1b92e6d8-e7e1-4e8a-9b0d-ef8d3726ad22"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Grasshopper",
+        "instruction": "Walk on your hands for 10 seconds.",
+        "info": "Challenge your physical capabilities by attempting a short walk on your hands. This fun activity improves your upper body strength and coordination while also promoting physical playfulness.",
+        "icon": "exercising",
+        "color": "#3e2723",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": [
+          "Fitness",
+          "Fun"
+        ],
+        "uuid": "7fdd8df6-4e47-45f1-b8aa-9b830bb82a09"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "On The Air",
+        "instruction": "Turn on a random radio station.",
+        "info": "Introduce an element of chance to your auditory world by tuning into a random radio station. It could be a portal to new music, or interesting discussions.",
+        "icon": "microphone",
+        "color": "#00600f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Music",
+          "Fun"
+        ],
+        "uuid": "16f1a66c-b772-46b2-9a34-875deb11931c"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Standing Room",
+        "instruction": "Count every chair in your house.",
+        "info": "Take a closer look at your home by counting all the chairs you own. This simple task can make you more aware of your environment and the details of your living space.",
+        "icon": "couch",
+        "color": "#53086f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Home Care",
+          "Productivity"
+        ],
+        "uuid": "9da49231-f332-4084-bfc5-773c4a1e5c88"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Whirlwind",
+        "instruction": "Spin in a chair for a minute.",
+        "info": "Enjoy a brief moment of playful dizziness by spinning in a chair. This can bring a bit of child-like fun and a lighthearted break from your everyday activities.",
+        "icon": "dancing",
+        "color": "#05688f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Fun",
+          "Wellness"
+        ],
+        "uuid": "824bbd8e-5cc1-45af-b613-f28b895524ff"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Last Man Standing",
+        "instruction": "Play musical chairs.",
+        "info": "Engage in a classic party game by playing musical chairs with others. This fun and competitive activity is a great way to socialize and enjoy some lighthearted competition.",
+        "icon": "games",
+        "color": "#253a54",
+        "recommendability": 1,
+        "involvement": 2,
+        "categories": [
+          "Fun",
+          "Social Connection"
+        ],
+        "uuid": "0c78ec2f-95e3-4d3c-8515-84773015807f"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Humpty",
+        "instruction": "Peel a boiled egg.",
+        "info": "Experience the satisfaction of completing a simple task by peeling a boiled egg. This mindful activity provides a moment of focus and a healthy snack.",
+        "icon": "egg",
+        "color": "#801d02",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Cooking",
+          "Productivity"
+        ],
+        "uuid": "966564a8-363a-42fb-ba6d-eef7022c16f5"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Stained Glass",
+        "instruction": "Go to church.",
+        "info": "Visit a church, whether for spiritual reflection or architectural appreciation. It allows you to experience a place of serenity and potentially appreciate art or cultural heritage.",
+        "icon": "church",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": [
+          "Culture",
+          "Mindfulness"
+        ],
+        "uuid": "98a5e9c1-e600-4b56-af94-c5bbea1b68aa"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Up Down Up",
+        "instruction": "Brush your teeth.",
+        "info": "Maintain oral hygiene by brushing your teeth. It's a simple yet essential part of your daily routine that contributes to your health and well-being.",
+        "icon": "toothbrush",
+        "color": "#a90e57",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Wellness",
+          "Home Care"
+        ],
+        "uuid": "ef2c79aa-add9-4475-8156-eebae8516cda"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "To Me, From Me",
+        "instruction": "Make a small gift for yourself.",
+        "info": "Show self-care and appreciation by making a small gift for yourself. This allows you to tap into your creativity while also creating a small token that brings you joy.",
+        "icon": "heart",
+        "color": "#2f2f2f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Wellness",
+          "Arts",
+          "Wellness"
+        ],
+        "uuid": "69409141-a55e-433d-aa25-d982f7fe4a7a"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Better Late",
+        "instruction": "Finish a pending work task.",
+        "info": "Reduce stress by completing a pending work task. This provides a sense of accomplishment and reduces your workload, promoting a feeling of control.",
+        "icon": "briefcase",
+        "color": "#2f384f",
+        "recommendability": 1,
+        "involvement": 2,
+        "categories": [
+          "Profession",
+          "Productivity"
+        ],
+        "uuid": "792e9ac6-fe59-4b2d-a804-b18599f3ff61"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Eventually",
+        "instruction": "Run an errand you postponed.",
+        "info": "Take care of a postponed task by running a long-overdue errand. This helps free up mental space, reduces procrastination, and contributes to daily productivity.",
+        "icon": "car",
+        "color": "#2d0a62",
+        "recommendability": 1,
+        "involvement": 2,
+        "categories": [
+          "Productivity",
+          "Home Care"
+        ],
+        "uuid": "44b05176-2216-4a48-bd30-f06663b85873"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Day One",
+        "instruction": "Try a new workout routine.",
+        "info": "Boost your physical fitness by starting a new workout routine. This is a commitment to health and wellness, helping you reach your fitness goals.",
+        "icon": "fitness",
+        "color": "#b93200",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": [
+          "Wellness",
+          "Fitness"
+        ],
+        "uuid": "0dcfc717-4b3f-4e7c-b093-0b32e34c0f44"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Finders Keepers",
+        "instruction": "Try geocaching in your area.",
+        "info": "Embark on an outdoor adventure by trying geocaching in your area. This fun activity combines exploration and technology, leading you to discover hidden treasures in your surroundings.",
+        "icon": "compass",
+        "color": "#013c3b",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": [
+          "Adventure",
+          "Fun",
+          "Nature"
+        ],
+        "uuid": "2a9b1147-d7ec-498d-83a4-1e1b6b199b2e"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Meanwhile",
+        "instruction": "Watch a live stream.",
+        "info": "Engage with the world in real-time by watching a live stream. This allows you to experience events as they unfold, stay up-to-date, and possibly interact with others in a shared viewing experience.",
+        "icon": "mobile-device",
+        "color": "#5c006a",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Technology",
+          "Fun"
+        ],
+        "uuid": "488215b5-63e4-4d1c-b1c2-7f8795c751ac"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Next Up",
+        "instruction": "Attend an open mic night.",
+        "info": "Support local artists or even showcase your talents by attending an open mic night. This activity can be a fun way to connect with your community and appreciate live performances.",
+        "icon": "microphone",
+        "color": "#5d6835",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": [
+          "Culture",
+          "Music",
+          "Social Connection"
+        ],
+        "uuid": "e053bd78-4521-4bfb-a1be-e07e63e6e6e3"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "And Thou Shalt",
+        "instruction": "Learn the 10 commandments.",
+        "info": "Deepen your understanding of a central piece of religious tradition by learning the 10 commandments. This task provides a unique perspective on moral and ethical values.",
+        "icon": "bible",
+        "color": "#05688f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": [
+          "Culture",
+          "Philosophy",
+          "Mindfulness"
+        ],
+        "uuid": "3a3e0b02-22dc-4dab-ab15-feaeb0c8fe4e"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Due East",
+        "instruction": "Perform Salah.",
+        "info": "Participate in a daily act of worship by performing Salah, a practice that combines prayer and physical action. This activity can provide spiritual fulfillment, focus and discipline.",
+        "icon": "kabba",
+        "color": "#253a54",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": [
+          "Culture",
+          "Mindfulness",
+          "Wellness"
+        ],
+        "uuid": "420ee2be-e8f7-4842-855c-dcb5075459aa"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Hallowed Be",
+        "instruction": "Attend a Catholic mass.",
+        "info": "Engage in religious tradition by attending a Catholic mass. This provides a moment for spiritual reflection and connection with a community of faith.",
+        "icon": "church",
+        "color": "#801d02",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": [
+          "Culture",
+          "Mindfulness"
+        ],
+        "uuid": "840104ac-df5a-40be-861d-d8e3aa0bd67d"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Into The Woods",
+        "instruction": "Try disc golf.",
+        "info": "Experience an outdoor sport by trying disc golf. This fun and active challenge is a great way to enjoy the outdoors, get exercise, and engage in friendly competition.",
+        "icon": "tree",
+        "color": "#016760",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": [
+          "Sports",
+          "Fun",
+          "Nature"
+        ],
+        "uuid": "6b5329cd-cbb4-4bc1-9728-76eafdc0a841"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Accept All",
+        "instruction": "Join a social media platform.",
+        "info": "Expand your online presence by joining a new social media platform. Connect with new people, follow your interests, and explore new avenues for online interaction.",
+        "icon": "chat-bubble",
+        "color": "#a90e57",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Social Connection",
+          "Technology"
+        ],
+        "uuid": "2c34e5d5-1d3f-4970-8404-702f6c7bd703"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Dropped Off",
+        "instruction": "Leave a social media platform.",
+        "info": "Disconnect from the digital world by deleting a social media account. This can be a way to minimize digital noise and promote mindfulness and focus on the real world.",
+        "icon": "power-off",
+        "color": "#2f2f2f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Social Connection",
+          "Technology",
+          "Mindfulness"
+        ],
+        "uuid": "c7c46ead-48c1-4571-9d05-fa7aa94bef37"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Drawn to Life",
+        "instruction": "Watch an episode of a cartoon.",
+        "info": "Enjoy some lighthearted entertainment by watching a cartoon episode. This can be a fun way to relax, and tap into a sense of playful creativity, even as an adult.",
+        "icon": "tv",
+        "color": "#2f384f",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Arts",
+          "Film",
+          "Fun"
+        ],
+        "uuid": "2b263d6f-8dbe-46de-a9e4-192640277154"
+      }
+    ],
+    "updated": [],
+    "removed": []
+  }
+}

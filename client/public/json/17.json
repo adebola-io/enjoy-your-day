@@ -1,0 +1,482 @@
+{
+  "$schema": "./schema.json",
+  "chunk": 17,
+  "goals": {
+    "added": [
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Bust a Move",
+        "instruction": "Breakdance in public.",
+        "info": "Unleash your inner dancer and surprise the world with your break-dancing skills. It's a fun and spontaneous way to express yourself and bring joy to others with your moves.",
+        "icon": "dancing",
+        "color": "#a90e57",
+        "recommendability": 4,
+        "involvement": 2,
+        "categories": [
+          "Fun",
+          "Arts",
+          "Social Connection"
+        ],
+        "uuid": "5902cc80-85d8-4442-bec9-7c2322a2c942"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Split Decision",
+        "instruction": "Do a split.",
+        "info": "Challenge your flexibility and physical capabilities by attempting a split. It's a great way to improve your range of motion while also being a fun and impressive feat.",
+        "icon": "yoga",
+        "color": "#2f2f2f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": [
+          "Fitness",
+          "Wellness"
+        ],
+        "uuid": "14f969c8-0524-47c7-b5e9-e55256175273"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Slope of Enlightenment",
+        "instruction": "Learn differentiation in calculus.",
+        "info": "Dive into the fascinating world of calculus by learning about differentiation. It's a key concept in higher math that can broaden your intellectual horizons and deepen your understanding of change.",
+        "icon": "learning",
+        "color": "#2f384f",
+        "recommendability": 4,
+        "involvement": 2,
+        "categories": [
+          "Science",
+          "Technology"
+        ],
+        "uuid": "bb0330bc-46a0-42ae-972e-e7d8ef8889e2"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Airtime",
+        "instruction": "Jump on a trampoline.",
+        "info": "Experience the joy of weightlessness by jumping on a trampoline. It's a fun and playful way to exercise, boost your mood, and feel like a kid again.",
+        "icon": "exercising",
+        "color": "#2d0a62",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": [
+          "Fitness",
+          "Fun",
+          "Wellness"
+        ],
+        "uuid": "fc4a6df6-2e39-4927-b821-cf18adb71b6c"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Amnesty",
+        "instruction": "Forgive someone you really hate.",
+        "info": "Take a step towards personal growth by forgiving someone who has caused you pain. Forgiveness isn't about condoning past actions but about freeing yourself from negative emotions.",
+        "icon": "heart",
+        "color": "#b93200",
+        "recommendability": 4,
+        "involvement": 2,
+        "categories": [
+          "Mental Health",
+          "Wellness",
+          "Social Connection"
+        ],
+        "uuid": "2b39109c-bd4c-4108-ad49-48008d2b26b5"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Cushion Theory",
+        "instruction": "Prank someone harmlessly.",
+        "info": "Add a touch of humor to your day by playing a harmless prank. Keep it lighthearted, ensure no one gets hurt, and enjoy the laughter that follows.",
+        "icon": "smiley-face",
+        "color": "#013c3b",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": [
+          "Fun",
+          "Social Connection",
+          "Arts"
+        ],
+        "uuid": "13a0a42e-5b06-4d69-b893-040aa2c8312a"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Decimal Shift",
+        "instruction": "Give a ridiculously high tip.",
+        "info": "Spread unexpected generosity by leaving an unusually large tip. It's a way to brighten someone's day and make a memorable positive impact.",
+        "icon": "dollar",
+        "color": "#5c006a",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": [
+          "Social Connection",
+          "Fun",
+          "Finance"
+        ],
+        "uuid": "3305cbc0-50ea-4d6a-a8a3-f1a151e1fa4d"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Dark Horse",
+        "instruction": "Buy stocks in an obscure company.",
+        "info": "Take a walk on the wild side of investing by buying stock in a lesser-known company. While risky, this move can introduce you to the complexities of the stock market.",
+        "icon": "growth",
+        "color": "#5d6835",
+        "recommendability": 4,
+        "involvement": 2,
+        "categories": [
+          "Finance",
+          "Profession",
+          "Technology"
+        ],
+        "uuid": "e0ad7ea9-84fc-4896-82ca-80aefd6942d1"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "The Third Place",
+        "instruction": "Go to the bar.",
+        "info": "Enjoy the social atmosphere of a bar and unwind with your friends or make new acquaintances. This allows you to relax, socialize, and enjoy a change of scenery.",
+        "icon": "beer-jug",
+        "color": "#003f5c",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": [
+          "Fun",
+          "Social Connection",
+          "Culture"
+        ],
+        "uuid": "1c54d9b3-98aa-43bd-bf6e-2090b0ce80d6"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Serendiparty",
+        "instruction": "Find someone whose birthday is today.",
+        "info": "Engage in a fun social experiment by trying to find someone who is celebrating their birthday today. It can lead to new connections and shared joy, fostering a sense of community.",
+        "icon": "balloons",
+        "color": "#444e86",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": [
+          "Social Connection",
+          "Fun",
+          "Culture"
+        ],
+        "uuid": "48f95699-a0d5-4d52-b0d0-f694eb203f31"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Retrograde",
+        "instruction": "Learn astrology.",
+        "info": "Delve into the world of astrology and discover how stars and planets may influence our lives. This ancient system can provide insight into your personality, relationships and future.",
+        "icon": "moon-and-starts",
+        "color": "#9a0007",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": [
+          "Science",
+          "Culture"
+        ],
+        "uuid": "34fcc592-662f-49ca-a3d7-f4f896c0242f"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Six Degrees",
+        "instruction": "Connect two concepts with Wikipedia links.",
+        "info": "Test your internet savvy by connecting two seemingly unrelated concepts using only Wikipedia links. This is a fun way to expand your knowledge and discover how everything is interconnected.",
+        "icon": "chain-link",
+        "color": "#004d40",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": [
+          "Fun",
+          "Productivity"
+        ],
+        "uuid": "4e1ee151-6c25-4039-a308-d8dc614a5819"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Ghost in the Machine",
+        "instruction": "Install an app you will never use.",
+        "info": "Experience the digital world by downloading a random app that you will most likely never use. It will be a digital artifact, taking up space, a funny reminder of this moment.",
+        "icon": "apps",
+        "color": "#3e2723",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": [
+          "Technology",
+          "Fun",
+          "Digital Design"
+        ],
+        "uuid": "cea2c6aa-5ee8-449d-bede-4d085728783e"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Skin Deep+",
+        "instruction": "Get a tattoo.",
+        "info": "Express your individuality with a tattoo, a permanent form of body art. Choose a design that is meaningful to you and reflects your personality.",
+        "icon": "arts",
+        "color": "#00600f",
+        "recommendability": 4,
+        "involvement": 3,
+        "categories": [
+          "Style",
+          "Arts",
+          "Wellness"
+        ],
+        "uuid": "f8befceb-9a9b-4966-a40a-7b4af542b029"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Slick Move",
+        "instruction": "Go iceskating.",
+        "info": "Enjoy the thrill and fun of ice skating, either alone or with friends. This activity improves your balance and coordination while providing a fun way to stay active.",
+        "icon": "ski",
+        "color": "#53086f",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": [
+          "Fun",
+          "Sports",
+          "Fitness"
+        ],
+        "uuid": "5ddfd5a8-32a4-4c40-9e45-be6c2279d2cd"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Once or Twice Upon",
+        "instruction": "Reread a book you read years ago.",
+        "info": "Relive cherished stories and discover new meanings by rereading a book you enjoyed in the past. It can be like visiting old friends and experiencing the magic anew.",
+        "icon": "book",
+        "color": "#05688f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": [
+          "Literature",
+          "Arts",
+          "Wellness"
+        ],
+        "uuid": "d10bbd15-01e3-4bc4-86da-71c46ee70c49"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Babelbite",
+        "instruction": "Try a foreign, packaged snack.",
+        "info": "Expand your taste experience by trying a packaged snack from another country. It's a fun and easy way to explore different cuisines and flavors.",
+        "icon": "cookie",
+        "color": "#253a54",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Culture",
+          "Fun",
+          "Cooking"
+        ],
+        "uuid": "4aa8a3cd-b6b7-4a07-860b-d446567c4b72"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Yes, And",
+        "instruction": "Say Yes to every request.",
+        "info": "Embrace spontaneity by saying 'yes' to every reasonable request for a whole day. It is a way to embrace new opportunities and let the world surprise you.",
+        "icon": "check",
+        "color": "#801d02",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": [
+          "Social Connection",
+          "Fun",
+          "Mindfulness"
+        ],
+        "uuid": "1619d126-e846-4e94-b39f-e2beb27a5e2e"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "No, Because",
+        "instruction": "Say No to every request.",
+        "info": "Practice asserting your boundaries by saying 'no' to every request for a day. It's a way to prioritize your own needs and reflect on what you are actually willing to do.",
+        "icon": "x",
+        "color": "#016760",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": [
+          "Mental Health",
+          "Wellness",
+          "Social Connection"
+        ],
+        "uuid": "cffcc213-cc5e-4ecb-8176-db0b950a74e3"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Alto Ego",
+        "instruction": "Talk in a high pitched voice all day.",
+        "info": "Add a touch of whimsy to your day by speaking in a high-pitched voice. It's a playful way to express yourself and perhaps see how others respond to a new vocal style.",
+        "icon": "microphone",
+        "color": "#a90e57",
+        "recommendability": 3,
+        "involvement": 2,
+        "categories": [
+          "Arts",
+          "Social Connection",
+          "Fun"
+        ],
+        "uuid": "e1df42a6-7f46-490c-a7e7-5a4f94313f73"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Recitativo",
+        "instruction": "Sing everything all day.",
+        "info": "Transform your day into a musical by singing everything you say. This can be a fun and expressive challenge that brings creativity and rhythm into your daily life.",
+        "icon": "music",
+        "color": "#2f2f2f",
+        "recommendability": 4,
+        "involvement": 3,
+        "categories": [
+          "Arts",
+          "Fun",
+          "Social Connection"
+        ],
+        "uuid": "c59b2530-b1e1-429f-ad0a-09d1e4584a5f"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Ctrl Alt Delight",
+        "instruction": "Service your laptop.",
+        "info": "Show your laptop some love by performing a maintenance checkup. This helps keep your computer in optimal condition, ensuring its smooth and reliable operation.",
+        "icon": "microchip",
+        "color": "#2f384f",
+        "recommendability": 2,
+        "involvement": 2,
+        "categories": [
+          "Technology",
+          "Productivity",
+          "Home Care"
+        ],
+        "uuid": "23486715-ba5e-407f-a75d-d1e63a538040"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Right On",
+        "instruction": "Learn what \"orthogonal\" means.",
+        "info": "Expand your vocabulary and knowledge of geometry by learning the definition of \"orthogonal\". It's a term with important applications in mathematics and various other fields.",
+        "icon": "learning",
+        "color": "#2d0a62",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": [
+          "Science",
+          "Technology"
+        ],
+        "uuid": "1315975f-82dc-43d5-a2cc-e7cf1130b949"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Alkebulan",
+        "instruction": "Learn the names of all African countries.",
+        "info": "Expand your geographic knowledge by learning the names of all African countries. This act increases your global awareness and appreciation of cultural diversity.",
+        "icon": "africa",
+        "color": "#b93200",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": [
+          "Culture",
+          "Travel"
+        ],
+        "uuid": "622b7635-0c89-455d-b76c-201cc63ad601"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Middlemarch",
+        "instruction": "Read only page 49 of a book.",
+        "info": "Engage in a unique literary experience by reading only page 49 of a book. It is a way to explore the author's writing style and potentially discover a new favorite book from a single page.",
+        "icon": "book",
+        "color": "#013c3b",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": [
+          "Literature",
+          "Arts",
+          "Fun"
+        ],
+        "uuid": "d755d18b-35aa-4a87-b2e8-7fa1a3d8335f"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "One Wheel Wonder",
+        "instruction": "Watch a video of unicycle riding.",
+        "info": "Explore a unique activity by watching a video of unicycle riding. It is a way to appreciate the skill, balance, and artistry required to master this unusual form of transportation.",
+        "icon": "balloons",
+        "color": "#5c006a",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Sports",
+          "Fun"
+        ],
+        "uuid": "c25cf6bb-d3e4-4537-a370-ca7fdc76cb8b"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Sole-searching",
+        "instruction": "Take one photo of all your shoes.",
+        "info": "Document your personal style by taking a photo of all your shoes. It is a visual archive of your footwear, allowing you to reflect on your wardrobe and make new outfits.",
+        "icon": "heels",
+        "color": "#5d6835",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Style",
+          "Photography",
+          "Home Care"
+        ],
+        "uuid": "9de1ae9d-a5f1-4621-8ebc-2ef60f4a739b"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Deciduous",
+        "instruction": "Find 5 unique leaves.",
+        "info": "Connect with nature by searching for 5 unique leaves. It's a great way to observe the diversity of plant life around you and appreciate the beauty in natural forms.",
+        "icon": "tree",
+        "color": "#003f5c",
+        "recommendability": 1,
+        "involvement": 1,
+        "categories": [
+          "Nature",
+          "Green Living",
+          "Photography"
+        ],
+        "uuid": "a82ce6bc-0120-42e5-80c2-0443b13060b5"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Ephemeral",
+        "instruction": "Write something vague on a sticky note.",
+        "info": "Add a touch of mystery to your day by writing something vague on a sticky note. It's a way to spark curiosity and encourage others to interpret your enigmatic message.",
+        "icon": "paper-clip",
+        "color": "#444e86",
+        "recommendability": 2,
+        "involvement": 1,
+        "categories": [
+          "Arts",
+          "Fun",
+          "Social Connection"
+        ],
+        "uuid": "ff10bca7-33de-45d7-b1e8-4f8dcc8aa4a4"
+      },
+      {
+        "dateAdded": "2025-02-01T14:00:00.000Z",
+        "title": "Door-hinge",
+        "instruction": "Find 10 things that rhyme with \"orange.\"",
+        "info": "Engage in a playful word challenge by trying to find 10 words that rhyme with \"orange\". It's a fun exercise for your brain that tests your vocabulary and creativity.",
+        "icon": "literature",
+        "color": "#9a0007",
+        "recommendability": 3,
+        "involvement": 1,
+        "categories": [
+          "Literature",
+          "Arts"
+        ],
+        "uuid": "a5171ed2-0c09-4437-929e-369e6e6bf754"
+      }
+    ],
+    "updated": [],
+    "removed": []
+  }
+}

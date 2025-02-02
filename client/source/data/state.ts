@@ -172,10 +172,16 @@ async function trackDateChange() {
 liveDate.runAndListen(trackDateChange);
 
 export async function resetAllData() {
-  for (const key of Object.keys(LOCALSTORAGE_KEYS)) {
-    console.log('removing', key);
-    localStorage.removeItem(key);
-  }
   await resetDbData();
-  // window.location.reload();
+  appLoadingState.value = 'setup';
+  dailyGoals.value = [];
+  dailyGoalsDateStamp.value = null;
+  username.value = '';
+  selectedCategories.value = [];
+  involvementLevel.value = 0;
+  notificationsEnabled.value = false;
+  morningTime.value = getRandomMorningTime();
+  themeColor.value = 'Light';
+  selectedFont.value = 'SchibstedGrotesk';
+  lastLoadedChunk.value = 0;
 }

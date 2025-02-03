@@ -40,9 +40,12 @@
 
   &[data-variant='secondary'] {
     border: 3px solid;
-    border-color: light-dark(initial, var(--space-cadet-50));
-    color: var(--white);
-    background-color: light-dark(var(--space-cadet-500), transparent);
+    color: light-dark(white, Canvas);
+    background-color: light-dark(var(--space-cadet-500), white);
+
+    html[data-is-dark] & {
+      border: none;
+    }
   }
 
   &[data-rounded] {

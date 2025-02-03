@@ -31,18 +31,26 @@ export default function ResetDataDrawer() {
       shrinkTarget="#settingsView"
       data-stagger-children={isOpen}
     >
-      <WarningIcon class={classes.icon} />
+      <div class={classes.iconContainer}>
+        <WarningIcon class={classes.icon} />
+      </div>
       <h2 class={classes.heading}>Delete all data?</h2>
       <p class={classes.paragraph}>
-        You are attempting to reset all your user data. This will delete your
-        progress, daily goals, notification settings and insights.{' '}
+        You are about to reset all your data. This will delete your progress,
+        daily goals, notification settings and insights.{' '}
         <b class={classes.emphasis}>This action cannot be undone.</b> Are you
-        sure you want to continue?
+        sure?
       </p>
       <Button variant="outlined" rounded vibrate onClick={goBack}>
         Cancel
       </Button>
-      <Button variant="secondary" rounded vibrate onClick={reset}>
+      <Button
+        class={classes.actionBtn}
+        variant="secondary"
+        rounded
+        vibrate
+        onClick={reset}
+      >
         Delete
       </Button>
     </BottomDrawer>

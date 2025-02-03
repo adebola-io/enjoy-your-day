@@ -74,6 +74,7 @@
 .drawerContent {
   --drawer-visible-height: min(600px, 55dvh);
   --drawer-knob-area: calc(var(--block-padding) * 0.15 + 7px);
+  --drawer-handle-color: #9999a45e;
   position: relative;
   width: 100%;
   height: var(--drawer-visible-height);
@@ -100,13 +101,13 @@
     width: 80px;
     height: 7px;
     border-radius: 13px;
-    background-color: #9999a45e;
+    background-color: var(--drawer-handle-color);
     content: '';
     justify-self: center;
   }
 
   html[data-is-dark] & {
-    border-color: #9999a45e;
+    border-color: var(--drawer-handle-color);
   }
 
   .drawer[data-open] & {

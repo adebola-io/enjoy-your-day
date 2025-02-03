@@ -24,6 +24,30 @@
       translate: -10%;
     }
   }
+
+  @media (orientation: landscape) {
+    & {
+      opacity: 0;
+      transition: opacity var(--slide-duration), scale var(--slide-duration);
+      pointer-events: none;
+      translate: 0;
+      scale: 0.9;
+    }
+
+    &[data-is-open] {
+      opacity: 1;
+      transition: opacity var(--slide-duration), scale var(--slide-duration);
+      pointer-events: initial;
+      scale: 1;
+
+      &:not(:nth-last-child(1 of &)) {
+        opacity: 0;
+        transition: opacity var(--slide-duration), scale var(--slide-duration);
+        scale: 1.1;
+        translate: 0;
+      }
+    }
+  }
 }
 
 .viewLayerContainer {

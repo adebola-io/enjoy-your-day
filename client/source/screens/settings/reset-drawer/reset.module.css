@@ -13,6 +13,7 @@
 }
 
 .iconContainer {
+  --starting-fade-position-y: 0%;
   display: grid;
   width: min(13dvh, 80px);
   height: min(13dvh, 80px);

@@ -18,6 +18,20 @@ interface PillRadioListProps<T> extends FieldsetProps {
   Template?: (value: T) => JSX.Template;
   onValueChange?: (value: T) => void;
 }
+
+// The trackings of rects in the pill radio lists
+// are done on element resize and window resize events. These do
+// not account for the fact that the pill radio list may be part of
+// an animated context, which would lead to incorrect rect calculations.
+//
+// To account for this, the position updaters are stored in a semi-global
+// array so that parent components can trigger updates externally.
+const positionUpdaters: Array<() => void> = [];
+
+export function updatePillPositions() {
+  for (const updater of positionUpdaters) updater();
+}
+
 export function PillRadioList<T extends string>(props: PillRadioListProps<T>) {
   const {
     heading,
@@ -75,7 +89,7 @@ export function PillRadioList<T extends string>(props: PillRadioListProps<T>) {
       if (!checkedInput) return;
       relocateHighlighter(fieldset, checkedInput);
     };
-
+    positionUpdaters.push(updateHighlighterPosition);
     updateHighlighterPosition();
 
     const resizeObserver = new ResizeObserver(updateHighlighterPosition);
@@ -84,6 +98,10 @@ export function PillRadioList<T extends string>(props: PillRadioListProps<T>) {
     return () => {
       window.removeEventListener('resize', updateHighlighterPosition);
       resizeObserver.disconnect();
+      positionUpdaters.splice(
+        positionUpdaters.indexOf(updateHighlighterPosition),
+        1
+      );
     };
   });
 

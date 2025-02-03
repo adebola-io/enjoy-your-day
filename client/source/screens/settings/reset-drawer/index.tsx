@@ -41,7 +41,13 @@ export default function ResetDataDrawer() {
         <b class={classes.emphasis}>This action cannot be undone.</b> Are you
         sure?
       </p>
-      <Button variant="outlined" rounded vibrate onClick={goBack}>
+      <Button
+        class={classes.cancelBtn}
+        variant="outlined"
+        rounded
+        vibrate
+        onClick={goBack}
+      >
         Cancel
       </Button>
       <Button

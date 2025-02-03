@@ -5,11 +5,11 @@
   width: calc(100% - var(--side-padding) * 2);
   color: white;
   background-color: var(--folly-900);
-  padding-block: var(--block-padding);
+  padding-block: calc(var(--block-padding) * 1.25);
   padding-inline: var(--side-padding);
   column-gap: calc(var(--side-padding) * 0.25);
   grid-template-rows: auto auto auto auto;
-  grid-template-columns: auto auto;
+  grid-template-columns: 0.5fr 0.5fr;
 }
 
 .iconContainer {
@@ -77,8 +77,13 @@
   padding-block: calc(var(--block-padding) * 0.25);
 }
 
+.cancelBtn {
+  justify-self: end;
+}
+
 .actionBtn:is(button):is(.actionBtn) {
   border: none;
   color: var(--folly-900);
   background-color: white;
+  justify-self: start;
 }

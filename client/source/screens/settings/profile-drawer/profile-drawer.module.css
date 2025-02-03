@@ -169,6 +169,7 @@
   color: inherit;
   text-align: center;
   font: var(--eyebrow-bold);
+  justify-self: center;
   place-items: center;
   grid-area: 2 / 1;
 

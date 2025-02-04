@@ -26,7 +26,7 @@
   );
   --drawer-open-position-y: calc(100dvh - var(--drawer-content-height));
   overflow: hidden;
-  transition-property: opacity, translate;
+  transition-property: opacity, translate, scale;
 
   &[data-username-focused] {
     --drawer-open-position-y: var(--block-padding);
@@ -94,6 +94,10 @@
     .closeButton {
       translate: 0 calc(100dvh - var(--drawer-content-height));
     }
+  }
+
+  @media (orientation: landscape) {
+    --drawer-visible-height: min-content;
   }
 }
 

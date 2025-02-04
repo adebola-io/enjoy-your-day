@@ -44,6 +44,16 @@
     position: relative;
     align-self: center;
   }
+
+  @media (orientation: landscape) {
+    &:not(:disabled):hover::before {
+      opacity: 0.08;
+    }
+
+    &::before {
+      transition-duration: 0ms;
+    }
+  }
 }
 
 .settingsIcon {

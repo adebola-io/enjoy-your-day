@@ -33,6 +33,10 @@
   &[data-dialog-is-open] {
     scale: 0.92;
   }
+
+  @media (orientation: landscape) {
+    padding-block-end: var(--block-padding);
+  }
 }
 
 .phoneContainer:is(.phoneContainer) {

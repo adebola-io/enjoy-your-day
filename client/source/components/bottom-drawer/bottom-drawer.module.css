@@ -11,6 +11,7 @@
   padding: 0;
   margin: unset;
   border: none;
+  color: inherit;
   background-color: transparent;
   place-items: start;
   scrollbar-width: none;

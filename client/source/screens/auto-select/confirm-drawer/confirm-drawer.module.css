@@ -25,6 +25,10 @@
     & > * {
       translate: 0 min(100px, -4dvh);
     }
+
+    @media (orientation: landscape) {
+      --drawer-open-position-y: 0;
+    }
   }
 }
 

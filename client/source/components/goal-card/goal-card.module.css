@@ -18,6 +18,11 @@
     width: 100%;
     content: '';
   }
+
+  @media (orientation: landscape) {
+    width: var(--goal-card-width);
+    padding-inline: calc(var(--side-padding) * 0.5);
+  }
 }
 
 .icon {
@@ -27,6 +32,10 @@
   width: 30px;
   height: 30px;
   animation: var(--fade-in) calc(var(--default-duration) * 2);
+
+  @media (orientation: landscape) {
+    left: calc(var(--side-padding) * 0.5);
+  }
 }
 
 .title {

@@ -34,19 +34,48 @@
 
   & > * {
     --starting-fade-position-y: 20%;
+    --apparent-index: calc(var(--total) - var(--index));
     position: sticky;
     top: calc((var(--index) + 1) * var(--goal-card-height) * 0.1);
     margin-block-end: -20dvh;
     animation-name: var(--fade-in-from-bottom);
     animation-duration: calc(var(--default-duration) * 1.25);
     animation-delay: calc(
-      (var(--total) - var(--index)) * var(--default-duration) * 0.15
+      var(--apparent-index) * var(--default-duration) * 0.15
     );
     animation-fill-mode: backwards;
+
+    @media (orientation: landscape) {
+      --starting-fade-position-x: -30%;
+      top: unset;
+      align-self: center;
+      margin-block-end: unset;
+      animation-name: var(--fade-in-from-left);
+      animation-duration: calc(var(--default-duration) * 1.5);
+      animation-delay: calc(
+        var(--apparent-index) * var(--default-duration) * 0.75
+      );
+      grid-area: 1 / calc(var(--apparent-index) + 1);
+    }
   }
 
   &[data-dialog-is-open] {
     scale: var(--drawer-background-scale);
+  }
+
+  @media (orientation: landscape) {
+    --goal-card-width: clamp(100px, 35dvw, 450px);
+    --goal-card-height: clamp(100px, 35dvw, 450px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: unset;
+    padding-inline-start: var(--side-padding);
+    padding-inline-end: calc(var(--side-padding) * 6);
+    grid-template-columns: repeat(var(--total), auto);
+    grid-template-rows: 1fr;
+    gap: calc(var(--side-padding) * 0.25);
+    translate: 0;
+    grid-area: 2 /1;
   }
 }
 
@@ -66,8 +95,11 @@
   grid-template-columns: auto auto;
   gap: var(--gap);
   justify-self: center;
-  grid-row: 1;
-  grid-column: 1;
+  grid-area: 1 /1;
+
+  @media (orientation: landscape) {
+    grid-area: 3 / 1;
+  }
 }
 
 .btn {
@@ -76,6 +108,14 @@
   isolation: isolate;
   grid-auto-flow: column;
   gap: 6px;
+}
+
+.perfectBtn {
+  justify-self: end;
+}
+
+.editBtn {
+  justify-self: start;
 }
 
 .btnIcon {

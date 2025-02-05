@@ -54,13 +54,13 @@ export default function GoalCardsLayer(props: GoalCardsLayerProps) {
             class={classes.goalCards}
             style={ulStyles}
           >
-            {For(goals, (goal, index) => {
-              return <GoalCard {...goal} index={index} />;
-            })}
+            {For(goals, (goal, index) => (
+              <GoalCard {...goal} index={index} />
+            ))}
           </ElasticView>
           <div class={classes.buttonRow}>
             <Button
-              class={classes.btn}
+              class={[classes.btn, classes.perfectBtn]}
               href={confirmDrawerHref}
               rounded
               vibrate
@@ -73,7 +73,12 @@ export default function GoalCardsLayer(props: GoalCardsLayerProps) {
               />
               Perfect
             </Button>
-            <Button class={classes.btn} href={editStageHref} rounded vibrate>
+            <Button
+              class={[classes.btn, classes.editBtn]}
+              href={editStageHref}
+              rounded
+              vibrate
+            >
               <InlinedIcon
                 Icon={PencilIcon}
                 class={classes.btnIcon}

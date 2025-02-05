@@ -20,7 +20,7 @@ export type SearchInputProps<T> = JSX.IntrinsicElements['form'] & {
   autoCompleteGetter?: AutoCompleteGetter<T>;
   AutoCompleteTemplate?: (value: T) => JSX.Template;
   onDismiss?: () => void;
-  onAutoCompleteSelect?: (value: T) => void;
+  onAutoCompleteSelect?: (value: T) => Promise<void>;
   focused?: boolean;
 };
 
@@ -43,14 +43,11 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
   const observer = useObserver();
   const autoCompleteRef = Cell.source<HTMLElement | null>(null);
   const searchValue = Cell.source('');
-  const completionOptions = Cell.source<T[]>([]);
-  const completionOptionsCount = Cell.derived(() => {
-    return completionOptions.value.length;
-  });
-  const hasCompletion = Cell.derived(() => completionOptionsCount.value > 0);
-  const ulStyles = {
-    '--total': Cell.derived(() => String(completionOptionsCount.value)),
-  };
+  const options = Cell.source<T[]>([]);
+  const optionsCount = Cell.derived(() => options.value.length);
+  const optionsCountStr = Cell.derived(() => String(optionsCount.value));
+  const hasCompletion = Cell.derived(() => optionsCount.value > 0);
+  const ulStyles = { '--total': optionsCountStr };
 
   const handleBlur = (event: FocusEvent) => {
     const relatedTarget = event.relatedTarget;
@@ -60,9 +57,7 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      onDismiss?.();
-    }
+    if (event.key === 'Escape') onDismiss?.();
   };
 
   if (focused) {
@@ -72,9 +67,9 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
   }
 
   searchValue.listen(async (value) => {
-    const options = await autoCompleteGetter?.(value);
-    if (!options) return;
-    completionOptions.value = options;
+    const completions = await autoCompleteGetter?.(value);
+    if (!completions) return;
+    options.value = completions;
   });
 
   return (
@@ -95,26 +90,22 @@ export function SearchInput<T extends AutoCompleteOption<T>>(
         />
       </div>
       {AutoCompleteTemplate
-        ? If(hasCompletion, () => {
-            return (
-              <ul
-                ref={autoCompleteRef}
-                class={[classes.autoCompleteDropdown, autoCompleteClasses]}
-                style={ulStyles}
-                tabIndex={-1}
-                onFocusOut={handleBlur}
-              >
-                {For(completionOptions, (props) => {
-                  return (
-                    <AutoCompleteTemplate
-                      {...props}
-                      onSelect={onAutoCompleteSelect}
-                    />
-                  );
-                })}
-              </ul>
-            );
-          })
+        ? If(hasCompletion, () => (
+            <ul
+              ref={autoCompleteRef}
+              class={[classes.autoCompleteDropdown, autoCompleteClasses]}
+              style={ulStyles}
+              tabIndex={-1}
+              onFocusOut={handleBlur}
+            >
+              {For(options, (props) => (
+                <AutoCompleteTemplate
+                  {...props}
+                  onSelect={onAutoCompleteSelect}
+                />
+              ))}
+            </ul>
+          ))
         : null}
     </form>
   );

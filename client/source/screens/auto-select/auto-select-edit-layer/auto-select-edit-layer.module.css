@@ -17,22 +17,6 @@
   }
 
   &[data-search-is-open] {
-    &:not([data-no-goals-added]) {
-      @media (orientation: portrait) {
-        .goalItemList,
-        .buttonAndSearchContainer {
-          translate: 0 -6.5em;
-        }
-
-        .title,
-        .subtitle {
-          opacity: 0;
-          pointer-events: none;
-          scale: 0.9;
-        }
-      }
-    }
-
     .buttonAndSearchContainer {
       font-weight: normal;
       grid-template-columns: 1fr;
@@ -122,20 +106,31 @@
 
 .buttonAndSearchContainer {
   --starting-fade-position-y: 20%;
-  position: relative;
-  z-index: 1;
   display: grid;
   border-radius: 40px;
   transition-duration: var(--toggle-search-duration);
   transition-property: opacity, translate;
   font-weight: bold;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   margin-inline: var(--side-padding);
-  grid-template-columns: 40px 1fr;
   padding-inline: 15px 20px;
-  place-items: start;
-  gap: 8px;
+
   @media (orientation: landscape) {
     margin-inline: calc(var(--side-padding) * 2);
+  }
+}
+
+.containerButtonContent {
+  display: grid;
+  width: 100%;
+  gap: 8px;
+  grid-template-rows: 1fr;
+  grid-template-columns: 40px 1fr;
+  place-items: start;
+
+  & > * {
+    align-self: center;
   }
 }
 
@@ -158,13 +153,13 @@
 
 .autoComplete {
   /* Container Block paddings + text size + border-widths + gap. */
-  top: calc(min(6dvh, 18px) * 2 + var(--base-font-size) + 8px + 10px);
+  top: calc(min(6dvh, 18px) * 2 + 10px);
   width: 100%;
   margin-inline: 0px;
 }
 
 .searchForm {
-  display: contents;
+  width: 100%;
 }
 
 .submitBtn {

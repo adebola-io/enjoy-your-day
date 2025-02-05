@@ -1,13 +1,13 @@
 .container {
   --max-width: 800px;
   display: grid;
+  height: calc(min(6dvh, 18px) * 2 + var(--base-font-size));
   border: 4px solid;
   border-radius: 20px;
   color: light-dark(var(--space-cadet-500), white);
   background-color: light-dark(var(--white), Canvas);
   place-content: center;
   place-items: center;
-  padding-block: min(6dvh, 18px);
 
   @media (orientation: landscape) {
     --max-width: 400px;

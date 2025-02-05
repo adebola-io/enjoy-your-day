@@ -34,13 +34,16 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
   const searchIsOpen = useRouteQuery('search');
   const editIsOpen = useRouteQuery('stage', 'edit');
   const containerRef = Cell.source<HTMLDivElement | null>(null);
+  const ulRef = Cell.source<HTMLUListElement | null>(null);
   const placeholder = Cell.source('');
   const activeItemIndex = Cell.source(0);
+  const activeItemIndexStr = Cell.derived(() => String(activeItemIndex.value));
   const noGoalsAdded = Cell.derived(() => goals.value.length === 0);
   const goalUuids = Cell.derived(() => goals.value.map((g) => g.uuid));
+  const goalLength = Cell.derived(() => goals.value.length);
   const ulStyles = {
-    '--total': Cell.derived(() => goals.value.length),
-    '--active-item-index': Cell.derived(() => String(activeItemIndex.value)),
+    '--total': goalLength,
+    '--active-item-index': activeItemIndexStr,
   };
 
   const openSearch = async () => {
@@ -48,19 +51,27 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
       await addRouteQuery('search');
     }
   };
+
   const closeSearch = async () => {
     if (searchIsOpen.value) await removeRouteQuery('search');
   };
 
+  const updatePlaceholder = async () => {
+    const uuids = goalUuids.value;
+    const categories = selectedCategories.value;
+    const example = await getExampleGoalInstruction(uuids, categories);
+    placeholder.value = `e.g. ${example}`;
+  };
+
+  const autoComplete = (query: string) => {
+    return getAutoCompleteSuggestions(query, goalUuids.value);
+  };
+
   const addGoal = async (goal: GoalOptionProps) => {
-    closeSearch();
+    await closeSearch();
     activeItemIndex.value = 0;
     goals.value.splice(0, 0, goal);
-    getExampleGoalInstruction(goalUuids.value, selectedCategories.value).then(
-      (example) => {
-        placeholder.value = `e.g. ${example}`;
-      }
-    );
+    updatePlaceholder();
   };
 
   const removeGoal = (index: number, item: Element, mode: 'Swipe' | 'Tap') => {
@@ -75,17 +86,29 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
     addRouteQuery('confirm');
   };
 
-  observer.onConnected(containerRef, () => {
-    getExampleGoalInstruction(goalUuids.value, selectedCategories.value).then(
-      (example) => {
-        placeholder.value = `e.g. ${example}`;
-      }
-    );
-  });
+  const ContainerButtonContent = () => (
+    <div class={classes.containerButtonContent}>
+      <AddIcon class={classes.buttonAndSearchContainerIcon} />
+      Add a goal
+    </div>
+  );
 
-  const autoComplete = (query: string) => {
-    return getAutoCompleteSuggestions(query, goalUuids.value);
-  };
+  const SearchInputContent = () => (
+    <SearchInput
+      class={classes.searchForm}
+      containerClasses={classes.searchInputContainer}
+      autoCompleteClasses={classes.autoComplete}
+      placeholder={placeholder}
+      autoCompleteGetter={autoComplete}
+      AutoCompleteTemplate={GoalOption}
+      onAutoCompleteSelect={addGoal}
+      onSubmit--prevent={closeSearch}
+      onDismiss={closeSearch}
+      focused
+    />
+  );
+
+  observer.onConnected(containerRef, updatePlaceholder);
 
   return (
     <ViewLayer
@@ -100,69 +123,44 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
           data-no-goals-added={noGoalsAdded}
           data-search-is-open={searchIsOpen}
         >
-          {If(true, () => {
-            return (
-              <>
-                <BackButton class={classes.backButton} />
-                <h1 class={classes.title}>Goals for Today</h1>
-                <p class={classes.subtitle}>
-                  Shape a day that works best for you by adding goals and
-                  adjusting priorities.
-                </p>
-                <Container
-                  class={classes.buttonAndSearchContainer}
-                  onClick={openSearch}
-                >
-                  {If(searchIsOpen, {
-                    true: () => (
-                      <SearchInput
-                        class={classes.searchForm}
-                        containerClasses={classes.searchInputContainer}
-                        autoCompleteClasses={classes.autoComplete}
-                        placeholder={placeholder}
-                        autoCompleteGetter={autoComplete}
-                        AutoCompleteTemplate={GoalOption}
-                        onAutoCompleteSelect={addGoal}
-                        onSubmit--prevent={closeSearch}
-                        onDismiss={closeSearch}
-                        focused
-                      />
-                    ),
-                    false: () => (
-                      <>
-                        <AddIcon class={classes.buttonAndSearchContainerIcon} />
-                        Add a goal
-                      </>
-                    ),
-                  })}
-                </Container>
-                <ul
-                  class={classes.goalItemList}
-                  inert={searchIsOpen}
-                  style={ulStyles}
-                >
-                  {For(goals, (goal, index) => {
-                    return (
-                      <GoalItem {...goal} index={index} onRemove={removeGoal} />
-                    );
-                  })}
-                </ul>
-                <button
-                  type="button"
-                  class={classes.submitBtn}
-                  inert={searchIsOpen}
-                  onClick={handleSubmit}
-                >
-                  <InlinedIcon
-                    Icon={DoubleCheckIcon}
-                    class={classes.submitBtnIcon}
-                    title="Submit Goals"
-                    color="white"
-                  />
-                </button>
-              </>
-            );
-          })}
+          <BackButton class={classes.backButton} />
+          <h1 class={classes.title}>Goals for Today</h1>
+          <p class={classes.subtitle}>
+            Shape a day that works best for you by adding goals and adjusting
+            priorities.
+          </p>
+          <Container
+            class={classes.buttonAndSearchContainer}
+            onClick={openSearch}
+          >
+            {If(searchIsOpen, {
+              true: SearchInputContent,
+              false: ContainerButtonContent,
+            })}
+          </Container>
+          <ul
+            ref={ulRef}
+            class={classes.goalItemList}
+            inert={searchIsOpen}
+            style={ulStyles}
+          >
+            {For(goals, (goal, index) => (
+              <GoalItem {...goal} index={index} onRemove={removeGoal} />
+            ))}
+          </ul>
+          <button
+            type="button"
+            class={classes.submitBtn}
+            inert={searchIsOpen}
+            onClick={handleSubmit}
+          >
+            <InlinedIcon
+              Icon={DoubleCheckIcon}
+              class={classes.submitBtnIcon}
+              title="Submit Goals"
+              color="white"
+            />
+          </button>
         </ElasticView>
       )}
     />

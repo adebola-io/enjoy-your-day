@@ -232,3 +232,10 @@ export const getRandomMorningTime = () => {
 export function selectAtRandom<T>(array: T[]) {
   return array[Math.floor(Math.random() * array.length)];
 }
+
+export async function elementAnimationsFinished(element: Element | null) {
+  if (!element) return;
+  await new Promise((r) => setTimeout(r, 0));
+  const animations = element.getAnimations();
+  return Promise.all(animations.map((a) => a.finished));
+}

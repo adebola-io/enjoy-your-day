@@ -7,6 +7,7 @@ import { Cell } from '@adbl/cells';
 import { For } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './select-categories.module.css';
+import { elementAnimationsFinished } from '#/library/utils';
 
 export default async function SelectCategories() {
   const router = useRouter();
@@ -23,10 +24,7 @@ export default async function SelectCategories() {
   const goToInvolvement = async () => {
     if (!formRef.value) return;
     formRef.value.style.opacity = '0';
-    const animationPromises = formRef.value
-      .getAnimations()
-      .map((animation) => animation.finished);
-    await Promise.all(animationPromises);
+    await elementAnimationsFinished(formRef.value);
     await router.navigate('/onboarding/involvement');
   };
 

@@ -56,6 +56,7 @@
         var(--apparent-index) * var(--default-duration) * 0.75
       );
       grid-area: 1 / calc(var(--apparent-index) + 1);
+      scroll-snap-align: start;
     }
   }
 
@@ -76,6 +77,9 @@
     gap: calc(var(--side-padding) * 0.25);
     translate: 0;
     grid-area: 2 /1;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    scroll-padding-inline-start: var(--side-padding);
   }
 }
 

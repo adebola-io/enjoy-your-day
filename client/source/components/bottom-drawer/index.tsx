@@ -5,7 +5,6 @@ import { Teleport } from '@adbl/unfinished/teleport';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { type RouteChangeEvent, useRouter } from '@adbl/unfinished/router';
 import classes from './bottom-drawer.module.css';
-import XIcon from '../icons/x';
 
 type DialogProps = Omit<JSX.IntrinsicElements['div'], 'children'>;
 interface BottomDrawerProps extends DialogProps {

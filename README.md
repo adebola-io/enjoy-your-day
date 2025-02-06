@@ -1,4 +1,4 @@
-> **THIS PROJECT IS 50% COMPLETE.**
+> **THIS PROJECT IS 60% COMPLETE.**
 
 <p align="center">
     <img src="assets/icon-gray.svg" width="128" height="128" alt="Icon of Enjoy Your Day, a square white outline with dot-circled eyes and a smiley face, slightly tilted to the right.">

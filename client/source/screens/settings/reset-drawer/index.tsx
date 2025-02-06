@@ -2,7 +2,11 @@ import { BottomDrawer } from '#/components/bottom-drawer';
 import { Button } from '#/components/button';
 import WarningIcon from '#/components/icons/warning';
 import { resetAllData } from '#/data/state';
-import { defer, removeRouteQuery, useRouteQuery } from '#/library/utils';
+import {
+  elementAnimationsFinished,
+  removeRouteQuery,
+  useRouteQuery,
+} from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import classes from './reset.module.css';
 
@@ -13,13 +17,10 @@ export default function ResetDataDrawer() {
 
   const reset = async () => {
     await goBack();
-    defer(async () => {
-      if (!drawerRef.value) return;
-      await Promise.all(drawerRef.value.getAnimations().map((a) => a.finished));
-      await new Promise((r) => setTimeout(r, 200));
-      await resetAllData();
-      window.location.reload();
-    });
+    await elementAnimationsFinished(drawerRef.value);
+    await new Promise((r) => setTimeout(r, 200));
+    await resetAllData();
+    window.location.reload();
   };
 
   return (

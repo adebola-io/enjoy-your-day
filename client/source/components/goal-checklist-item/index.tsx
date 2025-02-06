@@ -1,4 +1,4 @@
-import type { GoalState } from '#/data/entities';
+import type { GoalState, GoalStateSerialized } from '#/data/entities';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { GoalItem } from '../goal-item';
 import { vibrate } from '#/library/utils';
@@ -6,7 +6,7 @@ import classes from './goal-checklist-item.module.css';
 import { Temporal } from 'temporal-polyfill';
 
 export interface GoalChecklistItemProps {
-  goalState: GoalState;
+  goalState: GoalState | GoalStateSerialized;
   index: Cell<number>;
   listChanged: SourceCell<boolean>;
   onCheck?: () => void;

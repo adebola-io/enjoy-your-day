@@ -1,6 +1,6 @@
 import { categories } from '../../data/categories';
 import { LATEST_DATA_CHUNK } from '../../data/constants';
-import type { GoalState, GoalStateSerialized } from '../../data/entities';
+import type { GoalStateSerialized } from '../../data/entities';
 import { Temporal } from 'temporal-polyfill';
 import { lastLoadedChunk } from '../../data/state';
 import dbWorkerUrl from './db.worker?worker&url';
@@ -116,7 +116,7 @@ export async function saveGoalState(
   return response;
 }
 
-export async function getInsightsOverview(todaysData: GoalState[]) {
+export async function getInsightsOverview(todaysData: GoalStateSerialized[]) {
   return toDbWorker({ type: 'insights.overview', todaysData });
 }
 

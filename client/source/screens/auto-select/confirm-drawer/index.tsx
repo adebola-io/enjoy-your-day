@@ -3,11 +3,7 @@ import { PadLockIcon } from '#/components/icons/padlock';
 import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
 import { dailyGoals, dailyGoalsDateStamp } from '#/data/state';
-import type {
-  GoalProps,
-  GoalState,
-  GoalStateSerialized,
-} from '#/data/entities';
+import type { GoalProps, GoalStateSerialized } from '#/data/entities';
 import {
   getResourceState,
   NoOp,

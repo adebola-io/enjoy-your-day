@@ -45,7 +45,7 @@ export namespace Db {
     };
     export type GetInsightsOverview = {
       type: 'insights.overview';
-      todaysData: GoalState[];
+      todaysData: GoalStateSerialized[];
     };
     export type GetInsightsHistory = {
       type: 'insights.history';

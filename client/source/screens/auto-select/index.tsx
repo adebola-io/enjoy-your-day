@@ -44,7 +44,7 @@ function AutoSelectSlideContent() {
   const state = getResourceState(resource);
 
   observer.onConnected(containerRef, async () => {
-    if (currentStage.value != 'edit') {
+    if (currentStage.value !== 'edit') {
       await addRouteQuery('cards-view');
       await resource.run({
         categories: selectedCategories.value,

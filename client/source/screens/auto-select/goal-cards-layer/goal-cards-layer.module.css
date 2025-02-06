@@ -55,6 +55,27 @@
       animation-duration: calc(var(--default-duration) * 2.5);
       scroll-snap-align: start;
       grid-area: 1 / calc(var(--index) + 1);
+
+      @supports (animation-timeline: scroll(self inline)) {
+        --displacement-from-scroll-focus: calc(
+          var(--scroll-focus-index) - var(--index)
+        );
+        --displacement-from-scroll-focus-squared: calc(
+          var(--displacement-from-scroll-focus) *
+            var(--displacement-from-scroll-focus)
+        );
+        --lower-scale-bounds: 0.8;
+
+        --nearity: calc(
+          max(
+            var(--lower-scale-bounds),
+            var(--displacement-from-scroll-focus-squared) / var(--total-squared)
+          )
+        );
+        scale: calc(
+          max(var(--nearity), 1 - var(--displacement-from-scroll-focus-squared))
+        );
+      }
     }
   }
 
@@ -81,10 +102,45 @@
 
     &::after {
       display: block;
-      width: calc(var(--side-padding) * 4);
+      width: var(--goal-card-width);
       content: '';
       grid-area: 1 / calc(var(--total) + 1);
     }
+
+    @supports (animation-timeline: scroll(self inline)) {
+      --scroll-focus-index: 0;
+      --total-squared: calc(var(--total) * var(--total));
+      animation-name: change-scroll-focus;
+      animation-timeline: scroll(self inline);
+      gap: 0;
+    }
+  }
+}
+
+@property --scroll-focus-index {
+  initial-value: 0;
+  syntax: '<number>';
+  inherits: true;
+}
+
+@keyframes change-scroll-focus {
+  0% {
+    --scroll-focus-index: 0;
+  }
+  20% {
+    --scroll-focus-index: 1;
+  }
+  40% {
+    --scroll-focus-index: 2;
+  }
+  60% {
+    --scroll-focus-index: 3;
+  }
+  80% {
+    --scroll-focus-index: 4;
+  }
+  100% {
+    --scroll-focus-index: 5;
   }
 }
 

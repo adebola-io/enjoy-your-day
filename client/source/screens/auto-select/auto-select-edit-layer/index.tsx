@@ -112,6 +112,7 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
 
   return (
     <ViewLayer
+      class={classes.viewLayer}
       open={useRouteQuery('stage', 'edit')}
       content={() => (
         <ElasticView

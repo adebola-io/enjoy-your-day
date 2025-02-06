@@ -32,7 +32,7 @@
   grid-area: 1 / 1;
   translate: 0 calc(var(--goal-card-border-radius) * 1.5);
 
-  & > * {
+  & > li {
     --starting-fade-position-y: 20%;
     --apparent-index: calc(var(--total) - var(--index));
     position: sticky;
@@ -50,13 +50,11 @@
       top: unset;
       align-self: center;
       margin-block-end: unset;
+      scroll-behavior: smooth;
       animation-name: var(--fade-in-from-left);
-      animation-duration: calc(var(--default-duration) * 1.5);
-      animation-delay: calc(
-        var(--apparent-index) * var(--default-duration) * 0.75
-      );
-      grid-area: 1 / calc(var(--apparent-index) + 1);
+      animation-duration: calc(var(--default-duration) * 2.5);
       scroll-snap-align: start;
+      grid-area: 1 / calc(var(--index) + 1);
     }
   }
 
@@ -71,7 +69,6 @@
     overflow-y: hidden;
     width: unset;
     padding-inline-start: var(--side-padding);
-    padding-inline-end: calc(var(--side-padding) * 6);
     grid-template-columns: repeat(var(--total), auto);
     grid-template-rows: 1fr;
     gap: calc(var(--side-padding) * 0.25);
@@ -80,7 +77,50 @@
     scroll-snap-type: x mandatory;
     scroll-snap-stop: always;
     scroll-padding-inline-start: var(--side-padding);
+    overscroll-behavior: none;
+
+    &::after {
+      display: block;
+      width: calc(var(--side-padding) * 4);
+      content: '';
+      grid-area: 1 / calc(var(--total) + 1);
+    }
   }
+}
+
+.previousButton,
+.nextButton {
+  position: sticky;
+  display: grid;
+  align-self: center;
+  width: min(70px, 20dvh);
+  height: min(70px, 20dvh);
+  border: none;
+  border-radius: 50%;
+  color: var(--space-cadet-500);
+  background-color: white;
+  box-shadow: 0px 0px 8px 1px #1b1b3a;
+  place-items: center;
+  grid-area: 1 / 1;
+
+  &:active {
+    filter: brightness(0.9);
+    scale: 0.98;
+  }
+
+  svg {
+    width: 40%;
+    height: 40%;
+  }
+}
+
+.previousButton {
+  left: 0;
+}
+
+.nextButton {
+  left: calc(100dvw - var(--side-padding) * 2 - min(70px, 20dvh));
+  rotate: 180deg;
 }
 
 .buttonRow {

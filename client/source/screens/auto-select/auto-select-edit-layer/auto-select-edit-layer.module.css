@@ -1,3 +1,7 @@
+.viewLayer {
+  overscroll-behavior: unset;
+}
+
 .container {
   --toggle-search-duration: var(--default-duration);
   display: grid;

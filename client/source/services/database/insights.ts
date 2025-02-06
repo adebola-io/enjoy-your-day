@@ -251,8 +251,13 @@ export const insightsHistory: InsightsHistoryHandler = async (data) => {
     const categories = new Set<string>();
 
     for (const goalState of goalStates) {
-      for (const category of goalState.goal.categories) {
-        categories.add(category);
+      try {
+        for (const category of goalState.goal.categories) {
+          categories.add(category);
+        }
+      } catch (e) {
+        console.error(e);
+        console.log(goalState.goal.categories);
       }
     }
 

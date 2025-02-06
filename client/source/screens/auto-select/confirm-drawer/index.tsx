@@ -19,7 +19,13 @@ import { triggerNotification } from '#/services/notifications';
 
 function transformToGoalState(goal: GoalProps): GoalState {
   const dateAdded = new Date(goal.dateAdded).toISOString();
-  return { goal: { ...goal, dateAdded }, state: 'scheduled', updatedAt: null };
+  // Coercion is necessary because the category set cannot be serialized
+  // to JSON.
+  return {
+    goal: { ...goal, categories: Array.from(goal.categories), dateAdded },
+    state: 'scheduled',
+    updatedAt: null,
+  } as unknown as GoalState;
 }
 
 async function saveGoalsForToday(goals: GoalProps[]) {

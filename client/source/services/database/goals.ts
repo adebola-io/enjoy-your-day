@@ -226,7 +226,12 @@ export const recordGoalState: RecordGoalsHandler = async (data) => {
   await dexie.history.add({
     uuid: crypto.randomUUID(),
     date: data.message.date,
-    goalStates,
+    goalStates: goalStates.map((state) => {
+      return {
+        ...state,
+        goal: { ...state.goal, categories: new Set(state.goal.categories) },
+      };
+    }),
   });
   return true;
 };

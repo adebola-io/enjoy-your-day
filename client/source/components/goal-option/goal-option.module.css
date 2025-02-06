@@ -38,6 +38,7 @@
 .text {
   display: inline-block;
   overflow: hidden;
+  align-self: center;
   width: calc(100%);
   text-align: start;
   text-transform: lowercase;

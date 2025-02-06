@@ -10,6 +10,12 @@
   place-items: center;
   column-gap: 10px;
   grid-template-rows: 1fr auto auto 0.5fr;
+
+  @media (orientation: landscape) {
+    --drawer-visible-height: min-content;
+    padding-block: var(--block-padding);
+    padding-inline: calc(var(--side-padding) * 0.5);
+  }
 }
 
 .overlay {
@@ -52,9 +58,17 @@
   max-width: 60dvw;
   padding-top: calc(var(--block-padding) * 0.5);
   grid-area: 3 / 1 / 4 / 3;
+
+  @media (orientation: landscape) {
+    max-width: 350px;
+  }
 }
 
 .button {
   align-self: end;
   grid-area: 4 / 1 / 5 / 3;
+
+  @media (orientation: landscape) {
+    margin-block-start: var(--block-padding);
+  }
 }

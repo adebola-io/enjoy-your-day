@@ -1,3 +1,7 @@
+.slide {
+  overscroll-behavior-y: unset;
+}
+
 .pendingContainer {
   display: grid;
   width: 100%;

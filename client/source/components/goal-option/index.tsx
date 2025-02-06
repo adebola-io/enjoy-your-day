@@ -9,9 +9,7 @@ export interface GoalOptionProps
 
 export function GoalOption(props: GoalOptionProps) {
   const { icon, instruction, onSelect } = props;
-  const handleSelect = () => {
-    onSelect?.(props);
-  };
+  const handleSelect = () => onSelect?.(props);
 
   return (
     <li class={classes.container} onKeyDown={navigateVertically}>

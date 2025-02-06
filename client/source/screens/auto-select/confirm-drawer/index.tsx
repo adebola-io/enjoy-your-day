@@ -3,7 +3,7 @@ import { PadLockIcon } from '#/components/icons/padlock';
 import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
 import { dailyGoals, dailyGoalsDateStamp } from '#/data/state';
-import type { GoalProps, GoalState } from '#/data/entities';
+import type { GoalProps, GoalStateSerialized } from '#/data/entities';
 import {
   getResourceState,
   NoOp,
@@ -17,9 +17,13 @@ import { Temporal } from 'temporal-polyfill';
 import classes from './confirm-drawer.module.css';
 import { triggerNotification } from '#/services/notifications';
 
-function transformToGoalState(goal: GoalProps): GoalState {
+function transformToGoalState(goal: GoalProps): GoalStateSerialized {
   const dateAdded = new Date(goal.dateAdded).toISOString();
-  return { goal: { ...goal, dateAdded }, state: 'scheduled', updatedAt: null };
+  return {
+    goal: { ...goal, categories: Array.from(goal.categories), dateAdded },
+    state: 'scheduled',
+    updatedAt: null,
+  };
 }
 
 async function saveGoalsForToday(goals: GoalProps[]) {

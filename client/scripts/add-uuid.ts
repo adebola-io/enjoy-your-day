@@ -4,7 +4,7 @@ import type { GoalProps } from '../source/data/entities';
 import fs from 'node:fs';
 import { assert } from 'node:console';
 
-const OLDEST_UNASSIGNED_CHUNK = 22;
+const OLDEST_UNASSIGNED_CHUNK = 23;
 
 /**
  * Assigns a unique UUID to each goal in the provided array.
@@ -14,7 +14,7 @@ const OLDEST_UNASSIGNED_CHUNK = 22;
 function assignGoalUuids(goals: GoalProps[], meta: string) {
   assert(
     goals.length === 30,
-    'There must be 30 goals per chunk. Found: ' + goals.length + ' in ' + meta
+    `There must be 30 goals per chunk. Found: ${goals.length} in ${meta}`
   );
   for (const goal of goals) {
     goal.uuid = crypto.randomUUID();

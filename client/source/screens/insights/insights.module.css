@@ -58,7 +58,9 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
     @media (orientation: landscape) {
+      overflow: hidden;
       height: 100dvh;
     }
 

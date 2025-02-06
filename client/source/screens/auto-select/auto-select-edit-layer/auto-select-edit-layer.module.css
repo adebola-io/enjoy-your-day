@@ -1,3 +1,7 @@
+.viewLayer {
+  overscroll-behavior: unset;
+}
+
 .container {
   --toggle-search-duration: var(--default-duration);
   display: grid;
@@ -17,20 +21,6 @@
   }
 
   &[data-search-is-open] {
-    &:not([data-no-goals-added]) {
-      .goalItemList,
-      .buttonAndSearchContainer {
-        translate: 0 -6.5em;
-      }
-
-      .title,
-      .subtitle {
-        opacity: 0;
-        pointer-events: none;
-        scale: 0.9;
-      }
-    }
-
     .buttonAndSearchContainer {
       font-weight: normal;
       grid-template-columns: 1fr;
@@ -54,6 +44,9 @@
 .backButton {
   margin-inline-start: var(--side-padding);
   grid-area: 1 / 1;
+  @media (orientation: landscape) {
+    margin-inline-start: calc(var(--side-padding) * 2);
+  }
 }
 
 .title {
@@ -80,6 +73,9 @@
   transition-duration: var(--toggle-search-duration);
   transition-property: opacity, scale;
   padding-inline: var(--side-padding);
+  @media (orientation: landscape) {
+    padding-inline: calc(var(--side-padding) * 2);
+  }
 }
 
 .goalItemList {
@@ -114,18 +110,32 @@
 
 .buttonAndSearchContainer {
   --starting-fade-position-y: 20%;
-  position: relative;
-  z-index: 1;
   display: grid;
   border-radius: 40px;
   transition-duration: var(--toggle-search-duration);
   transition-property: opacity, translate;
   font-weight: bold;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   margin-inline: var(--side-padding);
-  grid-template-columns: 40px 1fr;
   padding-inline: 15px 20px;
-  place-items: start;
+
+  @media (orientation: landscape) {
+    margin-inline: calc(var(--side-padding) * 2);
+  }
+}
+
+.containerButtonContent {
+  display: grid;
+  width: 100%;
   gap: 8px;
+  grid-template-rows: 1fr;
+  grid-template-columns: 40px 1fr;
+  place-items: start;
+
+  & > * {
+    align-self: center;
+  }
 }
 
 .buttonAndSearchContainerIcon {
@@ -147,13 +157,13 @@
 
 .autoComplete {
   /* Container Block paddings + text size + border-widths + gap. */
-  top: calc(min(6dvh, 18px) * 2 + var(--base-font-size) + 8px + 10px);
+  top: calc(min(6dvh, 18px) * 2 + 10px);
   width: 100%;
   margin-inline: 0px;
 }
 
 .searchForm {
-  display: contents;
+  width: 100%;
 }
 
 .submitBtn {
@@ -176,6 +186,10 @@
 
   &:active {
     scale: 0.8;
+  }
+
+  @media (orientation: landscape) {
+    right: calc(var(--side-padding) * 2);
   }
 }
 

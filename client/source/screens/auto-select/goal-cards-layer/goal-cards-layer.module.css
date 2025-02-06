@@ -32,22 +32,151 @@
   grid-area: 1 / 1;
   translate: 0 calc(var(--goal-card-border-radius) * 1.5);
 
-  & > * {
+  & > li {
     --starting-fade-position-y: 20%;
+    --apparent-index: calc(var(--total) - var(--index));
     position: sticky;
     top: calc((var(--index) + 1) * var(--goal-card-height) * 0.1);
     margin-block-end: -20dvh;
     animation-name: var(--fade-in-from-bottom);
     animation-duration: calc(var(--default-duration) * 1.25);
     animation-delay: calc(
-      (var(--total) - var(--index)) * var(--default-duration) * 0.15
+      var(--apparent-index) * var(--default-duration) * 0.15
     );
     animation-fill-mode: backwards;
+
+    @media (orientation: landscape) {
+      --starting-fade-position-x: -30%;
+      top: unset;
+      align-self: center;
+      margin-block-end: unset;
+      scroll-behavior: smooth;
+      animation-name: var(--fade-in-from-left);
+      animation-duration: calc(var(--default-duration) * 2.5);
+      scroll-snap-align: start;
+      grid-area: 1 / calc(var(--index) + 1);
+
+      @supports (animation-timeline: scroll(self inline)) {
+        --displacement-from-scroll-focus: calc(
+          var(--scroll-focus-index) - var(--index)
+        );
+        --displacement-from-scroll-focus-squared: calc(
+          var(--displacement-from-scroll-focus) *
+            var(--displacement-from-scroll-focus)
+        );
+        --lower-scale-bounds: 0.8;
+
+        --nearity: calc(
+          max(
+            var(--lower-scale-bounds),
+            var(--displacement-from-scroll-focus-squared) / var(--total-squared)
+          )
+        );
+        scale: calc(
+          max(var(--nearity), 1 - var(--displacement-from-scroll-focus-squared))
+        );
+      }
+    }
   }
 
   &[data-dialog-is-open] {
     scale: var(--drawer-background-scale);
   }
+
+  @media (orientation: landscape) {
+    --goal-card-width: clamp(100px, 35dvw, 450px);
+    --goal-card-height: clamp(100px, 35dvw, 450px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: unset;
+    padding-inline-start: var(--side-padding);
+    grid-template-columns: repeat(var(--total), auto);
+    grid-template-rows: 1fr;
+    gap: calc(var(--side-padding) * 0.25);
+    translate: 0;
+    grid-area: 2 /1;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    scroll-padding-inline-start: var(--side-padding);
+    overscroll-behavior: none;
+
+    &::after {
+      display: block;
+      width: var(--goal-card-width);
+      content: '';
+      grid-area: 1 / calc(var(--total) + 1);
+    }
+
+    @supports (animation-timeline: scroll(self inline)) {
+      --scroll-focus-index: 0;
+      --total-squared: calc(var(--total) * var(--total));
+      animation-name: change-scroll-focus;
+      animation-timeline: scroll(self inline);
+      gap: 0;
+    }
+  }
+}
+
+@property --scroll-focus-index {
+  initial-value: 0;
+  syntax: '<number>';
+  inherits: true;
+}
+
+@keyframes change-scroll-focus {
+  0% {
+    --scroll-focus-index: 0;
+  }
+  20% {
+    --scroll-focus-index: 1;
+  }
+  40% {
+    --scroll-focus-index: 2;
+  }
+  60% {
+    --scroll-focus-index: 3;
+  }
+  80% {
+    --scroll-focus-index: 4;
+  }
+  100% {
+    --scroll-focus-index: 5;
+  }
+}
+
+.previousButton,
+.nextButton {
+  position: sticky;
+  display: grid;
+  align-self: center;
+  width: min(70px, 20dvh);
+  height: min(70px, 20dvh);
+  border: none;
+  border-radius: 50%;
+  color: var(--space-cadet-500);
+  background-color: white;
+  box-shadow: 0px 0px 8px 1px #1b1b3a;
+  place-items: center;
+  grid-area: 1 / 1;
+
+  &:active {
+    filter: brightness(0.9);
+    scale: 0.98;
+  }
+
+  svg {
+    width: 40%;
+    height: 40%;
+  }
+}
+
+.previousButton {
+  left: 0;
+}
+
+.nextButton {
+  left: calc(100dvw - var(--side-padding) * 2 - min(70px, 20dvh));
+  rotate: 180deg;
 }
 
 .buttonRow {
@@ -66,8 +195,11 @@
   grid-template-columns: auto auto;
   gap: var(--gap);
   justify-self: center;
-  grid-row: 1;
-  grid-column: 1;
+  grid-area: 1 /1;
+
+  @media (orientation: landscape) {
+    grid-area: 3 / 1;
+  }
 }
 
 .btn {
@@ -76,6 +208,14 @@
   isolation: isolate;
   grid-auto-flow: column;
   gap: 6px;
+}
+
+.perfectBtn {
+  justify-self: end;
+}
+
+.editBtn {
+  justify-self: start;
 }
 
 .btnIcon {

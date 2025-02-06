@@ -4,6 +4,7 @@ import { Button } from '#/components/button';
 import { username } from '#/data/state';
 import { vibrate } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
+import { MAX_USERNAME_LENGTH } from '#/data/constants';
 import classes from './onboarding.module.css';
 
 export default function EnterName() {
@@ -21,7 +22,12 @@ export default function EnterName() {
       <p class={classes.nameFormSubHeading}>
         What should I call you to make this more personal?
       </p>
-      <Input required class={classes.nameFormInput} model={username} />
+      <Input
+        required
+        maxlength={MAX_USERNAME_LENGTH}
+        class={classes.nameFormInput}
+        model={username}
+      />
       <Button type="submit" class={classes.nameSubmitButton} vibrate>
         Continue
       </Button>

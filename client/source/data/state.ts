@@ -1,7 +1,7 @@
 import { Cell } from '@adbl/cells';
 import { useLiveDate } from '@adbl/dom-cells/useDate';
 import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
-import type { GoalState } from '#/data/entities';
+import type { GoalStateSerialized } from '#/data/entities';
 import { Temporal } from 'temporal-polyfill';
 import {
   resetDbData,
@@ -73,7 +73,7 @@ export const appLoadingState = useLocalStorage<AppSetupState>(
   LOCALSTORAGE_KEYS.appLoadingState,
   'setup'
 );
-export const dailyGoals = useLocalStorage<GoalState[]>(
+export const dailyGoals = useLocalStorage<GoalStateSerialized[]>(
   LOCALSTORAGE_KEYS.goalsForTheDay,
   []
 );

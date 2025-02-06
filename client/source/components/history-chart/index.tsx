@@ -6,6 +6,7 @@ import { Temporal } from 'temporal-polyfill';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { isDark, todayStr } from '#/data/state';
 import classes from './history-chart.module.css';
+import { useMatchMedia } from '#/library/window';
 
 export interface HistoryChartProps {
   picked: SourceCell<HistoryChartItem>;
@@ -24,6 +25,8 @@ export function HistoryChart(props: HistoryChartProps) {
     onRequestOlder,
   } = props;
   const observer = useObserver();
+  // Matched in the parent so it doesn't have to recompute for every chart item.
+  const isLandscape = useMatchMedia('(orientation: landscape)');
   const containerRef = Cell.source<HTMLElement | null>(null);
 
   const pickedIndex = Cell.source(0); // Invariant: will always start on today.
@@ -103,6 +106,7 @@ export function HistoryChart(props: HistoryChartProps) {
           index={index}
           picked={picked}
           pickedIndex={pickedIndex}
+          isLandscape={isLandscape}
         />
       ))}
     </ElasticView>
@@ -114,10 +118,11 @@ interface ChartItemProps {
   index: Cell<number>;
   picked: Cell<HistoryChartItem | null>;
   pickedIndex: SourceCell<number>;
+  isLandscape: Cell<boolean>;
 }
 
 function ChartItem(props: ChartItemProps) {
-  const { item, index, picked, pickedIndex } = props;
+  const { item, index, picked, pickedIndex, isLandscape } = props;
   const { total: totalCount } = item;
   const { length: completedCount } = item.completed;
   const locale = navigator.languages[0];
@@ -138,6 +143,13 @@ function ChartItem(props: ChartItemProps) {
   isSelected.listen((isSelected) => {
     if (!isSelected) return;
     pickedIndex.value = index.value;
+    if (isLandscape.value && buttonRef.value) {
+      buttonRef.value.scrollIntoView({
+        inline: 'center',
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
   });
 
   return (

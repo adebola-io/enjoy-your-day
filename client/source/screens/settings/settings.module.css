@@ -10,5 +10,9 @@
 
   body:is([data-drawer-inner-focus], [data-nested-drawer-is-open]) & {
     scale: calc(var(--drawer-background-scale) * 0.9);
+
+    @media (orientation: landscape) {
+      scale: 1;
+    }
   }
 }

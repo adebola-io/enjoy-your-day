@@ -2,6 +2,7 @@ import { Cell } from '@adbl/cells';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { If } from '@adbl/unfinished';
 import { defer } from '#/library/utils';
+import { updatePillPositions } from '../pill-radio-list';
 import classes from './view-layer.module.css';
 
 type DivProps = JSX.IntrinsicElements['div'];
@@ -24,11 +25,7 @@ export function ViewLayer(props: ViewLayerProps) {
   const isNotOpen = Cell.derived(() => !isOpen.value);
   const contentLoaded = Cell.source(isOpen.value);
 
-  isOpen.listen((slideIsOpen) => {
-    if (slideIsOpen) {
-      contentLoaded.value = true;
-      return;
-    }
+  const afterLayerTransition = (callback: () => void) => {
     defer(async () => {
       if (!ref.value) return;
       await Promise.all(
@@ -37,7 +34,21 @@ export function ViewLayer(props: ViewLayerProps) {
           .filter((a) => a instanceof CSSTransition)
           .map((a) => a.finished)
       );
+
+      callback();
+    });
+  };
+
+  isOpen.listen((slideIsOpen) => {
+    if (slideIsOpen) {
+      contentLoaded.value = true;
+      afterLayerTransition(updatePillPositions);
+      return;
+    }
+
+    afterLayerTransition(() => {
       contentLoaded.value = false;
+      updatePillPositions();
     });
   });
 

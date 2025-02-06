@@ -15,9 +15,11 @@ import { dailyGoals } from '#/data/state';
 import Overview from './overview';
 import History from './history';
 import classes from './insights.module.css';
+import { useMatchMedia } from '#/library/window';
 
 export default function Insights() {
   const observer = useObserver();
+  const isLandscape = useMatchMedia('(orientation: landscape)');
   const resource = Cell.async(getInsightsOverview);
   const containerRef = Cell.source<HTMLDivElement | null>(null);
 
@@ -43,9 +45,10 @@ export default function Insights() {
       const container = containerRef.value;
       const { scrollTop: top, scrollWidth } = container;
       const left = name === 'overview' ? 0 : scrollWidth / 2;
+      const behavior = isLandscape.value ? 'instant' : 'smooth';
       // Im using scrollTo() on the container because scrollIntoView()
       // for each tab scrolls vertically, regardless of the block option set.
-      container.scrollTo({ left, top, behavior: 'smooth' });
+      container.scrollTo({ left, top, behavior });
     };
 
     observer.onConnected(containerRef, (div) => {

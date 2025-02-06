@@ -23,8 +23,8 @@
   }
 
   @media (orientation: landscape) {
-    width: calc(100% - var(--side-padding) * 2);
-    padding-inline: var(--side-padding);
+    width: calc(100% - var(--side-padding) * 3);
+    padding-inline: calc(var(--side-padding) * 1.5);
   }
 }
 

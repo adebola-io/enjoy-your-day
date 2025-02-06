@@ -5,11 +5,6 @@ export function getBrowserVenderName(): BrowserVendorName {
   throw new Error('Unimplemented');
 }
 
-export function isRunningAsStandaloneApp() {
-  const query = matchMedia('(display-mode: standalone)');
-  return query.matches;
-}
-
 export async function isMaybeMobileOrSafari() {
   if ('userAgentData' in navigator) {
     try {

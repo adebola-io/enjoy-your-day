@@ -31,6 +31,12 @@
   -webkit-font-smoothing: antialiased;
 }
 
+@media (orientation: landscape) {
+  #start-screen {
+    grid-template-rows: auto 0.5fr auto auto 0.5fr;
+  }
+}
+
 @media (max-height: 450px) {
   #start-screen .start-screen__illustration {
     display: none;
@@ -283,6 +289,12 @@
   place-content: center;
   place-items: center;
   padding-block: 18px;
+}
+
+@media (orientation: landscape) {
+  #start-screen .start-screen__start-button {
+    max-width: 400px;
+  }
 }
 
 #start-screen .start-screen__start-button:active {

@@ -145,20 +145,68 @@ export const recommendGoals: GenerateGoalsForTodayHandler = async (data) => {
   return finalResults.slice(0, 6);
 };
 
+const segmenter = new Intl.Segmenter('en-US', { granularity: 'word' });
+const segment = (input: string) => {
+  return [...segmenter.segment(input)]
+    .filter((segment) => segment.isWordLike)
+    .map((s) => s.segment);
+};
+
 export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
   const { query, addedUuids } = data.message;
-  const queryLower = query.trim().toLowerCase();
+  const goals = await dexie.goals.toArray();
 
-  return await dexie.goals
-    .filter(
-      (g) =>
-        g.title.toLowerCase().includes(queryLower) ||
-        g.instruction.toLowerCase().includes(queryLower) ||
-        g.categories.has(queryLower)
-    )
-    .filter((g) => !addedUuids.includes(g.uuid))
-    .limit(5)
-    .toArray();
+  const queryLower = query.trim().toLowerCase();
+  const queryWords = segment(queryLower);
+
+  const patternMatchResults = [];
+  const instructionWordsMatchResults = [];
+  const titleWordsMatchResults = [];
+
+  for (const goal of goals) {
+    if (addedUuids.includes(goal.uuid)) continue;
+
+    const goalTitleLower = goal.title.toLowerCase();
+    const goalInstructionLower = goal.instruction.toLowerCase();
+
+    const hasPatternMatch =
+      goalTitleLower.includes(queryLower) ||
+      goalInstructionLower.includes(queryLower) ||
+      goal.categories.has(queryLower);
+
+    if (hasPatternMatch) {
+      patternMatchResults.push(goal);
+      if (patternMatchResults.length === 5) break;
+      continue;
+    }
+
+    const instructionWords = segment(goalInstructionLower);
+    const hasInstructionWordMatch = queryWords.every((word) =>
+      instructionWords.some((iWord) => iWord.includes(word))
+    );
+    if (hasInstructionWordMatch) {
+      instructionWordsMatchResults.push(goal);
+      if (instructionWordsMatchResults.length === 5) break;
+      continue;
+    }
+
+    const titleWords = segment(goalTitleLower);
+    const hasTitleWordsMatch = queryWords.every((word) =>
+      titleWords.some((tWord) => tWord.includes(word))
+    );
+    if (hasTitleWordsMatch) {
+      titleWordsMatchResults.push(goal);
+      if (titleWordsMatchResults.length === 5) break;
+    }
+  }
+
+  const finalResults = [
+    ...patternMatchResults,
+    ...instructionWordsMatchResults,
+    ...titleWordsMatchResults,
+  ].slice(0, 5);
+
+  return finalResults;
 };
 
 export const recordGoalState: RecordGoalsHandler = async (data) => {
@@ -178,7 +226,12 @@ export const recordGoalState: RecordGoalsHandler = async (data) => {
   await dexie.history.add({
     uuid: crypto.randomUUID(),
     date: data.message.date,
-    goalStates,
+    goalStates: goalStates.map((state) => {
+      return {
+        ...state,
+        goal: { ...state.goal, categories: new Set(state.goal.categories) },
+      };
+    }),
   });
   return true;
 };

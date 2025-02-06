@@ -179,6 +179,15 @@
   &.low-end {
     --default-duration: 0ms;
   }
+
+  @media (orientation: landscape) {
+    --drawer-background-scale: 1;
+    --drawer-background-scale-pending: 1;
+  }
+
+  @media (orientation: landscape) {
+    --slide-duration: calc(var(--default-duration) * 1.85);
+  }
 }
 
 @media (prefers-reduced-motion) {

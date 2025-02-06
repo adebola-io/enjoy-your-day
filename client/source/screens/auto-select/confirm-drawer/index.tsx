@@ -3,7 +3,11 @@ import { PadLockIcon } from '#/components/icons/padlock';
 import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
 import { dailyGoals, dailyGoalsDateStamp } from '#/data/state';
-import type { GoalProps, GoalState } from '#/data/entities';
+import type {
+  GoalProps,
+  GoalState,
+  GoalStateSerialized,
+} from '#/data/entities';
 import {
   getResourceState,
   NoOp,
@@ -17,15 +21,13 @@ import { Temporal } from 'temporal-polyfill';
 import classes from './confirm-drawer.module.css';
 import { triggerNotification } from '#/services/notifications';
 
-function transformToGoalState(goal: GoalProps): GoalState {
+function transformToGoalState(goal: GoalProps): GoalStateSerialized {
   const dateAdded = new Date(goal.dateAdded).toISOString();
-  // Coercion is necessary because the category set cannot be serialized
-  // to JSON.
   return {
     goal: { ...goal, categories: Array.from(goal.categories), dateAdded },
     state: 'scheduled',
     updatedAt: null,
-  } as unknown as GoalState;
+  };
 }
 
 async function saveGoalsForToday(goals: GoalProps[]) {

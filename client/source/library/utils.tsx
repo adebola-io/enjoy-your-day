@@ -22,6 +22,14 @@ export const appIsReady = new Promise<void>((resolve) => {
   appIsReadyResolver = resolve;
 });
 
+/**
+ * Sets the theme color meta tag and notifies the parent window if running in an iframe.
+ *
+ * @param color - The color to set for the theme meta tag.
+ * @returns A Promise that resolves when the operation is complete.
+ * @example
+ * await setMetaTheme('#ff0000');
+ */
 export async function setMetaTheme(color: string) {
   await appIsReady;
   document
@@ -34,6 +42,14 @@ export async function setMetaTheme(color: string) {
   }
 }
 
+/**
+ * Retrieves the current theme color meta tag value.
+ *
+ * @returns The content of the `meta[name="theme-color"]` tag, or `#ffffff` if the tag is not found.
+ * @example
+ * const themeColor = getMetaTheme();
+ * console.log(themeColor); // Outputs the current theme color
+ */
 export function getMetaTheme(): string {
   return (
     document
@@ -42,10 +58,25 @@ export function getMetaTheme(): string {
   );
 }
 
+/**
+ * Checks if the current window is running inside an iframe.
+ *
+ * @returns `true` if the current window is running inside an iframe, `false` otherwise.
+ * @example
+ * if (isRunningInIFrame()) {
+ *   console.log('Running inside an iframe');
+ * }
+ */
 export function isRunningInIFrame() {
   return parent && parent !== window;
 }
 
+/**
+ * Registers a CSS custom property for the safe area inset bottom on the current page, if running inside an iframe.
+ * This allows the page to adjust its layout to accommodate for any device-specific safe area insets.
+ * @example
+ * defineSafeArea();
+ */
 export function defineSafeArea() {
   if (!isRunningInIFrame()) return;
 
@@ -57,6 +88,20 @@ export function defineSafeArea() {
   });
 }
 
+/**
+ * Initializes a scroll-based animation timeline for the provided element.
+ *
+ * This function is a fallback for browsers that do not support the `ScrollTimeline` API.
+ * It adds a `scrollTimelineFallback` class to the element and attaches a scroll event listener
+ * that updates the current time of the first animation on the element based on the scroll position.
+ *
+ * @param element - The DOM element to attach the scroll-based animation timeline to.
+ * @param axis - The axis to use for the scroll-based animation timeline, either 'inline' or 'block'.
+ * @returns `true` if the fallback was successfully applied, `false` if the `ScrollTimeline` API is available.
+ * @example
+ * const element = document.querySelector('.my-element');
+ * initScrollTimeline(element, 'block');
+ */
 export function initScrollTimeline(
   element: Element,
   axis: 'inline' | 'block' = 'block'
@@ -74,12 +119,41 @@ export function initScrollTimeline(
   return true;
 }
 
+/**
+ * Vibrates the device using the provided vibration pattern.
+ *
+ * @param pattern - The vibration pattern to use, specified as an array of durations (in milliseconds) for the on and off phases of the vibration. If not provided, a default pattern of 3 milliseconds will be used.
+ * @example
+ * vibrate([200, 100, 200]);
+ */
 export function vibrate(pattern?: VibratePattern) {
   navigator.vibrate?.(pattern ?? 3);
 }
 
+/**
+ * A placeholder component that renders an empty fragment.
+ * @example
+ * <NoOp />
+ */
 export const NoOp = () => <></>;
 
+/**
+ * Derives the current state of an asynchronous resource.
+ *
+ * This function takes an `AsyncRequestAtoms` object, which represents the state of an asynchronous request,
+ * and returns a derived value that represents the overall state of the resource. The possible states are:
+ *
+ * - 'pending': The resource is currently being fetched.
+ * - 'error': An error occurred while fetching the resource.
+ * - 'success': The resource was fetched successfully.
+ * - 'inert': The resource is in an initial or unknown state.
+ *
+ * @param resource - The `AsyncRequestAtoms` object representing the asynchronous resource.
+ * @returns The current state of the resource as a string.
+ * @example
+ * const resourceState = getResourceState(myResource);
+ * console.log(resourceState); // Outputs the current state of the resource
+ */
 export function getResourceState<T, U>(resource: AsyncRequestAtoms<T, U>) {
   return Cell.derived(() => {
     return resource.pending.value
@@ -98,6 +172,9 @@ export function getResourceState<T, U>(resource: AsyncRequestAtoms<T, U>) {
  * @param hex - The hexadecimal color to lighten, in the format `#RRGGBB` or `#RGB`.
  * @param amount - The amount to lighten the color, between 0 and 1. A value of 0 will return the original color, while a value of 1 will return a fully white color.
  * @returns The lightened hexadecimal color in the format `#RRGGBB`.
+ * @example
+ * const lightenedColor = lightenHexColor('#ff0000', 0.5);
+ * console.log(lightenedColor); // Outputs the lightened color
  */
 export function lightenHexColor(hexCode: string, amount = 0.5) {
   if (
@@ -132,10 +209,28 @@ export function lightenHexColor(hexCode: string, amount = 0.5) {
   return newHex;
 }
 
+/**
+ * Defers the execution of the provided callback function to the next available event loop tick.
+ *
+ * @param callback - The function to be executed.
+ * @example
+ * defer(() => {
+ *   console.log('This will run in the next event loop tick');
+ * });
+ */
 export function defer(callback: () => void) {
   setTimeout(callback, 0);
 }
 
+/**
+ * Overlays a black color on the provided hexadecimal color with a given alpha value.
+ *
+ * @param hexColor - The hexadecimal color to overlay with black, in the format `#RRGGBB`.
+ * @returns The new hexadecimal color with the black overlay applied.
+ * @example
+ * const newColor = overlayBlack('#ff0000');
+ * console.log(newColor); // Outputs the color with black overlay
+ */
 export function overlayBlack(hexColor: string) {
   // 1. Convert hex to RGB
   let r = Number.parseInt(hexColor.substring(1, 3), 16);
@@ -160,6 +255,15 @@ export function overlayBlack(hexColor: string) {
   return `#${newR}${newG}${newB}`;
 }
 
+/**
+ * Converts the provided string to kebab-case.
+ *
+ * @param str - The input string to be converted.
+ * @returns The input string converted to kebab-case.
+ * @example
+ * const kebabCaseString = toKebabCase('Hello World');
+ * console.log(kebabCaseString); // Outputs 'hello-world'
+ */
 export function toKebabCase(str: string) {
   return str.replace(/\s/g, '-').toLowerCase();
 }
@@ -181,6 +285,14 @@ const currentRoute = {
   },
 };
 
+/**
+ * Adds a query parameter to the current route.
+ *
+ * @param query - The query parameter to add.
+ * @param value - The value of the query parameter.
+ * @example
+ * await addRouteQuery('search', 'example');
+ */
 export async function addRouteQuery(query: string, value?: string) {
   const router = useRouter();
   const route = currentRoute.get();
@@ -190,6 +302,14 @@ export async function addRouteQuery(query: string, value?: string) {
   await router.navigate(nextPath);
 }
 
+/**
+ * Removes a query parameter from the current route.
+ *
+ * @param query - The query parameter to remove.
+ * @param guard - An optional guard cell that, if provided and evaluates to false, will prevent the query parameter from being removed.
+ * @example
+ * await removeRouteQuery('search');
+ */
 export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
   if (guard && guard.value === false) return;
 
@@ -201,6 +321,15 @@ export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
   await router.navigate(nextPath);
 }
 
+/**
+ * Uses a query parameter from the current route.
+ *
+ * @param query - The query parameter to use.
+ * @param value - The value of the query parameter.
+ * @returns A derived cell that represents the value of the query parameter.
+ * @example
+ * const isSearchQueryPresent = useRouteQuery('search');
+ */
 export function useRouteQuery(query: string, value?: string) {
   return Cell.derived(() => {
     const routeSearchParams = currentRoute.get().value.query;
@@ -211,13 +340,14 @@ export function useRouteQuery(query: string, value?: string) {
   });
 }
 
-export function withDefaultProps<T extends (...args: any) => any>(
-  Component: T,
-  inputProps: Parameters<T>[0]
-) {
-  return (props: Parameters<T>[0]) => Component({ ...inputProps, ...props });
-}
-
+/**
+ * Generates a random time in the morning.
+ *
+ * @returns An object containing the hours and minutes of the random morning time.
+ * @example
+ * const randomTime = getRandomMorningTime();
+ * console.log(randomTime); // Outputs a random time in the morning
+ */
 export const getRandomMorningTime = () => {
   const start = new Date();
   start.setHours(5, 30, 0, 0);
@@ -229,10 +359,27 @@ export const getRandomMorningTime = () => {
   return { hours: randomTime.getHours(), minutes: randomTime.getMinutes() };
 };
 
+/**
+ * Selects a random element from an array.
+ *
+ * @param array - The array to select a random element from.
+ * @returns A random element from the array.
+ * @example
+ * const randomElement = selectAtRandom([1, 2, 3, 4]);
+ * console.log(randomElement); // Outputs a random element from the array
+ */
 export function selectAtRandom<T>(array: T[]) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
+/**
+ * Waits for all animations on the provided element to finish.
+ *
+ * @param element - The element to wait for animations to finish on.
+ * @returns A promise that resolves when all animations on the element have finished.
+ * @example
+ * await elementAnimationsFinished(document.querySelector('.my-element'));
+ */
 export async function elementAnimationsFinished(element: Element | null) {
   if (!element) return;
   await new Promise((r) => setTimeout(r, 0));

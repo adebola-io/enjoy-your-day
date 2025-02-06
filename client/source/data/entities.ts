@@ -34,6 +34,10 @@ export interface GoalProps {
   categories: Set<string>;
 }
 
+export interface GoalPropsSerialized extends Omit<GoalProps, 'categories'> {
+  categories: Array<string>;
+}
+
 export interface GoalListingUpdate {
   chunk: number;
   addedGoalObjects: Array<GoalProps>;
@@ -81,6 +85,10 @@ export interface GoalState {
   goal: GoalProps;
   state: 'forfeited' | 'completed' | 'scheduled';
   updatedAt: DateString | null;
+}
+
+export interface GoalStateSerialized extends Omit<GoalState, 'goal'> {
+  goal: GoalPropsSerialized;
 }
 
 export interface GoalSet {

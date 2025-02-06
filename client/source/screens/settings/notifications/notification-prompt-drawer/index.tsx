@@ -21,10 +21,8 @@ import { Temporal } from 'temporal-polyfill';
 import NotificationDeniedDrawer, {
   notificationDeniedDrawerQuery,
 } from './notification-denied-drawer';
-import {
-  isMaybeMobileOrSafari,
-  isRunningAsStandaloneApp,
-} from '#/library/app-environment';
+import { isMaybeMobileOrSafari } from '#/library/app-environment';
+import { useMatchMedia } from '#/library/window';
 import {
   InstallationInstructionsDrawer,
   installInstructionsDrawerQuery,
@@ -33,6 +31,7 @@ import classes from './notification-prompt-drawer.module.css';
 
 export const notificationDrawerQuery = 'notifications-prompt-drawer';
 export default function NotificationPromptDrawer() {
+  const isRunningInStandaloneMode = useMatchMedia('(display-mode: standalone)');
   const drawerIsOpen = useRouteQuery(notificationDrawerQuery);
   const today = Temporal.Now.zonedDateTimeISO().withTimeZone(DEFAULT_TIMEZONE);
   const currentDate = today.toLocaleString(DEFAULT_LOCALE, {
@@ -58,7 +57,7 @@ export default function NotificationPromptDrawer() {
   };
 
   const requestNotificationPermission = async () => {
-    if (!isRunningAsStandaloneApp() && (await isMaybeMobileOrSafari())) {
+    if (!isRunningInStandaloneMode.value && (await isMaybeMobileOrSafari())) {
       await addRouteQuery(installInstructionsDrawerQuery);
       return;
     }

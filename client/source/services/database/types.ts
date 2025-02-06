@@ -1,7 +1,12 @@
 import type { GoalColor } from '#/library/goal-color';
 import type { IconName } from '#/library/icon-name';
 import type { SendableCategory } from '../../data/categories';
-import type { GoalProps, GoalState, UserMetadata } from '../../data/entities';
+import type {
+  GoalProps,
+  GoalState,
+  GoalStateSerialized,
+  UserMetadata,
+} from '../../data/entities';
 
 export namespace Db {
   export namespace Requests {
@@ -35,7 +40,7 @@ export namespace Db {
     };
     export type RecordGoalState = {
       type: 'goals.record';
-      goalStates: GoalState[];
+      goalStates: GoalStateSerialized[];
       date: string;
     };
     export type GetInsightsOverview = {

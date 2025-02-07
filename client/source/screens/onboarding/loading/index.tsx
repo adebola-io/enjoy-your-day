@@ -4,12 +4,13 @@ import { createUser } from '#/services/database';
 import { ONBOARDING_LOADING_DELAY } from '#/data/constants';
 import { useRouter } from '@adbl/unfinished/router';
 import { setMetaTheme } from '#/library/utils';
-import classes from './onboarding.module.css';
+import classes from './loading.module.css';
 
 export default function Loading() {
   const router = useRouter();
 
-  const goToApp = async () => {
+  const handleAnimationEnd = async (event: AnimationEvent) => {
+    if (!event.animationName.includes('fade-to-white')) return;
     await Promise.all([
       createUser(username.value),
       new Promise<void>(onboardingPromiseCallback),
@@ -21,7 +22,7 @@ export default function Loading() {
   return (
     <div
       onAnimationStart--self={() => setMetaTheme('#ffffff')}
-      onAnimationEnd--self={goToApp}
+      onAnimationEnd--self={handleAnimationEnd}
       class={classes.onboardingViewFinalLoaderContainer}
     >
       <Loader class={classes.onboardingViewFinalLoader} />

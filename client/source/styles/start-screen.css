@@ -226,10 +226,6 @@
   animation-fill-mode: both;
 }
 
-#start-screen .start-screen__slide:nth-child(3) .start-screen__heading {
-  view-transition-name: onboarding-heading;
-}
-
 #start-screen .start-screen__paragraph {
   max-width: var(--content-width);
   opacity: 0;

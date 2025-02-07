@@ -51,7 +51,7 @@
       align-self: center;
       margin-block-end: unset;
       scroll-behavior: smooth;
-      animation-name: var(--fade-in-from-left);
+      animation-name: var(--fade-inline);
       animation-duration: calc(var(--default-duration) * 2.5);
       scroll-snap-align: start;
       grid-area: 1 / calc(var(--index) + 1);

@@ -96,14 +96,17 @@
   }
 
   & > * {
+    --starting-fade-position-x: 30%;
     transition-delay: calc(
       (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.3
     );
     transition-timing-function: linear;
     transition-duration: calc(var(--default-duration) * 1.5);
     transition-property: translate, scale, opacity;
-    grid-row: 1;
-    grid-column: 1;
+    animation: var(--fade-inline) calc(var(--default-duration) * 2.5)
+      calc(var(--slide-duration) * var(--level) * 0.15) backwards
+      cubic-bezier(0.42, 0, 0.58, 1);
+    grid-area: 1 / 1;
     translate: 0 calc(var(--level) * (100% + 10px));
   }
 }

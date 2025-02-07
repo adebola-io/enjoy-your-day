@@ -5,9 +5,20 @@ import { ONBOARDING_LOADING_DELAY } from '#/data/constants';
 import { useRouter } from '@adbl/unfinished/router';
 import { setMetaTheme } from '#/library/utils';
 import classes from './loading.module.css';
+import { CSS_VARS } from '#/styles/variables';
 
 export default function Loading() {
   const router = useRouter();
+
+  const handleAnimationStart = (event: AnimationEvent) => {
+    if (event.animationName.includes('fade-to-white')) {
+      setMetaTheme('#ffffff');
+    } else if (event.animationName.includes('fade-to-finn')) {
+      setMetaTheme(CSS_VARS['--finn-900']);
+    } else if (event.animationName.includes('fade-to-fern')) {
+      setMetaTheme(CSS_VARS['--fern-green-800']);
+    }
+  };
 
   const handleAnimationEnd = async (event: AnimationEvent) => {
     if (!event.animationName.includes('fade-to-white')) return;
@@ -21,7 +32,7 @@ export default function Loading() {
 
   return (
     <div
-      onAnimationStart--self={() => setMetaTheme('#ffffff')}
+      onAnimationStart--self={handleAnimationStart}
       onAnimationEnd--self={handleAnimationEnd}
       class={classes.onboardingViewFinalLoaderContainer}
     >

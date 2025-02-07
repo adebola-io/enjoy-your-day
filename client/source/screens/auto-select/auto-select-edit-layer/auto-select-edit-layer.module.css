@@ -39,6 +39,10 @@
       scale: 0;
     }
   }
+
+  body[data-dialog-is-pending] & {
+    scale: var(--drawer-background-scale-pending);
+  }
 }
 
 .backButton {

@@ -115,6 +115,10 @@
       gap: 0;
     }
   }
+
+  body[data-dialog-is-pending] & {
+    scale: var(--drawer-background-scale-pending);
+  }
 }
 
 @property --scroll-focus-index {

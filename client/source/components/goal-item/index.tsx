@@ -58,6 +58,10 @@ export function GoalItem(props: GoalItemProps) {
     const wrapper = wrapperRef.deproxy();
     const container = containerRef.deproxy();
 
+    if (listItem) {
+      container.scrollLeft = container.scrollWidth * 0.29166667;
+    }
+
     const callback = ([entry]: IntersectionObserverEntry[]) => {
       if (
         !entry.isIntersecting &&
@@ -72,10 +76,6 @@ export function GoalItem(props: GoalItemProps) {
     const intersectObserver = new IntersectionObserver(callback, options);
     await elementAnimationsFinished(container);
     intersectObserver.observe(wrapper);
-
-    if (listItem) {
-      container.scrollLeft = container.scrollWidth * 0.29166667;
-    }
 
     return () => intersectObserver.disconnect();
   });

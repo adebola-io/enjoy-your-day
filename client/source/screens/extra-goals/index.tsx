@@ -59,6 +59,11 @@ function ExtraGoalsViewContent() {
     autoCompleteOptions.value = options;
   });
 
+  const handleInputBlur = async (event: FocusEvent) => {
+    if (event.relatedTarget instanceof HTMLButtonElement) return;
+    await removeRouteQuery(extraGoalsPageQuery);
+  };
+
   const AutoCompleteOption = (option: GoalProps) => {
     const openGoalCard = async () => {
       await removeRouteQuery(drawerQuery);
@@ -71,7 +76,9 @@ function ExtraGoalsViewContent() {
           type="button"
           onClick={openGoalCard}
         >
-          <Icon name={option.icon} class={classes.autoCompleteItemIcon} />
+          <div class={classes.autoCompleteItemIconContainer}>
+            <Icon name={option.icon} class={classes.autoCompleteItemIcon} />
+          </div>
           <span class={classes.autoCompleteItemText}>
             {option.instruction.toLowerCase()}
           </span>
@@ -90,6 +97,7 @@ function ExtraGoalsViewContent() {
         type="search"
         placeholder={exampleGoal}
         rounded
+        onBlur={handleInputBlur}
       />
       <ul class={classes.autoComplete}>
         {For(autoCompleteOptions, AutoCompleteOption)}

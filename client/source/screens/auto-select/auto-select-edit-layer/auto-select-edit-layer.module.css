@@ -99,10 +99,10 @@
   & > * {
     --starting-fade-position-x: 30%;
     transition-delay: calc(
-      (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.3
+      (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.2
     );
     transition-timing-function: linear;
-    transition-duration: calc(var(--default-duration) * 1.5);
+    transition-duration: calc(var(--default-duration) * 0.85);
     transition-property: translate, scale, opacity;
     animation: var(--fade-inline) calc(var(--default-duration) * 2.5)
       calc(var(--slide-duration) * var(--level) * 0.15) backwards

@@ -193,9 +193,13 @@
 
 .addGoalButton {
   transition: rotate calc(var(--slide-duration) * 2),
-    scale var(--slide-duration);
+    scale var(--slide-duration), background-color var(--slide-duration),
+    border-color var(--slide-duration);
 
   &[data-open] {
+    border-color: transparent;
+    color: light-dark(var(--space-cadet-500), CanvasText);
+    background-color: transparent;
     rotate: 135deg;
   }
 }

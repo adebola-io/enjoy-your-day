@@ -23,14 +23,14 @@ import {
 import { Cell } from '@adbl/cells';
 import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
+import { extraGoalsPageQuery } from '#/screens/extra-goals';
 import { triggerNotification } from '#/services/notifications';
 import classes from './home-view.module.css';
 
 export default function HomeView() {
   const router = useRouter();
   const listChanged = Cell.source(false);
-  const extraGoalsScreenOpen = useRouteQuery('extra-goals-screen');
-  const stickyAreaRef = Cell.source<HTMLElement | null>(null);
+  const extraGoalsScreenIsOpen = useRouteQuery(extraGoalsPageQuery);
 
   const goals = Cell.derived(() => {
     const scheduled = [];
@@ -73,8 +73,8 @@ export default function HomeView() {
   };
 
   const toggleExtraGoalScreen = () => {
-    if (extraGoalsScreenOpen.value) removeRouteQuery('extra-goals-screen');
-    else addRouteQuery('extra-goals-screen');
+    if (extraGoalsScreenIsOpen.value) removeRouteQuery(extraGoalsPageQuery);
+    else addRouteQuery(extraGoalsPageQuery);
   };
 
   return (
@@ -84,11 +84,11 @@ export default function HomeView() {
       class={classes.container}
       data-stagger-children
       data-goals-completed={goalsCompleted}
-      data-invisible={extraGoalsScreenOpen}
+      data-extra-goals-screen-is-open={extraGoalsScreenIsOpen}
     >
       <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
       <TimeBasedGreeting class={classes.timeGreeting} />
-      <div ref={stickyAreaRef} class={classes.stickyArea}>
+      <div class={classes.stickyArea}>
         <p class={classes.encouragement}>{encouragement}</p>
         <ProgressBar
           class={classes.progressBar}
@@ -119,7 +119,7 @@ export default function HomeView() {
         class={classes.addGoalButton}
         block="end"
         inline="end"
-        data-open={extraGoalsScreenOpen}
+        data-open={extraGoalsScreenIsOpen}
         onClick={toggleExtraGoalScreen}
       >
         <AddIcon class={classes.addIcon} />

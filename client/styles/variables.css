@@ -139,6 +139,7 @@
   --eyebrow-font-size: min(2.7rem, 9dvh);
   --title-font-size: min(2rem, 9dvh);
   --subtitle-font-size: min(1.5rem, 3.5dvh);
+  --bigger-font-size: min(1.2rem, 3.2dvh);
   --base-font-size: min(0.9rem, 3dvh);
   --small-font-size: min(0.75rem, 2dvh);
   --tiny-font-size: min(0.6875rem, 1.5dvh);
@@ -161,6 +162,8 @@
   --title-regular: normal 400 var(--title-font-size) var(--font-family);
   --subtitle-bold: normal 700 var(--subtitle-font-size) var(--font-family);
   --subtitle-regular: normal 400 var(--subtitle-font-size) var(--font-family);
+  --bigger-bold: normal 700 var(--bigger-font-size) var(--font-family);
+  --bigger-regular: normal 400 var(--bigger-font-size) var(--font-family);
   --base-bold: normal 700 var(--base-font-size) var(--font-family);
   --base-regular: normal 400 var(--base-font-size) var(--font-family);
   --small-bold: normal 600 var(--small-font-size) var(--font-family);

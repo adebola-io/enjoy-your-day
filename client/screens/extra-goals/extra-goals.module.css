@@ -54,10 +54,10 @@
   display: grid;
   width: 100%;
   border: none;
-  opacity: 0.5;
+  opacity: 0.75;
   color: inherit;
   background-color: transparent;
-  font: var(--subtitle-regular);
+  font: var(--bigger-regular);
   grid-template-columns: var(--subtitle-font-size) 1fr;
   padding-block: calc(var(--block-padding) * 0.5);
   padding-inline: var(--side-padding);
@@ -74,6 +74,7 @@
       opacity: 0.3;
       background-color: var(--touch-highlight-color);
       content: '';
+      animation: var(--fade-in) calc(var(--default-duration) * 2) ease-in-out;
     }
   }
 }

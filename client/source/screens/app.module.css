@@ -1,4 +1,10 @@
 .appContent {
+  &:is(.appContent) {
+    /* Overrides SlideLayerView Transitions. */
+    transition-duration: var(--slide-duration);
+    transition-property: scale, opacity, translate;
+  }
+
   &[data-app-loaded] {
     display: grid;
     grid-template-rows: 1fr auto;
@@ -7,6 +13,12 @@
       grid-template-columns: auto 1fr;
       grid-template-rows: auto;
     }
+  }
+
+  &[data-extra-goals-page-is-open] {
+    opacity: 0;
+    pointer-events: none;
+    scale: 0.95;
   }
 }
 

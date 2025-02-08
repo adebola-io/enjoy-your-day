@@ -1,4 +1,5 @@
 import type { IconName } from '#/library/icon-name';
+import { elementAnimationsFinished } from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
 import { InlinedIcon } from '#/components/inlined-icon';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
@@ -6,9 +7,8 @@ import { If } from '@adbl/unfinished';
 import { Cell } from '@adbl/cells';
 import { Icon } from '../icon';
 import { XIcon } from '#/components/icons/x';
-import classes from './goal-item.module.css';
 import { Temporal } from 'temporal-polyfill';
-import { defer } from '#/library/utils';
+import classes from './goal-item.module.css';
 
 type DivProps = JSX.IntrinsicElements['div'];
 export interface GoalItemProps extends DivProps {
@@ -52,11 +52,15 @@ export function GoalItem(props: GoalItemProps) {
     onRemove?.(index.value, containerRef.value, 'Tap');
   };
 
-  observer.onConnected(wrapperRef, () => {
+  observer.onConnected(wrapperRef, async () => {
     // Intersection Observer doesn't work on cell values directly
     // because they are proxies.
     const wrapper = wrapperRef.deproxy();
     const container = containerRef.deproxy();
+
+    if (listItem) {
+      container.scrollLeft = container.scrollWidth * 0.29166667;
+    }
 
     const callback = ([entry]: IntersectionObserverEntry[]) => {
       if (
@@ -70,11 +74,8 @@ export function GoalItem(props: GoalItemProps) {
     };
     const options = { root: container, threshold: 0.55 };
     const intersectObserver = new IntersectionObserver(callback, options);
-    defer(() => intersectObserver.observe(wrapper));
-
-    if (listItem) {
-      container.scrollLeft = container.scrollWidth * 0.29166667;
-    }
+    await elementAnimationsFinished(container);
+    intersectObserver.observe(wrapper);
 
     return () => intersectObserver.disconnect();
   });

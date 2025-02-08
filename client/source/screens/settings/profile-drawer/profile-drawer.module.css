@@ -26,7 +26,13 @@
   );
   --drawer-open-position-y: calc(100dvh - var(--drawer-content-height));
   overflow: hidden;
+
   transition-property: opacity, translate, scale;
+
+  &:is(.profileDrawer) {
+    /* Overrides default background image. */
+    background-image: var(--gradients-default);
+  }
 
   &[data-username-focused] {
     --drawer-open-position-y: var(--block-padding);
@@ -115,7 +121,6 @@
   display: grid;
   padding-block-start: calc(var(--block-padding) * 2);
   padding-block-end: var(--block-padding);
-  background-color: inherit;
   grid-template-rows: auto auto auto auto auto;
   grid-template-columns: 1fr;
   gap: var(--drawer-content-gap);
@@ -269,6 +274,7 @@
   width: calc(100% - var(--side-padding) * 2);
   margin-top: var(--block-padding);
   background-color: inherit;
+  background-color: Canvas;
   margin-inline: var(--side-padding);
   grid-area: 5 / 1;
 

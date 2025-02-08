@@ -4,6 +4,7 @@ import type { SendableCategory } from '../../data/categories';
 import type {
   GoalProps,
   GoalState,
+  GoalPropsSerialized,
   GoalStateSerialized,
   UserMetadata,
 } from '../../data/entities';
@@ -31,6 +32,7 @@ export namespace Db {
       type: 'goals.autocomplete';
       query: string;
       addedUuids: string[];
+      maxResults: number;
     };
     export type UpdateGoals = {
       type: 'goals.update';
@@ -42,6 +44,10 @@ export namespace Db {
       type: 'goals.record';
       goalStates: GoalStateSerialized[];
       date: string;
+    };
+    export type GetGoalByUuid = {
+      type: 'goals.get';
+      uuid: string;
     };
     export type GetInsightsOverview = {
       type: 'insights.overview';
@@ -81,6 +87,7 @@ export namespace Db {
       | GetAutoCompleteSuggestions
       | UpdateGoals
       | RecordGoalState
+      | GetGoalByUuid
       | GetInsightsOverview
       | GetInsightsHistory
       | RecordMetadata
@@ -105,6 +112,8 @@ export namespace Db {
     ? true | { error: string; updateFailedAtChunk: number }
     : T extends Requests.RecordGoalState
     ? boolean | null
+    : T extends Requests.GetGoalByUuid
+    ? GoalPropsSerialized | null
     : T extends Requests.GetInsightsOverview
     ? InsightsOverview
     : T extends Requests.RecordMetadata

@@ -1,0 +1,75 @@
+.onboardingViewFinalLoaderContainer {
+  --color-change-duration: calc(var(--default-duration) * 3);
+  --color-change-trail: calc(var(--default-duration) * 10);
+
+  --fade-to-finn-delay: calc(var(--default-duration) * 10);
+  --fade-to-finn-duration: var(--color-change-duration);
+  --fade-to-finn-span: calc(
+    var(--fade-to-finn-delay) + var(--fade-to-finn-duration) +
+      var(--color-change-trail)
+  );
+
+  --fade-to-fern-delay: var(--fade-to-finn-span);
+  --fade-to-fern-duration: var(--color-change-duration);
+  --fade-to-fern-span: calc(
+    var(--fade-to-fern-delay) + var(--fade-to-fern-duration) +
+      var(--color-change-trail)
+  );
+
+  --fade-to-white-delay: var(--fade-to-fern-span);
+  --fade-to-white-duration: var(--color-change-duration);
+  --fade-to-white-total-span: calc(
+    var(--fade-to-white-duration) + var(--fade-to-white-delay) +
+      var(--color-change-trail)
+  );
+
+  display: grid;
+  height: 100dvh;
+  animation: fade-to-finn var(--fade-to-finn-duration) var(--fade-to-finn-delay)
+      forwards,
+    fade-to-fern var(--fade-to-fern-duration) var(--fade-to-fern-delay) forwards,
+    fade-to-white var(--fade-to-white-duration) var(--fade-to-white-delay)
+      forwards;
+  place-items: center;
+  place-content: center;
+  place-items: center;
+}
+
+.onboardingViewFinalLoader {
+  width: var(--sub-heading-font-size);
+  animation: var(--pop) var(--default-duration) backwards,
+    var(--loader-spin) var(--base-animation-duration) infinite;
+}
+
+@keyframes fade-to-finn {
+  0% {
+    color: var(--white);
+    background-color: var(--space-cadet-500);
+  }
+  100% {
+    color: var(--white);
+    background-color: var(--finn-900);
+  }
+}
+
+@keyframes fade-to-fern {
+  0% {
+    color: var(--white);
+    background-color: var(--finn-900);
+  }
+  100% {
+    color: var(--white);
+    background-color: var(--fern-green-800);
+  }
+}
+
+@keyframes fade-to-white {
+  0% {
+    color: var(--white);
+    background-color: var(--fern-green-800);
+  }
+  to {
+    color: var(--space-cadet-500);
+    background-color: var(--white);
+  }
+}

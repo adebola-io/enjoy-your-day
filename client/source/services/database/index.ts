@@ -92,13 +92,15 @@ export async function getExampleGoalInstruction(
 
 export async function getAutoCompleteSuggestions(
   query: string,
-  addedUuids: string[]
+  addedUuids: string[],
+  maxResults = 5
 ) {
   if (!query.trim()) return [];
   const response = await toDbWorker({
     type: 'goals.autocomplete',
     query,
     addedUuids,
+    maxResults,
   });
   return response;
 }
@@ -113,6 +115,11 @@ export async function saveGoalState(
     date,
   });
   if (!response) console.error('Error saving goal state');
+  return response;
+}
+
+export async function getGoalByUuid(uuid: string) {
+  const response = await toDbWorker({ type: 'goals.get', uuid });
   return response;
 }
 

@@ -33,11 +33,8 @@
     }
   }
 
-  &[data-no-goals-added],
-  &[data-search-is-open] {
-    .submitBtn {
-      scale: 0;
-    }
+  body[data-dialog-is-pending] & {
+    scale: var(--drawer-background-scale-pending);
   }
 }
 
@@ -51,12 +48,16 @@
 
 .title {
   padding-block-start: calc(var(--block-padding) * 1.5);
-  font: var(--subtitle-bold);
+  text-align: center;
+  font: var(--title-bold);
   grid-area: 1 / 1;
+  justify-self: center;
 }
 
 .subtitle {
+  text-align: center;
   grid-area: 2 / 1;
+  justify-self: center;
 }
 
 .buttonAndSearchContainer {
@@ -96,14 +97,17 @@
   }
 
   & > * {
+    --starting-fade-position-x: 30%;
     transition-delay: calc(
-      (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.3
+      (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.2
     );
     transition-timing-function: linear;
-    transition-duration: calc(var(--default-duration) * 1.5);
+    transition-duration: calc(var(--default-duration) * 0.85);
     transition-property: translate, scale, opacity;
-    grid-row: 1;
-    grid-column: 1;
+    animation: var(--fade-inline) calc(var(--default-duration) * 2.5)
+      calc(var(--slide-duration) * var(--level) * 0.15) backwards
+      cubic-bezier(0.42, 0, 0.58, 1);
+    grid-area: 1 / 1;
     translate: 0 calc(var(--level) * (100% + 10px));
   }
 }
@@ -167,29 +171,8 @@
 }
 
 .submitBtn {
-  position: fixed;
-  z-index: var(--floating-button-z-index);
-  right: var(--side-padding);
-  bottom: var(--block-padding);
-  display: grid;
-  width: min(20.63vw, 80px);
-  height: min(20.63vw, 80px);
-  border: 2.15px solid white;
-  border-radius: 50%;
-  color: white;
-  background-color: var(--space-cadet-500);
-  transition-duration: var(--toggle-search-duration);
-  transition-property: scale;
-  filter: drop-shadow(2px 4px 6px #00000025);
-  place-items: center;
-  place-content: center;
-
-  &:active {
-    scale: 0.8;
-  }
-
-  @media (orientation: landscape) {
-    right: calc(var(--side-padding) * 2);
+  &:disabled {
+    scale: 0;
   }
 }
 

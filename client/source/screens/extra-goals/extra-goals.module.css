@@ -1,0 +1,88 @@
+.container {
+  --starting-fade-position-y: 10dvh;
+  --stagger-difference: 0.2;
+  display: grid;
+  padding-block-start: calc(var(--block-padding) * 1.5);
+  transition: scale var(--drawer), opacity var(--slide-duration);
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  gap: calc(var(--block-padding) * 0.35);
+  overscroll-behavior: none;
+
+  &[data-dialog-is-open] {
+    scale: var(--drawer-background-scale);
+  }
+}
+
+.heading {
+  font: var(--title-bold);
+  justify-self: center;
+  padding-inline: var(--side-padding);
+}
+
+.input {
+  justify-content: center;
+  width: calc(100% - var(--side-padding) * 2);
+  border-color: light-dark(var(--space-cadet-500), CanvasText);
+  margin-inline: var(--side-padding);
+  padding-inline: calc(var(--side-padding) * 0.5);
+
+  &::placeholder {
+    opacity: 0.5;
+    color: inherit;
+  }
+}
+
+.autoCompleteItem {
+  list-style: none;
+  animation: var(--fade-in) calc(var(--default-duration) * 2) ease-in-out;
+  overscroll-behavior: none;
+}
+
+.autoCompleteItemButton {
+  position: relative;
+  display: grid;
+  width: 100%;
+  border: none;
+  opacity: 0.5;
+  color: inherit;
+  background-color: transparent;
+  font: var(--subtitle-regular);
+  grid-template-columns: var(--subtitle-font-size) 1fr;
+  padding-block: calc(var(--block-padding) * 0.5);
+  padding-inline: var(--side-padding);
+  gap: calc(var(--side-padding) * 0.5);
+
+  &:active {
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      opacity: 0.3;
+      background-color: var(--touch-highlight-color);
+      content: '';
+    }
+  }
+}
+
+.autoCompleteItemIconContainer {
+  width: var(--subtitle-font-size);
+  height: var(--subtitle-font-size);
+}
+
+.autoCompleteItemIcon {
+  align-self: center;
+  width: var(--subtitle-font-size);
+  height: var(--subtitle-font-size);
+}
+
+.autoCompleteItemText {
+  overflow: hidden;
+  align-self: center;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

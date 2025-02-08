@@ -12,7 +12,8 @@ import { Cell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { Loader } from '#/components/loader';
-import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
+import { ViewGroup } from '#/components/view-group';
 import { dailyGoals, involvementLevel, selectedCategories } from '#/data/state';
 import AutoSelectEditLayer from './auto-select-edit-layer';
 import { BackButton } from '#/components/back-button';
@@ -20,13 +21,8 @@ import { ConfirmDrawer } from './confirm-drawer';
 import classes from './auto-select.module.css';
 
 export default async function AutoSelectLayer() {
-  const router = useRouter();
-  if (dailyGoals.value.length > 0) {
-    await router.replace('/home');
-    return;
-  }
   return (
-    <ViewLayer
+    <StackLayerView
       class={classes.slide}
       open={useRouteQuery('auto-select')}
       content={AutoSelectSlideContent}
@@ -43,33 +39,41 @@ function AutoSelectSlideContent() {
   const resource = Cell.async(getAutoRecommendations);
   const state = getResourceState(resource);
 
+  if (dailyGoals.value.length > 0) {
+    router.replace('/home');
+    return;
+  }
+
   observer.onConnected(containerRef, async () => {
-    if (currentStage.value !== 'edit') {
-      await addRouteQuery('cards-view');
-      await resource.run({
-        categories: selectedCategories.value,
-        preferredInvolvementLevel: involvementLevel.value,
-      });
-    } else {
+    if (currentStage.value === 'edit') {
       resource.data.value = [];
+      return;
     }
+    await addRouteQuery('cards-view');
+    const categories = selectedCategories.value;
+    const preferredInvolvementLevel = involvementLevel.value;
+    await resource.run({ categories, preferredInvolvementLevel });
   });
 
+  const ErrorOccurred = () => <div>Error, {resource.error.value?.message}</div>;
+
+  const Success = () => (
+    <>
+      <GoalCardsLayer goals={resource.data} />
+      <AutoSelectEditLayer goals={resource.data} />
+      <ConfirmDrawer goals={resource.data} />
+    </>
+  );
+
   return (
-    <ViewLayerGroup ref={containerRef}>
+    <ViewGroup ref={containerRef}>
       {Switch(state, {
         inert: NoOp,
         pending: Pending,
-        error: () => <div>Error, {resource.error.value?.message}</div>,
-        success: () => (
-          <>
-            <GoalCardsLayer goals={resource.data} />
-            <AutoSelectEditLayer goals={resource.data} />
-            <ConfirmDrawer goals={resource.data} />
-          </>
-        ),
+        error: ErrorOccurred,
+        success: Success,
       })}
-    </ViewLayerGroup>
+    </ViewGroup>
   );
 }
 

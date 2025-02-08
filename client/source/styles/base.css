@@ -90,10 +90,6 @@ body {
   font-synthesis-weight: none;
 }
 
-* {
-  overscroll-behavior-y: none;
-}
-
 body {
   overflow: hidden;
   width: 100%;

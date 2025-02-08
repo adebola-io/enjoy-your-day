@@ -1,6 +1,4 @@
 .onboardingView {
-  --fade-to-white-delay: 2s;
-  --fade-to-white-duration: calc(var(--default-duration) * 2);
   display: grid;
   color: var(--white);
   background-color: var(--space-cadet-500);
@@ -22,13 +20,6 @@
   &.involvement {
     height: 100dvh;
     padding-inline: var(--side-padding);
-  }
-}
-
-@keyframes fade-to-white {
-  to {
-    color: var(--space-cadet-500);
-    background-color: var(--white);
   }
 }
 
@@ -89,20 +80,4 @@
   margin-block-end: calc(var(--block-padding) * 1.5);
   color: var(--space-cadet-500);
   background-color: var(--white);
-}
-
-.onboardingViewFinalLoaderContainer {
-  display: grid;
-  height: 100dvh;
-  animation: fade-to-white var(--fade-to-white-duration)
-    var(--fade-to-white-delay) forwards;
-  place-items: center;
-  place-content: center;
-  place-items: center;
-}
-
-.onboardingViewFinalLoader {
-  width: var(--sub-heading-font-size);
-  animation: var(--pop) var(--default-duration) backwards,
-    var(--loader-spin) var(--base-animation-duration) infinite;
 }

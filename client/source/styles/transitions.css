@@ -61,7 +61,7 @@
   --fade-in-from-bottom: fade-in-from-bottom;
   --fade-in-from-bottom-stretch: fade-in-from-bottom-stretch;
   --fade-stretch-from-bottom: fade-stretch-from-bottom;
-  --fade-in-from-left: fade-in-from-left;
+  --fade-inline: fade-inline;
   --pop: pop;
   --loader-spin: loader-spin;
   --spin: spin;
@@ -153,19 +153,13 @@
   }
 }
 
-@keyframes slide-in-from-right {
-  from {
-    translate: 100%;
-  }
-}
-
 @keyframes slide-out-to-right {
   to {
     translate: 100%;
   }
 }
 
-@keyframes fade-in-from-left {
+@keyframes fade-inline {
   0% {
     opacity: var(--starting-opacity, 0);
     transform: translateX(var(--starting-fade-position-x, -100%));

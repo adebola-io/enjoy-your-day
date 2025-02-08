@@ -1,4 +1,4 @@
-export const ONBOARDING_LOADING_DELAY = 2000;
+export const ONBOARDING_LOADING_DELAY = 1500;
 export const NOTIFICATION_SCHEDULE_INTERVAL = 1000 * 60 * 60 * 3; // 3 hours.
 export const LATEST_DATA_CHUNK = 24;
 export const MAX_USERNAME_LENGTH = 15;

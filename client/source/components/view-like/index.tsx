@@ -1,18 +1,18 @@
 import { Cell } from '@adbl/cells';
-import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { If } from '@adbl/unfinished';
 import { defer } from '#/library/utils';
 import { updatePillPositions } from '../pill-radio-list';
-import classes from './view-layer.module.css';
+import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
-type DivProps = JSX.IntrinsicElements['div'];
-interface ViewLayerProps extends DivProps {
+type SectionProps = JSX.IntrinsicElements['section'];
+
+export interface ViewLikeProps extends SectionProps {
   ref?: Cell<HTMLDivElement | null>;
-  open: JSX.ValueOrCell<boolean>;
+  open?: JSX.ValueOrCell<boolean>;
   content?: () => JSX.Template;
 }
 
-export function ViewLayer(props: ViewLayerProps) {
+export function ViewLike(props: ViewLikeProps) {
   const {
     open: isOpenRaw = true,
     ref = Cell.source<HTMLDivElement | null>(null),
@@ -20,7 +20,11 @@ export function ViewLayer(props: ViewLayerProps) {
     ...rest
   } = props;
   const isOpen = Cell.derived(() =>
-    Cell.isCell(isOpenRaw) ? isOpenRaw.value : isOpenRaw
+    Cell.isCell(isOpenRaw)
+      ? isOpenRaw.value
+      : isOpenRaw === undefined
+      ? true
+      : isOpenRaw
   );
   const isNotOpen = Cell.derived(() => !isOpen.value);
   const contentLoaded = Cell.source(isOpen.value);
@@ -53,28 +57,13 @@ export function ViewLayer(props: ViewLayerProps) {
   });
 
   return (
-    <div
-      ref={ref}
-      {...rest}
-      class={[rest.class, classes.viewLayer]}
-      inert={isNotOpen}
-      data-is-open={isOpen}
-    >
+    <section ref={ref} {...rest} inert={isNotOpen} data-is-open={isOpen}>
       {If(contentLoaded, () => (
         <>
           {lazyContent?.()}
           {props.children}
         </>
       ))}
-    </div>
-  );
-}
-
-export interface ViewLayerGroupProps extends DivProps {}
-export function ViewLayerGroup(props: ViewLayerGroupProps) {
-  return (
-    <div {...props} class={[classes.viewLayerContainer, props.class]}>
-      {props.children}
-    </div>
+    </section>
   );
 }

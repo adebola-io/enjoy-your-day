@@ -5,6 +5,7 @@ import {
   recommendGoals,
   recordGoalState,
   updateGoalsList,
+  getGoalByUuid,
 } from './goals';
 import {
   getDeviceToken,
@@ -27,6 +28,7 @@ Bridge.receiver('db', {
   'goals.record': recordGoalState,
   'goals.search-example': getSearchExample,
   'goals.update': updateGoalsList,
+  'goals.get': getGoalByUuid,
 
   'insights.overview': insightsOverview,
   'insights.history': insightsHistory,

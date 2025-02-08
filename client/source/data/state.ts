@@ -118,7 +118,7 @@ isDark.listen((isDark) => {
 export type FontFamily = 'System' | 'Inter' | 'Cursive' | 'SchibstedGrotesk';
 export const selectedFont = useLocalStorage<FontFamily>(
   LOCALSTORAGE_KEYS.selectedFont,
-  'SchibstedGrotesk'
+  'Inter'
 );
 
 selectedFont.runAndListen((font) => {
@@ -164,9 +164,15 @@ async function trackDateChange() {
   if (!dailyGoalsDateStamp.value || today === dailyGoalsDateStamp.value) {
     return;
   }
-  await saveGoalState(dailyGoals.value, dailyGoalsDateStamp.value);
+  const dailyGoalsCloned = JSON.parse(JSON.stringify(dailyGoals.value));
   dailyGoals.value = [];
-  dailyGoalsDateStamp.value = null;
+  try {
+    await saveGoalState(dailyGoalsCloned, dailyGoalsDateStamp.value);
+    dailyGoalsDateStamp.value = null;
+  } catch (error) {
+    dailyGoals.value = dailyGoalsCloned;
+    console.error(error);
+  }
 }
 
 liveDate.runAndListen(trackDateChange);

@@ -7,7 +7,7 @@
   width: 100%;
   height: calc(100% - var(--block-padding) * 1.5);
   padding-block-start: calc(var(--block-padding) * 1.5);
-  transition: scale var(--drawer);
+  transition: scale var(--drawer), opacity calc(var(--slide-duration) * 1.5);
   place-content: start;
   grid-template-rows: auto auto auto 1fr;
   grid-template-columns: 100%;
@@ -189,6 +189,23 @@
   [data-goals-completed] & {
     translate: 0 calc(var(--base-font-size) + 30px + min(15px, 2dvh));
   }
+}
+
+.addGoalButton {
+  transition: rotate calc(var(--slide-duration) * 2),
+    scale var(--slide-duration), background-color var(--slide-duration),
+    border-color var(--slide-duration);
+
+  &[data-open] {
+    border-color: transparent;
+    color: light-dark(var(--space-cadet-500), CanvasText);
+    background-color: transparent;
+    rotate: 135deg;
+  }
+}
+
+.addIcon {
+  height: calc(var(--floating-button-size) * 0.65);
 }
 
 @keyframes slide-in {

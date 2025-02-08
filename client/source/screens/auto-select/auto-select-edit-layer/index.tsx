@@ -3,7 +3,7 @@ import { SearchInput } from '#/components/search-input';
 import { Container } from '#/components/container';
 import { ElasticView } from '#/components/elastic-view';
 import { BackButton } from '#/components/back-button';
-import { ViewLayer } from '#/components/view-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
 import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
 import { AddIcon } from '#/components/icons/add';
 import { InlinedIcon } from '#/components/inlined-icon';
@@ -23,6 +23,7 @@ import {
   getAutoCompleteSuggestions,
 } from '#/services/database';
 import classes from './auto-select-edit-layer.module.css';
+import { FloatingActionButton } from '#/components/floating-action-button';
 
 export interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[] | null>;
@@ -38,8 +39,9 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
   const placeholder = Cell.source('');
   const activeItemIndex = Cell.source(0);
   const activeItemIndexStr = Cell.derived(() => String(activeItemIndex.value));
-  const noGoalsAdded = Cell.derived(() => goals.value.length === 0);
+  const isEmpty = Cell.derived(() => goals.value.length === 0);
   const goalUuids = Cell.derived(() => goals.value.map((g) => g.uuid));
+  const btnDisabled = Cell.derived(() => isEmpty.value || searchIsOpen.value);
   const goalLength = Cell.derived(() => goals.value.length);
   const ulStyles = {
     '--total': goalLength,
@@ -111,7 +113,7 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
   observer.onConnected(containerRef, updatePlaceholder);
 
   return (
-    <ViewLayer
+    <StackLayerView
       class={classes.viewLayer}
       open={useRouteQuery('stage', 'edit')}
       content={() => (
@@ -121,7 +123,7 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
           ref={containerRef}
           class={classes.container}
           data-is-open={editIsOpen}
-          data-no-goals-added={noGoalsAdded}
+          data-no-goals-added={isEmpty}
           data-search-is-open={searchIsOpen}
         >
           <BackButton class={classes.backButton} />
@@ -149,10 +151,12 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
               <GoalItem {...goal} index={index} onRemove={removeGoal} />
             ))}
           </ul>
-          <button
-            type="button"
+          <FloatingActionButton
             class={classes.submitBtn}
-            inert={searchIsOpen}
+            avoidNavbar={false}
+            block="end"
+            inline="end"
+            disabled={btnDisabled}
             onClick={handleSubmit}
           >
             <InlinedIcon
@@ -161,7 +165,7 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
               title="Submit Goals"
               color="white"
             />
-          </button>
+          </FloatingActionButton>
         </ElasticView>
       )}
     />

@@ -5,11 +5,17 @@ import classes from './input.module.css';
 export type InputProps = JSX.IntrinsicElements['input'] & {
   model?: SourceCell<string>;
   icon?: JSX.Element;
+  rounded?: boolean;
 };
 export function Input(props: InputProps) {
-  const { model, icon, class: className, onInput, ...rest } = props;
+  const { model, icon, class: className, onInput, rounded, ...rest } = props;
   const input = (
-    <input {...rest} onInput={handleInput} class={[classes.input, className]} />
+    <input
+      {...rest}
+      onInput={handleInput}
+      class={[classes.input, className]}
+      data-rounded={rounded}
+    />
   ) as HTMLInputElement;
 
   const callback = (value: string) => {

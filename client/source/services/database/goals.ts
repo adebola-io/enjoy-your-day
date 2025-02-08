@@ -12,6 +12,7 @@ type RecordGoalsHandler = Db.Handler<Db.Requests.RecordGoalState>;
 type GetSearchExampleHandler =
   Db.Handler<Db.Requests.GetExampleSearchGoalInstruction>;
 type UpdateGoalsListHandler = Db.Handler<Db.Requests.UpdateGoals>;
+type GetGoalByUuidHandler = Db.Handler<Db.Requests.GetGoalByUuid>;
 
 export const recommendGoals: GenerateGoalsForTodayHandler = async (data) => {
   const { categories: categoriesArray, preferredInvolvementLevel } =
@@ -153,7 +154,7 @@ const segment = (input: string) => {
 };
 
 export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
-  const { query, addedUuids } = data.message;
+  const { query, addedUuids, maxResults } = data.message;
   const goals = await dexie.goals.toArray();
 
   const queryLower = query.trim().toLowerCase();
@@ -176,7 +177,7 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
 
     if (hasPatternMatch) {
       patternMatchResults.push(goal);
-      if (patternMatchResults.length === 5) break;
+      if (patternMatchResults.length === maxResults) break;
       continue;
     }
 
@@ -186,7 +187,7 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
     );
     if (hasInstructionWordMatch) {
       instructionWordsMatchResults.push(goal);
-      if (instructionWordsMatchResults.length === 5) break;
+      if (instructionWordsMatchResults.length === maxResults) break;
       continue;
     }
 
@@ -196,7 +197,7 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
     );
     if (hasTitleWordsMatch) {
       titleWordsMatchResults.push(goal);
-      if (titleWordsMatchResults.length === 5) break;
+      if (titleWordsMatchResults.length === maxResults) break;
     }
   }
 
@@ -204,7 +205,7 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
     ...patternMatchResults,
     ...instructionWordsMatchResults,
     ...titleWordsMatchResults,
-  ].slice(0, 5);
+  ].slice(0, maxResults);
 
   return finalResults;
 };
@@ -284,4 +285,15 @@ export const updateGoalsList: UpdateGoalsListHandler = async (data) => {
       updateFailedAtChunk: currentUpdate,
     };
   }
+};
+
+export const getGoalByUuid: GetGoalByUuidHandler = async (data) => {
+  const { uuid } = data.message;
+  const goal = await dexie.goals.where('uuid').equals(uuid).first();
+  if (!goal) return null;
+
+  return {
+    ...goal,
+    categories: Array.from(goal?.categories),
+  };
 };

@@ -111,6 +111,12 @@
   );
   --gradients-aqua: rgba(0, 166, 255, 0.09);
   --gradients-minty: linear-gradient(to bottom, #dbffeedb 0%, #94dec794 100%);
+  --gradients-default: linear-gradient(
+    to bottom,
+    Canvas,
+    Canvas,
+    light-dark(#acdff0, #333374)
+  );
 
   /* Dimensions */
   --max-screen-width: 100dvw;
@@ -121,7 +127,7 @@
   --side-padding: 7.63dvw;
   --input-inline-padding: 10px;
   --drawer-background-scale: 0.9;
-  --drawer-background-scale-pending: 0.899;
+  --drawer-background-scale-pending: 0.95;
 
   /* Typography */
 

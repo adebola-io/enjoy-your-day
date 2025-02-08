@@ -118,6 +118,11 @@ export async function saveGoalState(
   return response;
 }
 
+export async function getGoalByUuid(uuid: string) {
+  const response = await toDbWorker({ type: 'goals.get', uuid });
+  return response;
+}
+
 export async function getInsightsOverview(todaysData: GoalStateSerialized[]) {
   return toDbWorker({ type: 'insights.overview', todaysData });
 }

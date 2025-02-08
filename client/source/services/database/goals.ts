@@ -12,6 +12,7 @@ type RecordGoalsHandler = Db.Handler<Db.Requests.RecordGoalState>;
 type GetSearchExampleHandler =
   Db.Handler<Db.Requests.GetExampleSearchGoalInstruction>;
 type UpdateGoalsListHandler = Db.Handler<Db.Requests.UpdateGoals>;
+type GetGoalByUuidHandler = Db.Handler<Db.Requests.GetGoalByUuid>;
 
 export const recommendGoals: GenerateGoalsForTodayHandler = async (data) => {
   const { categories: categoriesArray, preferredInvolvementLevel } =
@@ -284,4 +285,15 @@ export const updateGoalsList: UpdateGoalsListHandler = async (data) => {
       updateFailedAtChunk: currentUpdate,
     };
   }
+};
+
+export const getGoalByUuid: GetGoalByUuidHandler = async (data) => {
+  const { uuid } = data.message;
+  const goal = await dexie.goals.where('uuid').equals(uuid).first();
+  if (!goal) return null;
+
+  return {
+    ...goal,
+    categories: Array.from(goal?.categories),
+  };
 };

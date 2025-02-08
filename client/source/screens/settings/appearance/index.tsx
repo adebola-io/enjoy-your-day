@@ -2,11 +2,11 @@ import DigitalDesignIcon from '#/components/icons/digital-design';
 import MoonAndStarsIcon from '#/components/icons/moon-and-starts';
 import FontIcon from '#/components/icons/font';
 import PaletteIcon from '#/components/icons/palette';
-import { IconProps } from '#/components/icons/props';
+import type { IconProps } from '#/components/icons/props';
 import SunIcon from '#/components/icons/sun';
 import { PillRadioList } from '#/components/pill-radio-list';
 import { SettingsItemList } from '#/components/settings-item';
-import { ViewLayer } from '#/components/view-layer';
+import { StackLayerView } from '#/components/stack-layer';
 import {
   type FontFamily,
   selectedFont,
@@ -25,14 +25,14 @@ const themeIcons: Record<ThemeColor, (props: IconProps) => JSX.Template> = {
 
 const fontNames: Record<FontFamily, string> = {
   System: 'System',
-  Inter: 'Inter',
+  Inter: 'Default',
   Cursive: 'Cursive',
-  SchibstedGrotesk: 'Default',
+  SchibstedGrotesk: 'Relaxed',
 };
 
 export default function AppearanceLayer() {
   return (
-    <ViewLayer
+    <StackLayerView
       open={useRouteQuery('level-one', 'appearance')}
       content={() => (
         <SettingsItemList id="appearanceSettings" heading="Appearance" subList>
@@ -49,7 +49,7 @@ export default function AppearanceLayer() {
             heading="Font"
             model={selectedFont}
             Icon={FontIcon}
-            items={['SchibstedGrotesk', 'Inter', 'Cursive', 'System']}
+            items={['Inter', 'SchibstedGrotesk', 'Cursive', 'System']}
             Template={FontPillItem}
           />
         </SettingsItemList>

@@ -153,7 +153,7 @@ const segment = (input: string) => {
 };
 
 export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
-  const { query, addedUuids } = data.message;
+  const { query, addedUuids, maxResults } = data.message;
   const goals = await dexie.goals.toArray();
 
   const queryLower = query.trim().toLowerCase();
@@ -176,7 +176,7 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
 
     if (hasPatternMatch) {
       patternMatchResults.push(goal);
-      if (patternMatchResults.length === 5) break;
+      if (patternMatchResults.length === maxResults) break;
       continue;
     }
 
@@ -186,7 +186,7 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
     );
     if (hasInstructionWordMatch) {
       instructionWordsMatchResults.push(goal);
-      if (instructionWordsMatchResults.length === 5) break;
+      if (instructionWordsMatchResults.length === maxResults) break;
       continue;
     }
 
@@ -196,7 +196,7 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
     );
     if (hasTitleWordsMatch) {
       titleWordsMatchResults.push(goal);
-      if (titleWordsMatchResults.length === 5) break;
+      if (titleWordsMatchResults.length === maxResults) break;
     }
   }
 
@@ -204,7 +204,7 @@ export const autoCompleteGoals: AutoCompleteGoalsHandler = async (data) => {
     ...patternMatchResults,
     ...instructionWordsMatchResults,
     ...titleWordsMatchResults,
-  ].slice(0, 5);
+  ].slice(0, maxResults);
 
   return finalResults;
 };

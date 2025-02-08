@@ -31,6 +31,7 @@ export namespace Db {
       type: 'goals.autocomplete';
       query: string;
       addedUuids: string[];
+      maxResults: number;
     };
     export type UpdateGoals = {
       type: 'goals.update';

@@ -92,13 +92,15 @@ export async function getExampleGoalInstruction(
 
 export async function getAutoCompleteSuggestions(
   query: string,
-  addedUuids: string[]
+  addedUuids: string[],
+  maxResults = 5
 ) {
   if (!query.trim()) return [];
   const response = await toDbWorker({
     type: 'goals.autocomplete',
     query,
     addedUuids,
+    maxResults,
   });
   return response;
 }

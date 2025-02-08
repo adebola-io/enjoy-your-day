@@ -4,9 +4,9 @@ import { defer } from '#/library/utils';
 import { updatePillPositions } from '../pill-radio-list';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
-type DivProps = JSX.IntrinsicElements['div'];
+type SectionProps = JSX.IntrinsicElements['section'];
 
-export interface ViewLikeProps extends DivProps {
+export interface ViewLikeProps extends SectionProps {
   ref?: Cell<HTMLDivElement | null>;
   open?: JSX.ValueOrCell<boolean>;
   content?: () => JSX.Template;
@@ -57,13 +57,13 @@ export function ViewLike(props: ViewLikeProps) {
   });
 
   return (
-    <div ref={ref} {...rest} inert={isNotOpen} data-is-open={isOpen}>
+    <section ref={ref} {...rest} inert={isNotOpen} data-is-open={isOpen}>
       {If(contentLoaded, () => (
         <>
           {lazyContent?.()}
           {props.children}
         </>
       ))}
-    </div>
+    </section>
   );
 }

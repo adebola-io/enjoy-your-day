@@ -1,6 +1,6 @@
 import { ShadowRoot } from '@adbl/unfinished/shadowroot';
 import styles from './cuboid.css?inline';
-import { JSX } from '@adbl/unfinished/jsx-runtime';
+import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
 type DivProps = JSX.IntrinsicElements['div'];
 export interface CuboidProps extends DivProps {
@@ -29,7 +29,7 @@ export function Cuboid(props: CuboidProps) {
     ...rest
   } = props;
 
-  let extraStyles = `:host(div) {`;
+  let extraStyles = ':host(div) {';
   if (length) extraStyles += `--cuboid-length: ${length};`;
   if (height) extraStyles += `--cuboid-height: ${height};`;
   if (breadth) extraStyles += `--cuboid-breadth: ${breadth};`;

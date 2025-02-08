@@ -2,10 +2,15 @@
   --starting-fade-position-y: 10dvh;
   --stagger-difference: 0.2;
   display: grid;
-  padding-block-start: calc(var(--block-padding) * 2);
+  padding-block-start: calc(var(--block-padding) * 1.5);
+  transition: scale var(--drawer), opacity var(--slide-duration);
   grid-template-columns: 1fr;
   grid-template-rows: auto auto 1fr;
   gap: calc(var(--block-padding) * 0.35);
+
+  &[data-dialog-is-open] {
+    scale: var(--drawer-background-scale);
+  }
 }
 
 .heading {

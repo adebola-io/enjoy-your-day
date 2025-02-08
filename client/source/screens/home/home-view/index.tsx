@@ -4,6 +4,8 @@ import { TimeBasedIcon } from '#/components/time-based-icon';
 import { TrophyIcon } from '#/components/icons/trophy';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
 import { ElasticView } from '#/components/elastic-view';
+import { FloatingActionButton } from '#/components/floating-action-button';
+import AddIcon from '#/components/icons/add';
 import {
   dailyGoals,
   goalsCompleted,
@@ -12,16 +14,22 @@ import {
 } from '#/data/state';
 import { encouragement } from '#/data/encouragement';
 import { GoalsCompletedDrawer } from './goals-completed';
-import { addRouteQuery, vibrate } from '#/library/utils';
+import {
+  addRouteQuery,
+  removeRouteQuery,
+  useRouteQuery,
+  vibrate,
+} from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { For, If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
-import classes from './home-view.module.css';
 import { triggerNotification } from '#/services/notifications';
+import classes from './home-view.module.css';
 
 export default function HomeView() {
   const router = useRouter();
   const listChanged = Cell.source(false);
+  const extraGoalsScreenOpen = useRouteQuery('extra-goals-screen');
   const stickyAreaRef = Cell.source<HTMLElement | null>(null);
 
   const goals = Cell.derived(() => {
@@ -64,6 +72,11 @@ export default function HomeView() {
     setTimeout(() => addRouteQuery('goals-completed'), 400);
   };
 
+  const toggleExtraGoalScreen = () => {
+    if (extraGoalsScreenOpen.value) removeRouteQuery('extra-goals-screen');
+    else addRouteQuery('extra-goals-screen');
+  };
+
   return (
     <ElasticView
       id="homeView"
@@ -71,6 +84,7 @@ export default function HomeView() {
       class={classes.container}
       data-stagger-children
       data-goals-completed={goalsCompleted}
+      data-invisible={extraGoalsScreenOpen}
     >
       <TimeBasedIcon class={classes.timeIcon} data-time-of-day={timeOfDay} />
       <TimeBasedGreeting class={classes.timeGreeting} />
@@ -101,6 +115,15 @@ export default function HomeView() {
           />
         ))}
       </form>
+      <FloatingActionButton
+        class={classes.addGoalButton}
+        block="end"
+        inline="end"
+        data-open={extraGoalsScreenOpen}
+        onClick={toggleExtraGoalScreen}
+      >
+        <AddIcon class={classes.addIcon} />
+      </FloatingActionButton>
       <GoalsCompletedDrawer />
     </ElasticView>
   );

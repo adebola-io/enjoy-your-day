@@ -1,0 +1,50 @@
+.button {
+  --floating-button-size: clamp(20px, 40dvw, 80px);
+  position: fixed;
+  display: grid;
+  width: var(--floating-button-size);
+  height: var(--floating-button-size);
+  border: 2px solid;
+  border-radius: 50%;
+  color: white;
+  background-color: light-dark(var(--space-cadet-500), Canvas);
+  transition-duration: var(--default-duration);
+  transition-property: scale;
+  place-items: center;
+  place-content: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
+  &:active {
+    filter: brightness(0.9);
+    scale: 0.9;
+  }
+
+  &[data-inline='start'] {
+    left: var(--side-padding);
+  }
+
+  &[data-inline='end'] {
+    right: var(--side-padding);
+  }
+
+  &[data-block='start'] {
+    top: var(--block-padding);
+  }
+
+  &[data-block='end'] {
+    bottom: calc(var(--block-padding));
+
+    &[data-avoid-navbar='true'] {
+      bottom: calc(var(--block-padding) + var(--navbar-height));
+    }
+  }
+
+  &[data-inline='center'] {
+    left: calc(50% - calc(var(--floating-button-size) / 2));
+  }
+
+  &[data-block='center'] {
+    bottom: calc(50% - calc(var(--floating-button-size) / 2));
+  }
+}

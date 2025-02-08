@@ -6,17 +6,16 @@ import {
   useRouteQuery,
 } from '#/library/utils';
 import { Cell } from '@adbl/cells';
-
-import classes from './extra-goals.module.css';
 import {
   getAutoCompleteSuggestions,
   getExampleGoalInstruction,
 } from '#/services/database';
-import { For, useObserver } from '@adbl/unfinished';
 import { dailyGoals, selectedCategories } from '#/data/state';
 import type { GoalProps } from '#/data/entities';
 import { Icon } from '#/components/icon';
 import AddGoalDrawer, { drawerQuery } from './add-goal-drawer';
+import { For, useObserver } from '@adbl/unfinished';
+import classes from './extra-goals.module.css';
 
 export const extraGoalsPageQuery = 'extra-goals-query';
 export default function ExtraGoalsView() {
@@ -37,6 +36,10 @@ function ExtraGoalsViewContent() {
   const searchQuery = Cell.source('');
   const exampleGoal = Cell.source('');
   const autoCompleteOptions = Cell.source<GoalProps[]>([]);
+  const autoCompleteCount = Cell.derived(
+    () => autoCompleteOptions.value.length
+  );
+  const ulStyle = { '--total': autoCompleteCount };
   const selectedGoalsUuids = Cell.derived(() =>
     dailyGoals.value.map((g) => g.goal.uuid)
   );
@@ -64,13 +67,14 @@ function ExtraGoalsViewContent() {
     await removeRouteQuery(extraGoalsPageQuery);
   };
 
-  const AutoCompleteOption = (option: GoalProps) => {
+  const AutoCompleteOption = (option: GoalProps, index: Cell<number>) => {
+    const liStyle = { '--i': index };
     const openGoalCard = async () => {
       await removeRouteQuery(drawerQuery);
       addRouteQuery(drawerQuery, option.uuid);
     };
     return (
-      <li class={classes.autoCompleteItem}>
+      <li class={classes.autoCompleteItem} style={liStyle}>
         <button
           class={classes.autoCompleteItemButton}
           type="button"
@@ -99,8 +103,8 @@ function ExtraGoalsViewContent() {
         rounded
         onBlur={handleInputBlur}
       />
-      <ul class={classes.autoComplete}>
-        {For(autoCompleteOptions, AutoCompleteOption)}
+      <ul class={classes.autoComplete} style={ulStyle}>
+        {For(autoCompleteOptions, AutoCompleteOption, { key: 'uuid' })}
       </ul>
       <AddGoalDrawer onBeforeGoalAdded={handleBeforeGoalAdded} />
     </>

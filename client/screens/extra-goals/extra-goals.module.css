@@ -33,10 +33,20 @@
   }
 }
 
+.autoComplete {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(var(--total), min-content);
+}
+
 .autoCompleteItem {
   list-style: none;
+  transition-duration: calc(var(--default-duration) * 2);
+  transition-property: translate;
   animation: var(--fade-in) calc(var(--default-duration) * 2) ease-in-out;
   overscroll-behavior: none;
+  grid-area: 1 / 1;
+  translate: 0 calc(var(--i) * 100%);
 }
 
 .autoCompleteItemButton {

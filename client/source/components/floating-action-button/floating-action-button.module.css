@@ -10,6 +10,8 @@
   background-color: light-dark(var(--space-cadet-500), Canvas);
   transition-duration: var(--default-duration);
   transition-property: scale;
+  animation: var(--fade-in) var(--slide-duration)
+    calc(var(--slide-duration) * 1.5) backwards;
   place-items: center;
   place-content: center;
   grid-template-columns: 1fr;
@@ -17,7 +19,7 @@
 
   &:active {
     filter: brightness(0.9);
-    scale: 0.9;
+    scale: 0.8;
   }
 
   &[data-inline='start'] {

@@ -1,10 +1,10 @@
 import { SettingsItemList } from '#/components/settings-item';
-import { ViewLayer } from '#/components/view-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
 import { useRouteQuery } from '#/library/utils';
 
 export default function AboutLayer() {
   return (
-    <ViewLayer
+    <StackLayerView
       open={useRouteQuery('level-one', 'about')}
       content={() => (
         <SettingsItemList heading="About" subList>

@@ -12,7 +12,8 @@ import { Cell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { Loader } from '#/components/loader';
-import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
+import { ViewGroup } from '#/components/view-group';
 import { dailyGoals, involvementLevel, selectedCategories } from '#/data/state';
 import AutoSelectEditLayer from './auto-select-edit-layer';
 import { BackButton } from '#/components/back-button';
@@ -21,7 +22,7 @@ import classes from './auto-select.module.css';
 
 export default async function AutoSelectLayer() {
   return (
-    <ViewLayer
+    <StackLayerView
       class={classes.slide}
       open={useRouteQuery('auto-select')}
       content={AutoSelectSlideContent}
@@ -65,14 +66,14 @@ function AutoSelectSlideContent() {
   );
 
   return (
-    <ViewLayerGroup ref={containerRef}>
+    <ViewGroup ref={containerRef}>
       {Switch(state, {
         inert: NoOp,
         pending: Pending,
         error: ErrorOccurred,
         success: Success,
       })}
-    </ViewLayerGroup>
+    </ViewGroup>
   );
 }
 

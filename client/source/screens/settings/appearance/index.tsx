@@ -6,7 +6,7 @@ import type { IconProps } from '#/components/icons/props';
 import SunIcon from '#/components/icons/sun';
 import { PillRadioList } from '#/components/pill-radio-list';
 import { SettingsItemList } from '#/components/settings-item';
-import { StackLayerView } from '#/components/stack-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
 import {
   type FontFamily,
   selectedFont,

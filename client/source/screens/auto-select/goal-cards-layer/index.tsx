@@ -1,6 +1,6 @@
 import { Button } from '#/components/button';
 import { GoalCard } from '#/components/goal-card';
-import { ViewLayer } from '#/components/view-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
 import { initScrollTimeline, useRouteQuery } from '#/library/utils';
 import { If, useObserver } from '@adbl/unfinished';
 import type { GoalProps } from '#/data/entities';
@@ -60,7 +60,7 @@ export default function GoalCardsLayer(props: GoalCardsLayerProps) {
   });
 
   return (
-    <ViewLayer
+    <StackLayerView
       open={isOpen}
       class={classes.container}
       content={() => (

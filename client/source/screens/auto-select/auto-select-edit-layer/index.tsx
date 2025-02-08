@@ -3,7 +3,7 @@ import { SearchInput } from '#/components/search-input';
 import { Container } from '#/components/container';
 import { ElasticView } from '#/components/elastic-view';
 import { BackButton } from '#/components/back-button';
-import { StackLayerView } from '#/components/stack-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
 import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
 import { AddIcon } from '#/components/icons/add';
 import { InlinedIcon } from '#/components/inlined-icon';

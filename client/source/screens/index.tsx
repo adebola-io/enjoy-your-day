@@ -1,5 +1,7 @@
 import { NavigationBar } from '#/components/navigation-bar';
-import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
+import ExtraGoals from './extra-goals';
+import { ViewGroup } from '#/components/view-group';
 import { appLoadingState } from '#/data/state';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
@@ -17,12 +19,13 @@ export default function App() {
   });
 
   return (
-    <ViewLayerGroup>
-      <ViewLayer class={classes.appContent} open data-app-loaded={appIsLoaded}>
+    <ViewGroup>
+      <StackLayerView class={classes.appContent} data-app-loaded={appIsLoaded}>
         <Outlet class={classes.outlet} />
         {If(appIsLoaded, NavigationBar)}
-      </ViewLayer>
+      </StackLayerView>
       <AutoSelectLayer />
-    </ViewLayerGroup>
+      <ExtraGoals />
+    </ViewGroup>
   );
 }

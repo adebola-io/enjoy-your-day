@@ -5,7 +5,7 @@ import { SettingsItem, SettingsItemList } from '#/components/settings-item';
 import TvIcon from '#/components/icons/tv';
 import WifiIcon from '#/components/icons/wifi';
 import BellIcon from '#/components/icons/bell';
-import { ViewLayer } from '#/components/view-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
 import { addRouteQuery, useRouteQuery } from '#/library/utils';
 import { notificationsEnabled } from '#/data/state';
 import { loadIconDataUrl } from '#/components/icon';
@@ -62,7 +62,7 @@ export default function NotificationsLayer() {
   });
 
   return (
-    <ViewLayer
+    <StackLayerView
       open={notificationsPageIsOpen}
       content={() => (
         <SettingsItemList

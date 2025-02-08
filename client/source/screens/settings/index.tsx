@@ -4,7 +4,8 @@ import ArtsIcon from '#/components/icons/arts';
 import BinIcon from '#/components/icons/bin';
 import AboutLayer from './about';
 import ResetDataDrawer from './reset-drawer';
-import { ViewLayer, ViewLayerGroup } from '#/components/view-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
+import { ViewGroup } from '#/components/view-group';
 import InfoIcon from '#/components/icons/info';
 import { SettingsItem, SettingsItemList } from '#/components/settings-item';
 import ProfileDrawer from './profile-drawer';
@@ -14,8 +15,8 @@ import classes from './settings.module.css';
 
 export default function Settings() {
   return (
-    <ViewLayerGroup>
-      <ViewLayer open>
+    <ViewGroup>
+      <StackLayerView open>
         <div id="settingsView" class={classes.settings}>
           <SettingsItemList heading="Settings">
             <SettingsItem
@@ -50,12 +51,12 @@ export default function Settings() {
             />
           </SettingsItemList>
         </div>
-      </ViewLayer>
+      </StackLayerView>
       <ProfileDrawer />
       <NotificationsLayer />
       <AppearanceLayer />
       <AboutLayer />
       <ResetDataDrawer />
-    </ViewLayerGroup>
+    </ViewGroup>
   );
 }

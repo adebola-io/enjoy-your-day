@@ -4,7 +4,7 @@ import InfoIcon from '#/components/icons/info';
 import ShareIcon from '#/components/icons/share';
 import StackIcon from '#/components/icons/stack';
 import { SettingsItem, SettingsItemList } from '#/components/settings-item';
-import { ViewLayer } from '#/components/view-layer';
+import { StackLayerView } from '#/components/stack-layer-view';
 import { LATEST_DATA_CHUNK } from '#/data/constants';
 import { lastLoadedChunk } from '#/data/state';
 import { addRouteQuery, useRouteQuery } from '#/library/utils';
@@ -25,7 +25,7 @@ export default function DataSettingsLayer() {
     //
   };
   return (
-    <ViewLayer
+    <StackLayerView
       open={useRouteQuery('level-one', 'data')}
       content={() => (
         <SettingsItemList subList heading="Data">

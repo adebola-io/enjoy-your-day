@@ -1,6 +1,6 @@
 // Bun script to assign UUIDs to goals in the JSON files.
 import path from 'node:path';
-import type { GoalProps } from '../source/data/entities';
+import type { GoalProps } from '../data/entities';
 import fs from 'node:fs';
 import { assert } from 'node:console';
 

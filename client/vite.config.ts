@@ -9,7 +9,7 @@ import { ViteMinifyPlugin } from 'vite-plugin-minify';
 
 export default defineConfig({
   resolve: {
-    alias: { '#': path.resolve(__dirname, './source') },
+    alias: { '#': path.resolve(__dirname, './') },
   },
   worker: { format: 'es' },
   plugins: [

@@ -9,8 +9,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Navigate to icons directory relative to script location
-const ICONS_DIR = join(__dirname, '../source/components/icons');
-const OUTPUT_FILE = join(__dirname, '../source/library/icon-name.ts');
+const ICONS_DIR = join(__dirname, '../components/icons');
+const OUTPUT_FILE = join(__dirname, '../library/icon-name.ts');
 const SCHEMA_FILE = join(__dirname, '../public/json/schema.json');
 
 // Create the type definition

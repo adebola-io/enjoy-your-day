@@ -48,12 +48,16 @@
 
 .title {
   padding-block-start: calc(var(--block-padding) * 1.5);
-  font: var(--subtitle-bold);
+  text-align: center;
+  font: var(--title-bold);
   grid-area: 1 / 1;
+  justify-self: center;
 }
 
 .subtitle {
+  text-align: center;
   grid-area: 2 / 1;
+  justify-self: center;
 }
 
 .buttonAndSearchContainer {

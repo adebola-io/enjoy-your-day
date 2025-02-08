@@ -1,0 +1,16 @@
+.immersiveView {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--slide-duration);
+  transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  contain: strict;
+
+  &[data-is-open] {
+    opacity: 1;
+  }
+}

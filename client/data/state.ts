@@ -175,6 +175,10 @@ async function trackDateChange() {
   }
 }
 
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') trackDateChange();
+});
+
 liveDate.runAndListen(trackDateChange);
 
 export async function resetAllData() {

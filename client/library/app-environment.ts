@@ -5,6 +5,17 @@ export function getBrowserVenderName(): BrowserVendorName {
   throw new Error('Unimplemented');
 }
 
+export function isSafari() {
+  const isSafari =
+    navigator.vendor &&
+    navigator.vendor.indexOf('Apple') > -1 &&
+    navigator.userAgent &&
+    navigator.userAgent.indexOf('CriOS') === -1 &&
+    navigator.userAgent.indexOf('FxiOS') === -1;
+
+  return isSafari;
+}
+
 export async function isMaybeMobileOrSafari() {
   if ('userAgentData' in navigator) {
     try {
@@ -22,12 +33,6 @@ export async function isMaybeMobileOrSafari() {
       console.error(e);
     }
   }
-  const isSafari =
-    navigator.vendor &&
-    navigator.vendor.indexOf('Apple') > -1 &&
-    navigator.userAgent &&
-    navigator.userAgent.indexOf('CriOS') === -1 &&
-    navigator.userAgent.indexOf('FxiOS') === -1;
 
-  return isSafari;
+  return isSafari();
 }

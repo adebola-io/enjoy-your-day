@@ -16,6 +16,7 @@ import { Icon } from '#/components/icon';
 import AddGoalDrawer, { drawerQuery } from './add-goal-drawer';
 import { For, useObserver } from '@adbl/unfinished';
 import classes from './extra-goals.module.css';
+import { isSafari } from '#/library/app-environment';
 
 export const extraGoalsPageQuery = 'extra-goals-query';
 export default function ExtraGoalsView() {
@@ -44,7 +45,7 @@ function ExtraGoalsViewContent() {
     dailyGoals.value.map((g) => g.goal.uuid)
   );
 
-  const handleBeforeGoalAdded = async () => {
+  const close = async () => {
     await removeRouteQuery(extraGoalsPageQuery);
   };
 
@@ -63,7 +64,10 @@ function ExtraGoalsViewContent() {
   });
 
   const handleInputBlur = async (event: FocusEvent) => {
+    // TODO: For some reason, Safari's relatedTarget is always null.
+    if (isSafari() && searchQuery.value.length) return;
     if (event.relatedTarget instanceof HTMLButtonElement) return;
+    if (event.relatedTarget instanceof HTMLLIElement) return;
     await removeRouteQuery(extraGoalsPageQuery);
   };
 
@@ -106,7 +110,7 @@ function ExtraGoalsViewContent() {
       <ul class={classes.autoComplete} style={ulStyle}>
         {For(autoCompleteOptions, AutoCompleteOption, { key: 'uuid' })}
       </ul>
-      <AddGoalDrawer onBeforeGoalAdded={handleBeforeGoalAdded} />
+      <AddGoalDrawer onBeforeGoalAdded={close} />
     </>
   );
 }

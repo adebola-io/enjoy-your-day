@@ -33,12 +33,11 @@
   translate: 0 calc(var(--goal-card-border-radius) * 1.5);
 
   & > li {
-    --starting-fade-position-y: 20%;
     --apparent-index: calc(var(--total) - var(--index));
     position: sticky;
     top: calc((var(--index) + 1) * var(--goal-card-height) * 0.1);
     margin-block-end: -20dvh;
-    animation-name: var(--fade-in-from-bottom);
+    animation-name: var(--fade-in);
     animation-duration: calc(var(--default-duration) * 1.25);
     animation-delay: calc(
       var(--apparent-index) * var(--default-duration) * 0.15

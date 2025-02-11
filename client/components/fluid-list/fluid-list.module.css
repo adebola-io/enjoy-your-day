@@ -6,6 +6,7 @@
   margin: 0;
   transition-timing-function: var(--list-change-easing);
   transition-duration: var(--list-change-duration);
+  transition-property: var(--list-transition-property);
   gap: var(--gap);
 }
 
@@ -13,23 +14,22 @@
   width: var(--list-item-width);
   height: var(--list-item-height);
   list-style-type: none;
-  transition-delay: calc(var(--curr) * var(--list-item-transition-delay));
-  transition-timing-function: var(--list-change-easing);
-  transition-duration: var(--list-change-duration);
   transition-property: var(--list-item-transition-property);
   animation-duration: var(--list-change-duration);
   animation-timing-function: var(--list-change-easing);
   animation-delay: calc(var(--curr) * var(--list-item-transition-delay));
-  grid-area: 1/1;
-
   content-visibility: auto;
-  animation-fill-mode: backwards;
 
-  .dynamicList.row > & {
+  .dynamicList.animated > & {
+    grid-area: 1 / 1;
+    animation-fill-mode: both;
+  }
+
+  .dynamicList.animated.row > & {
     animation-name: list-item-row-transition;
   }
 
-  .dynamicList.column > & {
+  .dynamicList.animated.column > & {
     animation-name: list-item-column-transition;
   }
 }

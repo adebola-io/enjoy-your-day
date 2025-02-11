@@ -1,6 +1,6 @@
 import { defer } from '#/library/utils';
 import { Cell } from '@adbl/cells';
-import { For } from '@adbl/unfinished';
+import { For, useObserver } from '@adbl/unfinished';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './fluid-list.module.css';
 
@@ -242,7 +242,7 @@ export function FluidList<T>(props: FluidListProps<T>) {
     Template,
     ...rest
   } = props;
-
+  const observer = useObserver();
   const direction = Cell.derived(() => {
     return Cell.isCell(directionProp) ? directionProp.value : directionProp;
   });
@@ -258,11 +258,6 @@ export function FluidList<T>(props: FluidListProps<T>) {
 
   const directionClass = Cell.derived(() => {
     return direction.value === 'column' ? classes.column : classes.row;
-  });
-
-  const itemTranslation = Cell.derived(() => {
-    const translation = 'calc(var(--curr) * (100% + var(--gap)))';
-    return direction.value === 'column' ? translation : `0 ${translation}`;
   });
 
   const gridTemplateColumns = Cell.derived(() => {
@@ -306,6 +301,7 @@ export function FluidList<T>(props: FluidListProps<T>) {
     '--list-change-easing': easing,
     '--list-item-height': itemHeight,
     '--list-item-width': itemWidth,
+    '--list-transition-property': listTransitionProperty,
     '--list-item-transition-property': itemTransitionProperty,
     '--list-item-transition-delay': staggeredDelay,
 
@@ -313,7 +309,6 @@ export function FluidList<T>(props: FluidListProps<T>) {
     width: listWidth,
     gridTemplateRows,
     gridTemplateColumns,
-    transitionProperty: listTransitionProperty,
     transitionDuration: 'var(--list-change-duration)',
     transitionTimingFunction: 'var(--list-change-easing)',
   };
@@ -324,7 +319,6 @@ export function FluidList<T>(props: FluidListProps<T>) {
     const styles: JSX.StyleValue = {
       '--prev': previousIdx,
       '--curr': idx,
-      translate: itemTranslation,
     };
 
     idx.listen((newIndex) => {
@@ -344,7 +338,25 @@ export function FluidList<T>(props: FluidListProps<T>) {
     );
   };
 
+  const handleItemsUpdate = async () => {
+    if (!ref.value) return;
+
+    const ul = ref.value;
+    ref.value.classList.add(classes.animated);
+
+    const animations = ul.getAnimations();
+    for (const child of ul.children) {
+      animations.push(...child.getAnimations());
+    }
+    await Promise.allSettled(animations.map((a) => a.finished));
+    ref.value.classList.remove(classes.animated);
+  };
+
   if (rest.style) Object.assign(ulStyles, rest.style);
+  observer.onConnected(ref, () => {
+    items.listen(handleItemsUpdate);
+    return () => items.ignore(handleItemsUpdate);
+  });
 
   return (
     <ul

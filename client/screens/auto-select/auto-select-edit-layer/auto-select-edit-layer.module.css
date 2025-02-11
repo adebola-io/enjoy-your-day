@@ -79,37 +79,11 @@
   }
 }
 
-.goalItemList {
-  --starting-fade-position-y: -10%;
-  display: grid;
-  padding-block-end: calc(var(--block-padding) * 3);
-  transition-duration: var(--toggle-search-duration);
-  transition-property: translate, opacity;
-  grid-template-rows: repeat(var(--total), max-content);
-  gap: 10px;
-
-  &::after {
-    display: block;
-    content: '';
-    translate: 0 calc(var(--total) * (100% + 10px));
-    grid-row: 1;
-    grid-column: 1;
-  }
-
-  & > * {
-    --starting-fade-position-x: 30%;
-    transition-delay: calc(
-      (var(--level) - var(--active-item-index)) * var(--default-duration) * 0.2
-    );
-    transition-timing-function: linear;
-    transition-duration: calc(var(--default-duration) * 0.85);
-    transition-property: translate, scale, opacity;
-    animation: var(--fade-inline) calc(var(--default-duration) * 2.5)
-      calc(var(--slide-duration) * var(--level) * 0.15) backwards
-      cubic-bezier(0.42, 0, 0.58, 1);
-    grid-area: 1 / 1;
-    translate: 0 calc(var(--level) * (100% + 10px));
-  }
+.goalItem {
+  --starting-fade-position-x: 20%;
+  animation: var(--fade-inline) calc(var(--default-duration) * 2.5)
+    calc(var(--slide-duration) * var(--level) * 0.15) backwards
+    cubic-bezier(0.42, 0, 0.58, 1);
 }
 
 .buttonAndSearchContainer {

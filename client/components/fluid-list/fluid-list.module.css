@@ -1,0 +1,53 @@
+.dynamicList {
+  display: grid;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0;
+  margin: 0;
+  transition-timing-function: var(--list-change-easing);
+  transition-duration: var(--list-change-duration);
+  gap: var(--gap);
+}
+
+.dynamicListItem {
+  width: var(--list-item-width);
+  height: var(--list-item-height);
+  list-style-type: none;
+  transition-delay: calc(var(--curr) * var(--list-item-transition-delay));
+  transition-timing-function: var(--list-change-easing);
+  transition-duration: var(--list-change-duration);
+  transition-property: var(--list-item-transition-property);
+  animation-duration: var(--list-change-duration);
+  animation-timing-function: var(--list-change-easing);
+  animation-delay: calc(var(--curr) * var(--list-item-transition-delay));
+  grid-area: 1/1;
+
+  content-visibility: auto;
+  animation-fill-mode: backwards;
+
+  .dynamicList.row > & {
+    animation-name: list-item-row-transition;
+  }
+
+  .dynamicList.column > & {
+    animation-name: list-item-column-transition;
+  }
+}
+
+@keyframes list-item-row-transition {
+  from {
+    translate: 0 calc(var(--prev) * (100% + var(--gap)));
+  }
+  to {
+    translate: 0 calc(var(--curr) * (100% + var(--gap)));
+  }
+}
+
+@keyframes list-item-column-transition {
+  from {
+    translate: calc(var(--prev) * (100% + var(--gap))) 0;
+  }
+  to {
+    translate: calc(var(--curr) * (100% + var(--gap))) 0;
+  }
+}

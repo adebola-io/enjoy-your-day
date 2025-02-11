@@ -21,6 +21,7 @@ export interface GoalItemProps extends DivProps {
   labelFor?: JSX.ValueOrCell<string>;
   cancelable?: boolean;
   timeStamp?: string | null;
+  containerClass?: JSX.ValueOrCell<string>;
   onRemove?: (
     item: number,
     container: HTMLElement,
@@ -40,6 +41,7 @@ export function GoalItem(props: GoalItemProps) {
     labelFor,
     timeStamp,
     index,
+    containerClass,
     onRemove,
     cancelable = true,
     listItem = true,
@@ -59,7 +61,7 @@ export function GoalItem(props: GoalItemProps) {
     const container = containerRef.deproxy();
 
     if (listItem) {
-      container.scrollLeft = container.scrollWidth * 0.29166667;
+      container.scrollLeft = container.scrollWidth;
     }
 
     const callback = ([entry]: IntersectionObserverEntry[]) => {
@@ -75,14 +77,18 @@ export function GoalItem(props: GoalItemProps) {
     const options = { root: container, threshold: 0.55 };
     const intersectObserver = new IntersectionObserver(callback, options);
     await elementAnimationsFinished(container);
-    intersectObserver.observe(wrapper);
 
-    return () => intersectObserver.disconnect();
+    const timeout = setTimeout(() => intersectObserver.observe(wrapper), 1000);
+
+    return () => {
+      clearTimeout(timeout);
+      intersectObserver.disconnect();
+    };
   });
 
   const containProps = {
     ref: containerRef,
-    class: [classes.container, 'goal-card'],
+    class: [classes.container, containerClass, 'goal-card'],
     style: styles,
     'data-cancelable': cancelable,
   };
@@ -120,13 +126,6 @@ export function GoalItem(props: GoalItemProps) {
     </div>
   );
 
-  if (listItem) {
-    return (
-      <li {...containProps}>
-        <Content />
-      </li>
-    );
-  }
   if (labelFor) {
     return (
       <label {...containProps} for={labelFor}>

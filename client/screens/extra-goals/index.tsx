@@ -14,9 +14,10 @@ import { dailyGoals, selectedCategories } from '#/data/state';
 import type { GoalProps } from '#/data/entities';
 import { Icon } from '#/components/icon';
 import AddGoalDrawer, { drawerQuery } from './add-goal-drawer';
-import { For, useObserver } from '@adbl/unfinished';
-import classes from './extra-goals.module.css';
+import { useObserver } from '@adbl/unfinished';
 import { isSafari } from '#/library/app-environment';
+import { FluidList } from '#/components/fluid-list';
+import classes from './extra-goals.module.css';
 
 export const extraGoalsPageQuery = 'extra-goals-query';
 export default function ExtraGoalsView() {
@@ -37,10 +38,6 @@ function ExtraGoalsViewContent() {
   const searchQuery = Cell.source('');
   const exampleGoal = Cell.source('');
   const autoCompleteOptions = Cell.source<GoalProps[]>([]);
-  const autoCompleteCount = Cell.derived(
-    () => autoCompleteOptions.value.length
-  );
-  const ulStyle = { '--total': autoCompleteCount };
   const selectedGoalsUuids = Cell.derived(() =>
     dailyGoals.value.map((g) => g.goal.uuid)
   );
@@ -107,9 +104,15 @@ function ExtraGoalsViewContent() {
         rounded
         onBlur={handleInputBlur}
       />
-      <ul class={classes.autoComplete} style={ulStyle}>
-        {For(autoCompleteOptions, AutoCompleteOption, { key: 'uuid' })}
-      </ul>
+      <FluidList
+        items={autoCompleteOptions}
+        itemKey="uuid"
+        itemWidth="100dvw"
+        speed="calc(var(--default-duration) * 2)"
+        Template={(props) => (
+          <AutoCompleteOption {...props.item} index={props.index} />
+        )}
+      />
       <AddGoalDrawer onBeforeGoalAdded={close} />
     </>
   );

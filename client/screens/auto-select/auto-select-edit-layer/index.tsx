@@ -24,6 +24,7 @@ import {
 } from '#/services/database';
 import classes from './auto-select-edit-layer.module.css';
 import { FloatingActionButton } from '#/components/floating-action-button';
+import { FluidList } from '#/components/fluid-list';
 
 export interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[] | null>;
@@ -37,16 +38,9 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
   const containerRef = Cell.source<HTMLDivElement | null>(null);
   const ulRef = Cell.source<HTMLUListElement | null>(null);
   const placeholder = Cell.source('');
-  const activeItemIndex = Cell.source(0);
-  const activeItemIndexStr = Cell.derived(() => String(activeItemIndex.value));
   const isEmpty = Cell.derived(() => goals.value.length === 0);
   const goalUuids = Cell.derived(() => goals.value.map((g) => g.uuid));
   const btnDisabled = Cell.derived(() => isEmpty.value || searchIsOpen.value);
-  const goalLength = Cell.derived(() => goals.value.length);
-  const ulStyles = {
-    '--total': goalLength,
-    '--active-item-index': activeItemIndexStr,
-  };
 
   const openSearch = async () => {
     if (!searchIsOpen.value) {
@@ -71,14 +65,11 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
 
   const addGoal = async (goal: GoalOptionProps) => {
     await closeSearch();
-    activeItemIndex.value = 0;
     goals.value.splice(0, 0, goal);
     updatePlaceholder();
   };
 
-  const removeGoal = (index: number, item: Element, mode: 'Swipe' | 'Tap') => {
-    activeItemIndex.value = index;
-    item.classList.add(classes[`deletingBy${mode}`]);
+  const removeGoal = (index: number) => {
     vibrate();
     goals.value.splice(index, 1);
   };
@@ -141,16 +132,26 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
               false: ContainerButtonContent,
             })}
           </Container>
-          <ul
+          <FluidList
             ref={ulRef}
             class={classes.goalItemList}
             inert={searchIsOpen}
-            style={ulStyles}
-          >
-            {For(goals, (goal, index) => (
-              <GoalItem {...goal} index={index} onRemove={removeGoal} />
-            ))}
-          </ul>
+            items={goals}
+            itemWidth="100dvw"
+            itemKey="uuid"
+            speed="calc(var(--default-duration) * 0.85)"
+            easing="linear"
+            gap="10px"
+            staggeredDelay="calc(var(--default-duration) * 0.4)"
+            Template={(props) => (
+              <GoalItem
+                containerClass={classes.goalItem}
+                {...props.item}
+                index={props.index}
+                onRemove={removeGoal}
+              />
+            )}
+          />
           <FloatingActionButton
             class={classes.submitBtn}
             avoidNavbar={false}

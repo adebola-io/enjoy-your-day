@@ -39,7 +39,7 @@ export default function AddGoalDrawer(props: AddGoalDrawerProps) {
     removeRouteQuery(drawerQuery);
     await new Promise((r) => setTimeout(r, 200));
     await onBeforeGoalAdded?.();
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 200));
     const dateAdded = new Date(goal.value.dateAdded).toISOString();
     const goalState: GoalStateSerialized = {
       state: 'scheduled',

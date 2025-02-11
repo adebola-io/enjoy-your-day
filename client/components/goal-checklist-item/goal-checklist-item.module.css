@@ -1,5 +1,10 @@
 .container {
+  --starting-fade-position-x: 30%;
   display: grid;
+  animation-name: var(--fade-inline);
+  animation-duration: calc(var(--default-duration) * 2);
+  animation-delay: calc(var(--curr) * var(--default-duration) * 0.25);
+  animation-fill-mode: backwards;
   grid-template-columns: auto 1fr;
   place-items: center;
   padding-inline: var(--side-padding);
@@ -7,6 +12,16 @@
 
   &:has(.checkbox:checked) {
     filter: opacity(0.6);
+  }
+
+  &[data-loaded] {
+    /* The slide-in animation is only necessary on first load. */
+    animation: none;
+  }
+
+  [data-list-changed] & {
+    /* The animation delay is only necessary if the item was not added later on. */
+    animation-delay: 0ms;
   }
 }
 

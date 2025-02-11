@@ -68,14 +68,13 @@ function ExtraGoalsViewContent() {
     await removeRouteQuery(extraGoalsPageQuery);
   };
 
-  const AutoCompleteOption = (option: GoalProps, index: Cell<number>) => {
-    const liStyle = { '--i': index };
+  const AutoCompleteOption = (option: GoalProps) => {
     const openGoalCard = async () => {
       await removeRouteQuery(drawerQuery);
       addRouteQuery(drawerQuery, option.uuid);
     };
     return (
-      <li class={classes.autoCompleteItem} style={liStyle}>
+      <li class={classes.autoCompleteItem}>
         <button
           class={classes.autoCompleteItemButton}
           type="button"

@@ -269,13 +269,13 @@ export function FluidList<T>(props: FluidListProps<T>) {
     const width = itemWidth.value ?? 'min-content';
     return direction.value === 'column'
       ? `repeat(${items.value.length}, ${width})`
-      : 'initial';
+      : '1fr';
   });
 
   const gridTemplateRows = Cell.derived(() => {
     const height = itemHeight.value ?? 'min-content';
     return direction.value === 'column'
-      ? 'initial'
+      ? '1fr'
       : `repeat(${items.value.length}, ${height})`;
   });
 

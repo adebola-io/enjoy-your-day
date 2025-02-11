@@ -108,7 +108,7 @@ export default function HomeView() {
       <FluidList
         class={classes.goals}
         items={goals}
-        itemWidth="100dvw"
+        itemWidth="100%"
         speed="calc(var(--default-duration) * 1.75)"
         gap="10px"
         data-list-changed={listChanged}

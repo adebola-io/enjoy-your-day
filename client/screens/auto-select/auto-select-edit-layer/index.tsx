@@ -17,7 +17,7 @@ import {
 } from '#/library/utils';
 import type { GoalProps } from '#/data/entities';
 import { Cell, type SourceCell } from '@adbl/cells';
-import { For, If, useObserver } from '@adbl/unfinished';
+import { If, useObserver } from '@adbl/unfinished';
 import {
   getExampleGoalInstruction,
   getAutoCompleteSuggestions,

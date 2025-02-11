@@ -24,6 +24,7 @@
 
 .outlet {
   display: grid;
+  height: calc(100dvh - var(--navbar-height));
 
   &[data-dialog-is-open] {
     & > :not(dialog) {

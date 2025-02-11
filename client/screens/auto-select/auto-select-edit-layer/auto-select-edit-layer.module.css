@@ -65,7 +65,15 @@
 }
 
 .goalItemList {
+  transition-duration: var(--toggle-search-duration);
+  transition-property: opacity;
   grid-area: 4 / 1;
+
+  &::after {
+    display: block;
+    height: var(--block-padding);
+    content: '';
+  }
 }
 
 .title,
@@ -82,7 +90,7 @@
 .goalItem {
   --starting-fade-position-x: 20%;
   animation: var(--fade-inline) calc(var(--default-duration) * 2.5)
-    calc(var(--slide-duration) * var(--level) * 0.15) backwards
+    calc(var(--slide-duration) * var(--level) * 0.25) backwards
     cubic-bezier(0.42, 0, 0.58, 1);
 }
 

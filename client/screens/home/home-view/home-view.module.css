@@ -158,8 +158,16 @@
   width: 15px;
 }
 
-.goals:is(&) {
-  animation: none;
+.goals {
+  &:is(&) {
+    animation: none;
+  }
+
+  &::after {
+    display: block;
+    height: var(--block-padding);
+    content: '';
+  }
 }
 
 .addGoalButton {

@@ -1,5 +1,5 @@
 import type { GoalState, GoalStateSerialized } from '#/data/entities';
-import { Cell, type SourceCell } from '@adbl/cells';
+import { Cell } from '@adbl/cells';
 import { GoalItem } from '../goal-item';
 import { vibrate } from '#/library/utils';
 import classes from './goal-checklist-item.module.css';
@@ -8,18 +8,17 @@ import { Temporal } from 'temporal-polyfill';
 export interface GoalChecklistItemProps {
   goalState: GoalState | GoalStateSerialized;
   index: Cell<number>;
-  listChanged: SourceCell<boolean>;
   onCheck?: () => void;
 }
 
 export function GoalChecklistItem(props: GoalChecklistItemProps) {
-  const { goalState, index, listChanged, onCheck } = props;
-  const containerStyles = { '--i': index };
+  const { goalState, index, onCheck } = props;
   const initialCheckState = goalState.state === 'completed';
   const goalInputId = Cell.derived(() => `goal-checklist-${index.value}`);
+  const loaded = Cell.source(false);
+
   const changeGoalState = function (this: HTMLInputElement) {
     vibrate(10);
-    listChanged.value = true;
     goalState.state = this.checked ? 'completed' : 'scheduled'; // dailyGoals array is already deeply reactive.
     if (this.checked) {
       onCheck?.();
@@ -29,8 +28,16 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
     }
   };
 
+  const handleAnimationEnd = () => {
+    loaded.value = true;
+  };
+
   return (
-    <div class={classes.container} style={containerStyles}>
+    <div
+      class={classes.container}
+      data-loaded={loaded}
+      onAnimationEnd--self={handleAnimationEnd}
+    >
       <input
         id={goalInputId}
         class={classes.checkbox}

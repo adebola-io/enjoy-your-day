@@ -18,6 +18,10 @@
     scale: var(--drawer-background-scale);
   }
 
+  &[data-goals-completed] {
+    grid-template-rows: auto auto auto auto 1fr;
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -154,41 +158,8 @@
   width: 15px;
 }
 
-.goals {
-  display: grid;
-  transition-duration: var(--default-duration);
-  transition-property: translate;
-  place-content: start;
-  gap: 9px;
-  grid-template-columns: 100%;
-  grid-row: 4;
-  grid-column: 1;
-
-  &:is(&) {
-    animation: var(--fade-in) calc(var(--default-duration) * 2);
-  }
-
-  &::after {
-    display: block;
-    content: '';
-    translate: 0 calc(var(--total) * (100% + 10px));
-    grid-row: 1;
-    grid-column: 1;
-  }
-
-  & > * {
-    transition-timing-function: ease-in-out;
-    transition-duration: calc(var(--default-duration) * 1.75);
-    transition-property: translate, scale;
-    animation: slide-in calc((var(--default-duration) * 2) + (var(--i) * 40ms));
-    grid-row: 1;
-    grid-column: 1;
-    translate: 0 calc(var(--i) * (100% + 10px));
-  }
-
-  [data-goals-completed] & {
-    translate: 0 calc(var(--base-font-size) + 30px + min(15px, 2dvh));
-  }
+.goals:is(&) {
+  animation: none;
 }
 
 .addGoalButton {

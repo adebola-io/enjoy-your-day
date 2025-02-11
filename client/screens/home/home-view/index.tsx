@@ -21,15 +21,19 @@ import {
   vibrate,
 } from '#/library/utils';
 import { Cell } from '@adbl/cells';
-import { For, If } from '@adbl/unfinished';
+import { If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { extraGoalsPageQuery } from '#/screens/extra-goals';
 import { triggerNotification } from '#/services/notifications';
+import { FluidList } from '#/components/fluid-list';
 import classes from './home-view.module.css';
 
 export default function HomeView() {
   const router = useRouter();
-  const listChanged = Cell.source(false);
+  const initialGoalLength = dailyGoals.value.length;
+  const listChanged = Cell.derived(() => {
+    return initialGoalLength !== dailyGoals.value.length;
+  });
   const extraGoalsScreenIsOpen = useRouteQuery(extraGoalsPageQuery);
 
   const goals = Cell.derived(() => {
@@ -43,10 +47,6 @@ export default function HomeView() {
     }
     return [...scheduled, ...finished, ...forfeited];
   });
-  const formStyles = {
-    '--total': Cell.derived(() => goals.value.length),
-    '--list-changed': Cell.derived(() => +listChanged.value),
-  };
 
   const percentage = Cell.derived(() => {
     const otherGoals = dailyGoals.value.length - numberOfScheduledGoals.value;
@@ -105,16 +105,21 @@ export default function HomeView() {
           Goals completed!
         </router.Link>
       ))}
-      <form class={classes.goals} style={formStyles}>
-        {For(goals, (state, index) => (
+      <FluidList
+        class={classes.goals}
+        items={goals}
+        itemWidth="100dvw"
+        speed="calc(var(--default-duration) * 1.75)"
+        gap="10px"
+        data-list-changed={listChanged}
+        Template={({ item, index }) => (
           <GoalChecklistItem
-            goalState={state}
+            goalState={item}
             index={index}
-            listChanged={listChanged}
             onCheck={handleGoalChecked}
           />
-        ))}
-      </form>
+        )}
+      />
       <FloatingActionButton
         class={classes.addGoalButton}
         block="end"

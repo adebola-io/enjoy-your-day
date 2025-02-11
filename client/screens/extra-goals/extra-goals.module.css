@@ -42,7 +42,6 @@
   display: grid;
   width: 100%;
   border: none;
-  opacity: 0.75;
   color: inherit;
   background-color: transparent;
   animation: var(--fade-in) calc(var(--default-duration) * 2) ease-in-out;
@@ -77,11 +76,13 @@
   align-self: center;
   width: var(--subtitle-font-size);
   height: var(--subtitle-font-size);
+  opacity: 0.75;
 }
 
 .autoCompleteItemText {
   overflow: hidden;
   align-self: center;
+  opacity: 0.75;
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;

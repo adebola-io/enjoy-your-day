@@ -255,7 +255,6 @@ export function FluidList<T>(props: FluidListProps<T>) {
     ...rest
   } = props;
   const observer = useObserver();
-  const previousItemCount = Cell.source(items.value.length);
   const direction = Cell.derived(() => {
     return Cell.isCell(directionProp) ? directionProp.value : directionProp;
   });
@@ -319,6 +318,7 @@ export function FluidList<T>(props: FluidListProps<T>) {
     '--list-change-easing': easing,
     '--list-item-height': itemHeight,
     '--list-item-width': itemWidth,
+    '--list-transition-property': listTransitionProperty,
     '--list-item-transition-property': itemTransitionProperty,
     '--list-item-transition-delay': staggeredDelay,
 
@@ -355,12 +355,17 @@ export function FluidList<T>(props: FluidListProps<T>) {
     );
   };
 
+  let previousItemCount = items.value.length;
   const handleItemsUpdate = async (newItems: T[]) => {
     if (!ref.value) return;
+    if (previousItemCount === 0) {
+      previousItemCount = newItems.length;
+      return;
+    }
 
     const ul = ref.value;
     const shouldPreserveDimensions =
-      shouldPreserveSizing.value && newItems.length === previousItemCount.value;
+      shouldPreserveSizing.value && newItems.length === previousItemCount;
 
     // Prevents the width and height of the list from glitching
     // during the animation as the list items change the grid areas.
@@ -382,7 +387,7 @@ export function FluidList<T>(props: FluidListProps<T>) {
       ul.style.width = listWidth.value;
       ul.style.height = listHeight.value;
     } else {
-      previousItemCount.value = newItems.length;
+      previousItemCount = newItems.length;
     }
   };
 

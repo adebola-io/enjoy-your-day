@@ -105,22 +105,24 @@ export default function HomeView() {
           Goals completed!
         </router.Link>
       ))}
-      <FluidList
-        class={classes.goals}
-        items={goals}
-        itemWidth="100%"
-        speed="calc(var(--default-duration) * 1.75)"
-        gap="10px"
-        preserveSizing
-        data-list-changed={listChanged}
-        Template={({ item, index }) => (
-          <GoalChecklistItem
-            goalState={item}
-            index={index}
-            onCheck={handleGoalChecked}
-          />
-        )}
-      />
+      <div class={classes.goalsContainer}>
+        <FluidList
+          class={classes.goals}
+          items={goals}
+          itemWidth="100%"
+          itemHeight="var(--goal-card-suggestive-size)"
+          speed="calc(var(--default-duration) * 1.75)"
+          gap="3px"
+          data-list-changed={listChanged}
+          Template={({ item, index }) => (
+            <GoalChecklistItem
+              goalState={item}
+              index={index}
+              onCheck={handleGoalChecked}
+            />
+          )}
+        />
+      </div>
       <FloatingActionButton
         class={classes.addGoalButton}
         block="end"

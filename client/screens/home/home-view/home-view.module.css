@@ -158,15 +158,10 @@
   width: 15px;
 }
 
-.goals {
+.goalsContainer {
+  padding-block-end: var(--block-padding);
   &:is(&) {
     animation: none;
-  }
-
-  &::after {
-    display: block;
-    height: var(--block-padding);
-    content: '';
   }
 }
 

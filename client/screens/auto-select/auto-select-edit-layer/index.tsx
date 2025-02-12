@@ -132,27 +132,29 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
               false: ContainerButtonContent,
             })}
           </Container>
-          <FluidList
-            ref={ulRef}
-            class={classes.goalItemList}
-            inert={searchIsOpen}
-            items={goals}
-            itemWidth="100dvw"
-            itemKey="uuid"
-            speed="calc(var(--default-duration) * 0.85)"
-            easing="linear"
-            gap="10px"
-            staggeredDelay="calc(var(--default-duration) * 0.4)"
-            preserveSizing
-            Template={(props) => (
-              <GoalItem
-                containerClass={classes.goalItem}
-                {...props.item}
-                index={props.index}
-                onRemove={removeGoal}
-              />
-            )}
-          />
+          <div class={classes.goalItemListContainer}>
+            <FluidList
+              ref={ulRef}
+              class={classes.goalItemList}
+              inert={searchIsOpen}
+              items={goals}
+              itemWidth="100dvw"
+              itemHeight="var(--goal-card-suggestive-size)"
+              itemKey="uuid"
+              speed="calc(var(--default-duration) * 0.85)"
+              easing="linear"
+              gap="5px"
+              staggeredDelay="calc(var(--default-duration) * 0.4)"
+              Template={(props) => (
+                <GoalItem
+                  containerClass={classes.goalItem}
+                  {...props.item}
+                  index={props.index}
+                  onRemove={removeGoal}
+                />
+              )}
+            />
+          </div>
           <FloatingActionButton
             class={classes.submitBtn}
             avoidNavbar={false}

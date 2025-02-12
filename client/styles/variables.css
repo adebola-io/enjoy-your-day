@@ -128,6 +128,10 @@
   --input-inline-padding: 10px;
   --drawer-background-scale: 0.9;
   --drawer-background-scale-pending: 0.95;
+  /* Handles goal cards with more than one line of info text. */
+  --goal-card-suggestive-size: calc(
+    30px + var(--base-font-size) + calc(var(--small-font-size) * 2.5)
+  );
 
   /* Typography */
 

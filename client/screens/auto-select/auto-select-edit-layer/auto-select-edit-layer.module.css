@@ -64,16 +64,14 @@
   grid-area: 3 / 1;
 }
 
+.goalItemListContainer {
+  padding-block-end: var(--block-padding);
+  grid-area: 4 / 1;
+}
+
 .goalItemList {
   transition-duration: var(--toggle-search-duration);
   transition-property: opacity;
-  grid-area: 4 / 1;
-
-  &::after {
-    display: block;
-    height: var(--block-padding);
-    content: '';
-  }
 }
 
 .title,

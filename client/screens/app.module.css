@@ -31,4 +31,9 @@
       scale: 0.9;
     }
   }
+
+  @media (orientation: landscape) {
+    overflow-y: auto;
+    height: 100%;
+  }
 }

@@ -19,7 +19,6 @@
 
   &:has(:checked) {
     border-color: var(--level-color);
-    outline: 2px solid var(--level-color);
     color: black;
     background-color: var(--level-color);
 

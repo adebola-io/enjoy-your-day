@@ -143,6 +143,7 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
             easing="linear"
             gap="10px"
             staggeredDelay="calc(var(--default-duration) * 0.4)"
+            preserveSizing
             Template={(props) => (
               <GoalItem
                 containerClass={classes.goalItem}

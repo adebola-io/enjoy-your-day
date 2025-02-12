@@ -1,4 +1,3 @@
-import { defer } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { For, useObserver } from '@adbl/unfinished';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
@@ -153,10 +152,22 @@ export interface FluidListProps<U> extends UlListProps {
    *
    * @example
    * ```tsx
-   * <FluidList animateSizing={true} items={myItems} Template={MyItemTemplate} />
+   * <FluidList animateSizing items={myItems} Template={MyItemTemplate} />
    * ```
    */
   animateSizing?: JSX.ValueOrCell<boolean>;
+  /**
+   * A boolean indicating whether the list height and width should not be allowed to glitch during transitions. It requires reading and "freezing" the size of the list during transitions that do not change
+   * the overall number of items.
+   *
+   * @defaultValue `false`
+   *
+   * @example
+   * ```tsx
+   * <FluidList preserveSizing items={myItems} Template={MyItemTemplate} />
+   * ```
+   */
+  preserveSizing?: JSX.ValueOrCell<boolean>;
   /**
    * A function that returns a JSX template to render for each item in the list. This function receives an object with the `item`, `index`, and `list` properties. Use this template to define the visual representation of each list item.
    *
@@ -235,6 +246,7 @@ export function FluidList<T>(props: FluidListProps<T>) {
     itemWidth: itemWidthProp,
     direction: directionProp = 'row',
     animateSizing,
+    preserveSizing: preserveSizingProp,
     staggeredDelay = '0ms',
     speed = '0.2s',
     easing = 'ease',
@@ -243,6 +255,7 @@ export function FluidList<T>(props: FluidListProps<T>) {
     ...rest
   } = props;
   const observer = useObserver();
+  const previousItemCount = Cell.source(items.value.length);
   const direction = Cell.derived(() => {
     return Cell.isCell(directionProp) ? directionProp.value : directionProp;
   });
@@ -254,6 +267,11 @@ export function FluidList<T>(props: FluidListProps<T>) {
   });
   const shouldAnimateSizing = Cell.derived(() => {
     return Cell.isCell(animateSizing) ? animateSizing.value : animateSizing;
+  });
+  const shouldPreserveSizing = Cell.derived(() => {
+    return Cell.isCell(preserveSizingProp)
+      ? preserveSizingProp.value
+      : preserveSizingProp;
   });
 
   const directionClass = Cell.derived(() => {
@@ -301,7 +319,6 @@ export function FluidList<T>(props: FluidListProps<T>) {
     '--list-change-easing': easing,
     '--list-item-height': itemHeight,
     '--list-item-width': itemWidth,
-    '--list-transition-property': listTransitionProperty,
     '--list-item-transition-property': itemTransitionProperty,
     '--list-item-transition-delay': staggeredDelay,
 
@@ -322,13 +339,13 @@ export function FluidList<T>(props: FluidListProps<T>) {
     };
 
     idx.listen((newIndex) => {
-      defer(async () => {
+      setTimeout(async () => {
         if (!liRef.value) return;
         const li = liRef.value;
         const animation = li.getAnimations();
         await Promise.allSettled(animation.map((a) => a.finished));
         previousIdx.value = newIndex;
-      });
+      }, 0);
     });
 
     return (
@@ -338,18 +355,35 @@ export function FluidList<T>(props: FluidListProps<T>) {
     );
   };
 
-  const handleItemsUpdate = async () => {
+  const handleItemsUpdate = async (newItems: T[]) => {
     if (!ref.value) return;
 
     const ul = ref.value;
-    ref.value.classList.add(classes.animated);
+    const shouldPreserveDimensions =
+      shouldPreserveSizing.value && newItems.length === previousItemCount.value;
 
+    // Prevents the width and height of the list from glitching
+    // during the animation as the list items change the grid areas.
+    if (shouldPreserveDimensions) {
+      const rect = ul.getBoundingClientRect();
+      ul.style.width = `${rect.width}px`;
+      ul.style.height = `${rect.height}px`;
+    }
+
+    ref.value.classList.add(classes.animated);
     const animations = ul.getAnimations();
     for (const child of ul.children) {
       animations.push(...child.getAnimations());
     }
     await Promise.allSettled(animations.map((a) => a.finished));
     ref.value.classList.remove(classes.animated);
+
+    if (shouldPreserveDimensions) {
+      ul.style.width = listWidth.value;
+      ul.style.height = listHeight.value;
+    } else {
+      previousItemCount.value = newItems.length;
+    }
   };
 
   if (rest.style) Object.assign(ulStyles, rest.style);

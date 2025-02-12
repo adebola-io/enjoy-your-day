@@ -111,6 +111,7 @@ export default function HomeView() {
         itemWidth="100%"
         speed="calc(var(--default-duration) * 1.75)"
         gap="10px"
+        preserveSizing
         data-list-changed={listChanged}
         Template={({ item, index }) => (
           <GoalChecklistItem

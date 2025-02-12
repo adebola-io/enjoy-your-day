@@ -1,7 +1,6 @@
 .drawer {
   position: fixed;
   z-index: 999;
-  display: grid;
   overflow: hidden;
   overflow-y: auto;
   width: 100%;
@@ -29,6 +28,10 @@
       /* Not a real animation. just delays the snap until the drawer is gone. */
       animation: snap 0ms var(--drawer) both;
     }
+  }
+
+  &[data-open] {
+    display: grid;
   }
 
   &::backdrop {

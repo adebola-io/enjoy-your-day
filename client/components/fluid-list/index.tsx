@@ -7,7 +7,7 @@ type UlListProps = Omit<JSX.IntrinsicElements['ul'], 'style'>;
 /**
  *  Props passed to the `Template` component rendered for each item in the `FluidList`.
  */
-interface ListTemplateProps<T> {
+export interface ListTemplateProps<T> {
   /**
    * The data for the current item being rendered in the list.
    */
@@ -17,33 +17,23 @@ interface ListTemplateProps<T> {
    */
   index: Cell<number>;
   /**
+   * A `Cell` containing the old index of the item in the list, before it started animating.  Once animations end, it will be
+   * equal to `index`.
+   */
+  previousIndex: Cell<number>;
+  /**
    * A `Cell` containing the entire array of items in the list. Useful if the template needs to access other items in the list or perform calculations based on the entire data set.
    */
   list: Cell<T[]>;
 }
 
 /**
- * Configuration options for the `FluidList` component.  This interface defines the properties that control the layout, animation, and rendering of the list items.  It allows for highly customizable and performant lists with dynamic sizing and transitions.
- *
+ * Configuration options for the `FluidList` component.
  * @typeParam U - The type of the data contained within each item in the list.
  */
 export interface FluidListProps<U> extends UlListProps {
   /**
-   * A `Cell` that will hold a reference to the `HTMLUListElement` representing the list. This allows for direct manipulation of the list element via the DOM API, which can be useful for advanced use cases such as triggering animations or measuring layout.
-   *
-   * @defaultValue `Cell.source(null)`
-   *
-   * @example
-   * ```tsx
-   * const listRef = Cell.source<HTMLUListElement | null>(null);
-   *
-   * <FluidList ref={listRef} items={myItems} Template={MyItemTemplate} />
-   *
-   * // Later, access the list element:
-   * if (listRef.value) {
-   *   console.log("List element:", listRef.value);
-   * }
-   * ```
+   * A `Cell` that will hold a reference to the `HTMLUListElement` representing the list, allowing direct manipulation of the list element via the DOM API.
    */
   ref?: Cell<HTMLUListElement | null>;
   /**
@@ -51,25 +41,15 @@ export interface FluidListProps<U> extends UlListProps {
    */
   style?: JSX.StyleValue;
   /**
-   * The direction in which the list items are arranged.  Can be either `'row'` (horizontal) or `'column'` (vertical).  This property influences the layout and sizing of the list items.
+   * The direction in which the list items are arranged.  Can be either `'block'` (horizontal) or `'inline'` (vertical).  This property influences the layout and sizing of the list items.
    *
-   * @defaultValue `'row'`
-   *
-   * @example
-   * ```tsx
-   * <FluidList direction="column" items={myItems} Template={MyItemTemplate} />
-   * ```
+   * @defaultValue `'block'`
    */
-  direction?: JSX.ValueOrCell<'row' | 'column'>;
+  direction?: JSX.ValueOrCell<'block' | 'inline'>;
   /**
    * A string representing the delay applied to the transition of each list item, creating a staggered animation effect.  The delay is applied sequentially to each item in the list.
    *
    * @defaultValue `'0ms'`
-   *
-   * @example
-   * ```tsx
-   * <FluidList staggeredDelay="50ms" items={myItems} Template={MyItemTemplate} />
-   * ```
    */
   staggeredDelay?: JSX.ValueOrCell<string>;
   /**
@@ -78,53 +58,28 @@ export interface FluidListProps<U> extends UlListProps {
   items: Cell<U[]>;
   /**
    * A string representing the fixed height of each list item. If not provided, the height will be determined by the content of the item.  This value should include a CSS unit (e.g., `'50px'`, `'2em'`, `'10vh'`).
-   *
-   * @example
-   * ```tsx
-   * <FluidList itemHeight="50px" items={myItems} Template={MyItemTemplate} />
-   * ```
    */
   itemHeight?: JSX.ValueOrCell<string>;
   /**
    * A string representing the fixed width of each list item. If not provided, the width will be determined by the content of the item.  This value should include a CSS unit (e.g., `'100px'`, `'5em'`, `'20vw'`).
-   *
-   * @example
-   * ```tsx
-   * <FluidList itemWidth="100px" items={myItems} Template={MyItemTemplate} />
-   * ```
    */
   itemWidth?: JSX.ValueOrCell<string>;
   /**
    * A string representing the duration of the transition applied when the list items change size or position.  This value should include a CSS time unit (e.g., `'0.2s'`, `'500ms'`).
    *
    * @defaultValue `'0.2s'`
-   *
-   * @example
-   * ```tsx
-   * <FluidList speed="0.5s" items={myItems} Template={MyItemTemplate} />
-   * ```
    */
   speed?: JSX.ValueOrCell<string>;
   /**
-   * A string representing the easing function applied to the transition of list items.  Common values include `'ease'`, `'linear'`, `'ease-in'`, `'ease-out'`, and `'ease-in-out'`.  You can also use custom cubic-bezier functions.
+   * A string representing the easing function applied to the transition of list items.
    *
    * @defaultValue `'ease'`
-   *
-   * @example
-   * ```tsx
-   * <FluidList easing="ease-out" items={myItems} Template={MyItemTemplate} />
-   * ```
    */
   easing?: JSX.ValueOrCell<string>;
   /**
    * A string representing the gap between list items.  This value should include a CSS unit (e.g., `'10px'`, `'0.5em'`, `'2vh'`).
    *
    * @defaultValue `'0px'`
-   *
-   * @example
-   * ```tsx
-   * <FluidList gap="10px" items={myItems} Template={MyItemTemplate} />
-   * ```
    */
   gap?: JSX.ValueOrCell<string>;
   /**
@@ -149,23 +104,12 @@ export interface FluidListProps<U> extends UlListProps {
    * A boolean indicating whether the list items should animate their size (width and height) during transitions.  If `true`, the items will smoothly transition to their new size when the data changes.  If `false`, the size will change immediately.
    *
    * @defaultValue `false`
-   *
-   * @example
-   * ```tsx
-   * <FluidList animateSizing items={myItems} Template={MyItemTemplate} />
-   * ```
    */
   animateSizing?: JSX.ValueOrCell<boolean>;
   /**
-   * A boolean indicating whether the list height and width should not be allowed to glitch during transitions. It requires reading and "freezing" the size of the list during transitions that do not change
-   * the overall number of items.
+   * A boolean indicating whether the list height and width should not be allowed to glitch during transitions. It requires reading and "freezing" the size of the list during transitions that do not change the overall number of items.
    *
    * @defaultValue `false`
-   *
-   * @example
-   * ```tsx
-   * <FluidList preserveSizing items={myItems} Template={MyItemTemplate} />
-   * ```
    */
   preserveSizing?: JSX.ValueOrCell<boolean>;
   /**
@@ -189,10 +133,24 @@ export interface FluidListProps<U> extends UlListProps {
    * ```
    */
   Template: (props: ListTemplateProps<U>) => JSX.Template;
+  /**
+   * The maximum number of horizontal columns the list can have before wrapping
+   * to the next row.
+   *
+   * **NOTE: This will only take effect when the `direction` is set to `'inline'`.**
+   */
+  maxColumns?: JSX.ValueOrCell<number>;
+  /**
+   * The maximum number of vertical rows the list can have before wrapping
+   * to the next column.
+   *
+   * **NOTE: This will only take effect when the `direction` is set to `'block'`.**
+   */
+  maxRows?: JSX.ValueOrCell<number>;
 }
 
 /**
- * A customizable list that supports dynamic sizing, staggered animations, and flexible layouts.
+ * A list with support for dynamic sizing, staggered animations, and flexible layouts.
  *
  * @param props - The configuration options for the `FluidList` component. See {@link FluidListProps}.
  * @typeParam T - The type of the data contained within each item in the list.
@@ -230,23 +188,25 @@ export interface FluidListProps<U> extends UlListProps {
  *       itemKey="id"
  *       itemHeight="100px"
  *       gap="5px"
- *       direction="column"
+ *       direction="inline"
  *       Template={MyItemTemplate}
  *     />
  *   );
  * }
  * ```
  */
-export function FluidList<T>(props: FluidListProps<T>) {
+export function FluidList<Item>(props: FluidListProps<Item>) {
   const {
     ref = Cell.source(null),
     items,
     itemKey,
     itemHeight: itemHeightProp,
     itemWidth: itemWidthProp,
-    direction: directionProp = 'row',
+    direction: directionProp = 'block',
     animateSizing,
-    preserveSizing: preserveSizingProp,
+    preserveSizing: preserveProp,
+    maxColumns: maxColumnsProp,
+    maxRows: maxRowsProp,
     staggeredDelay = '0ms',
     speed = '0.2s',
     easing = 'ease',
@@ -254,6 +214,7 @@ export function FluidList<T>(props: FluidListProps<T>) {
     Template,
     ...rest
   } = props;
+
   const observer = useObserver();
   const direction = Cell.derived(() => {
     return Cell.isCell(directionProp) ? directionProp.value : directionProp;
@@ -268,49 +229,69 @@ export function FluidList<T>(props: FluidListProps<T>) {
     return Cell.isCell(animateSizing) ? animateSizing.value : animateSizing;
   });
   const shouldPreserveSizing = Cell.derived(() => {
-    return Cell.isCell(preserveSizingProp)
-      ? preserveSizingProp.value
-      : preserveSizingProp;
+    return Cell.isCell(preserveProp) ? preserveProp.value : preserveProp;
   });
+  const maxCols = Cell.derived(() =>
+    Cell.isCell(maxColumnsProp) ? maxColumnsProp.value : maxColumnsProp
+  );
+  const maxRows = Cell.derived(() =>
+    Cell.isCell(maxRowsProp) ? maxRowsProp.value : maxRowsProp
+  );
 
-  const directionClass = Cell.derived(() => {
-    return direction.value === 'column' ? classes.column : classes.row;
-  });
+  const directionClass = Cell.derived(() => classes[direction.value]);
+  const len = Cell.derived(() => items.value.length);
 
-  const gridTemplateColumns = Cell.derived(() => {
-    const width = itemWidth.value ?? 'min-content';
-    return direction.value === 'column'
-      ? `repeat(${items.value.length}, ${width})`
-      : '1fr';
-  });
+  const rows = Cell.derived(() =>
+    direction.value === 'inline'
+      ? maxCols.value
+        ? Math.max(Math.ceil(len.value / maxCols.value), 1)
+        : 1
+      : maxRows.value
+      ? Math.min(maxRows.value, len.value)
+      : Math.max(len.value, 1)
+  );
+  const previousRows = Cell.source(rows.value);
 
-  const gridTemplateRows = Cell.derived(() => {
-    const height = itemHeight.value ?? 'min-content';
-    return direction.value === 'column'
-      ? '1fr'
-      : `repeat(${items.value.length}, ${height})`;
-  });
+  const cols = Cell.derived(() =>
+    direction.value === 'block'
+      ? maxRows.value
+        ? Math.max(Math.ceil(len.value / maxRows.value), 1)
+        : 1
+      : maxCols.value
+      ? Math.min(maxCols.value, len.value)
+      : Math.max(len.value, 1)
+  );
+  const previousCols = Cell.source(cols.value);
 
-  const listHeight = Cell.derived(() => {
+  const gridTemplateColumns = Cell.derived(
+    () => `repeat(${cols.value}, ${itemWidth.value ?? 'min-content'})`
+  );
+
+  const gridTemplateRows = Cell.derived(
+    () => `repeat(${rows.value}, ${itemHeight.value ?? 'min-content'})`
+  );
+
+  const height = Cell.derived(() => {
     if (!itemHeight.value) return '100%';
-    if (direction.value === 'column') return itemHeight.value;
-    const count = items.value.length;
-    return `calc(${count} * ${itemHeight.value} + (var(--gap) * ${count - 1}))`;
+    const itemsTotalHeight = `(${rows.value} * ${itemHeight.value})`;
+    const gaps = `(var(--gap) * ${rows.value - 1})`;
+    return `calc(${itemsTotalHeight} + ${gaps})`;
   });
 
-  const listWidth = Cell.derived(() => {
+  const width = Cell.derived(() => {
     if (!itemWidth.value) return '100%';
-    if (direction.value === 'row') return itemWidth.value;
-    const count = items.value.length;
-    return `calc(${count} * ${itemWidth.value} + (var(--gap) * ${count - 1}))`;
+    const itemsTotalWidth = `${cols.value} * ${itemWidth.value}`;
+    const gaps = `(var(--gap) * ${cols.value - 1})`;
+    return `calc(${itemsTotalWidth} + ${gaps})`;
   });
 
-  const listTransitionProperty = Cell.derived(() => {
-    return shouldAnimateSizing.value ? 'width, height' : 'none';
-  });
-  const itemTransitionProperty = Cell.derived(() => {
-    return shouldAnimateSizing.value ? 'width, height, translate' : 'translate';
-  });
+  const listTransitionProperty = Cell.derived(() =>
+    shouldAnimateSizing.value ? 'width, height' : 'none'
+  );
+
+  const itemTransitionProperty = Cell.derived(() =>
+    shouldAnimateSizing.value ? 'width, height, translate' : 'translate'
+  );
 
   const ulStyles: JSX.StyleValue = {
     '--gap': gap,
@@ -318,25 +299,26 @@ export function FluidList<T>(props: FluidListProps<T>) {
     '--list-change-easing': easing,
     '--list-item-height': itemHeight,
     '--list-item-width': itemWidth,
-    '--list-transition-property': listTransitionProperty,
     '--list-item-transition-property': itemTransitionProperty,
     '--list-item-transition-delay': staggeredDelay,
+    '--list-transition-property': listTransitionProperty,
+    '--rows': rows,
+    '--prev-rows': previousRows,
+    '--cols': cols,
+    '--prev-cols': previousCols,
 
-    height: listHeight,
-    width: listWidth,
+    height,
+    width,
     gridTemplateRows,
     gridTemplateColumns,
     transitionDuration: 'var(--list-change-duration)',
     transitionTimingFunction: 'var(--list-change-easing)',
   };
 
-  const ItemRenderer = (item: T, idx: Cell<number>) => {
+  const ItemRenderer = (item: Item, idx: Cell<number>) => {
     const previousIdx = Cell.source(idx.value);
     const liRef = Cell.source<HTMLLIElement | null>(null);
-    const styles: JSX.StyleValue = {
-      '--prev': previousIdx,
-      '--curr': idx,
-    };
+    const styles: JSX.StyleValue = { '--prev': previousIdx, '--curr': idx };
 
     idx.listen((newIndex) => {
       setTimeout(async () => {
@@ -350,13 +332,28 @@ export function FluidList<T>(props: FluidListProps<T>) {
 
     return (
       <li ref={liRef} class={classes.dynamicListItem} style={styles}>
-        <Template item={item} index={idx} list={items} />
+        <Template
+          item={item}
+          index={idx}
+          list={items}
+          previousIndex={previousIdx}
+        />
       </li>
     );
   };
 
-  let previousItemCount = items.value.length;
-  const handleItemsUpdate = async (newItems: T[]) => {
+  const waitForAnimations = async () => {
+    if (!ref.value) return;
+    const ul = ref.value;
+    const animations = ul.getAnimations();
+    for (const child of ul.children) {
+      animations.push(...child.getAnimations());
+    }
+    await Promise.allSettled(animations.map((a) => a.finished));
+  };
+
+  let previousItemCount = len.value;
+  const handleItemsUpdate = (newItems: Item[]) => {
     if (!ref.value) return;
     if (previousItemCount === 0) {
       previousItemCount = newItems.length;
@@ -376,20 +373,27 @@ export function FluidList<T>(props: FluidListProps<T>) {
     }
 
     ref.value.classList.add(classes.animated);
-    const animations = ul.getAnimations();
-    for (const child of ul.children) {
-      animations.push(...child.getAnimations());
-    }
-    await Promise.allSettled(animations.map((a) => a.finished));
-    ref.value.classList.remove(classes.animated);
+    waitForAnimations().then(() => {
+      ref.value?.classList.remove(classes.animated);
 
-    if (shouldPreserveDimensions) {
-      ul.style.width = listWidth.value;
-      ul.style.height = listHeight.value;
-    } else {
-      previousItemCount = newItems.length;
-    }
+      if (shouldPreserveDimensions) {
+        ul.style.width = width.value;
+        ul.style.height = height.value;
+      } else {
+        previousItemCount = newItems.length;
+      }
+    });
   };
+
+  rows.listen(async (colCount) => {
+    await waitForAnimations();
+    previousRows.value = colCount;
+  });
+
+  cols.listen(async (colCount) => {
+    await waitForAnimations();
+    previousCols.value = colCount;
+  });
 
   if (rest.style) Object.assign(ulStyles, rest.style);
   observer.onConnected(ref, () => {

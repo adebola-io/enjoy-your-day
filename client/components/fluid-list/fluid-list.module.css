@@ -1,4 +1,7 @@
 .dynamicList {
+  --factor: calc(100% + var(--gap));
+  --old-cols: max(var(--prev-cols), var(--cols));
+  --old-rows: max(var(--prev-rows), var(--rows));
   display: grid;
   max-width: 100%;
   max-height: 100%;
@@ -8,6 +11,10 @@
   transition-duration: var(--list-change-duration);
   transition-property: var(--list-transition-property);
   gap: var(--gap);
+
+  &.block {
+    grid-auto-flow: column;
+  }
 }
 
 .dynamicListItem {
@@ -18,36 +25,35 @@
   animation-duration: var(--list-change-duration);
   animation-timing-function: var(--list-change-easing);
   animation-delay: calc(var(--curr) * var(--list-item-transition-delay));
-  content-visibility: auto;
+
+  .dynamicList.block > & {
+    --list-item-previous-col: round(to-zero, var(--prev) / var(--old-rows));
+    --list-item-previous-row: mod(var(--prev), var(--old-rows));
+    --list-item-col: round(to-zero, var(--curr) / var(--rows));
+    --list-item-row: mod(var(--curr), var(--rows));
+  }
+
+  .dynamicList.inline > & {
+    --list-item-previous-col: mod(var(--prev), var(--old-cols));
+    --list-item-previous-row: round(to-zero, var(--prev) / var(--old-cols));
+    --list-item-col: mod(var(--curr), var(--cols));
+    --list-item-row: round(to-zero, var(--curr) / var(--cols));
+  }
 
   .dynamicList.animated > & {
-    grid-area: 1 / 1;
+    animation-name: list-item-transition;
     animation-fill-mode: both;
-  }
-
-  .dynamicList.animated.row > & {
-    animation-name: list-item-row-transition;
-  }
-
-  .dynamicList.animated.column > & {
-    animation-name: list-item-column-transition;
+    grid-area: 1 / 1;
   }
 }
 
-@keyframes list-item-row-transition {
+@keyframes list-item-transition {
   from {
-    translate: 0 calc(var(--prev) * (100% + var(--gap)));
+    translate: calc(var(--list-item-previous-col) * var(--factor))
+      calc(var(--list-item-previous-row) * var(--factor));
   }
   to {
-    translate: 0 calc(var(--curr) * (100% + var(--gap)));
-  }
-}
-
-@keyframes list-item-column-transition {
-  from {
-    translate: calc(var(--prev) * (100% + var(--gap))) 0;
-  }
-  to {
-    translate: calc(var(--curr) * (100% + var(--gap))) 0;
+    translate: calc(var(--list-item-col) * var(--factor))
+      calc(var(--list-item-row) * var(--factor));
   }
 }

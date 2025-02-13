@@ -16,7 +16,7 @@ import { Icon } from '#/components/icon';
 import AddGoalDrawer, { drawerQuery } from './add-goal-drawer';
 import { useObserver } from '@adbl/unfinished';
 import { isSafari } from '#/library/app-environment';
-import { FluidList } from '#/components/fluid-list';
+import { FluidList, type ListTemplateProps } from '#/components/fluid-list';
 import classes from './extra-goals.module.css';
 
 export const extraGoalsPageQuery = 'extra-goals-query';
@@ -68,7 +68,8 @@ function ExtraGoalsViewContent() {
     await removeRouteQuery(extraGoalsPageQuery);
   };
 
-  const AutoCompleteOption = (option: GoalProps) => {
+  const AutoCompleteOption = (props: ListTemplateProps<GoalProps>) => {
+    const option = props.item;
     const openGoalCard = async () => {
       await removeRouteQuery(drawerQuery);
       addRouteQuery(drawerQuery, option.uuid);
@@ -108,9 +109,7 @@ function ExtraGoalsViewContent() {
         itemKey="uuid"
         itemWidth="100dvw"
         speed="calc(var(--default-duration) * 2)"
-        Template={(props) => (
-          <AutoCompleteOption {...props.item} index={props.index} />
-        )}
+        Template={AutoCompleteOption}
       />
       <AddGoalDrawer onBeforeGoalAdded={close} />
     </>

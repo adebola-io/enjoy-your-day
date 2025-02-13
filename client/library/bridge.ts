@@ -22,10 +22,12 @@ export const Bridge = {
   /**
    * Creates an async sender function for communication with a different worker.
    * @param name - The name of the BroadcastChannel to use for communication.
+   * @param them - A callback that should fire once a stable connection has been established.
    * @returns A sender function that can be used to send messages to the receiver.
    */
-  sender<C extends ChannelName>(name: C): ChannelSenders[C] {
+  sender<C extends ChannelName>(name: C, then?: () => void): ChannelSenders[C] {
     let receiverReady = false;
+    let callbackFired = false;
     const idToPromiseMap = new Map<string, PromiseHandler>();
     const messageQueue: Array<{ id: string; message: unknown }> = [];
     const channel = new BroadcastChannel(name);
@@ -52,6 +54,10 @@ export const Bridge = {
         receiverReady = true;
         while (messageQueue.length > 0) {
           channel.postMessage(messageQueue.shift());
+        }
+        if (!callbackFired) {
+          then?.();
+          callbackFired = true;
         }
         return;
       }

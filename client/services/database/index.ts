@@ -1,13 +1,40 @@
 import { categories } from '../../data/categories';
 import { LATEST_DATA_CHUNK } from '../../data/constants';
 import type { GoalStateSerialized } from '../../data/entities';
+import {
+  dailyGoals,
+  dailyGoalsDateStamp,
+  lastLoadedChunk,
+  liveDate,
+} from '../../data/state';
 import { Temporal } from 'temporal-polyfill';
-import { lastLoadedChunk } from '../../data/state';
 import dbWorkerUrl from './db.worker?worker&url';
 import { Bridge } from '#/library/bridge';
 
 new Worker(dbWorkerUrl, { type: 'module' });
-const toDbWorker = Bridge.sender('db');
+const toDbWorker = Bridge.sender('db', () => {
+  liveDate.listen(trackDateChange);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') trackDateChange();
+  });
+  trackDateChange();
+});
+
+async function trackDateChange() {
+  const today = Temporal.Now.plainDateISO().toString();
+  if (!dailyGoalsDateStamp.value || today === dailyGoalsDateStamp.value) {
+    return;
+  }
+  const dailyGoalsCloned = JSON.parse(JSON.stringify(dailyGoals.value));
+  dailyGoals.value = [];
+  try {
+    await saveGoalState(dailyGoalsCloned, dailyGoalsDateStamp.value);
+    dailyGoalsDateStamp.value = null;
+  } catch (error) {
+    dailyGoals.value = dailyGoalsCloned;
+    console.error(error);
+  }
+}
 
 export async function echo<T>(value: T): Promise<T> {
   return await toDbWorker({ type: 'echo', value });

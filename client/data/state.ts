@@ -159,28 +159,6 @@ appLoadingState.runAndListen((state) => {
   }
 });
 
-async function trackDateChange() {
-  const today = Temporal.Now.plainDateISO().toString();
-  if (!dailyGoalsDateStamp.value || today === dailyGoalsDateStamp.value) {
-    return;
-  }
-  const dailyGoalsCloned = JSON.parse(JSON.stringify(dailyGoals.value));
-  dailyGoals.value = [];
-  try {
-    await saveGoalState(dailyGoalsCloned, dailyGoalsDateStamp.value);
-    dailyGoalsDateStamp.value = null;
-  } catch (error) {
-    dailyGoals.value = dailyGoalsCloned;
-    console.error(error);
-  }
-}
-
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') trackDateChange();
-});
-
-liveDate.runAndListen(trackDateChange);
-
 export async function resetAllData() {
   await resetDbData();
   appLoadingState.value = 'setup';

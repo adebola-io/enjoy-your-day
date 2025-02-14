@@ -30,7 +30,7 @@
     }
   }
 
-  &[data-open] {
+  &[open] {
     display: grid;
   }
 
@@ -145,6 +145,10 @@
 
     .drawer[data-open] & {
       scale: 1;
+    }
+
+    .drawer:not([data-open]) & {
+      margin-block: auto;
     }
   }
 

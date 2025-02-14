@@ -59,7 +59,9 @@ export function BottomDrawer(props: BottomDrawerProps) {
       // z-index and top layering issues.
       dialog.removeAttribute('data-open');
       onBeforeClose?.(false);
-      await Promise.all(dialogContent.getAnimations().map((a) => a.finished));
+      await Promise.allSettled(
+        dialogContent.getAnimations().map((a) => a.finished)
+      );
       dialog.close();
     }
   };

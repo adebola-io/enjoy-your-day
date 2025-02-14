@@ -32,7 +32,7 @@ export function ViewLike(props: ViewLikeProps) {
   const afterLayerTransition = (callback: () => void) => {
     defer(async () => {
       if (!ref.value) return;
-      await Promise.all(
+      await Promise.allSettled(
         ref.value
           .getAnimations()
           .filter((a) => a instanceof CSSTransition)

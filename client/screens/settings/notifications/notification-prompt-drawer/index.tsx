@@ -53,7 +53,9 @@ export default function NotificationPromptDrawer() {
 
   const finishAnimations = async () => {
     if (!checkRef.value) return;
-    await Promise.all(checkRef.value.getAnimations().map((a) => a.finished));
+    await Promise.allSettled(
+      checkRef.value.getAnimations().map((a) => a.finished)
+    );
   };
 
   const requestNotificationPermission = async () => {

@@ -384,5 +384,5 @@ export async function elementAnimationsFinished(element: Element | null) {
   if (!element) return;
   await new Promise((r) => setTimeout(r, 0));
   const animations = element.getAnimations();
-  return Promise.all(animations.map((a) => a.finished));
+  return Promise.allSettled(animations.map((a) => a.finished));
 }

@@ -2,6 +2,7 @@ import { Cell } from '@adbl/cells';
 import { For, useObserver } from '@adbl/unfinished';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './fluid-list.module.css';
+import { deriveProp, defer } from '#/library/utils';
 
 type UlListProps = Omit<JSX.IntrinsicElements['ul'], 'style'>;
 /**
@@ -203,7 +204,7 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
     itemHeight: itemHeightProp,
     itemWidth: itemWidthProp,
     direction: directionProp = 'block',
-    animateSizing,
+    animateSizing: animateSizingProp,
     preserveSizing: preserveProp,
     maxColumns: maxColumnsProp,
     maxRows: maxRowsProp,
@@ -216,27 +217,13 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
   } = props;
 
   const observer = useObserver();
-  const direction = Cell.derived(() => {
-    return Cell.isCell(directionProp) ? directionProp.value : directionProp;
-  });
-  const itemWidth = Cell.derived(() => {
-    return Cell.isCell(itemWidthProp) ? itemWidthProp.value : itemWidthProp;
-  });
-  const itemHeight = Cell.derived(() => {
-    return Cell.isCell(itemHeightProp) ? itemHeightProp.value : itemHeightProp;
-  });
-  const shouldAnimateSizing = Cell.derived(() => {
-    return Cell.isCell(animateSizing) ? animateSizing.value : animateSizing;
-  });
-  const shouldPreserveSizing = Cell.derived(() => {
-    return Cell.isCell(preserveProp) ? preserveProp.value : preserveProp;
-  });
-  const maxCols = Cell.derived(() =>
-    Cell.isCell(maxColumnsProp) ? maxColumnsProp.value : maxColumnsProp
-  );
-  const maxRows = Cell.derived(() =>
-    Cell.isCell(maxRowsProp) ? maxRowsProp.value : maxRowsProp
-  );
+  const direction = deriveProp(directionProp);
+  const itemWidth = deriveProp(itemWidthProp);
+  const itemHeight = deriveProp(itemHeightProp);
+  const animateSizing = deriveProp(animateSizingProp);
+  const preserveSizing = deriveProp(preserveProp);
+  const maxCols = deriveProp(maxColumnsProp);
+  const maxRows = deriveProp(maxRowsProp);
 
   const directionClass = Cell.derived(() => classes[direction.value]);
   const len = Cell.derived(() => items.value.length);
@@ -286,11 +273,11 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
   });
 
   const listTransitionProperty = Cell.derived(() =>
-    shouldAnimateSizing.value ? 'width, height' : 'none'
+    animateSizing.value ? 'width, height' : 'none'
   );
 
   const itemTransitionProperty = Cell.derived(() =>
-    shouldAnimateSizing.value ? 'width, height, translate' : 'translate'
+    animateSizing.value ? 'width, height, translate' : 'translate'
   );
 
   const ulStyles: JSX.StyleValue = {
@@ -321,13 +308,13 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
     const styles: JSX.StyleValue = { '--prev': previousIdx, '--curr': idx };
 
     idx.listen((newIndex) => {
-      setTimeout(async () => {
+      defer(async () => {
         if (!liRef.value) return;
         const li = liRef.value;
         const animation = li.getAnimations();
         await Promise.allSettled(animation.map((a) => a.finished));
         previousIdx.value = newIndex;
-      }, 0);
+      });
     });
 
     return (
@@ -362,7 +349,7 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
 
     const ul = ref.value;
     const shouldPreserveDimensions =
-      shouldPreserveSizing.value && newItems.length === previousItemCount;
+      preserveSizing.value && newItems.length === previousItemCount;
 
     // Prevents the width and height of the list from glitching
     // during the animation as the list items change the grid areas.

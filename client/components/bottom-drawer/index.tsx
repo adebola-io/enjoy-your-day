@@ -1,5 +1,5 @@
 import type { JSX } from '@adbl/unfinished/jsx-dev-runtime';
-import { defer } from '#/library/utils';
+import { defer, deriveProp } from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
 import { Teleport } from '@adbl/unfinished/teleport';
 import { Cell, type SourceCell } from '@adbl/cells';
@@ -34,15 +34,11 @@ export function BottomDrawer(props: BottomDrawerProps) {
   const observer = useObserver();
   const router = useRouter();
 
-  const isOpen = Cell.derived(() =>
-    Cell.isCell(open) ? open.value : Boolean(open)
-  );
+  const isOpen = deriveProp(open);
   const isClosed = Cell.derived(() => !isOpen.value);
-  const isClosable = Cell.derived(() =>
-    Cell.isCell(closable) ? closable.value : Boolean(closable)
-  );
+  const isClosable = deriveProp(closable);
 
-  const toggle = async (isOpen: boolean) => {
+  const toggle = async (isOpen?: boolean) => {
     const dialog = ref.value;
     if (!dialog || !dialog.isConnected) return;
     const shouldOpen = isOpen && !dialog.open;

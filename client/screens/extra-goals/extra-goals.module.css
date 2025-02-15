@@ -44,7 +44,7 @@
   border: none;
   color: inherit;
   background-color: transparent;
-  animation: var(--fade-in) calc(var(--default-duration) * 2) ease-in-out;
+  animation: var(--fade-in) var(--default-duration) ease-in-out;
   font: var(--bigger-regular);
   grid-template-columns: var(--subtitle-font-size) 1fr;
   padding-block: calc(var(--block-padding) * 0.5);

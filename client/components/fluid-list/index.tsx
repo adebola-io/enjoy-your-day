@@ -415,7 +415,6 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
     }
 
     const sessionId = manager.activeSessionId;
-    await new Promise((r) => setTimeout(r, 0));
     requestAnimationFrame(async () => {
       if (!ref.value) return;
 

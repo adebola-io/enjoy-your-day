@@ -391,10 +391,6 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
     );
   };
 
-  const beforeDomUpdates = () => {
-    manager.startNewSession();
-  };
-
   // Run only for interrupted animation sessions and moved nodes.
   const onBeforeNodesMove = (nodes: ChildNode[]) => {
     if (!manager.isActive) return;
@@ -414,7 +410,7 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
       return;
     }
 
-    const sessionId = manager.activeSessionId;
+    const sessionId = manager.startNewSession();
     requestAnimationFrame(async () => {
       if (!ref.value) return;
 
@@ -462,13 +458,8 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
   if (rest.style) Object.assign(ulStyles, rest.style);
 
   observer.onConnected(ref, () => {
-    items.listen(beforeDomUpdates, { priority: 1 });
-    items.listen(afterDomUpdates, { priority: -1 });
-
-    return () => {
-      items.ignore(beforeDomUpdates);
-      items.ignore(afterDomUpdates);
-    };
+    items.listen(afterDomUpdates);
+    return () => items.ignore(afterDomUpdates);
   });
 
   return (

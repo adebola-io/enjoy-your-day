@@ -21,38 +21,20 @@
   width: var(--list-item-width);
   height: var(--list-item-height);
   list-style-type: none;
-  transition-property: var(--list-item-transition-property);
-  animation-duration: var(--list-change-duration);
-  animation-timing-function: var(--list-change-easing);
-  animation-delay: calc(var(--curr) * var(--list-item-transition-delay));
 
-  .dynamicList.block > & {
-    --list-item-previous-col: round(to-zero, var(--prev) / var(--old-rows));
-    --list-item-previous-row: mod(var(--prev), var(--old-rows));
-    --list-item-col: round(to-zero, var(--curr) / var(--rows));
-    --list-item-row: mod(var(--curr), var(--rows));
-  }
-
-  .dynamicList.inline > & {
-    --list-item-previous-col: mod(var(--prev), var(--old-cols));
-    --list-item-previous-row: round(to-zero, var(--prev) / var(--old-cols));
-    --list-item-col: mod(var(--curr), var(--cols));
-    --list-item-row: round(to-zero, var(--curr) / var(--cols));
-  }
-
-  .dynamicList.animated > & {
-    animation-name: list-item-transition;
-    animation-fill-mode: both;
+  .dynamicList.from > & {
     grid-area: 1 / 1;
-  }
-}
-
-@keyframes list-item-transition {
-  from {
     translate: calc(var(--list-item-previous-col) * var(--factor))
       calc(var(--list-item-previous-row) * var(--factor));
   }
-  to {
+
+  .dynamicList.to > & {
+    transition-delay: calc(var(--curr) * var(--list-item-transition-delay));
+    transition-timing-function: var(--list-change-easing);
+    transition-duration: var(--list-change-duration);
+    transition-property: var(--list-item-transition-property);
+
+    grid-area: 1 / 1;
     translate: calc(var(--list-item-col) * var(--factor))
       calc(var(--list-item-row) * var(--factor));
   }

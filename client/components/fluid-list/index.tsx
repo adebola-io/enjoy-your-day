@@ -1,10 +1,17 @@
-import { Cell } from '@adbl/cells';
+import { Cell, type SourceCell } from '@adbl/cells';
 import { For, useObserver } from '@adbl/unfinished';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './fluid-list.module.css';
-import { deriveProp, defer } from '#/library/utils';
+import { deriveProp } from '#/library/utils';
 
 type UlListProps = Omit<JSX.IntrinsicElements['ul'], 'style'>;
+type AnimatedListElement = HTMLElement & {
+  _lastTranslate?: string;
+  _lastTiming?: EffectTiming;
+  _restoredAnimation?: Animation;
+  _currentIndex?: Cell<number>;
+  _previousIndex?: SourceCell<number>;
+};
 /**
  *  Props passed to the `Template` component rendered for each item in the `FluidList`.
  */
@@ -36,7 +43,7 @@ export interface FluidListProps<U> extends UlListProps {
   /**
    * A `Cell` that will hold a reference to the `HTMLUListElement` representing the list, allowing direct manipulation of the list element via the DOM API.
    */
-  ref?: Cell<HTMLUListElement | null>;
+  ref?: SourceCell<HTMLUListElement | null>;
   /**
    * CSS styles to be applied directly to the `<ul>` element.  Styles defined here override the default styles provided by the `FluidList` component.  Use this to customize the appearance of the list container.
    */
@@ -107,12 +114,6 @@ export interface FluidListProps<U> extends UlListProps {
    * @defaultValue `false`
    */
   animateSizing?: JSX.ValueOrCell<boolean>;
-  /**
-   * A boolean indicating whether the list height and width should not be allowed to glitch during transitions. It requires reading and "freezing" the size of the list during transitions that do not change the overall number of items.
-   *
-   * @defaultValue `false`
-   */
-  preserveSizing?: JSX.ValueOrCell<boolean>;
   /**
    * A function that returns a JSX template to render for each item in the list. This function receives an object with the `item`, `index`, and `list` properties. Use this template to define the visual representation of each list item.
    *
@@ -205,7 +206,6 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
     itemWidth: itemWidthProp,
     direction: directionProp = 'block',
     animateSizing: animateSizingProp,
-    preserveSizing: preserveProp,
     maxColumns: maxColumnsProp,
     maxRows: maxRowsProp,
     staggeredDelay = '0ms',
@@ -216,17 +216,21 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
     ...rest
   } = props;
 
+  const manager = new AnimationSessionManager();
+  const nextTranslate =
+    'calc(var(--list-item-col) * var(--factor)) calc(var(--list-item-row) * var(--factor))';
+
   const observer = useObserver();
   const direction = deriveProp(directionProp);
   const itemWidth = deriveProp(itemWidthProp);
   const itemHeight = deriveProp(itemHeightProp);
   const animateSizing = deriveProp(animateSizingProp);
-  const preserveSizing = deriveProp(preserveProp);
   const maxCols = deriveProp(maxColumnsProp);
   const maxRows = deriveProp(maxRowsProp);
 
   const directionClass = Cell.derived(() => classes[direction.value]);
   const len = Cell.derived(() => items.value.length);
+  let previousLength = len.value;
 
   const rows = Cell.derived(() =>
     direction.value === 'inline'
@@ -249,6 +253,9 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
       : Math.max(len.value, 1)
   );
   const previousCols = Cell.source(cols.value);
+
+  const oldRows = Cell.derived(() => Math.max(rows.value, previousRows.value));
+  const oldCols = Cell.derived(() => Math.max(cols.value, previousCols.value));
 
   const gridTemplateColumns = Cell.derived(
     () => `repeat(${cols.value}, ${itemWidth.value ?? 'min-content'})`
@@ -293,29 +300,59 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
     '--prev-rows': previousRows,
     '--cols': cols,
     '--prev-cols': previousCols,
+    '--old-rows': oldRows,
+    '--old-cols': oldCols,
 
     height,
     width,
     gridTemplateRows,
     gridTemplateColumns,
-    transitionDuration: 'var(--list-change-duration)',
-    transitionTimingFunction: 'var(--list-change-easing)',
   };
 
   const ItemRenderer = (item: Item, idx: Cell<number>) => {
     const previousIdx = Cell.source(idx.value);
     const liRef = Cell.source<HTMLLIElement | null>(null);
-    const styles: JSX.StyleValue = { '--prev': previousIdx, '--curr': idx };
 
-    idx.listen((newIndex) => {
-      defer(async () => {
-        if (!liRef.value) return;
-        const li = liRef.value;
-        const animation = li.getAnimations();
-        await Promise.allSettled(animation.map((a) => a.finished));
-        previousIdx.value = newIndex;
-      });
-    });
+    const listItemPreviousCol = Cell.derived(() =>
+      direction.value === 'block'
+        ? Math.trunc(previousIdx.value / oldRows.value)
+        : previousIdx.value % oldCols.value
+    );
+
+    const listItemPreviousRow = Cell.derived(() =>
+      direction.value === 'block'
+        ? previousIdx.value % oldRows.value
+        : Math.trunc(previousIdx.value / oldCols.value)
+    );
+
+    const listItemCol = Cell.derived(() =>
+      direction.value === 'block'
+        ? Math.trunc(idx.value / rows.value)
+        : idx.value % cols.value
+    );
+
+    const listItemRow = Cell.derived(() =>
+      direction.value === 'block'
+        ? idx.value % rows.value
+        : Math.trunc(idx.value / cols.value)
+    );
+
+    const styles: JSX.StyleValue = {
+      '--prev': previousIdx,
+      '--curr': idx,
+      '--list-item-previous-col': listItemPreviousCol,
+      '--list-item-previous-row': listItemPreviousRow,
+      '--list-item-col': listItemCol,
+      '--list-item-row': listItemRow,
+    };
+
+    const storeIndices = (li: HTMLLIElement | null) => {
+      if (!li) return;
+      (li as AnimatedListElement)._previousIndex = previousIdx;
+      (li as AnimatedListElement)._currentIndex = idx;
+    };
+
+    liRef.listen(storeIndices, { once: true });
 
     return (
       <li ref={liRef} class={classes.dynamicListItem} style={styles}>
@@ -329,63 +366,110 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
     );
   };
 
-  const waitForAnimations = async () => {
+  const completeAnimationSequence = async () => {
     if (!ref.value) return;
-    const ul = ref.value;
+    const ul = ref.deproxy();
     const animations = ul.getAnimations();
     for (const child of ul.children) {
       animations.push(...child.getAnimations());
     }
-    await Promise.allSettled(animations.map((a) => a.finished));
+    await Promise.allSettled(
+      animations.map((animation) =>
+        animation.finished.then(() => {
+          if (!(animation.effect instanceof KeyframeEffect)) return;
+          if (animation.effect.target === ul) return;
+
+          const li = animation.effect.target as AnimatedListElement;
+          li._lastTranslate = undefined;
+          li._restoredAnimation = undefined;
+          li._lastTiming = undefined;
+          if (li._previousIndex && li._currentIndex) {
+            li._previousIndex.value = li._currentIndex.value;
+          }
+        })
+      )
+    );
   };
 
-  let previousItemCount = len.value;
-  const handleItemsUpdate = (newItems: Item[]) => {
-    if (!ref.value) return;
-    if (previousItemCount === 0) {
-      previousItemCount = newItems.length;
+  const beforeDomUpdates = () => {
+    manager.startNewSession();
+  };
+
+  // Run only for interrupted animation sessions and moved nodes.
+  const onBeforeNodesMove = (nodes: ChildNode[]) => {
+    if (!manager.isActive) return;
+    for (const child of nodes) {
+      if (!(child instanceof HTMLLIElement)) continue;
+      const li = child as AnimatedListElement;
+      if (li._restoredAnimation) li._restoredAnimation.commitStyles();
+      li._lastTranslate = getComputedStyle(child).translate;
+      li._lastTiming = li.getAnimations()[0]?.effect?.getComputedTiming();
+      if (li._restoredAnimation) li.style.removeProperty('translate');
+    }
+  };
+
+  const afterDomUpdates = async (newItems: Item[]) => {
+    if (previousLength === 0) {
+      previousLength = newItems.length;
       return;
     }
 
-    const ul = ref.value;
-    const shouldPreserveDimensions =
-      preserveSizing.value && newItems.length === previousItemCount;
+    const sessionId = manager.activeSessionId;
+    await new Promise((r) => setTimeout(r, 0));
+    requestAnimationFrame(async () => {
+      if (!ref.value) return;
 
-    // Prevents the width and height of the list from glitching
-    // during the animation as the list items change the grid areas.
-    if (shouldPreserveDimensions) {
-      const rect = ul.getBoundingClientRect();
-      ul.style.width = `${rect.width}px`;
-      ul.style.height = `${rect.height}px`;
-    }
+      const ul = ref.value;
+      ul.classList.add(classes.from);
 
-    ref.value.classList.add(classes.animated);
-    waitForAnimations().then(() => {
-      ref.value?.classList.remove(classes.animated);
+      let fallbackTiming: EffectTiming | undefined;
+      for (const child of ul.children) {
+        if (!fallbackTiming) {
+          const animations = child.getAnimations();
+          fallbackTiming = animations[0]?.effect?.getComputedTiming();
+        }
+        const li = child as AnimatedListElement;
+        if (!li._lastTranslate) continue;
+        const timing = li._lastTiming ?? fallbackTiming;
+        const keyframes = [
+          { translate: li._lastTranslate },
+          { translate: nextTranslate },
+        ];
 
-      if (shouldPreserveDimensions) {
-        ul.style.width = width.value;
-        ul.style.height = height.value;
-      } else {
-        previousItemCount = newItems.length;
+        li._restoredAnimation = li.animate(keyframes, timing);
       }
+
+      requestAnimationFrame(async () => {
+        if (!ref.value) return;
+
+        ul.classList.add(classes.to);
+        await completeAnimationSequence();
+        if (sessionId !== manager.activeSessionId) return;
+
+        ref.value.classList.remove(classes.from, classes.to);
+        manager.endCurrentSession();
+      });
     });
   };
 
   rows.listen(async (colCount) => {
-    await waitForAnimations();
-    previousRows.value = colCount;
+    if (await manager.currentSessionEnded) previousRows.value = colCount;
   });
 
   cols.listen(async (colCount) => {
-    await waitForAnimations();
-    previousCols.value = colCount;
+    if (await manager.currentSessionEnded) previousCols.value = colCount;
   });
 
   if (rest.style) Object.assign(ulStyles, rest.style);
+
   observer.onConnected(ref, () => {
-    items.listen(handleItemsUpdate);
-    return () => items.ignore(handleItemsUpdate);
+    items.listen(beforeDomUpdates, { priority: 1 });
+    items.listen(afterDomUpdates, { priority: -1 });
+
+    return () => {
+      items.ignore(beforeDomUpdates);
+      items.ignore(afterDomUpdates);
+    };
   });
 
   return (
@@ -395,7 +479,36 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
       class={[classes.dynamicList, directionClass, rest.class]}
       style={ulStyles}
     >
-      {For(items, ItemRenderer, { key: itemKey })}
+      {For(items, ItemRenderer, { key: itemKey, onBeforeNodesMove })}
     </ul>
   );
+}
+
+class AnimationSessionManager {
+  activeSessionId: string | null = null;
+  currentSessionEnded = Promise.resolve(true);
+  isActive = false;
+
+  startNewSession(): string {
+    if (this.isActive) this.abortCurrentSession();
+
+    this.isActive = true;
+    this.currentSessionEnded = new Promise((resolve) => {
+      this.endCurrentSession = () => {
+        this.isActive = false;
+        this.activeSessionId = null;
+        resolve(true);
+      };
+      this.abortCurrentSession = () => {
+        this.isActive = false;
+        resolve(false);
+      };
+    });
+
+    this.activeSessionId = crypto.randomUUID();
+    return this.activeSessionId;
+  }
+
+  abortCurrentSession() {}
+  endCurrentSession() {}
 }

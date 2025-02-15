@@ -16,6 +16,7 @@ export function BackButton(props: JSX.IntrinsicElements['button']) {
     <button
       id="backButton"
       type="button"
+      title="Go back"
       onClick={goBack}
       {...rest}
       class={[classes.backButton, className]}

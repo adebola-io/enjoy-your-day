@@ -89,10 +89,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
   };
 
   isOpen.listen(toggle);
-  observer.onConnected(ref, () => {
-    // Intersection Observer doesn't work on cell values directly
-    // because they are proxies.
-    const dialog = ref.deproxy();
+  observer.onConnected(ref, (dialog) => {
     const div = dialog.firstElementChild as HTMLDivElement;
     const callback: IntersectionObserverCallback = ([{ isIntersecting }]) => {
       const canClose =

@@ -2,7 +2,7 @@ import { appendChild, setAttributeFromProps } from '@adbl/unfinished';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 
 type DivProps = Omit<JSX.IntrinsicElements['div'], 'children'>;
-export interface ElasticViewProps extends DivProps {
+export interface ElasticAreaProps extends DivProps {
   as?: keyof HTMLElementTagNameMap | `${string}-${string}`;
   scaleFactor?: number;
   children?: unknown;
@@ -10,7 +10,7 @@ export interface ElasticViewProps extends DivProps {
   yAxis?: boolean;
 }
 
-export function ElasticView(props: ElasticViewProps): JSX.Template {
+export function ElasticArea(props: ElasticAreaProps): JSX.Template {
   const {
     yAxis,
     xAxis,

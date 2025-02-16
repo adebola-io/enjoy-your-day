@@ -22,7 +22,7 @@ import { Input } from '#/components/input';
 import { For, If } from '@adbl/unfinished';
 import { categories } from '#/data/categories';
 import { MAX_USERNAME_LENGTH } from '#/data/constants';
-import { ElasticView } from '#/components/elastic-view';
+import { ElasticArea } from '#/components/elastic-area';
 import { CategoryCard } from '#/components/category-card';
 import classes from './profile-drawer.module.css';
 
@@ -215,8 +215,8 @@ function InvolvementLevels(props: InvolvementLevelProps) {
 
 function Categories() {
   return (
-    <ElasticView class={classes.categoryList} yAxis>
+    <ElasticArea class={classes.categoryList} yAxis>
       {For(categories, CategoryCard)}
-    </ElasticView>
+    </ElasticArea>
   );
 }

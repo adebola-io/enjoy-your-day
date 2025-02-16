@@ -1,5 +1,5 @@
 import { For, useObserver } from '@adbl/unfinished';
-import { ElasticView } from '#/components/elastic-view';
+import { ElasticArea } from '#/components/elastic-area';
 import type { HistoryChartItem } from '#/services/database/types';
 import type { LookupMap } from '#/library/lookup-map';
 import { Temporal } from 'temporal-polyfill';
@@ -93,7 +93,7 @@ export function HistoryChart(props: HistoryChartProps) {
   });
 
   return (
-    <ElasticView
+    <ElasticArea
       ref={containerRef}
       class={[classes.container, backgroundClass]}
       style={containerStyles}
@@ -109,7 +109,7 @@ export function HistoryChart(props: HistoryChartProps) {
           isLandscape={isLandscape}
         />
       ))}
-    </ElasticView>
+    </ElasticArea>
   );
 }
 

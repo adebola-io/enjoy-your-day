@@ -331,11 +331,11 @@ export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
 }
 
 /**
- * Uses a query parameter from the current route.
+ * Returns a derived cell indicating the presence or absence of a query parameter
+ * in the current route.
  *
  * @param query - The query parameter to use.
  * @param value - The value of the query parameter.
- * @returns A derived cell that represents the value of the query parameter.
  * @example
  * const isSearchQueryPresent = useRouteQuery('search');
  */
@@ -347,6 +347,16 @@ export function useRouteQuery(query: string, value?: string) {
     }
     return routeSearchParams.has(query);
   });
+}
+
+/**
+ * Returns a derived cell containing the value of a query parameter.
+ * @param query The query parameter to retrieve.
+ * @example
+ * const id = getRouteQueryValue('goal-id');
+ */
+export function getRouteQueryValue(query: string) {
+  return Cell.derived(() => currentRoute.get().value.query.get(query));
 }
 
 /**

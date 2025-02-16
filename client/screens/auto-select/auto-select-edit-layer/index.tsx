@@ -1,7 +1,7 @@
 import { GoalItem } from '#/components/goal-item';
 import { SearchInput } from '#/components/search-input';
 import { Container } from '#/components/container';
-import { ElasticView } from '#/components/elastic-view';
+import { ElasticArea } from '#/components/elastic-area';
 import { BackButton } from '#/components/back-button';
 import { StackLayerView } from '#/components/stack-layer-view';
 import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
@@ -108,7 +108,7 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
       class={classes.viewLayer}
       open={useRouteQuery('stage', 'edit')}
       content={() => (
-        <ElasticView
+        <ElasticArea
           id="autoSelectEdit"
           yAxis
           ref={containerRef}
@@ -141,10 +141,9 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
               itemWidth="100dvw"
               itemHeight="var(--goal-card-suggestive-size)"
               itemKey="uuid"
-              speed="calc(var(--default-duration) * 0.85)"
-              easing="linear"
+              speed="var(--default-duration)"
               gap="5px"
-              staggeredDelay="calc(var(--default-duration) * 0.4)"
+              staggeredDelay="calc(var(--default-duration) * 0.15)"
               Template={(props) => (
                 <GoalItem
                   containerClass={classes.goalItem}
@@ -170,7 +169,7 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
               color="white"
             />
           </FloatingActionButton>
-        </ElasticView>
+        </ElasticArea>
       )}
     />
   );

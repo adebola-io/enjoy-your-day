@@ -54,10 +54,9 @@ export function GoalItem(props: GoalItemProps) {
     onRemove?.(index.value, containerRef.value, 'Tap');
   };
 
-  observer.onConnected(wrapperRef, async () => {
+  observer.onConnected(wrapperRef, async (wrapper) => {
     // Intersection Observer doesn't work on cell values directly
     // because they are proxies.
-    const wrapper = wrapperRef.deproxy();
     const container = containerRef.deproxy();
 
     if (listItem) {

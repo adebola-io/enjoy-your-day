@@ -3,7 +3,7 @@ import { TimeBasedGreeting } from '#/components/time-based-greeting';
 import { TimeBasedIcon } from '#/components/time-based-icon';
 import { TrophyIcon } from '#/components/icons/trophy';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
-import { ElasticView } from '#/components/elastic-view';
+import { ElasticArea } from '#/components/elastic-area';
 import { FloatingActionButton } from '#/components/floating-action-button';
 import AddIcon from '#/components/icons/add';
 import {
@@ -27,6 +27,12 @@ import { extraGoalsPageQuery } from '#/screens/extra-goals';
 import { triggerNotification } from '#/services/notifications';
 import { FluidList } from '#/components/fluid-list';
 import classes from './home-view.module.css';
+import { LongPressArea } from '#/components/long-press-area';
+import type { GoalStateSerialized } from '#/data/entities';
+import {
+  GoalDetailsDrawer,
+  drawerQuery as goalDetailsDrawerQuery,
+} from './goal-details';
 
 export default function HomeView() {
   const router = useRouter();
@@ -72,13 +78,18 @@ export default function HomeView() {
     setTimeout(() => addRouteQuery('goals-completed'), 400);
   };
 
+  const handleLongPress = (item: GoalStateSerialized) => {
+    vibrate();
+    addRouteQuery(goalDetailsDrawerQuery, item.goal.uuid);
+  };
+
   const toggleExtraGoalScreen = () => {
     if (extraGoalsScreenIsOpen.value) removeRouteQuery(extraGoalsPageQuery);
     else addRouteQuery(extraGoalsPageQuery);
   };
 
   return (
-    <ElasticView
+    <ElasticArea
       id="homeView"
       yAxis
       class={classes.container}
@@ -115,11 +126,13 @@ export default function HomeView() {
           gap="3px"
           data-list-changed={listChanged}
           Template={({ item, index }) => (
-            <GoalChecklistItem
-              goalState={item}
-              index={index}
-              onCheck={handleGoalChecked}
-            />
+            <LongPressArea onLongPress={() => handleLongPress(item)}>
+              <GoalChecklistItem
+                goalState={item}
+                index={index}
+                onCheck={handleGoalChecked}
+              />
+            </LongPressArea>
           )}
         />
       </div>
@@ -133,6 +146,7 @@ export default function HomeView() {
         <AddIcon class={classes.addIcon} />
       </FloatingActionButton>
       <GoalsCompletedDrawer />
-    </ElasticView>
+      <GoalDetailsDrawer />
+    </ElasticArea>
   );
 }

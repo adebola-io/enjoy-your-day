@@ -10,7 +10,7 @@ import { InlinedIcon } from '#/components/inlined-icon';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
 import { CSS_VARS } from '#/styles/variables';
 import { PencilIcon } from '#/components/icons/pencil';
-import { ElasticView } from '#/components/elastic-view';
+import { ElasticArea } from '#/components/elastic-area';
 import { BackButton } from '#/components/back-button';
 import classes from './goal-cards-layer.module.css';
 import { useMatchMedia } from '#/library/window';
@@ -66,7 +66,7 @@ export default function GoalCardsLayer(props: GoalCardsLayerProps) {
       content={() => (
         <>
           <BackButton class={classes.backButton} />
-          <ElasticView
+          <ElasticArea
             id="goalCardsView"
             yAxis
             as="ul"
@@ -95,7 +95,7 @@ export default function GoalCardsLayer(props: GoalCardsLayerProps) {
                 </button>
               </>
             ))}
-          </ElasticView>
+          </ElasticArea>
           <div class={classes.buttonRow}>
             <Button
               class={[classes.btn, classes.perfectBtn]}

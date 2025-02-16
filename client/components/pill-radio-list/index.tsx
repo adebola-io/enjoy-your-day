@@ -1,4 +1,4 @@
-import { IconProps } from '../icons/props';
+import type { IconProps } from '../icons/props';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { For, useObserver } from '@adbl/unfinished';
 import { Cell, type SourceCell } from '@adbl/cells';
@@ -82,8 +82,7 @@ export function PillRadioList<T extends string>(props: PillRadioListProps<T>) {
     translateX.value = `calc(${newRect.left - firstItemRect.left}px)`;
   };
 
-  observer.onConnected(ref, () => {
-    const fieldset = ref.deproxy(); // ResizeObserver doesn't work on proxies.
+  observer.onConnected(ref, (fieldset) => {
     const updateHighlighterPosition = () => {
       const checkedInput = fieldset.querySelector<HTMLInputElement>(selector);
       if (!checkedInput) return;

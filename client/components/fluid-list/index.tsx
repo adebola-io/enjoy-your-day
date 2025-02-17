@@ -391,9 +391,13 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
     );
   };
 
+  const beforeDomUpdates = () => manager.startNewSession();
+
+  let animationIsAlreadyRunning = false;
   // Run only for interrupted animation sessions and moved nodes.
   const onBeforeNodesMove = (nodes: ChildNode[]) => {
-    if (!manager.isActive) return;
+    if (!animationIsAlreadyRunning) return;
+    animationIsAlreadyRunning = true;
     for (const child of nodes) {
       if (!(child instanceof HTMLLIElement)) continue;
       const li = child as AnimatedListElement;
@@ -410,7 +414,7 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
       return;
     }
 
-    const sessionId = manager.startNewSession();
+    const sessionId = manager.activeSessionId;
     requestAnimationFrame(async () => {
       if (!ref.value) return;
 
@@ -443,6 +447,7 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
 
         ref.value.classList.remove(classes.from, classes.to);
         manager.endCurrentSession();
+        animationIsAlreadyRunning = false;
       });
     });
   };
@@ -458,8 +463,12 @@ export function FluidList<Item>(props: FluidListProps<Item>) {
   if (rest.style) Object.assign(ulStyles, rest.style);
 
   observer.onConnected(ref, () => {
-    items.listen(afterDomUpdates);
-    return () => items.ignore(afterDomUpdates);
+    items.listen(beforeDomUpdates, { priority: 1 });
+    items.listen(afterDomUpdates, { priority: -1 });
+    return () => {
+      items.ignore(afterDomUpdates);
+      items.ignore(beforeDomUpdates);
+    };
   });
 
   return (

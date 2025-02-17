@@ -15,6 +15,7 @@ export const LOCALSTORAGE_KEYS = {
   appLoadingState: 'app-loading-state',
   involvementLevel: 'involvement-level',
   goalsForTheDay: 'goals-for-the-day',
+  goalsForTheDayCache: 'goals-for-the-day-cache',
   lastLoadedChunk: 'last-loaded-chunk',
   username: 'username',
   goalsForTheDayDateStamp: 'goals-for-the-day-date-stamp',
@@ -73,6 +74,15 @@ export const dailyGoals = useLocalStorage<GoalStateSerialized[]>(
   LOCALSTORAGE_KEYS.goalsForTheDay,
   []
 );
+export const dailyGoalsCache = useLocalStorage<GoalStateSerialized[]>(
+  LOCALSTORAGE_KEYS.goalsForTheDayCache,
+  []
+);
+export const dailyGoalsData = Cell.derived(() => {
+  if (dailyGoals.value.length === 0) return dailyGoalsCache.value;
+  return dailyGoals.value;
+});
+
 export const dailyGoalsDateStamp = useLocalStorage<string | null>(
   LOCALSTORAGE_KEYS.goalsForTheDayDateStamp,
   null
@@ -159,6 +169,7 @@ export async function resetAllData() {
   await resetDbData();
   appLoadingState.value = 'setup';
   dailyGoals.value = [];
+  dailyGoalsCache.value = [];
   dailyGoalsDateStamp.value = null;
   username.value = '';
   selectedCategories.value = [];
@@ -168,4 +179,13 @@ export async function resetAllData() {
   themeColor.value = 'Light';
   selectedFont.value = 'SchibstedGrotesk';
   lastLoadedChunk.value = 0;
+}
+
+// Ensures that the daily data is forcefully emptied even if the
+// db worker has not been loaded.
+const today = Temporal.Now.plainDateISO().toString();
+if (dailyGoalsDateStamp.value && today !== dailyGoalsDateStamp.value) {
+  console.log('emptying data');
+  dailyGoalsCache.value = dailyGoals.value;
+  dailyGoals.value = [];
 }

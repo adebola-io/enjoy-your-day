@@ -2,7 +2,8 @@ import { categories } from '../../data/categories';
 import { LATEST_DATA_CHUNK } from '../../data/constants';
 import type { GoalStateSerialized } from '../../data/entities';
 import {
-  dailyGoals,
+  dailyGoalsCache,
+  dailyGoalsData,
   dailyGoalsDateStamp,
   lastLoadedChunk,
   liveDate,
@@ -25,13 +26,11 @@ async function trackDateChange() {
   if (!dailyGoalsDateStamp.value || today === dailyGoalsDateStamp.value) {
     return;
   }
-  const dailyGoalsCloned = JSON.parse(JSON.stringify(dailyGoals.value));
-  dailyGoals.value = [];
   try {
-    await saveGoalState(dailyGoalsCloned, dailyGoalsDateStamp.value);
+    await saveGoalState(dailyGoalsData.value, dailyGoalsDateStamp.value);
+    dailyGoalsCache.value = [];
     dailyGoalsDateStamp.value = null;
   } catch (error) {
-    dailyGoals.value = dailyGoalsCloned;
     console.error(error);
   }
 }

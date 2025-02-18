@@ -25,7 +25,6 @@ export function HistoryChart(props: HistoryChartProps) {
     onRequestOlder,
   } = props;
   const observer = useObserver();
-  // Matched in the parent so it doesn't have to recompute for every chart item.
   const isLandscape = useMatchMedia('(orientation: landscape)');
   const containerRef = Cell.source<HTMLElement | null>(null);
 

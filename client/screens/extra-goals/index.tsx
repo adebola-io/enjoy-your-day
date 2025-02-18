@@ -11,12 +11,17 @@ import {
   getExampleGoalInstruction,
 } from '#/services/database';
 import { dailyGoals, selectedCategories } from '#/data/state';
-import type { GoalProps } from '#/data/entities';
+import type {
+  GoalProps,
+  GoalPropsSerialized,
+  GoalStateSerialized,
+} from '#/data/entities';
 import { Icon } from '#/components/icon';
-import AddGoalDrawer, { drawerQuery } from './add-goal-drawer';
+import GoalDetailsDrawer, { drawerQuery } from './goal-details';
 import { useObserver } from '@adbl/unfinished';
 import { isSafari } from '#/library/app-environment';
 import { FluidList, type ListTemplateProps } from '#/components/fluid-list';
+import { Button } from '#/components/button';
 import classes from './extra-goals.module.css';
 
 export const extraGoalsPageQuery = 'extra-goals-query';
@@ -42,8 +47,18 @@ function ExtraGoalsViewContent() {
     dailyGoals.value.map((g) => g.goal.uuid)
   );
 
-  const close = async () => {
+  const addGoal = async (goal: GoalPropsSerialized) => {
+    removeRouteQuery(drawerQuery);
+    await new Promise((r) => setTimeout(r, 200));
     await removeRouteQuery(extraGoalsPageQuery);
+    await new Promise((r) => setTimeout(r, 200));
+    const dateAdded = new Date(goal.dateAdded).toISOString();
+    const goalState: GoalStateSerialized = {
+      state: 'scheduled',
+      goal: { ...goal, dateAdded },
+      updatedAt: null,
+    };
+    dailyGoals.value.push(goalState);
   };
 
   observer.onConnected(inputRef, async (input) => {
@@ -111,7 +126,28 @@ function ExtraGoalsViewContent() {
         speed="calc(var(--default-duration) * 2)"
         Template={AutoCompleteOption}
       />
-      <AddGoalDrawer onBeforeGoalAdded={close} />
+      <GoalDetailsDrawer
+        shrinkTarget="#extraGoalsView"
+        buttons={(goal) => (
+          <>
+            <Button
+              rounded
+              variant="outlined"
+              class={classes.closeBtn}
+              onClick={() => removeRouteQuery(drawerQuery)}
+            >
+              Close
+            </Button>
+            <Button
+              rounded
+              class={classes.addBtn}
+              onClick={() => addGoal(goal)}
+            >
+              Add
+            </Button>
+          </>
+        )}
+      />
     </>
   );
 }

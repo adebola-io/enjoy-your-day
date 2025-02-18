@@ -15,6 +15,7 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
   const { goalState, index, onCheck } = props;
   const initialCheckState = goalState.state === 'completed';
   const goalInputId = Cell.derived(() => `goal-checklist-${index.value}`);
+  const goalUUid = Cell.derived(() => goalState.goal.uuid);
   const loaded = Cell.source(false);
 
   const changeGoalState = function (this: HTMLInputElement) {
@@ -34,6 +35,7 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
 
   return (
     <div
+      data-goal-uuid={goalUUid}
       class={classes.container}
       data-loaded={loaded}
       onAnimationEnd--self={handleAnimationEnd}

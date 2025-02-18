@@ -45,18 +45,3 @@
   justify-self: center;
   grid-area: 4 / 1 / 4 / 3;
 }
-
-.closeBtn {
-  justify-self: end;
-  grid-area: 5 / 1;
-}
-
-.addBtn {
-  justify-self: start;
-  grid-area: 5 / 2;
-}
-
-.closeBtn,
-.addBtn {
-  height: min-content;
-}

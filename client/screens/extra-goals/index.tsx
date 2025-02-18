@@ -107,6 +107,22 @@ function ExtraGoalsViewContent() {
     );
   };
 
+  const GoalDetailsDrawerButtons = (goal: GoalPropsSerialized) => (
+    <>
+      <Button
+        rounded
+        variant="outlined"
+        class={classes.closeBtn}
+        onClick={() => removeRouteQuery(drawerQuery)}
+      >
+        Close
+      </Button>
+      <Button rounded class={classes.addBtn} onClick={() => addGoal(goal)}>
+        Add
+      </Button>
+    </>
+  );
+
   return (
     <>
       <h2 class={classes.heading}>Add a new goal.</h2>
@@ -128,25 +144,7 @@ function ExtraGoalsViewContent() {
       />
       <GoalDetailsDrawer
         shrinkTarget="#extraGoalsView"
-        buttons={(goal) => (
-          <>
-            <Button
-              rounded
-              variant="outlined"
-              class={classes.closeBtn}
-              onClick={() => removeRouteQuery(drawerQuery)}
-            >
-              Close
-            </Button>
-            <Button
-              rounded
-              class={classes.addBtn}
-              onClick={() => addGoal(goal)}
-            >
-              Add
-            </Button>
-          </>
-        )}
+        buttons={GoalDetailsDrawerButtons}
       />
     </>
   );

@@ -1,7 +1,6 @@
 import { GoalItem } from '#/components/goal-item';
 import { SearchInput } from '#/components/search-input';
 import { Container } from '#/components/container';
-import { ElasticArea } from '#/components/elastic-area';
 import { BackButton } from '#/components/back-button';
 import { StackLayerView } from '#/components/stack-layer-view';
 import { GoalOption, type GoalOptionProps } from '#/components/goal-option';
@@ -24,7 +23,8 @@ import {
 } from '#/services/database';
 import classes from './auto-select-edit-layer.module.css';
 import { FloatingActionButton } from '#/components/floating-action-button';
-import { FluidList } from '#/components/fluid-list';
+import { FluidList } from '@adbl/iota/fluid-list';
+import { ElasticArea } from '@adbl/iota/elastic-area';
 
 export interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[] | null>;

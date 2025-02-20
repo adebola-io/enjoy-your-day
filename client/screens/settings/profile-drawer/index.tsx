@@ -22,9 +22,9 @@ import { Input } from '#/components/input';
 import { For, If } from '@adbl/unfinished';
 import { categories } from '#/data/categories';
 import { MAX_USERNAME_LENGTH } from '#/data/constants';
-import { ElasticArea } from '#/components/elastic-area';
 import { CategoryCard } from '#/components/category-card';
 import classes from './profile-drawer.module.css';
+import { ElasticArea } from '@adbl/iota/elastic-area';
 
 export default function ProfileDrawer() {
   let initialUsernameValue = '';

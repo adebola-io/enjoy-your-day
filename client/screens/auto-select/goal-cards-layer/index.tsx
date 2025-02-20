@@ -10,11 +10,11 @@ import { InlinedIcon } from '#/components/inlined-icon';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
 import { CSS_VARS } from '#/styles/variables';
 import { PencilIcon } from '#/components/icons/pencil';
-import { ElasticArea } from '#/components/elastic-area';
 import { BackButton } from '#/components/back-button';
 import classes from './goal-cards-layer.module.css';
 import { useMatchMedia } from '#/library/window';
 import CaretRightIcon from '#/components/icons/caret-right';
+import { ElasticArea } from '@adbl/iota/elastic-area';
 
 interface GoalCardsLayerProps {
   goals: SourceCell<GoalProps[] | null>;

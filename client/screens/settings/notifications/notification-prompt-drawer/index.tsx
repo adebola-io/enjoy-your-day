@@ -3,7 +3,6 @@ import { Button } from '#/components/button';
 import { Logo } from '#/components/logo';
 import SimpleCheckIcon from '#/components/icons/simple-check';
 import BellIcon from '#/components/icons/bell';
-import { PhoneMockup } from '#/components/phone-mockup';
 import {
   addRouteQuery,
   removeRouteQuery,
@@ -28,6 +27,7 @@ import {
   installInstructionsDrawerQuery,
 } from '#/screens/onboarding/install-prompt-drawer/nested-drawer';
 import classes from './notification-prompt-drawer.module.css';
+import { PhoneMockup } from '@adbl/iota/phone-mockup';
 
 export const notificationDrawerQuery = 'notifications-prompt-drawer';
 export default function NotificationPromptDrawer() {

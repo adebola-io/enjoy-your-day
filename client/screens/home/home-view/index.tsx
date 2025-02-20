@@ -3,7 +3,6 @@ import { TimeBasedGreeting } from '#/components/time-based-greeting';
 import { TimeBasedIcon } from '#/components/time-based-icon';
 import { TrophyIcon } from '#/components/icons/trophy';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
-import { ElasticArea } from '#/components/elastic-area';
 import { FloatingActionButton } from '#/components/floating-action-button';
 import AddIcon from '#/components/icons/add';
 import {
@@ -26,8 +25,7 @@ import { If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { extraGoalsPageQuery } from '#/screens/extra-goals';
 import { triggerNotification } from '#/services/notifications';
-import { FluidList } from '#/components/fluid-list';
-import { LongPressArea } from '#/components/long-press-area';
+import { FluidList } from '@adbl/iota/fluid-list';
 import GoalDetailsDrawer, {
   drawerQuery,
 } from '#/screens/extra-goals/goal-details';
@@ -37,6 +35,8 @@ import { InlinedIcon } from '#/components/inlined-icon';
 import DoubleCheckIcon from '#/components/icons/double-check';
 import { CSS_VARS } from '#/styles/variables';
 import XIcon from '#/components/icons/x';
+import { LongPressArea } from '@adbl/iota/long-press-area';
+import { ElasticArea } from '@adbl/iota/elastic-area';
 
 export default function HomeView() {
   const router = useRouter();

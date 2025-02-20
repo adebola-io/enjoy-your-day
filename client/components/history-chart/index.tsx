@@ -1,5 +1,4 @@
 import { For, useObserver } from '@adbl/unfinished';
-import { ElasticArea } from '#/components/elastic-area';
 import type { HistoryChartItem } from '#/services/database/types';
 import type { LookupMap } from '#/library/lookup-map';
 import { Temporal } from 'temporal-polyfill';
@@ -7,6 +6,7 @@ import { Cell, type SourceCell } from '@adbl/cells';
 import { isDark, todayStr } from '#/data/state';
 import classes from './history-chart.module.css';
 import { useMatchMedia } from '#/library/window';
+import { ElasticArea } from '@adbl/iota/elastic-area';
 
 export interface HistoryChartProps {
   picked: SourceCell<HistoryChartItem>;

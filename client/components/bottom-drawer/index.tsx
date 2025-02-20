@@ -1,10 +1,11 @@
 import type { JSX } from '@adbl/unfinished/jsx-dev-runtime';
-import { defer, deriveProp } from '#/library/utils';
+import { defer } from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
 import { Teleport } from '@adbl/unfinished/teleport';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { type RouteChangeEvent, useRouter } from '@adbl/unfinished/router';
 import classes from './bottom-drawer.module.css';
+import { deriveProp } from '@adbl/iota/utils';
 
 type DialogProps = Omit<JSX.IntrinsicElements['div'], 'children'>;
 interface BottomDrawerProps extends DialogProps {

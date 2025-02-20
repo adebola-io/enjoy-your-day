@@ -3,7 +3,6 @@ import { Logo } from '#/components/logo';
 import { Button } from '#/components/button';
 import { Cell } from '@adbl/cells';
 import { For, useObserver } from '@adbl/unfinished';
-import { PhoneMockup } from '#/components/phone-mockup';
 import {
   InstallationInstructionsDrawer,
   installInstructionsDrawerQuery,
@@ -11,6 +10,7 @@ import {
 import { addRouteQuery, installDetails } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './install-prompt-drawer.module.css';
+import { PhoneMockup } from '@adbl/iota/phone-mockup';
 
 export default function InstallPromptDrawer() {
   const observer = useObserver();

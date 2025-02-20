@@ -1,5 +1,4 @@
 import { Cell, type DerivedCell } from '@adbl/cells';
-import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { useRouter } from '@adbl/unfinished/router';
 
 type AsyncRequestAtoms<T, U> = {
@@ -221,14 +220,6 @@ export function lightenHexColor(hexCode: string, amount = 0.5) {
  */
 export function defer(callback: () => void) {
   setTimeout(callback, 0);
-}
-
-/**
- * Converts a value to a cell if it is not already a cell.
- * @param prop The value to derive.s
- */
-export function deriveProp<T>(prop: JSX.ValueOrCell<T>): DerivedCell<T> {
-  return Cell.derived(() => (Cell.isCell(prop) ? prop.value : prop));
 }
 
 /**

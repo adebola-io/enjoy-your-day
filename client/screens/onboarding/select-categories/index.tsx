@@ -1,6 +1,5 @@
 import { CategoryCard } from '#/components/category-card';
 import { Button } from '#/components/button';
-import { ElasticArea } from '#/components/elastic-area';
 import { selectedCategories, username } from '#/data/state';
 import { categories } from '#/data/categories';
 import { Cell } from '@adbl/cells';
@@ -8,6 +7,7 @@ import { For } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './select-categories.module.css';
 import { elementAnimationsFinished } from '#/library/utils';
+import { ElasticArea } from '@adbl/iota/elastic-area';
 
 export default async function SelectCategories() {
   const router = useRouter();

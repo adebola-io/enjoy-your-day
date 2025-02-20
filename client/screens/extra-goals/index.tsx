@@ -20,7 +20,7 @@ import { Icon } from '#/components/icon';
 import GoalDetailsDrawer, { drawerQuery } from './goal-details';
 import { useObserver } from '@adbl/unfinished';
 import { isSafari } from '#/library/app-environment';
-import { FluidList, type ListTemplateProps } from '#/components/fluid-list';
+import { FluidList, type ListTemplateProps } from '@adbl/iota/fluid-list';
 import { Button } from '#/components/button';
 import classes from './extra-goals.module.css';
 

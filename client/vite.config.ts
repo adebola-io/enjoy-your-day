@@ -492,4 +492,8 @@ export default defineConfig({
     }),
     inlineSource(),
   ],
+  esbuild: {
+    jsx: 'automatic',
+    jsxImportSource: '@adbl/unfinished',
+  },
 });

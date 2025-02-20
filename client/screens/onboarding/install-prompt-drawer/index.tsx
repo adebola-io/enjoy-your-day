@@ -7,10 +7,11 @@ import {
   InstallationInstructionsDrawer,
   installInstructionsDrawerQuery,
 } from './nested-drawer';
-import { addRouteQuery, installDetails } from '#/library/utils';
+import { installDetails } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './install-prompt-drawer.module.css';
-import { PhoneMockup } from '@adbl/iota/phone-mockup';
+import { addRouteQuery } from '@adbl/iota/utils/router';
+import { PhoneMockup } from '@adbl/iota/components/phone-mockup';
 
 export default function InstallPromptDrawer() {
   const observer = useObserver();

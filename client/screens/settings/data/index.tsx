@@ -7,8 +7,8 @@ import { SettingsItem, SettingsItemList } from '#/components/settings-item';
 import { StackLayerView } from '#/components/stack-layer-view';
 import { LATEST_DATA_CHUNK } from '#/data/constants';
 import { lastLoadedChunk } from '#/data/state';
-import { addRouteQuery, useRouteQuery } from '#/library/utils';
 import { Cell } from '@adbl/cells';
+import { addRouteQuery, useRouteQuery } from '@adbl/iota/utils/router';
 
 export default function DataSettingsLayer() {
   const goalsUpdated = Cell.source(lastLoadedChunk.value === LATEST_DATA_CHUNK);

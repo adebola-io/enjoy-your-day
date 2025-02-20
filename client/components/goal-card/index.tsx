@@ -1,8 +1,8 @@
 import { Cell } from '@adbl/cells';
 import classes from './goal-card.module.css';
-import { lightenHexColor } from '#/library/utils';
 import type { GoalProps } from '#/data/entities';
 import { Icon } from '#/components/icon';
+import { lightenHexColor } from '@adbl/iota/utils/misc';
 
 export function GoalCard(props: GoalProps) {
   const { color, index, icon, title, instruction, info } = props;

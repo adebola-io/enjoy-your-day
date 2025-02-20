@@ -14,18 +14,12 @@ import {
 import type { GoalPropsSerialized, GoalStateSerialized } from '#/data/entities';
 import { encouragement } from '#/data/encouragement';
 import { GoalsCompletedDrawer } from './goals-completed';
-import {
-  addRouteQuery,
-  removeRouteQuery,
-  useRouteQuery,
-  vibrate,
-} from '#/library/utils';
+import { vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { extraGoalsPageQuery } from '#/screens/extra-goals';
 import { triggerNotification } from '#/services/notifications';
-import { FluidList } from '@adbl/iota/fluid-list';
 import GoalDetailsDrawer, {
   drawerQuery,
 } from '#/screens/extra-goals/goal-details';
@@ -35,8 +29,14 @@ import { InlinedIcon } from '#/components/inlined-icon';
 import DoubleCheckIcon from '#/components/icons/double-check';
 import { CSS_VARS } from '#/styles/variables';
 import XIcon from '#/components/icons/x';
-import { LongPressArea } from '@adbl/iota/long-press-area';
-import { ElasticArea } from '@adbl/iota/elastic-area';
+import {
+  addRouteQuery,
+  removeRouteQuery,
+  useRouteQuery,
+} from '@adbl/iota/utils/router';
+import { ElasticArea } from '@adbl/iota/components/elastic-area';
+import { FluidList } from '@adbl/iota/components/fluid-list';
+import { LongPressArea } from '@adbl/iota/components/long-press-area';
 
 export default function HomeView() {
   const router = useRouter();

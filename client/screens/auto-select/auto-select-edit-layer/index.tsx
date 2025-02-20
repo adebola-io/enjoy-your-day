@@ -8,12 +8,7 @@ import { AddIcon } from '#/components/icons/add';
 import { InlinedIcon } from '#/components/inlined-icon';
 import { DoubleCheckIcon } from '#/components/icons/double-check';
 import { selectedCategories } from '#/data/state';
-import {
-  addRouteQuery,
-  removeRouteQuery,
-  useRouteQuery,
-  vibrate,
-} from '#/library/utils';
+import { vibrate } from '#/library/utils';
 import type { GoalProps } from '#/data/entities';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { If, useObserver } from '@adbl/unfinished';
@@ -23,8 +18,13 @@ import {
 } from '#/services/database';
 import classes from './auto-select-edit-layer.module.css';
 import { FloatingActionButton } from '#/components/floating-action-button';
-import { FluidList } from '@adbl/iota/fluid-list';
-import { ElasticArea } from '@adbl/iota/elastic-area';
+import { FluidList } from '@adbl/iota/components/fluid-list';
+import { ElasticArea } from '@adbl/iota/components/elastic-area';
+import {
+  addRouteQuery,
+  removeRouteQuery,
+  useRouteQuery,
+} from '@adbl/iota/utils/router';
 
 export interface GoalCardsViewProps {
   goals: SourceCell<GoalProps[] | null>;

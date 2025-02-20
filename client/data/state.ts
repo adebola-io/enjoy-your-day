@@ -1,6 +1,4 @@
 import { Cell } from '@adbl/cells';
-import { useLiveDate } from '@adbl/dom-cells/useDate';
-import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 import type { GoalStateSerialized } from '#/data/entities';
 import { Temporal } from 'temporal-polyfill';
 import { resetDbData, updateUsername } from '../services/database';
@@ -8,6 +6,8 @@ import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
 import { getRandomMorningTime, NoOp, setMetaTheme } from '#/library/utils';
+import { useLocalStorage } from '@adbl/iota/hooks/use-local-storage';
+import { useLiveDate } from '@adbl/iota/hooks/use-live-date';
 
 export const DATE_UPDATE_INTERVAL = 1000 * 30; // updates every 30 seconds.
 export const LOCALSTORAGE_KEYS = {

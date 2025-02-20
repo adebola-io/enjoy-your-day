@@ -1,7 +1,7 @@
 import { Button } from '#/components/button';
 import { GoalCard } from '#/components/goal-card';
 import { StackLayerView } from '#/components/stack-layer-view';
-import { initScrollTimeline, useRouteQuery } from '#/library/utils';
+import { initScrollTimeline } from '#/library/utils';
 import { If, useObserver } from '@adbl/unfinished';
 import type { GoalProps } from '#/data/entities';
 import { Cell, type SourceCell } from '@adbl/cells';
@@ -12,9 +12,10 @@ import { CSS_VARS } from '#/styles/variables';
 import { PencilIcon } from '#/components/icons/pencil';
 import { BackButton } from '#/components/back-button';
 import classes from './goal-cards-layer.module.css';
-import { useMatchMedia } from '#/library/window';
+import { useMatchMedia } from '@adbl/iota/hooks/use-match-media';
 import CaretRightIcon from '#/components/icons/caret-right';
-import { ElasticArea } from '@adbl/iota/elastic-area';
+import { ElasticArea } from '@adbl/iota/components/elastic-area';
+import { useRouteQuery } from '@adbl/iota/utils/router';
 
 interface GoalCardsLayerProps {
   goals: SourceCell<GoalProps[] | null>;

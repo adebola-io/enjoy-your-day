@@ -1,12 +1,3 @@
-import { Cell, type DerivedCell } from '@adbl/cells';
-import { useRouter } from '@adbl/unfinished/router';
-
-type AsyncRequestAtoms<T, U> = {
-  pending: Cell<boolean>;
-  data: Cell<T>;
-  error: Cell<U>;
-};
-
 export type DeferredPromptEvent = Event & {
   prompt: () => Promise<{
     outcome: 'accepted' | 'dismissed' | 'user-dismissed';
@@ -138,91 +129,6 @@ export function vibrate(pattern?: VibratePattern) {
 export const NoOp = () => <></>;
 
 /**
- * Derives the current state of an asynchronous resource.
- *
- * This function takes an `AsyncRequestAtoms` object, which represents the state of an asynchronous request,
- * and returns a derived value that represents the overall state of the resource. The possible states are:
- *
- * - 'pending': The resource is currently being fetched.
- * - 'error': An error occurred while fetching the resource.
- * - 'success': The resource was fetched successfully.
- * - 'inert': The resource is in an initial or unknown state.
- *
- * @param resource - The `AsyncRequestAtoms` object representing the asynchronous resource.
- * @returns The current state of the resource as a string.
- * @example
- * const resourceState = getResourceState(myResource);
- * console.log(resourceState); // Outputs the current state of the resource
- */
-export function getResourceState<T, U>(resource: AsyncRequestAtoms<T, U>) {
-  return Cell.derived(() => {
-    return resource.pending.value
-      ? 'pending'
-      : resource.error.value
-      ? 'error'
-      : resource.data.value
-      ? 'success'
-      : 'inert';
-  });
-}
-
-/**
- * Lightens a hexadecimal color by a given amount.
- *
- * @param hex - The hexadecimal color to lighten, in the format `#RRGGBB` or `#RGB`.
- * @param amount - The amount to lighten the color, between 0 and 1. A value of 0 will return the original color, while a value of 1 will return a fully white color.
- * @returns The lightened hexadecimal color in the format `#RRGGBB`.
- * @example
- * const lightenedColor = lightenHexColor('#ff0000', 0.5);
- * console.log(lightenedColor); // Outputs the lightened color
- */
-export function lightenHexColor(hexCode: string, amount = 0.5) {
-  if (
-    typeof hexCode !== 'string' ||
-    !/^#([0-9A-Fa-f]{3}){1,2}$/.test(hexCode)
-  ) {
-    console.error('Invalid hex color format');
-    return hexCode; // Return original or handle error as needed
-  }
-  if (typeof amount !== 'number' || amount < 0 || amount > 1) {
-    console.error('Amount must be a number between 0 and 1');
-    return hexCode;
-  }
-
-  let hex = hexCode.replace('#', '');
-  if (hex.length === 3) {
-    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-  }
-
-  const r = Number.parseInt(hex.substring(0, 2), 16);
-  const g = Number.parseInt(hex.substring(2, 4), 16);
-  const b = Number.parseInt(hex.substring(4, 6), 16);
-
-  const newR = Math.round(Math.min(255, r + 255 * amount));
-  const newG = Math.round(Math.min(255, g + 255 * amount));
-  const newB = Math.round(Math.min(255, b + 255 * amount));
-
-  const newHex = `#${newR.toString(16).padStart(2, '0')}${newG
-    .toString(16)
-    .padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
-
-  return newHex;
-}
-
-/**
- * Defers the execution of the provided callback function to the next available event loop tick.
- *
- * @param callback - The function to be executed.
- * @example
- * defer(() => {
- *   console.log('This will run in the next event loop tick');
- * });
- */
-export function defer(callback: () => void) {
-  setTimeout(callback, 0);
-}
-
-/**
  * Overlays a black color on the provided hexadecimal color with a given alpha value.
  *
  * @param hexColor - The hexadecimal color to overlay with black, in the format `#RRGGBB`.
@@ -268,88 +174,6 @@ export function toKebabCase(str: string) {
   return str.replace(/\s/g, '-').toLowerCase();
 }
 
-const currentRoute = {
-  value: null as DerivedCell<{
-    name: string | null;
-    params: Map<string, string>;
-    query: URLSearchParams;
-    path: string;
-    fullPath: string;
-  }> | null,
-
-  get() {
-    if (!this.value) {
-      this.value = useRouter().getCurrentRoute();
-    }
-    return this.value;
-  },
-};
-
-/**
- * Adds a query parameter to the current route.
- *
- * @param query - The query parameter to add.
- * @param value - The value of the query parameter.
- * @example
- * await addRouteQuery('search', 'example');
- */
-export async function addRouteQuery(query: string, value?: string) {
-  const router = useRouter();
-  const route = currentRoute.get();
-  const searchParams = new URLSearchParams(route.value.query);
-  searchParams.set(query, value ?? '');
-  const nextPath = `${route.value.path}?${searchParams}`;
-  await router.navigate(nextPath);
-}
-
-/**
- * Removes a query parameter from the current route.
- *
- * @param query - The query parameter to remove.
- * @param guard - An optional guard cell that, if provided and evaluates to false, will prevent the query parameter from being removed.
- * @example
- * await removeRouteQuery('search');
- */
-export async function removeRouteQuery(query: string, guard?: Cell<boolean>) {
-  if (guard && guard.value === false) return;
-
-  const router = useRouter();
-  const route = currentRoute.get();
-  const searchParams = new URLSearchParams(route.value.query);
-  searchParams.delete(query);
-  const nextPath = `${route.value.path}?${searchParams}`;
-  await router.navigate(nextPath);
-}
-
-/**
- * Returns a derived cell indicating the presence or absence of a query parameter
- * in the current route.
- *
- * @param query - The query parameter to use.
- * @param value - The value of the query parameter.
- * @example
- * const isSearchQueryPresent = useRouteQuery('search');
- */
-export function useRouteQuery(query: string, value?: string) {
-  return Cell.derived(() => {
-    const routeSearchParams = currentRoute.get().value.query;
-    if (value) {
-      return routeSearchParams.get(query) === value;
-    }
-    return routeSearchParams.has(query);
-  });
-}
-
-/**
- * Returns a derived cell containing the value of a query parameter.
- * @param query The query parameter to retrieve.
- * @example
- * const id = getRouteQueryValue('goal-id');
- */
-export function getRouteQueryValue(query: string) {
-  return Cell.derived(() => currentRoute.get().value.query.get(query));
-}
-
 /**
  * Generates a random time in the morning.
  *
@@ -368,19 +192,6 @@ export const getRandomMorningTime = () => {
   );
   return { hours: randomTime.getHours(), minutes: randomTime.getMinutes() };
 };
-
-/**
- * Selects a random element from an array.
- *
- * @param array - The array to select a random element from.
- * @returns A random element from the array.
- * @example
- * const randomElement = selectAtRandom([1, 2, 3, 4]);
- * console.log(randomElement); // Outputs a random element from the array
- */
-export function selectAtRandom<T>(array: T[]) {
-  return array[Math.floor(Math.random() * array.length)];
-}
 
 /**
  * Waits for all animations on the provided element to finish.

@@ -6,7 +6,7 @@ import {
   numberOfScheduledGoals,
   timeOfDay,
 } from './state';
-import { selectAtRandom } from '#/library/utils';
+import { selectAtRandom } from '@adbl/iota/utils/misc';
 
 export const encouragement = Cell.derived(() => {
   const count = numberOfScheduledGoals.value;

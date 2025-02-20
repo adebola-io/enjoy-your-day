@@ -8,7 +8,7 @@ import {
   addRouteQuery,
   removeRouteQuery,
   useRouteQuery,
-} from '#/library/utils';
+} from '@adbl/iota/utils/router';
 import ProfileIcon from '#/components/icons/profile';
 import {
   username,
@@ -24,7 +24,7 @@ import { categories } from '#/data/categories';
 import { MAX_USERNAME_LENGTH } from '#/data/constants';
 import { CategoryCard } from '#/components/category-card';
 import classes from './profile-drawer.module.css';
-import { ElasticArea } from '@adbl/iota/elastic-area';
+import { ElasticArea } from '@adbl/iota/components/elastic-area';
 
 export default function ProfileDrawer() {
   let initialUsernameValue = '';

@@ -5,8 +5,8 @@ import { Temporal } from 'temporal-polyfill';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { isDark, todayStr } from '#/data/state';
 import classes from './history-chart.module.css';
-import { useMatchMedia } from '#/library/window';
-import { ElasticArea } from '@adbl/iota/elastic-area';
+import { ElasticArea } from '@adbl/iota/components/elastic-area';
+import { useMatchMedia } from '@adbl/iota/hooks/use-match-media';
 
 export interface HistoryChartProps {
   picked: SourceCell<HistoryChartItem>;

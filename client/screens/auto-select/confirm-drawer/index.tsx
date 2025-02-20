@@ -4,18 +4,15 @@ import { Loader } from '#/components/loader';
 import { Button } from '#/components/button';
 import { dailyGoals, dailyGoalsDateStamp } from '#/data/state';
 import type { GoalProps, GoalStateSerialized } from '#/data/entities';
-import {
-  getResourceState,
-  NoOp,
-  removeRouteQuery,
-  useRouteQuery,
-} from '#/library/utils';
+import { NoOp } from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { Temporal } from 'temporal-polyfill';
 import classes from './confirm-drawer.module.css';
 import { triggerNotification } from '#/services/notifications';
+import { useResourceState } from '@adbl/iota/hooks/use-resource-state';
+import { removeRouteQuery, useRouteQuery } from '@adbl/iota/utils/router';
 
 function transformToGoalState(goal: GoalProps): GoalStateSerialized {
   const dateAdded = new Date(goal.dateAdded).toISOString();
@@ -42,7 +39,7 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
   const drawerIsOpen = useRouteQuery('confirm');
   const goals = Cell.derived(() => props.goals.value ?? []);
   const resource = Cell.async(saveGoalsForToday);
-  const state = getResourceState(resource);
+  const state = useResourceState(resource);
   const drawerClosable = Cell.derived(() => !resource.pending.value);
   const shouldStaggerChildren = Cell.derived(() => {
     const resourceIsPending = resource.pending.value;

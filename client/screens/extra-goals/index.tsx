@@ -1,10 +1,5 @@
 import { ImmersiveView } from '#/components/immersive-view';
 import { Input } from '#/components/input';
-import {
-  addRouteQuery,
-  removeRouteQuery,
-  useRouteQuery,
-} from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import {
   getAutoCompleteSuggestions,
@@ -20,9 +15,17 @@ import { Icon } from '#/components/icon';
 import GoalDetailsDrawer, { drawerQuery } from './goal-details';
 import { useObserver } from '@adbl/unfinished';
 import { isSafari } from '#/library/app-environment';
-import { FluidList, type ListTemplateProps } from '@adbl/iota/fluid-list';
+import {
+  FluidList,
+  type ListTemplateProps,
+} from '@adbl/iota/components/fluid-list';
 import { Button } from '#/components/button';
 import classes from './extra-goals.module.css';
+import {
+  addRouteQuery,
+  removeRouteQuery,
+  useRouteQuery,
+} from '@adbl/iota/utils/router';
 
 export const extraGoalsPageQuery = 'extra-goals-query';
 export default function ExtraGoalsView() {

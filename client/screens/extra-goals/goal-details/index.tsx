@@ -1,5 +1,4 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
-import { removeRouteQuery, useRouteQuery } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import { Cell } from '@adbl/cells';
 import { If } from '@adbl/unfinished';
@@ -8,6 +7,7 @@ import { getGoalByUuid } from '#/services/database';
 import { Icon } from '#/components/icon';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './goal-details.module.css';
+import { removeRouteQuery, useRouteQuery } from '@adbl/iota/utils/router';
 
 interface AddGoalDrawerProps {
   shrinkTarget: string;

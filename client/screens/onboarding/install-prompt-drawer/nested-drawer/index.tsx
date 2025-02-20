@@ -3,7 +3,7 @@ import type { IconProps } from '#/components/icons/props';
 import { Button } from '#/components/button';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import { getInstallInstructions } from '#/data/install-instructions';
-import { removeRouteQuery, useRouteQuery } from '#/library/utils';
+import { removeRouteQuery, useRouteQuery } from '@adbl/iota/utils/router';
 import { For, If } from '@adbl/unfinished';
 import classes from './nested-drawer.module.css';
 

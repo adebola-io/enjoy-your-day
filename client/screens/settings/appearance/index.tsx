@@ -13,9 +13,9 @@ import {
   themeColor,
   type ThemeColor,
 } from '#/data/state';
-import { useRouteQuery } from '#/library/utils';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
 import classes from './appearance.module.css';
+import { useRouteQuery } from '@adbl/iota/utils/router';
 
 const themeIcons: Record<ThemeColor, (props: IconProps) => JSX.Template> = {
   System: DigitalDesignIcon,

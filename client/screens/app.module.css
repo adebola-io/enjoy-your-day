@@ -3,13 +3,16 @@
     /* Overrides SlideLayerView Transitions. */
     transition-duration: var(--slide-duration);
     transition-property: scale, opacity, translate;
-    animation: var(--fade-in) calc(var(--default-duration) * 2.5)
-      var(--default-duration) backwards;
   }
 
   &[data-app-loaded] {
     display: grid;
     grid-template-rows: 1fr auto;
+
+    &[data-goals-loaded] {
+      animation: var(--fade-in) calc(var(--default-duration) * 1.75)
+        var(--default-duration) backwards;
+    }
 
     @media (orientation: landscape) {
       grid-template-columns: auto 1fr;

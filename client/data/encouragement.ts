@@ -1,5 +1,6 @@
 import { Cell } from '@adbl/cells';
 import {
+  completedGoals,
   dailyGoals,
   forfeitedGoals,
   goalsCompleted,
@@ -13,6 +14,7 @@ export const encouragement = Cell.derived(() => {
   const count = numberOfScheduledGoals.value;
   const totalGoals = dailyGoals.value.length;
   const forfeitedCount = forfeitedGoals.value;
+  const completedCount = completedGoals.value;
 
   const goalsPhrase = count === 1 ? `${count} goal` : `${count} goals`;
 
@@ -42,6 +44,10 @@ export const encouragement = Cell.derived(() => {
       forfeitedCount === 1
         ? `${forfeitedCount} goal`
         : `${forfeitedCount} goals`;
+
+    if (completedCount === 0) {
+      return `You forfeited all ${phrase} today 🙁. No worries, we'll get back on track tomorrow!`;
+    }
     return `You forfeited ${phrase} and completed the rest. Tomorrow is another day!`;
   }
 

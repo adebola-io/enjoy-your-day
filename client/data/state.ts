@@ -136,6 +136,10 @@ export const morningTime = useLocalStorage<{ hours: number; minutes: number }>(
   getRandomMorningTime()
 );
 
+export const completedGoals = Cell.derived(() => {
+  return dailyGoals.value.filter((s) => s.state === 'completed').length;
+});
+
 export const numberOfScheduledGoals = Cell.derived(() => {
   return dailyGoals.value.filter((s) => s.state === 'scheduled').length;
 });

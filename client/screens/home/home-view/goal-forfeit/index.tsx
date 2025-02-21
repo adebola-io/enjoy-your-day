@@ -72,7 +72,12 @@ export default function GoalForfeitDrawer() {
       >
         Cancel
       </Button>
-      <Button class={classes.forfeitBtn} rounded onClick={completeForfeit}>
+      <Button
+        variant="secondary"
+        class={classes.forfeitBtn}
+        rounded
+        onClick={completeForfeit}
+      >
         Forfeit
       </Button>
     </BottomDrawer>

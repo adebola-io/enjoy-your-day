@@ -29,11 +29,9 @@ export async function InstallationInstructionsDrawer(
     await removeRouteQuery(installInstructionsDrawerQuery, isOpen);
   };
 
-  isOpen.listen(toggleNestedDrawerAttribute);
+  isOpen.runAndListen(toggleNestedDrawerAttribute);
   const heading = `Install with ${instructions.name}.`;
   const paragraph = 'Follow these steps to install Enjoy Your Day:';
-
-  71;
 
   return (
     <BottomDrawer

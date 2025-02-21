@@ -20,7 +20,6 @@ export default function Insights() {
   const containerRef = Cell.source<HTMLDivElement | null>(null);
 
   const state = useResourceState(resource);
-  const isSuccess = Cell.derived(() => state.value === 'success');
 
   const Loading = () => <Loader class={classes.mainLoader} />;
 
@@ -55,7 +54,7 @@ export default function Insights() {
 
     return (
       <>
-        <section class={classes.heading} data-stagger-children>
+        <section class={classes.heading}>
           <Sparkles>
             <Icon name={userBadge.icon} class={classes.userBadgeIcon} />
           </Sparkles>
@@ -101,7 +100,6 @@ export default function Insights() {
       ref={containerRef}
       class={classes.container}
       data-state={state}
-      data-stagger-children={isSuccess}
     >
       {Switch(state, {
         inert: NoOp,

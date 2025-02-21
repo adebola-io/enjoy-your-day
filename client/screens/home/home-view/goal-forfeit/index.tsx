@@ -1,0 +1,91 @@
+import { BottomDrawer } from '#/components/bottom-drawer';
+import type { GoalPropsSerialized } from '#/data/entities';
+import { getGoalByUuid } from '#/services/database';
+import { Cell } from '@adbl/cells';
+import {
+  getRouteQueryValue,
+  removeRouteQuery,
+  useRouteQuery,
+} from '@adbl/iota/utils/router';
+import classes from './goal-forfeit.module.css';
+import { Button } from '#/components/button';
+import { dailyGoals } from '#/data/state';
+import { useRouter } from '@adbl/unfinished/router';
+import { _ } from '#/dist/assets/index-CfcWwHly';
+import { vibrate } from '#/library/utils';
+
+export const goalForfeitDrawerQuery = 'goal-forfeit';
+export default function GoalForfeitDrawer() {
+  const router = useRouter();
+  const isOpen = useRouteQuery(goalForfeitDrawerQuery);
+  const goalUuid = getRouteQueryValue(goalForfeitDrawerQuery);
+  const drawerRef = Cell.source<HTMLDialogElement | null>(null);
+  const goal = Cell.source<GoalPropsSerialized | null>(null);
+  const goalInstruction = Cell.derived(() => goal.value?.instruction);
+
+  const toggleNestedDrawerAttribute = (value: boolean) => {
+    document.body.toggleAttribute('data-nested-drawer-is-open', value);
+  };
+
+  const handleDrawerClose = () => {
+    removeRouteQuery(goalForfeitDrawerQuery);
+  };
+
+  const completeForfeit = () => {
+    const goalState = dailyGoals.value.find(
+      (goal) => goal.goal.uuid === goalUuid.value
+    );
+    if (!goalState) return;
+    goalState.state = 'forfeited';
+    const selector = `[data-goal-uuid="${goalUuid.value}"]`;
+    const goalElement = document.querySelector<HTMLElement>(selector);
+    if (!goalElement) return;
+
+    const input = goalElement.querySelector('input');
+    if (!input) return;
+    input.disabled = true;
+
+    goalElement.style.textDecoration = 'line-through';
+    goalElement.style.opacity = '0.5';
+
+    vibrate([100, 500, 100]);
+
+    router.navigate('/home');
+  };
+
+  isOpen.runAndListen(toggleNestedDrawerAttribute);
+  goalUuid.runAndListen(async (uuid) => {
+    if (!uuid) return;
+    goal.value = await getGoalByUuid(uuid);
+    // The drawer content is meant to automatically scroll into view,
+    // but the goal data may not have loaded before that happens.
+    drawerRef.value?.firstElementChild?.scrollIntoView();
+  });
+
+  return (
+    <BottomDrawer
+      class={classes.container}
+      open={isOpen}
+      onClose={handleDrawerClose}
+      shrinkTarget="#goalDetailsDrawer"
+      data-uuid={goalUuid}
+      onBeforeClose={toggleNestedDrawerAttribute}
+    >
+      <h2 class={classes.heading}>Forfeit Goal.</h2>
+      <p class={classes.text}>
+        You are about to forfeit this goal: {goalInstruction}
+      </p>
+      <Button
+        class={classes.cancelBtn}
+        variant="primary"
+        rounded
+        onClick={handleDrawerClose}
+      >
+        Cancel
+      </Button>
+      <Button class={classes.forfeitBtn} rounded onClick={completeForfeit}>
+        Forfeit
+      </Button>
+    </BottomDrawer>
+  );
+}

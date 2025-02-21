@@ -37,6 +37,7 @@ import {
 import { ElasticArea } from '@adbl/iota/components/elastic-area';
 import { FluidList } from '@adbl/iota/components/fluid-list';
 import { LongPressArea } from '@adbl/iota/components/long-press-area';
+import GoalForfeitDrawer, { goalForfeitDrawerQuery } from './goal-forfeit';
 
 export default function HomeView() {
   const router = useRouter();
@@ -84,6 +85,7 @@ export default function HomeView() {
 
   const handleLongPress = (item: GoalStateSerialized) => {
     vibrate();
+    if (item.state === 'forfeited') return;
     addRouteQuery(drawerQuery, item.goal.uuid);
   };
 
@@ -97,7 +99,6 @@ export default function HomeView() {
       id="homeView"
       yAxis
       class={classes.container}
-      data-stagger-children
       data-goals-completed={goalsCompleted}
       data-extra-goals-screen-is-open={extraGoalsScreenIsOpen}
     >
@@ -154,6 +155,7 @@ export default function HomeView() {
         shrinkTarget="#homeView"
         buttons={GoalDetailsButtons}
       />
+      <GoalForfeitDrawer />
     </ElasticArea>
   );
 }
@@ -180,7 +182,9 @@ function GoalDetailsButtons(goal: GoalPropsSerialized) {
     removeRouteQuery(drawerQuery);
   };
 
-  const forfeitGoal = () => {};
+  const forfeitGoal = () => {
+    addRouteQuery(goalForfeitDrawerQuery, goal.uuid);
+  };
 
   return (
     <>

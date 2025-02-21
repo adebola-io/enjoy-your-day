@@ -14,9 +14,9 @@ export interface GoalChecklistItemProps {
 export function GoalChecklistItem(props: GoalChecklistItemProps) {
   const { goalState, index, onCheck } = props;
   const initialCheckState = goalState.state === 'completed';
+  const disabled = Cell.derived(() => goalState.state === 'forfeited');
   const goalInputId = Cell.derived(() => `goal-checklist-${index.value}`);
   const goalUUid = Cell.derived(() => goalState.goal.uuid);
-  const loaded = Cell.source(false);
 
   const changeGoalState = function (this: HTMLInputElement) {
     vibrate(10);
@@ -29,16 +29,11 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
     }
   };
 
-  const handleAnimationEnd = () => {
-    loaded.value = true;
-  };
-
   return (
     <div
       data-goal-uuid={goalUUid}
       class={classes.container}
-      data-loaded={loaded}
-      onAnimationEnd--self={handleAnimationEnd}
+      data-forfeited={disabled}
     >
       <input
         id={goalInputId}
@@ -46,6 +41,7 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
         type="checkbox"
         checked={initialCheckState}
         onChange={changeGoalState}
+        disabled={disabled}
       />
       <GoalItem
         {...goalState.goal}

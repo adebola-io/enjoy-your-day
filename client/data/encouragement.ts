@@ -1,6 +1,7 @@
 import { Cell } from '@adbl/cells';
 import {
   dailyGoals,
+  forfeitedGoals,
   goalsCompleted,
   liveDate,
   numberOfScheduledGoals,
@@ -11,6 +12,8 @@ import { selectAtRandom } from '@adbl/iota/utils/misc';
 export const encouragement = Cell.derived(() => {
   const count = numberOfScheduledGoals.value;
   const totalGoals = dailyGoals.value.length;
+  const forfeitedCount = forfeitedGoals.value;
+
   const goalsPhrase = count === 1 ? `${count} goal` : `${count} goals`;
 
   const hours = liveDate.value.getHours();
@@ -32,6 +35,14 @@ export const encouragement = Cell.derived(() => {
       'You did it! All your goals are completed. Congratulations!',
       'You have no goals left for today. Enjoy your free time!',
     ]);
+  }
+
+  if (count === 0 && forfeitedCount > 0) {
+    const phrase =
+      forfeitedCount === 1
+        ? `${forfeitedCount} goal`
+        : `${forfeitedCount} goals`;
+    return `You forfeited ${phrase} and completed the rest. Tomorrow is another day!`;
   }
 
   if (timeOfDay.value === 'morning') {

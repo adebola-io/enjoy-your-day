@@ -140,6 +140,10 @@ export const numberOfScheduledGoals = Cell.derived(() => {
   return dailyGoals.value.filter((s) => s.state === 'scheduled').length;
 });
 
+export const forfeitedGoals = Cell.derived(() => {
+  return dailyGoals.value.filter((s) => s.state === 'forfeited').length;
+});
+
 export const goalsCompleted = Cell.derived(() => {
   return (
     dailyGoals.value.length > 0 &&

@@ -3,6 +3,8 @@
     /* Overrides SlideLayerView Transitions. */
     transition-duration: var(--slide-duration);
     transition-property: scale, opacity, translate;
+    animation: var(--fade-in) calc(var(--default-duration) * 2.5)
+      var(--default-duration) backwards;
   }
 
   &[data-app-loaded] {

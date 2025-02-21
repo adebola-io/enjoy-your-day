@@ -44,6 +44,7 @@ export default function GoalDetailsDrawer(props: AddGoalDrawerProps) {
 
   return (
     <BottomDrawer
+      id="goalDetailsDrawer"
       ref={drawerRef}
       open={isOpen}
       class={classes.container}

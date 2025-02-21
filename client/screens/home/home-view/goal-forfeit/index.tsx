@@ -11,7 +11,6 @@ import classes from './goal-forfeit.module.css';
 import { Button } from '#/components/button';
 import { dailyGoals } from '#/data/state';
 import { useRouter } from '@adbl/unfinished/router';
-import { _ } from '#/dist/assets/index-CfcWwHly';
 import { vibrate } from '#/library/utils';
 
 export const goalForfeitDrawerQuery = 'goal-forfeit';
@@ -37,16 +36,6 @@ export default function GoalForfeitDrawer() {
     );
     if (!goalState) return;
     goalState.state = 'forfeited';
-    const selector = `[data-goal-uuid="${goalUuid.value}"]`;
-    const goalElement = document.querySelector<HTMLElement>(selector);
-    if (!goalElement) return;
-
-    const input = goalElement.querySelector('input');
-    if (!input) return;
-    input.disabled = true;
-
-    goalElement.style.textDecoration = 'line-through';
-    goalElement.style.opacity = '0.5';
 
     vibrate([100, 500, 100]);
 

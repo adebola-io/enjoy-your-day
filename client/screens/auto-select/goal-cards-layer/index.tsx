@@ -14,7 +14,6 @@ import { BackButton } from '#/components/back-button';
 import classes from './goal-cards-layer.module.css';
 import { useMatchMedia } from '@adbl/iota/hooks/use-match-media';
 import CaretRightIcon from '#/components/icons/caret-right';
-import { ElasticArea } from '@adbl/iota/components/elastic-area';
 import { useRouteQuery } from '@adbl/iota/utils/router';
 
 interface GoalCardsLayerProps {
@@ -67,10 +66,8 @@ export default function GoalCardsLayer(props: GoalCardsLayerProps) {
       content={() => (
         <>
           <BackButton class={classes.backButton} />
-          <ElasticArea
+          <ul
             id="goalCardsView"
-            yAxis
-            as="ul"
             ref={ulRef}
             class={classes.goalCards}
             style={ulStyles}
@@ -96,7 +93,7 @@ export default function GoalCardsLayer(props: GoalCardsLayerProps) {
                 </button>
               </>
             ))}
-          </ElasticArea>
+          </ul>
           <div class={classes.buttonRow}>
             <Button
               class={[classes.btn, classes.perfectBtn]}

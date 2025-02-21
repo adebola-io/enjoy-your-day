@@ -19,7 +19,6 @@ import {
 import classes from './auto-select-edit-layer.module.css';
 import { FloatingActionButton } from '#/components/floating-action-button';
 import { FluidList } from '@adbl/iota/components/fluid-list';
-import { ElasticArea } from '@adbl/iota/components/elastic-area';
 import {
   addRouteQuery,
   removeRouteQuery,
@@ -108,9 +107,8 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
       class={classes.viewLayer}
       open={useRouteQuery('stage', 'edit')}
       content={() => (
-        <ElasticArea
+        <div
           id="autoSelectEdit"
-          yAxis
           ref={containerRef}
           class={classes.container}
           data-is-open={editIsOpen}
@@ -169,7 +167,7 @@ export default function AutoSelectEditLayer(props: GoalCardsViewProps) {
               color="white"
             />
           </FloatingActionButton>
-        </ElasticArea>
+        </div>
       )}
     />
   );

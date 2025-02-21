@@ -5,7 +5,6 @@ import { Temporal } from 'temporal-polyfill';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { isDark, todayStr } from '#/data/state';
 import classes from './history-chart.module.css';
-import { ElasticArea } from '@adbl/iota/components/elastic-area';
 import { useMatchMedia } from '@adbl/iota/hooks/use-match-media';
 
 export interface HistoryChartProps {
@@ -92,11 +91,10 @@ export function HistoryChart(props: HistoryChartProps) {
   });
 
   return (
-    <ElasticArea
+    <div
       ref={containerRef}
       class={[classes.container, backgroundClass]}
       style={containerStyles}
-      xAxis
       onClick={selectDate}
     >
       {For(chartData, (item, index) => (
@@ -108,7 +106,7 @@ export function HistoryChart(props: HistoryChartProps) {
           isLandscape={isLandscape}
         />
       ))}
-    </ElasticArea>
+    </div>
   );
 }
 

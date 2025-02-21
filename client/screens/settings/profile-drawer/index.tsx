@@ -24,7 +24,6 @@ import { categories } from '#/data/categories';
 import { MAX_USERNAME_LENGTH } from '#/data/constants';
 import { CategoryCard } from '#/components/category-card';
 import classes from './profile-drawer.module.css';
-import { ElasticArea } from '@adbl/iota/components/elastic-area';
 
 export default function ProfileDrawer() {
   let initialUsernameValue = '';
@@ -215,8 +214,6 @@ function InvolvementLevels(props: InvolvementLevelProps) {
 
 function Categories() {
   return (
-    <ElasticArea class={classes.categoryList} yAxis>
-      {For(categories, CategoryCard)}
-    </ElasticArea>
+    <div class={classes.categoryList}>{For(categories, CategoryCard)}</div>
   );
 }

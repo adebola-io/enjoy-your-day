@@ -7,7 +7,6 @@ import { For } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './select-categories.module.css';
 import { elementAnimationsFinished } from '#/library/utils';
-import { ElasticArea } from '@adbl/iota/components/elastic-area';
 
 export default async function SelectCategories() {
   const router = useRouter();
@@ -36,9 +35,7 @@ export default async function SelectCategories() {
         going!
       </p>
       <div class={classes.categoryListContainer}>
-        <ElasticArea class={classes.categoryList} yAxis>
-          {For(categories, CategoryCard)}
-        </ElasticArea>
+        <div class={classes.categoryList}>{For(categories, CategoryCard)}</div>
       </div>
       <Button
         class={classes.categorySubmitButton}

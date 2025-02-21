@@ -53,9 +53,7 @@
   }
 
   &[data-time-of-day='afternoon'] {
-    animation: var(--fade-in-from-bottom) var(--default-duration),
-      spin calc(var(--default-duration) * 70) linear var(--default-duration)
-        infinite;
+    animation: spin calc(var(--default-duration) * 70) linear infinite;
   }
 
   &[data-time-of-day='evening'] {

@@ -10,8 +10,8 @@
     grid-template-rows: 1fr auto;
 
     &[data-goals-loaded] {
-      animation: var(--fade-in) calc(var(--default-duration) * 1.75)
-        var(--default-duration) backwards;
+      --starting-scale: 0.9;
+      animation: var(--pop) calc(var(--default-duration) * 1.75) backwards;
     }
 
     @media (orientation: landscape) {

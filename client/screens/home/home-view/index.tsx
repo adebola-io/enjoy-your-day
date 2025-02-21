@@ -36,7 +36,6 @@ import {
 } from '@adbl/iota/utils/router';
 import { ElasticArea } from '@adbl/iota/components/elastic-area';
 import { FluidList } from '@adbl/iota/components/fluid-list';
-import { LongPressArea } from '@adbl/iota/components/long-press-area';
 import GoalForfeitDrawer, { goalForfeitDrawerQuery } from './goal-forfeit';
 
 export default function HomeView() {
@@ -131,13 +130,12 @@ export default function HomeView() {
           gap="3px"
           data-list-changed={listChanged}
           Template={({ item, index }) => (
-            <LongPressArea onLongPress={() => handleLongPress(item)}>
-              <GoalChecklistItem
-                goalState={item}
-                index={index}
-                onCheck={handleGoalChecked}
-              />
-            </LongPressArea>
+            <GoalChecklistItem
+              goalState={item}
+              index={index}
+              onCheck={handleGoalChecked}
+              onLongPress={() => handleLongPress(item)}
+            />
           )}
         />
       </div>

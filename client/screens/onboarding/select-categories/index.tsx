@@ -1,6 +1,5 @@
 import { CategoryCard } from '#/components/category-card';
 import { Button } from '#/components/button';
-import { ElasticView } from '#/components/elastic-view';
 import { selectedCategories, username } from '#/data/state';
 import { categories } from '#/data/categories';
 import { Cell } from '@adbl/cells';
@@ -36,9 +35,7 @@ export default async function SelectCategories() {
         going!
       </p>
       <div class={classes.categoryListContainer}>
-        <ElasticView class={classes.categoryList} yAxis>
-          {For(categories, CategoryCard)}
-        </ElasticView>
+        <div class={classes.categoryList}>{For(categories, CategoryCard)}</div>
       </div>
       <Button
         class={classes.categorySubmitButton}

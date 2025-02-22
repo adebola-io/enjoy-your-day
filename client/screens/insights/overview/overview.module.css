@@ -9,7 +9,6 @@
   grid-template-columns: 1fr;
   grid-template-rows: repeat(var(--total), max(150px, 20dvh));
   grid-row: 3;
-  scroll-snap-align: none start;
   gap: 20px;
   content-visibility: auto;
   contain-intrinsic-width: 100dvw;

@@ -3,12 +3,11 @@ import { Button } from '#/components/button';
 import { Logo } from '#/components/logo';
 import SimpleCheckIcon from '#/components/icons/simple-check';
 import BellIcon from '#/components/icons/bell';
-import { PhoneMockup } from '#/components/phone-mockup';
 import {
   addRouteQuery,
   removeRouteQuery,
   useRouteQuery,
-} from '#/library/utils';
+} from '@adbl/iota/utils/router';
 import { Cell } from '@adbl/cells';
 import { notificationsEnabled } from '#/data/state';
 import { DEFAULT_LOCALE, DEFAULT_TIMEZONE } from '#/data/constants';
@@ -22,12 +21,13 @@ import NotificationDeniedDrawer, {
   notificationDeniedDrawerQuery,
 } from './notification-denied-drawer';
 import { isMaybeMobileOrSafari } from '#/library/app-environment';
-import { useMatchMedia } from '#/library/window';
+import { useMatchMedia } from '@adbl/iota/hooks/use-match-media';
 import {
   InstallationInstructionsDrawer,
   installInstructionsDrawerQuery,
 } from '#/screens/onboarding/install-prompt-drawer/nested-drawer';
 import classes from './notification-prompt-drawer.module.css';
+import { PhoneMockup } from '@adbl/iota/components/phone-mockup';
 
 export const notificationDrawerQuery = 'notifications-prompt-drawer';
 export default function NotificationPromptDrawer() {

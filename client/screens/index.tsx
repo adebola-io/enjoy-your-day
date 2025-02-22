@@ -1,8 +1,7 @@
 import { NavigationBar } from '#/components/navigation-bar';
 import { StackLayerView } from '#/components/stack-layer-view';
 import { ViewGroup } from '#/components/view-group';
-import { appLoadingState } from '#/data/state';
-import { useRouteQuery } from '#/library/utils';
+import { appLoadingState, dailyGoals } from '#/data/state';
 import { Cell } from '@adbl/cells';
 import { useRouter } from '@adbl/unfinished/router';
 import { If } from '@adbl/unfinished';
@@ -10,11 +9,13 @@ import { registerNotificationServiceWorker } from '#/services/notifications';
 import ExtraGoalsView, { extraGoalsPageQuery } from './extra-goals';
 import AutoSelectLayer from './auto-select';
 import classes from './app.module.css';
+import { useRouteQuery } from '@adbl/iota/utils/router';
 
 export default function App() {
   const { Outlet } = useRouter();
   const extraGoalsPageIsOpen = useRouteQuery(extraGoalsPageQuery);
   const appIsLoaded = Cell.derived(() => appLoadingState.value === 'done');
+  const goalsLoaded = Cell.derived(() => dailyGoals.value.length > 0);
 
   appIsLoaded.runAndListen((appIsLoaded) => {
     if (appIsLoaded) registerNotificationServiceWorker();
@@ -22,8 +23,10 @@ export default function App() {
 
   const MainContent = () => (
     <StackLayerView
+      id="mainAppContent"
       class={classes.appContent}
       data-app-loaded={appIsLoaded}
+      data-goals-loaded={goalsLoaded}
       data-extra-goals-page-is-open={extraGoalsPageIsOpen}
     >
       <Outlet class={classes.outlet} />

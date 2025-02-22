@@ -1,6 +1,6 @@
 import { SettingsItemList } from '#/components/settings-item';
 import { StackLayerView } from '#/components/stack-layer-view';
-import { useRouteQuery } from '#/library/utils';
+import { useRouteQuery } from '@adbl/iota/utils/router';
 
 export default function AboutLayer() {
   return (

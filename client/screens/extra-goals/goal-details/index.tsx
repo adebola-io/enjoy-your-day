@@ -1,22 +1,22 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
-import { removeRouteQuery, useRouteQuery } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import { Cell } from '@adbl/cells';
 import { If } from '@adbl/unfinished';
-import type { GoalPropsSerialized, GoalStateSerialized } from '#/data/entities';
+import type { GoalPropsSerialized } from '#/data/entities';
 import { getGoalByUuid } from '#/services/database';
 import { Icon } from '#/components/icon';
-import { Button } from '#/components/button';
-import { dailyGoals } from '#/data/state';
-import classes from './add-goal-drawer.module.css';
+import type { JSX } from '@adbl/unfinished/jsx-runtime';
+import classes from './goal-details.module.css';
+import { removeRouteQuery, useRouteQuery } from '@adbl/iota/utils/router';
 
 interface AddGoalDrawerProps {
-  onBeforeGoalAdded?: () => Promise<void>;
+  shrinkTarget: string;
+  buttons: (goal: GoalPropsSerialized) => JSX.Template;
 }
 
 export const drawerQuery = 'open-goal-card';
-export default function AddGoalDrawer(props: AddGoalDrawerProps) {
-  const { onBeforeGoalAdded } = props;
+export default function GoalDetailsDrawer(props: AddGoalDrawerProps) {
+  const { shrinkTarget, buttons } = props;
   const router = useRouter();
   const isOpen = useRouteQuery(drawerQuery);
   const route = router.getCurrentRoute();
@@ -34,21 +34,6 @@ export default function AddGoalDrawer(props: AddGoalDrawerProps) {
     await removeRouteQuery(drawerQuery);
   };
 
-  const addGoal = async () => {
-    if (!goal.value) return;
-    removeRouteQuery(drawerQuery);
-    await new Promise((r) => setTimeout(r, 200));
-    await onBeforeGoalAdded?.();
-    await new Promise((r) => setTimeout(r, 200));
-    const dateAdded = new Date(goal.value.dateAdded).toISOString();
-    const goalState: GoalStateSerialized = {
-      state: 'scheduled',
-      goal: { ...goal.value, dateAdded },
-      updatedAt: null,
-    };
-    dailyGoals.value.push(goalState);
-  };
-
   goalUuid.runAndListen(async (uuid) => {
     if (!uuid) return;
     goal.value = await getGoalByUuid(uuid);
@@ -59,10 +44,11 @@ export default function AddGoalDrawer(props: AddGoalDrawerProps) {
 
   return (
     <BottomDrawer
+      id="goalDetailsDrawer"
       ref={drawerRef}
       open={isOpen}
       class={classes.container}
-      shrinkTarget="#extraGoalsView"
+      shrinkTarget={shrinkTarget}
       onClose={handleDrawerClose}
       data-uuid={goalUuid}
       style={drawerStyle}
@@ -75,17 +61,7 @@ export default function AddGoalDrawer(props: AddGoalDrawerProps) {
       <h2 class={classes.heading}>{goalTitle}</h2>
       <p class={classes.instruction}>{goalInstruction}</p>
       <p class={classes.info}>{goalInfo}</p>
-      <Button
-        rounded
-        variant="outlined"
-        class={classes.closeBtn}
-        onClick={handleDrawerClose}
-      >
-        Close
-      </Button>
-      <Button rounded class={classes.addBtn} onClick={addGoal}>
-        Add
-      </Button>
+      {If(goal, buttons)}
     </BottomDrawer>
   );
 }

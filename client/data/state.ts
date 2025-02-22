@@ -1,6 +1,4 @@
 import { Cell } from '@adbl/cells';
-import { useLiveDate } from '@adbl/dom-cells/useDate';
-import { useLocalStorage } from '@adbl/dom-cells/useLocalStorage';
 import type { GoalStateSerialized } from '#/data/entities';
 import { Temporal } from 'temporal-polyfill';
 import { resetDbData, updateUsername } from '../services/database';
@@ -8,6 +6,8 @@ import CompassIcon from '#/components/icons/compass';
 import BullseyeIcon from '#/components/icons/bullseye';
 import MountainIcon from '#/components/icons/mountain';
 import { getRandomMorningTime, NoOp, setMetaTheme } from '#/library/utils';
+import { useLocalStorage } from '@adbl/iota/hooks/use-local-storage';
+import { useLiveDate } from '@adbl/iota/hooks/use-live-date';
 
 export const DATE_UPDATE_INTERVAL = 1000 * 30; // updates every 30 seconds.
 export const LOCALSTORAGE_KEYS = {
@@ -15,6 +15,7 @@ export const LOCALSTORAGE_KEYS = {
   appLoadingState: 'app-loading-state',
   involvementLevel: 'involvement-level',
   goalsForTheDay: 'goals-for-the-day',
+  goalsForTheDayCache: 'goals-for-the-day-cache',
   lastLoadedChunk: 'last-loaded-chunk',
   username: 'username',
   goalsForTheDayDateStamp: 'goals-for-the-day-date-stamp',
@@ -73,6 +74,15 @@ export const dailyGoals = useLocalStorage<GoalStateSerialized[]>(
   LOCALSTORAGE_KEYS.goalsForTheDay,
   []
 );
+export const dailyGoalsCache = useLocalStorage<GoalStateSerialized[]>(
+  LOCALSTORAGE_KEYS.goalsForTheDayCache,
+  []
+);
+export const dailyGoalsData = Cell.derived(() => {
+  if (dailyGoals.value.length === 0) return dailyGoalsCache.value;
+  return dailyGoals.value;
+});
+
 export const dailyGoalsDateStamp = useLocalStorage<string | null>(
   LOCALSTORAGE_KEYS.goalsForTheDayDateStamp,
   null
@@ -126,8 +136,16 @@ export const morningTime = useLocalStorage<{ hours: number; minutes: number }>(
   getRandomMorningTime()
 );
 
+export const completedGoals = Cell.derived(() => {
+  return dailyGoals.value.filter((s) => s.state === 'completed').length;
+});
+
 export const numberOfScheduledGoals = Cell.derived(() => {
   return dailyGoals.value.filter((s) => s.state === 'scheduled').length;
+});
+
+export const forfeitedGoals = Cell.derived(() => {
+  return dailyGoals.value.filter((s) => s.state === 'forfeited').length;
 });
 
 export const goalsCompleted = Cell.derived(() => {
@@ -159,6 +177,7 @@ export async function resetAllData() {
   await resetDbData();
   appLoadingState.value = 'setup';
   dailyGoals.value = [];
+  dailyGoalsCache.value = [];
   dailyGoalsDateStamp.value = null;
   username.value = '';
   selectedCategories.value = [];
@@ -168,4 +187,13 @@ export async function resetAllData() {
   themeColor.value = 'Light';
   selectedFont.value = 'SchibstedGrotesk';
   lastLoadedChunk.value = 0;
+}
+
+// Ensures that the daily data is forcefully emptied even if the
+// db worker has not been loaded.
+const today = Temporal.Now.plainDateISO().toString();
+if (dailyGoalsDateStamp.value && today !== dailyGoalsDateStamp.value) {
+  console.log('emptying data');
+  dailyGoalsCache.value = dailyGoals.value;
+  dailyGoals.value = [];
 }

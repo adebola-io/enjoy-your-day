@@ -3,10 +3,15 @@
   display: grid;
   width: calc(100% - var(--side-padding) * 2);
   color: white;
+  transition-property: scale, translate, opacity;
   grid-template-rows: auto auto auto auto 1fr;
   padding-block: var(--block-padding);
   padding-inline: var(--side-padding);
   gap: calc(var(--side-padding) * 0.25);
+
+  &[data-dialog-is-open] {
+    scale: calc(var(--drawer-background-scale) + 0.02);
+  }
 }
 
 .goalIconContainer {
@@ -44,19 +49,4 @@
   text-align: center;
   justify-self: center;
   grid-area: 4 / 1 / 4 / 3;
-}
-
-.closeBtn {
-  justify-self: end;
-  grid-area: 5 / 1;
-}
-
-.addBtn {
-  justify-self: start;
-  grid-area: 5 / 2;
-}
-
-.closeBtn,
-.addBtn {
-  height: min-content;
 }

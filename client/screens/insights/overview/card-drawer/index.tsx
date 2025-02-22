@@ -11,8 +11,10 @@ import { useRouter } from '@adbl/unfinished/router';
 import { loadIconDataUrlEager } from '#/components/icon';
 import { Button } from '#/components/button';
 import { If, Switch } from '@adbl/unfinished';
-import { defer, NoOp, toKebabCase, useRouteQuery } from '#/library/utils';
+import { NoOp, toKebabCase } from '#/library/utils';
 import classes from './card-drawer.module.css';
+import { useRouteQuery } from '@adbl/iota/utils/router';
+import { defer } from '@adbl/iota/utils/misc';
 
 export interface CardDrawerProps {
   cards: InsightCardDetails[];

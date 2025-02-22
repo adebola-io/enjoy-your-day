@@ -30,6 +30,10 @@
     width: calc(100% - var(--side-padding) * 3);
     padding-inline: calc(var(--side-padding) * 1.5);
   }
+
+  body[data-nested-drawer-is-open] & {
+    scale: 0.85;
+  }
 }
 
 .timeIcon {
@@ -49,9 +53,7 @@
   }
 
   &[data-time-of-day='afternoon'] {
-    animation: var(--fade-in-from-bottom) var(--default-duration),
-      spin calc(var(--default-duration) * 70) linear var(--default-duration)
-        infinite;
+    animation: spin calc(var(--default-duration) * 70) linear infinite;
   }
 
   &[data-time-of-day='evening'] {
@@ -180,6 +182,28 @@
 
 .addIcon {
   height: calc(var(--floating-button-size) * 0.65);
+}
+
+.completeButton,
+.forfeitButton {
+  display: grid;
+  place-content: center;
+  grid-template-columns: 20px auto;
+  grid-auto-flow: column;
+  gap: 6px;
+}
+
+.completeButton[data-checked] {
+  opacity: 0.5;
+  grid-area: 5 / 1 / 5 / 3;
+
+  img {
+    display: none;
+  }
+}
+
+.buttonIcon {
+  width: 20px;
 }
 
 @keyframes slide-in {

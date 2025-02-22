@@ -1,8 +1,8 @@
 import { Cell } from '@adbl/cells';
 import { If } from '@adbl/unfinished';
-import { defer } from '#/library/utils';
 import { updatePillPositions } from '../pill-radio-list';
 import type { JSX } from '@adbl/unfinished/jsx-runtime';
+import { defer } from '@adbl/iota/utils/misc';
 
 type SectionProps = JSX.IntrinsicElements['section'];
 

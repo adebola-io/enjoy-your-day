@@ -1,12 +1,11 @@
 import { For, useObserver } from '@adbl/unfinished';
-import { ElasticView } from '#/components/elastic-view';
 import type { HistoryChartItem } from '#/services/database/types';
 import type { LookupMap } from '#/library/lookup-map';
 import { Temporal } from 'temporal-polyfill';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { isDark, todayStr } from '#/data/state';
 import classes from './history-chart.module.css';
-import { useMatchMedia } from '#/library/window';
+import { useMatchMedia } from '@adbl/iota/hooks/use-match-media';
 
 export interface HistoryChartProps {
   picked: SourceCell<HistoryChartItem>;
@@ -25,7 +24,6 @@ export function HistoryChart(props: HistoryChartProps) {
     onRequestOlder,
   } = props;
   const observer = useObserver();
-  // Matched in the parent so it doesn't have to recompute for every chart item.
   const isLandscape = useMatchMedia('(orientation: landscape)');
   const containerRef = Cell.source<HTMLElement | null>(null);
 
@@ -93,11 +91,10 @@ export function HistoryChart(props: HistoryChartProps) {
   });
 
   return (
-    <ElasticView
+    <div
       ref={containerRef}
       class={[classes.container, backgroundClass]}
       style={containerStyles}
-      xAxis
       onClick={selectDate}
     >
       {For(chartData, (item, index) => (
@@ -109,7 +106,7 @@ export function HistoryChart(props: HistoryChartProps) {
           isLandscape={isLandscape}
         />
       ))}
-    </ElasticView>
+    </div>
   );
 }
 

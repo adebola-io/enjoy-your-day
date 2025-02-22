@@ -3,7 +3,6 @@ import { TimeBasedGreeting } from '#/components/time-based-greeting';
 import { TimeBasedIcon } from '#/components/time-based-icon';
 import { TrophyIcon } from '#/components/icons/trophy';
 import { GoalChecklistItem } from '#/components/goal-checklist-item';
-import { ElasticView } from '#/components/elastic-view';
 import { FloatingActionButton } from '#/components/floating-action-button';
 import AddIcon from '#/components/icons/add';
 import {
@@ -12,21 +11,32 @@ import {
   numberOfScheduledGoals,
   timeOfDay,
 } from '#/data/state';
+import type { GoalPropsSerialized, GoalStateSerialized } from '#/data/entities';
 import { encouragement } from '#/data/encouragement';
 import { GoalsCompletedDrawer } from './goals-completed';
-import {
-  addRouteQuery,
-  removeRouteQuery,
-  useRouteQuery,
-  vibrate,
-} from '#/library/utils';
+import { vibrate } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import { If } from '@adbl/unfinished';
 import { useRouter } from '@adbl/unfinished/router';
 import { extraGoalsPageQuery } from '#/screens/extra-goals';
 import { triggerNotification } from '#/services/notifications';
-import { FluidList } from '#/components/fluid-list';
+import GoalDetailsDrawer, {
+  drawerQuery,
+} from '#/screens/extra-goals/goal-details';
 import classes from './home-view.module.css';
+import { Button } from '#/components/button';
+import { InlinedIcon } from '#/components/inlined-icon';
+import DoubleCheckIcon from '#/components/icons/double-check';
+import { CSS_VARS } from '#/styles/variables';
+import XIcon from '#/components/icons/x';
+import {
+  addRouteQuery,
+  removeRouteQuery,
+  useRouteQuery,
+} from '@adbl/iota/utils/router';
+import { ElasticArea } from '@adbl/iota/components/elastic-area';
+import { FluidList } from '@adbl/iota/components/fluid-list';
+import GoalForfeitDrawer, { goalForfeitDrawerQuery } from './goal-forfeit';
 
 export default function HomeView() {
   const router = useRouter();
@@ -72,17 +82,22 @@ export default function HomeView() {
     setTimeout(() => addRouteQuery('goals-completed'), 400);
   };
 
+  const handleLongPress = (item: GoalStateSerialized) => {
+    vibrate();
+    if (item.state === 'forfeited') return;
+    addRouteQuery(drawerQuery, item.goal.uuid);
+  };
+
   const toggleExtraGoalScreen = () => {
     if (extraGoalsScreenIsOpen.value) removeRouteQuery(extraGoalsPageQuery);
     else addRouteQuery(extraGoalsPageQuery);
   };
 
   return (
-    <ElasticView
+    <ElasticArea
       id="homeView"
       yAxis
       class={classes.container}
-      data-stagger-children
       data-goals-completed={goalsCompleted}
       data-extra-goals-screen-is-open={extraGoalsScreenIsOpen}
     >
@@ -119,6 +134,7 @@ export default function HomeView() {
               goalState={item}
               index={index}
               onCheck={handleGoalChecked}
+              onLongPress={() => handleLongPress(item)}
             />
           )}
         />
@@ -133,6 +149,79 @@ export default function HomeView() {
         <AddIcon class={classes.addIcon} />
       </FloatingActionButton>
       <GoalsCompletedDrawer />
-    </ElasticView>
+      <GoalDetailsDrawer
+        shrinkTarget="#homeView"
+        buttons={GoalDetailsButtons}
+      />
+      <GoalForfeitDrawer />
+    </ElasticArea>
+  );
+}
+
+function GoalDetailsButtons(goal: GoalPropsSerialized) {
+  const state = Cell.derived(() =>
+    dailyGoals.value.find((g) => g.goal.uuid === goal.uuid)
+  );
+  const completed = Cell.derived(() => state.value?.state === 'completed');
+  const forfeited = Cell.derived(() => state.value?.state === 'forfeited');
+  const notForfeited = Cell.derived(() => !forfeited.value);
+  const notCompleted = Cell.derived(() => !completed.value);
+
+  const handleCheck = () => {
+    if (!state.value) return;
+
+    const next = state.value.state === 'completed' ? 'scheduled' : 'completed';
+    state.value.state = next;
+    const selector = `[data-goal-uuid='${state.value.goal.uuid}'] input`;
+    const goalItem = document.querySelector<HTMLInputElement>(selector);
+
+    if (goalItem) goalItem.checked = next === 'completed';
+
+    removeRouteQuery(drawerQuery);
+  };
+
+  const forfeitGoal = () => {
+    addRouteQuery(goalForfeitDrawerQuery, goal.uuid);
+  };
+
+  return (
+    <>
+      {If(notCompleted, () => (
+        <Button
+          class={classes.forfeitButton}
+          variant="outlined"
+          rounded
+          data-forfeited={forfeited}
+          onClick={forfeitGoal}
+        >
+          <InlinedIcon
+            class={classes.buttonIcon}
+            Icon={XIcon}
+            color="white"
+            title="Forfeit goal icon"
+          />
+          Forfeit
+        </Button>
+      ))}
+      {If(notForfeited, () => (
+        <Button
+          class={classes.completeButton}
+          rounded
+          data-checked={completed}
+          onClick={handleCheck}
+        >
+          <InlinedIcon
+            class={classes.buttonIcon}
+            Icon={DoubleCheckIcon}
+            color={CSS_VARS['--space-cadet-500']}
+            title="Double check icon"
+          />
+          {If(completed, {
+            true: () => 'Completed',
+            false: () => 'Complete',
+          })}
+        </Button>
+      ))}
+    </>
   );
 }

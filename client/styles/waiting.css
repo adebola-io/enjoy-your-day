@@ -42,10 +42,6 @@
   grid-column: 1;
 }
 
-html[data-theme='Dark'] #waiting-screen.loading .waiting-screen__circle {
-  border: 2px solid CanvasText;
-}
-
 html.low-end .waiting-screen__loader {
   display: none;
 }

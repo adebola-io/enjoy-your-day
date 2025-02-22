@@ -22,7 +22,7 @@ export const Bridge = {
   /**
    * Creates an async sender function for communication with a different worker.
    * @param name - The name of the BroadcastChannel to use for communication.
-   * @param them - A callback that should fire once a stable connection has been established.
+   * @param then - A callback that should fire once a stable connection has been established.
    * @returns A sender function that can be used to send messages to the receiver.
    */
   sender<C extends ChannelName>(name: C, then?: () => void): ChannelSenders[C] {

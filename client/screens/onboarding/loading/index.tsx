@@ -11,6 +11,7 @@ export default function Loading() {
   const router = useRouter();
 
   const handleAnimationStart = (event: AnimationEvent) => {
+    document.body.style.backgroundColor = 'Canvas';
     if (event.animationName.includes('fade-to-white')) {
       setMetaTheme('#ffffff');
     } else if (event.animationName.includes('fade-to-finn')) {
@@ -26,7 +27,7 @@ export default function Loading() {
     await new Promise((r) => setTimeout(r, ONBOARDING_LOADING_DELAY));
     appLoadingState.value = 'done';
     router.useViewTransitions = false;
-    router.replace('/home');
+    await router.replace('/home');
   };
 
   return (

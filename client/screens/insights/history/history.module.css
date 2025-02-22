@@ -4,7 +4,6 @@
   width: 100%;
   height: 100%;
   grid-row: 3;
-  scroll-snap-align: none start;
   content-visibility: auto;
   contain-intrinsic-width: 100dvw;
 

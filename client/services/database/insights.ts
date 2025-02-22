@@ -200,7 +200,7 @@ export const insightsOverview: InsightsOverviewHandler = async (data) => {
       },
       {
         name: 'Average Completion Rate',
-        value: dailyCompletionRate,
+        value: dailyCompletionRate.toFixed(2),
         suffix: '%',
         icon: 'calendar',
         color: '#253a54',

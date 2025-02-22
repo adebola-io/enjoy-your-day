@@ -77,6 +77,7 @@
   align-self: end;
   align-self: center;
   font: var(--base-bold);
+  font-style: italic;
   grid-area: 1 / 2;
 }
 

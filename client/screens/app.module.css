@@ -9,6 +9,11 @@
     display: grid;
     grid-template-rows: 1fr auto;
 
+    &[data-goals-loaded] {
+      --starting-scale: 0.9;
+      animation: var(--pop) calc(var(--default-duration) * 1.75) backwards;
+    }
+
     @media (orientation: landscape) {
       grid-template-columns: auto 1fr;
       grid-template-rows: auto;

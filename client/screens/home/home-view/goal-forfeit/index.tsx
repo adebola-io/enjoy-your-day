@@ -12,10 +12,10 @@ import { Button } from '#/components/button';
 import { dailyGoals } from '#/data/state';
 import { useRouter } from '@adbl/unfinished/router';
 import { vibrate } from '#/library/utils';
+import { drawerQuery } from '#/screens/extra-goals/goal-details';
 
 export const goalForfeitDrawerQuery = 'goal-forfeit';
 export default function GoalForfeitDrawer() {
-  const router = useRouter();
   const isOpen = useRouteQuery(goalForfeitDrawerQuery);
   const goalUuid = getRouteQueryValue(goalForfeitDrawerQuery);
   const drawerRef = Cell.source<HTMLDialogElement | null>(null);
@@ -26,11 +26,11 @@ export default function GoalForfeitDrawer() {
     document.body.toggleAttribute('data-nested-drawer-is-open', value);
   };
 
-  const handleDrawerClose = () => {
-    removeRouteQuery(goalForfeitDrawerQuery);
+  const handleDrawerClose = async () => {
+    await removeRouteQuery(goalForfeitDrawerQuery);
   };
 
-  const completeForfeit = () => {
+  const completeForfeit = async () => {
     const goalState = dailyGoals.value.find(
       (goal) => goal.goal.uuid === goalUuid.value
     );
@@ -39,7 +39,10 @@ export default function GoalForfeitDrawer() {
 
     vibrate([100, 500, 100]);
 
-    router.navigate('/home');
+    // TODO: using router.navigate('/home') leads to a bug where
+    // the browser goes back more than expected.
+    await handleDrawerClose();
+    await removeRouteQuery(drawerQuery);
   };
 
   isOpen.runAndListen(toggleNestedDrawerAttribute);

@@ -59,7 +59,11 @@ export function ConfirmDrawer(props: ConfirmDrawerProps) {
       title: 'Godspeed! ✨',
       body: 'Your goals for today have been set. Good luck.',
     });
-    router.navigate('/home');
+    // TODO: using router.navigate('/home') leads to a bug where
+    // the browser goes back more than expected.
+    await removeRouteQuery('card-view');
+    await removeRouteQuery('stage');
+    await removeRouteQuery('auto-select');
   };
 
   resource.pending.listen((isPending) => {

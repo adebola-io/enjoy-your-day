@@ -22,8 +22,6 @@
     animation-name: switch-tabs;
     grid-template-rows: max-content;
     grid-template-columns: 100% 100%;
-    scroll-snap-type: both mandatory;
-    scroll-snap-stop: always;
     scrollbar-width: none;
     overscroll-behavior: none;
 

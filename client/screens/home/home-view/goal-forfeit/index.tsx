@@ -10,7 +10,6 @@ import {
 import classes from './goal-forfeit.module.css';
 import { Button } from '#/components/button';
 import { dailyGoals } from '#/data/state';
-import { useRouter } from '@adbl/unfinished/router';
 import { vibrate } from '#/library/utils';
 import { drawerQuery } from '#/screens/extra-goals/goal-details';
 

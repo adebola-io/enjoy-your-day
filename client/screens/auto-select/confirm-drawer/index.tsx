@@ -7,7 +7,6 @@ import type { GoalProps, GoalStateSerialized } from '#/data/entities';
 import { NoOp } from '#/library/utils';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { Switch } from '@adbl/unfinished';
-import { useRouter } from '@adbl/unfinished/router';
 import { Temporal } from 'temporal-polyfill';
 import classes from './confirm-drawer.module.css';
 import { triggerNotification } from '#/services/notifications';
@@ -35,7 +34,6 @@ export interface ConfirmDrawerProps {
 }
 
 export function ConfirmDrawer(props: ConfirmDrawerProps) {
-  const router = useRouter();
   const drawerIsOpen = useRouteQuery('confirm');
   const goals = Cell.derived(() => props.goals.value ?? []);
   const resource = Cell.async(saveGoalsForToday);

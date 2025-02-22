@@ -5,6 +5,32 @@
       linear infinite;
 }
 
+@property --pill-translate {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: true;
+}
+
+@property --overview-tab-color {
+  syntax: '<color>';
+  initial-value: white;
+  inherits: true;
+}
+
+@property --history-tab-color {
+  syntax: '<color>';
+  initial-value: white;
+  inherits: true;
+}
+
+@keyframes switch-tabs {
+  to {
+    --pill-translate: 1;
+    --overview-tab-color: light-dark(var(--space-cadet-500), white);
+    --history-tab-color: white;
+  }
+}
+
 .container {
   &[data-state='pending'] {
     display: grid;
@@ -14,8 +40,10 @@
   }
 
   &[data-state='success'] {
+    --pill-translate: 0;
+    --overview-tab-color: white;
+    --history-tab-color: light-dark(var(--space-cadet-500), white);
     display: grid;
-
     overflow-x: hidden;
     height: calc(100dvh - var(--navbar-height));
     transition: scale var(--drawer);
@@ -30,7 +58,18 @@
     }
 
     @media (orientation: landscape) {
+      overflow: hidden;
       height: 100dvh;
+    }
+
+    @supports (animation-timeline: scroll(self inline)) {
+      animation-duration: auto;
+      animation-timeline: scroll(self inline);
+    }
+
+    @supports not (animation-timeline: scroll(self inline)) {
+      animation-duration: 51ms;
+      animation-play-state: paused;
     }
   }
 
@@ -102,19 +141,13 @@
 }
 
 .overviewTabPill {
+  color: var(--overview-tab-color);
   grid-area: 1 / 1;
-
-  [data-selected-tab='overview'] & {
-    color: white;
-  }
 }
 
 .historyTabPill {
+  color: var(--history-tab-color);
   grid-area: 1 / 2;
-
-  [data-selected-tab='history'] & {
-    color: white;
-  }
 }
 
 .overviewTabPill,
@@ -144,8 +177,5 @@
   justify-self: start;
   grid-row: 1;
   grid-column: 1;
-
-  [data-selected-tab='history'] & {
-    translate: 100%;
-  }
+  translate: calc(var(--pill-translate) * 100%);
 }

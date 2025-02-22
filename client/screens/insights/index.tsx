@@ -1,6 +1,6 @@
 import { Cell } from '@adbl/cells';
 import { getInsightsOverview } from '#/services/database';
-import { NoOp, vibrate } from '#/library/utils';
+import { initScrollTimeline, NoOp, vibrate } from '#/library/utils';
 import { Switch, useObserver } from '@adbl/unfinished';
 import { Icon } from '#/components/icon';
 import { Sparkles } from '#/components/sparkles';
@@ -10,15 +10,17 @@ import { dailyGoals } from '#/data/state';
 import Overview from './overview';
 import History from './history';
 import classes from './insights.module.css';
+import { useMatchMedia } from '@adbl/iota/hooks/use-match-media';
 import { useResourceState } from '@adbl/iota/hooks/use-resource-state';
 
 export default function Insights() {
   const observer = useObserver();
+  const isLandscape = useMatchMedia('(orientation: landscape)');
   const resource = Cell.async(getInsightsOverview);
   const containerRef = Cell.source<HTMLDivElement | null>(null);
-  const selectedTab = Cell.source<'overview' | 'history'>('overview');
 
   const state = useResourceState(resource);
+  const isSuccess = Cell.derived(() => state.value === 'success');
 
   const Loading = () => <Loader class={classes.mainLoader} />;
 
@@ -35,19 +37,25 @@ export default function Insights() {
     const setSelectedTab = function (this: HTMLButtonElement) {
       vibrate();
       const name = this.dataset.tabName as 'overview' | 'history';
-      selectedTab.value = name;
       if (!containerRef.value) return;
       const container = containerRef.value;
       const { scrollTop: top, scrollWidth } = container;
       const left = name === 'overview' ? 0 : scrollWidth / 2;
+      const behavior = isLandscape.value ? 'instant' : 'smooth';
       // Im using scrollTo() on the container because scrollIntoView()
       // for each tab scrolls vertically, regardless of the block option set.
-      container.scrollTo({ left, top, behavior: 'instant' });
+      container.scrollTo({ left, top, behavior });
     };
+
+    observer.onConnected(containerRef, (div) => {
+      if (initScrollTimeline(div, 'inline')) {
+        return () => div.getAnimations().at(0)?.finish();
+      }
+    });
 
     return (
       <>
-        <section class={classes.heading}>
+        <section class={classes.heading} data-stagger-children>
           <Sparkles>
             <Icon name={userBadge.icon} class={classes.userBadgeIcon} />
           </Sparkles>
@@ -93,7 +101,7 @@ export default function Insights() {
       ref={containerRef}
       class={classes.container}
       data-state={state}
-      data-selected-tab={selectedTab}
+      data-stagger-children={isSuccess}
     >
       {Switch(state, {
         inert: NoOp,

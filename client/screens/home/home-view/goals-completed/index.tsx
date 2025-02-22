@@ -1,15 +1,13 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
 import { ConfettiIcon } from '#/components/icons/confetti';
-import { useRouter } from '@adbl/unfinished/router';
 import { CSS_VARS } from '#/styles/variables';
-import { useRouteQuery } from '#/library/utils';
 import confetti from 'canvas-confetti';
 import classes from './goals-completed.module.css';
+import { removeRouteQuery, useRouteQuery } from '@adbl/iota/utils/router';
 
 export function GoalsCompletedDrawer() {
-  const router = useRouter();
   const isOpen = useRouteQuery('goals-completed');
-  const goBackHome = () => router.navigate('/home');
+  const goBackHome = () => removeRouteQuery('goals-completed');
 
   isOpen.listen((isOpen) => {
     if (!isOpen) return;

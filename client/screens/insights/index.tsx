@@ -1,11 +1,6 @@
 import { Cell } from '@adbl/cells';
 import { getInsightsOverview } from '#/services/database';
-import {
-  getResourceState,
-  initScrollTimeline,
-  NoOp,
-  vibrate,
-} from '#/library/utils';
+import { initScrollTimeline, NoOp, vibrate } from '#/library/utils';
 import { Switch, useObserver } from '@adbl/unfinished';
 import { Icon } from '#/components/icon';
 import { Sparkles } from '#/components/sparkles';
@@ -15,7 +10,8 @@ import { dailyGoals } from '#/data/state';
 import Overview from './overview';
 import History from './history';
 import classes from './insights.module.css';
-import { useMatchMedia } from '#/library/window';
+import { useMatchMedia } from '@adbl/iota/hooks/use-match-media';
+import { useResourceState } from '@adbl/iota/hooks/use-resource-state';
 
 export default function Insights() {
   const observer = useObserver();
@@ -23,7 +19,7 @@ export default function Insights() {
   const resource = Cell.async(getInsightsOverview);
   const containerRef = Cell.source<HTMLDivElement | null>(null);
 
-  const state = getResourceState(resource);
+  const state = useResourceState(resource);
   const isSuccess = Cell.derived(() => state.value === 'success');
 
   const Loading = () => <Loader class={classes.mainLoader} />;

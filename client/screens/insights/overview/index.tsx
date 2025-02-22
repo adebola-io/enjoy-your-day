@@ -12,7 +12,7 @@ export default function Overview(props: InsightsOverviewProps) {
   const { cards } = props;
   const styles = { '--total': cards.length };
   return (
-    <ul class={classes.container} style={styles} data-stagger-children>
+    <ul class={classes.container} style={styles}>
       {For(cards, (cardDetails, index) => (
         <InsightCard {...cardDetails} index={index} />
       ))}

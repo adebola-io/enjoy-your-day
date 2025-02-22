@@ -3,14 +3,15 @@ import { Logo } from '#/components/logo';
 import { Button } from '#/components/button';
 import { Cell } from '@adbl/cells';
 import { For, useObserver } from '@adbl/unfinished';
-import { PhoneMockup } from '#/components/phone-mockup';
 import {
   InstallationInstructionsDrawer,
   installInstructionsDrawerQuery,
 } from './nested-drawer';
-import { addRouteQuery, installDetails } from '#/library/utils';
+import { installDetails } from '#/library/utils';
 import { useRouter } from '@adbl/unfinished/router';
 import classes from './install-prompt-drawer.module.css';
+import { addRouteQuery } from '@adbl/iota/utils/router';
+import { PhoneMockup } from '@adbl/iota/components/phone-mockup';
 
 export default function InstallPromptDrawer() {
   const observer = useObserver();

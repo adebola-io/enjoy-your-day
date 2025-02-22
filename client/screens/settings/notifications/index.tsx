@@ -6,7 +6,6 @@ import TvIcon from '#/components/icons/tv';
 import WifiIcon from '#/components/icons/wifi';
 import BellIcon from '#/components/icons/bell';
 import { StackLayerView } from '#/components/stack-layer-view';
-import { addRouteQuery, useRouteQuery } from '#/library/utils';
 import { notificationsEnabled } from '#/data/state';
 import { loadIconDataUrl } from '#/components/icon';
 import {
@@ -19,6 +18,7 @@ import { CSS_VARS } from '#/styles/variables';
 import { Cell } from '@adbl/cells';
 import { useObserver } from '@adbl/unfinished';
 import classes from './notifications.module.css';
+import { addRouteQuery, useRouteQuery } from '@adbl/iota/utils/router';
 
 export default function NotificationsLayer() {
   const observer = useObserver();

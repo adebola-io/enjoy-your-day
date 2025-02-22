@@ -44,14 +44,12 @@
     --overview-tab-color: white;
     --history-tab-color: light-dark(var(--space-cadet-500), white);
     display: grid;
-    overflow: scroll;
+    overflow-x: hidden;
     height: calc(100dvh - var(--navbar-height));
     transition: scale var(--drawer);
     animation-name: switch-tabs;
     grid-template-rows: max-content;
     grid-template-columns: 100% 100%;
-    scroll-snap-type: both mandatory;
-    scroll-snap-stop: always;
     scrollbar-width: none;
     overscroll-behavior: none;
 

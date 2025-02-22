@@ -74,7 +74,7 @@ svg {
 :root,
 body {
   color: light-dark(var(--space-cadet-500), CanvasText);
-  background-color: Canvas;
+  background-color: var(--space-cadet-500);
   transition: background-color calc(var(--default-duration) * 2),
     color calc(var(--default-duration) * 0.5);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -88,6 +88,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -ms-overflow-style: scrollbar;
   font-synthesis-weight: none;
+
+  &:has([data-app-loaded]) {
+    background-color: Canvas;
+  }
 }
 
 body {

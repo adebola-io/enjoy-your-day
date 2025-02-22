@@ -1,7 +1,7 @@
 import { BottomDrawer } from '#/components/bottom-drawer';
 import XIcon from '#/components/icons/x';
 import { Button } from '#/components/button';
-import { removeRouteQuery, useRouteQuery } from '#/library/utils';
+import { removeRouteQuery, useRouteQuery } from '@adbl/iota/utils/router';
 import classes from './notification-denied-drawer.module.css';
 
 export const notificationDeniedDrawerQuery = 'notifications-denied-drawer';

@@ -2,13 +2,10 @@ import { BottomDrawer } from '#/components/bottom-drawer';
 import { Button } from '#/components/button';
 import WarningIcon from '#/components/icons/warning';
 import { resetAllData } from '#/data/state';
-import {
-  elementAnimationsFinished,
-  removeRouteQuery,
-  useRouteQuery,
-} from '#/library/utils';
+import { elementAnimationsFinished } from '#/library/utils';
 import { Cell } from '@adbl/cells';
 import classes from './reset.module.css';
+import { removeRouteQuery, useRouteQuery } from '@adbl/iota/utils/router';
 
 export default function ResetDataDrawer() {
   const isOpen = useRouteQuery('level-one', 'reset');

@@ -1,10 +1,10 @@
 import type { JSX } from '@adbl/unfinished/jsx-dev-runtime';
-import { defer, deriveProp } from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
 import { Teleport } from '@adbl/unfinished/teleport';
 import { Cell, type SourceCell } from '@adbl/cells';
 import { type RouteChangeEvent, useRouter } from '@adbl/unfinished/router';
 import classes from './bottom-drawer.module.css';
+import { defer, derive } from '@adbl/iota/utils/misc';
 
 type DialogProps = Omit<JSX.IntrinsicElements['div'], 'children'>;
 interface BottomDrawerProps extends DialogProps {
@@ -34,9 +34,9 @@ export function BottomDrawer(props: BottomDrawerProps) {
   const observer = useObserver();
   const router = useRouter();
 
-  const isOpen = deriveProp(open);
+  const isOpen = derive(open);
   const isClosed = Cell.derived(() => !isOpen.value);
-  const isClosable = deriveProp(closable);
+  const isClosable = derive(closable);
 
   const toggle = async (isOpen?: boolean) => {
     const dialog = ref.value;
@@ -89,10 +89,7 @@ export function BottomDrawer(props: BottomDrawerProps) {
   };
 
   isOpen.listen(toggle);
-  observer.onConnected(ref, () => {
-    // Intersection Observer doesn't work on cell values directly
-    // because they are proxies.
-    const dialog = ref.deproxy();
+  observer.onConnected(ref, (dialog) => {
     const div = dialog.firstElementChild as HTMLDivElement;
     const callback: IntersectionObserverCallback = ([{ isIntersecting }]) => {
       const canClose =

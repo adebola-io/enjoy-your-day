@@ -9,7 +9,7 @@ import type {
   InsightHistoryDetails,
 } from '#/services/database/types';
 import { todayStr } from '#/data/state';
-import { defer, getResourceState, NoOp } from '#/library/utils';
+import { NoOp } from '#/library/utils';
 import { LookupMap } from '#/library/lookup-map';
 import { Cell } from '@adbl/cells';
 import { For, If, Switch, useObserver } from '@adbl/unfinished';
@@ -18,11 +18,13 @@ import { ProgressBar } from '#/components/progress-bar';
 import { CSS_VARS } from '#/styles/variables';
 import classes from './history.module.css';
 import SettingsIcon from '#/components/icons/settings';
+import { useResourceState } from '@adbl/iota/hooks/use-resource-state';
+import { defer } from '@adbl/iota/utils/misc';
 
 export default function History() {
   const observer = useObserver();
   const resource = Cell.async(getInsightsHistory);
-  const state = getResourceState(resource);
+  const state = useResourceState(resource);
   const containerRef = Cell.source<HTMLDivElement | null>(null);
   const today = Temporal.PlainDate.from(todayStr.value);
   const chunkSize = 15;

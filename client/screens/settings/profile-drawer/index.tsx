@@ -8,7 +8,7 @@ import {
   addRouteQuery,
   removeRouteQuery,
   useRouteQuery,
-} from '#/library/utils';
+} from '@adbl/iota/utils/router';
 import ProfileIcon from '#/components/icons/profile';
 import {
   username,
@@ -22,7 +22,6 @@ import { Input } from '#/components/input';
 import { For, If } from '@adbl/unfinished';
 import { categories } from '#/data/categories';
 import { MAX_USERNAME_LENGTH } from '#/data/constants';
-import { ElasticView } from '#/components/elastic-view';
 import { CategoryCard } from '#/components/category-card';
 import classes from './profile-drawer.module.css';
 
@@ -215,8 +214,6 @@ function InvolvementLevels(props: InvolvementLevelProps) {
 
 function Categories() {
   return (
-    <ElasticView class={classes.categoryList} yAxis>
-      {For(categories, CategoryCard)}
-    </ElasticView>
+    <div class={classes.categoryList}>{For(categories, CategoryCard)}</div>
   );
 }

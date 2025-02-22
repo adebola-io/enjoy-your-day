@@ -1,11 +1,6 @@
 import { getAutoRecommendations } from '#/services/database';
 import { finalTexts, headings } from '#/data/headings';
-import {
-  addRouteQuery,
-  getResourceState,
-  NoOp,
-  useRouteQuery,
-} from '#/library/utils';
+import { NoOp } from '#/library/utils';
 import { useObserver } from '@adbl/unfinished';
 import GoalCardsLayer from './goal-cards-layer';
 import { Cell } from '@adbl/cells';
@@ -19,6 +14,8 @@ import AutoSelectEditLayer from './auto-select-edit-layer';
 import { BackButton } from '#/components/back-button';
 import { ConfirmDrawer } from './confirm-drawer';
 import classes from './auto-select.module.css';
+import { addRouteQuery, useRouteQuery } from '@adbl/iota/utils/router';
+import { useResourceState } from '@adbl/iota/hooks/use-resource-state';
 
 export default async function AutoSelectLayer() {
   return (
@@ -37,7 +34,7 @@ function AutoSelectSlideContent() {
   const currentStage = Cell.derived(() => route.value.query.get('stage'));
   const containerRef = Cell.source<HTMLButtonElement | null>(null);
   const resource = Cell.async(getAutoRecommendations);
-  const state = getResourceState(resource);
+  const state = useResourceState(resource);
 
   if (dailyGoals.value.length > 0) {
     router.replace('/home');

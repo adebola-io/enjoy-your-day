@@ -194,6 +194,6 @@ export async function resetAllData() {
 const today = Temporal.Now.plainDateISO().toString();
 if (dailyGoalsDateStamp.value && today !== dailyGoalsDateStamp.value) {
   console.log('emptying data');
-  dailyGoalsCache.value = dailyGoals.value;
+  dailyGoalsCache.value = JSON.parse(JSON.stringify(dailyGoalsData.value));
   dailyGoals.value = [];
 }

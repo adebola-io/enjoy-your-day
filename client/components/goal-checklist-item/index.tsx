@@ -4,7 +4,6 @@ import { GoalItem } from '../goal-item';
 import { vibrate } from '#/library/utils';
 import classes from './goal-checklist-item.module.css';
 import { Temporal } from 'temporal-polyfill';
-import { LongPressArea } from '@adbl/iota/components/long-press-area';
 
 export interface GoalChecklistItemProps {
   goalState: GoalState | GoalStateSerialized;
@@ -45,14 +44,13 @@ export function GoalChecklistItem(props: GoalChecklistItemProps) {
         onChange={changeGoalState}
         disabled={disabled}
       />
-      <LongPressArea onLongPress={onLongPress}>
-        <GoalItem
-          {...goalState.goal}
-          cancelable={false}
-          listItem={false}
-          labelFor={goalInputId}
-        />
-      </LongPressArea>
+      <GoalItem
+        {...goalState.goal}
+        cancelable={false}
+        listItem={false}
+        labelFor={goalInputId}
+        onContextMenu--prevent={onLongPress}
+      />
     </div>
   );
 }

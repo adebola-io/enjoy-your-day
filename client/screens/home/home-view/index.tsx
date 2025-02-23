@@ -34,7 +34,6 @@ import {
   removeRouteQuery,
   useRouteQuery,
 } from '@adbl/iota/utils/router';
-import { ElasticArea } from '@adbl/iota/components/elastic-area';
 import { FluidList } from '@adbl/iota/components/fluid-list';
 import GoalForfeitDrawer, { goalForfeitDrawerQuery } from './goal-forfeit';
 
@@ -94,9 +93,8 @@ export default function HomeView() {
   };
 
   return (
-    <ElasticArea
+    <div
       id="homeView"
-      yAxis
       class={classes.container}
       data-goals-completed={goalsCompleted}
       data-extra-goals-screen-is-open={extraGoalsScreenIsOpen}
@@ -154,7 +152,7 @@ export default function HomeView() {
         buttons={GoalDetailsButtons}
       />
       <GoalForfeitDrawer />
-    </ElasticArea>
+    </div>
   );
 }
 

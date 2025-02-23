@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@adbl/cells": "^0.0.11",
-    "@adbl/iota": "https://pkg.pr.new/adebola-io/iota/@adbl/iota@a403cf7",
+    "@adbl/iota": "https://pkg.pr.new/adebola-io/iota/@adbl/iota@38ad765",
     "@adbl/unfinished": "^0.0.14",
     "canvas-confetti": "^1.9.3",
     "dexie": "^4.0.10",

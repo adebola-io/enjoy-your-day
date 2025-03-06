@@ -3,7 +3,7 @@
 import { defineConfig } from 'vite';
 import path from 'node:path';
 import { VitePWA } from 'vite-plugin-pwa';
-import { hmrPlugin } from '@adbl/unfinished/render';
+import { unfinished } from '@adbl/unfinished/plugin';
 import inlineSource from 'vite-plugin-inline-source';
 import { ViteMinifyPlugin } from 'vite-plugin-minify';
 
@@ -14,7 +14,7 @@ export default defineConfig({
   worker: { format: 'es' },
   plugins: [
     ViteMinifyPlugin(),
-    hmrPlugin(),
+    unfinished(),
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: {
@@ -492,8 +492,4 @@ export default defineConfig({
     }),
     inlineSource(),
   ],
-  esbuild: {
-    jsx: 'automatic',
-    jsxImportSource: '@adbl/unfinished',
-  },
 });

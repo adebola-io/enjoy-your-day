@@ -21,7 +21,7 @@ export default async function main(deferredPromptEvent?: DeferredPromptEvent) {
   const router = createRouter();
   router.window = window;
   router.attachWindowListeners();
-  document.body.prepend(router.Outlet());
+  document.body.prepend(router.Outlet() as Node);
 
   return router.replace('/onboarding/enter-name').then(() => {
     router.useViewTransitions = true;
@@ -39,7 +39,7 @@ export async function resumeApp() {
   const router = createRouter();
   router.window = window;
   router.attachWindowListeners();
-  document.body.prepend(router.Outlet());
+  document.body.prepend(router.Outlet() as Node);
 
   // In some scenarios in Android, the auto-generated splash screen
   // sometimes waits too long and bleeds into the start of the

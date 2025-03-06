@@ -12,7 +12,7 @@
   "dependencies": {
     "@adbl/cells": "^0.0.11",
     "@adbl/iota": "https://pkg.pr.new/adebola-io/iota/@adbl/iota@38ad765",
-    "@adbl/unfinished": "^0.0.14",
+    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@261bc64",
     "canvas-confetti": "^1.9.3",
     "dexie": "^4.0.10",
     "temporal-polyfill": "^0.2.5"

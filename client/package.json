@@ -28,5 +28,10 @@
     "vite-plugin-minify": "^2.1.0",
     "postcss": "^8.4.49",
     "postcss-nesting": "^13.0.1"
+  },
+  "vitePWA": {
+    "manifest": {
+      "default_notification_icon": "/icon.png"
+    }
   }
 }
